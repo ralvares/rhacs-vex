@@ -8,14 +8,6 @@ Triage CVE findings from [RHACS](https://www.redhat.com/en/technologies/cloud-co
 pip install -r requirements.txt
 ```
 
-Build the namespace→VEX prefix map from the operator catalog files (re-run when catalogs are updated):
-
-```bash
-python3 build_ns_map.py [catalog*.json ...]
-```
-
-This reads every `catalog*.json` in the current directory, extracts operator display names and OLM package names from `olm.bundle` entries, normalises them to snake_case VEX-prefix candidates, and writes `data/ns_vex_prefixes.json`. `triage.py` loads this file automatically at startup. Without it, only a small hardcoded fallback table is used.
-
 ```bash
 export ROX_ENDPOINT=central-stackrox.apps.mycluster.example.com:443
 export ROX_API_TOKEN=<your-api-token>

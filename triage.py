@@ -330,26 +330,59 @@ def _rhacs_session(endpoint: str, token: str) -> requests.Session:
 def rhacs_find_image(session, image_ref: str) -> Optional[str]:
     """
     Search RHACS for an image by reference and return its internal ID.
-    Tries progressively shorter name forms if the full ref isn't found.
+    Only returns a match when the stored image exactly matches the requested
+    digest or tag — never returns a wrong-tag result from a bare-name search.
+    Returns None when no exact match is found (caller should trigger on-demand scan).
     """
-    # Build candidate query strings from most specific to least
-    # Strip digest and tag to get just registry/ns/name
-    bare = re.sub(r'[@:][^/]*$', '', image_ref)
+    digest_m = re.search(r'@(sha256:[a-f0-9]+)', image_ref)
+    tag_m    = re.search(r':([^/:@]+)$', image_ref)   # tag after last colon (no slash after)
+    bare     = re.sub(r'[@:][^/]*$', '', image_ref)    # registry/ns/name without tag/digest
 
+    # 1. Try exact full-ref search first
     for query in [f'Image:{image_ref}', f'Image:{bare}']:
-        url = f"{session.base_url}/v1/images"
-        resp = session.get(url, params={"query": query, "pagination.limit": 5}, timeout=30)
+        url  = f"{session.base_url}/v1/images"
+        resp = session.get(url, params={"query": query, "pagination.limit": 10}, timeout=30)
         resp.raise_for_status()
         results = resp.json().get("images", [])
-        if results:
-            # Prefer exact digest match if available
-            digest = re.search(r'@(sha256:[a-f0-9]+)', image_ref)
-            if digest:
-                for img in results:
-                    if digest.group(1) in json.dumps(img):
-                        return img["id"]
+        if not results:
+            continue
+
+        # Digest match — authoritative, always exact
+        if digest_m:
+            for img in results:
+                if digest_m.group(1) in json.dumps(img):
+                    return img["id"]
+
+        # Tag match — require the stored tag to equal the requested tag
+        elif tag_m:
+            requested_tag = tag_m.group(1)
+            for img in results:
+                stored_name = img.get("name") or ""
+                # name is a string like "registry/ns/repo:tag"
+                stored_tag = stored_name.rsplit(":", 1)[-1] if ":" in stored_name else ""
+                if stored_tag == requested_tag:
+                    return img["id"]
+
+        # No tag and no digest — any result from the exact full-ref query is fine
+        elif query == f'Image:{image_ref}' and results:
             return results[0]["id"]
+
     return None
+
+
+def rhacs_scan_image(session, image_ref: str, console=None) -> dict:
+    """
+    Trigger ACS to scan an image on-demand via POST /v1/images/scan.
+    The endpoint is synchronous — it returns the full image object when done.
+    Used when the image is not yet indexed in ACS (not deployed in the cluster).
+    """
+    url = f"{session.base_url}/v1/images/scan"
+    payload = {"imageName": image_ref, "force": True}
+    if console:
+        console.print(f"⏳ Triggering ACS scan for [cyan]{image_ref}[/cyan] — waiting for results...")
+    resp = session.post(url, json=payload, timeout=300)
+    resp.raise_for_status()
+    return resp.json()
 
 
 def rhacs_get_image(session, image_id: str) -> dict:
@@ -1141,9 +1174,11 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
         if image_id is None:
             image_id = rhacs_find_image(session, image_ref)
             if not image_id:
-                return {"found": False, "error": None}
-
-        image_data = rhacs_get_image(session, image_id)
+                image_data = rhacs_scan_image(session, image_ref)
+            else:
+                image_data = rhacs_get_image(session, image_id)
+        else:
+            image_data = rhacs_get_image(session, image_id)
         labels     = (image_data.get("metadata") or {}).get("v1", {}).get("labels") or {}
         img_ctx    = parse_context_from_labels(labels, image_ref) if labels \
                      else parse_image_ref(image_ref)
@@ -1232,7 +1267,7 @@ parser.add_argument("--sbom",      action="store_true", default=False,
                          "Equivalent to rpm -qa without accessing the running container.\n"
                          "Requires ROX_ENDPOINT + ROX_API_TOKEN + --image.")
 parser.add_argument("--output",    default=None, metavar="FILE",
-                    help="Output file path (default: triage_report.csv or triage_report.json).\n"
+                    help="Output file path. If omitted, no file is written.\n"
                          "Has no effect with --format table.")
 parser.add_argument("--format",    default="csv", choices=["table", "csv", "json"],
                     dest="output_fmt",
@@ -1427,9 +1462,8 @@ if use_ocp:
                 _console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold] across "
                                f"{combined[combined['AUDIT_RESULT']==label]['OCP_COMPONENT'].nunique()} component(s)")
             _console.print()
-            if args.output_fmt != "table":
-                _out = args.output or f"triage_report.{args.output_fmt}"
-                _write_output(combined, _out, args.output_fmt, _console)
+            if args.output and args.output_fmt != "table":
+                _write_output(combined, args.output, args.output_fmt, _console)
         raise SystemExit(0)
 
     except requests.RequestException as e:
@@ -1493,9 +1527,8 @@ if use_namespace:
                 _console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold] across "
                                f"{combined[combined['AUDIT_RESULT']==label]['IMAGE'].nunique()} image(s)")
             _console.print()
-            if args.output_fmt != "table":
-                _out = args.output or f"triage_report.{args.output_fmt}"
-                _write_output(combined, _out, args.output_fmt, _console)
+            if args.output and args.output_fmt != "table":
+                _write_output(combined, args.output, args.output_fmt, _console)
         raise SystemExit(0)
 
     except requests.RequestException as e:
@@ -1511,12 +1544,13 @@ if use_api:
         _console.print(f"🔍 Searching for image in RHACS...")
         image_id = rhacs_find_image(session, args.image)
         if not image_id:
-            _console.print(f"[bold red]❌ Image not found in RHACS: {args.image}[/bold red]")
-            raise SystemExit(1)
-        _console.print(f"✅ Found image ID: [dim]{image_id}[/dim]")
-
-        _console.print(f"📥 Fetching full scan data...")
-        image_data = rhacs_get_image(session, image_id)
+            _console.print(f"[yellow]⚠  Image not indexed in RHACS — triggering on-demand scan...[/yellow]")
+            image_data = rhacs_scan_image(session, args.image, console=_console)
+            _console.print(f"✅ Scan complete")
+        else:
+            _console.print(f"✅ Found image ID: [dim]{image_id}[/dim]")
+            _console.print(f"📥 Fetching full scan data...")
+            image_data = rhacs_get_image(session, image_id)
 
         # Refine WorkloadContext from Docker labels (more authoritative than name)
         labels = (image_data.get("metadata") or {}).get("v1", {}).get("labels") or {}
@@ -1553,7 +1587,7 @@ if ctx.extra_prefixes:
     _console.print(f"[bold]VEX scope:[/bold] {', '.join(ctx.extra_prefixes[:6])}")
 _console.print()
 
-_out_path = (args.output or f"triage_report.{args.output_fmt}") if args.output_fmt != "table" else None
+_out_path = args.output if args.output and args.output_fmt != "table" else None
 result_df = _audit_and_display(df, ctx, _console,
                                output_path=_out_path,
                                output_fmt=args.output_fmt,
