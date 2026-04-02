@@ -352,6 +352,16 @@ def rhacs_find_image(session, image_ref: str) -> Optional[str]:
                 for img in results:
                     if digest.group(1) in json.dumps(img):
                         return img["id"]
+            # When the input ref has no tag/digest (floating ref like 'ubi8/ubi'),
+            # prefer the result tagged ':latest' over any pinned version tag, since
+            # the SBOM API will also resolve the floating ref to ':latest'.
+            has_tag_or_digest = bool(re.search(r'[@:]', image_ref.split('/')[-1]))
+            if not has_tag_or_digest and len(results) > 1:
+                for img in results:
+                    name_val  = img.get("name", "")
+                    full_name = name_val if isinstance(name_val, str) else name_val.get("fullName", "")
+                    if full_name.endswith(":latest"):
+                        return img["id"]
             return results[0]["id"]
     return None
 
