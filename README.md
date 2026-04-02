@@ -1,6 +1,8 @@
 # vex-triage
 
-Triage CVE findings from [RHACS](https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes) against Red Hat's official [VEX](https://www.redhat.com/en/blog/red-hat-vex-files) data to automatically classify findings as **VULNERABLE** or **FALSE POSITIVE**, without ever accessing the running container.
+Triage CVE findings from [RHACS](https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes) against Red Hat's official [VEX/CSAF](https://www.redhat.com/en/blog/red-hat-vex-files) advisories to automatically classify findings as **VULNERABLE** or **FALSE POSITIVE**, without ever accessing the running container.
+
+VEX advisories and SPDX SBOMs are fetched on demand and cached locally under `data/`. No image pull or container runtime is required.
 
 ## Setup
 
@@ -31,79 +33,36 @@ python3 triage.py [--image IMAGE_REF]
 |------|-------------|
 | `--image IMAGE_REF` | Triage a single image by digest or tag |
 | `--namespace NS` | Triage all images deployed in a Kubernetes namespace |
-| `--ocp FILE` | Triage every component in an OCP release manifest |
-| `--scan FILE` | Triage from an RHACS CSV export instead of the API |
+| `--ocp FILE` | Triage every component in an OCP release manifest (`oc adm release info --pullspecs`) |
+| `--scan FILE` | Triage from an RHACS CSV export instead of the live API |
 | `--format` | Output format: `table` (default), `csv`, or `json` |
-| `--output FILE` | Write output to a file |
+| `--output FILE` | Write output to a file (for `csv` / `json`) |
 | `--false-only` | Show only `FALSE POSITIVE` rows |
-| `--sbom` | Print the full package list for `--image` (no container access needed) |
-| `--workers N` | Parallel workers for `--ocp` / `--namespace` (default: 10) |
+| `--sbom` | Print the full package list for `--image` — no container access needed |
+| `--workers N` | Parallel image workers for `--ocp` / `--namespace` (default: 10) |
 
-## Examples
+> **On-demand scan**: if the requested image is not already indexed in RHACS, the tool automatically triggers a scan via `POST /v1/images/scan` and waits for the result (up to 5 minutes).
 
-### Single image
+## Output formats
 
-```bash
-python3 triage.py --image "registry.redhat.io/advanced-cluster-security/rhacs-scanner-db-rhel8@sha256:6cc97529..." --false-only
-```
+| Format | Behaviour |
+|--------|-----------|
+| `table` | Pretty Rich table printed to the terminal (default) |
+| `json` | Clean JSON array on stdout — no headers or emoji |
+| `csv` | CSV on stdout or to `--output FILE` — no emoji |
 
-### JSON output
-
-```bash
-python3 triage.py --image "registry.redhat.io/advanced-cluster-security/rhacs-scanner-db-rhel8@sha256:6cc97529..." \
-  --false-only --format json --output /tmp/report.json
-```
-
-### All images in a namespace
-
-```bash
-python3 triage.py --namespace openshift-monitoring --false-only
-```
-
-### Full OCP release
-
-```bash
-oc adm release info 4.21.2 --pullspecs > 4.21.2.txt
-python3 triage.py --ocp 4.21.2.txt --false-only --workers 30 --format csv --output ocp-4.21.2-triage.csv
-```
-
-### CSV mode (no API required)
-
-```bash
-python3 triage.py --scan scan.csv --image "registry.../myimage@sha256:..." --false-only
-```
+For `json` and `csv`, all Rich/terminal output (progress messages, summaries) is redirected to stderr so that stdout contains only the parseable data.
 
 ## Triage results
 
 | Result | Meaning |
 |--------|---------|
-| `✅ FALSE POSITIVE` | VEX says this component is not affected |
-| `✅ FALSE POSITIVE (fix backported)` | Installed RPM already includes the fix |
-| `🔴 VULNERABLE` | No not-affected or fix statement found |
-| `⚠️ Under investigation` | VEX exists but no verdict yet |
-| `❓ VEX file missing` | No VEX advisory published for this CVE |
+| `FALSE POSITIVE` | VEX states this component is not affected |
+| `FALSE POSITIVE (fix backported)` | Installed RPM version already contains the fix |
+| `VULNERABLE` | No not-affected or fix statement found in VEX |
+| `NEEDS REVIEW` | VEX advisory exists but verdict is still under investigation |
 
-## Cache layout
-
-```
-data/
-  vex/    ← cached VEX/CSAF advisories (one per CVE)
-  sbom/   ← cached SPDX 2.3 SBOMs (one per scanned image)
-```
-
-Both caches are populated on first use. Delete a file to force a refresh.
-```
-
-| Flag | Description |
-|------|-------------|
-| `--image IMAGE_REF` | Triage a single image by digest or tag |
-| `--namespace NS` | Triage all images deployed in a Kubernetes namespace |
-| `--ocp FILE` | Triage every component in an OCP release manifest |
-| `--scan FILE` | Triage from an RHACS CSV export instead of the API |
-| `--false-only` | Show only `FALSE POSITIVE` rows (noise-free output) |
-| `--workers N` | Parallel workers for `--ocp` / `--namespace` (default: 10) |
-
----
+In `table` format, results are colour-coded (green / red). In `json` / `csv` output the values are plain text with no emoji or special characters.
 
 ## Examples
 
@@ -111,8 +70,24 @@ Both caches are populated on first use. Delete a file to force a refresh.
 
 ```bash
 python3 triage.py \
-  --image "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:046f5864..." \
+  --image "registry.redhat.io/advanced-cluster-security/rhacs-scanner-db-rhel8@sha256:6cc97529..." \
   --false-only
+```
+
+### JSON output to a file
+
+```bash
+python3 triage.py \
+  --image "registry.redhat.io/advanced-cluster-security/rhacs-scanner-db-rhel8@sha256:6cc97529..." \
+  --false-only --format json --output /tmp/report.json
+```
+
+### JSON output to stdout (pipe-friendly)
+
+```bash
+python3 triage.py \
+  --image "registry.redhat.io/ubi8/ubi:latest" \
+  --format json 2>/dev/null | jq '.[] | select(.AUDIT_RESULT == "FALSE POSITIVE")'
 ```
 
 ### All images in a namespace
@@ -129,56 +104,27 @@ Generate the pullspecs file first:
 oc adm release info 4.21.2 --pullspecs > 4.21.2.txt
 ```
 
-Then triage all ~800 component images:
+Then triage all component images in parallel:
 
 ```bash
-python3 triage.py --ocp 4.21.2.txt --false-only --workers 30
+python3 triage.py --ocp 4.21.2.txt --false-only --workers 30 --format csv --output ocp-4.21.2-triage.csv
 ```
 
-The tool reads the `Name:` field from the manifest header to ensure every component is evaluated against the correct release (e.g. `4.21.2`), even if an individual image was built/promoted from an earlier minor release.
+The tool reads the `Name:` field from the manifest header to scope every component against the correct product release (e.g. `4.21.2`), even if an individual image was built from an earlier minor release.
 
-### RHACM operator image
+### CSV mode (no live API required)
 
 ```bash
-python3 triage.py \
-  --image "registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9@sha256:58f24f4a9869b9fc5f67dfe5aed1bdaae61880654b20c750e17ca12867b1d9a4" \
-  --false-only
+python3 triage.py --scan scan.csv --image "registry.../myimage@sha256:..." --false-only
 ```
 
+## Cache layout
+
 ```
-Image: registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9@sha256:58f24f4a...
-Mode: RHACS API  endpoint=central-stackrox.apps.mycluster.com:443
-🔍 Searching for image in RHACS...
-✅ Found image ID: sha256:58f24f4a9869b9fc5f67dfe5aed1bdaae61880654b20c750e17ca12867b1d9a4
-📥 Fetching full scan data...
-🏷  Labels found — refining context from CPE...
-OS: rhel:9
-Found: 112 CVE findings across 38 components
-Context: type=operator  rhel=9  display=RHACM 2.16 (RHEL 9)
-VEX scope: registry.redhat.io/rhacm2/, rhacm2/, red_hat_advanced_cluster_management_for_kubernetes_2, multicluster_global_hub
-
-🔄 Syncing 80 CVEs into /vex folder...
-✅ Sync Complete in 1.25s.
-🚀 Running Structured Audit — context: RHACM 2.16 (RHEL 9)
-
-                       VEX Triage Report — RHACM 2.16 (RHEL 9)
-╭──────────────────────────────┬─────────────────────┬────────┬────────────────┬───────────┬───────────────────┬─────────┬───────────────────────────────────────────╮
-│ Component                    │ Product             │ Ver.   │ CVE            │ Severity  │ Result            │ Fix Ver │ Justification                             │
-├──────────────────────────────┼─────────────────────┼────────┼────────────────┼───────────┼───────────────────┼─────────┼───────────────────────────────────────────┤
-│ google.golang.org/grpc       │ RHACM 2.16 (RHEL 9) │ v1.… │ CVE-2025-…    │ Important │ ✅ FALSE POSITIVE │ N/A     │ Non-RPM — not affected in RHACM 2.16     │
-│ google.golang.org/grpc       │ RHACM 2.16 (RHEL 9) │ v1.… │ CVE-2025-…    │ Important │ ✅ FALSE POSITIVE │ N/A     │ Non-RPM — not affected in RHACM 2.16     │
-│ google.golang.org/grpc       │ RHACM 2.16 (RHEL 9) │ v1.… │ CVE-2025-…    │ Important │ ✅ FALSE POSITIVE │ N/A     │ Non-RPM — not affected in RHACM 2.16     │
-│ google.golang.org/grpc       │ RHACM 2.16 (RHEL 9) │ v1.… │ CVE-2025-…    │ Important │ ✅ FALSE POSITIVE │ N/A     │ Non-RPM — not affected in RHACM 2.16     │
-│ stdlib                       │ RHACM 2.16 (RHEL 9) │ 1.2… │ CVE-2025-…    │ Important │ ✅ FALSE POSITIVE │ N/A     │ Non-RPM — not affected in RHACM 2.16     │
-│ github.com/cloudflare/circl  │                     │ v1.…  │ CVE-2025-…    │ Moderate  │ ✅ FALSE POSITIVE │ N/A     │ Red Hat Product Security states no        │
-│                              │                     │        │                │           │                   │         │ currently supported Red Hat product is    │
-│                              │                     │        │                │           │                   │         │ affected by this CVE.                     │
-│ github.com/cloudflare/circl  │                     │ v1.…  │ CVE-2025-…    │ Moderate  │ ✅ FALSE POSITIVE │ N/A     │ Red Hat Product Security states no        │
-│                              │                     │        │                │           │                   │         │ currently supported Red Hat product is    │
-│                              │                     │        │                │           │                   │         │ affected by this CVE.                     │
-╰──────────────────────────────┴─────────────────────┴────────┴────────────────┴───────────┴───────────────────┴─────────┴───────────────────────────────────────────╯
-
-  ✅ FALSE POSITIVE: 7
+data/
+  vex/    ← VEX/CSAF advisories fetched from access.redhat.com (one file per CVE)
+  sbom/   ← SPDX 2.3 SBOMs fetched from RHACS (one file per image digest)
 ```
 
+Both caches are populated on first use. Delete a file to force a refresh.
 
