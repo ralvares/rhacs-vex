@@ -102,37 +102,19 @@ class WorkloadContext:
     extra_prefixes: List[str]       = field(default_factory=list)
 
 
-# Maps registry namespace → VEX product-ID substrings that are in-scope
-# for that image family.  Extend as needed.
-#
-# Note: parse_image_ref ALWAYS appends "registry.redhat.io/{ns}/" and "{ns}/"
-# automatically, so entries here only need to add *logical* product family names.
-_NS_TO_VEX_PREFIXES = {
-    "compliance":                  ["compliance_operator", "file_integrity_operator"],
-    "file-integrity-operator":     ["file_integrity_operator"],
-    "openshift4":                  [],   # matched via OCP version
-    "openshift-logging":           ["logging_subsystem"],
-    "odf4":                        ["odf4", "openshift_data_foundation"],
-    "quay":                        ["quay"],
-    "ansible-automation-platform": ["ansible"],
-    "rhoai":                       ["rhoai", "red_hat_openshift_ai"],
-    "network-observability":       ["network_observability_operator"],
-    "lvms4":                       ["lvms"],
-    "gatekeeper":                  ["gatekeeper"],
-    "custom-metrics-autoscaler":   ["custom_metric_autoscaler"],
-    "workload-availability":       ["node_healthcheck_operator", "self_node_remediation"],
-    # RHACM / multicluster
-    "rhacm2":                      ["red_hat_advanced_cluster_management_for_kubernetes_2",
-                                    "multicluster_global_hub"],
-    "multicluster-engine":         ["multicluster_engine_for_kubernetes"],
-    # OpenShift Virtualization
-    "cnv":                         ["red_hat_openshift_virtualization", "cnv"],
-    # Service Mesh
-    "openshift-service-mesh":      ["openshift_service_mesh", "RHOSSM"],
-    # Pipelines / GitOps
-    "openshift-pipelines":         ["openshift_pipelines"],
-    "openshift-gitops":            ["openshift_gitops"],
-}
+# Namespace → VEX prefix map loaded from data/ns_vex_prefixes.json.
+# Generate it by running:  python3 build_ns_map.py
+_NS_VEX_MAP_PATH = os.path.join(BASE_DIR, "ns_vex_prefixes.json")
+
+def _load_ns_vex_map() -> dict:
+    """Load the catalog-generated namespace→VEX-prefix map from JSON."""
+    try:
+        with open(_NS_VEX_MAP_PATH) as _fh:
+            return json.load(_fh)
+    except Exception:
+        return {}
+
+_NS_TO_VEX_PREFIXES = _load_ns_vex_map()
 
 
 def parse_image_ref(image_ref: str) -> WorkloadContext:
@@ -201,10 +183,16 @@ def parse_image_ref(image_ref: str) -> WorkloadContext:
         reg_host = registry.group(1) if registry else "registry.redhat.io"
         ctx.extra_prefixes.append(f"{reg_host}/{ns}/")   # full registry URL form
         ctx.extra_prefixes.append(f"{ns}/")               # short form used in some VEX trees
-        # Look up additional logical product-family prefixes from the table
+
+        # Pull in all prefix candidates from the catalog-derived map.
+        # The map already includes normalised display names, OLM package names,
+        # and hardcoded overrides for divergent product families (rhacm2, odf4, …).
         for ns_key, prefixes in _NS_TO_VEX_PREFIXES.items():
-            if ns_key in ns or ns_key in name:
-                ctx.extra_prefixes.extend(prefixes)
+            if ns_key == ns or ns_key in ns or ns_key in name:
+                for p in prefixes:
+                    if p not in ctx.extra_prefixes:
+                        ctx.extra_prefixes.append(p)
+
         ver_label = f" (RHEL {ctx.rhel_ver})"
         ctx.display_name = f"{ns}/{name}{ver_label}"
 
