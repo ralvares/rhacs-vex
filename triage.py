@@ -1028,7 +1028,7 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
         box=box.ROUNDED, show_header=True, header_style="bold white", show_lines=True,
     )
     table.add_column("Component", style="cyan", no_wrap=True)
-    table.add_column("Product", style="magenta", no_wrap=True)
+    table.add_column("Product", style="magenta", no_wrap=False, max_width=30)
     table.add_column("Version", style="dim")
     table.add_column("CVE", style="bold")
     table.add_column("Severity", no_wrap=True)
