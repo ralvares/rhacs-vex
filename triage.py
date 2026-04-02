@@ -106,6 +106,10 @@ class WorkloadContext:
     image_name    : Optional[str]   = None
     display_name  : str             = "UBI8"
     extra_prefixes: List[str]       = field(default_factory=list)
+    # Maps binary RPM name → source RPM name (built from SBOM GENERATED_FROM rels).
+    # e.g. {"python3-urllib3": "python-urllib3", "libgcc": "gcc", ...}
+    # Populated by callers that have SBOM access; empty dict means no mapping.
+    sbom_src_map  : dict            = field(default_factory=dict)
 
 
 # Namespace → VEX prefix map loaded from data/ns_vex_prefixes.json.
@@ -318,14 +322,9 @@ def parse_context_from_labels(labels: dict, image_ref: str = "") -> WorkloadCont
     return ctx
 
 
-class _RHACSSession(requests.Session):
-    """requests.Session with a base_url attribute for RHACS."""
-    base_url: str
-
-
-def _rhacs_session(endpoint: str, token: str) -> _RHACSSession:
+def _rhacs_session(endpoint: str, token: str) -> requests.Session:
     """Build a requests Session pre-configured for the RHACS API."""
-    s = _RHACSSession()
+    s = requests.Session()
     s.headers.update({"Authorization": f"Bearer {token}", "Accept": "application/json"})
     s.verify = False   # Central may use self-signed cert
     s.base_url = f"https://{endpoint}"
@@ -335,59 +334,26 @@ def _rhacs_session(endpoint: str, token: str) -> _RHACSSession:
 def rhacs_find_image(session, image_ref: str) -> Optional[str]:
     """
     Search RHACS for an image by reference and return its internal ID.
-    Only returns a match when the stored image exactly matches the requested
-    digest or tag — never returns a wrong-tag result from a bare-name search.
-    Returns None when no exact match is found (caller should trigger on-demand scan).
+    Tries progressively shorter name forms if the full ref isn't found.
     """
-    digest_m = re.search(r'@(sha256:[a-f0-9]+)', image_ref)
-    tag_m    = re.search(r':([^/:@]+)$', image_ref)   # tag after last colon (no slash after)
-    bare     = re.sub(r'[@:][^/]*$', '', image_ref)    # registry/ns/name without tag/digest
+    # Build candidate query strings from most specific to least
+    # Strip digest and tag to get just registry/ns/name
+    bare = re.sub(r'[@:][^/]*$', '', image_ref)
 
-    # 1. Try exact full-ref search first
     for query in [f'Image:{image_ref}', f'Image:{bare}']:
-        url  = f"{session.base_url}/v1/images"
-        resp = session.get(url, params={"query": query, "pagination.limit": 10}, timeout=30)
+        url = f"{session.base_url}/v1/images"
+        resp = session.get(url, params={"query": query, "pagination.limit": 5}, timeout=30)
         resp.raise_for_status()
         results = resp.json().get("images", [])
-        if not results:
-            continue
-
-        # Digest match — authoritative, always exact
-        if digest_m:
-            for img in results:
-                if digest_m.group(1) in json.dumps(img):
-                    return img["id"]
-
-        # Tag match — require the stored tag to equal the requested tag
-        elif tag_m:
-            requested_tag = tag_m.group(1)
-            for img in results:
-                stored_name = img.get("name") or ""
-                # name is a string like "registry/ns/repo:tag"
-                stored_tag = stored_name.rsplit(":", 1)[-1] if ":" in stored_name else ""
-                if stored_tag == requested_tag:
-                    return img["id"]
-
-        # No tag and no digest — any result from the exact full-ref query is fine
-        elif query == f'Image:{image_ref}' and results:
+        if results:
+            # Prefer exact digest match if available
+            digest = re.search(r'@(sha256:[a-f0-9]+)', image_ref)
+            if digest:
+                for img in results:
+                    if digest.group(1) in json.dumps(img):
+                        return img["id"]
             return results[0]["id"]
-
     return None
-
-
-def rhacs_scan_image(session, image_ref: str, console=None) -> dict:
-    """
-    Trigger ACS to scan an image on-demand via POST /v1/images/scan.
-    The endpoint is synchronous — it returns the full image object when done.
-    Used when the image is not yet indexed in ACS (not deployed in the cluster).
-    """
-    url = f"{session.base_url}/v1/images/scan"
-    payload = {"imageName": image_ref, "force": True}
-    if console:
-        console.print(f"⏳ Triggering ACS scan for [cyan]{image_ref}[/cyan] — waiting for results...")
-    resp = session.post(url, json=payload, timeout=300)
-    resp.raise_for_status()
-    return resp.json()
 
 
 def rhacs_get_image(session, image_id: str) -> dict:
@@ -488,44 +454,14 @@ def _print_sbom_summary(console: Console, sbom_s: dict) -> None:
         console.print()
 
 
-def _clean_df_for_output(df: pd.DataFrame) -> pd.DataFrame:
-    """Return a copy of df with emoji and special characters removed from string columns.
-    Used for csv/json output so the data is plain ASCII-friendly text."""
-    import re as _re
-    _emoji_re = _re.compile(
-        "[\U00002700-\U000027BF"
-        "\U0001F300-\U0001F9FF"
-        "\U00002600-\U000026FF"
-        "\u2705\u274C\u26A0\u2714\u2716"
-        "]+", flags=_re.UNICODE)
-    out = df.copy()
-    for col in out.select_dtypes(include="object").columns:
-        out[col] = (out[col]
-                    .astype(str)
-                    .str.replace(_emoji_re, "", regex=True)
-                    .str.replace("\u2014", "-", regex=False)   # em dash → hyphen
-                    .str.strip())
-    return out
-
-
-def _write_output(df: pd.DataFrame, path: Optional[str], fmt: str, console: Console) -> None:
-    """Write triage results to *path* in the requested format (csv or json).
-    When path is None the output is written to stdout (no console decorations)."""
-    clean = _clean_df_for_output(df)
+def _write_output(df: pd.DataFrame, path: str, fmt: str, console: Console) -> None:
+    """Write triage results to *path* in the requested format (csv or json)."""
     if fmt == "json":
-        payload = json.dumps(clean.to_dict(orient="records"), indent=2, default=str)
-        if path:
-            with open(path, "w") as fh:
-                fh.write(payload)
-            console.print(f"  Report saved to [cyan]{path}[/cyan] [dim]({fmt})[/dim]\n")
-        else:
-            print(payload)
-    else:  # csv
-        if path:
-            clean.to_csv(path, index=False)
-            console.print(f"  Report saved to [cyan]{path}[/cyan] [dim]({fmt})[/dim]\n")
-        else:
-            print(df.to_csv(index=False), end="")
+        with open(path, "w") as fh:
+            json.dump(df.to_dict(orient="records"), fh, indent=2, default=str)
+    else:
+        df.to_csv(path, index=False)
+    console.print(f"  Report saved to [cyan]{path}[/cyan] [dim]({fmt})[/dim]\n")
 
 
 def rhacs_list_namespace_images(session, namespace: str) -> list:
@@ -596,6 +532,22 @@ _NOT_AFFECTED_FLAGS = {
 }
 
 
+def _resolve_comp(comp: str, ctx) -> set:
+    """Return the set of package names to try when matching VEX product IDs.
+
+    RHACS reports binary RPM names (e.g. ``python3-urllib3``) while Red Hat
+    VEX files use the *source* RPM name (e.g. ``python-urllib3``).  When the
+    caller has populated ``ctx.sbom_src_map`` from the image SBOM's
+    ``GENERATED_FROM`` relationships, we include the source name so the match
+    succeeds without any hardcoding.
+    """
+    names = {comp}
+    src = ctx.sbom_src_map.get(comp) if ctx.sbom_src_map else None
+    if src and src != comp:
+        names.add(src)
+    return names
+
+
 def _get_vex_product(data: dict, comp: str, ctx) -> str:
     """Return a short product label (e.g. 'OCP 4.20', 'Ceph 7.1') for the
     VEX entry that matches *comp* in the given context.  Returns '' if not found.
@@ -619,7 +571,7 @@ def _get_vex_product(data: dict, comp: str, ctx) -> str:
                 continue
             any_in_scope = True
             pkg_name, _ = _parse_pkg_from_product_id(pid)
-            if pkg_name == comp and pid in rel_parent:
+            if pkg_name in _resolve_comp(comp, ctx) and pid in rel_parent:
                 labels.add(rel_parent[pid])
 
     if labels:
@@ -772,12 +724,12 @@ def audit_row_detailed(row, ctx: WorkloadContext):
 
     vex_path = os.path.join(VEX_DIR, f"{cve}.json")
     if not os.path.exists(vex_path):
-        return pd.Series(["❌ VULNERABLE", "N/A", "VEX file missing — cannot confirm fix; treat as vulnerable.", "UNKNOWN"])
+        return pd.Series(["❌ POSITIVE", "N/A", "VEX file missing — cannot confirm fix; treat as vulnerable.", "UNKNOWN"])
 
     try:
         data = json.load(open(vex_path))
     except Exception as e:
-        return pd.Series(["❌ VULNERABLE", "N/A", f"VEX parse error: {e}", "UNKNOWN"])
+        return pd.Series(["❌ POSITIVE", "N/A", f"VEX parse error: {e}", "UNKNOWN"])
 
     # Build product tree lookup maps — used throughout for human-readable labels
     pid_name, rel_parent, rhel_base_pids = _build_pid_name(data)
@@ -913,19 +865,19 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                                 continue
                         lbl = _pid_label(pid, pid_name, rel_parent)
                         if status == 'under_investigation':
-                            return pd.Series(["❌ VULNERABLE", "N/A",
+                            return pd.Series(["❌ POSITIVE", "N/A",
                                                f"Under investigation by Red Hat for {ctx.display_name} — treat as vulnerable until resolved.",
                                                _severity])
-                        result = "❌ VULNERABLE" if status == "known_affected" else \
+                        result = "❌ POSITIVE" if status == "known_affected" else \
                                  "✅ FALSE POSITIVE" if status in ("known_not_affected", "fixed") else \
-                                 "❌ VULNERABLE"
+                                 "❌ POSITIVE"
                         return pd.Series([result, "N/A",
                                            f"Non-RPM CVE scoped to {ctx.display_name} ({lbl}).",
                                            _severity])
 
         # Check for under_investigation entries even outside operator scope
         if investigating:
-            return pd.Series(["❌ VULNERABLE", "N/A",
+            return pd.Series(["❌ POSITIVE", "N/A",
                                f"Under investigation by Red Hat — treat as vulnerable until resolved. Tracked in: {', '.join(investigating[:3])}.",
                                _severity])
 
@@ -939,7 +891,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         if affected:     parts.append(f"Affected in: {', '.join(affected[:3])}")
         if fixed:        parts.append(f"Fixed in: {', '.join(fixed[:3])}")
         if not_affected: parts.append(f"Not affected in: {', '.join(not_affected[:3])}")
-        return pd.Series(["❌ VULNERABLE", "N/A",
+        return pd.Series(["❌ POSITIVE", "N/A",
                            f"Non-RPM — VEX tracks CVE in related products: {'; '.join(parts)}. Treat as vulnerable.",
                            _severity])
 
@@ -957,7 +909,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 continue
             pkg_name, _ = _parse_pkg_from_product_id(pid)
-            if pkg_name == comp:
+            if pkg_name in _resolve_comp(comp, ctx):
                 scope = ctx.display_name
                 return pd.Series(["✅ FALSE POSITIVE", "N/A",
                                    f"{scope}: component known not affected (vulnerable code not present or not executable).",
@@ -969,7 +921,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 continue
             pkg_name, pkg_ver = _parse_pkg_from_product_id(pid)
-            if pkg_name == comp and pkg_ver:
+            if pkg_name in _resolve_comp(comp, ctx) and pkg_ver:
                 scoped_fixed.append(pkg_ver)
 
         if scoped_fixed:
@@ -997,7 +949,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                     # Fix exists in other streams but the patch for THIS minor
                     # stream has not been released yet → still VULNERABLE.
                     best_ref = unique_fixed[0]
-                    return pd.Series(["❌ VULNERABLE", best_ref,
+                    return pd.Series(["❌ POSITIVE", best_ref,
                                        f"{ctx.display_name} fix not yet released in el{ctx.rhel_ver}_{installed_minor} stream "
                                        f"(installed {found_v}); fixed in other streams: {best_ref}.",
                                        _severity])
@@ -1012,7 +964,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                                            _severity])
                 except Exception:
                     pass
-            return pd.Series(["❌ VULNERABLE", compare_fixes[0],
+            return pd.Series(["❌ POSITIVE", compare_fixes[0],
                                f"{ctx.display_name} fix available ({compare_fixes[0]}); installed {found_v} is older.",
                                _severity])
 
@@ -1021,7 +973,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 continue
             pkg_name, _ = _parse_pkg_from_product_id(pid)
-            if pkg_name == comp:
+            if pkg_name in _resolve_comp(comp, ctx):
                 # Check if a fix exists outside the in-scope products (context note)
                 other_products = set()
                 for fpid in ps.get('fixed', []):
@@ -1033,15 +985,15 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                             f"Fix exists only in: {ctx_str} — not applicable to this workload.")
                 else:
                     note = f"Confirmed affected in {ctx.display_name}; no fix available yet."
-                return pd.Series(["❌ VULNERABLE", "N/A", note, _severity])
+                return pd.Series(["❌ POSITIVE", "N/A", note, _severity])
 
         # --- UNDER_INVESTIGATION in scope -------------------------------------
         for pid in ps.get('under_investigation', []):
             if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 continue
             pkg_name, _ = _parse_pkg_from_product_id(pid)
-            if pkg_name == comp or _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
-                return pd.Series(["❌ VULNERABLE", "N/A",
+            if pkg_name in _resolve_comp(comp, ctx) or _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                return pd.Series(["❌ POSITIVE", "N/A",
                                    f"Under investigation by Red Hat for {ctx.display_name} — treat as vulnerable until resolved.",
                                    _severity])
 
@@ -1051,7 +1003,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             for pid in ps.get(status, []):
                 if _is_any_rhel_ver_product(pid, rhel_ver) and not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                     pkg_name, _ = _parse_pkg_from_product_id(pid)
-                    if pkg_name == comp:
+                    if pkg_name in _resolve_comp(comp, ctx):
                         label = _pid_label(pid, pid_name, rel_parent)
                         if status in ('known_affected', 'fixed'):
                             other_vuln.add(label)
@@ -1065,7 +1017,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                                _severity])
         if other_vuln:
             ctx_str = ", ".join(sorted(other_vuln))
-            return pd.Series(["❌ VULNERABLE", "N/A",
+            return pd.Series(["❌ POSITIVE", "N/A",
                                f"CVE tracked for '{comp}' in related products ({ctx_str}); no explicit clearance for {ctx.display_name} — treat as vulnerable.",
                                _severity])
 
@@ -1073,7 +1025,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                            f"Component '{comp}' not tracked in VEX for this CVE — vendor does not consider it affected.",
                            _severity])
 
-    return pd.Series(["❌ VULNERABLE", "N/A", "No vulnerability entries in VEX file", _severity])
+    return pd.Series(["❌ POSITIVE", "N/A", "No vulnerability entries in VEX file", _severity])
 
 
 # ── Display helpers (used by both single-image and namespace modes) ───────────
@@ -1082,7 +1034,7 @@ _SEVERITY_ORDER = {"Critical": 0, "Important": 1, "Moderate": 2, "Low": 3, "Unkn
 
 RESULT_STYLES = {
     "✅ FALSE POSITIVE": "bold green",
-    "❌ VULNERABLE":     "bold red",
+    "❌ POSITIVE":     "bold red",
 }
 
 SEVERITY_STYLES = {
@@ -1145,9 +1097,8 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
     counts = result_df['AUDIT_RESULT'].value_counts()
     console.print()
     for label, count in counts.items():
-        lbl = str(label)
-        style = RESULT_STYLES.get(lbl, "")
-        console.print(f"  [{style}]{lbl}[/{style}]: [bold]{count}[/bold]")
+        style = RESULT_STYLES.get(label, "")
+        console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold]")
     console.print()
 
 
@@ -1173,11 +1124,9 @@ def _audit_and_display(df: pd.DataFrame, ctx,
     df['VEX_PRODUCT'] = df.apply(lambda row: _vex_product_for_row(row, ctx), axis=1)
 
     result_df = _sort_and_filter_df(df, false_only)
+    _render_triage_table(console, result_df, ctx)
 
-    if output_fmt == "table":
-        _render_triage_table(console, result_df, ctx)
-    else:
-        # Non-table format: skip Rich table, write to file or stdout
+    if output_path and output_fmt != "table":
         _write_output(result_df, output_path, output_fmt, console)
 
     return result_df
@@ -1212,11 +1161,9 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
         if image_id is None:
             image_id = rhacs_find_image(session, image_ref)
             if not image_id:
-                image_data = rhacs_scan_image(session, image_ref)
-            else:
-                image_data = rhacs_get_image(session, image_id)
-        else:
-            image_data = rhacs_get_image(session, image_id)
+                return {"found": False, "error": None}
+
+        image_data = rhacs_get_image(session, image_id)
         labels     = (image_data.get("metadata") or {}).get("v1", {}).get("labels") or {}
         img_ctx    = parse_context_from_labels(labels, image_ref) if labels \
                      else parse_image_ref(image_ref)
@@ -1231,6 +1178,25 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
             img_ctx.display_name = f"OpenShift {release_ocp_ver} (RHEL {img_ctx.rhel_ver})"
             img_ctx.extra_prefixes = []  # OCP scope derived from VEX tree; no hardcoded prefixes
         os_info    = (image_data.get("scan") or {}).get("operatingSystem", "")
+
+        # Build binary→source RPM name map from SBOM GENERATED_FROM relationships.
+        # Red Hat VEX product IDs use source RPM names (e.g. "python-urllib3") while
+        # RHACS reports binary RPM names ("python3-urllib3").  The SBOM is SPDX 2.3
+        # and is already cached after the first call.
+        try:
+            _sbom = rhacs_get_sbom(session, image_ref)
+            _by_id = {pkg['SPDXID']: pkg for pkg in _sbom.get('packages', [])}
+            for _rel in _sbom.get('relationships', []):
+                if _rel.get('relationshipType') == 'GENERATED_FROM':
+                    _bin = _by_id.get(_rel['spdxElementId'])
+                    _src = _by_id.get(_rel['relatedSpdxElement'])
+                    if _bin and _src:
+                        _bn, _sn = _bin.get('name', ''), _src.get('name', '')
+                        if _bn and _sn and _bn != _sn:
+                            img_ctx.sbom_src_map[_bn] = _sn
+        except Exception:
+            pass  # non-fatal; matching falls back to exact name
+
         img_df     = rhacs_to_df(image_data)
 
         if img_df.empty:
@@ -1307,9 +1273,9 @@ parser.add_argument("--sbom",      action="store_true", default=False,
 parser.add_argument("--output",    default=None, metavar="FILE",
                     help="Output file path. If omitted, no file is written.\n"
                          "Has no effect with --format table.")
-parser.add_argument("--format",    default="table", choices=["table", "csv", "json"],
+parser.add_argument("--format",    default="csv", choices=["table", "csv", "json"],
                     dest="output_fmt",
-                    help="Output format: table (default), csv, or json.")
+                    help="Output format: csv (default), json, or table (terminal only, no file).")
 parser.add_argument("--false-only", action="store_true", default=False,
                     help="Only show (and count) FALSE POSITIVE findings in the output.")
 parser.add_argument("--workers", type=int, default=10, metavar="N",
@@ -1321,8 +1287,7 @@ if args.namespace and args.image:
 if args.ocp and (args.image or args.namespace):
     parser.error("--ocp cannot be combined with --image or --namespace")
 
-# Status messages go to stderr for machine-readable formats so stdout stays clean.
-_console = Console(stderr=(args.output_fmt in ("json", "csv")))
+_console = Console()
 
 # ── Decide which mode to use ─────────────────────────────────────────────────
 ROX_ENDPOINT  = os.environ.get("ROX_ENDPOINT", "")
@@ -1430,8 +1395,7 @@ if use_ocp:
             if not m:
                 continue
             comp_name, image_ref = m.group(1), m.group(2)
-            dm = re.search(r'@sha256:([a-f0-9]+)', image_ref)
-            digest = dm.group(1) if dm else image_ref.split('@')[-1].replace('sha256:', '')
+            digest = re.search(r'@sha256:([a-f0-9]+)', image_ref).group(1)
             if digest not in seen_digests:
                 seen_digests.add(digest)
                 images.append((comp_name, image_ref))
@@ -1476,7 +1440,7 @@ if use_ocp:
         _console.print()
 
         # Display results in original manifest order
-        ocp_results: list[pd.DataFrame] = []
+        all_results: list = []
         for comp_name, image_ref in images:
             image_ref_stored, res = results_map.get(comp_name, (image_ref, {"found": False, "error": None}))
             _display_image_result(_console, f"{comp_name}  [dim]{image_ref_stored}[/dim]", res)
@@ -1486,7 +1450,7 @@ if use_ocp:
                 r = res["result_df"].copy()
                 r["OCP_COMPONENT"] = comp_name
                 r["IMAGE"]         = image_ref_stored
-                ocp_results.append(r)
+                all_results.append(r)
 
         _console.rule("[bold]OCP Release Summary[/bold]")
         _console.print(f"  Scanned : [bold]{total - len(not_found)}[/bold] / {total} component image(s)")
@@ -1494,17 +1458,16 @@ if use_ocp:
             _console.print(f"  Skipped : [yellow]{len(not_found)}[/yellow] not found in RHACS")
         _console.print()
 
-        if ocp_results:
-            combined = pd.concat(ocp_results, ignore_index=True)
+        if all_results:
+            combined = pd.concat(all_results, ignore_index=True)
             counts = combined['AUDIT_RESULT'].value_counts()
             for label, count in counts.items():
-                lbl = str(label)
-                style = RESULT_STYLES.get(lbl, "")
-                _console.print(f"  [{style}]{lbl}[/{style}]: [bold]{count}[/bold] across "
-                               f"{combined[combined['AUDIT_RESULT']==lbl]['OCP_COMPONENT'].nunique()} component(s)")
+                style = RESULT_STYLES.get(label, "")
+                _console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold] across "
+                               f"{combined[combined['AUDIT_RESULT']==label]['OCP_COMPONENT'].nunique()} component(s)")
             _console.print()
-            if args.output_fmt != "table":
-                _write_output(combined, args.output or None, args.output_fmt, _console)
+            if args.output and args.output_fmt != "table":
+                _write_output(combined, args.output, args.output_fmt, _console)
         raise SystemExit(0)
 
     except requests.RequestException as e:
@@ -1550,27 +1513,26 @@ if use_namespace:
         _console.print()
 
         # Display in original order
-        ns_results: list[pd.DataFrame] = []
+        all_results: list = []
         for image_ref, _ in images:
             res = results_map.get(image_ref, {"found": False, "error": None})
             _display_image_result(_console, image_ref, res)
             if res.get("found") and res.get("result_df") is not None:
                 r = res["result_df"].copy()
                 r["IMAGE"] = image_ref
-                ns_results.append(r)
+                all_results.append(r)
 
-        if ns_results:
-            combined = pd.concat(ns_results, ignore_index=True)
+        if all_results:
+            combined = pd.concat(all_results, ignore_index=True)
             _console.rule("[bold]Namespace Summary[/bold]")
             counts = combined['AUDIT_RESULT'].value_counts()
             for label, count in counts.items():
-                lbl = str(label)
-                style = RESULT_STYLES.get(lbl, "")
-                _console.print(f"  [{style}]{lbl}[/{style}]: [bold]{count}[/bold] across "
-                               f"{combined[combined['AUDIT_RESULT']==lbl]['IMAGE'].nunique()} image(s)")
+                style = RESULT_STYLES.get(label, "")
+                _console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold] across "
+                               f"{combined[combined['AUDIT_RESULT']==label]['IMAGE'].nunique()} image(s)")
             _console.print()
-            if args.output_fmt != "table":
-                _write_output(combined, args.output or None, args.output_fmt, _console)
+            if args.output and args.output_fmt != "table":
+                _write_output(combined, args.output, args.output_fmt, _console)
         raise SystemExit(0)
 
     except requests.RequestException as e:
@@ -1579,7 +1541,6 @@ if use_namespace:
 
 # ── Load scan data (single-image API mode or CSV mode) ───────────────────────
 session = None
-ctx = parse_image_ref(args.image)  # default context; refined below if labels are available
 if use_api:
     _console.print(f"[bold]Mode:[/bold] [cyan]RHACS API[/cyan]  endpoint=[cyan]{ROX_ENDPOINT}[/cyan]")
     try:
@@ -1587,13 +1548,12 @@ if use_api:
         _console.print(f"🔍 Searching for image in RHACS...")
         image_id = rhacs_find_image(session, args.image)
         if not image_id:
-            _console.print(f"[yellow]⚠  Image not indexed in RHACS — triggering on-demand scan...[/yellow]")
-            image_data = rhacs_scan_image(session, args.image, console=_console)
-            _console.print(f"✅ Scan complete")
-        else:
-            _console.print(f"✅ Found image ID: [dim]{image_id}[/dim]")
-            _console.print(f"📥 Fetching full scan data...")
-            image_data = rhacs_get_image(session, image_id)
+            _console.print(f"[bold red]❌ Image not found in RHACS: {args.image}[/bold red]")
+            raise SystemExit(1)
+        _console.print(f"✅ Found image ID: [dim]{image_id}[/dim]")
+
+        _console.print(f"📥 Fetching full scan data...")
+        image_data = rhacs_get_image(session, image_id)
 
         # Refine WorkloadContext from Docker labels (more authoritative than name)
         labels = (image_data.get("metadata") or {}).get("v1", {}).get("labels") or {}
@@ -1607,6 +1567,21 @@ if use_api:
             _console.print(f"[bold]OS:[/bold] [cyan]{os_info}[/cyan]")
         _console.print(f"[bold]Found:[/bold] [cyan]{len(df)} CVE findings[/cyan] across "
                        f"[cyan]{df['COMPONENT'].nunique() if len(df) else 0} components[/cyan]")
+
+        # Build binary→source RPM map from SBOM for accurate VEX name matching
+        try:
+            _sbom = rhacs_get_sbom(session, args.image)
+            _by_id = {pkg['SPDXID']: pkg for pkg in _sbom.get('packages', [])}
+            for _rel in _sbom.get('relationships', []):
+                if _rel.get('relationshipType') == 'GENERATED_FROM':
+                    _bp = _by_id.get(_rel['spdxElementId'])
+                    _sp = _by_id.get(_rel['relatedSpdxElement'])
+                    if _bp and _sp:
+                        _bn, _sn = _bp.get('name', ''), _sp.get('name', '')
+                        if _bn and _sn and _bn != _sn:
+                            ctx.sbom_src_map[_bn] = _sn
+        except Exception:
+            pass
 
     except requests.RequestException as e:
         _console.print(f"[bold red]❌ RHACS API error: {e}[/bold red]")
@@ -1623,15 +1598,14 @@ else:
     _console.print(f"[bold]Mode:[/bold] [cyan]CSV[/cyan]  file=[cyan]{scan_file}[/cyan]")
     df = pd.read_csv(scan_file)
 
-# ── Show final context (suppressed for machine-readable formats) ──────────────
-if args.output_fmt == "table":
-    _console.print(f"[bold]Context:[/bold] type=[cyan]{ctx.workload_type}[/cyan]  "
-                   f"rhel=[cyan]{ctx.rhel_ver}[/cyan]  display=[cyan]{ctx.display_name}[/cyan]")
-    if ctx.extra_prefixes:
-        _console.print(f"[bold]VEX scope:[/bold] {', '.join(ctx.extra_prefixes[:6])}")
-    _console.print()
+# ── Show final context ────────────────────────────────────────────────────────
+_console.print(f"[bold]Context:[/bold] type=[cyan]{ctx.workload_type}[/cyan]  "
+               f"rhel=[cyan]{ctx.rhel_ver}[/cyan]  display=[cyan]{ctx.display_name}[/cyan]")
+if ctx.extra_prefixes:
+    _console.print(f"[bold]VEX scope:[/bold] {', '.join(ctx.extra_prefixes[:6])}")
+_console.print()
 
-_out_path = args.output if args.output else None
+_out_path = args.output if args.output and args.output_fmt != "table" else None
 result_df = _audit_and_display(df, ctx, _console,
                                output_path=_out_path,
                                output_fmt=args.output_fmt,
