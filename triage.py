@@ -318,9 +318,14 @@ def parse_context_from_labels(labels: dict, image_ref: str = "") -> WorkloadCont
     return ctx
 
 
-def _rhacs_session(endpoint: str, token: str) -> requests.Session:
+class _RHACSSession(requests.Session):
+    """requests.Session with a base_url attribute for RHACS."""
+    base_url: str
+
+
+def _rhacs_session(endpoint: str, token: str) -> _RHACSSession:
     """Build a requests Session pre-configured for the RHACS API."""
-    s = requests.Session()
+    s = _RHACSSession()
     s.headers.update({"Authorization": f"Bearer {token}", "Accept": "application/json"})
     s.verify = False   # Central may use self-signed cert
     s.base_url = f"https://{endpoint}"
@@ -483,14 +488,44 @@ def _print_sbom_summary(console: Console, sbom_s: dict) -> None:
         console.print()
 
 
-def _write_output(df: pd.DataFrame, path: str, fmt: str, console: Console) -> None:
-    """Write triage results to *path* in the requested format (csv or json)."""
+def _clean_df_for_output(df: pd.DataFrame) -> pd.DataFrame:
+    """Return a copy of df with emoji and special characters removed from string columns.
+    Used for csv/json output so the data is plain ASCII-friendly text."""
+    import re as _re
+    _emoji_re = _re.compile(
+        "[\U00002700-\U000027BF"
+        "\U0001F300-\U0001F9FF"
+        "\U00002600-\U000026FF"
+        "\u2705\u274C\u26A0\u2714\u2716"
+        "]+", flags=_re.UNICODE)
+    out = df.copy()
+    for col in out.select_dtypes(include="object").columns:
+        out[col] = (out[col]
+                    .astype(str)
+                    .str.replace(_emoji_re, "", regex=True)
+                    .str.replace("\u2014", "-", regex=False)   # em dash → hyphen
+                    .str.strip())
+    return out
+
+
+def _write_output(df: pd.DataFrame, path: Optional[str], fmt: str, console: Console) -> None:
+    """Write triage results to *path* in the requested format (csv or json).
+    When path is None the output is written to stdout (no console decorations)."""
+    clean = _clean_df_for_output(df)
     if fmt == "json":
-        with open(path, "w") as fh:
-            json.dump(df.to_dict(orient="records"), fh, indent=2, default=str)
-    else:
-        df.to_csv(path, index=False)
-    console.print(f"  Report saved to [cyan]{path}[/cyan] [dim]({fmt})[/dim]\n")
+        payload = json.dumps(clean.to_dict(orient="records"), indent=2, default=str)
+        if path:
+            with open(path, "w") as fh:
+                fh.write(payload)
+            console.print(f"  Report saved to [cyan]{path}[/cyan] [dim]({fmt})[/dim]\n")
+        else:
+            print(payload)
+    else:  # csv
+        if path:
+            clean.to_csv(path, index=False)
+            console.print(f"  Report saved to [cyan]{path}[/cyan] [dim]({fmt})[/dim]\n")
+        else:
+            print(df.to_csv(index=False), end="")
 
 
 def rhacs_list_namespace_images(session, namespace: str) -> list:
@@ -1110,8 +1145,9 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
     counts = result_df['AUDIT_RESULT'].value_counts()
     console.print()
     for label, count in counts.items():
-        style = RESULT_STYLES.get(label, "")
-        console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold]")
+        lbl = str(label)
+        style = RESULT_STYLES.get(lbl, "")
+        console.print(f"  [{style}]{lbl}[/{style}]: [bold]{count}[/bold]")
     console.print()
 
 
@@ -1137,9 +1173,11 @@ def _audit_and_display(df: pd.DataFrame, ctx,
     df['VEX_PRODUCT'] = df.apply(lambda row: _vex_product_for_row(row, ctx), axis=1)
 
     result_df = _sort_and_filter_df(df, false_only)
-    _render_triage_table(console, result_df, ctx)
 
-    if output_path and output_fmt != "table":
+    if output_fmt == "table":
+        _render_triage_table(console, result_df, ctx)
+    else:
+        # Non-table format: skip Rich table, write to file or stdout
         _write_output(result_df, output_path, output_fmt, console)
 
     return result_df
@@ -1269,9 +1307,9 @@ parser.add_argument("--sbom",      action="store_true", default=False,
 parser.add_argument("--output",    default=None, metavar="FILE",
                     help="Output file path. If omitted, no file is written.\n"
                          "Has no effect with --format table.")
-parser.add_argument("--format",    default="csv", choices=["table", "csv", "json"],
+parser.add_argument("--format",    default="table", choices=["table", "csv", "json"],
                     dest="output_fmt",
-                    help="Output format: csv (default), json, or table (terminal only, no file).")
+                    help="Output format: table (default), csv, or json.")
 parser.add_argument("--false-only", action="store_true", default=False,
                     help="Only show (and count) FALSE POSITIVE findings in the output.")
 parser.add_argument("--workers", type=int, default=10, metavar="N",
@@ -1283,7 +1321,8 @@ if args.namespace and args.image:
 if args.ocp and (args.image or args.namespace):
     parser.error("--ocp cannot be combined with --image or --namespace")
 
-_console = Console()
+# Status messages go to stderr for machine-readable formats so stdout stays clean.
+_console = Console(stderr=(args.output_fmt in ("json", "csv")))
 
 # ── Decide which mode to use ─────────────────────────────────────────────────
 ROX_ENDPOINT  = os.environ.get("ROX_ENDPOINT", "")
@@ -1391,7 +1430,8 @@ if use_ocp:
             if not m:
                 continue
             comp_name, image_ref = m.group(1), m.group(2)
-            digest = re.search(r'@sha256:([a-f0-9]+)', image_ref).group(1)
+            dm = re.search(r'@sha256:([a-f0-9]+)', image_ref)
+            digest = dm.group(1) if dm else image_ref.split('@')[-1].replace('sha256:', '')
             if digest not in seen_digests:
                 seen_digests.add(digest)
                 images.append((comp_name, image_ref))
@@ -1436,7 +1476,7 @@ if use_ocp:
         _console.print()
 
         # Display results in original manifest order
-        all_results: list = []
+        ocp_results: list[pd.DataFrame] = []
         for comp_name, image_ref in images:
             image_ref_stored, res = results_map.get(comp_name, (image_ref, {"found": False, "error": None}))
             _display_image_result(_console, f"{comp_name}  [dim]{image_ref_stored}[/dim]", res)
@@ -1446,7 +1486,7 @@ if use_ocp:
                 r = res["result_df"].copy()
                 r["OCP_COMPONENT"] = comp_name
                 r["IMAGE"]         = image_ref_stored
-                all_results.append(r)
+                ocp_results.append(r)
 
         _console.rule("[bold]OCP Release Summary[/bold]")
         _console.print(f"  Scanned : [bold]{total - len(not_found)}[/bold] / {total} component image(s)")
@@ -1454,16 +1494,17 @@ if use_ocp:
             _console.print(f"  Skipped : [yellow]{len(not_found)}[/yellow] not found in RHACS")
         _console.print()
 
-        if all_results:
-            combined = pd.concat(all_results, ignore_index=True)
+        if ocp_results:
+            combined = pd.concat(ocp_results, ignore_index=True)
             counts = combined['AUDIT_RESULT'].value_counts()
             for label, count in counts.items():
-                style = RESULT_STYLES.get(label, "")
-                _console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold] across "
-                               f"{combined[combined['AUDIT_RESULT']==label]['OCP_COMPONENT'].nunique()} component(s)")
+                lbl = str(label)
+                style = RESULT_STYLES.get(lbl, "")
+                _console.print(f"  [{style}]{lbl}[/{style}]: [bold]{count}[/bold] across "
+                               f"{combined[combined['AUDIT_RESULT']==lbl]['OCP_COMPONENT'].nunique()} component(s)")
             _console.print()
-            if args.output and args.output_fmt != "table":
-                _write_output(combined, args.output, args.output_fmt, _console)
+            if args.output_fmt != "table":
+                _write_output(combined, args.output or None, args.output_fmt, _console)
         raise SystemExit(0)
 
     except requests.RequestException as e:
@@ -1509,26 +1550,27 @@ if use_namespace:
         _console.print()
 
         # Display in original order
-        all_results: list = []
+        ns_results: list[pd.DataFrame] = []
         for image_ref, _ in images:
             res = results_map.get(image_ref, {"found": False, "error": None})
             _display_image_result(_console, image_ref, res)
             if res.get("found") and res.get("result_df") is not None:
                 r = res["result_df"].copy()
                 r["IMAGE"] = image_ref
-                all_results.append(r)
+                ns_results.append(r)
 
-        if all_results:
-            combined = pd.concat(all_results, ignore_index=True)
+        if ns_results:
+            combined = pd.concat(ns_results, ignore_index=True)
             _console.rule("[bold]Namespace Summary[/bold]")
             counts = combined['AUDIT_RESULT'].value_counts()
             for label, count in counts.items():
-                style = RESULT_STYLES.get(label, "")
-                _console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold] across "
-                               f"{combined[combined['AUDIT_RESULT']==label]['IMAGE'].nunique()} image(s)")
+                lbl = str(label)
+                style = RESULT_STYLES.get(lbl, "")
+                _console.print(f"  [{style}]{lbl}[/{style}]: [bold]{count}[/bold] across "
+                               f"{combined[combined['AUDIT_RESULT']==lbl]['IMAGE'].nunique()} image(s)")
             _console.print()
-            if args.output and args.output_fmt != "table":
-                _write_output(combined, args.output, args.output_fmt, _console)
+            if args.output_fmt != "table":
+                _write_output(combined, args.output or None, args.output_fmt, _console)
         raise SystemExit(0)
 
     except requests.RequestException as e:
@@ -1537,6 +1579,7 @@ if use_namespace:
 
 # ── Load scan data (single-image API mode or CSV mode) ───────────────────────
 session = None
+ctx = parse_image_ref(args.image)  # default context; refined below if labels are available
 if use_api:
     _console.print(f"[bold]Mode:[/bold] [cyan]RHACS API[/cyan]  endpoint=[cyan]{ROX_ENDPOINT}[/cyan]")
     try:
@@ -1580,14 +1623,15 @@ else:
     _console.print(f"[bold]Mode:[/bold] [cyan]CSV[/cyan]  file=[cyan]{scan_file}[/cyan]")
     df = pd.read_csv(scan_file)
 
-# ── Show final context ────────────────────────────────────────────────────────
-_console.print(f"[bold]Context:[/bold] type=[cyan]{ctx.workload_type}[/cyan]  "
-               f"rhel=[cyan]{ctx.rhel_ver}[/cyan]  display=[cyan]{ctx.display_name}[/cyan]")
-if ctx.extra_prefixes:
-    _console.print(f"[bold]VEX scope:[/bold] {', '.join(ctx.extra_prefixes[:6])}")
-_console.print()
+# ── Show final context (suppressed for machine-readable formats) ──────────────
+if args.output_fmt == "table":
+    _console.print(f"[bold]Context:[/bold] type=[cyan]{ctx.workload_type}[/cyan]  "
+                   f"rhel=[cyan]{ctx.rhel_ver}[/cyan]  display=[cyan]{ctx.display_name}[/cyan]")
+    if ctx.extra_prefixes:
+        _console.print(f"[bold]VEX scope:[/bold] {', '.join(ctx.extra_prefixes[:6])}")
+    _console.print()
 
-_out_path = args.output if args.output and args.output_fmt != "table" else None
+_out_path = args.output if args.output else None
 result_df = _audit_and_display(df, ctx, _console,
                                output_path=_out_path,
                                output_fmt=args.output_fmt,
