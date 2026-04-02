@@ -22,9 +22,11 @@ pd.set_option('display.max_rows', None)
 BASE_DIR    = "data"
 VEX_DIR     = os.path.join(BASE_DIR, "vex")
 SBOM_DIR    = os.path.join(BASE_DIR, "sbom")
+SCAN_DIR    = os.path.join(BASE_DIR, "scans")
 
-SCAN_FILE   = "scan.csv"
-MAX_WORKERS = 20
+SCAN_FILE       = "scan.csv"
+SCAN_CACHE_TTL  = 4 * 3600   # seconds; re-fetch scan after 4 hours
+MAX_WORKERS     = 20
 
 # ── Product-ID prefix helpers ────────────────────────────────────────────────
 
@@ -247,22 +249,55 @@ os.makedirs(VEX_DIR, exist_ok=True)
 # --- 3. SYNC ENGINE: Dual-Format Mirror ---
 
 def download_and_convert_with_lib(cve_id):
-    """Downloads VEX JSON to /vex."""
+    """Downloads VEX JSON to /vex, skipping when the cached copy is still current.
+
+    Cache strategy:
+      - If the file does not exist → download unconditionally.
+      - If the file exists → send a conditional GET with the stored ETag
+        (saved alongside the JSON as <CVE>.etag).  A 304 Not Modified response
+        means the cached copy is identical to the server copy → skip.
+      - On any network error the cached file is used as-is (fail-open).
+    """
     cve_id = cve_id.upper().strip()
     year_match = re.search(r'CVE-(\d{4})-', cve_id)
     if not year_match: return cve_id, False
 
-    year = year_match.group(1)
-    url = f"https://security.access.redhat.com/data/csaf/v2/vex/{year}/{cve_id.lower()}.json"
+    year      = year_match.group(1)
+    url       = f"https://security.access.redhat.com/data/csaf/v2/vex/{year}/{cve_id.lower()}.json"
     json_path = os.path.join(VEX_DIR, f"{cve_id}.json")
+    etag_path = os.path.join(VEX_DIR, f"{cve_id}.etag")
+
+    headers = {}
+    if os.path.exists(json_path) and os.path.exists(etag_path):
+        try:
+            with open(etag_path) as fh:
+                stored_etag = fh.read().strip()
+            if stored_etag:
+                headers["If-None-Match"] = stored_etag
+        except OSError:
+            pass
+    elif os.path.exists(json_path):
+        # File cached but no ETag stored — assume still valid, skip download.
+        return cve_id, True
 
     try:
-        res = requests.get(url, timeout=10)
-        if res.status_code != 200: return cve_id, False
+        res = requests.get(url, headers=headers, timeout=10)
+        if res.status_code == 304:
+            # Server confirmed: cached copy is current.
+            return cve_id, True
+        if res.status_code != 200:
+            return cve_id, False
         with open(json_path, "w") as f:
             f.write(res.text)
+        # Persist the ETag for next run.
+        etag = res.headers.get("ETag", "")
+        if etag:
+            with open(etag_path, "w") as f:
+                f.write(etag)
         return cve_id, True
-    except: return cve_id, False
+    except Exception:
+        # Network failure — use cached file if available.
+        return cve_id, os.path.exists(json_path)
 
 # --- 4. RHACS API CLIENT ---
 
@@ -334,44 +369,157 @@ def _rhacs_session(endpoint: str, token: str) -> requests.Session:
 def rhacs_find_image(session, image_ref: str) -> Optional[str]:
     """
     Search RHACS for an image by reference and return its internal ID.
-    Tries progressively shorter name forms if the full ref isn't found.
+    Tries progressively shorter name forms if the full ref isn't found,
+    including a cross-registry fallback using 'Image Remote:'.
     """
-    # Build candidate query strings from most specific to least
-    # Strip digest and tag to get just registry/ns/name
     bare = re.sub(r'[@:][^/]*$', '', image_ref)
 
-    for query in [f'Image:{image_ref}', f'Image:{bare}']:
+    # Determine whether the caller specified a specific tag/digest
+    has_tag_or_digest = bool(re.search(r'[@:]', image_ref.split('/')[-1]))
+    tag_suffix = None
+    if has_tag_or_digest:
+        m = re.search(r'(:[^/@]+)$', image_ref)
+        if m:
+            tag_suffix = m.group(1)
+
+    # Strip registry prefix (e.g. registry.access.redhat.com) for cross-registry queries.
+    # A registry prefix contains a '.' in the first path component.
+    bare_parts = bare.split('/', 1)
+    bare_no_reg = bare_parts[1] if len(bare_parts) > 1 and '.' in bare_parts[0] else bare
+
+    # Build queries from most specific to broadest.
+    # Deduplicate in case bare == bare_no_reg (no registry prefix in image_ref).
+    queries = [f'Image:{image_ref}', f'Image:{bare}']
+    cross_reg_query = f'Image Remote:{bare_no_reg}'
+    if bare_no_reg != bare:
+        queries.append(cross_reg_query)
+
+    all_avail: list[str] = []   # accumulated candidates for the "not found" message
+
+    for query in queries:
+        is_fallback = query != f'Image:{image_ref}'
         url = f"{session.base_url}/v1/images"
-        resp = session.get(url, params={"query": query, "pagination.limit": 5}, timeout=30)
+        resp = session.get(url, params={"query": query, "pagination.limit": 20}, timeout=30)
+        resp.raise_for_status()
+        results = resp.json().get("images", [])
+        if not results:
+            continue
+
+        # Helper: extract fullName from either string or dict form
+        def _full_name(img: dict) -> str:
+            n = img.get("name", "")
+            return n if isinstance(n, str) else n.get("fullName", "")
+
+        # Prefer exact digest match if available
+        digest = re.search(r'@(sha256:[a-f0-9]+)', image_ref)
+        if digest:
+            for img in results:
+                if digest.group(1) in json.dumps(img):
+                    return img["id"]
+
+        # Floating ref (no tag/digest): prefer ':latest' across all queries.
+        # Don't stop at the first result set — accumulate all candidates first
+        # so we can pick a ':latest' from a cross-registry query if needed.
+        if not has_tag_or_digest:
+            for img in results:
+                if _full_name(img).endswith(":latest"):
+                    return img["id"]
+            # No ':latest' yet — stash and keep going to broader queries
+            for img in results:
+                fn = _full_name(img) or img.get("id", "?")
+                if fn not in all_avail:
+                    all_avail.append(fn)
+            continue
+
+        # Specific tag requested: only return if the tag actually matches.
+        if is_fallback and tag_suffix:
+            for img in results:
+                if _full_name(img).endswith(tag_suffix):
+                    return img["id"]
+            # Accumulate candidates and continue to broader queries
+            for img in results:
+                fn = _full_name(img) or img.get("id", "?")
+                if fn not in all_avail:
+                    all_avail.append(fn)
+            continue
+
+        return results[0]["id"]
+
+    # Exhausted all queries.
+    # For floating refs: if we accumulated candidates but found no ':latest',
+    # return the first one (best effort).
+    if not has_tag_or_digest and all_avail:
+        # Look up the image id for the first candidate by re-querying
+        url = f"{session.base_url}/v1/images"
+        resp = session.get(url, params={"query": f"Image:{all_avail[0]}", "pagination.limit": 1}, timeout=30)
         resp.raise_for_status()
         results = resp.json().get("images", [])
         if results:
-            # Prefer exact digest match if available
-            digest = re.search(r'@(sha256:[a-f0-9]+)', image_ref)
-            if digest:
-                for img in results:
-                    if digest.group(1) in json.dumps(img):
-                        return img["id"]
-            # When the input ref has no tag/digest (floating ref like 'ubi8/ubi'),
-            # prefer the result tagged ':latest' over any pinned version tag, since
-            # the SBOM API will also resolve the floating ref to ':latest'.
-            has_tag_or_digest = bool(re.search(r'[@:]', image_ref.split('/')[-1]))
-            if not has_tag_or_digest and len(results) > 1:
-                for img in results:
-                    name_val  = img.get("name", "")
-                    full_name = name_val if isinstance(name_val, str) else name_val.get("fullName", "")
-                    if full_name.endswith(":latest"):
-                        return img["id"]
             return results[0]["id"]
+
+    # Last resort for specific-tag refs: ask RHACS to scan the image on-demand.
+    if has_tag_or_digest:
+        print(f"  ⏳ Requesting on-demand scan from RHACS for '{image_ref}'…")
+        img_data = rhacs_scan_image(session, image_ref)
+        if img_data:
+            return img_data.get("id")
+
     return None
 
 
-def rhacs_get_image(session, image_id: str) -> dict:
-    """Fetch full image detail (scan + metadata) from RHACS."""
-    url = f"{session.base_url}/v1/images/{image_id}"
+def rhacs_scan_image(session, image_ref: str) -> Optional[dict]:
+    """Ask RHACS to scan an image that isn't yet indexed.
+
+    Calls POST /v1/images/scan, caches the result (same format as rhacs_get_image),
+    and returns the full image dict (including scan data) or None on failure.
+    """
+    url  = f"{session.base_url}/v1/images/scan"
+    body = {"imageName": image_ref, "force": False}
+    try:
+        resp = session.post(url, json=body, timeout=120)
+        resp.raise_for_status()
+    except Exception as exc:
+        print(f"  ❌ On-demand scan failed: {exc}")
+        return None
+    data = resp.json()
+    img_id = data.get("id")
+    if not img_id:
+        print("  ❌ On-demand scan returned no image ID.")
+        return None
+    # Cache using the same layout as rhacs_get_image so subsequent calls hit cache.
+    os.makedirs(SCAN_DIR, exist_ok=True)
+    safe = re.sub(r'[^\w@:.+-]', '_', img_id)
+    cache_path = os.path.join(SCAN_DIR, f"{safe}.scan")
+    with open(cache_path, "w") as fh:
+        json.dump(data, fh, indent=2)
+    print(f"  ✅ On-demand scan complete (ID: {img_id[:16]}…)")
+    return data
+
+
+def rhacs_get_image(session, image_id: str, force: bool = False) -> dict:
+    """Fetch full image detail (scan + metadata) from RHACS, with a 4-hour cache.
+
+    Cache location: data/scans/<image_id>.scan
+    The file is considered stale when its mtime is older than SCAN_CACHE_TTL seconds
+    or when force=True.
+    """
+    os.makedirs(SCAN_DIR, exist_ok=True)
+    safe       = re.sub(r'[^\w@:.+-]', '_', image_id)
+    cache_path = os.path.join(SCAN_DIR, f"{safe}.scan")
+
+    if not force and os.path.exists(cache_path):
+        age = time.time() - os.path.getmtime(cache_path)
+        if age < SCAN_CACHE_TTL:
+            with open(cache_path) as fh:
+                return json.load(fh)
+
+    url  = f"{session.base_url}/v1/images/{image_id}"
     resp = session.get(url, params={"stripDescription": True}, timeout=60)
     resp.raise_for_status()
-    return resp.json()
+    data = resp.json()
+    with open(cache_path, "w") as fh:
+        json.dump(data, fh, indent=2)
+    return data
 
 
 def _sbom_cache_path(image_ref: str) -> str:
@@ -395,7 +543,7 @@ def rhacs_get_sbom(session, image_ref: str, force: bool = False) -> dict:
     resp.raise_for_status()
     sbom = resp.json()
     with open(cache_path, "w") as fh:
-        json.dump(sbom, fh)
+        json.dump(sbom, fh, indent=2)
     return sbom
 
 
@@ -1091,6 +1239,19 @@ SEVERITY_STYLES = {
 
 def _sort_and_filter_df(df: pd.DataFrame, false_only: bool = False) -> pd.DataFrame:
     """Sort audit results by priority/severity, filter to false-positives if requested."""
+    cols = ['COMPONENT', 'VEX_PRODUCT', 'VERSION', 'CVE', 'SEVERITY',
+            'AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION']
+    # Ensure all expected columns exist even on an empty DataFrame
+    for col in cols:
+        if col not in df.columns:
+            df[col] = pd.Series(dtype=str)
+
+    result_df = df[cols].copy()
+    if result_df.empty:
+        if false_only:
+            result_df = result_df[result_df['AUDIT_RESULT'] == '✅ FALSE POSITIVE']
+        return result_df
+
     def _sort_key(row):
         j, r = row['JUSTIFICATION'], row['AUDIT_RESULT']
         if '✅' in r:                                            priority = 0
@@ -1098,11 +1259,10 @@ def _sort_and_filter_df(df: pd.DataFrame, false_only: bool = False) -> pd.DataFr
         elif 'VEX file missing' in j or 'VEX parse error' in j: priority = 3
         else:                                                    priority = 2
         sev = _SEVERITY_ORDER.get(str(row.get('SEVERITY', 'Unknown')).split()[0].title(), 4)
-        return (priority, sev, row['COMPONENT'])
+        return priority * 10000 + sev * 100  # return int, not tuple, to avoid pandas 3.x expansion
 
-    result_df = df[['COMPONENT', 'VEX_PRODUCT', 'VERSION', 'CVE', 'SEVERITY',
-                    'AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION']].copy()
-    result_df = result_df.iloc[df.apply(_sort_key, axis=1).argsort()]
+    sort_series = result_df.apply(_sort_key, axis=1)
+    result_df = result_df.iloc[sort_series.to_numpy().argsort()]
     if false_only:
         result_df = result_df[result_df['AUDIT_RESULT'] == '✅ FALSE POSITIVE']
     return result_df
@@ -1153,18 +1313,30 @@ def _audit_and_display(df: pd.DataFrame, ctx,
     Returns the annotated result DataFrame."""
 
     unique_cves = [c.strip().upper() for c in df['CVE'].unique()]
-    console.print(f"🔄 Syncing {len(unique_cves)} CVEs into /vex folder...")
+    cached  = sum(1 for c in unique_cves
+                  if os.path.exists(os.path.join(VEX_DIR, f"{c}.json")))
+    to_fetch = len(unique_cves) - cached
+    if to_fetch:
+        console.print(f"🔄 Syncing {to_fetch} new/updated CVEs ({cached} cached)...")
+    else:
+        console.print(f"✅ All {len(unique_cves)} CVEs already cached — skipping download.")
     start_time = time.time()
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
         futures = {ex.submit(download_and_convert_with_lib, c): c for c in unique_cves}
         for f in as_completed(futures): pass
-    console.print(f"✅ Sync Complete in {time.time() - start_time:.2f}s.")
+    if to_fetch:
+        console.print(f"✅ Sync Complete in {time.time() - start_time:.2f}s.")
 
     console.print(f"🚀 Running Structured Audit — context: [bold cyan]{ctx.display_name}[/bold cyan]")
-    df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY']] = df.apply(
-        lambda row: audit_row_detailed(row, ctx), axis=1
-    )
-    df['VEX_PRODUCT'] = df.apply(lambda row: _vex_product_for_row(row, ctx), axis=1)
+    if df.empty:
+        console.print("[yellow]⚠  No CVE findings to audit.[/yellow]")
+        for col in ['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY', 'VEX_PRODUCT']:
+            df[col] = pd.Series(dtype=str)
+    else:
+        df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY']] = df.apply(
+            lambda row: list(audit_row_detailed(row, ctx)), axis=1, result_type='expand'
+        )
+        df['VEX_PRODUCT'] = df.apply(lambda row: _vex_product_for_row(row, ctx), axis=1)
 
     result_df = _sort_and_filter_df(df, false_only)
     _render_triage_table(console, result_df, ctx)
@@ -1183,16 +1355,18 @@ def _audit_silent(df: pd.DataFrame, ctx, false_only: bool = False) -> pd.DataFra
                                for c in unique_cves}):
             pass
 
-    df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY']] = df.apply(
-        lambda row: audit_row_detailed(row, ctx), axis=1
-    )
-    df['VEX_PRODUCT'] = df.apply(lambda row: _vex_product_for_row(row, ctx), axis=1)
+    if not df.empty:
+        df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY']] = df.apply(
+            lambda row: list(audit_row_detailed(row, ctx)), axis=1, result_type='expand'
+        )
+        df['VEX_PRODUCT'] = df.apply(lambda row: _vex_product_for_row(row, ctx), axis=1)
 
     return _sort_and_filter_df(df, false_only)
 
 
 def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
-                     false_only: bool, release_ocp_ver: Optional[str] = None) -> dict:
+                     false_only: bool, release_ocp_ver: Optional[str] = None,
+                     force: bool = False) -> dict:
     """
     Fetch image scan from RHACS and run a silent audit.
     image_id=None  → will search RHACS by digest first (OCP mode).
@@ -1206,7 +1380,7 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
             if not image_id:
                 return {"found": False, "error": None}
 
-        image_data = rhacs_get_image(session, image_id)
+        image_data = rhacs_get_image(session, image_id, force=force)
         labels     = (image_data.get("metadata") or {}).get("v1", {}).get("labels") or {}
         img_ctx    = parse_context_from_labels(labels, image_ref) if labels \
                      else parse_image_ref(image_ref)
@@ -1227,7 +1401,7 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
         # RHACS reports binary RPM names ("python3-urllib3").  The SBOM is SPDX 2.3
         # and is already cached after the first call.
         try:
-            _sbom = rhacs_get_sbom(session, image_ref)
+            _sbom = rhacs_get_sbom(session, image_ref, force=force)
             _by_id = {pkg['SPDXID']: pkg for pkg in _sbom.get('packages', [])}
             for _rel in _sbom.get('relationships', []):
                 if _rel.get('relationshipType') == 'GENERATED_FROM':
@@ -1313,6 +1487,11 @@ parser.add_argument("--sbom",      action="store_true", default=False,
                     help="Fetch and display the SPDX 2.3 SBOM package list for --image.\n"
                          "Equivalent to rpm -qa without accessing the running container.\n"
                          "Requires ROX_ENDPOINT + ROX_API_TOKEN + --image.")
+parser.add_argument("--show-scan",  action="store_true", default=False,
+                    help="Pretty-print the raw RHACS scan for --image as a rich table.\n"
+                         "Shows every component and its CVEs with severity.\n"
+                         "Uses the local cache (4 h TTL) unless --force is also set.\n"
+                         "Requires ROX_ENDPOINT + ROX_API_TOKEN + --image.")
 parser.add_argument("--output",    default=None, metavar="FILE",
                     help="Output file path. If omitted, no file is written.\n"
                          "Has no effect with --format table.")
@@ -1321,6 +1500,10 @@ parser.add_argument("--format",    default="csv", choices=["table", "csv", "json
                     help="Output format: csv (default), json, or table (terminal only, no file).")
 parser.add_argument("--false-only", action="store_true", default=False,
                     help="Only show (and count) FALSE POSITIVE findings in the output.")
+parser.add_argument("--force", action="store_true", default=False,
+                    help="Bypass all local caches (scan, SBOM, VEX) and re-fetch everything.\n"
+                         "By default scan results are re-used for 4 hours, SBOMs indefinitely,\n"
+                         "and VEX files are validated via ETag.")
 parser.add_argument("--workers", type=int, default=10, metavar="N",
                     help="Parallel image workers for --ocp / --namespace modes (default: 10).")
 args = parser.parse_args()
@@ -1356,6 +1539,13 @@ use_sbom = (
     and bool(ROX_API_TOKEN)
 )
 
+use_show_scan = (
+    getattr(args, 'show_scan', False)
+    and args.image is not None
+    and bool(ROX_ENDPOINT)
+    and bool(ROX_API_TOKEN)
+)
+
 use_api = (
     args.image is not None
     and bool(ROX_ENDPOINT)
@@ -1366,7 +1556,7 @@ use_api = (
 )
 
 # Suppress HTTPS certificate warnings for RHACS API calls (self-signed certs are common)
-if use_ocp or use_namespace or use_api or use_sbom:
+if use_ocp or use_namespace or use_api or use_sbom or use_show_scan:
     import urllib3
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -1409,6 +1599,69 @@ if use_sbom:
         _console.print()
     except requests.RequestException as e:
         _console.print(f"[bold red]\u274c RHACS API error: {e}[/bold red]")
+        raise SystemExit(1)
+    if not use_api:
+        raise SystemExit(0)
+
+# ── Show-scan mode — pretty-print raw RHACS scan for --image ─────────────────
+if use_show_scan:
+    _console.print(f"[bold]Mode:[/bold] [cyan]Scan viewer[/cyan]  endpoint=[cyan]{ROX_ENDPOINT}[/cyan]")
+    try:
+        session  = _rhacs_session(ROX_ENDPOINT, ROX_API_TOKEN)
+        image_id = rhacs_find_image(session, args.image)
+        if not image_id:
+            _console.print(f"[bold red]❌ Image not found in RHACS: {args.image}[/bold red]")
+            raise SystemExit(1)
+        force      = getattr(args, 'force', False)
+        image_data = rhacs_get_image(session, image_id, force=force)
+        scan_time  = (image_data.get("scan") or {}).get("scanTime", "")
+        os_info    = (image_data.get("scan") or {}).get("operatingSystem", "")
+        components = (image_data.get("scan") or {}).get("components", [])
+        total_cves = sum(len(c.get("vulns", [])) for c in components)
+        _console.print(f"[bold]Image  :[/bold] [cyan]{args.image}[/cyan]")
+        _console.print(f"[bold]OS     :[/bold] [cyan]{os_info}[/cyan]")
+        if scan_time:
+            _console.print(f"[bold]Scanned:[/bold] [dim]{scan_time}[/dim]")
+        _console.print(f"[bold]Found  :[/bold] [cyan]{len(components)} components[/cyan], "
+                       f"[cyan]{total_cves} CVE findings[/cyan]")
+        _console.print()
+        tbl = Table(
+            title=f"Scan — [bold cyan]{args.image}[/bold cyan]",
+            box=box.ROUNDED, show_header=True, header_style="bold white", show_lines=False,
+        )
+        tbl.add_column("Component",   style="cyan",       no_wrap=True)
+        tbl.add_column("Version",     style="dim",        no_wrap=True, max_width=35)
+        tbl.add_column("Source",      style="dim",        no_wrap=True)
+        tbl.add_column("CVEs",        style="bold",       no_wrap=True, justify="right")
+        tbl.add_column("Top Severity",                    no_wrap=True)
+        _sev_rank = {"CRITICAL_VULNERABILITY_SEVERITY": 0, "HIGH_VULNERABILITY_SEVERITY": 1,
+                     "IMPORTANT_VULNERABILITY_SEVERITY": 1, "MODERATE_VULNERABILITY_SEVERITY": 2,
+                     "MEDIUM_VULNERABILITY_SEVERITY": 2, "LOW_VULNERABILITY_SEVERITY": 3}
+        _sev_label = {"CRITICAL_VULNERABILITY_SEVERITY": "Critical",
+                      "HIGH_VULNERABILITY_SEVERITY": "Important",
+                      "IMPORTANT_VULNERABILITY_SEVERITY": "Important",
+                      "MODERATE_VULNERABILITY_SEVERITY": "Moderate",
+                      "MEDIUM_VULNERABILITY_SEVERITY": "Moderate",
+                      "LOW_VULNERABILITY_SEVERITY": "Low"}
+        for comp in sorted(components, key=lambda c: c.get("name", "")):
+            vulns    = comp.get("vulns", [])
+            cve_n    = len(vulns)
+            top_sev  = min((v.get("severity", "LOW_VULNERABILITY_SEVERITY") for v in vulns),
+                           key=lambda s: _sev_rank.get(s, 9), default="") if vulns else ""
+            sev_disp = _sev_label.get(top_sev, "")
+            sev_style = SEVERITY_STYLES.get(sev_disp, "dim")
+            source    = comp.get("source", "")
+            tbl.add_row(
+                comp.get("name", ""),
+                comp.get("version", ""),
+                source,
+                str(cve_n) if cve_n else "-",
+                f"[{sev_style}]{sev_disp}[/{sev_style}]" if sev_disp else "-",
+            )
+        _console.print(tbl)
+        _console.print()
+    except requests.RequestException as e:
+        _console.print(f"[bold red]❌ RHACS API error: {e}[/bold red]")
         raise SystemExit(1)
     if not use_api:
         raise SystemExit(0)
@@ -1466,7 +1719,8 @@ if use_ocp:
         with ThreadPoolExecutor(max_workers=args.workers) as ex:
             future_to_comp = {
                 ex.submit(_fetch_and_audit, session, image_ref, None,
-                          args.false_only, _manifest_ocp_ver):
+                          args.false_only, _manifest_ocp_ver,
+                          getattr(args, 'force', False)):
                     (comp_name, image_ref)
                 for comp_name, image_ref in images
             }
@@ -1539,7 +1793,8 @@ if use_namespace:
 
         with ThreadPoolExecutor(max_workers=args.workers) as ex:
             future_to_img = {
-                ex.submit(_fetch_and_audit, session, image_ref, image_id, args.false_only):
+                ex.submit(_fetch_and_audit, session, image_ref, image_id,
+                          args.false_only, None, getattr(args, 'force', False)):
                     (image_ref, image_id)
                 for image_ref, image_id in images
             }
@@ -1596,7 +1851,14 @@ if use_api:
         _console.print(f"✅ Found image ID: [dim]{image_id}[/dim]")
 
         _console.print(f"📥 Fetching full scan data...")
-        image_data = rhacs_get_image(session, image_id)
+        _force = getattr(args, 'force', False)
+        _scan_path = os.path.join(SCAN_DIR, re.sub(r'[^\w@:.+-]', '_', image_id) + '.scan')
+        _cached = not _force and os.path.exists(_scan_path) and \
+                  (time.time() - os.path.getmtime(_scan_path)) < SCAN_CACHE_TTL
+        if _cached:
+            _console.print(f"  [dim]Using cached scan (age: "
+                           f"{int(time.time()-os.path.getmtime(_scan_path))}s)[/dim]")
+        image_data = rhacs_get_image(session, image_id, force=_force)
 
         # Refine WorkloadContext from Docker labels (more authoritative than name)
         labels = (image_data.get("metadata") or {}).get("v1", {}).get("labels") or {}
@@ -1613,7 +1875,7 @@ if use_api:
 
         # Build binary→source RPM map from SBOM for accurate VEX name matching
         try:
-            _sbom = rhacs_get_sbom(session, args.image)
+            _sbom = rhacs_get_sbom(session, args.image, force=_force)
             _by_id = {pkg['SPDXID']: pkg for pkg in _sbom.get('packages', [])}
             for _rel in _sbom.get('relationships', []):
                 if _rel.get('relationshipType') == 'GENERATED_FROM':
