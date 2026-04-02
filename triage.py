@@ -171,15 +171,8 @@ def parse_image_ref(image_ref: str) -> WorkloadContext:
     elif ocp_ns:
         ctx.workload_type = "ocp"
         ctx.display_name  = f"OpenShift {ctx.ocp_ver or '4.x'} (RHEL {ctx.rhel_ver})"
-        # OCP components live under NBase-RHOSE-4.x prefixes
-        if ctx.ocp_ver:
-            ctx.extra_prefixes = [
-                f"{ctx.rhel_ver}Base-RHOSE-{ctx.ocp_ver}",
-                f"red_hat_openshift_container_platform_4",
-                f"Red Hat OpenShift Container Platform {ctx.ocp_ver}",
-            ]
-        else:
-            ctx.extra_prefixes = ["RHOSE", "red_hat_openshift_container_platform_4"]
+        # OCP product scope is derived from the VEX product tree at audit time;
+        # no prefixes needed here — _pid_in_scope handles it via product names.
     else:
         ctx.workload_type = "operator"
         # Always add the full registry URL prefix + short namespace prefix.
@@ -205,19 +198,43 @@ def parse_image_ref(image_ref: str) -> WorkloadContext:
     return ctx
 
 
-def _pid_in_scope(pid: str, ctx: WorkloadContext, rhel_base_pids: set) -> bool:
+def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict, rhel_base_pids: set) -> bool:
     """
     Return True if a VEX product_id is relevant to the given WorkloadContext.
-    For UBI: only RHEL base repos count.
-    For OCP/operator: RHEL base repos PLUS the operator/OCP product prefixes.
+
+    - UBI      : only RHEL base repos (derived from VEX product tree names)
+    - OCP      : RHEL base repos + any product whose VEX name is
+                 "Red Hat OpenShift Container Platform <version>" — version
+                 matched component-wise so "4" covers all 4.x and "4.21" is exact
+    - operator : RHEL base repos + catalog-derived prefixes in ctx.extra_prefixes
+                 (never hardcoded here; built from data/ns_vex_prefixes.json)
     """
     if _is_rhel_base_product(pid, ctx.rhel_ver, rhel_base_pids):
         return True
-    if ctx.workload_type != "ubi":
-        pid_lower = pid.lower()
-        for prefix in ctx.extra_prefixes:
-            if prefix.lower() in pid_lower:
+
+    if ctx.workload_type == "ubi":
+        return False
+
+    if ctx.workload_type == "ocp":
+        parent_pid  = pid.split(':')[0]
+        parent_name = pid_name.get(parent_pid) or pid_name.get(pid, '')
+        if 'openshift container platform' in parent_name.lower():
+            if not ctx.ocp_ver:
                 return True
+            # Component-wise prefix match: VEX "4" covers any 4.x;
+            # VEX "4.21" covers 4.21.x; VEX "4.18" does NOT match 4.21
+            name_ver = parent_name.split()[-1]          # "4" or "4.21"
+            c = ctx.ocp_ver.split('.')
+            n = name_ver.split('.')
+            return c[:len(n)] == n
+        return False
+
+    # operator: use catalog-derived prefixes only (ctx.extra_prefixes populated
+    # from data/ns_vex_prefixes.json — no hardcoded strings here)
+    pid_lower = pid.lower()
+    for prefix in ctx.extra_prefixes:
+        if prefix.lower() in pid_lower:
+            return True
     return False
 
 # Create the folder structure
@@ -293,15 +310,10 @@ def parse_context_from_labels(labels: dict, image_ref: str = "") -> WorkloadCont
             base = ctx.display_name.split('(')[0].strip()
             ctx.display_name = f"{base} {version_tok} (RHEL {ctx.rhel_ver})"
 
-        # For OCP images: attach version-specific RHOSE VEX prefixes
+        # For OCP images: OCP product scope is derived from the VEX product tree
+        # at audit time via _pid_in_scope — no prefixes to set here.
         if ctx.workload_type == "ocp" and version_tok:
             ctx.ocp_ver = version_tok
-            rhel = ctx.rhel_ver
-            ctx.extra_prefixes = [
-                f"{rhel}Base-RHOSE-{version_tok}",
-                "red_hat_openshift_container_platform_4",
-                f"Red Hat OpenShift Container Platform {version_tok}",
-            ]
 
     return ctx
 
@@ -535,7 +547,7 @@ def _get_vex_product(data: dict, comp: str, ctx) -> str:
             if flag.get('label') in _NOT_AFFECTED_FLAGS:
                 all_pids.update(flag.get('product_ids', []))
         for pid in all_pids:
-            if not _pid_in_scope(pid, ctx, rhel_base_pids):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 continue
             any_in_scope = True
             pkg_name, _ = _parse_pkg_from_product_id(pid)
@@ -802,7 +814,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                     if flag.get('label') not in _NOT_AFFECTED_FLAGS:
                         continue
                     for pid in flag.get('product_ids', []):
-                        if not _pid_in_scope(pid, ctx, rhel_base_pids):
+                        if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                             continue
                         pid_sha = _extract_sha256(pid)
                         if pid_sha:
@@ -822,7 +834,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                 ps = vuln.get('product_status', {})
                 for status in ('known_not_affected', 'known_affected', 'fixed', 'under_investigation'):
                     for pid in ps.get(status, []):
-                        if not _pid_in_scope(pid, ctx, rhel_base_pids):
+                        if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                             continue
                         pid_sha = _extract_sha256(pid)
                         if pid_sha:
@@ -874,7 +886,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                 not_affected_ids.update(flag.get('product_ids', []))
 
         for pid in not_affected_ids:
-            if not _pid_in_scope(pid, ctx, rhel_base_pids):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 continue
             pkg_name, _ = _parse_pkg_from_product_id(pid)
             if pkg_name == comp:
@@ -886,7 +898,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         # --- FIXED versions in scope ------------------------------------------
         scoped_fixed = []
         for pid in ps.get('fixed', []):
-            if not _pid_in_scope(pid, ctx, rhel_base_pids):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 continue
             pkg_name, pkg_ver = _parse_pkg_from_product_id(pid)
             if pkg_name == comp and pkg_ver:
@@ -938,14 +950,14 @@ def audit_row_detailed(row, ctx: WorkloadContext):
 
         # --- KNOWN_AFFECTED in scope ------------------------------------------
         for pid in ps.get('known_affected', []):
-            if not _pid_in_scope(pid, ctx, rhel_base_pids):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 continue
             pkg_name, _ = _parse_pkg_from_product_id(pid)
             if pkg_name == comp:
                 # Check if a fix exists outside the in-scope products (context note)
                 other_products = set()
                 for fpid in ps.get('fixed', []):
-                    if _is_any_rhel_ver_product(fpid, rhel_ver) and not _pid_in_scope(fpid, ctx, rhel_base_pids):
+                    if _is_any_rhel_ver_product(fpid, rhel_ver) and not _pid_in_scope(fpid, ctx, pid_name, rhel_base_pids):
                         other_products.add(_pid_label(fpid, pid_name, rel_parent))
                 if other_products:
                     ctx_str = ", ".join(sorted(other_products))
@@ -957,10 +969,10 @@ def audit_row_detailed(row, ctx: WorkloadContext):
 
         # --- UNDER_INVESTIGATION in scope -------------------------------------
         for pid in ps.get('under_investigation', []):
-            if not _pid_in_scope(pid, ctx, rhel_base_pids):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 continue
             pkg_name, _ = _parse_pkg_from_product_id(pid)
-            if pkg_name == comp or _pid_in_scope(pid, ctx, rhel_base_pids):
+            if pkg_name == comp or _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 return pd.Series(["❌ VULNERABLE", "N/A",
                                    f"Under investigation by Red Hat for {ctx.display_name} — treat as vulnerable until resolved.",
                                    _severity])
@@ -969,7 +981,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         other_vuln, other_safe = set(), set()
         for status in ('fixed', 'known_affected', 'known_not_affected'):
             for pid in ps.get(status, []):
-                if _is_any_rhel_ver_product(pid, rhel_ver) and not _pid_in_scope(pid, ctx, rhel_base_pids):
+                if _is_any_rhel_ver_product(pid, rhel_ver) and not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                     pkg_name, _ = _parse_pkg_from_product_id(pid)
                     if pkg_name == comp:
                         label = _pid_label(pid, pid_name, rel_parent)
@@ -1142,13 +1154,9 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
         if release_ocp_ver:
             minor_ver = '.'.join(release_ocp_ver.split('.')[:2])  # "4.21.2" → "4.21"
             img_ctx.workload_type = "ocp"
-            img_ctx.ocp_ver = release_ocp_ver
+            img_ctx.ocp_ver = minor_ver
             img_ctx.display_name = f"OpenShift {release_ocp_ver} (RHEL {img_ctx.rhel_ver})"
-            img_ctx.extra_prefixes = [
-                "red_hat_openshift_container_platform_4",
-                f"{img_ctx.rhel_ver}Base-RHOSE-{minor_ver}",
-                f"Red Hat OpenShift Container Platform {minor_ver}",
-            ]
+            img_ctx.extra_prefixes = []  # OCP scope derived from VEX tree; no hardcoded prefixes
         os_info    = (image_data.get("scan") or {}).get("operatingSystem", "")
         img_df     = rhacs_to_df(image_data)
 
