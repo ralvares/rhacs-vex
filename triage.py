@@ -19,8 +19,9 @@ pd.set_option('display.max_colwidth', None)
 pd.set_option('display.max_rows', None)
 
 # --- 2. CONFIGURATION & DIRECTORY SETUP ---
-BASE_DIR    = "vex_knowledge"
+BASE_DIR    = "data"
 VEX_DIR     = os.path.join(BASE_DIR, "vex")
+SBOM_DIR    = os.path.join(BASE_DIR, "sbom")
 
 SCAN_FILE   = "scan.csv"
 MAX_WORKERS = 20
@@ -383,6 +384,106 @@ def rhacs_get_image(session, image_id: str) -> dict:
     resp = session.get(url, params={"stripDescription": True}, timeout=60)
     resp.raise_for_status()
     return resp.json()
+
+
+def _sbom_cache_path(image_ref: str) -> str:
+    """Return the local cache path for an image's SBOM: data/sbom/<name+sha>.sbom"""
+    # Sanitise registry/path separators but preserve the @sha256:<digest> part
+    safe = re.sub(r'[^\w@:.+-]', '_', image_ref)
+    return os.path.join(SBOM_DIR, f"{safe}.sbom")
+
+
+def rhacs_get_sbom(session, image_ref: str, force: bool = False) -> dict:
+    """Fetch SPDX 2.3 SBOM from ACS, caching to data/sbom/<image>.sbom.
+    Returns the cached copy on subsequent calls unless force=True."""
+    os.makedirs(SBOM_DIR, exist_ok=True)
+    cache_path = _sbom_cache_path(image_ref)
+    if not force and os.path.exists(cache_path):
+        with open(cache_path) as fh:
+            return json.load(fh)
+    url  = f"{session.base_url}/api/v1/images/sbom"
+    body = {"imageName": image_ref, "force": force}
+    resp = session.post(url, json=body, timeout=120)
+    resp.raise_for_status()
+    sbom = resp.json()
+    with open(cache_path, "w") as fh:
+        json.dump(sbom, fh)
+    return sbom
+
+
+def sbom_to_packages_df(sbom: dict) -> pd.DataFrame:
+    """Flatten SPDX 2.3 packages into a DataFrame with name/version/purpose columns."""
+    rows = []
+    for pkg in sbom.get("packages", []):
+        name    = pkg.get("name", "")
+        version = pkg.get("versionInfo", "")
+        purpose = pkg.get("primaryPackagePurpose", "")
+        fname   = pkg.get("packageFileName", "")
+        if name:
+            rows.append({"NAME": name, "VERSION": version,
+                         "PURPOSE": purpose, "FILE": fname})
+    return pd.DataFrame(rows, columns=["NAME", "VERSION", "PURPOSE", "FILE"])
+
+
+def _verify_sbom_against_df(session, image_ref: str, result_df: pd.DataFrame) -> dict:
+    """Fetch SPDX SBOM from RHACS and cross-check every unique component+version in result_df.
+    Returns dict: matched, total, mismatched list, error."""
+    try:
+        sbom = rhacs_get_sbom(session, image_ref)
+        pkg_versions: dict = {}
+        for pkg in sbom.get("packages", []):
+            name = pkg.get("name", "")
+            ver  = pkg.get("versionInfo", "")
+            if name:
+                pkg_versions.setdefault(name, set()).add(ver)
+        matched, mismatched, seen = 0, [], set()
+        for _, row in result_df.iterrows():
+            key = (row["COMPONENT"], row["VERSION"])
+            if key in seen:
+                continue
+            seen.add(key)
+            comp, ver = key
+            ver_clean  = ver.split(":", 1)[-1] if ":" in ver else ver
+            sbom_vers  = pkg_versions.get(comp, set())
+            sbom_clean = {v.split(":", 1)[-1] if ":" in v else v for v in sbom_vers}
+            if ver_clean in sbom_clean or ver in sbom_vers:
+                matched += 1
+            else:
+                mismatched.append((comp, ver, sorted(sbom_vers)))
+        return {"matched": matched, "total": len(seen), "mismatched": mismatched, "error": None}
+    except Exception as exc:
+        return {"matched": 0, "total": 0, "mismatched": [], "error": str(exc)}
+
+
+def _print_sbom_summary(console: Console, sbom_s: dict) -> None:
+    """Print a one-line SBOM verification summary (or per-component warnings)."""
+    if sbom_s.get("error"):
+        console.print(f"  [dim]SBOM verification skipped: {sbom_s['error']}[/dim]")
+        return
+    matched, total = sbom_s["matched"], sbom_s["total"]
+    mismatched = sbom_s.get("mismatched", [])
+    if total == 0:
+        return
+    if not mismatched:
+        console.print(f"  🔍 SBOM verified: [bold green]{matched}/{total}[/bold green] "
+                      f"component versions confirmed in image\n")
+    else:
+        console.print(f"  🔍 SBOM verified: [bold green]{matched}/{total}[/bold green] matched — "
+                      f"[bold yellow]{len(mismatched)}[/bold yellow] version(s) not found in SBOM:")
+        for comp, ver, sbom_vers in mismatched:
+            sbom_str = f"SBOM has: {', '.join(sbom_vers[:2])}" if sbom_vers else "not present in SBOM"
+            console.print(f"    [yellow]⚠  {comp} {ver}[/yellow]  [dim]({sbom_str})[/dim]")
+        console.print()
+
+
+def _write_output(df: pd.DataFrame, path: str, fmt: str, console: Console) -> None:
+    """Write triage results to *path* in the requested format (csv or json)."""
+    if fmt == "json":
+        with open(path, "w") as fh:
+            json.dump(df.to_dict(orient="records"), fh, indent=2, default=str)
+    else:
+        df.to_csv(path, index=False)
+    console.print(f"  Report saved to [cyan]{path}[/cyan] [dim]({fmt})[/dim]\n")
 
 
 def rhacs_list_namespace_images(session, namespace: str) -> list:
@@ -1059,10 +1160,10 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
 
 
 def _audit_and_display(df: pd.DataFrame, ctx,
-                       console: Console, *, write_csv: bool = False,
-                       csv_path: str = "structured_triage_report.csv",
+                       console: Console, *, output_path: Optional[str] = None,
+                       output_fmt: str = "csv",
                        false_only: bool = False) -> pd.DataFrame:
-    """Sync VEX data, run audit, render table, print summary, optionally write CSV.
+    """Sync VEX data, run audit, render table, print summary, optionally write output file.
     Returns the annotated result DataFrame."""
 
     unique_cves = [c.strip().upper() for c in df['CVE'].unique()]
@@ -1082,8 +1183,8 @@ def _audit_and_display(df: pd.DataFrame, ctx,
     result_df = _sort_and_filter_df(df, false_only)
     _render_triage_table(console, result_df, ctx)
 
-    if write_csv:
-        df.to_csv(csv_path, index=False)
+    if output_path and output_fmt != "table":
+        _write_output(result_df, output_path, output_fmt, console)
 
     return result_df
 
@@ -1142,11 +1243,12 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
 
         if img_df.empty:
             return {"found": True, "img_ctx": img_ctx, "os_info": os_info,
-                    "result_df": None, "error": None}
+                    "result_df": None, "sbom_summary": None, "error": None}
 
-        result_df = _audit_silent(img_df, img_ctx, false_only)
+        result_df    = _audit_silent(img_df, img_ctx, false_only)
+        sbom_summary = _verify_sbom_against_df(session, image_ref, result_df)
         return {"found": True, "img_ctx": img_ctx, "os_info": os_info,
-                "result_df": result_df, "error": None}
+                "result_df": result_df, "sbom_summary": sbom_summary, "error": None}
 
     except requests.RequestException as e:
         return {"found": None, "error": str(e)}
@@ -1178,6 +1280,9 @@ def _display_image_result(console: Console, label: str, res: dict) -> None:
         return
 
     _render_triage_table(console, result_df, img_ctx)
+    sbom_s = res.get("sbom_summary")
+    if sbom_s:
+        _print_sbom_summary(console, sbom_s)
 
 
 # --- 6. EXECUTION PIPELINE ---
@@ -1203,6 +1308,16 @@ parser.add_argument("--ocp",       default=None, metavar="PULLSPECS_FILE",
                     help="Path to a file produced by 'oc adm release info --pullspecs'.\n"
                          "Triages every component image in the release against RHACS.\n"
                          "Requires ROX_ENDPOINT + ROX_API_TOKEN.")
+parser.add_argument("--sbom",      action="store_true", default=False,
+                    help="Fetch and display the SPDX 2.3 SBOM package list for --image.\n"
+                         "Equivalent to rpm -qa without accessing the running container.\n"
+                         "Requires ROX_ENDPOINT + ROX_API_TOKEN + --image.")
+parser.add_argument("--output",    default=None, metavar="FILE",
+                    help="Output file path (default: triage_report.csv or triage_report.json).\n"
+                         "Has no effect with --format table.")
+parser.add_argument("--format",    default="csv", choices=["table", "csv", "json"],
+                    dest="output_fmt",
+                    help="Output format: csv (default), json, or table (terminal only, no file).")
 parser.add_argument("--false-only", action="store_true", default=False,
                     help="Only show (and count) FALSE POSITIVE findings in the output.")
 parser.add_argument("--workers", type=int, default=10, metavar="N",
@@ -1233,6 +1348,13 @@ use_ocp = (
     and bool(ROX_API_TOKEN)
 )
 
+use_sbom = (
+    getattr(args, 'sbom', False)
+    and args.image is not None
+    and bool(ROX_ENDPOINT)
+    and bool(ROX_API_TOKEN)
+)
+
 use_api = (
     args.image is not None
     and bool(ROX_ENDPOINT)
@@ -1243,7 +1365,7 @@ use_api = (
 )
 
 # Suppress HTTPS certificate warnings for RHACS API calls (self-signed certs are common)
-if use_ocp or use_namespace or use_api:
+if use_ocp or use_namespace or use_api or use_sbom:
     import urllib3
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -1253,6 +1375,42 @@ if args.image:
     _console.print(f"\n[bold]Image:[/bold] {args.image}")
 elif not use_namespace and not use_ocp:
     ctx = WorkloadContext(rhel_ver="8", workload_type="ubi", display_name="UBI8")
+
+# ── SBOM mode — print package list for an image (equivalent to rpm -qa) ────────────
+if use_sbom:
+    _console.print(f"[bold]Mode:[/bold] [cyan]SBOM[/cyan]  endpoint=[cyan]{ROX_ENDPOINT}[/cyan]")
+    try:
+        session = _rhacs_session(ROX_ENDPOINT, ROX_API_TOKEN)
+        _console.print(f"📦 Fetching SPDX 2.3 SBOM for [cyan]{args.image}[/cyan]...")
+        sbom      = rhacs_get_sbom(session, args.image, force=getattr(args, 'force', False))
+        pkgs_df   = sbom_to_packages_df(sbom)
+        created   = (sbom.get("creationInfo") or {}).get("created", "")
+        creators  = ", ".join((sbom.get("creationInfo") or {}).get("creators", []))
+        _console.print(f"  SPDX version : [dim]{sbom.get('spdxVersion', '')}[/dim]")
+        if created:
+            _console.print(f"  Created      : [dim]{created}[/dim]")
+        if creators:
+            _console.print(f"  Tools        : [dim]{creators}[/dim]")
+        _console.print(f"  Packages     : [bold]{len(pkgs_df)}[/bold]")
+        _console.print()
+
+        tbl = Table(
+            title=f"SBOM Packages — [bold cyan]{args.image}[/bold cyan]",
+            box=box.ROUNDED, show_header=True, header_style="bold white", show_lines=False,
+        )
+        tbl.add_column("Package",  style="cyan",    no_wrap=True)
+        tbl.add_column("Version",  style="dim",     no_wrap=False, max_width=40)
+        tbl.add_column("Purpose",  style="magenta", no_wrap=True)
+        tbl.add_column("File",     style="dim",     no_wrap=False, max_width=45)
+        for _, row in pkgs_df.iterrows():
+            tbl.add_row(row["NAME"], row["VERSION"], row["PURPOSE"], row["FILE"])
+        _console.print(tbl)
+        _console.print()
+    except requests.RequestException as e:
+        _console.print(f"[bold red]\u274c RHACS API error: {e}[/bold red]")
+        raise SystemExit(1)
+    if not use_api:
+        raise SystemExit(0)
 
 # ── OCP release mode — triage every image from `oc adm release info --pullspecs` ────
 if use_ocp:
@@ -1344,13 +1502,15 @@ if use_ocp:
 
         if all_results:
             combined = pd.concat(all_results, ignore_index=True)
-            combined.to_csv("structured_triage_report.csv", index=False)
             counts = combined['AUDIT_RESULT'].value_counts()
             for label, count in counts.items():
                 style = RESULT_STYLES.get(label, "")
                 _console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold] across "
                                f"{combined[combined['AUDIT_RESULT']==label]['OCP_COMPONENT'].nunique()} component(s)")
-            _console.print(f"\n  Report saved to [cyan]structured_triage_report.csv[/cyan]\n")
+            _console.print()
+            if args.output_fmt != "table":
+                _out = args.output or f"triage_report.{args.output_fmt}"
+                _write_output(combined, _out, args.output_fmt, _console)
         raise SystemExit(0)
 
     except requests.RequestException as e:
@@ -1407,14 +1567,16 @@ if use_namespace:
 
         if all_results:
             combined = pd.concat(all_results, ignore_index=True)
-            combined.to_csv("structured_triage_report.csv", index=False)
             _console.rule("[bold]Namespace Summary[/bold]")
             counts = combined['AUDIT_RESULT'].value_counts()
             for label, count in counts.items():
                 style = RESULT_STYLES.get(label, "")
                 _console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold] across "
                                f"{combined[combined['AUDIT_RESULT']==label]['IMAGE'].nunique()} image(s)")
-            _console.print(f"\n  Report saved to [cyan]structured_triage_report.csv[/cyan]\n")
+            _console.print()
+            if args.output_fmt != "table":
+                _out = args.output or f"triage_report.{args.output_fmt}"
+                _write_output(combined, _out, args.output_fmt, _console)
         raise SystemExit(0)
 
     except requests.RequestException as e:
@@ -1422,6 +1584,7 @@ if use_namespace:
         raise SystemExit(1)
 
 # ── Load scan data (single-image API mode or CSV mode) ───────────────────────
+session = None
 if use_api:
     _console.print(f"[bold]Mode:[/bold] [cyan]RHACS API[/cyan]  endpoint=[cyan]{ROX_ENDPOINT}[/cyan]")
     try:
@@ -1471,4 +1634,14 @@ if ctx.extra_prefixes:
     _console.print(f"[bold]VEX scope:[/bold] {', '.join(ctx.extra_prefixes[:6])}")
 _console.print()
 
-_audit_and_display(df, ctx, _console, write_csv=True, false_only=args.false_only)
+_out_path = (args.output or f"triage_report.{args.output_fmt}") if args.output_fmt != "table" else None
+result_df = _audit_and_display(df, ctx, _console,
+                               output_path=_out_path,
+                               output_fmt=args.output_fmt,
+                               false_only=args.false_only)
+
+# ── SBOM cross-check for single-image API mode ───────────────────────────────
+if use_api and session is not None and result_df is not None and not result_df.empty:
+    _console.print("🔍 Verifying component versions against SBOM...")
+    sbom_s = _verify_sbom_against_df(session, args.image, result_df)
+    _print_sbom_summary(_console, sbom_s)
