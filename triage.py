@@ -548,6 +548,24 @@ def _resolve_comp(comp: str, ctx) -> set:
     return names
 
 
+def _pid_module_stream(pid: str):
+    """Return the module stream token from a PID like '…::perl:5.32', or None."""
+    if '::' in pid:
+        return pid.split('::', 1)[1]   # e.g. 'perl:5.32'
+    return None
+
+
+def _version_is_module_stream(ver: str) -> bool:
+    """Return True if the version-release string indicates an RPM module stream package.
+
+    Module-stream RPMs have '+module+' embedded in their release field, e.g.:
+      1.25.10-4.module+el8.5.0+11712+ea2d2be1
+    Base (non-module) packages have simple release strings like:
+      423.el8_10  or  1.24.2-9.el8_10
+    """
+    return '+module+' in ver
+
+
 def _get_vex_product(data: dict, comp: str, ctx) -> str:
     """Return a short product label (e.g. 'OCP 4.20', 'Ceph 7.1') for the
     VEX entry that matches *comp* in the given context.  Returns '' if not found.
@@ -908,6 +926,13 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         for pid in not_affected_ids:
             if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 continue
+            # Skip module-stream-scoped PIDs (e.g. '::perl:5.32') when the
+            # installed package is a base (non-module) RPM.  A PID qualified
+            # with '::module:stream' only applies to packages installed from
+            # that module stream; base packages have no '+module+' in their
+            # version-release string.
+            if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
+                continue
             pkg_name, _ = _parse_pkg_from_product_id(pid)
             if pkg_name in _resolve_comp(comp, ctx):
                 scope = ctx.display_name
@@ -919,6 +944,8 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         scoped_fixed = []
         for pid in ps.get('fixed', []):
             if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                continue
+            if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
                 continue
             pkg_name, pkg_ver = _parse_pkg_from_product_id(pid)
             if pkg_name in _resolve_comp(comp, ctx) and pkg_ver:
@@ -972,6 +999,8 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         for pid in ps.get('known_affected', []):
             if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 continue
+            if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
+                continue
             pkg_name, _ = _parse_pkg_from_product_id(pid)
             if pkg_name in _resolve_comp(comp, ctx):
                 # Check if a fix exists outside the in-scope products (context note)
@@ -991,6 +1020,8 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         for pid in ps.get('under_investigation', []):
             if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 continue
+            if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
+                continue
             pkg_name, _ = _parse_pkg_from_product_id(pid)
             if pkg_name in _resolve_comp(comp, ctx) or _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 return pd.Series(["❌ POSITIVE", "N/A",
@@ -1002,6 +1033,8 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         for status in ('fixed', 'known_affected', 'known_not_affected'):
             for pid in ps.get(status, []):
                 if _is_any_rhel_ver_product(pid, rhel_ver) and not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                    if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
+                        continue
                     pkg_name, _ = _parse_pkg_from_product_id(pid)
                     if pkg_name in _resolve_comp(comp, ctx):
                         label = _pid_label(pid, pid_name, rel_parent)
