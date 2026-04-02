@@ -1728,7 +1728,8 @@ if use_ocp:
                 results_map[comp_name] = (image_ref, res)
                 status = "✅" if res.get("found") and res.get("result_df") is not None \
                          else ("⚠ " if res.get("found") is False else "❌")
-                _console.print(f"  [{done}/{total}] {status} {comp_name}", highlight=False)
+                suffix = f"  [dim]{image_ref}[/dim]" if res.get("found") is False else ""
+                _console.print(f"  [{done}/{total}] {status} {comp_name}{suffix}", highlight=False)
 
         _console.print()
 
