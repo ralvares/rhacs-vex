@@ -459,7 +459,6 @@ def rhacs_find_image(session, image_ref: str) -> Optional[str]:
 
     # Last resort for specific-tag refs: ask RHACS to scan the image on-demand.
     if has_tag_or_digest:
-        print(f"  ⏳ Requesting on-demand scan from RHACS for '{image_ref}'…")
         img_data = rhacs_scan_image(session, image_ref)
         if img_data:
             return img_data.get("id")
@@ -478,13 +477,11 @@ def rhacs_scan_image(session, image_ref: str) -> Optional[dict]:
     try:
         resp = session.post(url, json=body, timeout=120)
         resp.raise_for_status()
-    except Exception as exc:
-        print(f"  ❌ On-demand scan failed: {exc}")
+    except Exception:
         return None
     data = resp.json()
     img_id = data.get("id")
     if not img_id:
-        print("  ❌ On-demand scan returned no image ID.")
         return None
     # Cache using the same layout as rhacs_get_image so subsequent calls hit cache.
     os.makedirs(SCAN_DIR, exist_ok=True)
@@ -492,7 +489,6 @@ def rhacs_scan_image(session, image_ref: str) -> Optional[dict]:
     cache_path = os.path.join(SCAN_DIR, f"{safe}.scan")
     with open(cache_path, "w") as fh:
         json.dump(data, fh, indent=2)
-    print(f"  ✅ On-demand scan complete (ID: {img_id[:16]}…)")
     return data
 
 
