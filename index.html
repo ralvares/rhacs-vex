@@ -68,6 +68,28 @@
     .err { color: var(--red); font-size: .82rem; margin-top: .45rem; min-height: 1.1rem; }
     #file-input { display: none; }
 
+    /* ── Filter bar ── */
+    .filter-bar {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: .75rem 1rem;
+      display: flex; align-items: center; flex-wrap: wrap; gap: .6rem;
+      margin-bottom: 1rem;
+    }
+    .filter-bar label { font-size: .72rem; color: var(--muted); font-weight: 600;
+      text-transform: uppercase; letter-spacing: .04em; }
+    .filter-select {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+      color: var(--text); font-size: .8rem; padding: .35rem .7rem;
+      cursor: pointer; min-width: 140px;
+    }
+    .filter-select:focus { outline: none; border-color: var(--accent); }
+    .filter-clear {
+      margin-left: auto; font-size: .78rem; color: var(--accent);
+      cursor: pointer; background: none; border: none; padding: .35rem .5rem;
+      text-decoration: underline;
+    }
+    .filter-count { font-size: .78rem; color: var(--muted); }
+
     /* ── Cards ── */
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 1rem; margin-bottom: 1.25rem; }
     .card {
@@ -277,12 +299,13 @@ async function search() {
   try {
     const safe   = raw.replace(/'/g, "''");
     const result = await conn.query(`
-      SELECT source_file, IMAGE, COMPONENT, VERSION,
-             SEVERITY, AUDIT_RESULT, JUSTIFICATION
-      FROM 'ocp.parquet'
-      WHERE trim(CVE) LIKE '%${safe}%'
-      ORDER BY source_file, IMAGE`);
-    const rows = result.toArray().map(r => r.toJSON());
+      SELECT * FROM 'ocp.parquet'
+      WHERE upper(trim(CVE)) LIKE upper('%${safe}%')
+      ORDER BY OCP_COMPONENT, source_file`);
+    const rows = result.toArray().map(r => {
+      const obj = r.toJSON();
+      return Object.fromEntries(Object.entries(obj).map(([k, v]) => [k.toLowerCase(), v]));
+    });
     render(raw, rows);
   } catch (e) {
     setErr(`Query error: ${e.message}`);
@@ -295,6 +318,9 @@ async function search() {
 
 $searchBtn.addEventListener('click', search);
 $cveInput.addEventListener('keydown', e => e.key === 'Enter' && search());
+
+// ── Filter state ────────────────────────────────────────────────────────────
+let allResults = [];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function parseOperator(sourceFile) {
@@ -352,6 +378,8 @@ function severityBadge(raw) {
 
 // ── Render ────────────────────────────────────────────────────────────────────
 function render(query, rows) {
+  allResults = rows;
+
   if (rows.length === 0) {
     $results.innerHTML = `<div class="empty"><div class="ico">🔎</div>
       <h3>No results found</h3>
@@ -359,12 +387,12 @@ function render(query, rows) {
     return;
   }
 
-  const uniqueImages = new Set(rows.map(r => r.IMAGE)).size;
-  const uniquePkgs   = new Set(rows.map(r => r.COMPONENT)).size;
+  const uniqueImages = new Set(rows.map(r => r.image)).size;
+  const uniquePkgs   = new Set(rows.map(r => r.component)).size;
 
   const statusCounts = {};
   for (const r of rows) {
-    const k = statusKey(r.AUDIT_RESULT);
+    const k = statusKey(r.audit_result);
     statusCounts[k] = (statusCounts[k] || 0) + 1;
   }
   const breakdown = Object.entries(statusCounts)
@@ -374,32 +402,20 @@ function render(query, rows) {
       return `<div class="sitem"><span class="badge ${cls}">${esc(k)}</span><strong>${v}</strong></div>`;
     }).join('');
 
-  const trs = rows.map(r => {
-    const op      = parseOperator(r.source_file);
-    const imgFull = r.IMAGE || '';
-    // Split image into base path and sha256 digest
-    const imgBase = imgFull.replace(/@sha256:[0-9a-f]+$/, '');
-    const sha     = (imgFull.match(/(@sha256:[0-9a-f]+)$/) || [])[1] || '';
-    return `<tr>
-      <td class="op">
-        <strong>${esc(op.name)}</strong>
-        <span>${[op.channel, op.version, op.ocpVer].filter(Boolean).join(' · ')}</span>
-      </td>
-      <td class="img">
-        ${esc(imgBase)}${sha ? `<span class="sha">${esc(sha)}</span>` : ''}
-      </td>
-      <td><code>${esc(r.COMPONENT || '—')}</code></td>
-      <td><code style="white-space:nowrap">${esc(r.VERSION || '—')}</code></td>
-      <td>${severityBadge(r.SEVERITY)}</td>
-      <td style="white-space:nowrap">${statusBadge(r.AUDIT_RESULT)}</td>
-      <td class="notes">${esc(r.JUSTIFICATION || '—')}</td>
-    </tr>`;
-  }).join('');
+  // Populate filter options
+  const ocpVersions = [...new Set(rows.map(r => parseOperator(r.source_file).ocpVer).filter(Boolean))].sort();
+  const components  = [...new Set(rows.map(r => r.ocp_component).filter(Boolean))].sort();
+  const severities  = [...new Set(rows.map(r => r.severity).filter(Boolean))].sort();
+  const states      = [...new Set(rows.map(r => statusKey(r.audit_result)).filter(Boolean))].sort();
+
+  const opts = (arr, placeholder) =>
+    `<option value="">${placeholder}</option>` +
+    arr.map(v => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
 
   $results.innerHTML = `
     <div class="results-hdr">
       <h2>Results for <code>${esc(query)}</code></h2>
-      <span>${rows.length} finding${rows.length !== 1 ? 's' : ''}</span>
+      <span id="result-count">${rows.length} finding${rows.length !== 1 ? 's' : ''}</span>
     </div>
 
     <div class="cards">
@@ -421,22 +437,81 @@ function render(query, rows) {
       </div>
     </div>
 
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Operator</th>
-            <th>Image</th>
-            <th>Package</th>
-            <th>Version</th>
-            <th>Severity</th>
-            <th>Status</th>
-            <th>Triage Notes</th>
-          </tr>
-        </thead>
-        <tbody>${trs}</tbody>
-      </table>
-    </div>`;
+    <div class="filter-bar">
+      <label>Filter by:</label>
+      <select id="f-ocp" class="filter-select">${opts(ocpVersions, 'OCP Version')}</select>
+      <select id="f-comp" class="filter-select">${opts(components, 'OCP Component')}</select>
+      <select id="f-sev" class="filter-select">${opts(severities, 'Severity')}</select>
+      <select id="f-state" class="filter-select">${opts(states, 'State')}</select>
+      <button class="filter-clear" id="f-clear">Clear all</button>
+      <span class="filter-count" id="filter-count"></span>
+    </div>
+
+    <div class="table-wrap" id="table-wrap"></div>`;
+
+  // Wire up filter events
+  ['f-ocp','f-comp','f-sev','f-state'].forEach(id =>
+    document.getElementById(id).addEventListener('change', applyFilters)
+  );
+  document.getElementById('f-clear').addEventListener('click', () => {
+    ['f-ocp','f-comp','f-sev','f-state'].forEach(id => document.getElementById(id).value = '');
+    applyFilters();
+  });
+
+  applyFilters();
+}
+
+function applyFilters() {
+  const ocpFilter   = document.getElementById('f-ocp')?.value    || '';
+  const compFilter  = document.getElementById('f-comp')?.value   || '';
+  const sevFilter   = document.getElementById('f-sev')?.value    || '';
+  const stateFilter = document.getElementById('f-state')?.value  || '';
+
+  const filtered = allResults.filter(r => {
+    const op = parseOperator(r.source_file);
+    if (ocpFilter   && op.ocpVer !== ocpFilter)               return false;
+    if (compFilter  && (r.ocp_component || '') !== compFilter) return false;
+    if (sevFilter   && (r.severity || '') !== sevFilter)       return false;
+    if (stateFilter && statusKey(r.audit_result) !== stateFilter) return false;
+    return true;
+  });
+
+  const countEl = document.getElementById('filter-count');
+  if (countEl) {
+    const active = [ocpFilter, compFilter, sevFilter, stateFilter].filter(Boolean).length;
+    countEl.textContent = active ? `${filtered.length} of ${allResults.length} shown` : '';
+  }
+
+  const trs = filtered.map(r => {
+    const op      = parseOperator(r.source_file);
+    const imgFull = r.image || '';
+    const imgBase = imgFull.replace(/@sha256:[0-9a-f]+$/, '');
+    const sha     = (imgFull.match(/(@sha256:[0-9a-f]+)$/) || [])[1] || '';
+    return `<tr>
+      <td class="op">
+        <strong>${esc(r.ocp_component || op.name)}</strong>
+        <span>${esc(op.ocpVer || '')}</span>
+      </td>
+      <td class="img">
+        ${esc(imgBase)}${sha ? `<span class="sha">${esc(sha)}</span>` : ''}
+      </td>
+      <td><code>${esc(r.component || '—')}</code></td>
+      <td><code style="white-space:nowrap">${esc(r.version || '—')}</code></td>
+      <td>${severityBadge(r.severity)}</td>
+      <td style="white-space:nowrap">${statusBadge(r.audit_result)}</td>
+      <td class="notes">${esc(r.justification || '—')}</td>
+    </tr>`;
+  }).join('');
+
+  const empty = filtered.length === 0
+    ? `<div class="empty"><div class="ico">🔎</div><h3>No matches</h3><p>Adjust or clear the filters above.</p></div>`
+    : `<table><thead><tr>
+        <th>OCP Component</th><th>Image</th><th>Package</th>
+        <th>Version</th><th>Severity</th><th>State</th><th>Justification</th>
+      </tr></thead><tbody>${trs}</tbody></table>`;
+
+  const wrap = document.getElementById('table-wrap');
+  if (wrap) wrap.innerHTML = empty;
 }
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
