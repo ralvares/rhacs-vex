@@ -473,8 +473,10 @@ def rhacs_scan_image(session, image_ref: str, force: bool = False) -> Optional[d
     """Fetch (or trigger) a scan for an image via POST /v1/images/scan.
 
     RHACS returns the existing scan if it knows the image, or scans it fresh.
+    A pretty-printed JSON copy is saved to data/scans/ for offline inspection.
     Pass force=True to bypass the local HTTP cache and ask RHACS to re-scan.
     """
+    os.makedirs(SCAN_DIR, exist_ok=True)
     url = f"{session.base_url}/v1/images/scan"
     if force:
         session.cache.delete(urls=[url])
@@ -482,15 +484,29 @@ def rhacs_scan_image(session, image_ref: str, force: bool = False) -> Optional[d
         resp = session.post(url, json={"imageName": image_ref, "force": force}, timeout=120)
         resp.raise_for_status()
         data = resp.json()
-        return data if data.get("id") else None
+        if not data.get("id"):
+            return None
+        cache_path = _scan_cache_path(data["id"], image_ref)
+        if force or not os.path.exists(cache_path):
+            with open(cache_path, "w") as fh:
+                json.dump(data, fh, indent=2)
+        return data
     except Exception:
         return None
 
 
-def rhacs_get_image(session, image_id: str, force: bool = False) -> dict:
+def _scan_cache_path(image_id: str, image_ref: str = "") -> str:
+    """Return the local file path for a saved scan: data/scans/<sanitised_ref_or_id>.json"""
+    name = image_ref if image_ref else image_id
+    safe = re.sub(r'[^\w@:.+-]', '_', name)
+    return os.path.join(SCAN_DIR, f"{safe}.json")
+
+
+def rhacs_get_image(session, image_id: str, force: bool = False, image_ref: str = "") -> dict:
     """Fetch full image detail (scan + metadata) from RHACS.
 
     The CachedSession handles TTL-based caching (SCAN_CACHE_TTL) automatically.
+    A pretty-printed JSON copy is also saved to data/scans/ for offline inspection.
     Pass force=True to invalidate the cache entry and fetch a fresh copy.
     """
     os.makedirs(SCAN_DIR, exist_ok=True)
@@ -499,7 +515,13 @@ def rhacs_get_image(session, image_id: str, force: bool = False) -> dict:
         session.cache.delete(urls=[url])
     resp = session.get(url, params={"stripDescription": True}, timeout=60)
     resp.raise_for_status()
-    return resp.json()
+    data = resp.json()
+    # Keep a pretty-printed JSON copy in SCAN_DIR for offline inspection.
+    cache_path = _scan_cache_path(image_id, image_ref)
+    if force or not os.path.exists(cache_path):
+        with open(cache_path, "w") as fh:
+            json.dump(data, fh, indent=2)
+    return data
 
 
 def _sbom_cache_path(image_ref: str) -> str:
@@ -525,7 +547,7 @@ def rhacs_get_sbom(session, image_ref: str, force: bool = False) -> dict:
     sbom = resp.json()
     # Keep a plain-JSON copy in SBOM_DIR for offline inspection.
     cache_path = _sbom_cache_path(image_ref)
-    if not os.path.exists(cache_path):
+    if force or not os.path.exists(cache_path):
         with open(cache_path, "w") as fh:
             json.dump(sbom, fh, indent=2)
     return sbom
@@ -1433,7 +1455,7 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
             if not image_data:
                 return {"found": False, "error": None}
         else:
-            image_data = rhacs_get_image(session, image_id, force=force)
+            image_data = rhacs_get_image(session, image_id, force=force, image_ref=image_ref)
         labels     = (image_data.get("metadata") or {}).get("v1", {}).get("labels") or {}
         img_ctx    = parse_context_from_labels(labels, image_ref) if labels \
                      else parse_image_ref(image_ref)
@@ -1657,7 +1679,7 @@ def main():
                 _console.print(f"[bold red]❌ Image not found in RHACS: {args.image}[/bold red]")
                 raise SystemExit(1)
             force      = getattr(args, 'force', False)
-            image_data = rhacs_get_image(session, image_id, force=force)
+            image_data = rhacs_get_image(session, image_id, force=force, image_ref=args.image)
             scan_time  = (image_data.get("scan") or {}).get("scanTime", "")
             os_info    = (image_data.get("scan") or {}).get("operatingSystem", "")
             components = (image_data.get("scan") or {}).get("components", [])
