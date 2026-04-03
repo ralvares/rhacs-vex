@@ -361,7 +361,13 @@ $cveInput.addEventListener('keydown', e => e.key === 'Enter' && search());
 
 // ── Filter state ────────────────────────────────────────────────────────────
 let allResults = [];
-const filterState = { ocp: new Set(), component: new Set(), severity: new Set(), state: new Set(), image: new Set() };
+let dropdownAbort = null;
+const filterState = { ocp: new Set(), component: new Set(), channel: new Set(), severity: new Set(), state: new Set(), image: new Set(), version: new Set() };
+
+function resetFilters() {
+  Object.values(filterState).forEach(s => s.clear());
+  if (dropdownAbort) { dropdownAbort.abort(); dropdownAbort = null; }
+}
 
 // ── Multi-select dropdown component ──────────────────────────────────────────
 function createDropdown(id, label, items) {
@@ -394,6 +400,10 @@ function createDropdown(id, label, items) {
 }
 
 function wireDropdowns() {
+  // Abort signal so we can cleanly remove the document listener on next search
+  dropdownAbort = new AbortController();
+  const sig = { signal: dropdownAbort.signal };
+
   // Toggle open/close
   document.querySelectorAll('.ms-btn').forEach(btn => {
     btn.addEventListener('click', e => {
@@ -405,9 +415,10 @@ function wireDropdowns() {
     });
   });
 
-  // Close on outside click
+  // Close on outside click — uses signal so it's removed on next search
   document.addEventListener('click', () =>
-    document.querySelectorAll('.ms-panel.open').forEach(p => p.classList.remove('open'))
+    document.querySelectorAll('.ms-panel.open').forEach(p => p.classList.remove('open')),
+    sig
   );
   document.querySelectorAll('.ms-panel').forEach(p =>
     p.addEventListener('click', e => e.stopPropagation())
@@ -479,21 +490,67 @@ function parseOperator(sourceFile) {
   const basename = (parts[parts.length - 1] || '').replace(/\.csv$/, '');
   const folder   = parts[parts.length - 2] || '';
   const ocpVer   = folder.startsWith('ocp-') ? folder.replace('ocp-', 'OCP ') : '';
+
   // Root-level OCP release: e.g. ocp-4.21.1
   if (/^ocp-[\d.]+$/.test(basename)) {
     return { name: basename.replace(/^ocp-/, 'OCP '), channel: '', version: '', ocpVer: '' };
   }
-  // Split off trailing version: -vX.Y.Z (with optional suffix)
-  const m = basename.match(/^(.+?)-v(\d[\d.]+(?:-[\w.]+)*)$/);
-  if (m) {
-    const nameChannel = m[1];
-    const version     = 'v' + m[2];
-    const opMatch     = nameChannel.match(/^(.*?-operator(?:-rh)?)(-.+)?$/);
-    const opName      = opMatch ? opMatch[1] : nameChannel;
-    const channel     = opMatch ? (opMatch[2] || '').replace(/^-/, '') : '';
-    return { name: opName, channel, version, ocpVer };
+
+  // Strip operator version suffix: -vX.Y.Z...
+  const m = basename.match(/^(.+)-v(\d[\d.\w-]*)$/);
+  if (!m) return { name: basename, channel: '', version: '', ocpVer };
+
+  const nameChannel = m[1];
+  const version     = 'v' + m[2];
+
+  // Strategy 1: explicit -operator or -operator-rh boundary (covers most RH operators)
+  const opMatch = nameChannel.match(/^(.+?-operator(?:-rh)?)(-.+)?$/i);
+  if (opMatch) {
+    return { name: opMatch[1], channel: (opMatch[2] || '').replace(/^-/, ''), version, ocpVer };
   }
-  return { name: basename, channel: '', version: '', ocpVer };
+
+  // Strategy 2: general heuristic for e.g. amq-streams, advanced-cluster-management, amq-broker-rhel8
+  // Channel keywords and package-ending words that should NOT be included in the channel prefix
+  const CHAN_KW  = new Set(['stable','alpha','latest','lts','mas','fast','candidate','preview','enterprise','tech-preview']);
+  const PKG_ENDS = new Set(['console','proxy','hub','manager','controller','broker','registry',
+                             'server','agent','addon','webhook','rhel8','rhel9','management','platform']);
+
+  const segs = nameChannel.split('-');
+
+  // Find rightmost contiguous block of digit-starting or keyword segments → that's the channel core
+  let chanStart = segs.length;
+  for (let i = segs.length - 1; i >= 0; i--) {
+    if (/^\d/.test(segs[i]) || CHAN_KW.has(segs[i])) chanStart = i;
+    else break;
+  }
+
+  // Extend one segment left for compound channels like "release-2.14", "gitops-1.10"
+  // but not if we'd absorb a package-ending word
+  if (chanStart > 1 && !PKG_ENDS.has(segs[chanStart - 1])) chanStart--;
+
+  // Detect repeated prefix pattern: amq-streams-amq-streams / amq-streams-console-amq-streams
+  // If any prefix of length ≥ 2 in name-part appears again later, that second occurrence starts the channel
+  const nameParts = segs.slice(0, chanStart);
+  const n = nameParts.length;
+  let repeatAt = -1;
+  outer: for (let len = Math.floor(n / 2); len >= 2; len--) {
+    const prefix = nameParts.slice(0, len).join('-');
+    for (let s = len; s <= n - len; s++) {
+      if (nameParts.slice(s, s + len).join('-') === prefix) {
+        repeatAt = s; break outer;
+      }
+    }
+  }
+
+  if (repeatAt > 0) {
+    return { name: segs.slice(0, repeatAt).join('-'), channel: segs.slice(repeatAt).join('-'), version, ocpVer };
+  }
+
+  return {
+    name:    chanStart > 0 ? segs.slice(0, chanStart).join('-') : nameChannel,
+    channel: segs.slice(chanStart).join('-'),
+    version, ocpVer,
+  };
 }
 
 const esc = s => String(s ?? '')
@@ -529,9 +586,8 @@ function severityBadge(raw) {
 
 // ── Render ────────────────────────────────────────────────────────────────────
 function render(query, rows) {
-  allResults = rows;
-  // Reset filter state
-  Object.values(filterState).forEach(s => s.clear());
+  resetFilters();
+  allResults = [];
 
   if (rows.length === 0) {
     $results.innerHTML = `<div class="empty"><div class="ico">🔎</div>
@@ -555,25 +611,30 @@ function render(query, rows) {
       return `<div class="sitem"><span class="badge ${cls}">${esc(k)}</span><strong>${v}</strong></div>`;
     }).join('');
 
-  // Build enriched rows with derived fields
+  // Build enriched rows with derived fields — trim all values to avoid whitespace bugs
   allResults = rows.map(r => {
     const op      = parseOperator(r.source_file);
-    const imgFull = r.image || '';
+    const imgFull = (r.image || '').trim();
     return {
       ...r,
-      _component: r.ocp_component || op.name,
-      _ocpVer:    op.ocpVer || (r.source_file.match(/ocp-([\d.]+)\.csv/) ? 'OCP ' + r.source_file.match(/ocp-([\d.]+)\.csv/)[1] : ''),
-      _opVersion: op.version,
+      _component: (r.ocp_component || op.name || '').trim(),
+      _ocpVer:    (op.ocpVer || (r.source_file.match(/ocp-([\d.]+)\.csv/) ? 'OCP ' + r.source_file.match(/ocp-([\d.]+)\.csv/)[1] : '') || '').trim(),
+      _channel:   (op.channel || '').trim(),
+      _opVersion: (op.version || '').trim(),
       _imgBase:   imgFull.replace(/@sha256:[0-9a-f]+$/, ''),
       _sha:       (imgFull.match(/(@sha256:[0-9a-f]+)$/) || [])[1] || '',
+      version:    (r.version || '').trim(),
+      severity:   (r.severity || '').trim(),
     };
   });
 
   const ocpVersions = [...new Set(allResults.map(r => r._ocpVer).filter(Boolean))].sort();
   const components  = [...new Set(allResults.map(r => r._component).filter(Boolean))].sort();
+  const channels    = [...new Set(allResults.map(r => r._channel).filter(Boolean))].sort();
   const severities  = [...new Set(allResults.map(r => r.severity).filter(Boolean))].sort();
   const states      = [...new Set(allResults.map(r => statusKey(r.audit_result)).filter(Boolean))].sort();
   const images      = [...new Set(allResults.map(r => r._imgBase).filter(Boolean))].sort();
+  const versions    = [...new Set(allResults.map(r => r.version).filter(Boolean))].sort();
 
   $results.innerHTML = `
     <div class="results-hdr">
@@ -592,6 +653,8 @@ function render(query, rows) {
       <label>Filter by:</label>
       ${createDropdown('ocp',       'OCP Version', ocpVersions)}
       ${createDropdown('component', 'Component',   components)}
+      ${createDropdown('channel',   'Channel',     channels)}
+      ${createDropdown('version',   'Pkg Version', versions)}
       ${createDropdown('severity',  'Severity',    severities)}
       ${createDropdown('state',     'State',       states)}
       ${createDropdown('image',     'Image',       images)}
@@ -616,6 +679,8 @@ function applyFilters() {
   const filtered = allResults.filter(r => {
     if (filterState.ocp.size       && !filterState.ocp.has(r._ocpVer))           return false;
     if (filterState.component.size && !filterState.component.has(r._component))  return false;
+    if (filterState.channel.size   && !filterState.channel.has(r._channel))      return false;
+    if (filterState.version.size   && !filterState.version.has(r.version))       return false;
     if (filterState.severity.size  && !filterState.severity.has(r.severity))     return false;
     if (filterState.state.size     && !filterState.state.has(statusKey(r.audit_result))) return false;
     if (filterState.image.size     && !filterState.image.has(r._imgBase))        return false;
@@ -629,7 +694,7 @@ function applyFilters() {
   const trs = filtered.map(r => `<tr>
     <td class="op">
       <strong>${esc(r._component)}</strong>
-      <span>${[r._ocpVer, r._opVersion].filter(Boolean).join(' · ')}</span>
+      <span>${[r._ocpVer, r._channel, r._opVersion].filter(Boolean).join(' · ')}</span>
     </td>
     <td class="img">
       ${esc(r._imgBase)}${r._sha ? `<span class="sha">${esc(r._sha)}</span>` : ''}
