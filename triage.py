@@ -1,5 +1,8 @@
 import argparse
+import functools
 import requests
+import requests_cache
+from datetime import timedelta
 import os
 import re
 import json
@@ -8,8 +11,8 @@ import pandas as pd
 from dataclasses import dataclass, field
 from typing import Optional, List
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from packageurl import PackageURL
 from version_utils.rpm import compare_versions
+from lib4sbom.parser import SBOMParser as _SBOMParser
 from rich.console import Console
 from rich.table import Table
 from rich import box
@@ -246,57 +249,41 @@ def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict, rhel_base_pids
 # Create the folder structure
 os.makedirs(VEX_DIR, exist_ok=True)
 
+# ETag-aware HTTP session for Red Hat VEX downloads.
+# requests-cache handles If-None-Match / 304 responses automatically —
+# no manual .etag side-files required.
+_VEX_SESSION = requests_cache.CachedSession(
+    cache_name=os.path.join(VEX_DIR, '.http_cache'),
+    cache_control=True,   # honour ETag / Last-Modified from the Red Hat CDN
+    stale_if_error=True,  # fall back to stale cache on network failure
+)
+
 # --- 3. SYNC ENGINE: Dual-Format Mirror ---
 
-def download_and_convert_with_lib(cve_id):
-    """Downloads VEX JSON to /vex, skipping when the cached copy is still current.
+def download_and_convert_with_lib(cve_id: str) -> tuple[str, bool]:
+    """Download a Red Hat VEX JSON file with automatic ETag-based caching.
 
-    Cache strategy:
-      - If the file does not exist → download unconditionally.
-      - If the file exists → send a conditional GET with the stored ETag
-        (saved alongside the JSON as <CVE>.etag).  A 304 Not Modified response
-        means the cached copy is identical to the server copy → skip.
-      - On any network error the cached file is used as-is (fail-open).
+    requests-cache sends If-None-Match on every request and handles 304
+    responses transparently — no manual .etag files required.  The plain
+    JSON is written to VEX_DIR so audit_row_detailed() can read it directly.
     """
     cve_id = cve_id.upper().strip()
-    year_match = re.search(r'CVE-(\d{4})-', cve_id)
-    if not year_match: return cve_id, False
+    m = re.search(r'CVE-(\d{4})-', cve_id)
+    if not m:
+        return cve_id, False
 
-    year      = year_match.group(1)
+    year      = m.group(1)
     url       = f"https://security.access.redhat.com/data/csaf/v2/vex/{year}/{cve_id.lower()}.json"
     json_path = os.path.join(VEX_DIR, f"{cve_id}.json")
-    etag_path = os.path.join(VEX_DIR, f"{cve_id}.etag")
-
-    headers = {}
-    if os.path.exists(json_path) and os.path.exists(etag_path):
-        try:
-            with open(etag_path) as fh:
-                stored_etag = fh.read().strip()
-            if stored_etag:
-                headers["If-None-Match"] = stored_etag
-        except OSError:
-            pass
-    elif os.path.exists(json_path):
-        # File cached but no ETag stored — assume still valid, skip download.
-        return cve_id, True
-
     try:
-        res = requests.get(url, headers=headers, timeout=10)
-        if res.status_code == 304:
-            # Server confirmed: cached copy is current.
-            return cve_id, True
-        if res.status_code != 200:
-            return cve_id, False
-        with open(json_path, "w") as f:
-            f.write(res.text)
-        # Persist the ETag for next run.
-        etag = res.headers.get("ETag", "")
-        if etag:
-            with open(etag_path, "w") as f:
-                f.write(etag)
-        return cve_id, True
+        res = _VEX_SESSION.get(url, timeout=10)
+        # Write the JSON when: (a) server returned new content, or (b) the
+        # json file was manually deleted while the HTTP cache still has the body.
+        if res.status_code == 200 and (not res.from_cache or not os.path.exists(json_path)):
+            with open(json_path, "w") as f:
+                f.write(res.text)
+        return cve_id, res.status_code == 200
     except Exception:
-        # Network failure — use cached file if available.
         return cve_id, os.path.exists(json_path)
 
 # --- 4. RHACS API CLIENT ---
@@ -357,12 +344,28 @@ def parse_context_from_labels(labels: dict, image_ref: str = "") -> WorkloadCont
     return ctx
 
 
-def _rhacs_session(endpoint: str, token: str) -> requests.Session:
-    """Build a requests Session pre-configured for the RHACS API."""
-    s = requests.Session()
+def _rhacs_session(endpoint: str, token: str) -> requests_cache.CachedSession:
+    """Build a CachedSession pre-configured for the RHACS API.
+
+    Image detail (/v1/images/<id>, /v1/images/scan) and SBOM responses are
+    cached automatically with per-endpoint TTLs.  Search and list endpoints
+    (e.g. /v1/images?query=…) are excluded from caching so cluster state is
+    always fresh.
+    """
+    base = f"https://{endpoint}"
+    s = requests_cache.CachedSession(
+        cache_name=os.path.join(SCAN_DIR, '.rhacs_http_cache'),
+        allowable_methods=['GET', 'POST'],
+        urls_expire_after={
+            f"{base}/v1/images/*":        timedelta(seconds=SCAN_CACHE_TTL),
+            f"{base}/api/v1/images/sbom": timedelta(days=7),
+            "*":                          requests_cache.DO_NOT_CACHE,
+        },
+        stale_if_error=True,
+    )
     s.headers.update({"Authorization": f"Bearer {token}", "Accept": "application/json"})
     s.verify = False   # Central may use self-signed cert
-    s.base_url = f"https://{endpoint}"
+    s.base_url = base  # type: ignore[attr-defined]
     return s
 
 
@@ -466,56 +469,37 @@ def rhacs_find_image(session, image_ref: str) -> Optional[str]:
     return None
 
 
-def rhacs_scan_image(session, image_ref: str) -> Optional[dict]:
-    """Ask RHACS to scan an image that isn't yet indexed.
+def rhacs_scan_image(session, image_ref: str, force: bool = False) -> Optional[dict]:
+    """Fetch (or trigger) a scan for an image via POST /v1/images/scan.
 
-    Calls POST /v1/images/scan, caches the result (same format as rhacs_get_image),
-    and returns the full image dict (including scan data) or None on failure.
+    RHACS returns the existing scan if it knows the image, or scans it fresh.
+    Pass force=True to bypass the local HTTP cache and ask RHACS to re-scan.
     """
-    url  = f"{session.base_url}/v1/images/scan"
-    body = {"imageName": image_ref, "force": False}
+    url = f"{session.base_url}/v1/images/scan"
+    if force:
+        session.cache.delete(urls=[url])
     try:
-        resp = session.post(url, json=body, timeout=120)
+        resp = session.post(url, json={"imageName": image_ref, "force": force}, timeout=120)
         resp.raise_for_status()
+        data = resp.json()
+        return data if data.get("id") else None
     except Exception:
         return None
-    data = resp.json()
-    img_id = data.get("id")
-    if not img_id:
-        return None
-    # Cache using the same layout as rhacs_get_image so subsequent calls hit cache.
-    os.makedirs(SCAN_DIR, exist_ok=True)
-    safe = re.sub(r'[^\w@:.+-]', '_', img_id)
-    cache_path = os.path.join(SCAN_DIR, f"{safe}.scan")
-    with open(cache_path, "w") as fh:
-        json.dump(data, fh, indent=2)
-    return data
 
 
 def rhacs_get_image(session, image_id: str, force: bool = False) -> dict:
-    """Fetch full image detail (scan + metadata) from RHACS, with a 4-hour cache.
+    """Fetch full image detail (scan + metadata) from RHACS.
 
-    Cache location: data/scans/<image_id>.scan
-    The file is considered stale when its mtime is older than SCAN_CACHE_TTL seconds
-    or when force=True.
+    The CachedSession handles TTL-based caching (SCAN_CACHE_TTL) automatically.
+    Pass force=True to invalidate the cache entry and fetch a fresh copy.
     """
     os.makedirs(SCAN_DIR, exist_ok=True)
-    safe       = re.sub(r'[^\w@:.+-]', '_', image_id)
-    cache_path = os.path.join(SCAN_DIR, f"{safe}.scan")
-
-    if not force and os.path.exists(cache_path):
-        age = time.time() - os.path.getmtime(cache_path)
-        if age < SCAN_CACHE_TTL:
-            with open(cache_path) as fh:
-                return json.load(fh)
-
-    url  = f"{session.base_url}/v1/images/{image_id}"
+    url = f"{session.base_url}/v1/images/{image_id}"
+    if force:
+        session.cache.delete(urls=[url])
     resp = session.get(url, params={"stripDescription": True}, timeout=60)
     resp.raise_for_status()
-    data = resp.json()
-    with open(cache_path, "w") as fh:
-        json.dump(data, fh, indent=2)
-    return data
+    return resp.json()
 
 
 def _sbom_cache_path(image_ref: str) -> str:
@@ -526,34 +510,89 @@ def _sbom_cache_path(image_ref: str) -> str:
 
 
 def rhacs_get_sbom(session, image_ref: str, force: bool = False) -> dict:
-    """Fetch SPDX 2.3 SBOM from ACS, caching to data/sbom/<image>.sbom.
-    Returns the cached copy on subsequent calls unless force=True."""
+    """Fetch SPDX 2.3 SBOM from RHACS.
+
+    The CachedSession caches SBOM responses for 7 days automatically.
+    A plain-JSON copy is also saved to data/sbom/ for offline inspection.
+    Pass force=True to invalidate the cache and fetch a fresh copy.
+    """
     os.makedirs(SBOM_DIR, exist_ok=True)
-    cache_path = _sbom_cache_path(image_ref)
-    if not force and os.path.exists(cache_path):
-        with open(cache_path) as fh:
-            return json.load(fh)
-    url  = f"{session.base_url}/api/v1/images/sbom"
-    body = {"imageName": image_ref, "force": force}
-    resp = session.post(url, json=body, timeout=120)
+    url = f"{session.base_url}/api/v1/images/sbom"
+    if force:
+        session.cache.delete(urls=[url])
+    resp = session.post(url, json={"imageName": image_ref, "force": force}, timeout=120)
     resp.raise_for_status()
     sbom = resp.json()
-    with open(cache_path, "w") as fh:
-        json.dump(sbom, fh, indent=2)
+    # Keep a plain-JSON copy in SBOM_DIR for offline inspection.
+    cache_path = _sbom_cache_path(image_ref)
+    if not os.path.exists(cache_path):
+        with open(cache_path, "w") as fh:
+            json.dump(sbom, fh, indent=2)
     return sbom
+
+
+def _build_sbom_src_map(sbom: dict) -> dict:
+    """Build binary→source RPM name map from an SPDX SBOM dict using lib4sbom.
+
+    lib4sbom parses the SPDX 2.3 JSON and surfaces GENERATED_FROM relationships
+    as plain dicts with 'type', 'source' (binary name) and 'target' (source name)
+    — no manual SPDXID indexing or dict key spelunking required.
+
+    Example mapping produced:
+      {"python3-urllib3": "python-urllib3", "openssl-libs": "openssl", ...}
+    """
+    try:
+        parser = _SBOMParser(sbom_type="spdx")
+        parser.parse_string(json.dumps(sbom))
+        relationships: list = parser.get_relationships()
+        return {
+            rel["source"]: rel["target"]
+            for rel in relationships
+            if rel.get("type") == "GENERATED_FROM"
+            and rel.get("source") and rel.get("target")
+            and rel["source"] != rel["target"]
+        }
+    except Exception:
+        # Non-fatal fallback: manual dict walking (identical to v1 behaviour)
+        src_map: dict = {}
+        by_id = {pkg["SPDXID"]: pkg for pkg in sbom.get("packages", [])}
+        for rel in sbom.get("relationships", []):
+            if rel.get("relationshipType") == "GENERATED_FROM":
+                bin_pkg = by_id.get(rel["spdxElementId"])
+                src_pkg = by_id.get(rel["relatedSpdxElement"])
+                if bin_pkg and src_pkg:
+                    bn, sn = bin_pkg.get("name", ""), src_pkg.get("name", "")
+                    if bn and sn and bn != sn:
+                        src_map[bn] = sn
+        return src_map
 
 
 def sbom_to_packages_df(sbom: dict) -> pd.DataFrame:
     """Flatten SPDX 2.3 packages into a DataFrame with name/version/purpose columns."""
-    rows = []
-    for pkg in sbom.get("packages", []):
-        name    = pkg.get("name", "")
-        version = pkg.get("versionInfo", "")
-        purpose = pkg.get("primaryPackagePurpose", "")
-        fname   = pkg.get("packageFileName", "")
-        if name:
-            rows.append({"NAME": name, "VERSION": version,
-                         "PURPOSE": purpose, "FILE": fname})
+    try:
+        parser = _SBOMParser(sbom_type="spdx")
+        parser.parse_string(json.dumps(sbom))
+        rows = [
+            {
+                "NAME":    pkg.get("name", ""),
+                "VERSION": pkg.get("version", ""),
+                "PURPOSE": pkg.get("type", ""),
+                "FILE":    pkg.get("filename", ""),
+            }
+            for pkg in parser.get_packages()
+            if pkg.get("name")
+        ]
+    except Exception:
+        rows = [
+            {
+                "NAME":    pkg.get("name", ""),
+                "VERSION": pkg.get("versionInfo", ""),
+                "PURPOSE": pkg.get("primaryPackagePurpose", ""),
+                "FILE":    pkg.get("packageFileName", ""),
+            }
+            for pkg in sbom.get("packages", [])
+            if pkg.get("name")
+        ]
     return pd.DataFrame(rows, columns=["NAME", "VERSION", "PURPOSE", "FILE"])
 
 
@@ -562,10 +601,13 @@ def _verify_sbom_against_df(session, image_ref: str, result_df: pd.DataFrame) ->
     Returns dict: matched, total, mismatched list, error."""
     try:
         sbom = rhacs_get_sbom(session, image_ref)
+        # Use lib4sbom to extract package name→versions mapping
+        parser = _SBOMParser(sbom_type="spdx")
+        parser.parse_string(json.dumps(sbom))
         pkg_versions: dict = {}
-        for pkg in sbom.get("packages", []):
+        for pkg in parser.get_packages():
             name = pkg.get("name", "")
-            ver  = pkg.get("versionInfo", "")
+            ver  = pkg.get("version", "")
             if name:
                 pkg_versions.setdefault(name, set()).add(ver)
         matched, mismatched, seen = 0, [], set()
@@ -753,15 +795,33 @@ def _get_vex_product(data: dict, comp: str, ctx) -> str:
     return ''
 
 
+@functools.lru_cache(maxsize=512)
+def _load_vex(cve_id: str) -> Optional[dict]:
+    """Load and cache a Red Hat VEX JSON file by CVE ID.
+
+    Cached at the module level so audit_row_detailed and _vex_product_for_row
+    share the same parsed dict — a CVE affecting 20 packages is only read
+    from disk once per run.
+    """
+    vex_path = os.path.join(VEX_DIR, f"{cve_id}.json")
+    if not os.path.exists(vex_path):
+        return None
+    try:
+        with open(vex_path) as fh:
+            return json.load(fh)
+    except Exception:
+        return None
+
+
 def _vex_product_for_row(row, ctx) -> str:
     """Thin wrapper so _get_vex_product can be used in df.apply."""
-    cve      = str(row.get('CVE', '')).strip().upper()
-    comp     = str(row.get('COMPONENT', ''))
-    vex_path = os.path.join(VEX_DIR, f"{cve}.json")
-    if not os.path.exists(vex_path):
+    cve  = str(row.get('CVE', '')).strip().upper()
+    comp = str(row.get('COMPONENT', ''))
+    data = _load_vex(cve)
+    if not data:
         return ''
     try:
-        return _get_vex_product(json.load(open(vex_path)), comp, ctx)
+        return _get_vex_product(data, comp, ctx)
     except Exception:
         return ''
 
@@ -894,14 +954,9 @@ def audit_row_detailed(row, ctx: WorkloadContext):
     found_v = str(row['VERSION'])
     cve     = row['CVE'].strip().upper()
 
-    vex_path = os.path.join(VEX_DIR, f"{cve}.json")
-    if not os.path.exists(vex_path):
+    data = _load_vex(cve)
+    if data is None:
         return pd.Series(["❌ POSITIVE", "N/A", "VEX file missing — cannot confirm fix; treat as vulnerable.", "UNKNOWN"])
-
-    try:
-        data = json.load(open(vex_path))
-    except Exception as e:
-        return pd.Series(["❌ POSITIVE", "N/A", f"VEX parse error: {e}", "UNKNOWN"])
 
     # Build product tree lookup maps — used throughout for human-readable labels
     pid_name, rel_parent, rhel_base_pids = _build_pid_name(data)
@@ -1296,7 +1351,7 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
     counts = result_df['AUDIT_RESULT'].value_counts()
     console.print()
     for label, count in counts.items():
-        style = RESULT_STYLES.get(label, "")
+        style = RESULT_STYLES.get(str(label), "")
         console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold]")
     console.print()
 
@@ -1372,11 +1427,13 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
     """
     try:
         if image_id is None:
-            image_id = rhacs_find_image(session, image_ref)
-            if not image_id:
+            # No internal ID known — use POST /v1/images/scan which returns the
+            # existing scan if RHACS already knows the image, or triggers a new scan.
+            image_data = rhacs_scan_image(session, image_ref, force=force)
+            if not image_data:
                 return {"found": False, "error": None}
-
-        image_data = rhacs_get_image(session, image_id, force=force)
+        else:
+            image_data = rhacs_get_image(session, image_id, force=force)
         labels     = (image_data.get("metadata") or {}).get("v1", {}).get("labels") or {}
         img_ctx    = parse_context_from_labels(labels, image_ref) if labels \
                      else parse_image_ref(image_ref)
@@ -1393,20 +1450,10 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
         os_info    = (image_data.get("scan") or {}).get("operatingSystem", "")
 
         # Build binary→source RPM name map from SBOM GENERATED_FROM relationships.
-        # Red Hat VEX product IDs use source RPM names (e.g. "python-urllib3") while
-        # RHACS reports binary RPM names ("python3-urllib3").  The SBOM is SPDX 2.3
-        # and is already cached after the first call.
+        # Uses lib4sbom to parse the SPDX 2.3 SBOM rather than walking raw dicts.
         try:
             _sbom = rhacs_get_sbom(session, image_ref, force=force)
-            _by_id = {pkg['SPDXID']: pkg for pkg in _sbom.get('packages', [])}
-            for _rel in _sbom.get('relationships', []):
-                if _rel.get('relationshipType') == 'GENERATED_FROM':
-                    _bin = _by_id.get(_rel['spdxElementId'])
-                    _src = _by_id.get(_rel['relatedSpdxElement'])
-                    if _bin and _src:
-                        _bn, _sn = _bin.get('name', ''), _src.get('name', '')
-                        if _bn and _sn and _bn != _sn:
-                            img_ctx.sbom_src_map[_bn] = _sn
+            img_ctx.sbom_src_map = _build_sbom_src_map(_sbom)
         except Exception:
             pass  # non-fatal; matching falls back to exact name
 
@@ -1456,465 +1503,450 @@ def _display_image_result(console: Console, label: str, res: dict) -> None:
         _print_sbom_summary(console, sbom_s)
 
 
-# --- 6. EXECUTION PIPELINE ---
 
-parser = argparse.ArgumentParser(
-    description="VEX triage — analyse an RHACS scan against Red Hat VEX data.\n\n"
-                "Modes:\n"
-                "  CSV mode (default):  reads a scan CSV exported from RHACS\n"
-                "  API / single image:  --image, requires ROX_ENDPOINT + ROX_API_TOKEN\n"
-                "  API / namespace:     --namespace, requires ROX_ENDPOINT + ROX_API_TOKEN\n"
-                "                       triages every unique image deployed in that namespace",
-    formatter_class=argparse.RawDescriptionHelpFormatter,
-)
-parser.add_argument("--scan",      default=None, metavar="CSV_FILE",
-                    help="Path to RHACS scan CSV (overrides API mode even if env vars are set)")
-parser.add_argument("--image",     default=None, metavar="IMAGE_REF",
-                    help="Container image reference. In API mode this is the image to scan.\n"
-                         "In CSV mode it provides workload context for scoping.")
-parser.add_argument("--namespace", default=None, metavar="NAMESPACE",
-                    help="Kubernetes namespace. Triage all images deployed in this namespace.\n"
-                         "Requires ROX_ENDPOINT + ROX_API_TOKEN. Mutually exclusive with --image.")
-parser.add_argument("--ocp",       default=None, metavar="PULLSPECS_FILE",
-                    help="Path to a file produced by 'oc adm release info --pullspecs'.\n"
-                         "Triages every component image in the release against RHACS.\n"
-                         "Requires ROX_ENDPOINT + ROX_API_TOKEN.")
-parser.add_argument("--sbom",      action="store_true", default=False,
-                    help="Fetch and display the SPDX 2.3 SBOM package list for --image.\n"
-                         "Equivalent to rpm -qa without accessing the running container.\n"
-                         "Requires ROX_ENDPOINT + ROX_API_TOKEN + --image.")
-parser.add_argument("--show-scan",  action="store_true", default=False,
-                    help="Pretty-print the raw RHACS scan for --image as a rich table.\n"
-                         "Shows every component and its CVEs with severity.\n"
-                         "Uses the local cache (4 h TTL) unless --force is also set.\n"
-                         "Requires ROX_ENDPOINT + ROX_API_TOKEN + --image.")
-parser.add_argument("--output",    default=None, metavar="FILE",
-                    help="Output file path. If omitted, no file is written.\n"
-                         "Has no effect with --format table.")
-parser.add_argument("--format",    default="csv", choices=["table", "csv", "json"],
-                    dest="output_fmt",
-                    help="Output format: csv (default), json, or table (terminal only, no file).")
-parser.add_argument("--false-only", action="store_true", default=False,
-                    help="Only show (and count) FALSE POSITIVE findings in the output.")
-parser.add_argument("--force", action="store_true", default=False,
-                    help="Bypass all local caches (scan, SBOM, VEX) and re-fetch everything.\n"
-                         "By default scan results are re-used for 4 hours, SBOMs indefinitely,\n"
-                         "and VEX files are validated via ETag.")
-parser.add_argument("--workers", type=int, default=10, metavar="N",
-                    help="Parallel image workers for --ocp / --namespace modes (default: 10).")
-args = parser.parse_args()
+def main():
+    # --- 6. EXECUTION PIPELINE ---
 
-if args.namespace and args.image:
-    parser.error("--namespace and --image are mutually exclusive")
-if args.ocp and (args.image or args.namespace):
-    parser.error("--ocp cannot be combined with --image or --namespace")
+    parser = argparse.ArgumentParser(
+        description="VEX triage — analyse an RHACS scan against Red Hat VEX data.\n\n"
+                    "Modes:\n"
+                    "  CSV mode (default):  reads a scan CSV exported from RHACS\n"
+                    "  API / single image:  --image, requires ROX_ENDPOINT + ROX_API_TOKEN\n"
+                    "  API / namespace:     --namespace, requires ROX_ENDPOINT + ROX_API_TOKEN\n"
+                    "                       triages every unique image deployed in that namespace",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument("--scan",      default=None, metavar="CSV_FILE",
+                        help="Path to RHACS scan CSV (overrides API mode even if env vars are set)")
+    parser.add_argument("--image",     default=None, metavar="IMAGE_REF",
+                        help="Container image reference. In API mode this is the image to scan.\n"
+                             "In CSV mode it provides workload context for scoping.")
+    parser.add_argument("--namespace", default=None, metavar="NAMESPACE",
+                        help="Kubernetes namespace. Triage all images deployed in this namespace.\n"
+                             "Requires ROX_ENDPOINT + ROX_API_TOKEN. Mutually exclusive with --image.")
+    parser.add_argument("--ocp",       default=None, metavar="PULLSPECS_FILE",
+                        help="Path to a file produced by 'oc adm release info --pullspecs'.\n"
+                             "Triages every component image in the release against RHACS.\n"
+                             "Requires ROX_ENDPOINT + ROX_API_TOKEN.")
+    parser.add_argument("--sbom",      action="store_true", default=False,
+                        help="Fetch and display the SPDX 2.3 SBOM package list for --image.\n"
+                             "Equivalent to rpm -qa without accessing the running container.\n"
+                             "Requires ROX_ENDPOINT + ROX_API_TOKEN + --image.")
+    parser.add_argument("--show-scan",  action="store_true", default=False,
+                        help="Pretty-print the raw RHACS scan for --image as a rich table.\n"
+                             "Shows every component and its CVEs with severity.\n"
+                             "Uses the local cache (4 h TTL) unless --force is also set.\n"
+                             "Requires ROX_ENDPOINT + ROX_API_TOKEN + --image.")
+    parser.add_argument("--output",    default=None, metavar="FILE",
+                        help="Output file path. If omitted, no file is written.\n"
+                             "Has no effect with --format table.")
+    parser.add_argument("--format",    default="csv", choices=["table", "csv", "json"],
+                        dest="output_fmt",
+                        help="Output format: csv (default), json, or table (terminal only, no file).")
+    parser.add_argument("--false-only", action="store_true", default=False,
+                        help="Only show (and count) FALSE POSITIVE findings in the output.")
+    parser.add_argument("--force", action="store_true", default=False,
+                        help="Bypass all local caches (scan, SBOM, VEX) and re-fetch everything.\n"
+                             "By default scan results are re-used for 4 hours, SBOMs indefinitely,\n"
+                             "and VEX files are validated via ETag.")
+    parser.add_argument("--workers", type=int, default=10, metavar="N",
+                        help="Parallel image workers for --ocp / --namespace modes (default: 10).")
+    args = parser.parse_args()
 
-_console = Console()
+    if args.namespace and args.image:
+        parser.error("--namespace and --image are mutually exclusive")
+    if args.ocp and (args.image or args.namespace):
+        parser.error("--ocp cannot be combined with --image or --namespace")
 
-# ── Decide which mode to use ─────────────────────────────────────────────────
-ROX_ENDPOINT  = os.environ.get("ROX_ENDPOINT", "")
-ROX_API_TOKEN = os.environ.get("ROX_API_TOKEN", "")
+    _console = Console()
 
-use_namespace = (
-    args.namespace is not None
-    and bool(ROX_ENDPOINT)
-    and bool(ROX_API_TOKEN)
-    and args.scan is None
-)
+    # ── Decide which mode to use ─────────────────────────────────────────────────
+    ROX_ENDPOINT  = os.environ.get("ROX_ENDPOINT", "")
+    ROX_API_TOKEN = os.environ.get("ROX_API_TOKEN", "")
 
-use_ocp = (
-    args.ocp is not None
-    and bool(ROX_ENDPOINT)
-    and bool(ROX_API_TOKEN)
-)
+    use_namespace = (
+        args.namespace is not None
+        and bool(ROX_ENDPOINT)
+        and bool(ROX_API_TOKEN)
+        and args.scan is None
+    )
 
-use_sbom = (
-    getattr(args, 'sbom', False)
-    and args.image is not None
-    and bool(ROX_ENDPOINT)
-    and bool(ROX_API_TOKEN)
-)
+    use_ocp = (
+        args.ocp is not None
+        and bool(ROX_ENDPOINT)
+        and bool(ROX_API_TOKEN)
+    )
 
-use_show_scan = (
-    getattr(args, 'show_scan', False)
-    and args.image is not None
-    and bool(ROX_ENDPOINT)
-    and bool(ROX_API_TOKEN)
-)
+    use_sbom = (
+        getattr(args, 'sbom', False)
+        and args.image is not None
+        and bool(ROX_ENDPOINT)
+        and bool(ROX_API_TOKEN)
+    )
 
-use_api = (
-    args.image is not None
-    and bool(ROX_ENDPOINT)
-    and bool(ROX_API_TOKEN)
-    and args.scan is None
-    and not use_namespace
-    and not use_ocp
-)
+    use_show_scan = (
+        getattr(args, 'show_scan', False)
+        and args.image is not None
+        and bool(ROX_ENDPOINT)
+        and bool(ROX_API_TOKEN)
+    )
 
-# Suppress HTTPS certificate warnings for RHACS API calls (self-signed certs are common)
-if use_ocp or use_namespace or use_api or use_sbom or use_show_scan:
-    import urllib3
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+    use_api = (
+        args.image is not None
+        and bool(ROX_ENDPOINT)
+        and bool(ROX_API_TOKEN)
+        and args.scan is None
+        and not use_namespace
+        and not use_ocp
+    )
 
-# ── Build WorkloadContext (may be refined by API labels below) ────────────────
-if args.image:
-    ctx = parse_image_ref(args.image)
-    _console.print(f"\n[bold]Image:[/bold] {args.image}")
-elif not use_namespace and not use_ocp:
+    # Suppress HTTPS certificate warnings for RHACS API calls (self-signed certs are common)
+    if use_ocp or use_namespace or use_api or use_sbom or use_show_scan:
+        import urllib3
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+    # ── Build WorkloadContext (may be refined by API labels below) ────────────────
     ctx = WorkloadContext(rhel_ver="8", workload_type="ubi", display_name="UBI8")
+    if args.image:
+        ctx = parse_image_ref(args.image)
+        _console.print(f"\n[bold]Image:[/bold] {args.image}")
 
-# ── SBOM mode — print package list for an image (equivalent to rpm -qa) ────────────
-if use_sbom:
-    _console.print(f"[bold]Mode:[/bold] [cyan]SBOM[/cyan]  endpoint=[cyan]{ROX_ENDPOINT}[/cyan]")
-    try:
-        session = _rhacs_session(ROX_ENDPOINT, ROX_API_TOKEN)
-        _console.print(f"📦 Fetching SPDX 2.3 SBOM for [cyan]{args.image}[/cyan]...")
-        sbom      = rhacs_get_sbom(session, args.image, force=getattr(args, 'force', False))
-        pkgs_df   = sbom_to_packages_df(sbom)
-        created   = (sbom.get("creationInfo") or {}).get("created", "")
-        creators  = ", ".join((sbom.get("creationInfo") or {}).get("creators", []))
-        _console.print(f"  SPDX version : [dim]{sbom.get('spdxVersion', '')}[/dim]")
-        if created:
-            _console.print(f"  Created      : [dim]{created}[/dim]")
-        if creators:
-            _console.print(f"  Tools        : [dim]{creators}[/dim]")
-        _console.print(f"  Packages     : [bold]{len(pkgs_df)}[/bold]")
-        _console.print()
+    # ── SBOM mode — print package list for an image (equivalent to rpm -qa) ────────────
+    if use_sbom:
+        _console.print(f"[bold]Mode:[/bold] [cyan]SBOM[/cyan]  endpoint=[cyan]{ROX_ENDPOINT}[/cyan]")
+        try:
+            session = _rhacs_session(ROX_ENDPOINT, ROX_API_TOKEN)
+            _console.print(f"📦 Fetching SPDX 2.3 SBOM for [cyan]{args.image}[/cyan]...")
+            sbom      = rhacs_get_sbom(session, args.image, force=getattr(args, 'force', False))
+            pkgs_df   = sbom_to_packages_df(sbom)
+            created   = (sbom.get("creationInfo") or {}).get("created", "")
+            creators  = ", ".join((sbom.get("creationInfo") or {}).get("creators", []))
+            _console.print(f"  SPDX version : [dim]{sbom.get('spdxVersion', '')}[/dim]")
+            if created:
+                _console.print(f"  Created      : [dim]{created}[/dim]")
+            if creators:
+                _console.print(f"  Tools        : [dim]{creators}[/dim]")
+            _console.print(f"  Packages     : [bold]{len(pkgs_df)}[/bold]")
+            _console.print()
 
-        tbl = Table(
-            title=f"SBOM Packages — [bold cyan]{args.image}[/bold cyan]",
-            box=box.ROUNDED, show_header=True, header_style="bold white", show_lines=False,
-        )
-        tbl.add_column("Package",  style="cyan",    no_wrap=True)
-        tbl.add_column("Version",  style="dim",     no_wrap=False, max_width=40)
-        tbl.add_column("Purpose",  style="magenta", no_wrap=True)
-        tbl.add_column("File",     style="dim",     no_wrap=False, max_width=45)
-        for _, row in pkgs_df.iterrows():
-            tbl.add_row(row["NAME"], row["VERSION"], row["PURPOSE"], row["FILE"])
-        _console.print(tbl)
-        _console.print()
-    except requests.RequestException as e:
-        _console.print(f"[bold red]\u274c RHACS API error: {e}[/bold red]")
-        raise SystemExit(1)
-    if not use_api:
-        raise SystemExit(0)
-
-# ── Show-scan mode — pretty-print raw RHACS scan for --image ─────────────────
-if use_show_scan:
-    _console.print(f"[bold]Mode:[/bold] [cyan]Scan viewer[/cyan]  endpoint=[cyan]{ROX_ENDPOINT}[/cyan]")
-    try:
-        session  = _rhacs_session(ROX_ENDPOINT, ROX_API_TOKEN)
-        image_id = rhacs_find_image(session, args.image)
-        if not image_id:
-            _console.print(f"[bold red]❌ Image not found in RHACS: {args.image}[/bold red]")
-            raise SystemExit(1)
-        force      = getattr(args, 'force', False)
-        image_data = rhacs_get_image(session, image_id, force=force)
-        scan_time  = (image_data.get("scan") or {}).get("scanTime", "")
-        os_info    = (image_data.get("scan") or {}).get("operatingSystem", "")
-        components = (image_data.get("scan") or {}).get("components", [])
-        total_cves = sum(len(c.get("vulns", [])) for c in components)
-        _console.print(f"[bold]Image  :[/bold] [cyan]{args.image}[/cyan]")
-        _console.print(f"[bold]OS     :[/bold] [cyan]{os_info}[/cyan]")
-        if scan_time:
-            _console.print(f"[bold]Scanned:[/bold] [dim]{scan_time}[/dim]")
-        _console.print(f"[bold]Found  :[/bold] [cyan]{len(components)} components[/cyan], "
-                       f"[cyan]{total_cves} CVE findings[/cyan]")
-        _console.print()
-        tbl = Table(
-            title=f"Scan — [bold cyan]{args.image}[/bold cyan]",
-            box=box.ROUNDED, show_header=True, header_style="bold white", show_lines=False,
-        )
-        tbl.add_column("Component",   style="cyan",       no_wrap=True)
-        tbl.add_column("Version",     style="dim",        no_wrap=True, max_width=35)
-        tbl.add_column("Source",      style="dim",        no_wrap=True)
-        tbl.add_column("CVEs",        style="bold",       no_wrap=True, justify="right")
-        tbl.add_column("Top Severity",                    no_wrap=True)
-        _sev_rank = {"CRITICAL_VULNERABILITY_SEVERITY": 0, "HIGH_VULNERABILITY_SEVERITY": 1,
-                     "IMPORTANT_VULNERABILITY_SEVERITY": 1, "MODERATE_VULNERABILITY_SEVERITY": 2,
-                     "MEDIUM_VULNERABILITY_SEVERITY": 2, "LOW_VULNERABILITY_SEVERITY": 3}
-        _sev_label = {"CRITICAL_VULNERABILITY_SEVERITY": "Critical",
-                      "HIGH_VULNERABILITY_SEVERITY": "Important",
-                      "IMPORTANT_VULNERABILITY_SEVERITY": "Important",
-                      "MODERATE_VULNERABILITY_SEVERITY": "Moderate",
-                      "MEDIUM_VULNERABILITY_SEVERITY": "Moderate",
-                      "LOW_VULNERABILITY_SEVERITY": "Low"}
-        for comp in sorted(components, key=lambda c: c.get("name", "")):
-            vulns    = comp.get("vulns", [])
-            cve_n    = len(vulns)
-            top_sev  = min((v.get("severity", "LOW_VULNERABILITY_SEVERITY") for v in vulns),
-                           key=lambda s: _sev_rank.get(s, 9), default="") if vulns else ""
-            sev_disp = _sev_label.get(top_sev, "")
-            sev_style = SEVERITY_STYLES.get(sev_disp, "dim")
-            source    = comp.get("source", "")
-            tbl.add_row(
-                comp.get("name", ""),
-                comp.get("version", ""),
-                source,
-                str(cve_n) if cve_n else "-",
-                f"[{sev_style}]{sev_disp}[/{sev_style}]" if sev_disp else "-",
+            tbl = Table(
+                title=f"SBOM Packages — [bold cyan]{args.image}[/bold cyan]",
+                box=box.ROUNDED, show_header=True, header_style="bold white", show_lines=False,
             )
-        _console.print(tbl)
+            tbl.add_column("Package",  style="cyan",    no_wrap=True)
+            tbl.add_column("Version",  style="dim",     no_wrap=False, max_width=40)
+            tbl.add_column("Purpose",  style="magenta", no_wrap=True)
+            tbl.add_column("File",     style="dim",     no_wrap=False, max_width=45)
+            for _, row in pkgs_df.iterrows():
+                tbl.add_row(row["NAME"], row["VERSION"], row["PURPOSE"], row["FILE"])
+            _console.print(tbl)
+            _console.print()
+        except requests.RequestException as e:
+            _console.print(f"[bold red]\u274c RHACS API error: {e}[/bold red]")
+            raise SystemExit(1)
+        if not use_api:
+            raise SystemExit(0)
+
+    # ── Show-scan mode — pretty-print raw RHACS scan for --image ─────────────────
+    if use_show_scan:
+        _console.print(f"[bold]Mode:[/bold] [cyan]Scan viewer[/cyan]  endpoint=[cyan]{ROX_ENDPOINT}[/cyan]")
+        try:
+            session  = _rhacs_session(ROX_ENDPOINT, ROX_API_TOKEN)
+            image_id = rhacs_find_image(session, args.image)
+            if not image_id:
+                _console.print(f"[bold red]❌ Image not found in RHACS: {args.image}[/bold red]")
+                raise SystemExit(1)
+            force      = getattr(args, 'force', False)
+            image_data = rhacs_get_image(session, image_id, force=force)
+            scan_time  = (image_data.get("scan") or {}).get("scanTime", "")
+            os_info    = (image_data.get("scan") or {}).get("operatingSystem", "")
+            components = (image_data.get("scan") or {}).get("components", [])
+            total_cves = sum(len(c.get("vulns", [])) for c in components)
+            _console.print(f"[bold]Image  :[/bold] [cyan]{args.image}[/cyan]")
+            _console.print(f"[bold]OS     :[/bold] [cyan]{os_info}[/cyan]")
+            if scan_time:
+                _console.print(f"[bold]Scanned:[/bold] [dim]{scan_time}[/dim]")
+            _console.print(f"[bold]Found  :[/bold] [cyan]{len(components)} components[/cyan], "
+                           f"[cyan]{total_cves} CVE findings[/cyan]")
+            _console.print()
+            tbl = Table(
+                title=f"Scan — [bold cyan]{args.image}[/bold cyan]",
+                box=box.ROUNDED, show_header=True, header_style="bold white", show_lines=False,
+            )
+            tbl.add_column("Component",   style="cyan",       no_wrap=True)
+            tbl.add_column("Version",     style="dim",        no_wrap=True, max_width=35)
+            tbl.add_column("Source",      style="dim",        no_wrap=True)
+            tbl.add_column("CVEs",        style="bold",       no_wrap=True, justify="right")
+            tbl.add_column("Top Severity",                    no_wrap=True)
+            _sev_rank = {"CRITICAL_VULNERABILITY_SEVERITY": 0, "HIGH_VULNERABILITY_SEVERITY": 1,
+                         "IMPORTANT_VULNERABILITY_SEVERITY": 1, "MODERATE_VULNERABILITY_SEVERITY": 2,
+                         "MEDIUM_VULNERABILITY_SEVERITY": 2, "LOW_VULNERABILITY_SEVERITY": 3}
+            _sev_label = {"CRITICAL_VULNERABILITY_SEVERITY": "Critical",
+                          "HIGH_VULNERABILITY_SEVERITY": "Important",
+                          "IMPORTANT_VULNERABILITY_SEVERITY": "Important",
+                          "MODERATE_VULNERABILITY_SEVERITY": "Moderate",
+                          "MEDIUM_VULNERABILITY_SEVERITY": "Moderate",
+                          "LOW_VULNERABILITY_SEVERITY": "Low"}
+            for comp in sorted(components, key=lambda c: c.get("name", "")):
+                vulns    = comp.get("vulns", [])
+                cve_n    = len(vulns)
+                top_sev  = min((v.get("severity", "LOW_VULNERABILITY_SEVERITY") for v in vulns),
+                               key=lambda s: _sev_rank.get(s, 9), default="") if vulns else ""
+                sev_disp = _sev_label.get(top_sev, "")
+                sev_style = SEVERITY_STYLES.get(sev_disp, "dim")
+                source    = comp.get("source", "")
+                tbl.add_row(
+                    comp.get("name", ""),
+                    comp.get("version", ""),
+                    source,
+                    str(cve_n) if cve_n else "-",
+                    f"[{sev_style}]{sev_disp}[/{sev_style}]" if sev_disp else "-",
+                )
+            _console.print(tbl)
+            _console.print()
+        except requests.RequestException as e:
+            _console.print(f"[bold red]❌ RHACS API error: {e}[/bold red]")
+            raise SystemExit(1)
+        if not use_api:
+            raise SystemExit(0)
+
+    # ── OCP release mode — triage every image from `oc adm release info --pullspecs` ────
+    if use_ocp:
+        if not os.path.exists(args.ocp):
+            _console.print(f"[bold red]❌ Pullspecs file not found: {args.ocp}[/bold red]")
+            raise SystemExit(1)
+
+        # Parse: keep lines with @sha256:, skip the 'Pull From:' release payload line
+        # Format:  '  component-name   quay.io/...@sha256:HEX'
+        images: list = []   # list of (component_name, full_image_ref)
+        seen_digests: set = set()
+        _manifest_ocp_ver: Optional[str] = None
+        with open(args.ocp) as fh:
+            for line in fh:
+                line = line.strip()
+                if not line or line.startswith('Pull From:'):
+                    continue
+                # Extract release version from manifest header, e.g. "Name: 4.21.2"
+                nm = re.match(r'^Name:\s+(\d+\.\d+(?:\.\d+)*)', line)
+                if nm and _manifest_ocp_ver is None:
+                    _manifest_ocp_ver = nm.group(1)   # full version, e.g. "4.21.2"
+                    continue
+                m = re.match(r'^(\S+)\s+(\S+@sha256:[a-f0-9]+)', line)
+                if not m:
+                    continue
+                comp_name, image_ref = m.group(1), m.group(2)
+                _dm = re.search(r'@sha256:([a-f0-9]+)', image_ref)
+                digest = _dm.group(1) if _dm else image_ref
+                if digest not in seen_digests:
+                    seen_digests.add(digest)
+                    images.append((comp_name, image_ref))
+
+        if not images:
+            _console.print(f"[bold red]❌ No image pull specs found in {args.ocp}[/bold red]")
+            _console.print("  Make sure the file was created with: oc adm release info <version> --pullspecs")
+            raise SystemExit(1)
+
+        _console.print(f"\n[bold]Mode:[/bold] [cyan]OCP release[/cyan]  "
+                       f"file=[cyan]{args.ocp}[/cyan]  "
+                       f"endpoint=[cyan]{ROX_ENDPOINT}[/cyan]")
+        _console.print(f"✅ Parsed [bold]{len(images)}[/bold] unique component image(s) from release manifest")
         _console.print()
-    except requests.RequestException as e:
-        _console.print(f"[bold red]❌ RHACS API error: {e}[/bold red]")
-        raise SystemExit(1)
-    if not use_api:
-        raise SystemExit(0)
 
-# ── OCP release mode — triage every image from `oc adm release info --pullspecs` ────
-if use_ocp:
-    if not os.path.exists(args.ocp):
-        _console.print(f"[bold red]❌ Pullspecs file not found: {args.ocp}[/bold red]")
-        raise SystemExit(1)
+        try:
+            session = _rhacs_session(ROX_ENDPOINT, ROX_API_TOKEN)
 
-    # Parse: keep lines with @sha256:, skip the 'Pull From:' release payload line
-    # Format:  '  component-name   quay.io/...@sha256:HEX'
-    images: list = []   # list of (component_name, full_image_ref)
-    seen_digests: set = set()
-    _manifest_ocp_ver: Optional[str] = None
-    with open(args.ocp) as fh:
-        for line in fh:
-            line = line.strip()
-            if not line or line.startswith('Pull From:'):
-                continue
-            # Extract release version from manifest header, e.g. "Name: 4.21.2"
-            nm = re.match(r'^Name:\s+(\d+\.\d+(?:\.\d+)*)', line)
-            if nm and _manifest_ocp_ver is None:
-                _manifest_ocp_ver = nm.group(1)   # full version, e.g. "4.21.2"
-                continue
-            m = re.match(r'^(\S+)\s+(\S+@sha256:[a-f0-9]+)', line)
-            if not m:
-                continue
-            comp_name, image_ref = m.group(1), m.group(2)
-            digest = re.search(r'@sha256:([a-f0-9]+)', image_ref).group(1)
-            if digest not in seen_digests:
-                seen_digests.add(digest)
-                images.append((comp_name, image_ref))
+            total   = len(images)
+            results_map: dict = {}   # comp_name → result dict (filled as futures complete)
+            not_found: list   = []
 
-    if not images:
-        _console.print(f"[bold red]❌ No image pull specs found in {args.ocp}[/bold red]")
-        _console.print("  Make sure the file was created with: oc adm release info <version> --pullspecs")
-        raise SystemExit(1)
+            _console.print(f"🚀 Scanning {total} images with [bold]{args.workers}[/bold] parallel workers...\n")
 
-    _console.print(f"\n[bold]Mode:[/bold] [cyan]OCP release[/cyan]  "
-                   f"file=[cyan]{args.ocp}[/cyan]  "
-                   f"endpoint=[cyan]{ROX_ENDPOINT}[/cyan]")
-    _console.print(f"✅ Parsed [bold]{len(images)}[/bold] unique component image(s) from release manifest")
+            with ThreadPoolExecutor(max_workers=args.workers) as ex:
+                future_to_comp = {
+                    ex.submit(_fetch_and_audit, session, image_ref, None,
+                              args.false_only, _manifest_ocp_ver,
+                              getattr(args, 'force', False)):
+                        (comp_name, image_ref)
+                    for comp_name, image_ref in images
+                }
+                done = 0
+                for future in as_completed(future_to_comp):
+                    done += 1
+                    comp_name, image_ref = future_to_comp[future]
+                    res = future.result()
+                    results_map[comp_name] = (image_ref, res)
+                    status = "✅" if res.get("found") and res.get("result_df") is not None \
+                             else ("⚠ " if res.get("found") is False else "❌")
+                    suffix = f"  [dim]{image_ref}[/dim]" if res.get("found") is False else ""
+                    _console.print(f"  [{done}/{total}] {status} {comp_name}{suffix}", highlight=False)
+
+            _console.print()
+
+            # Display results in original manifest order
+            all_results: list = []
+            for comp_name, image_ref in images:
+                image_ref_stored, res = results_map.get(comp_name, (image_ref, {"found": False, "error": None}))
+                _display_image_result(_console, f"{comp_name}  [dim]{image_ref_stored}[/dim]", res)
+                if not res.get("found"):
+                    not_found.append(comp_name)
+                elif res.get("result_df") is not None:
+                    r = res["result_df"].copy()
+                    r["OCP_COMPONENT"] = comp_name
+                    r["IMAGE"]         = image_ref_stored
+                    all_results.append(r)
+
+            _console.rule("[bold]OCP Release Summary[/bold]")
+            _console.print(f"  Scanned : [bold]{total - len(not_found)}[/bold] / {total} component image(s)")
+            if not_found:
+                _console.print(f"  Skipped : [yellow]{len(not_found)}[/yellow] not found in RHACS")
+            _console.print()
+
+            if all_results:
+                combined = pd.concat(all_results, ignore_index=True)
+                counts = combined['AUDIT_RESULT'].value_counts()
+                for label, count in counts.items():
+                    style = RESULT_STYLES.get(label, "")
+                    _console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold] across "
+                                   f"{combined[combined['AUDIT_RESULT']==label]['OCP_COMPONENT'].nunique()} component(s)")
+                _console.print()
+                if args.output and args.output_fmt != "table":
+                    _write_output(combined, args.output, args.output_fmt, _console)
+            raise SystemExit(0)
+
+        except requests.RequestException as e:
+            _console.print(f"[bold red]❌ RHACS API error: {e}[/bold red]")
+            raise SystemExit(1)
+
+    # ── Namespace mode — triage every image in the namespace ─────────────────────
+    if use_namespace:
+        _console.print(f"\n[bold]Mode:[/bold] [cyan]RHACS API / namespace[/cyan]  "
+                       f"endpoint=[cyan]{ROX_ENDPOINT}[/cyan]  "
+                       f"namespace=[cyan]{args.namespace}[/cyan]")
+        try:
+            session = _rhacs_session(ROX_ENDPOINT, ROX_API_TOKEN)
+            _console.print(f"🔍 Listing images in namespace '{args.namespace}'...")
+            images = rhacs_list_namespace_images(session, args.namespace)
+            if not images:
+                _console.print(f"[bold yellow]⚠  No images found in namespace '{args.namespace}'.[/bold yellow]")
+                raise SystemExit(0)
+            _console.print(f"✅ Found [bold]{len(images)}[/bold] unique image(s)")
+            _console.print()
+
+            total = len(images)
+            results_map: dict = {}
+
+            _console.print(f"🚀 Scanning {total} images with [bold]{args.workers}[/bold] parallel workers...\n")
+
+            with ThreadPoolExecutor(max_workers=args.workers) as ex:
+                future_to_img = {
+                    ex.submit(_fetch_and_audit, session, image_ref, image_id,
+                              args.false_only, None, getattr(args, 'force', False)):
+                        (image_ref, image_id)
+                    for image_ref, image_id in images
+                }
+                done = 0
+                for future in as_completed(future_to_img):
+                    done += 1
+                    image_ref, _ = future_to_img[future]
+                    res = future.result()
+                    results_map[image_ref] = res
+                    status = "✅" if res.get("found") and res.get("result_df") is not None \
+                             else ("⚠ " if res.get("found") is False else "❌")
+                    _console.print(f"  [{done}/{total}] {status} {image_ref}", highlight=False)
+
+            _console.print()
+
+            # Display in original order
+            all_results: list = []
+            for image_ref, _ in images:
+                res = results_map.get(image_ref, {"found": False, "error": None})
+                _display_image_result(_console, image_ref, res)
+                if res.get("found") and res.get("result_df") is not None:
+                    r = res["result_df"].copy()
+                    r["IMAGE"] = image_ref
+                    all_results.append(r)
+
+            if all_results:
+                combined = pd.concat(all_results, ignore_index=True)
+                _console.rule("[bold]Namespace Summary[/bold]")
+                counts = combined['AUDIT_RESULT'].value_counts()
+                for label, count in counts.items():
+                    style = RESULT_STYLES.get(label, "")
+                    _console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold] across "
+                                   f"{combined[combined['AUDIT_RESULT']==label]['IMAGE'].nunique()} image(s)")
+                _console.print()
+                if args.output and args.output_fmt != "table":
+                    _write_output(combined, args.output, args.output_fmt, _console)
+            raise SystemExit(0)
+
+        except requests.RequestException as e:
+            _console.print(f"[bold red]❌ RHACS API error: {e}[/bold red]")
+            raise SystemExit(1)
+
+    # ── Load scan data (single-image API mode or CSV mode) ───────────────────────
+    session = None
+    if use_api:
+        _console.print(f"[bold]Mode:[/bold] [cyan]RHACS API[/cyan]  endpoint=[cyan]{ROX_ENDPOINT}[/cyan]")
+        try:
+            session    = _rhacs_session(ROX_ENDPOINT, ROX_API_TOKEN)
+            _force     = getattr(args, 'force', False)
+            _console.print(f"📥 Fetching scan data...")
+            image_data = rhacs_scan_image(session, args.image, force=_force)
+            if not image_data:
+                _console.print(f"[bold red]❌ Could not scan image: {args.image}[/bold red]")
+                raise SystemExit(1)
+
+            # Refine WorkloadContext from Docker labels (more authoritative than name)
+            labels = (image_data.get("metadata") or {}).get("v1", {}).get("labels") or {}
+            if labels:
+                ctx = parse_context_from_labels(labels, args.image)
+
+            df = rhacs_to_df(image_data)
+            os_info = (image_data.get("scan") or {}).get("operatingSystem", "")
+            if os_info:
+                _console.print(f"[bold]OS:[/bold] [cyan]{os_info}[/cyan]")
+            _console.print(f"[bold]Found:[/bold] [cyan]{len(df)} CVE findings[/cyan] across "
+                           f"[cyan]{df['COMPONENT'].nunique() if len(df) else 0} components[/cyan]")
+
+            try:
+                _sbom = rhacs_get_sbom(session, args.image, force=_force)
+                ctx.sbom_src_map = _build_sbom_src_map(_sbom)
+            except Exception:
+                pass
+
+        except requests.RequestException as e:
+            _console.print(f"[bold red]❌ RHACS API error: {e}[/bold red]")
+            raise SystemExit(1)
+
+    else:
+        # CSV mode
+        scan_file = args.scan or SCAN_FILE
+        if not os.path.exists(scan_file):
+            _console.print(f"[bold red]❌ '{scan_file}' not found.[/bold red]")
+            _console.print("  Set ROX_ENDPOINT + ROX_API_TOKEN env vars and use --image for API mode,")
+            _console.print(f"  or provide a scan CSV with --scan.")
+            raise SystemExit(1)
+        _console.print(f"[bold]Mode:[/bold] [cyan]CSV[/cyan]  file=[cyan]{scan_file}[/cyan]")
+        df = pd.read_csv(scan_file)
+
+    # ── Show final context ────────────────────────────────────────────────────────
+    _console.print(f"[bold]Context:[/bold] type=[cyan]{ctx.workload_type}[/cyan]  "
+                   f"rhel=[cyan]{ctx.rhel_ver}[/cyan]  display=[cyan]{ctx.display_name}[/cyan]")
+    if ctx.extra_prefixes:
+        _console.print(f"[bold]VEX scope:[/bold] {', '.join(ctx.extra_prefixes[:6])}")
     _console.print()
 
-    try:
-        session = _rhacs_session(ROX_ENDPOINT, ROX_API_TOKEN)
+    _out_path = args.output if args.output and args.output_fmt != "table" else None
+    result_df = _audit_and_display(df, ctx, _console,
+                                   output_path=_out_path,
+                                   output_fmt=args.output_fmt,
+                                   false_only=args.false_only)
 
-        total   = len(images)
-        results_map: dict = {}   # comp_name → result dict (filled as futures complete)
-        not_found: list   = []
+    # ── SBOM cross-check for single-image API mode ───────────────────────────────
+    if use_api and session is not None and result_df is not None and not result_df.empty:
+        _console.print("🔍 Verifying component versions against SBOM...")
+        sbom_s = _verify_sbom_against_df(session, args.image, result_df)
+        _print_sbom_summary(_console, sbom_s)
 
-        _console.print(f"🚀 Scanning {total} images with [bold]{args.workers}[/bold] parallel workers...\n")
-
-        with ThreadPoolExecutor(max_workers=args.workers) as ex:
-            future_to_comp = {
-                ex.submit(_fetch_and_audit, session, image_ref, None,
-                          args.false_only, _manifest_ocp_ver,
-                          getattr(args, 'force', False)):
-                    (comp_name, image_ref)
-                for comp_name, image_ref in images
-            }
-            done = 0
-            for future in as_completed(future_to_comp):
-                done += 1
-                comp_name, image_ref = future_to_comp[future]
-                res = future.result()
-                results_map[comp_name] = (image_ref, res)
-                status = "✅" if res.get("found") and res.get("result_df") is not None \
-                         else ("⚠ " if res.get("found") is False else "❌")
-                suffix = f"  [dim]{image_ref}[/dim]" if res.get("found") is False else ""
-                _console.print(f"  [{done}/{total}] {status} {comp_name}{suffix}", highlight=False)
-
-        _console.print()
-
-        # Display results in original manifest order
-        all_results: list = []
-        for comp_name, image_ref in images:
-            image_ref_stored, res = results_map.get(comp_name, (image_ref, {"found": False, "error": None}))
-            _display_image_result(_console, f"{comp_name}  [dim]{image_ref_stored}[/dim]", res)
-            if not res.get("found"):
-                not_found.append(comp_name)
-            elif res.get("result_df") is not None:
-                r = res["result_df"].copy()
-                r["OCP_COMPONENT"] = comp_name
-                r["IMAGE"]         = image_ref_stored
-                all_results.append(r)
-
-        _console.rule("[bold]OCP Release Summary[/bold]")
-        _console.print(f"  Scanned : [bold]{total - len(not_found)}[/bold] / {total} component image(s)")
-        if not_found:
-            _console.print(f"  Skipped : [yellow]{len(not_found)}[/yellow] not found in RHACS")
-        _console.print()
-
-        if all_results:
-            combined = pd.concat(all_results, ignore_index=True)
-            counts = combined['AUDIT_RESULT'].value_counts()
-            for label, count in counts.items():
-                style = RESULT_STYLES.get(label, "")
-                _console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold] across "
-                               f"{combined[combined['AUDIT_RESULT']==label]['OCP_COMPONENT'].nunique()} component(s)")
-            _console.print()
-            if args.output and args.output_fmt != "table":
-                _write_output(combined, args.output, args.output_fmt, _console)
-        raise SystemExit(0)
-
-    except requests.RequestException as e:
-        _console.print(f"[bold red]❌ RHACS API error: {e}[/bold red]")
-        raise SystemExit(1)
-
-# ── Namespace mode — triage every image in the namespace ─────────────────────
-if use_namespace:
-    _console.print(f"\n[bold]Mode:[/bold] [cyan]RHACS API / namespace[/cyan]  "
-                   f"endpoint=[cyan]{ROX_ENDPOINT}[/cyan]  "
-                   f"namespace=[cyan]{args.namespace}[/cyan]")
-    try:
-        session = _rhacs_session(ROX_ENDPOINT, ROX_API_TOKEN)
-        _console.print(f"🔍 Listing images in namespace '{args.namespace}'...")
-        images = rhacs_list_namespace_images(session, args.namespace)
-        if not images:
-            _console.print(f"[bold yellow]⚠  No images found in namespace '{args.namespace}'.[/bold yellow]")
-            raise SystemExit(0)
-        _console.print(f"✅ Found [bold]{len(images)}[/bold] unique image(s)")
-        _console.print()
-
-        total = len(images)
-        results_map: dict = {}
-
-        _console.print(f"🚀 Scanning {total} images with [bold]{args.workers}[/bold] parallel workers...\n")
-
-        with ThreadPoolExecutor(max_workers=args.workers) as ex:
-            future_to_img = {
-                ex.submit(_fetch_and_audit, session, image_ref, image_id,
-                          args.false_only, None, getattr(args, 'force', False)):
-                    (image_ref, image_id)
-                for image_ref, image_id in images
-            }
-            done = 0
-            for future in as_completed(future_to_img):
-                done += 1
-                image_ref, _ = future_to_img[future]
-                res = future.result()
-                results_map[image_ref] = res
-                status = "✅" if res.get("found") and res.get("result_df") is not None \
-                         else ("⚠ " if res.get("found") is False else "❌")
-                _console.print(f"  [{done}/{total}] {status} {image_ref}", highlight=False)
-
-        _console.print()
-
-        # Display in original order
-        all_results: list = []
-        for image_ref, _ in images:
-            res = results_map.get(image_ref, {"found": False, "error": None})
-            _display_image_result(_console, image_ref, res)
-            if res.get("found") and res.get("result_df") is not None:
-                r = res["result_df"].copy()
-                r["IMAGE"] = image_ref
-                all_results.append(r)
-
-        if all_results:
-            combined = pd.concat(all_results, ignore_index=True)
-            _console.rule("[bold]Namespace Summary[/bold]")
-            counts = combined['AUDIT_RESULT'].value_counts()
-            for label, count in counts.items():
-                style = RESULT_STYLES.get(label, "")
-                _console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold] across "
-                               f"{combined[combined['AUDIT_RESULT']==label]['IMAGE'].nunique()} image(s)")
-            _console.print()
-            if args.output and args.output_fmt != "table":
-                _write_output(combined, args.output, args.output_fmt, _console)
-        raise SystemExit(0)
-
-    except requests.RequestException as e:
-        _console.print(f"[bold red]❌ RHACS API error: {e}[/bold red]")
-        raise SystemExit(1)
-
-# ── Load scan data (single-image API mode or CSV mode) ───────────────────────
-session = None
-if use_api:
-    _console.print(f"[bold]Mode:[/bold] [cyan]RHACS API[/cyan]  endpoint=[cyan]{ROX_ENDPOINT}[/cyan]")
-    try:
-        session  = _rhacs_session(ROX_ENDPOINT, ROX_API_TOKEN)
-        _console.print(f"🔍 Searching for image in RHACS...")
-        image_id = rhacs_find_image(session, args.image)
-        if not image_id:
-            _console.print(f"[bold red]❌ Image not found in RHACS: {args.image}[/bold red]")
-            raise SystemExit(1)
-        _console.print(f"✅ Found image ID: [dim]{image_id}[/dim]")
-
-        _console.print(f"📥 Fetching full scan data...")
-        _force = getattr(args, 'force', False)
-        _scan_path = os.path.join(SCAN_DIR, re.sub(r'[^\w@:.+-]', '_', image_id) + '.scan')
-        _cached = not _force and os.path.exists(_scan_path) and \
-                  (time.time() - os.path.getmtime(_scan_path)) < SCAN_CACHE_TTL
-        if _cached:
-            _console.print(f"  [dim]Using cached scan (age: "
-                           f"{int(time.time()-os.path.getmtime(_scan_path))}s)[/dim]")
-        image_data = rhacs_get_image(session, image_id, force=_force)
-
-        # Refine WorkloadContext from Docker labels (more authoritative than name)
-        labels = (image_data.get("metadata") or {}).get("v1", {}).get("labels") or {}
-        if labels:
-            _console.print(f"🏷  Labels found — refining context from CPE...")
-            ctx = parse_context_from_labels(labels, args.image)
-
-        df = rhacs_to_df(image_data)
-        os_info = (image_data.get("scan") or {}).get("operatingSystem", "")
-        if os_info:
-            _console.print(f"[bold]OS:[/bold] [cyan]{os_info}[/cyan]")
-        _console.print(f"[bold]Found:[/bold] [cyan]{len(df)} CVE findings[/cyan] across "
-                       f"[cyan]{df['COMPONENT'].nunique() if len(df) else 0} components[/cyan]")
-
-        # Build binary→source RPM map from SBOM for accurate VEX name matching
-        try:
-            _sbom = rhacs_get_sbom(session, args.image, force=_force)
-            _by_id = {pkg['SPDXID']: pkg for pkg in _sbom.get('packages', [])}
-            for _rel in _sbom.get('relationships', []):
-                if _rel.get('relationshipType') == 'GENERATED_FROM':
-                    _bp = _by_id.get(_rel['spdxElementId'])
-                    _sp = _by_id.get(_rel['relatedSpdxElement'])
-                    if _bp and _sp:
-                        _bn, _sn = _bp.get('name', ''), _sp.get('name', '')
-                        if _bn and _sn and _bn != _sn:
-                            ctx.sbom_src_map[_bn] = _sn
-        except Exception:
-            pass
-
-    except requests.RequestException as e:
-        _console.print(f"[bold red]❌ RHACS API error: {e}[/bold red]")
-        raise SystemExit(1)
-
-else:
-    # CSV mode
-    scan_file = args.scan or SCAN_FILE
-    if not os.path.exists(scan_file):
-        _console.print(f"[bold red]❌ '{scan_file}' not found.[/bold red]")
-        _console.print("  Set ROX_ENDPOINT + ROX_API_TOKEN env vars and use --image for API mode,")
-        _console.print(f"  or provide a scan CSV with --scan.")
-        raise SystemExit(1)
-    _console.print(f"[bold]Mode:[/bold] [cyan]CSV[/cyan]  file=[cyan]{scan_file}[/cyan]")
-    df = pd.read_csv(scan_file)
-
-# ── Show final context ────────────────────────────────────────────────────────
-_console.print(f"[bold]Context:[/bold] type=[cyan]{ctx.workload_type}[/cyan]  "
-               f"rhel=[cyan]{ctx.rhel_ver}[/cyan]  display=[cyan]{ctx.display_name}[/cyan]")
-if ctx.extra_prefixes:
-    _console.print(f"[bold]VEX scope:[/bold] {', '.join(ctx.extra_prefixes[:6])}")
-_console.print()
-
-_out_path = args.output if args.output and args.output_fmt != "table" else None
-result_df = _audit_and_display(df, ctx, _console,
-                               output_path=_out_path,
-                               output_fmt=args.output_fmt,
-                               false_only=args.false_only)
-
-# ── SBOM cross-check for single-image API mode ───────────────────────────────
-if use_api and session is not None and result_df is not None and not result_df.empty:
-    _console.print("🔍 Verifying component versions against SBOM...")
-    sbom_s = _verify_sbom_against_df(session, args.image, result_df)
-    _print_sbom_summary(_console, sbom_s)
+if __name__ == "__main__":
+    main()

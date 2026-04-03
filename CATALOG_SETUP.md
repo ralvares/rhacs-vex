@@ -76,6 +76,11 @@ opm render registry.redhat.io/redhat/redhat-operator-index:v4.21 -o json > data/
 
 Each render may take a few minutes depending on network speed.
 
+> **Naming convention is required.**  
+> Files must follow the exact pattern `catalog-{MAJOR}.{MINOR}.json` (e.g. `catalog-4.21.json`).  
+> `triage_operators.py` discovers available versions and maps `--version` arguments entirely from the filename — the file content contains no catalog-level version declaration.  
+> Renaming or deviating from this pattern will cause the version to be ignored or misidentified.
+
 ---
 
 ## 5. Generate the namespace map
@@ -96,3 +101,5 @@ This reads every `catalog*.json` from `data/catalogs/`, extracts the registry na
 opm render registry.redhat.io/redhat/redhat-operator-index:v4.22 -o json > data/catalogs/catalog-4.22.json
 python3 build_ns_map.py
 ```
+
+The filename `catalog-4.22.json` is what registers `4.22` as an available version — ensure it matches the index tag.
