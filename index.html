@@ -72,23 +72,63 @@
     .filter-bar {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 8px; padding: .75rem 1rem;
-      display: flex; align-items: center; flex-wrap: wrap; gap: .6rem;
+      display: flex; align-items: center; flex-wrap: wrap; gap: .5rem;
       margin-bottom: 1rem;
     }
     .filter-bar label { font-size: .72rem; color: var(--muted); font-weight: 600;
-      text-transform: uppercase; letter-spacing: .04em; }
-    .filter-select {
-      background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
-      color: var(--text); font-size: .8rem; padding: .35rem .7rem;
-      cursor: pointer; min-width: 140px;
-    }
-    .filter-select:focus { outline: none; border-color: var(--accent); }
+      text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
     .filter-clear {
       margin-left: auto; font-size: .78rem; color: var(--accent);
       cursor: pointer; background: none; border: none; padding: .35rem .5rem;
-      text-decoration: underline;
+      text-decoration: underline; white-space: nowrap;
     }
-    .filter-count { font-size: .78rem; color: var(--muted); }
+    .filter-count { font-size: .78rem; color: var(--muted); white-space: nowrap; }
+
+    /* ── Multi-select dropdown ── */
+    .ms-wrap { position: relative; }
+    .ms-btn {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+      color: var(--text); font-size: .8rem; padding: .35rem .7rem;
+      cursor: pointer; display: flex; align-items: center; gap: .4rem;
+      white-space: nowrap; user-select: none; min-width: 130px;
+    }
+    .ms-btn:hover  { border-color: var(--accent); }
+    .ms-btn.active { border-color: var(--accent); }
+    .ms-btn .ms-caret { margin-left: auto; color: var(--muted); font-size: .65rem; }
+    .ms-badge {
+      background: var(--accent); color: #000; border-radius: 10px;
+      font-size: .65rem; font-weight: 700; padding: .05rem .4rem; line-height: 1.4;
+    }
+    .ms-panel {
+      display: none; position: absolute; top: calc(100% + 4px); left: 0;
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+      padding: .4rem 0; z-index: 100; min-width: 200px; max-width: 320px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.4);
+    }
+    .ms-panel.open { display: block; }
+    .ms-search {
+      margin: .3rem .5rem .4rem; display: block; width: calc(100% - 1rem);
+      background: var(--bg); border: 1px solid var(--border); border-radius: 5px;
+      color: var(--text); font-size: .78rem; padding: .3rem .55rem;
+    }
+    .ms-search:focus { outline: none; border-color: var(--accent); }
+    .ms-list { max-height: 240px; overflow-y: auto; }
+    .ms-item {
+      display: flex; align-items: center; gap: .5rem;
+      padding: .35rem .75rem; cursor: pointer; font-size: .8rem;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .ms-item:hover { background: rgba(88,166,255,.08); }
+    .ms-item input[type=checkbox] { flex-shrink: 0; accent-color: var(--accent); }
+    .ms-empty { padding: .6rem .75rem; color: var(--muted); font-size: .78rem; }
+    .ms-actions {
+      display: flex; gap: .5rem; padding: .4rem .75rem;
+      border-top: 1px solid var(--border); margin-top: .2rem;
+    }
+    .ms-action-btn {
+      font-size: .72rem; color: var(--accent); background: none;
+      border: none; cursor: pointer; padding: 0; text-decoration: underline;
+    }
 
     /* ── Cards ── */
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 1rem; margin-bottom: 1.25rem; }
@@ -321,6 +361,117 @@ $cveInput.addEventListener('keydown', e => e.key === 'Enter' && search());
 
 // ── Filter state ────────────────────────────────────────────────────────────
 let allResults = [];
+const filterState = { ocp: new Set(), component: new Set(), severity: new Set(), state: new Set(), image: new Set() };
+
+// ── Multi-select dropdown component ──────────────────────────────────────────
+function createDropdown(id, label, items) {
+  const sel = filterState[id];
+  const badgeHtml = sel.size ? `<span class="ms-badge">${sel.size}</span>` : '';
+  const hasActive = sel.size > 0;
+
+  const itemsHtml = items.length === 0
+    ? `<div class="ms-empty">No options</div>`
+    : items.map(v => {
+        const checked = sel.has(v) ? ' checked' : '';
+        const ve = esc(v);
+        return `<label class="ms-item"><input type="checkbox" value="${ve}"${checked}>${ve}</label>`;
+      }).join('');
+
+  return `
+  <div class="ms-wrap" id="wrap-${id}">
+    <div class="ms-btn${hasActive ? ' active' : ''}" id="btn-${id}">
+      ${label} ${badgeHtml} <span class="ms-caret">▼</span>
+    </div>
+    <div class="ms-panel" id="panel-${id}">
+      <input class="ms-search" placeholder="Search…" id="search-${id}">
+      <div class="ms-list" id="list-${id}">${itemsHtml}</div>
+      <div class="ms-actions">
+        <button class="ms-action-btn" data-action="all" data-filter="${id}">Select all</button>
+        <button class="ms-action-btn" data-action="none" data-filter="${id}">Clear</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function wireDropdowns() {
+  // Toggle open/close
+  document.querySelectorAll('.ms-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const id    = btn.id.replace('btn-', '');
+      const panel = document.getElementById('panel-' + id);
+      document.querySelectorAll('.ms-panel.open').forEach(p => { if (p !== panel) p.classList.remove('open'); });
+      panel.classList.toggle('open');
+    });
+  });
+
+  // Close on outside click
+  document.addEventListener('click', () =>
+    document.querySelectorAll('.ms-panel.open').forEach(p => p.classList.remove('open'))
+  );
+  document.querySelectorAll('.ms-panel').forEach(p =>
+    p.addEventListener('click', e => e.stopPropagation())
+  );
+
+  // Checkbox change
+  document.querySelectorAll('.ms-item input[type=checkbox]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const id  = cb.closest('.ms-wrap').id.replace('wrap-', '');
+      const sel = filterState[id];
+      cb.checked ? sel.add(cb.value) : sel.delete(cb.value);
+      refreshDropdownBadge(id);
+      applyFilters();
+    });
+  });
+
+  // Search within panel
+  document.querySelectorAll('.ms-search').forEach(inp => {
+    inp.addEventListener('input', () => {
+      const id   = inp.id.replace('search-', '');
+      const q    = inp.value.toLowerCase();
+      document.querySelectorAll(`#list-${id} .ms-item`).forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+  });
+
+  // Select all / Clear
+  document.querySelectorAll('.ms-action-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id  = btn.dataset.filter;
+      const sel = filterState[id];
+      if (btn.dataset.action === 'all') {
+        document.querySelectorAll(`#list-${id} .ms-item input`).forEach(cb => {
+          if (cb.closest('.ms-item').style.display !== 'none') {
+            cb.checked = true; sel.add(cb.value);
+          }
+        });
+      } else {
+        document.querySelectorAll(`#list-${id} .ms-item input`).forEach(cb => { cb.checked = false; });
+        sel.clear();
+      }
+      refreshDropdownBadge(id);
+      applyFilters();
+    });
+  });
+}
+
+function refreshDropdownBadge(id) {
+  const btn = document.getElementById('btn-' + id);
+  if (!btn) return;
+  const sel = filterState[id];
+  const badge = btn.querySelector('.ms-badge');
+  if (badge) badge.remove();
+  if (sel.size) {
+    const b = document.createElement('span');
+    b.className = 'ms-badge'; b.textContent = sel.size;
+    btn.insertBefore(b, btn.querySelector('.ms-caret'));
+    btn.classList.add('active');
+  } else {
+    btn.classList.remove('active');
+  }
+}
+
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function parseOperator(sourceFile) {
@@ -350,12 +501,12 @@ const esc = s => String(s ?? '')
 
 function statusBadge(raw) {
   const v = (raw || '').toUpperCase();
-  if (v.includes('FALSE POSITIVE'))                                 return `<span class="badge bg-green">✅ False Positive</span>`;
-  if (v.includes('AFFECTED') || v.includes('VULNERABLE'))          return `<span class="badge bg-red">❌ Affected</span>`;
+  if (v.includes('FALSE POSITIVE'))                                 return `<span class="badge bg-green">False Positive</span>`;
+  if (v.includes('AFFECTED') || v.includes('VULNERABLE'))          return `<span class="badge bg-red">Affected</span>`;
   if (v.includes('UNDER INVEST') || v.includes('IN REVIEW') || v.includes('NEEDS REVIEW'))
-                                                                    return `<span class="badge bg-yellow">🔍 In Review</span>`;
+                                                                    return `<span class="badge bg-yellow">In Review</span>`;
   if (v.includes("WON'T FIX") || v.includes('WONT FIX') || v.includes('NOT PLANNED'))
-                                                                    return `<span class="badge bg-gray">🚫 Won't Fix</span>`;
+                                                                    return `<span class="badge bg-gray">Won't Fix</span>`;
   return `<span class="badge bg-gray">${esc(raw || '—')}</span>`;
 }
 
@@ -379,6 +530,8 @@ function severityBadge(raw) {
 // ── Render ────────────────────────────────────────────────────────────────────
 function render(query, rows) {
   allResults = rows;
+  // Reset filter state
+  Object.values(filterState).forEach(s => s.clear());
 
   if (rows.length === 0) {
     $results.innerHTML = `<div class="empty"><div class="ico">🔎</div>
@@ -402,15 +555,25 @@ function render(query, rows) {
       return `<div class="sitem"><span class="badge ${cls}">${esc(k)}</span><strong>${v}</strong></div>`;
     }).join('');
 
-  // Populate filter options
-  const ocpVersions = [...new Set(rows.map(r => parseOperator(r.source_file).ocpVer).filter(Boolean))].sort();
-  const components  = [...new Set(rows.map(r => r.ocp_component).filter(Boolean))].sort();
-  const severities  = [...new Set(rows.map(r => r.severity).filter(Boolean))].sort();
-  const states      = [...new Set(rows.map(r => statusKey(r.audit_result)).filter(Boolean))].sort();
+  // Build enriched rows with derived fields
+  allResults = rows.map(r => {
+    const op      = parseOperator(r.source_file);
+    const imgFull = r.image || '';
+    return {
+      ...r,
+      _component: r.ocp_component || op.name,
+      _ocpVer:    op.ocpVer || (r.source_file.match(/ocp-([\d.]+)\.csv/) ? 'OCP ' + r.source_file.match(/ocp-([\d.]+)\.csv/)[1] : ''),
+      _opVersion: op.version,
+      _imgBase:   imgFull.replace(/@sha256:[0-9a-f]+$/, ''),
+      _sha:       (imgFull.match(/(@sha256:[0-9a-f]+)$/) || [])[1] || '',
+    };
+  });
 
-  const opts = (arr, placeholder) =>
-    `<option value="">${placeholder}</option>` +
-    arr.map(v => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
+  const ocpVersions = [...new Set(allResults.map(r => r._ocpVer).filter(Boolean))].sort();
+  const components  = [...new Set(allResults.map(r => r._component).filter(Boolean))].sort();
+  const severities  = [...new Set(allResults.map(r => r.severity).filter(Boolean))].sort();
+  const states      = [...new Set(allResults.map(r => statusKey(r.audit_result)).filter(Boolean))].sort();
+  const images      = [...new Set(allResults.map(r => r._imgBase).filter(Boolean))].sort();
 
   $results.innerHTML = `
     <div class="results-hdr">
@@ -419,99 +582,73 @@ function render(query, rows) {
     </div>
 
     <div class="cards">
-      <div class="card">
-        <div class="card-label">Total Findings</div>
-        <div class="card-value blue">${rows.length}</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Unique Images</div>
-        <div class="card-value">${uniqueImages}</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Unique Packages</div>
-        <div class="card-value">${uniquePkgs}</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Status Breakdown</div>
-        <div class="status-breakdown">${breakdown}</div>
-      </div>
+      <div class="card"><div class="card-label">Total Findings</div><div class="card-value blue">${rows.length}</div></div>
+      <div class="card"><div class="card-label">Unique Images</div><div class="card-value">${uniqueImages}</div></div>
+      <div class="card"><div class="card-label">Unique Packages</div><div class="card-value">${uniquePkgs}</div></div>
+      <div class="card"><div class="card-label">Status Breakdown</div><div class="status-breakdown">${breakdown}</div></div>
     </div>
 
     <div class="filter-bar">
       <label>Filter by:</label>
-      <select id="f-ocp" class="filter-select">${opts(ocpVersions, 'OCP Version')}</select>
-      <select id="f-comp" class="filter-select">${opts(components, 'OCP Component')}</select>
-      <select id="f-sev" class="filter-select">${opts(severities, 'Severity')}</select>
-      <select id="f-state" class="filter-select">${opts(states, 'State')}</select>
+      ${createDropdown('ocp',       'OCP Version', ocpVersions)}
+      ${createDropdown('component', 'Component',   components)}
+      ${createDropdown('severity',  'Severity',    severities)}
+      ${createDropdown('state',     'State',       states)}
+      ${createDropdown('image',     'Image',       images)}
       <button class="filter-clear" id="f-clear">Clear all</button>
       <span class="filter-count" id="filter-count"></span>
     </div>
 
     <div class="table-wrap" id="table-wrap"></div>`;
 
-  // Wire up filter events
-  ['f-ocp','f-comp','f-sev','f-state'].forEach(id =>
-    document.getElementById(id).addEventListener('change', applyFilters)
-  );
   document.getElementById('f-clear').addEventListener('click', () => {
-    ['f-ocp','f-comp','f-sev','f-state'].forEach(id => document.getElementById(id).value = '');
+    Object.values(filterState).forEach(s => s.clear());
+    Object.keys(filterState).forEach(id => refreshDropdownBadge(id));
+    document.querySelectorAll('.ms-item input[type=checkbox]').forEach(cb => cb.checked = false);
     applyFilters();
   });
 
+  wireDropdowns();
   applyFilters();
 }
 
 function applyFilters() {
-  const ocpFilter   = document.getElementById('f-ocp')?.value    || '';
-  const compFilter  = document.getElementById('f-comp')?.value   || '';
-  const sevFilter   = document.getElementById('f-sev')?.value    || '';
-  const stateFilter = document.getElementById('f-state')?.value  || '';
-
   const filtered = allResults.filter(r => {
-    const op = parseOperator(r.source_file);
-    if (ocpFilter   && op.ocpVer !== ocpFilter)               return false;
-    if (compFilter  && (r.ocp_component || '') !== compFilter) return false;
-    if (sevFilter   && (r.severity || '') !== sevFilter)       return false;
-    if (stateFilter && statusKey(r.audit_result) !== stateFilter) return false;
+    if (filterState.ocp.size       && !filterState.ocp.has(r._ocpVer))           return false;
+    if (filterState.component.size && !filterState.component.has(r._component))  return false;
+    if (filterState.severity.size  && !filterState.severity.has(r.severity))     return false;
+    if (filterState.state.size     && !filterState.state.has(statusKey(r.audit_result))) return false;
+    if (filterState.image.size     && !filterState.image.has(r._imgBase))        return false;
     return true;
   });
 
+  const total  = Object.values(filterState).reduce((n, s) => n + s.size, 0);
   const countEl = document.getElementById('filter-count');
-  if (countEl) {
-    const active = [ocpFilter, compFilter, sevFilter, stateFilter].filter(Boolean).length;
-    countEl.textContent = active ? `${filtered.length} of ${allResults.length} shown` : '';
-  }
+  if (countEl) countEl.textContent = total ? `${filtered.length} of ${allResults.length} shown` : '';
 
-  const trs = filtered.map(r => {
-    const op      = parseOperator(r.source_file);
-    const imgFull = r.image || '';
-    const imgBase = imgFull.replace(/@sha256:[0-9a-f]+$/, '');
-    const sha     = (imgFull.match(/(@sha256:[0-9a-f]+)$/) || [])[1] || '';
-    return `<tr>
-      <td class="op">
-        <strong>${esc(r.ocp_component || op.name)}</strong>
-        <span>${esc(op.ocpVer || '')}</span>
-      </td>
-      <td class="img">
-        ${esc(imgBase)}${sha ? `<span class="sha">${esc(sha)}</span>` : ''}
-      </td>
-      <td><code>${esc(r.component || '—')}</code></td>
-      <td><code style="white-space:nowrap">${esc(r.version || '—')}</code></td>
-      <td>${severityBadge(r.severity)}</td>
-      <td style="white-space:nowrap">${statusBadge(r.audit_result)}</td>
-      <td class="notes">${esc(r.justification || '—')}</td>
-    </tr>`;
-  }).join('');
-
-  const empty = filtered.length === 0
-    ? `<div class="empty"><div class="ico">🔎</div><h3>No matches</h3><p>Adjust or clear the filters above.</p></div>`
-    : `<table><thead><tr>
-        <th>OCP Component</th><th>Image</th><th>Package</th>
-        <th>Version</th><th>Severity</th><th>State</th><th>Justification</th>
-      </tr></thead><tbody>${trs}</tbody></table>`;
+  const trs = filtered.map(r => `<tr>
+    <td class="op">
+      <strong>${esc(r._component)}</strong>
+      <span>${[r._ocpVer, r._opVersion].filter(Boolean).join(' · ')}</span>
+    </td>
+    <td class="img">
+      ${esc(r._imgBase)}${r._sha ? `<span class="sha">${esc(r._sha)}</span>` : ''}
+    </td>
+    <td><code>${esc(r.component || '—')}</code></td>
+    <td><code style="white-space:nowrap">${esc(r.version || '—')}</code></td>
+    <td>${severityBadge(r.severity)}</td>
+    <td style="white-space:nowrap">${statusBadge(r.audit_result)}</td>
+    <td class="notes">${esc(r.justification || '—')}</td>
+  </tr>`).join('');
 
   const wrap = document.getElementById('table-wrap');
-  if (wrap) wrap.innerHTML = empty;
+  if (!wrap) return;
+  wrap.innerHTML = filtered.length === 0
+    ? `<div class="empty"><div class="ico">🔎</div><h3>No matches</h3><p>Adjust or clear the filters above.</p></div>`
+    : `<table><thead><tr>
+        <th>Component · Version</th><th>Image</th><th>Package</th>
+        <th>Version</th><th>Severity</th><th>State</th><th>Justification</th>
+      </tr></thead><tbody>${trs}</tbody></table>`;
 }
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
