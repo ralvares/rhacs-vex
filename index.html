@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CVE Triage Search</title>
+  <style>
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #1c2128;
+      --border:    #30363d;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --accent:    #58a6ff;
+      --green:     #3fb950;
+      --yellow:    #d29922;
+      --red:       #f85149;
+      --orange:    #e3b341;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); min-height: 100vh;
+           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: .9rem 2rem; display: flex; align-items: center; gap: 1rem;
+    }
+    header .logo { font-size: 1.6rem; }
+    header h1 { font-size: 1.15rem; font-weight: 700; }
+    header p  { font-size: .78rem; color: var(--muted); margin-top: .1rem; }
+    .db-status {
+      margin-left: auto; display: flex; align-items: center;
+      gap: .5rem; font-size: .78rem; color: var(--muted);
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+    .dot.ready { background: var(--green); }
+    .dot.error { background: var(--red); }
+
+    /* ── Main ── */
+    main { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+
+    /* ── Search box ── */
+    .search-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.5rem; margin-bottom: 1.75rem;
+    }
+    .search-row { display: flex; gap: .75rem; align-items: center; flex-wrap: wrap; }
+    .cve-input {
+      flex: 1; min-width: 220px;
+      background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+      padding: .75rem 1rem; font-size: 1rem; color: var(--text);
+      font-family: 'Consolas', 'Monaco', monospace; transition: border-color .15s;
+    }
+    .cve-input:focus { outline: none; border-color: var(--accent); }
+    .cve-input::placeholder { color: var(--muted); }
+    .btn {
+      padding: .75rem 1.4rem; border-radius: 6px; border: none;
+      cursor: pointer; font-size: .88rem; font-weight: 600;
+      transition: opacity .15s; white-space: nowrap;
+    }
+    .btn:disabled { opacity: .45; cursor: not-allowed; }
+    .btn-primary  { background: var(--accent); color: #000; }
+    .btn-secondary{ background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .search-hint { margin-top: .7rem; font-size: .78rem; color: var(--muted); }
+    .search-hint code { background: var(--surface2); padding: .1rem .35rem; border-radius: 4px; }
+    .err { color: var(--red); font-size: .82rem; margin-top: .45rem; min-height: 1.1rem; }
+    #file-input { display: none; }
+
+    /* ── Cards ── */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 1rem; margin-bottom: 1.25rem; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.1rem 1.25rem;
+    }
+    .card-label { font-size: .72rem; color: var(--muted); text-transform: uppercase;
+                  letter-spacing: .05em; margin-bottom: .45rem; }
+    .card-value { font-size: 2.1rem; font-weight: 700; line-height: 1; }
+    .card-value.blue   { color: var(--accent); }
+    .card-value.green  { color: var(--green); }
+    .card-value.red    { color: var(--red); }
+    .status-breakdown { margin-top: .6rem; }
+    .sitem { display: flex; justify-content: space-between; align-items: center;
+             margin-top: .35rem; font-size: .8rem; }
+
+    /* ── Badges ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: .25rem;
+      padding: .2rem .55rem; border-radius: 20px; font-size: .72rem; font-weight: 600;
+    }
+    .bg-green  { background: rgba(63,185,80,.18);  color: var(--green); }
+    .bg-red    { background: rgba(248,81,73,.18);   color: var(--red); }
+    .bg-yellow { background: rgba(210,153,34,.18);  color: var(--yellow); }
+    .bg-orange { background: rgba(227,179,65,.18);  color: var(--orange); }
+    .bg-gray   { background: rgba(139,148,158,.18); color: var(--muted); }
+
+    /* ── Results header ── */
+    .results-hdr {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;
+    }
+    .results-hdr h2 { font-size: 1rem; font-weight: 600; }
+    .results-hdr h2 code { background: var(--surface2); padding: .1rem .4rem; border-radius: 4px; font-size: .9rem; }
+    .results-hdr span { font-size: .82rem; color: var(--muted); }
+
+    /* ── Table ── */
+    .table-wrap {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; overflow: auto; max-height: 70vh;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    thead th {
+      background: var(--surface2); padding: .65rem 1rem; text-align: left;
+      font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted);
+      white-space: nowrap; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 1;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface2); }
+    td { padding: .65rem 1rem; vertical-align: top; }
+    td.src  { font-size: .72rem; color: var(--muted); max-width: 200px; word-break: break-all; }
+    td.img  { font-size: .72rem; font-family: monospace; max-width: 300px; word-break: break-all; }
+    td.img .sha { color: var(--muted); font-size: .68rem; display: block; margin-top: .15rem; word-break: break-all; }
+    td.op   { max-width: 200px; }
+    td.op strong { display: block; font-size: .8rem; }
+    td.op span   { font-size: .72rem; color: var(--muted); }
+    td.notes { max-width: 280px; font-size: .78rem; color: var(--muted); }
+    code { font-family: 'Consolas','Monaco',monospace; }
+
+    /* ── Empty / loading ── */
+    .empty { text-align: center; padding: 4rem 2rem; color: var(--muted); }
+    .empty .ico { font-size: 2.8rem; margin-bottom: .9rem; }
+    .empty h3 { font-size: 1.05rem; color: var(--text); margin-bottom: .4rem; }
+    .spinner {
+      display: inline-block; width: 18px; height: 18px;
+      border: 2px solid var(--border); border-top-color: var(--accent);
+      border-radius: 50%; animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Notice banner ── */
+    .notice {
+      background: rgba(88,166,255,.08); border: 1px solid rgba(88,166,255,.3);
+      border-radius: 6px; padding: .65rem 1rem; font-size: .8rem;
+      color: var(--accent); margin-top: .75rem;
+    }
+
+    @media(max-width:680px){ main { padding: 1rem; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🛡️</div>
+  <div>
+    <h1>CVE Triage Search</h1>
+    <p>OpenShift Security Triage Explorer</p>
+  </div>
+  <div class="db-status">
+    <div class="dot" id="dot"></div>
+    <span id="status-text">Initializing…</span>
+  </div>
+</header>
+
+<main>
+  <div class="search-card">
+    <div class="search-row">
+      <input id="cve-input" class="cve-input" type="text"
+             placeholder="CVE-2025-47151" autocomplete="off" spellcheck="false">
+      <button id="search-btn" class="btn btn-primary" disabled>🔍 Search</button>
+      <button id="load-btn"   class="btn btn-secondary">📂 Load Parquet</button>
+    </div>
+    <div class="search-hint">
+      Enter a full or partial CVE ID — e.g. <code>CVE-2025-47151</code> or just <code>47151</code>
+    </div>
+    <div class="err" id="err"></div>
+    <input type="file" id="file-input" accept=".parquet">
+  </div>
+
+  <div id="results">
+    <div class="empty">
+      <div class="ico">🔍</div>
+      <h3>Search for a CVE</h3>
+      <p>Enter a CVE ID above to see triage results across all OCP operator reports.</p>
+    </div>
+  </div>
+</main>
+
+<script type="module">
+import * as duckdb from 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@latest/+esm';
+
+// ── DOM refs ──────────────────────────────────────────────────────────────────
+const $dot       = document.getElementById('dot');
+const $status    = document.getElementById('status-text');
+const $searchBtn = document.getElementById('search-btn');
+const $loadBtn   = document.getElementById('load-btn');
+const $fileInput = document.getElementById('file-input');
+const $cveInput  = document.getElementById('cve-input');
+const $err       = document.getElementById('err');
+const $results   = document.getElementById('results');
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let db, conn, ready = false;
+
+// ── Status helpers ────────────────────────────────────────────────────────────
+const setStatus = (msg, state = '') => {
+  $status.textContent = msg;
+  $dot.className = 'dot' + (state ? ' ' + state : '');
+};
+const setReady = () => { setStatus('Ready', 'ready'); $searchBtn.disabled = false; ready = true; };
+const setErr   = msg => { $err.textContent = msg; };
+
+// ── DuckDB init ───────────────────────────────────────────────────────────────
+async function initDB() {
+  setStatus('Loading DuckDB…');
+  const bundles = duckdb.getJsDelivrBundles();
+  const bundle  = await duckdb.selectBundle(bundles);
+  const wkUrl   = URL.createObjectURL(
+    new Blob([`importScripts("${bundle.mainWorker}");`], { type: 'text/javascript' })
+  );
+  const worker = new Worker(wkUrl);
+  db = new duckdb.AsyncDuckDB(new duckdb.ConsoleLogger(), worker);
+  await db.instantiate(bundle.mainModule, bundle.pthreadWorker);
+  URL.revokeObjectURL(wkUrl);
+  conn = await db.connect();
+  setStatus('Fetching parquet…');
+  await autoLoad();
+}
+
+async function autoLoad() {
+  try {
+    const res = await fetch('data/ocp.parquet');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const buf = new Uint8Array(await res.arrayBuffer());
+    await db.registerFileBuffer('ocp.parquet', buf);
+    setReady();
+  } catch (e) {
+    console.error(e);
+    setStatus('No parquet loaded — use 📂 Load Parquet', 'error');
+    $results.innerHTML = `
+      <div class="empty">
+        <div class="ico">⚠️</div>
+        <h3>Could not auto-load parquet</h3>
+        <p>Serve this page with a local HTTP server:</p>
+        <div class="notice" style="display:inline-block;margin-top:.75rem;text-align:left">
+          <code>python3 -m http.server 8080</code>
+        </div>
+        <p style="margin-top:1rem">Or click <strong>📂 Load Parquet</strong> to pick the file manually.</p>
+      </div>`;
+  }
+}
+
+// ── File picker ───────────────────────────────────────────────────────────────
+$loadBtn.addEventListener('click', () => $fileInput.click());
+$fileInput.addEventListener('change', async () => {
+  const f = $fileInput.files[0];
+  if (!f) return;
+  setStatus(`Loading ${f.name}…`); $searchBtn.disabled = true; ready = false;
+  await db.registerFileBuffer('ocp.parquet', new Uint8Array(await f.arrayBuffer()));
+  setReady();
+});
+
+// ── Search ────────────────────────────────────────────────────────────────────
+async function search() {
+  setErr('');
+  const raw = $cveInput.value.trim();
+  if (!raw)   { setErr('Please enter a CVE ID.'); return; }
+  if (!ready) { setErr('Parquet not loaded yet.'); return; }
+  if (!/^[\w.\-]+$/.test(raw)) { setErr('Invalid characters in CVE ID.'); return; }
+
+  $searchBtn.disabled = true;
+  $searchBtn.textContent = '⏳';
+  $results.innerHTML = `<div class="empty"><div class="spinner"></div>
+    <p style="margin-top:1rem;color:var(--muted)">Querying…</p></div>`;
+
+  try {
+    const safe   = raw.replace(/'/g, "''");
+    const result = await conn.query(`
+      SELECT source_file, IMAGE, COMPONENT, VERSION,
+             SEVERITY, AUDIT_RESULT, JUSTIFICATION
+      FROM 'ocp.parquet'
+      WHERE trim(CVE) LIKE '%${safe}%'
+      ORDER BY source_file, IMAGE`);
+    const rows = result.toArray().map(r => r.toJSON());
+    render(raw, rows);
+  } catch (e) {
+    setErr(`Query error: ${e.message}`);
+    $results.innerHTML = '';
+  } finally {
+    $searchBtn.disabled = false;
+    $searchBtn.textContent = '🔍 Search';
+  }
+}
+
+$searchBtn.addEventListener('click', search);
+$cveInput.addEventListener('keydown', e => e.key === 'Enter' && search());
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function parseOperator(sourceFile) {
+  const parts    = (sourceFile || '').replace(/\\/g, '/').split('/');
+  const basename = (parts[parts.length - 1] || '').replace(/\.csv$/, '');
+  const folder   = parts[parts.length - 2] || '';
+  const ocpVer   = folder.startsWith('ocp-') ? folder.replace('ocp-', 'OCP ') : '';
+  // Root-level OCP release: e.g. ocp-4.21.1
+  if (/^ocp-[\d.]+$/.test(basename)) {
+    return { name: basename.replace(/^ocp-/, 'OCP '), channel: '', version: '', ocpVer: '' };
+  }
+  // Split off trailing version: -vX.Y.Z (with optional suffix)
+  const m = basename.match(/^(.+?)-v(\d[\d.]+(?:-[\w.]+)*)$/);
+  if (m) {
+    const nameChannel = m[1];
+    const version     = 'v' + m[2];
+    const opMatch     = nameChannel.match(/^(.*?-operator(?:-rh)?)(-.+)?$/);
+    const opName      = opMatch ? opMatch[1] : nameChannel;
+    const channel     = opMatch ? (opMatch[2] || '').replace(/^-/, '') : '';
+    return { name: opName, channel, version, ocpVer };
+  }
+  return { name: basename, channel: '', version: '', ocpVer };
+}
+
+const esc = s => String(s ?? '')
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function statusBadge(raw) {
+  const v = (raw || '').toUpperCase();
+  if (v.includes('FALSE POSITIVE'))                                 return `<span class="badge bg-green">✅ False Positive</span>`;
+  if (v.includes('AFFECTED') || v.includes('VULNERABLE'))          return `<span class="badge bg-red">❌ Affected</span>`;
+  if (v.includes('UNDER INVEST') || v.includes('IN REVIEW') || v.includes('NEEDS REVIEW'))
+                                                                    return `<span class="badge bg-yellow">🔍 In Review</span>`;
+  if (v.includes("WON'T FIX") || v.includes('WONT FIX') || v.includes('NOT PLANNED'))
+                                                                    return `<span class="badge bg-gray">🚫 Won't Fix</span>`;
+  return `<span class="badge bg-gray">${esc(raw || '—')}</span>`;
+}
+
+function statusKey(raw) {
+  const v = (raw || '').toUpperCase();
+  if (v.includes('FALSE POSITIVE'))                         return 'False Positive';
+  if (v.includes('AFFECTED') || v.includes('VULNERABLE'))  return 'Affected';
+  if (v.includes('UNDER INVEST') || v.includes('IN REVIEW') || v.includes('NEEDS REVIEW')) return 'In Review';
+  return raw || 'Unknown';
+}
+
+function severityBadge(raw) {
+  const v = (raw || '').toUpperCase();
+  if (v === 'CRITICAL')                      return `<span class="badge bg-red">CRITICAL</span>`;
+  if (v === 'IMPORTANT' || v === 'HIGH')     return `<span class="badge bg-orange">HIGH</span>`;
+  if (v === 'MODERATE'  || v === 'MEDIUM')   return `<span class="badge bg-yellow">MEDIUM</span>`;
+  if (v === 'LOW')                           return `<span class="badge bg-green">LOW</span>`;
+  return raw ? `<span class="badge bg-gray">${esc(raw)}</span>` : '—';
+}
+
+// ── Render ────────────────────────────────────────────────────────────────────
+function render(query, rows) {
+  if (rows.length === 0) {
+    $results.innerHTML = `<div class="empty"><div class="ico">🔎</div>
+      <h3>No results found</h3>
+      <p>No triage entries matched <strong>${esc(query)}</strong>.</p></div>`;
+    return;
+  }
+
+  const uniqueImages = new Set(rows.map(r => r.IMAGE)).size;
+  const uniquePkgs   = new Set(rows.map(r => r.COMPONENT)).size;
+
+  const statusCounts = {};
+  for (const r of rows) {
+    const k = statusKey(r.AUDIT_RESULT);
+    statusCounts[k] = (statusCounts[k] || 0) + 1;
+  }
+  const breakdown = Object.entries(statusCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([k, v]) => {
+      const cls = k === 'False Positive' ? 'bg-green' : k === 'Affected' ? 'bg-red' : k === 'In Review' ? 'bg-yellow' : 'bg-gray';
+      return `<div class="sitem"><span class="badge ${cls}">${esc(k)}</span><strong>${v}</strong></div>`;
+    }).join('');
+
+  const trs = rows.map(r => {
+    const op      = parseOperator(r.source_file);
+    const imgFull = r.IMAGE || '';
+    // Split image into base path and sha256 digest
+    const imgBase = imgFull.replace(/@sha256:[0-9a-f]+$/, '');
+    const sha     = (imgFull.match(/(@sha256:[0-9a-f]+)$/) || [])[1] || '';
+    return `<tr>
+      <td class="op">
+        <strong>${esc(op.name)}</strong>
+        <span>${[op.channel, op.version, op.ocpVer].filter(Boolean).join(' · ')}</span>
+      </td>
+      <td class="img">
+        ${esc(imgBase)}${sha ? `<span class="sha">${esc(sha)}</span>` : ''}
+      </td>
+      <td><code>${esc(r.COMPONENT || '—')}</code></td>
+      <td><code style="white-space:nowrap">${esc(r.VERSION || '—')}</code></td>
+      <td>${severityBadge(r.SEVERITY)}</td>
+      <td style="white-space:nowrap">${statusBadge(r.AUDIT_RESULT)}</td>
+      <td class="notes">${esc(r.JUSTIFICATION || '—')}</td>
+    </tr>`;
+  }).join('');
+
+  $results.innerHTML = `
+    <div class="results-hdr">
+      <h2>Results for <code>${esc(query)}</code></h2>
+      <span>${rows.length} finding${rows.length !== 1 ? 's' : ''}</span>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Total Findings</div>
+        <div class="card-value blue">${rows.length}</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Unique Images</div>
+        <div class="card-value">${uniqueImages}</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Unique Packages</div>
+        <div class="card-value">${uniquePkgs}</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Status Breakdown</div>
+        <div class="status-breakdown">${breakdown}</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Operator</th>
+            <th>Image</th>
+            <th>Package</th>
+            <th>Version</th>
+            <th>Severity</th>
+            <th>Status</th>
+            <th>Triage Notes</th>
+          </tr>
+        </thead>
+        <tbody>${trs}</tbody>
+      </table>
+    </div>`;
+}
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+initDB().catch(e => {
+  setStatus('DuckDB failed to load', 'error');
+  console.error(e);
+});
+</script>
+</body>
+</html>
