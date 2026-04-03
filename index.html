@@ -75,7 +75,7 @@
       display: flex; align-items: center; flex-wrap: wrap; gap: .5rem;
       margin-bottom: 1rem;
     }
-    .filter-bar label { font-size: .72rem; color: var(--muted); font-weight: 600;
+    .filter-bar > label { font-size: .72rem; color: var(--muted); font-weight: 600;
       text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
     .filter-clear {
       margin-left: auto; font-size: .78rem; color: var(--accent);
@@ -117,9 +117,12 @@
       display: flex; align-items: center; gap: .5rem;
       padding: .35rem .75rem; cursor: pointer; font-size: .8rem;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      text-transform: none; letter-spacing: 0; color: var(--text);
     }
     .ms-item:hover { background: rgba(88,166,255,.08); }
+    .ms-item.zero   { opacity: .35; }
     .ms-item input[type=checkbox] { flex-shrink: 0; accent-color: var(--accent); }
+    .opt-count { color: var(--muted); font-size: .72rem; margin-left: auto; padding-left: .5rem; }
     .ms-empty { padding: .6rem .75rem; color: var(--muted); font-size: .78rem; }
     .ms-actions {
       display: flex; gap: .5rem; padding: .4rem .75rem;
@@ -250,7 +253,7 @@
 </main>
 
 <script type="module">
-import * as duckdb from 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@latest/+esm';
+import * as duckdb from 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/+esm';
 
 // ── DOM refs ──────────────────────────────────────────────────────────────────
 const $dot       = document.getElementById('dot');
@@ -380,7 +383,7 @@ function createDropdown(id, label, items) {
     : items.map(v => {
         const checked = sel.has(v) ? ' checked' : '';
         const ve = esc(v);
-        return `<label class="ms-item"><input type="checkbox" value="${ve}"${checked}>${ve}</label>`;
+        return `<label class="ms-item"><input type="checkbox" value="${ve}"${checked}>${ve}<span class="opt-count"></span></label>`;
       }).join('');
 
   return `
@@ -397,6 +400,61 @@ function createDropdown(id, label, items) {
       </div>
     </div>
   </div>`;
+}
+
+function getRowValue(key, r) {
+  switch (key) {
+    case 'ocp':       return r._ocpVer;
+    case 'component': return r._component;
+    case 'channel':   return r._channel;
+    case 'severity':  return r.severity;
+    case 'state':     return statusKey(r.audit_result);
+    case 'image':     return r._imgBase;
+    case 'version':   return r.version;
+  }
+  return '';
+}
+
+function updateDropdownCounts() {
+  const keys = Object.keys(filterState);
+  keys.forEach(key => {
+    const list = document.getElementById('list-' + key);
+    if (!list) return;
+
+    // rows that pass every filter EXCEPT this one
+    const base = allResults.filter(r => {
+      for (const k of keys) {
+        if (k === key) continue;
+        if (filterState[k].size && !filterState[k].has(getRowValue(k, r))) return false;
+      }
+      return true;
+    });
+
+    const counts = {};
+    for (const r of base) { const v = getRowValue(key, r); if (v) counts[v] = (counts[v] || 0) + 1; }
+
+    list.querySelectorAll('.ms-item').forEach(item => {
+      const cb  = item.querySelector('input');
+      const val = cb?.value;
+      const n   = counts[val] || 0;
+      const countEl = item.querySelector('.opt-count');
+      if (countEl) countEl.textContent = n ? n : '';
+      // dim items with 0 matches (unless checked — keep checked items visible)
+      item.classList.toggle('zero', n === 0 && !cb?.checked);
+    });
+
+    // sort: checked first, then by count desc, then zero items last
+    const items = [...list.querySelectorAll('.ms-item')];
+    items.sort((a, b) => {
+      const ac = a.querySelector('input')?.checked ? 1 : 0;
+      const bc = b.querySelector('input')?.checked ? 1 : 0;
+      if (ac !== bc) return bc - ac;
+      const an = parseInt(a.querySelector('.opt-count')?.textContent) || 0;
+      const bn = parseInt(b.querySelector('.opt-count')?.textContent) || 0;
+      return bn - an;
+    });
+    items.forEach(i => list.appendChild(i));
+  });
 }
 
 function wireDropdowns() {
@@ -714,6 +772,8 @@ function applyFilters() {
         <th>Component · Version</th><th>Image</th><th>Package</th>
         <th>Version</th><th>Severity</th><th>State</th><th>Justification</th>
       </tr></thead><tbody>${trs}</tbody></table>`;
+
+  updateDropdownCounts();
 }
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
