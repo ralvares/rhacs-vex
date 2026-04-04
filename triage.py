@@ -179,7 +179,7 @@ def parse_image_ref(image_ref: str) -> WorkloadContext:
         ctx.display_name  = f"UBI{ctx.rhel_ver}"
     elif ocp_ns:
         ctx.workload_type = "ocp"
-        ctx.display_name  = f"OpenShift {ctx.ocp_ver or '4.x'} (RHEL {ctx.rhel_ver})"
+        ctx.display_name  = f"OpenShift {ctx.ocp_ver or '4.x'}"
         # OCP product scope is derived from the VEX product tree at audit time;
         # no prefixes needed here — _pid_in_scope handles it via product names.
     else:
@@ -334,7 +334,7 @@ def parse_context_from_labels(labels: dict, image_ref: str = "") -> WorkloadCont
         # Update display name with product version from CPE
         if version_tok:
             base = ctx.display_name.split('(')[0].strip()
-            ctx.display_name = f"{base} {version_tok} (RHEL {ctx.rhel_ver})"
+            ctx.display_name = f"{base} {version_tok}"
 
         # For OCP images: OCP product scope is derived from the VEX product tree
         # at audit time via _pid_in_scope — no prefixes to set here.
@@ -1504,7 +1504,7 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
                 cn_rhel = re.search(r'(?:rhel-[^-]+-|rhel-)(\d+)$', comp_name)
                 if cn_rhel:
                     img_ctx.rhel_ver = cn_rhel.group(1)
-            img_ctx.display_name = f"OpenShift {release_ocp_ver} (RHEL {img_ctx.rhel_ver})"
+            img_ctx.display_name = f"OpenShift {release_ocp_ver}"
             img_ctx.extra_prefixes = []  # OCP scope derived from VEX tree; no hardcoded prefixes
 
         # Build binary→source RPM name map from SBOM GENERATED_FROM relationships.
