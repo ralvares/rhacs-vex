@@ -41,6 +41,13 @@ def load_csvs(reports_dir):
     combined.columns = [c.strip() for c in combined.columns]
     for col in combined.select_dtypes(include="str").columns:
         combined[col] = combined[col].str.strip()
+
+    # Cast severity-mismatch to proper boolean (CSV stores "True"/"False" strings)
+    if "SEVERITY_MISMATCH" in combined.columns:
+        combined["SEVERITY_MISMATCH"] = combined["SEVERITY_MISMATCH"].map(
+            {"True": True, "False": False}
+        ).astype("boolean")
+
     return combined
 
 

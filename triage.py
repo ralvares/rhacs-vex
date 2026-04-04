@@ -1039,17 +1039,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
     if _severity in ("UNKNOWN", "None", ""):
         _rhacs_raw = str(row.get('SEVERITY', '')).strip().upper()
         # RHACS format: LOW_VULNERABILITY_SEVERITY, MODERATE_VULNERABILITY_SEVERITY, etc.
-        _rhacs_map = {
-            'CRITICAL_VULNERABILITY_SEVERITY': 'Critical',
-            'HIGH_VULNERABILITY_SEVERITY':     'Important',
-            'IMPORTANT_VULNERABILITY_SEVERITY': 'Important',
-            'MODERATE_VULNERABILITY_SEVERITY': 'Moderate',
-            'MEDIUM_VULNERABILITY_SEVERITY':   'Moderate',
-            'LOW_VULNERABILITY_SEVERITY':      'Low',
-            'CRITICAL': 'Critical', 'HIGH': 'Important',
-            'MEDIUM': 'Moderate',  'LOW': 'Low',
-        }
-        _mapped = _rhacs_map.get(_rhacs_raw)
+        _mapped = _RHACS_SEVERITY_MAP.get(_rhacs_raw)
         if _mapped:
             _severity = _mapped
 
@@ -1321,6 +1311,22 @@ def audit_row_detailed(row, ctx: WorkloadContext):
 
 _SEVERITY_ORDER = {"Critical": 0, "Important": 1, "Moderate": 2, "Low": 3, "Unknown": 4}
 
+# Maps raw RHACS scan severity (enum or already-normalized) → Red Hat display form
+_RHACS_SEVERITY_MAP = {
+    'CRITICAL_VULNERABILITY_SEVERITY':  'Critical',
+    'HIGH_VULNERABILITY_SEVERITY':      'Important',
+    'IMPORTANT_VULNERABILITY_SEVERITY': 'Important',
+    'MODERATE_VULNERABILITY_SEVERITY':  'Moderate',
+    'MEDIUM_VULNERABILITY_SEVERITY':    'Moderate',
+    'LOW_VULNERABILITY_SEVERITY':       'Low',
+    'CRITICAL':  'Critical',
+    'HIGH':      'Important',
+    'IMPORTANT': 'Important',
+    'MEDIUM':    'Moderate',
+    'MODERATE':  'Moderate',
+    'LOW':       'Low',
+}
+
 RESULT_STYLES = {
     "✅ FALSE POSITIVE": "bold green",
     "❌ POSITIVE":     "bold red",
@@ -1338,7 +1344,8 @@ SEVERITY_STYLES = {
 def _sort_and_filter_df(df: pd.DataFrame, false_only: bool = False) -> pd.DataFrame:
     """Sort audit results by priority/severity, filter to false-positives if requested."""
     cols = ['COMPONENT', 'VEX_PRODUCT', 'VERSION', 'CVE', 'SEVERITY',
-            'AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION']
+            'AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION',
+            'RHACS_SEVERITY', 'SEVERITY_MISMATCH']
     # Ensure all expected columns exist even on an empty DataFrame
     for col in cols:
         if col not in df.columns:
@@ -1426,15 +1433,26 @@ def _audit_and_display(df: pd.DataFrame, ctx,
         console.print(f"✅ Sync Complete in {time.time() - start_time:.2f}s.")
 
     console.print(f"🚀 Running Structured Audit — context: [bold cyan]{ctx.display_name}[/bold cyan]")
+    # Capture RHACS scan severity before VEX audit overwrites SEVERITY
+    if not df.empty:
+        df['RHACS_SEVERITY'] = df['SEVERITY'].apply(
+            lambda s: _RHACS_SEVERITY_MAP.get(str(s).strip().upper(), 'Unknown')
+        )
+
     if df.empty:
         console.print("[yellow]⚠  No CVE findings to audit.[/yellow]")
-        for col in ['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY', 'VEX_PRODUCT']:
+        for col in ['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY', 'VEX_PRODUCT',
+                    'RHACS_SEVERITY', 'SEVERITY_MISMATCH']:
             df[col] = pd.Series(dtype=str)
     else:
         df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY']] = df.apply(
             lambda row: list(audit_row_detailed(row, ctx)), axis=1, result_type='expand'
         )
         df['VEX_PRODUCT'] = df.apply(lambda row: _vex_product_for_row(row, ctx), axis=1)
+        df['SEVERITY_MISMATCH'] = (
+            (df['RHACS_SEVERITY'] != 'Unknown') &
+            (df['SEVERITY'] != df['RHACS_SEVERITY'])
+        )
 
     result_df = _sort_and_filter_df(df, false_only)
     _render_triage_table(console, result_df, ctx)
@@ -1454,10 +1472,17 @@ def _audit_silent(df: pd.DataFrame, ctx, false_only: bool = False) -> pd.DataFra
             pass
 
     if not df.empty:
+        df['RHACS_SEVERITY'] = df['SEVERITY'].apply(
+            lambda s: _RHACS_SEVERITY_MAP.get(str(s).strip().upper(), 'Unknown')
+        )
         df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY']] = df.apply(
             lambda row: list(audit_row_detailed(row, ctx)), axis=1, result_type='expand'
         )
         df['VEX_PRODUCT'] = df.apply(lambda row: _vex_product_for_row(row, ctx), axis=1)
+        df['SEVERITY_MISMATCH'] = (
+            (df['RHACS_SEVERITY'] != 'Unknown') &
+            (df['SEVERITY'] != df['RHACS_SEVERITY'])
+        )
 
     return _sort_and_filter_df(df, false_only)
 

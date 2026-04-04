@@ -211,6 +211,24 @@
       color: var(--accent); margin-top: .75rem;
     }
 
+    /* ── Severity comparison ── */
+    .sev-cmp { display: inline-flex; align-items: center; gap: .3rem; flex-wrap: wrap; }
+    .sev-arrow { color: var(--muted); font-size: .7rem; line-height: 1; }
+    .sev-mismatch-icon { color: var(--orange); font-size: .78rem; cursor: default; }
+
+    /* ── Mismatch-only toggle pill ── */
+    .mismatch-pill {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .35rem .85rem; border-radius: 20px; font-size: .8rem; font-weight: 600;
+      cursor: pointer; border: 1px solid var(--border);
+      background: var(--bg); color: var(--muted);
+      transition: border-color .15s, color .15s, background .15s;
+      white-space: nowrap; user-select: none;
+    }
+    .mismatch-pill:hover  { border-color: var(--orange); color: var(--orange); }
+    .mismatch-pill.active { background: rgba(227,179,65,.15); border-color: var(--orange); color: var(--orange); }
+    .mp-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+
     @media(max-width:680px){ main { padding: 1rem; } }
   </style>
 </head>
@@ -231,12 +249,13 @@
   <div class="search-card">
     <div class="search-row">
       <input id="cve-input" class="cve-input" type="text"
-             placeholder="CVE-2025-47151" autocomplete="off" spellcheck="false">
+             placeholder="CVE-2025-47151  ·  openshift-gitops  ·  lasso" autocomplete="off" spellcheck="false">
       <button id="search-btn" class="btn btn-primary" disabled>Search</button>
       <button id="load-btn"   class="btn btn-secondary">Load Parquet</button>
     </div>
     <div class="search-hint">
-      Enter a full or partial CVE ID — e.g. <code>CVE-2025-47151</code> or just <code>47151</code>
+      Search by <code>CVE ID</code>, <code>operator / component name</code>, or <code>package name</code>
+      — e.g. <code>CVE-2025-47151</code>, <code>47151</code>, <code>openshift-gitops</code>, <code>lasso</code>
     </div>
     <div class="err" id="err"></div>
     <input type="file" id="file-input" accept=".parquet">
@@ -330,7 +349,7 @@ async function search() {
   const raw = $cveInput.value.trim();
   if (!raw)   { setErr('Please enter a CVE ID.'); return; }
   if (!ready) { setErr('Parquet not loaded yet.'); return; }
-  if (!/^[\w.\-]+$/.test(raw)) { setErr('Invalid characters in CVE ID.'); return; }
+  if (!/^[\w.\-\/: @]+$/.test(raw)) { setErr('Invalid characters in search query.'); return; }
 
   $searchBtn.disabled = true;
   $searchBtn.textContent = 'Searching…';
@@ -338,10 +357,18 @@ async function search() {
     <p style="margin-top:1rem;color:var(--muted)">Querying…</p></div>`;
 
   try {
-    const safe   = raw.replace(/'/g, "''");
+    const safe = raw.replace(/'/g, "''");
+    // Pure CVE pattern (e.g. "47151" or "CVE-2025-47151") → search CVE only; otherwise broaden
+    const looksLikeCVE = /^(cve[-_]?)?\d{4}[-_]?\d{1,7}$/i.test(raw);
+    const whereClause  = looksLikeCVE
+      ? `upper(trim(CVE)) LIKE upper('%${safe}%')`
+      : `upper(trim(CVE))           LIKE upper('%${safe}%')
+          OR upper(trim(COMPONENT))     LIKE upper('%${safe}%')
+          OR upper(trim(OCP_COMPONENT)) LIKE upper('%${safe}%')
+          OR upper(trim(IMAGE))         LIKE upper('%${safe}%')`;
     const result = await conn.query(`
       SELECT * FROM 'ocp.parquet'
-      WHERE upper(trim(CVE)) LIKE upper('%${safe}%')
+      WHERE ${whereClause}
       ORDER BY OCP_COMPONENT, source_file`);
     const rows = result.toArray().map(r => {
       const obj = r.toJSON();
@@ -363,10 +390,17 @@ $cveInput.addEventListener('keydown', e => e.key === 'Enter' && search());
 // ── Filter state ────────────────────────────────────────────────────────────
 let allResults = [];
 let dropdownAbort = null;
-const filterState = { ocp: new Set(), component: new Set(), channel: new Set(), severity: new Set(), state: new Set(), image: new Set(), version: new Set() };
+const filterState = {
+  ocp: new Set(), component: new Set(), channel: new Set(),
+  severity: new Set(), rhacssev: new Set(), state: new Set(),
+  image: new Set(), version: new Set(),
+  mismatch: false,
+};
 
 function resetFilters() {
-  Object.values(filterState).forEach(s => s.clear());
+  Object.entries(filterState).forEach(([k, v]) => {
+    if (v instanceof Set) v.clear(); else filterState[k] = false;
+  });
   if (dropdownAbort) { dropdownAbort.abort(); dropdownAbort = null; }
 }
 
@@ -406,6 +440,7 @@ function getRowValue(key, r) {
     case 'component': return r._component;
     case 'channel':   return r._channel;
     case 'severity':  return r.severity;
+    case 'rhacssev':  return r._rhacsNorm;
     case 'state':     return statusKey(r.audit_result);
     case 'image':     return r._imgBase;
     case 'version':   return r.version;
@@ -642,6 +677,20 @@ function severityBadge(raw) {
   return raw ? `<span class="badge bg-gray">${esc(raw)}</span>` : '—';
 }
 
+function severityCompare(r) {
+  const vex   = r.severity   || '';
+  const rhacs = r._rhacsNorm || '';
+  if (r._isMismatch && rhacs && rhacs.toLowerCase() !== 'unknown') {
+    return `<div class="sev-cmp">
+      <span title="VEX / Red Hat advisory severity">${severityBadge(vex)}</span>
+      <span class="sev-arrow">→</span>
+      <span title="RHACS scan severity">${severityBadge(rhacs)}</span>
+      <span class="sev-mismatch-icon" title="VEX severity differs from RHACS scan severity">⚠</span>
+    </div>`;
+  }
+  return severityBadge(vex);
+}
+
 // ── Render ────────────────────────────────────────────────────────────────────
 function render(query, rows) {
   resetFilters();
@@ -673,26 +722,32 @@ function render(query, rows) {
   allResults = rows.map(r => {
     const op      = parseOperator(r.source_file);
     const imgFull = (r.image || '').trim();
+    const isMis   = r.severity_mismatch === true || r.severity_mismatch === 1 ||
+                    String(r.severity_mismatch).toLowerCase() === 'true';
     return {
       ...r,
-      _component: (r.ocp_component || op.name || '').trim(),
-      _ocpVer:    (op.ocpVer || (r.source_file.match(/ocp-([\d.]+)\.csv/) ? 'OCP ' + r.source_file.match(/ocp-([\d.]+)\.csv/)[1] : '') || '').trim(),
-      _channel:   (op.channel || '').trim(),
-      _opVersion: (op.version || '').trim(),
-      _imgBase:   imgFull.replace(/@sha256:[0-9a-f]+$/, ''),
-      _sha:       (imgFull.match(/(@sha256:[0-9a-f]+)$/) || [])[1] || '',
-      version:    (r.version || '').trim(),
-      severity:   (r.severity || '').trim(),
+      _component:  (r.ocp_component || op.name || '').trim(),
+      _ocpVer:     (op.ocpVer || (r.source_file.match(/ocp-([\d.]+)\.csv/) ? 'OCP ' + r.source_file.match(/ocp-([\d.]+)\.csv/)[1] : '') || '').trim(),
+      _channel:    (op.channel || '').trim(),
+      _opVersion:  (op.version || '').trim(),
+      _imgBase:    imgFull.replace(/@sha256:[0-9a-f]+$/, ''),
+      _sha:        (imgFull.match(/(@sha256:[0-9a-f]+)$/) || [])[1] || '',
+      version:     (r.version || '').trim(),
+      severity:    (r.severity || '').trim(),
+      _rhacsNorm:  (r.rhacs_severity || '').trim(),
+      _isMismatch: isMis,
     };
   });
 
-  const ocpVersions = [...new Set(allResults.map(r => r._ocpVer).filter(Boolean))].sort();
-  const components  = [...new Set(allResults.map(r => r._component).filter(Boolean))].sort();
-  const channels    = [...new Set(allResults.map(r => r._channel).filter(Boolean))].sort();
-  const severities  = [...new Set(allResults.map(r => r.severity).filter(Boolean))].sort();
-  const states      = [...new Set(allResults.map(r => statusKey(r.audit_result)).filter(Boolean))].sort();
-  const images      = [...new Set(allResults.map(r => r._imgBase).filter(Boolean))].sort();
-  const versions    = [...new Set(allResults.map(r => r.version).filter(Boolean))].sort();
+  const mismatchCount = allResults.filter(r => r._isMismatch).length;
+  const ocpVersions   = [...new Set(allResults.map(r => r._ocpVer).filter(Boolean))].sort();
+  const components    = [...new Set(allResults.map(r => r._component).filter(Boolean))].sort();
+  const channels      = [...new Set(allResults.map(r => r._channel).filter(Boolean))].sort();
+  const severities    = [...new Set(allResults.map(r => r.severity).filter(Boolean))].sort();
+  const rhacsSevers   = [...new Set(allResults.map(r => r._rhacsNorm).filter(Boolean))].sort();
+  const states        = [...new Set(allResults.map(r => statusKey(r.audit_result)).filter(Boolean))].sort();
+  const images        = [...new Set(allResults.map(r => r._imgBase).filter(Boolean))].sort();
+  const versions      = [...new Set(allResults.map(r => r.version).filter(Boolean))].sort();
 
   $results.innerHTML = `
     <div class="results-hdr">
@@ -704,18 +759,21 @@ function render(query, rows) {
       <div class="card"><div class="card-label">Total Findings</div><div class="card-value blue">${rows.length}</div></div>
       <div class="card"><div class="card-label">Unique Images</div><div class="card-value">${uniqueImages}</div></div>
       <div class="card"><div class="card-label">Unique Packages</div><div class="card-value">${uniquePkgs}</div></div>
+      <div class="card"><div class="card-label">Severity Mismatches</div><div class="card-value" style="color:var(--orange)">${mismatchCount}</div></div>
       <div class="card"><div class="card-label">Status Breakdown</div><div class="status-breakdown">${breakdown}</div></div>
     </div>
 
     <div class="filter-bar">
       <label>Filter by:</label>
-      ${createDropdown('ocp',       'OCP Version', ocpVersions)}
-      ${createDropdown('component', 'Component',   components)}
-      ${createDropdown('channel',   'Channel',     channels)}
-      ${createDropdown('version',   'Pkg Version', versions)}
-      ${createDropdown('severity',  'Severity',    severities)}
-      ${createDropdown('state',     'State',       states)}
-      ${createDropdown('image',     'Image',       images)}
+      ${createDropdown('ocp',       'OCP Version',    ocpVersions)}
+      ${createDropdown('component', 'Component',      components)}
+      ${createDropdown('channel',   'Channel',        channels)}
+      ${createDropdown('version',   'Pkg Version',    versions)}
+      ${createDropdown('severity',  'VEX Severity',   severities)}
+      ${createDropdown('rhacssev',  'RHACS Severity', rhacsSevers)}
+      ${createDropdown('state',     'State',          states)}
+      ${createDropdown('image',     'Image',          images)}
+      <button class="mismatch-pill" id="mismatch-btn" title="Show only rows where VEX severity differs from RHACS scan severity"><span class="mp-dot"></span> Mismatches only</button>
       <button class="filter-clear" id="f-clear">Clear all</button>
       <span class="filter-count" id="filter-count"></span>
     </div>
@@ -723,9 +781,16 @@ function render(query, rows) {
     <div class="table-wrap" id="table-wrap"></div>`;
 
   document.getElementById('f-clear').addEventListener('click', () => {
-    Object.values(filterState).forEach(s => s.clear());
+    Object.entries(filterState).forEach(([k, v]) => { if (v instanceof Set) v.clear(); else filterState[k] = false; });
     Object.keys(filterState).forEach(id => refreshDropdownBadge(id));
     document.querySelectorAll('.ms-item input[type=checkbox]').forEach(cb => cb.checked = false);
+    document.getElementById('mismatch-btn')?.classList.remove('active');
+    applyFilters();
+  });
+
+  document.getElementById('mismatch-btn')?.addEventListener('click', () => {
+    filterState.mismatch = !filterState.mismatch;
+    document.getElementById('mismatch-btn').classList.toggle('active', filterState.mismatch);
     applyFilters();
   });
 
@@ -734,20 +799,23 @@ function render(query, rows) {
 }
 
 function applyFilters() {
-  const filtered = allResults.filter(r => {
-    if (filterState.ocp.size       && !filterState.ocp.has(r._ocpVer))           return false;
-    if (filterState.component.size && !filterState.component.has(r._component))  return false;
-    if (filterState.channel.size   && !filterState.channel.has(r._channel))      return false;
-    if (filterState.version.size   && !filterState.version.has(r.version))       return false;
-    if (filterState.severity.size  && !filterState.severity.has(r.severity))     return false;
+  let filtered = allResults.filter(r => {
+    if (filterState.ocp.size       && !filterState.ocp.has(r._ocpVer))                   return false;
+    if (filterState.component.size && !filterState.component.has(r._component))          return false;
+    if (filterState.channel.size   && !filterState.channel.has(r._channel))              return false;
+    if (filterState.version.size   && !filterState.version.has(r.version))               return false;
+    if (filterState.severity.size  && !filterState.severity.has(r.severity))             return false;
+    if (filterState.rhacssev.size  && !filterState.rhacssev.has(r._rhacsNorm))           return false;
     if (filterState.state.size     && !filterState.state.has(statusKey(r.audit_result))) return false;
-    if (filterState.image.size     && !filterState.image.has(r._imgBase))        return false;
+    if (filterState.image.size     && !filterState.image.has(r._imgBase))                return false;
     return true;
   });
+  if (filterState.mismatch) filtered = filtered.filter(r => r._isMismatch);
 
-  const total  = Object.values(filterState).reduce((n, s) => n + s.size, 0);
+  const activeFilters = Object.entries(filterState)
+    .reduce((n, [, v]) => n + (v instanceof Set ? v.size : (v ? 1 : 0)), 0);
   const countEl = document.getElementById('filter-count');
-  if (countEl) countEl.textContent = total ? `${filtered.length} of ${allResults.length} shown` : '';
+  if (countEl) countEl.textContent = activeFilters ? `${filtered.length} of ${allResults.length} shown` : '';
 
   const trs = filtered.map(r => `<tr>
     <td class="op">
@@ -759,7 +827,7 @@ function applyFilters() {
     </td>
     <td><code>${esc(r.component || '—')}</code></td>
     <td><code>${esc(r.version || '—')}</code></td>
-    <td>${severityBadge(r.severity)}</td>
+    <td>${severityCompare(r)}</td>
     <td style="white-space:nowrap">${statusBadge(r.audit_result)}</td>
     <td class="notes">${esc(r.justification || '—')}</td>
   </tr>`).join('');
@@ -770,7 +838,7 @@ function applyFilters() {
     ? `<div class="empty"><h3>No matches</h3><p>Adjust or clear the filters above.</p></div>`
     : `<table><thead><tr>
         <th>Component · Version</th><th>Image</th><th>Package</th>
-        <th>Version</th><th>Severity</th><th>State</th><th>Justification</th>
+        <th>Version</th><th>Severity (VEX → RHACS)</th><th>State</th><th>Justification</th>
       </tr></thead><tbody>${trs}</tbody></table>`;
 
   updateDropdownCounts();
