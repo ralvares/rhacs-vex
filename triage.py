@@ -469,30 +469,42 @@ def rhacs_find_image(session, image_ref: str) -> Optional[str]:
     return None
 
 
-def rhacs_scan_image(session, image_ref: str, force: bool = False) -> Optional[dict]:
+def rhacs_scan_image(session, image_ref: str, force: bool = False,
+                     retries: int = 3, retry_delay: float = 10.0) -> Optional[dict]:
     """Fetch (or trigger) a scan for an image via POST /v1/images/scan.
 
     RHACS returns the existing scan if it knows the image, or scans it fresh.
     A pretty-printed JSON copy is saved to data/scans/ for offline inspection.
     Pass force=True to bypass the local HTTP cache and ask RHACS to re-scan.
+    Retries up to *retries* times on Timeout/ConnectionError, waiting *retry_delay*
+    seconds between attempts (doubles each retry).
     """
     os.makedirs(SCAN_DIR, exist_ok=True)
     url = f"{session.base_url}/v1/images/scan"
     if force:
         session.cache.delete(urls=[url])
-    try:
-        resp = session.post(url, json={"imageName": image_ref, "force": force}, timeout=120)
-        resp.raise_for_status()
-        data = resp.json()
-        if not data.get("id"):
+    delay = retry_delay
+    for attempt in range(1, retries + 2):  # +1 for the initial attempt
+        try:
+            resp = session.post(url, json={"imageName": image_ref, "force": force}, timeout=120)
+            resp.raise_for_status()
+            data = resp.json()
+            if not data.get("id"):
+                return None
+            cache_path = _scan_cache_path(data["id"], image_ref)
+            if force or not os.path.exists(cache_path):
+                with open(cache_path, "w") as fh:
+                    json.dump(data, fh, indent=2)
+            return data
+        except (requests.Timeout, requests.ConnectionError) as exc:
+            if attempt <= retries:
+                time.sleep(delay)
+                delay *= 2
+                continue
             return None
-        cache_path = _scan_cache_path(data["id"], image_ref)
-        if force or not os.path.exists(cache_path):
-            with open(cache_path, "w") as fh:
-                json.dump(data, fh, indent=2)
-        return data
-    except Exception:
-        return None
+        except Exception:
+            return None
+    return None
 
 
 def _scan_cache_path(image_id: str, image_ref: str = "") -> str:
@@ -502,26 +514,39 @@ def _scan_cache_path(image_id: str, image_ref: str = "") -> str:
     return os.path.join(SCAN_DIR, f"{safe}.json")
 
 
-def rhacs_get_image(session, image_id: str, force: bool = False, image_ref: str = "") -> dict:
+def rhacs_get_image(session, image_id: str, force: bool = False, image_ref: str = "",
+                    retries: int = 3, retry_delay: float = 10.0) -> dict:
     """Fetch full image detail (scan + metadata) from RHACS.
 
     The CachedSession handles TTL-based caching (SCAN_CACHE_TTL) automatically.
     A pretty-printed JSON copy is also saved to data/scans/ for offline inspection.
     Pass force=True to invalidate the cache entry and fetch a fresh copy.
+    Retries up to *retries* times on Timeout/ConnectionError, waiting *retry_delay*
+    seconds between attempts (doubles each retry).
     """
     os.makedirs(SCAN_DIR, exist_ok=True)
     url = f"{session.base_url}/v1/images/{image_id}"
     if force:
         session.cache.delete(urls=[url])
-    resp = session.get(url, params={"stripDescription": True}, timeout=60)
-    resp.raise_for_status()
-    data = resp.json()
-    # Keep a pretty-printed JSON copy in SCAN_DIR for offline inspection.
-    cache_path = _scan_cache_path(image_id, image_ref)
-    if force or not os.path.exists(cache_path):
-        with open(cache_path, "w") as fh:
-            json.dump(data, fh, indent=2)
-    return data
+    delay = retry_delay
+    for attempt in range(1, retries + 2):  # +1 for the initial attempt
+        try:
+            resp = session.get(url, params={"stripDescription": True}, timeout=60)
+            resp.raise_for_status()
+            data = resp.json()
+            # Keep a pretty-printed JSON copy in SCAN_DIR for offline inspection.
+            cache_path = _scan_cache_path(image_id, image_ref)
+            if force or not os.path.exists(cache_path):
+                with open(cache_path, "w") as fh:
+                    json.dump(data, fh, indent=2)
+            return data
+        except (requests.Timeout, requests.ConnectionError) as exc:
+            if attempt <= retries:
+                time.sleep(delay)
+                delay *= 2
+                continue
+            raise
+    raise RuntimeError("unreachable")
 
 
 def _sbom_cache_path(image_ref: str) -> str:
