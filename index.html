@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CVE Triage Search</title>
+  <title>RHACS False Positive Triage Explorer</title>
   <style>
     :root {
       --bg:        #0d1117;
@@ -217,10 +217,9 @@
 <body>
 
 <header>
-  <div class="logo">🛡️</div>
   <div>
-    <h1>CVE Triage Search</h1>
-    <p>OpenShift Security Triage Explorer</p>
+    <h1>RHACS False Positive Triage Explorer</h1>
+    <p>Identify and triage false positives from Red Hat Advanced Cluster Security</p>
   </div>
   <div class="db-status">
     <div class="dot" id="dot"></div>
@@ -233,8 +232,8 @@
     <div class="search-row">
       <input id="cve-input" class="cve-input" type="text"
              placeholder="CVE-2025-47151" autocomplete="off" spellcheck="false">
-      <button id="search-btn" class="btn btn-primary" disabled>🔍 Search</button>
-      <button id="load-btn"   class="btn btn-secondary">📂 Load Parquet</button>
+      <button id="search-btn" class="btn btn-primary" disabled>Search</button>
+      <button id="load-btn"   class="btn btn-secondary">Load Parquet</button>
     </div>
     <div class="search-hint">
       Enter a full or partial CVE ID — e.g. <code>CVE-2025-47151</code> or just <code>47151</code>
@@ -245,7 +244,6 @@
 
   <div id="results">
     <div class="empty">
-      <div class="ico">🔍</div>
       <h3>Search for a CVE</h3>
       <p>Enter a CVE ID above to see triage results across all OCP operator reports.</p>
     </div>
@@ -305,7 +303,7 @@ async function autoLoad() {
     setStatus('No parquet loaded — use 📂 Load Parquet', 'error');
     $results.innerHTML = `
       <div class="empty">
-        <div class="ico">⚠️</div>
+
         <h3>Could not auto-load parquet</h3>
         <p>Serve this page with a local HTTP server:</p>
         <div class="notice" style="display:inline-block;margin-top:.75rem;text-align:left">
@@ -335,7 +333,7 @@ async function search() {
   if (!/^[\w.\-]+$/.test(raw)) { setErr('Invalid characters in CVE ID.'); return; }
 
   $searchBtn.disabled = true;
-  $searchBtn.textContent = '⏳';
+  $searchBtn.textContent = 'Searching…';
   $results.innerHTML = `<div class="empty"><div class="spinner"></div>
     <p style="margin-top:1rem;color:var(--muted)">Querying…</p></div>`;
 
@@ -355,7 +353,7 @@ async function search() {
     $results.innerHTML = '';
   } finally {
     $searchBtn.disabled = false;
-    $searchBtn.textContent = '🔍 Search';
+    $searchBtn.textContent = 'Search';
   }
 }
 
@@ -648,7 +646,7 @@ function render(query, rows) {
   allResults = [];
 
   if (rows.length === 0) {
-    $results.innerHTML = `<div class="empty"><div class="ico">🔎</div>
+    $results.innerHTML = `<div class="empty">
       <h3>No results found</h3>
       <p>No triage entries matched <strong>${esc(query)}</strong>.</p></div>`;
     return;
@@ -767,7 +765,7 @@ function applyFilters() {
   const wrap = document.getElementById('table-wrap');
   if (!wrap) return;
   wrap.innerHTML = filtered.length === 0
-    ? `<div class="empty"><div class="ico">🔎</div><h3>No matches</h3><p>Adjust or clear the filters above.</p></div>`
+    ? `<div class="empty"><h3>No matches</h3><p>Adjust or clear the filters above.</p></div>`
     : `<table><thead><tr>
         <th>Component · Version</th><th>Image</th><th>Package</th>
         <th>Version</th><th>Severity</th><th>State</th><th>Justification</th>
