@@ -615,6 +615,7 @@ const esc = s => String(s ?? '')
 function statusBadge(raw) {
   const v = (raw || '').toUpperCase();
   if (v.includes('FALSE POSITIVE'))                                 return `<span class="badge bg-green">False Positive</span>`;
+  if (v.includes('POSITIVE'))                                       return `<span class="badge bg-red">Positive</span>`;
   if (v.includes('AFFECTED') || v.includes('VULNERABLE'))          return `<span class="badge bg-red">Affected</span>`;
   if (v.includes('UNDER INVEST') || v.includes('IN REVIEW') || v.includes('NEEDS REVIEW'))
                                                                     return `<span class="badge bg-yellow">In Review</span>`;
@@ -626,6 +627,7 @@ function statusBadge(raw) {
 function statusKey(raw) {
   const v = (raw || '').toUpperCase();
   if (v.includes('FALSE POSITIVE'))                         return 'False Positive';
+  if (v.includes('POSITIVE'))                               return 'Positive';
   if (v.includes('AFFECTED') || v.includes('VULNERABLE'))  return 'Affected';
   if (v.includes('UNDER INVEST') || v.includes('IN REVIEW') || v.includes('NEEDS REVIEW')) return 'In Review';
   return raw || 'Unknown';
@@ -663,7 +665,7 @@ function render(query, rows) {
   const breakdown = Object.entries(statusCounts)
     .sort((a, b) => b[1] - a[1])
     .map(([k, v]) => {
-      const cls = k === 'False Positive' ? 'bg-green' : k === 'Affected' ? 'bg-red' : k === 'In Review' ? 'bg-yellow' : 'bg-gray';
+      const cls = k === 'False Positive' ? 'bg-green' : (k === 'Affected' || k === 'Positive') ? 'bg-red' : k === 'In Review' ? 'bg-yellow' : 'bg-gray';
       return `<div class="sitem"><span class="badge ${cls}">${esc(k)}</span><strong>${v}</strong></div>`;
     }).join('');
 

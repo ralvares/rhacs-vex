@@ -1464,12 +1464,14 @@ def _audit_silent(df: pd.DataFrame, ctx, false_only: bool = False) -> pd.DataFra
 
 def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
                      false_only: bool, release_ocp_ver: Optional[str] = None,
-                     force: bool = False) -> dict:
+                     force: bool = False, comp_name: Optional[str] = None) -> dict:
     """
     Fetch image scan from RHACS and run a silent audit.
     image_id=None  → will search RHACS by digest first (OCP mode).
     release_ocp_ver  → when set (--ocp mode), overrides per-image CPE OCP version
                        so all components reflect the release they ship in.
+    comp_name        → OCP component name (e.g. "rhel-coreos-10"); used to detect
+                       RHEL version when the image URL gives no clue.
     Returns a dict with keys: found, img_ctx, os_info, result_df, error.
     """
     try:
@@ -1484,6 +1486,7 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
         labels     = (image_data.get("metadata") or {}).get("v1", {}).get("labels") or {}
         img_ctx    = parse_context_from_labels(labels, image_ref) if labels \
                      else parse_image_ref(image_ref)
+        os_info    = (image_data.get("scan") or {}).get("operatingSystem", "")
 
         # In --ocp mode, enforce the release version for every image in the manifest.
         # All images in an OCP release are OCP components regardless of their
@@ -1492,9 +1495,17 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
             minor_ver = '.'.join(release_ocp_ver.split('.')[:2])  # "4.21.2" → "4.21"
             img_ctx.workload_type = "ocp"
             img_ctx.ocp_ver = minor_ver
+            # Refine RHEL version: prefer os_info (e.g. "rhel:10.0"), then comp_name
+            # (e.g. "rhel-coreos-10"), to avoid defaulting to "8" for RHEL 10 images.
+            os_rhel = re.search(r'(?:rhel|coreos):(\d+)', os_info or '')
+            if os_rhel:
+                img_ctx.rhel_ver = os_rhel.group(1)
+            elif comp_name:
+                cn_rhel = re.search(r'(?:rhel-[^-]+-|rhel-)(\d+)$', comp_name)
+                if cn_rhel:
+                    img_ctx.rhel_ver = cn_rhel.group(1)
             img_ctx.display_name = f"OpenShift {release_ocp_ver} (RHEL {img_ctx.rhel_ver})"
             img_ctx.extra_prefixes = []  # OCP scope derived from VEX tree; no hardcoded prefixes
-        os_info    = (image_data.get("scan") or {}).get("operatingSystem", "")
 
         # Build binary→source RPM name map from SBOM GENERATED_FROM relationships.
         # Uses lib4sbom to parse the SPDX 2.3 SBOM rather than walking raw dicts.
@@ -1812,7 +1823,7 @@ def main():
                 future_to_comp = {
                     ex.submit(_fetch_and_audit, session, image_ref, None,
                               args.false_only, _manifest_ocp_ver,
-                              getattr(args, 'force', False)):
+                              getattr(args, 'force', False), comp_name):
                         (comp_name, image_ref)
                     for comp_name, image_ref in images
                 }
