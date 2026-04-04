@@ -185,7 +185,7 @@
     tbody tr:hover { background: var(--surface2); }
     td { padding: .65rem 1rem; vertical-align: top; }
     td.src  { font-size: .72rem; color: var(--muted); max-width: 200px; word-break: break-all; }
-    td.img  { font-size: .72rem; font-family: monospace; max-width: 300px; word-break: break-all; }
+    td.img  { font-size: .72rem; font-family: monospace; min-width: 280px; max-width: 420px; word-break: break-all; }
     td.img .sha { color: var(--muted); font-size: .68rem; display: block; margin-top: .15rem; word-break: break-all; }
     td.op   { max-width: 200px; }
     td.op strong { display: block; font-size: .8rem; }
@@ -758,7 +758,7 @@ function applyFilters() {
       ${esc(r._imgBase)}${r._sha ? `<span class="sha">${esc(r._sha)}</span>` : ''}
     </td>
     <td><code>${esc(r.component || '—')}</code></td>
-    <td><code style="white-space:nowrap">${esc(r.version || '—')}</code></td>
+    <td><code>${esc(r.version || '—')}</code></td>
     <td>${severityBadge(r.severity)}</td>
     <td style="white-space:nowrap">${statusBadge(r.audit_result)}</td>
     <td class="notes">${esc(r.justification || '—')}</td>
