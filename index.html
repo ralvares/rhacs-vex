@@ -701,10 +701,10 @@ function statusKey(raw) {
 
 function severityBadge(raw) {
   const v = (raw || '').toUpperCase();
-  if (v === 'CRITICAL')                      return `<span class="badge bg-red">CRITICAL</span>`;
-  if (v === 'IMPORTANT' || v === 'HIGH')     return `<span class="badge bg-orange">HIGH</span>`;
-  if (v === 'MODERATE'  || v === 'MEDIUM')   return `<span class="badge bg-yellow">MEDIUM</span>`;
-  if (v === 'LOW')                           return `<span class="badge bg-green">LOW</span>`;
+  if (v === 'CRITICAL')                      return `<span class="badge bg-red">Critical</span>`;
+  if (v === 'IMPORTANT' || v === 'HIGH')     return `<span class="badge bg-orange">Important</span>`;
+  if (v === 'MODERATE'  || v === 'MEDIUM')   return `<span class="badge bg-yellow">Moderate</span>`;
+  if (v === 'LOW')                           return `<span class="badge bg-green">Low</span>`;
   return raw ? `<span class="badge bg-gray">${esc(raw)}</span>` : '—';
 }
 
