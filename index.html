@@ -393,7 +393,7 @@ let dropdownAbort = null;
 const filterState = {
   ocp: new Set(), component: new Set(), channel: new Set(),
   severity: new Set(), rhacssev: new Set(), state: new Set(),
-  image: new Set(), version: new Set(),
+  image: new Set(), version: new Set(), cve: new Set(),
   mismatch: false,
 };
 
@@ -444,6 +444,7 @@ function getRowValue(key, r) {
     case 'state':     return statusKey(r.audit_result);
     case 'image':     return r._imgBase;
     case 'version':   return r.version;
+    case 'cve':       return (r.cve || '').trim();
   }
   return '';
 }
@@ -748,6 +749,7 @@ function render(query, rows) {
   const states        = [...new Set(allResults.map(r => statusKey(r.audit_result)).filter(Boolean))].sort();
   const images        = [...new Set(allResults.map(r => r._imgBase).filter(Boolean))].sort();
   const versions      = [...new Set(allResults.map(r => r.version).filter(Boolean))].sort();
+  const cves          = [...new Set(allResults.map(r => (r.cve || '').trim()).filter(Boolean))].sort();
 
   $results.innerHTML = `
     <div class="results-hdr">
@@ -765,6 +767,7 @@ function render(query, rows) {
 
     <div class="filter-bar">
       <label>Filter by:</label>
+      ${createDropdown('cve',       'CVE',            cves)}
       ${createDropdown('ocp',       'OCP Version',    ocpVersions)}
       ${createDropdown('component', 'Component',      components)}
       ${createDropdown('channel',   'Channel',        channels)}
@@ -800,6 +803,7 @@ function render(query, rows) {
 
 function applyFilters() {
   let filtered = allResults.filter(r => {
+    if (filterState.cve.size       && !filterState.cve.has((r.cve || '').trim()))         return false;
     if (filterState.ocp.size       && !filterState.ocp.has(r._ocpVer))                   return false;
     if (filterState.component.size && !filterState.component.has(r._component))          return false;
     if (filterState.channel.size   && !filterState.channel.has(r._channel))              return false;
@@ -827,6 +831,7 @@ function applyFilters() {
     </td>
     <td><code>${esc(r.component || '—')}</code></td>
     <td><code>${esc(r.version || '—')}</code></td>
+    <td><code>${esc((r.cve || '').trim() || '—')}</code></td>
     <td>${severityCompare(r)}</td>
     <td style="white-space:nowrap">${statusBadge(r.audit_result)}</td>
     <td class="notes">${esc(r.justification || '—')}</td>
@@ -838,7 +843,7 @@ function applyFilters() {
     ? `<div class="empty"><h3>No matches</h3><p>Adjust or clear the filters above.</p></div>`
     : `<table><thead><tr>
         <th>Component · Version</th><th>Image</th><th>Package</th>
-        <th>Version</th><th>Severity (VEX → RHACS)</th><th>State</th><th>Justification</th>
+        <th>Version</th><th>CVE</th><th>Severity (VEX → RHACS)</th><th>State</th><th>Justification</th>
       </tr></thead><tbody>${trs}</tbody></table>`;
 
   updateDropdownCounts();
