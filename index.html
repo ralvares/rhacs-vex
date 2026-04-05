@@ -190,8 +190,38 @@
     td.op   { max-width: 200px; }
     td.op strong { display: block; font-size: .8rem; }
     td.op span   { font-size: .72rem; color: var(--muted); }
-    td.notes { max-width: 280px; font-size: .78rem; color: var(--muted); }
     code { font-family: 'Consolas','Monaco',monospace; }
+
+    /* ── Expand button ── */
+    .expand-cell { width: 36px; padding: .65rem .5rem .65rem .75rem; }
+    .expand-btn {
+      background: none; border: 1px solid var(--border); border-radius: 4px;
+      color: var(--muted); cursor: pointer; width: 22px; height: 22px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1rem; padding: 0; line-height: 1; flex-shrink: 0;
+      transition: color .15s, border-color .15s, transform .2s;
+    }
+    .expand-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .expand-btn.expanded { color: var(--accent); border-color: var(--accent); transform: rotate(90deg); }
+
+    /* ── Detail row ── */
+    .detail-row > td {
+      background: rgba(88,166,255,.04); padding: .65rem 1rem .65rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .detail-item {
+      display: flex; gap: .75rem; align-items: baseline;
+      margin-bottom: .35rem;
+    }
+    .detail-item:last-child { margin-bottom: 0; }
+    .detail-label {
+      font-size: .68rem; text-transform: uppercase; letter-spacing: .05em;
+      color: var(--muted); flex-shrink: 0; min-width: 90px; font-weight: 600;
+    }
+    .detail-value { min-width: 0; }
+    .detail-image { font-size: .72rem; font-family: 'Consolas','Monaco',monospace; white-space: nowrap; display: block; }
+    .detail-sha { color: var(--muted); font-size: .68rem; display: block; white-space: nowrap; margin-top: .1rem; }
+    .detail-just { font-size: .78rem; color: var(--text); line-height: 1.5; }
 
     /* ── Empty / loading ── */
     .empty { text-align: center; padding: 4rem 2rem; color: var(--muted); }
@@ -821,20 +851,33 @@ function applyFilters() {
   const countEl = document.getElementById('filter-count');
   if (countEl) countEl.textContent = activeFilters ? `${filtered.length} of ${allResults.length} shown` : '';
 
-  const trs = filtered.map(r => `<tr>
+  const trs = filtered.map((r, i) => `<tr class="main-row" data-idx="${i}">
+    <td class="expand-cell"><button class="expand-btn" aria-expanded="false" aria-label="Toggle details">›</button></td>
     <td class="op">
       <strong>${esc(r._component)}</strong>
       <span>${[r._ocpVer, r._channel, r._opVersion].filter(Boolean).join(' · ')}</span>
-    </td>
-    <td class="img">
-      ${esc(r._imgBase)}${r._sha ? `<span class="sha">${esc(r._sha)}</span>` : ''}
     </td>
     <td><code>${esc(r.component || '—')}</code></td>
     <td><code>${esc(r.version || '—')}</code></td>
     <td><code>${esc((r.cve || '').trim() || '—')}</code></td>
     <td>${severityCompare(r)}</td>
     <td style="white-space:nowrap">${statusBadge(r.audit_result)}</td>
-    <td class="notes">${esc(r.justification || '—')}</td>
+  </tr>
+  <tr class="detail-row" id="detail-${i}" hidden>
+    <td></td>
+    <td colspan="6">
+      <div class="detail-item">
+        <span class="detail-label">Image</span>
+        <div class="detail-value">
+          <code class="detail-image">${esc(r._imgBase)}</code>
+          ${r._sha ? `<code class="detail-sha">${esc(r._sha)}</code>` : ''}
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Justification</span>
+        <div class="detail-value"><span class="detail-just">${esc(r.justification || '—')}</span></div>
+      </div>
+    </td>
   </tr>`).join('');
 
   const wrap = document.getElementById('table-wrap');
@@ -842,9 +885,20 @@ function applyFilters() {
   wrap.innerHTML = filtered.length === 0
     ? `<div class="empty"><h3>No matches</h3><p>Adjust or clear the filters above.</p></div>`
     : `<table><thead><tr>
-        <th>Component · Version</th><th>Image</th><th>Package</th>
-        <th>Version</th><th>CVE</th><th>Severity (VEX → RHACS)</th><th>State</th><th>Justification</th>
+        <th style="width:36px"></th><th>Component · Version</th><th>Package</th>
+        <th>Version</th><th>CVE</th><th>Severity (VEX → RHACS)</th><th>State</th>
       </tr></thead><tbody>${trs}</tbody></table>`;
+
+  wrap.onclick = e => {
+    const btn = e.target.closest('.expand-btn');
+    if (!btn) return;
+    const idx      = btn.closest('tr.main-row').dataset.idx;
+    const detail   = document.getElementById('detail-' + idx);
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    btn.classList.toggle('expanded', !expanded);
+    if (expanded) detail.setAttribute('hidden', ''); else detail.removeAttribute('hidden');
+  };
 
   updateDropdownCounts();
 }
