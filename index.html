@@ -259,6 +259,14 @@
     .mismatch-pill.active { background: rgba(227,179,65,.15); border-color: var(--orange); color: var(--orange); }
     .mp-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
 
+    .btn-export {
+      padding: .3rem .65rem; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--surface2); color: var(--green); font-size: .75rem; font-weight: 600;
+      cursor: pointer; white-space: nowrap; transition: border-color .15s, color .15s;
+    }
+    .btn-export:hover:not(:disabled) { border-color: var(--green); }
+    .btn-export:disabled { opacity: .4; cursor: not-allowed; }
+
     @media(max-width:680px){ main { padding: 1rem; } }
   </style>
 </head>
@@ -314,6 +322,8 @@ const $results   = document.getElementById('results');
 
 // ── State ─────────────────────────────────────────────────────────────────────
 let db, conn, ready = false;
+let currentFiltered = [];
+let currentQuery    = '';
 
 // ── Status helpers ────────────────────────────────────────────────────────────
 const setStatus = (msg, state = '') => {
@@ -727,6 +737,8 @@ function render(query, rows) {
   resetFilters();
   allResults = [];
 
+  currentQuery = query;
+
   if (rows.length === 0) {
     $results.innerHTML = `<div class="empty">
       <h3>No results found</h3>
@@ -809,6 +821,7 @@ function render(query, rows) {
       <button class="mismatch-pill" id="mismatch-btn" title="Show only rows where VEX severity differs from RHACS scan severity"><span class="mp-dot"></span> Mismatches only</button>
       <button class="filter-clear" id="f-clear">Clear all</button>
       <span class="filter-count" id="filter-count"></span>
+      <button class="btn-export" id="export-csv-btn" title="Export filtered results as CSV">⬇ Export CSV</button>
     </div>
 
     <div class="table-wrap" id="table-wrap"></div>`;
@@ -826,6 +839,8 @@ function render(query, rows) {
     document.getElementById('mismatch-btn').classList.toggle('active', filterState.mismatch);
     applyFilters();
   });
+
+  document.getElementById('export-csv-btn')?.addEventListener('click', exportCSV);
 
   wireDropdowns();
   applyFilters();
@@ -845,6 +860,10 @@ function applyFilters() {
     return true;
   });
   if (filterState.mismatch) filtered = filtered.filter(r => r._isMismatch);
+
+  currentFiltered = filtered;
+  const exportBtn = document.getElementById('export-csv-btn');
+  if (exportBtn) exportBtn.disabled = filtered.length === 0;
 
   const activeFilters = Object.entries(filterState)
     .reduce((n, [, v]) => n + (v instanceof Set ? v.size : (v ? 1 : 0)), 0);
@@ -901,6 +920,66 @@ function applyFilters() {
   };
 
   updateDropdownCounts();
+}
+
+// ── CSV Export ───────────────────────────────────────────────────────────────
+function exportCSV() {
+  if (!currentFiltered.length) return;
+
+  const cols = [
+    ['Component',        r => r._component],
+    ['OCP Version',      r => r._ocpVer],
+    ['Channel',          r => r._channel],
+    ['Operator Version', r => r._opVersion],
+    ['Package',          r => r.component],
+    ['Version',                          r => r.version],
+    ['CVE',                              r => (r.cve || '').trim()],
+    ['VEX Severity',                     r => r.severity],
+    ['RHACS Severity',                   r => r._rhacsNorm],
+    ['State',                            r => statusKey(r.audit_result)],
+    ['Image',                            r => r._imgBase + (r._sha || '')],
+    ['Justification',                    r => r.justification],
+  ];
+
+  const csvCell = v => {
+    const s = String(v ?? '');
+    return (s.includes(',') || s.includes('"') || s.includes('\n'))
+      ? '"' + s.replace(/"/g, '""') + '"'
+      : s;
+  };
+
+  const header = cols.map(([h]) => csvCell(h)).join(',');
+  const body   = currentFiltered.map(r => cols.map(([, fn]) => csvCell(fn(r))).join(',')).join('\n');
+
+  // Build a meaningful filename
+  const ts     = new Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-');
+  const qPart  = currentQuery.replace(/[^a-zA-Z0-9._-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
+
+  const filterParts = [];
+  const filterLabels = { ocp: null, component: null, channel: null, severity: 'vex',
+                         rhacssev: 'rhacs', state: null, version: 'ver', cve: 'cve', image: null };
+  for (const [k, shortLabel] of Object.entries(filterLabels)) {
+    const s = filterState[k];
+    if (!s || !s.size) continue;
+    if (s.size === 1) {
+      filterParts.push(s.values().next().value.replace(/[^a-zA-Z0-9._-]/g, '-').replace(/-+/g, '-').slice(0, 30));
+    } else {
+      filterParts.push((shortLabel || k) + 'x' + s.size);
+    }
+  }
+  if (filterState.mismatch) filterParts.push('mismatches-only');
+
+  const filterSuffix = filterParts.length ? '_' + filterParts.join('_') : '';
+  const filename = `${qPart}${filterSuffix}_${ts}.csv`;
+
+  const blob = new Blob(['\uFEFF' + header + '\n' + body], { type: 'text/csv;charset=utf-8;' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
