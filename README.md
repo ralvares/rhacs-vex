@@ -1,5 +1,12 @@
 # RHACS Triage - Done Right
 
+> [!IMPORTANT]
+> **NOT A RED HAT PRODUCT — USE AT YOUR OWN RISK**
+>
+> This project is an independent, community-developed tool and is **not** affiliated with, endorsed by, or supported by Red Hat, Inc. in any way. There are no warranties, express or implied. You use this tool entirely at your own risk.
+>
+> This tool was designed exclusively to triage vulnerabilities in **Red Hat products** (OCP, RHACM, UBI-based images, Red Hat Operators, etc.) by cross-referencing Red Hat VEX/CSAF advisories. It is **not** intended for use with third-party, upstream, or non-Red Hat container images and packages. Results for non-Red Hat content will be inaccurate or meaningless.
+
 **Your scanner found 300 CVEs. How many actually matter?**
 
 Most VEX triage tools do one thing: look up a CVE ID in an advisory file and echo back "not affected". That's not triage - that's a string match with extra steps.
