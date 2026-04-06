@@ -30,6 +30,11 @@ No image pull. No container runtime. Works fully offline once the VEX and SBOM c
 
 ---
 
+## Prerequisites
+
+- **Python 3.10 or later** (the scripts use `X | Y` union type syntax introduced in 3.10)
+- `pip` / `pip3` for installing dependencies
+
 ## Setup
 
 ```bash
