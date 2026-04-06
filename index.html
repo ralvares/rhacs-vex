@@ -988,5 +988,24 @@ initDB().catch(e => {
   console.error(e);
 });
 </script>
+
+<footer style="
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 1rem 2rem;
+  margin-top: 3rem;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--muted);
+  line-height: 1.6;
+">
+  <strong style="color: var(--orange);">⚠ NOT A RED HAT PRODUCT — USE AT YOUR OWN RISK</strong><br>
+  This is an independent, community-developed tool and is <strong>not</strong> affiliated with, endorsed by, or supported by Red Hat, Inc. in any way.
+  No warranties are provided, express or implied.<br>
+  This tool was designed exclusively to triage vulnerabilities in <strong>Red Hat products</strong> (OCP, RHACM, UBI-based images, Red Hat Operators, etc.)
+  using Red Hat VEX/CSAF advisories. It is <strong>not</strong> intended for use with third-party, upstream, or non-Red Hat container images and packages —
+  results for non-Red Hat content will be inaccurate or meaningless.
+</footer>
+
 </body>
 </html>
