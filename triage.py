@@ -1257,7 +1257,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                 if other_products:
                     ctx_str = ", ".join(sorted(other_products))
                     note = (f"Confirmed affected in {ctx.display_name}. "
-                            f"Fix exists only in: {ctx_str} — not applicable to this workload.")
+                            f"Fix exists only in: {ctx_str} — fix not applicable to this workload.")
                 else:
                     note = f"Confirmed affected in {ctx.display_name}; no fix available yet."
                 return pd.Series(["❌ POSITIVE", "N/A", note, _severity])
