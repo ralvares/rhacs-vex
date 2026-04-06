@@ -129,6 +129,31 @@ def minor(version: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Stage 0 — podman login
+# ---------------------------------------------------------------------------
+
+REGISTRIES_TO_LOGIN = [
+    "registry.redhat.io",
+    "quay.io",
+    "registry.connect.redhat.com",
+]
+
+def stage_podman_login(pull_secret: str, podman_bin: str):
+    """Log in to Red Hat registries using the pull-secret as the auth file."""
+    log("=== STAGE 0: podman login to Red Hat registries ===")
+    failed = []
+    for registry in REGISTRIES_TO_LOGIN:
+        rc = run([podman_bin, "login", "--authfile", os.path.abspath(pull_secret), registry])
+        if rc != 0:
+            log(f"  WARNING: podman login failed for {registry}")
+            failed.append(registry)
+    if failed:
+        log(f"  WARNING: could not log in to: {', '.join(failed)} — subsequent stages may fail")
+    else:
+        log("  All registry logins succeeded.")
+
+
+# ---------------------------------------------------------------------------
 # Stage 1 — operator index catalogs
 # ---------------------------------------------------------------------------
 
@@ -357,6 +382,10 @@ def parse_args() -> argparse.Namespace:
         help="CPU architecture used when resolving OCP release images (default: x86_64).",
     )
     parser.add_argument(
+        "--podman", default="podman", metavar="PATH",
+        help="Path to the podman binary (default: podman, assumed on PATH).",
+    )
+    parser.add_argument(
         "--opm", default="opm", metavar="PATH",
         help="Path to the opm binary (default: opm, assumed on PATH).",
     )
@@ -380,6 +409,8 @@ def parse_args() -> argparse.Namespace:
 
     # Stage skip flags
     skip = parser.add_argument_group("skip stages")
+    skip.add_argument("--skip-login",     action="store_true", default=False,
+                      help="Skip Stage 0: do not run podman login before pulling images.")
     skip.add_argument("--skip-catalogs",  action="store_true", default=False,
                       help="Skip Stage 1: do not (re-)download operator index catalogs.")
     skip.add_argument("--skip-ns-map",    action="store_true", default=False,
@@ -420,6 +451,12 @@ def main():
 
     log(f"Full versions  : {len(versions)}")
     log(f"Minor versions : {minor_versions_ordered}")
+
+    # ── Stage 0: podman login ───────────────────────────────────────────────
+    if not args.skip_login:
+        stage_podman_login(pull_secret, args.podman)
+    else:
+        log("=== STAGE 0: SKIPPED (--skip-login) ===")
 
     # ── Stage 1: operator catalogs ──────────────────────────────────────────
     if not args.skip_catalogs:

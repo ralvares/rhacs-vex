@@ -32,8 +32,25 @@ No image pull. No container runtime. Works fully offline once the VEX and SBOM c
 
 ## Prerequisites
 
+### Python
+
 - **Python 3.10 or later** (the scripts use `X | Y` union type syntax introduced in 3.10)
 - `pip` / `pip3` for installing dependencies
+
+### External tools (required by `setup_and_scan.py`)
+
+| Tool | Purpose | Install |
+|------|---------|---------|
+| **podman** | Log in to Red Hat registries and pull container images | [podman.io](https://podman.io/getting-started/installation) or `dnf install podman` |
+| **oc** | Resolve OCP release pullspecs via `oc adm release info` | [mirror.openshift.com](https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/) |
+| **opm** | Render OLM operator index catalogs | [mirror.openshift.com](https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/) |
+
+All three binaries are assumed to be on your `PATH`. Use `--podman`, `--oc`, and `--opm` flags to specify custom paths if needed.
+
+### Red Hat pull secret
+
+A valid Red Hat pull secret is required to pull images from `registry.redhat.io` and `quay.io`.  
+Download yours from [console.redhat.com/openshift/install/pull-secret](https://console.redhat.com/openshift/install/pull-secret) and pass it via `--pull-secret ~/pull-secret.json`.
 
 ## Setup
 
