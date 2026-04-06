@@ -35,6 +35,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 
 # ---------------------------------------------------------------------------
 # Embedded default version list (override with --versions)
@@ -162,19 +163,35 @@ def stage_catalogs(minor_versions: list[str], pull_secret: str,
     log("=== STAGE 1: Render operator index catalogs ===")
     os.makedirs(CATALOG_DIR, exist_ok=True)
 
-    env = {"REGISTRY_AUTH_FILE": os.path.abspath(pull_secret)}
+    abs_pull_secret = os.path.abspath(pull_secret)
 
-    for mv in minor_versions:
-        dest = os.path.join(CATALOG_DIR, f"catalog-{mv}.json")
-        if skip_existing and os.path.exists(dest):
-            log(f"  SKIP  catalog-{mv}.json (already exists)")
-            continue
+    # Some versions of opm / containers-image don't honour REGISTRY_AUTH_FILE.
+    # Also export DOCKER_CONFIG pointing to a temp dir with the pull-secret
+    # copied as config.json so every fallback path finds valid credentials.
+    tmpdir = tempfile.mkdtemp(prefix="opm_auth_")
+    try:
+        shutil.copy2(abs_pull_secret, os.path.join(tmpdir, "config.json"))
+        env = {
+            "REGISTRY_AUTH_FILE": abs_pull_secret,
+            "DOCKER_CONFIG": tmpdir,
+        }
 
-        image = f"registry.redhat.io/redhat/redhat-operator-index:v{mv}"
-        rc = run([opm_bin, "render", image, "-o", "json"], env=env,
-                 output_file=dest)
-        if rc != 0:
-            log(f"  WARNING: opm render failed for {mv} — catalog may be incomplete")
+        for mv in minor_versions:
+            dest = os.path.join(CATALOG_DIR, f"catalog-{mv}.json")
+            if skip_existing and os.path.exists(dest):
+                log(f"  SKIP  catalog-{mv}.json (already exists)")
+                continue
+
+            image = f"registry.redhat.io/redhat/redhat-operator-index:v{mv}"
+            rc = run([opm_bin, "render", image, "-o", "json"], env=env,
+                     output_file=dest)
+            if rc != 0:
+                log(f"  WARNING: opm render failed for {mv} — removing empty output")
+                # Remove the empty file so stage 2 doesn't process a blank catalog.
+                if os.path.exists(dest) and os.path.getsize(dest) == 0:
+                    os.remove(dest)
+    finally:
+        shutil.rmtree(tmpdir, ignore_errors=True)
 
 
 # ---------------------------------------------------------------------------
