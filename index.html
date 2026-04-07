@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RHACS False Positive Triage Explorer</title>
+  <style>
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #1c2128;
+      --border:    #30363d;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --accent:    #58a6ff;
+      --green:     #3fb950;
+      --yellow:    #d29922;
+      --red:       #f85149;
+      --orange:    #e3b341;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); min-height: 100vh;
+           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: .9rem 2rem; display: flex; align-items: center; gap: 1rem;
+    }
+    header .logo { font-size: 1.6rem; }
+    header h1 { font-size: 1.15rem; font-weight: 700; }
+    header p  { font-size: .78rem; color: var(--muted); margin-top: .1rem; }
+    .db-status {
+      margin-left: auto; display: flex; align-items: center;
+      gap: .5rem; font-size: .78rem; color: var(--muted);
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+    .dot.ready { background: var(--green); }
+    .dot.error { background: var(--red); }
+
+    /* ── Main ── */
+    main { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+
+    /* ── Search box ── */
+    .search-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.5rem; margin-bottom: 1.75rem;
+    }
+    .search-row { display: flex; gap: .75rem; align-items: center; flex-wrap: wrap; }
+    .cve-input {
+      flex: 1; min-width: 220px;
+      background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+      padding: .75rem 1rem; font-size: 1rem; color: var(--text);
+      font-family: 'Consolas', 'Monaco', monospace; transition: border-color .15s;
+    }
+    .cve-input:focus { outline: none; border-color: var(--accent); }
+    .cve-input::placeholder { color: var(--muted); }
+    .btn {
+      padding: .75rem 1.4rem; border-radius: 6px; border: none;
+      cursor: pointer; font-size: .88rem; font-weight: 600;
+      transition: opacity .15s; white-space: nowrap;
+    }
+    .btn:disabled { opacity: .45; cursor: not-allowed; }
+    .btn-primary  { background: var(--accent); color: #000; }
+    .btn-secondary{ background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .search-hint { margin-top: .7rem; font-size: .78rem; color: var(--muted); }
+    .search-hint code { background: var(--surface2); padding: .1rem .35rem; border-radius: 4px; }
+    .err { color: var(--red); font-size: .82rem; margin-top: .45rem; min-height: 1.1rem; }
+    #file-input { display: none; }
+
+    /* ── Filter bar ── */
+    .filter-bar {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: .75rem 1rem;
+      display: flex; align-items: center; flex-wrap: wrap; gap: .5rem;
+      margin-bottom: 1rem;
+    }
+    .filter-bar > label { font-size: .72rem; color: var(--muted); font-weight: 600;
+      text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+    .filter-clear {
+      margin-left: auto; font-size: .78rem; color: var(--accent);
+      cursor: pointer; background: none; border: none; padding: .35rem .5rem;
+      text-decoration: underline; white-space: nowrap;
+    }
+    .filter-count { font-size: .78rem; color: var(--muted); white-space: nowrap; }
+
+    /* ── Multi-select dropdown ── */
+    .ms-wrap { position: relative; }
+    .ms-btn {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+      color: var(--text); font-size: .8rem; padding: .35rem .7rem;
+      cursor: pointer; display: flex; align-items: center; gap: .4rem;
+      white-space: nowrap; user-select: none; min-width: 130px;
+    }
+    .ms-btn:hover  { border-color: var(--accent); }
+    .ms-btn.active { border-color: var(--accent); }
+    .ms-btn .ms-caret { margin-left: auto; color: var(--muted); font-size: .65rem; }
+    .ms-badge {
+      background: var(--accent); color: #000; border-radius: 10px;
+      font-size: .65rem; font-weight: 700; padding: .05rem .4rem; line-height: 1.4;
+    }
+    .ms-panel {
+      display: none; position: absolute; top: calc(100% + 4px); left: 0;
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+      padding: .4rem 0; z-index: 100; min-width: 200px; max-width: 320px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.4);
+    }
+    .ms-panel.open { display: block; }
+    .ms-search {
+      margin: .3rem .5rem .4rem; display: block; width: calc(100% - 1rem);
+      background: var(--bg); border: 1px solid var(--border); border-radius: 5px;
+      color: var(--text); font-size: .78rem; padding: .3rem .55rem;
+    }
+    .ms-search:focus { outline: none; border-color: var(--accent); }
+    .ms-list { max-height: 240px; overflow-y: auto; }
+    .ms-item {
+      display: flex; align-items: center; gap: .5rem;
+      padding: .35rem .75rem; cursor: pointer; font-size: .8rem;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      text-transform: none; letter-spacing: 0; color: var(--text);
+    }
+    .ms-item:hover { background: rgba(88,166,255,.08); }
+    .ms-item.zero   { opacity: .35; }
+    .ms-item input[type=checkbox] { flex-shrink: 0; accent-color: var(--accent); }
+    .opt-count { color: var(--muted); font-size: .72rem; margin-left: auto; padding-left: .5rem; }
+    .ms-empty { padding: .6rem .75rem; color: var(--muted); font-size: .78rem; }
+    .ms-actions {
+      display: flex; gap: .5rem; padding: .4rem .75rem;
+      border-top: 1px solid var(--border); margin-top: .2rem;
+    }
+    .ms-action-btn {
+      font-size: .72rem; color: var(--accent); background: none;
+      border: none; cursor: pointer; padding: 0; text-decoration: underline;
+    }
+
+    /* ── Cards ── */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 1rem; margin-bottom: 1.25rem; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.1rem 1.25rem;
+    }
+    .card-label { font-size: .72rem; color: var(--muted); text-transform: uppercase;
+                  letter-spacing: .05em; margin-bottom: .45rem; }
+    .card-value { font-size: 2.1rem; font-weight: 700; line-height: 1; }
+    .card-value.blue   { color: var(--accent); }
+    .card-value.green  { color: var(--green); }
+    .card-value.red    { color: var(--red); }
+    .status-breakdown { margin-top: .6rem; }
+    .sitem { display: flex; justify-content: space-between; align-items: center;
+             margin-top: .35rem; font-size: .8rem; }
+
+    /* ── Badges ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: .25rem;
+      padding: .2rem .55rem; border-radius: 20px; font-size: .72rem; font-weight: 600;
+    }
+    .bg-green  { background: rgba(63,185,80,.18);  color: var(--green); }
+    .bg-red    { background: rgba(248,81,73,.18);   color: var(--red); }
+    .bg-yellow { background: rgba(210,153,34,.18);  color: var(--yellow); }
+    .bg-orange { background: rgba(227,179,65,.18);  color: var(--orange); }
+    .bg-gray   { background: rgba(139,148,158,.18); color: var(--muted); }
+
+    /* ── Results header ── */
+    .results-hdr {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;
+    }
+    .results-hdr h2 { font-size: 1rem; font-weight: 600; }
+    .results-hdr h2 code { background: var(--surface2); padding: .1rem .4rem; border-radius: 4px; font-size: .9rem; }
+    .results-hdr span { font-size: .82rem; color: var(--muted); }
+
+    /* ── Table ── */
+    .table-wrap {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; overflow: auto; max-height: 70vh;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    thead th {
+      background: var(--surface2); padding: .65rem 1rem; text-align: left;
+      font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted);
+      white-space: nowrap; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 1;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface2); }
+    td { padding: .65rem 1rem; vertical-align: top; }
+    td.src  { font-size: .72rem; color: var(--muted); max-width: 200px; word-break: break-all; }
+    td.img  { font-size: .72rem; font-family: monospace; min-width: 280px; max-width: 420px; word-break: break-all; }
+    td.img .sha { color: var(--muted); font-size: .68rem; display: block; margin-top: .15rem; word-break: break-all; }
+    td.op   { max-width: 200px; }
+    td.op strong { display: block; font-size: .8rem; }
+    td.op span   { font-size: .72rem; color: var(--muted); }
+    code { font-family: 'Consolas','Monaco',monospace; }
+
+    /* ── Expand button ── */
+    .expand-cell { width: 36px; padding: .65rem .5rem .65rem .75rem; }
+    .expand-btn {
+      background: none; border: 1px solid var(--border); border-radius: 4px;
+      color: var(--muted); cursor: pointer; width: 22px; height: 22px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1rem; padding: 0; line-height: 1; flex-shrink: 0;
+      transition: color .15s, border-color .15s, transform .2s;
+    }
+    .expand-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .expand-btn.expanded { color: var(--accent); border-color: var(--accent); transform: rotate(90deg); }
+
+    /* ── Detail row ── */
+    .detail-row > td {
+      background: rgba(88,166,255,.04); padding: .65rem 1rem .65rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .detail-item {
+      display: flex; gap: .75rem; align-items: baseline;
+      margin-bottom: .35rem;
+    }
+    .detail-item:last-child { margin-bottom: 0; }
+    .detail-label {
+      font-size: .68rem; text-transform: uppercase; letter-spacing: .05em;
+      color: var(--muted); flex-shrink: 0; min-width: 90px; font-weight: 600;
+    }
+    .detail-value { min-width: 0; }
+    .detail-image { font-size: .72rem; font-family: 'Consolas','Monaco',monospace; white-space: nowrap; display: block; }
+    .detail-sha { color: var(--muted); font-size: .68rem; display: block; white-space: nowrap; margin-top: .1rem; }
+    .detail-just { font-size: .78rem; color: var(--text); line-height: 1.5; }
+
+    /* ── Empty / loading ── */
+    .empty { text-align: center; padding: 4rem 2rem; color: var(--muted); }
+    .empty .ico { font-size: 2.8rem; margin-bottom: .9rem; }
+    .empty h3 { font-size: 1.05rem; color: var(--text); margin-bottom: .4rem; }
+    .spinner {
+      display: inline-block; width: 18px; height: 18px;
+      border: 2px solid var(--border); border-top-color: var(--accent);
+      border-radius: 50%; animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Notice banner ── */
+    .notice {
+      background: rgba(88,166,255,.08); border: 1px solid rgba(88,166,255,.3);
+      border-radius: 6px; padding: .65rem 1rem; font-size: .8rem;
+      color: var(--accent); margin-top: .75rem;
+    }
+
+    /* ── Severity comparison ── */
+    .sev-cmp { display: inline-flex; align-items: center; gap: .3rem; flex-wrap: wrap; }
+    .sev-arrow { color: var(--muted); font-size: .7rem; line-height: 1; }
+    .sev-mismatch-icon { color: var(--orange); font-size: .78rem; cursor: default; }
+
+    /* ── Mismatch-only toggle pill ── */
+    .mismatch-pill {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .35rem .85rem; border-radius: 20px; font-size: .8rem; font-weight: 600;
+      cursor: pointer; border: 1px solid var(--border);
+      background: var(--bg); color: var(--muted);
+      transition: border-color .15s, color .15s, background .15s;
+      white-space: nowrap; user-select: none;
+    }
+    .mismatch-pill:hover  { border-color: var(--orange); color: var(--orange); }
+    .mismatch-pill.active { background: rgba(227,179,65,.15); border-color: var(--orange); color: var(--orange); }
+    .mp-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+
+    .btn-export {
+      padding: .3rem .65rem; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--surface2); color: var(--green); font-size: .75rem; font-weight: 600;
+      cursor: pointer; white-space: nowrap; transition: border-color .15s, color .15s;
+    }
+    .btn-export:hover:not(:disabled) { border-color: var(--green); }
+    .btn-export:disabled { opacity: .4; cursor: not-allowed; }
+
+    @media(max-width:680px){ main { padding: 1rem; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>RHACS False Positive Triage Explorer</h1>
+    <p>Identify and triage false positives from Red Hat Advanced Cluster Security</p>
+  </div>
+  <div class="db-status">
+    <div class="dot" id="dot"></div>
+    <span id="status-text">Initializing…</span>
+  </div>
+</header>
+
+<main>
+  <div class="search-card">
+    <div class="search-row">
+      <input id="cve-input" class="cve-input" type="text"
+             placeholder="CVE-2025-47151  ·  openshift-gitops  ·  lasso" autocomplete="off" spellcheck="false">
+      <button id="search-btn" class="btn btn-primary" disabled>Search</button>
+      <button id="load-btn"   class="btn btn-secondary">Load Parquet</button>
+    </div>
+    <div class="search-hint">
+      Search by <code>CVE ID</code>, <code>operator / component name</code>, or <code>package name</code>
+      — e.g. <code>CVE-2025-47151</code>, <code>47151</code>, <code>openshift-gitops</code>, <code>lasso</code>
+    </div>
+    <div class="err" id="err"></div>
+    <input type="file" id="file-input" accept=".parquet">
+  </div>
+
+  <div id="results">
+    <div class="empty">
+      <h3>Search for a CVE</h3>
+      <p>Enter a CVE ID above to see triage results across all OCP operator reports.</p>
+    </div>
+  </div>
+</main>
+
+<script type="module">
+import * as duckdb from 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/+esm';
+
+// ── DOM refs ──────────────────────────────────────────────────────────────────
+const $dot       = document.getElementById('dot');
+const $status    = document.getElementById('status-text');
+const $searchBtn = document.getElementById('search-btn');
+const $loadBtn   = document.getElementById('load-btn');
+const $fileInput = document.getElementById('file-input');
+const $cveInput  = document.getElementById('cve-input');
+const $err       = document.getElementById('err');
+const $results   = document.getElementById('results');
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let db, conn, ready = false;
+let currentFiltered = [];
+let currentQuery    = '';
+
+// ── Status helpers ────────────────────────────────────────────────────────────
+const setStatus = (msg, state = '') => {
+  $status.textContent = msg;
+  $dot.className = 'dot' + (state ? ' ' + state : '');
+};
+const setReady = () => { setStatus('Ready', 'ready'); $searchBtn.disabled = false; ready = true; };
+const setErr   = msg => { $err.textContent = msg; };
+
+// ── DuckDB init ───────────────────────────────────────────────────────────────
+async function initDB() {
+  setStatus('Loading DuckDB…');
+  const bundles = duckdb.getJsDelivrBundles();
+  const bundle  = await duckdb.selectBundle(bundles);
+  const wkUrl   = URL.createObjectURL(
+    new Blob([`importScripts("${bundle.mainWorker}");`], { type: 'text/javascript' })
+  );
+  const worker = new Worker(wkUrl);
+  db = new duckdb.AsyncDuckDB(new duckdb.ConsoleLogger(), worker);
+  await db.instantiate(bundle.mainModule, bundle.pthreadWorker);
+  URL.revokeObjectURL(wkUrl);
+  conn = await db.connect();
+  setStatus('Fetching parquet…');
+  await autoLoad();
+}
+
+async function autoLoad() {
+  try {
+    const res = await fetch('data/ocp.parquet');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const buf = new Uint8Array(await res.arrayBuffer());
+    await db.registerFileBuffer('ocp.parquet', buf);
+    setReady();
+  } catch (e) {
+    console.error(e);
+    setStatus('No parquet loaded — use 📂 Load Parquet', 'error');
+    $results.innerHTML = `
+      <div class="empty">
+
+        <h3>Could not auto-load parquet</h3>
+        <p>Serve this page with a local HTTP server:</p>
+        <div class="notice" style="display:inline-block;margin-top:.75rem;text-align:left">
+          <code>python3 -m http.server 8080</code>
+        </div>
+        <p style="margin-top:1rem">Or click <strong>📂 Load Parquet</strong> to pick the file manually.</p>
+      </div>`;
+  }
+}
+
+// ── File picker ───────────────────────────────────────────────────────────────
+$loadBtn.addEventListener('click', () => $fileInput.click());
+$fileInput.addEventListener('change', async () => {
+  const f = $fileInput.files[0];
+  if (!f) return;
+  setStatus(`Loading ${f.name}…`); $searchBtn.disabled = true; ready = false;
+  await db.registerFileBuffer('ocp.parquet', new Uint8Array(await f.arrayBuffer()));
+  setReady();
+});
+
+// ── Search ────────────────────────────────────────────────────────────────────
+async function search() {
+  setErr('');
+  const raw = $cveInput.value.trim();
+  if (!raw)   { setErr('Please enter a CVE ID.'); return; }
+  if (!ready) { setErr('Parquet not loaded yet.'); return; }
+  if (!/^[\w.\-\/: @]+$/.test(raw)) { setErr('Invalid characters in search query.'); return; }
+
+  $searchBtn.disabled = true;
+  $searchBtn.textContent = 'Searching…';
+  $results.innerHTML = `<div class="empty"><div class="spinner"></div>
+    <p style="margin-top:1rem;color:var(--muted)">Querying…</p></div>`;
+
+  try {
+    const safe = raw.replace(/'/g, "''");
+    // Pure CVE pattern (e.g. "47151" or "CVE-2025-47151") → search CVE only; otherwise broaden
+    const looksLikeCVE = /^(cve[-_]?)?\d{4}[-_]?\d{1,7}$/i.test(raw);
+    const whereClause  = looksLikeCVE
+      ? `upper(trim(CVE)) LIKE upper('%${safe}%')`
+      : `upper(trim(CVE))           LIKE upper('%${safe}%')
+          OR upper(trim(COMPONENT))     LIKE upper('%${safe}%')
+          OR upper(trim(OCP_COMPONENT)) LIKE upper('%${safe}%')
+          OR upper(trim(IMAGE))         LIKE upper('%${safe}%')`;
+    const result = await conn.query(`
+      SELECT * FROM 'ocp.parquet'
+      WHERE ${whereClause}
+      ORDER BY OCP_COMPONENT, source_file`);
+    const rows = result.toArray().map(r => {
+      const obj = r.toJSON();
+      return Object.fromEntries(Object.entries(obj).map(([k, v]) => [k.toLowerCase(), v]));
+    });
+    render(raw, rows);
+  } catch (e) {
+    setErr(`Query error: ${e.message}`);
+    $results.innerHTML = '';
+  } finally {
+    $searchBtn.disabled = false;
+    $searchBtn.textContent = 'Search';
+  }
+}
+
+$searchBtn.addEventListener('click', search);
+$cveInput.addEventListener('keydown', e => e.key === 'Enter' && search());
+
+// ── Filter state ────────────────────────────────────────────────────────────
+let allResults = [];
+let dropdownAbort = null;
+const filterState = {
+  ocp: new Set(), component: new Set(), channel: new Set(),
+  severity: new Set(), rhacssev: new Set(), state: new Set(),
+  image: new Set(), version: new Set(), cve: new Set(),
+  mismatch: false,
+};
+
+function resetFilters() {
+  Object.entries(filterState).forEach(([k, v]) => {
+    if (v instanceof Set) v.clear(); else filterState[k] = false;
+  });
+  if (dropdownAbort) { dropdownAbort.abort(); dropdownAbort = null; }
+}
+
+// ── Multi-select dropdown component ──────────────────────────────────────────
+function createDropdown(id, label, items) {
+  const sel = filterState[id];
+  const badgeHtml = sel.size ? `<span class="ms-badge">${sel.size}</span>` : '';
+  const hasActive = sel.size > 0;
+
+  const itemsHtml = items.length === 0
+    ? `<div class="ms-empty">No options</div>`
+    : items.map(v => {
+        const checked = sel.has(v) ? ' checked' : '';
+        const ve = esc(v);
+        return `<label class="ms-item"><input type="checkbox" value="${ve}"${checked}>${ve}<span class="opt-count"></span></label>`;
+      }).join('');
+
+  return `
+  <div class="ms-wrap" id="wrap-${id}">
+    <div class="ms-btn${hasActive ? ' active' : ''}" id="btn-${id}">
+      ${label} ${badgeHtml} <span class="ms-caret">▼</span>
+    </div>
+    <div class="ms-panel" id="panel-${id}">
+      <input class="ms-search" placeholder="Search…" id="search-${id}">
+      <div class="ms-list" id="list-${id}">${itemsHtml}</div>
+      <div class="ms-actions">
+        <button class="ms-action-btn" data-action="all" data-filter="${id}">Select all</button>
+        <button class="ms-action-btn" data-action="none" data-filter="${id}">Clear</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function getRowValue(key, r) {
+  switch (key) {
+    case 'ocp':       return r._ocpVer;
+    case 'component': return r._component;
+    case 'channel':   return r._channel;
+    case 'severity':  return r.severity;
+    case 'rhacssev':  return r._rhacsNorm;
+    case 'state':     return statusKey(r.audit_result);
+    case 'image':     return r._imgBase;
+    case 'version':   return r.version;
+    case 'cve':       return (r.cve || '').trim();
+  }
+  return '';
+}
+
+function updateDropdownCounts() {
+  const keys = Object.keys(filterState);
+  keys.forEach(key => {
+    const list = document.getElementById('list-' + key);
+    if (!list) return;
+
+    // rows that pass every filter EXCEPT this one
+    const base = allResults.filter(r => {
+      for (const k of keys) {
+        if (k === key) continue;
+        if (filterState[k].size && !filterState[k].has(getRowValue(k, r))) return false;
+      }
+      return true;
+    });
+
+    const counts = {};
+    for (const r of base) { const v = getRowValue(key, r); if (v) counts[v] = (counts[v] || 0) + 1; }
+
+    list.querySelectorAll('.ms-item').forEach(item => {
+      const cb  = item.querySelector('input');
+      const val = cb?.value;
+      const n   = counts[val] || 0;
+      const countEl = item.querySelector('.opt-count');
+      if (countEl) countEl.textContent = n ? n : '';
+      // dim items with 0 matches (unless checked — keep checked items visible)
+      item.classList.toggle('zero', n === 0 && !cb?.checked);
+    });
+
+    // sort: checked first, then by count desc, then zero items last
+    const items = [...list.querySelectorAll('.ms-item')];
+    items.sort((a, b) => {
+      const ac = a.querySelector('input')?.checked ? 1 : 0;
+      const bc = b.querySelector('input')?.checked ? 1 : 0;
+      if (ac !== bc) return bc - ac;
+      const an = parseInt(a.querySelector('.opt-count')?.textContent) || 0;
+      const bn = parseInt(b.querySelector('.opt-count')?.textContent) || 0;
+      return bn - an;
+    });
+    items.forEach(i => list.appendChild(i));
+  });
+}
+
+function wireDropdowns() {
+  // Abort signal so we can cleanly remove the document listener on next search
+  dropdownAbort = new AbortController();
+  const sig = { signal: dropdownAbort.signal };
+
+  // Toggle open/close
+  document.querySelectorAll('.ms-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const id    = btn.id.replace('btn-', '');
+      const panel = document.getElementById('panel-' + id);
+      document.querySelectorAll('.ms-panel.open').forEach(p => { if (p !== panel) p.classList.remove('open'); });
+      panel.classList.toggle('open');
+    });
+  });
+
+  // Close on outside click — uses signal so it's removed on next search
+  document.addEventListener('click', () =>
+    document.querySelectorAll('.ms-panel.open').forEach(p => p.classList.remove('open')),
+    sig
+  );
+  document.querySelectorAll('.ms-panel').forEach(p =>
+    p.addEventListener('click', e => e.stopPropagation())
+  );
+
+  // Checkbox change
+  document.querySelectorAll('.ms-item input[type=checkbox]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const id  = cb.closest('.ms-wrap').id.replace('wrap-', '');
+      const sel = filterState[id];
+      cb.checked ? sel.add(cb.value) : sel.delete(cb.value);
+      refreshDropdownBadge(id);
+      applyFilters();
+    });
+  });
+
+  // Search within panel
+  document.querySelectorAll('.ms-search').forEach(inp => {
+    inp.addEventListener('input', () => {
+      const id   = inp.id.replace('search-', '');
+      const q    = inp.value.toLowerCase();
+      document.querySelectorAll(`#list-${id} .ms-item`).forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+  });
+
+  // Select all / Clear
+  document.querySelectorAll('.ms-action-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id  = btn.dataset.filter;
+      const sel = filterState[id];
+      if (btn.dataset.action === 'all') {
+        document.querySelectorAll(`#list-${id} .ms-item input`).forEach(cb => {
+          if (cb.closest('.ms-item').style.display !== 'none') {
+            cb.checked = true; sel.add(cb.value);
+          }
+        });
+      } else {
+        document.querySelectorAll(`#list-${id} .ms-item input`).forEach(cb => { cb.checked = false; });
+        sel.clear();
+      }
+      refreshDropdownBadge(id);
+      applyFilters();
+    });
+  });
+}
+
+function refreshDropdownBadge(id) {
+  const btn = document.getElementById('btn-' + id);
+  if (!btn) return;
+  const sel = filterState[id];
+  const badge = btn.querySelector('.ms-badge');
+  if (badge) badge.remove();
+  if (sel.size) {
+    const b = document.createElement('span');
+    b.className = 'ms-badge'; b.textContent = sel.size;
+    btn.insertBefore(b, btn.querySelector('.ms-caret'));
+    btn.classList.add('active');
+  } else {
+    btn.classList.remove('active');
+  }
+}
+
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function parseOperator(sourceFile) {
+  const parts    = (sourceFile || '').replace(/\\/g, '/').split('/');
+  const basename = (parts[parts.length - 1] || '').replace(/\.csv$/, '');
+  const folder   = parts[parts.length - 2] || '';
+  const ocpVer   = folder.startsWith('ocp-') ? folder.replace('ocp-', 'OCP ') : '';
+
+  // Root-level OCP release: e.g. ocp-4.21.1
+  if (/^ocp-[\d.]+$/.test(basename)) {
+    return { name: basename.replace(/^ocp-/, 'OCP '), channel: '', version: '', ocpVer: '' };
+  }
+
+  // Strip operator version suffix: -vX.Y.Z...
+  const m = basename.match(/^(.+)-v(\d[\d.\w-]*)$/);
+  if (!m) return { name: basename, channel: '', version: '', ocpVer };
+
+  const nameChannel = m[1];
+  const version     = 'v' + m[2];
+
+  // Strategy 1: explicit -operator or -operator-rh boundary (covers most RH operators)
+  const opMatch = nameChannel.match(/^(.+?-operator(?:-rh)?)(-.+)?$/i);
+  if (opMatch) {
+    return { name: opMatch[1], channel: (opMatch[2] || '').replace(/^-/, ''), version, ocpVer };
+  }
+
+  // Strategy 2: general heuristic for e.g. amq-streams, advanced-cluster-management, amq-broker-rhel8
+  // Channel keywords and package-ending words that should NOT be included in the channel prefix
+  const CHAN_KW  = new Set(['stable','alpha','latest','lts','mas','fast','candidate','preview','enterprise','tech-preview']);
+  const PKG_ENDS = new Set(['console','proxy','hub','manager','controller','broker','registry',
+                             'server','agent','addon','webhook','rhel8','rhel9','management','platform']);
+
+  const segs = nameChannel.split('-');
+
+  // Find rightmost contiguous block of digit-starting or keyword segments → that's the channel core
+  let chanStart = segs.length;
+  for (let i = segs.length - 1; i >= 0; i--) {
+    if (/^\d/.test(segs[i]) || CHAN_KW.has(segs[i])) chanStart = i;
+    else break;
+  }
+
+  // Extend one segment left for compound channels like "release-2.14", "gitops-1.10"
+  // but not if we'd absorb a package-ending word
+  if (chanStart > 1 && !PKG_ENDS.has(segs[chanStart - 1])) chanStart--;
+
+  // Detect repeated prefix pattern: amq-streams-amq-streams / amq-streams-console-amq-streams
+  // If any prefix of length ≥ 2 in name-part appears again later, that second occurrence starts the channel
+  const nameParts = segs.slice(0, chanStart);
+  const n = nameParts.length;
+  let repeatAt = -1;
+  outer: for (let len = Math.floor(n / 2); len >= 2; len--) {
+    const prefix = nameParts.slice(0, len).join('-');
+    for (let s = len; s <= n - len; s++) {
+      if (nameParts.slice(s, s + len).join('-') === prefix) {
+        repeatAt = s; break outer;
+      }
+    }
+  }
+
+  if (repeatAt > 0) {
+    return { name: segs.slice(0, repeatAt).join('-'), channel: segs.slice(repeatAt).join('-'), version, ocpVer };
+  }
+
+  return {
+    name:    chanStart > 0 ? segs.slice(0, chanStart).join('-') : nameChannel,
+    channel: segs.slice(chanStart).join('-'),
+    version, ocpVer,
+  };
+}
+
+const esc = s => String(s ?? '')
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function statusBadge(raw) {
+  const v = (raw || '').toUpperCase();
+  if (v.includes('FALSE POSITIVE'))                                 return `<span class="badge bg-green">False Positive</span>`;
+  if (v.includes('POSITIVE'))                                       return `<span class="badge bg-red">Positive</span>`;
+  if (v.includes('AFFECTED') || v.includes('VULNERABLE'))          return `<span class="badge bg-red">Affected</span>`;
+  if (v.includes('UNDER INVEST') || v.includes('IN REVIEW') || v.includes('NEEDS REVIEW'))
+                                                                    return `<span class="badge bg-yellow">In Review</span>`;
+  if (v.includes("WON'T FIX") || v.includes('WONT FIX') || v.includes('NOT PLANNED'))
+                                                                    return `<span class="badge bg-gray">Won't Fix</span>`;
+  if (v.includes('FALSE NEGATIVE'))                                return `<span class="badge bg-red">False Negative</span>`;
+  return `<span class="badge bg-gray">${esc(raw || '—')}</span>`;
+}
+
+function statusKey(raw) {
+  const v = (raw || '').toUpperCase();
+  if (v.includes('FALSE POSITIVE'))                         return 'False Positive';
+  if (v.includes('POSITIVE'))                               return 'Positive';
+  if (v.includes('AFFECTED') || v.includes('VULNERABLE'))  return 'Affected';
+  if (v.includes('UNDER INVEST') || v.includes('IN REVIEW') || v.includes('NEEDS REVIEW')) return 'In Review';
+  if (v.includes('FALSE NEGATIVE'))                               return 'False Negative';
+  return raw || 'Unknown';
+}
+
+function severityBadge(raw) {
+  const v = (raw || '').toUpperCase();
+  if (v === 'CRITICAL')                      return `<span class="badge bg-red">Critical</span>`;
+  if (v === 'IMPORTANT' || v === 'HIGH')     return `<span class="badge bg-orange">Important</span>`;
+  if (v === 'MODERATE'  || v === 'MEDIUM')   return `<span class="badge bg-yellow">Moderate</span>`;
+  if (v === 'LOW')                           return `<span class="badge bg-green">Low</span>`;
+  return raw ? `<span class="badge bg-gray">${esc(raw)}</span>` : '—';
+}
+
+function severityCompare(r) {
+  const vex   = r.severity   || '';
+  const rhacs = r._rhacsNorm || '';
+  if (r._isMismatch && rhacs && rhacs.toLowerCase() !== 'unknown') {
+    return `<div class="sev-cmp">
+      <span title="VEX / Red Hat advisory severity">${severityBadge(vex)}</span>
+      <span class="sev-arrow">→</span>
+      <span title="RHACS scan severity">${severityBadge(rhacs)}</span>
+      <span class="sev-mismatch-icon" title="VEX severity differs from RHACS scan severity">⚠</span>
+    </div>`;
+  }
+  return severityBadge(vex);
+}
+
+// ── Render ────────────────────────────────────────────────────────────────────
+function render(query, rows) {
+  resetFilters();
+  allResults = [];
+
+  currentQuery = query;
+
+  if (rows.length === 0) {
+    $results.innerHTML = `<div class="empty">
+      <h3>No results found</h3>
+      <p>No triage entries matched <strong>${esc(query)}</strong>.</p></div>`;
+    return;
+  }
+
+  const uniqueImages = new Set(rows.map(r => r.image)).size;
+  const uniquePkgs   = new Set(rows.map(r => r.component)).size;
+
+  const statusCounts = {};
+  for (const r of rows) {
+    const k = statusKey(r.audit_result);
+    statusCounts[k] = (statusCounts[k] || 0) + 1;
+  }
+  const breakdown = Object.entries(statusCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([k, v]) => {
+      const cls = k === 'False Positive' ? 'bg-green' : (k === 'Affected' || k === 'Positive' || k === 'False Negative') ? 'bg-red' : k === 'In Review' ? 'bg-yellow' : 'bg-gray';
+      return `<div class="sitem"><span class="badge ${cls}">${esc(k)}</span><strong>${v}</strong></div>`;
+    }).join('');
+
+  // Build enriched rows with derived fields — trim all values to avoid whitespace bugs
+  allResults = rows.map(r => {
+    const op      = parseOperator(r.source_file);
+    const imgFull = (r.image || '').trim();
+    const isMis   = r.severity_mismatch === true || r.severity_mismatch === 1 ||
+                    String(r.severity_mismatch).toLowerCase() === 'true';
+    return {
+      ...r,
+      _component:  (r.ocp_component || op.name || '').trim(),
+      _ocpVer:     (op.ocpVer || (r.source_file.match(/ocp-([\d.]+)\.csv/) ? 'OCP ' + r.source_file.match(/ocp-([\d.]+)\.csv/)[1] : '') || '').trim(),
+      _channel:    (op.channel || '').trim(),
+      _opVersion:  (op.version || '').trim(),
+      _imgBase:    imgFull.replace(/@sha256:[0-9a-f]+$/, ''),
+      _sha:        (imgFull.match(/(@sha256:[0-9a-f]+)$/) || [])[1] || '',
+      version:     (r.version || '').trim(),
+      severity:    (r.severity || '').trim(),
+      _rhacsNorm:  (r.rhacs_severity || '').trim(),
+      _isMismatch: isMis,
+    };
+  });
+
+  const mismatchCount = allResults.filter(r => r._isMismatch).length;
+  const ocpVersions   = [...new Set(allResults.map(r => r._ocpVer).filter(Boolean))].sort();
+  const components    = [...new Set(allResults.map(r => r._component).filter(Boolean))].sort();
+  const channels      = [...new Set(allResults.map(r => r._channel).filter(Boolean))].sort();
+  const severities    = [...new Set(allResults.map(r => r.severity).filter(Boolean))].sort();
+  const rhacsSevers   = [...new Set(allResults.map(r => r._rhacsNorm).filter(Boolean))].sort();
+  const states        = [...new Set(allResults.map(r => statusKey(r.audit_result)).filter(Boolean))].sort();
+  const images        = [...new Set(allResults.map(r => r._imgBase).filter(Boolean))].sort();
+  const versions      = [...new Set(allResults.map(r => r.version).filter(Boolean))].sort();
+  const cves          = [...new Set(allResults.map(r => (r.cve || '').trim()).filter(Boolean))].sort();
+
+  $results.innerHTML = `
+    <div class="results-hdr">
+      <h2>Results for <code>${esc(query)}</code></h2>
+      <span id="result-count">${rows.length} finding${rows.length !== 1 ? 's' : ''}</span>
+    </div>
+
+    <div class="cards">
+      <div class="card"><div class="card-label">Total Findings</div><div class="card-value blue">${rows.length}</div></div>
+      <div class="card"><div class="card-label">Unique Images</div><div class="card-value">${uniqueImages}</div></div>
+      <div class="card"><div class="card-label">Unique Packages</div><div class="card-value">${uniquePkgs}</div></div>
+      <div class="card"><div class="card-label">Severity Mismatches</div><div class="card-value" style="color:var(--orange)">${mismatchCount}</div></div>
+      <div class="card"><div class="card-label">Status Breakdown</div><div class="status-breakdown">${breakdown}</div></div>
+    </div>
+
+    <div class="filter-bar">
+      <label>Filter by:</label>
+      ${createDropdown('cve',       'CVE',            cves)}
+      ${createDropdown('ocp',       'OCP Version',    ocpVersions)}
+      ${createDropdown('component', 'Component',      components)}
+      ${createDropdown('channel',   'Channel',        channels)}
+      ${createDropdown('version',   'Pkg Version',    versions)}
+      ${createDropdown('severity',  'VEX Severity',   severities)}
+      ${createDropdown('rhacssev',  'RHACS Severity', rhacsSevers)}
+      ${createDropdown('state',     'State',          states)}
+      ${createDropdown('image',     'Image',          images)}
+      <button class="mismatch-pill" id="mismatch-btn" title="Show only rows where VEX severity differs from RHACS scan severity"><span class="mp-dot"></span> Mismatches only</button>
+      <button class="filter-clear" id="f-clear">Clear all</button>
+      <span class="filter-count" id="filter-count"></span>
+      <button class="btn-export" id="export-csv-btn" title="Export filtered results as CSV">⬇ Export CSV</button>
+    </div>
+
+    <div class="table-wrap" id="table-wrap"></div>`;
+
+  document.getElementById('f-clear').addEventListener('click', () => {
+    Object.entries(filterState).forEach(([k, v]) => { if (v instanceof Set) v.clear(); else filterState[k] = false; });
+    Object.keys(filterState).forEach(id => refreshDropdownBadge(id));
+    document.querySelectorAll('.ms-item input[type=checkbox]').forEach(cb => cb.checked = false);
+    document.getElementById('mismatch-btn')?.classList.remove('active');
+    applyFilters();
+  });
+
+  document.getElementById('mismatch-btn')?.addEventListener('click', () => {
+    filterState.mismatch = !filterState.mismatch;
+    document.getElementById('mismatch-btn').classList.toggle('active', filterState.mismatch);
+    applyFilters();
+  });
+
+  document.getElementById('export-csv-btn')?.addEventListener('click', exportCSV);
+
+  wireDropdowns();
+  applyFilters();
+}
+
+function applyFilters() {
+  let filtered = allResults.filter(r => {
+    if (filterState.cve.size       && !filterState.cve.has((r.cve || '').trim()))         return false;
+    if (filterState.ocp.size       && !filterState.ocp.has(r._ocpVer))                   return false;
+    if (filterState.component.size && !filterState.component.has(r._component))          return false;
+    if (filterState.channel.size   && !filterState.channel.has(r._channel))              return false;
+    if (filterState.version.size   && !filterState.version.has(r.version))               return false;
+    if (filterState.severity.size  && !filterState.severity.has(r.severity))             return false;
+    if (filterState.rhacssev.size  && !filterState.rhacssev.has(r._rhacsNorm))           return false;
+    if (filterState.state.size     && !filterState.state.has(statusKey(r.audit_result))) return false;
+    if (filterState.image.size     && !filterState.image.has(r._imgBase))                return false;
+    return true;
+  });
+  if (filterState.mismatch) filtered = filtered.filter(r => r._isMismatch);
+
+  currentFiltered = filtered;
+  const exportBtn = document.getElementById('export-csv-btn');
+  if (exportBtn) exportBtn.disabled = filtered.length === 0;
+
+  const activeFilters = Object.entries(filterState)
+    .reduce((n, [, v]) => n + (v instanceof Set ? v.size : (v ? 1 : 0)), 0);
+  const countEl = document.getElementById('filter-count');
+  if (countEl) countEl.textContent = activeFilters ? `${filtered.length} of ${allResults.length} shown` : '';
+
+  const trs = filtered.map((r, i) => `<tr class="main-row" data-idx="${i}">
+    <td class="expand-cell"><button class="expand-btn" aria-expanded="false" aria-label="Toggle details">›</button></td>
+    <td class="op">
+      <strong>${esc(r._component)}</strong>
+      <span>${[r._ocpVer, r._channel, r._opVersion].filter(Boolean).join(' · ')}</span>
+    </td>
+    <td><code>${esc(r.component || '—')}</code></td>
+    <td><code>${esc(r.version || '—')}</code></td>
+    <td><code>${esc((r.cve || '').trim() || '—')}</code></td>
+    <td>${severityCompare(r)}</td>
+    <td style="white-space:nowrap">${statusBadge(r.audit_result)}</td>
+  </tr>
+  <tr class="detail-row" id="detail-${i}" hidden>
+    <td></td>
+    <td colspan="6">
+      <div class="detail-item">
+        <span class="detail-label">Image</span>
+        <div class="detail-value">
+          <code class="detail-image">${esc(r._imgBase)}</code>
+          ${r._sha ? `<code class="detail-sha">${esc(r._sha)}</code>` : ''}
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Justification</span>
+        <div class="detail-value"><span class="detail-just">${esc(r.justification || '—')}</span></div>
+      </div>
+    </td>
+  </tr>`).join('');
+
+  const wrap = document.getElementById('table-wrap');
+  if (!wrap) return;
+  wrap.innerHTML = filtered.length === 0
+    ? `<div class="empty"><h3>No matches</h3><p>Adjust or clear the filters above.</p></div>`
+    : `<table><thead><tr>
+        <th style="width:36px"></th><th>Component · Version</th><th>Package</th>
+        <th>Version</th><th>CVE</th><th>Severity (VEX → RHACS)</th><th>State</th>
+      </tr></thead><tbody>${trs}</tbody></table>`;
+
+  wrap.onclick = e => {
+    const btn = e.target.closest('.expand-btn');
+    if (!btn) return;
+    const idx      = btn.closest('tr.main-row').dataset.idx;
+    const detail   = document.getElementById('detail-' + idx);
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    btn.classList.toggle('expanded', !expanded);
+    if (expanded) detail.setAttribute('hidden', ''); else detail.removeAttribute('hidden');
+  };
+
+  updateDropdownCounts();
+}
+
+// ── CSV Export ───────────────────────────────────────────────────────────────
+function exportCSV() {
+  if (!currentFiltered.length) return;
+
+  const cols = [
+    ['Component',        r => r._component],
+    ['OCP Version',      r => r._ocpVer],
+    ['Channel',          r => r._channel],
+    ['Operator Version', r => r._opVersion],
+    ['Package',          r => r.component],
+    ['Version',                          r => r.version],
+    ['CVE',                              r => (r.cve || '').trim()],
+    ['VEX Severity',                     r => r.severity],
+    ['RHACS Severity',                   r => r._rhacsNorm],
+    ['State',                            r => statusKey(r.audit_result)],
+    ['Image',                            r => r._imgBase + (r._sha || '')],
+    ['Justification',                    r => r.justification],
+  ];
+
+  const csvCell = v => {
+    const s = String(v ?? '');
+    return (s.includes(',') || s.includes('"') || s.includes('\n'))
+      ? '"' + s.replace(/"/g, '""') + '"'
+      : s;
+  };
+
+  const header = cols.map(([h]) => csvCell(h)).join(',');
+  const body   = currentFiltered.map(r => cols.map(([, fn]) => csvCell(fn(r))).join(',')).join('\n');
+
+  // Build a meaningful filename
+  const ts     = new Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-');
+  const qPart  = currentQuery.replace(/[^a-zA-Z0-9._-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
+
+  const filterParts = [];
+  const filterLabels = { ocp: null, component: null, channel: null, severity: 'vex',
+                         rhacssev: 'rhacs', state: null, version: 'ver', cve: 'cve', image: null };
+  for (const [k, shortLabel] of Object.entries(filterLabels)) {
+    const s = filterState[k];
+    if (!s || !s.size) continue;
+    if (s.size === 1) {
+      filterParts.push(s.values().next().value.replace(/[^a-zA-Z0-9._-]/g, '-').replace(/-+/g, '-').slice(0, 30));
+    } else {
+      filterParts.push((shortLabel || k) + 'x' + s.size);
+    }
+  }
+  if (filterState.mismatch) filterParts.push('mismatches-only');
+
+  const filterSuffix = filterParts.length ? '_' + filterParts.join('_') : '';
+  const filename = `${qPart}${filterSuffix}_${ts}.csv`;
+
+  const blob = new Blob(['\uFEFF' + header + '\n' + body], { type: 'text/csv;charset=utf-8;' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+initDB().catch(e => {
+  setStatus('DuckDB failed to load', 'error');
+  console.error(e);
+});
+</script>
+
+<footer style="
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 1rem 2rem;
+  margin-top: 3rem;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--muted);
+  line-height: 1.6;
+">
+  <strong style="color: var(--orange);">⚠ NOT A RED HAT PRODUCT — USE AT YOUR OWN RISK</strong><br>
+  This is an independent, community-developed tool and is <strong>not</strong> affiliated with, endorsed by, or supported by Red Hat, Inc. in any way.
+  No warranties are provided, express or implied.<br>
+  This tool was designed exclusively to triage vulnerabilities in <strong>Red Hat products</strong> (OCP, RHACM, UBI-based images, Red Hat Operators, etc.)
+  using Red Hat VEX/CSAF advisories. It is <strong>not</strong> intended for use with third-party, upstream, or non-Red Hat container images and packages —
+  results for non-Red Hat content will be inaccurate or meaningless.
+</footer>
+
+</body>
+</html>
