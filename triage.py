@@ -11,7 +11,31 @@ import pandas as pd
 from dataclasses import dataclass, field
 from typing import Optional, List
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from version_utils.rpm import compare_versions
+from version_utils.rpm import compare_versions as _raw_compare_versions
+
+
+def compare_versions(a: str, b: str) -> int:
+    """RPM version comparison with proper epoch handling.
+
+    Epoch format: "EPOCH:VERSION-RELEASE" (e.g. "4:5.26.3-422.el8").
+    If epoch is missing, it defaults to 0. Higher epoch always wins
+    regardless of version-release string.
+    """
+    def _parse_epoch(v):
+        if ':' in v:
+            parts = v.split(':', 1)
+            try:
+                return int(parts[0]), parts[1]
+            except ValueError:
+                return 0, v
+        return 0, v
+
+    epoch_a, ver_a = _parse_epoch(a)
+    epoch_b, ver_b = _parse_epoch(b)
+
+    if epoch_a != epoch_b:
+        return 1 if epoch_a > epoch_b else -1
+    return _raw_compare_versions(ver_a, ver_b)
 from lib4sbom.parser import SBOMParser as _SBOMParser
 from rich.console import Console
 from rich.table import Table
@@ -801,12 +825,13 @@ def _pid_module_stream(pid: str):
 def _version_is_module_stream(ver: str) -> bool:
     """Return True if the version-release string indicates an RPM module stream package.
 
-    Module-stream RPMs have '+module+' embedded in their release field, e.g.:
+    Module-stream RPMs have '.module+' or '+module+' in their release field, e.g.:
+      2.4.37-64.module+el8.10.0+21332+dfb1b40e
       1.25.10-4.module+el8.5.0+11712+ea2d2be1
     Base (non-module) packages have simple release strings like:
       423.el8_10  or  1.24.2-9.el8_10
     """
-    return '+module+' in ver
+    return '.module+' in ver or '+module+' in ver
 
 
 def _get_vex_product(data: dict, comp: str, ctx) -> str:
@@ -885,16 +910,29 @@ def _extract_sha256(ref: str):
     return m.group(1) if m else None
 
 def _detect_rhel_ver(version_str):
-    """Extract RHEL major version number from an RPM version-release string."""
-    m = re.search(r'\.el(\d+)', version_str)
+    """Extract RHEL major version number from an RPM version-release string.
+
+    Handles both standard (.el8, .el9_4) and module stream (+el8.10.0+) formats.
+    """
+    m = re.search(r'[.+]el(\d+)', version_str)
     return m.group(1) if m else None
 
 def _detect_rhel_minor(version_str):
     """Extract RHEL minor stream number from an RPM version-release string.
-    e.g. '3.9.18-3.el9_4.10' → '4',  '3.9.16-1.el9_2.12' → '2',  '3.9.25-3.el9_7.1' → '7'.
-    Returns None if no minor (e.g. plain 'el9' without underscore minor).
+
+    Standard:     '3.9.18-3.el9_4.10'         → '4'
+    Module:       '2.4.37-64.module+el8.10.0+' → '10'
+    No minor:     '3.6.8-59.el8'              → None
     """
+    # Standard format: .el9_4 or .el8_10
     m = re.search(r'\.el\d+_(\d+)', version_str)
+    if m:
+        return m.group(1)
+    # Module stream format: +el8.10.0+ (minor is second component)
+    m = re.search(r'[.+]el(\d+)\.(\d+)\.', version_str)
+    if m:
+        return m.group(2)
+    return None
     return m.group(1) if m else None
 
 def _is_rhel_base_product(pid: str, rhel_ver: str, rhel_base_pids: set) -> bool:

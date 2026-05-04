@@ -100,31 +100,41 @@ def _init_pull_secret(path: str) -> None:
 # ── SBOM cross-check (dict-based, no RHACS session needed) ──────────────────────
 
 def _verify_sbom_dict(sbom: dict, result_df: pd.DataFrame) -> dict:
-    """Cross-check every unique (component, version) in result_df against a syft SPDX SBOM.
+    """Cross-check every unique (component, version) in result_df against a syft SBOM.
 
-    Mirrors triage._verify_sbom_against_df but accepts an already-fetched SBOM dict
-    instead of a RHACS session, so it works with in-memory syft output.
+    Accepts both Syft JSON format (artifacts.packages[]) and SPDX format.
     Returns: {matched, total, mismatched, error}.
     """
     try:
-        from lib4sbom.parser import SBOMParser as _SBOMParser
-        parser = _SBOMParser(sbom_type="spdx")
-        parser.parse_string(json.dumps(sbom))
         pkg_versions: dict = {}
-        for pkg in parser.get_packages():
-            name = pkg.get("name", "")
-            ver  = pkg.get("version", "")
-            if name:
-                pkg_versions.setdefault(name, set()).add(ver)
+
+        # Syft JSON format: has "artifacts" key with "packages" array
+        if "artifacts" in sbom:
+            for pkg in sbom.get("artifacts", {}).get("packages", []):
+                name = pkg.get("name", "")
+                ver = pkg.get("version", "")
+                if name:
+                    pkg_versions.setdefault(name, set()).add(ver)
+        else:
+            # SPDX format fallback
+            from lib4sbom.parser import SBOMParser as _SBOMParser
+            parser = _SBOMParser(sbom_type="spdx")
+            parser.parse_string(json.dumps(sbom))
+            for pkg in parser.get_packages():
+                name = pkg.get("name", "")
+                ver = pkg.get("version", "")
+                if name:
+                    pkg_versions.setdefault(name, set()).add(ver)
+
         matched, mismatched, seen = 0, [], set()
         for _, row in result_df.iterrows():
             key = (row["COMPONENT"], row["VERSION"])
             if key in seen:
                 continue
             seen.add(key)
-            comp, ver  = key
-            ver_clean  = ver.split(":", 1)[-1] if ":" in ver else ver
-            sbom_vers  = pkg_versions.get(comp, set())
+            comp, ver = key
+            ver_clean = ver.split(":", 1)[-1] if ":" in ver else ver
+            sbom_vers = pkg_versions.get(comp, set())
             sbom_clean = {v.split(":", 1)[-1] if ":" in v else v for v in sbom_vers}
             if ver_clean in sbom_clean or ver in sbom_vers:
                 matched += 1
@@ -189,11 +199,24 @@ def _run_grype(image_ref: str) -> dict:
     All data stays in memory; no files are written to disk.
     Raises RuntimeError on non-zero exit of either process.
     """
-    env = {**os.environ, **_docker_config_env}
+    env = {
+        **os.environ,
+        **_docker_config_env,
+        # Enable CPE matching for all ecosystems so grype finds vulns in
+        # Python/Go/JS packages even when the image distro is RPM-based.
+        # Matches harpia's in-process behavior (GenerateMissingCPEs: true).
+        "GRYPE_MATCH_PYTHON_USING_CPES": "true",
+        "GRYPE_MATCH_GOLANG_USING_CPES": "true",
+        "GRYPE_MATCH_JAVASCRIPT_USING_CPES": "true",
+        "GRYPE_MATCH_DOTNET_USING_CPES": "true",
+        "GRYPE_MATCH_JAVA_USING_CPES": "true",
+    }
 
-    # Step 1: syft indexes the image and produces SPDX JSON
+    # Step 1: syft indexes the image and produces Syft JSON SBOM
+    # Using syft-json (not spdx-json) ensures all package types are preserved
+    # including Python pip packages that SPDX output may drop.
     syft_proc = subprocess.run(
-        ["syft", image_ref, "-o", "spdx-json", "--quiet"],
+        ["syft", image_ref, "-o", "syft-json", "--quiet"],
         capture_output=True, env=env,
     )
     if syft_proc.returncode != 0:
@@ -203,16 +226,44 @@ def _run_grype(image_ref: str) -> dict:
     syft_sbom = json.loads(syft_proc.stdout)
 
     # Step 2: grype scans the SBOM — no image pull needed
-    # grype auto-detects Syft JSON on stdin when no positional argument is given
     grype_proc = subprocess.run(
-        ["grype", "-o", "json", "--quiet", "--by-cve"],
+        ["grype", "-o", "json", "--quiet", "--by-cve", "--add-cpes-if-none"],
         input=syft_proc.stdout, capture_output=True, env=env,
     )
     if grype_proc.returncode != 0:
         snippet = (grype_proc.stderr or b"").decode().strip()[:400]
         raise RuntimeError(f"grype exited {grype_proc.returncode}: {snippet}")
 
-    return json.loads(grype_proc.stdout), syft_sbom
+    grype_result = json.loads(grype_proc.stdout)
+
+    # Step 3: grype skips non-distro packages (python/go) in RPM images.
+    # Scan them separately via PURL input to match harpia's in-process behavior.
+    non_rpm_types = {"python", "go-module", "npm", "gem", "java-archive"}
+    purls = []
+    for pkg in syft_sbom.get("artifacts", []):
+        if pkg.get("type", "") in non_rpm_types and pkg.get("purl"):
+            purls.append(pkg["purl"])
+
+    if purls:
+        purl_file = os.path.join(tempfile.gettempdir(), "harpia_purls.txt")
+        with open(purl_file, "w") as f:
+            f.write("\n".join(purls))
+        purl_proc = subprocess.run(
+            ["grype", f"purl:{purl_file}", "-o", "json", "--quiet", "--by-cve"],
+            capture_output=True, env=env,
+        )
+        if purl_proc.returncode == 0:
+            purl_result = json.loads(purl_proc.stdout)
+            # Merge: add matches not already found
+            existing = {(m["vulnerability"]["id"], m["artifact"]["name"], m["artifact"]["version"])
+                       for m in grype_result.get("matches", [])}
+            for m in purl_result.get("matches", []):
+                key = (m["vulnerability"]["id"], m["artifact"]["name"], m["artifact"]["version"])
+                if key not in existing:
+                    grype_result["matches"].append(m)
+        os.remove(purl_file)
+
+    return grype_result, syft_sbom
 
 
 def _run_syft(image_ref: str) -> dict:
