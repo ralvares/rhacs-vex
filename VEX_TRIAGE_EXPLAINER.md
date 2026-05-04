@@ -1,84 +1,67 @@
-# Technical Explainer: Automated VEX Triage & Verification Framework
+# Technical Explainer: Automated VEX Triage and Verification
 
-This document outlines the technical architecture and logic behind the automated VEX (Vulnerability Exploitability eXchange) triage process used to validate security findings from Red Hat Advanced Cluster Security (RHACS).
-
----
-
-## 1. Executive Summary
-The primary challenge in vulnerability management is distinguishing between a **technical presence** (the code exists in the image) and a **genuine risk** (the code is exploitable and unpatched). 
-
-Our framework automates this distinction by cross-referencing three authoritative data layers:
-1.  **RHACS Findings:** The raw scan results (Package + CVE).
-2.  **Red Hat VEX (CSAF):** The vendor's authoritative statement on vulnerability status.
-3.  **SPDX SBOM:** The physical proof of package lineage and relationships.
-
-The result is a high-integrity triage process that eliminates false positives with zero manual intervention.
+This document summarizes how our framework automates the validation of security findings from Red Hat Advanced Cluster Security (RHACS) using authoritative vendor data.
 
 ---
 
-## 2. The Bridge: Binary-to-Source Mapping
-### The Problem
-Security scanners like RHACS report **Binary RPMs** (e.g., `python3-urllib3`). However, Red Hat publishes security advisories (VEX) against the **Source RPM** (e.g., `python-urllib3`). One source RPM can generate dozens of binary packages. A simple name-match search would fail to find the relevant security data.
+## 1. The Core Workflow: High-Integrity Triage
 
-### The Solution: SBOM Lineage
-We use the **SPDX 2.3 SBOM** extracted directly from RHACS. The triage engine parses the `GENERATED_FROM` relationship within the SBOM:
-* **Logic:** If the SBOM proves that `Binary-Package-A` was built from `Source-Package-B`, the engine automatically queries the VEX database for both names.
-* **Impact:** This ensures 100% coverage of CVEs, even when the scanner and the advisory use different naming conventions.
+The system automates the "Decision Tree" for every CVE by cross-referencing three sources of truth. 
 
----
+```mermaid
+graph TD
+    subgraph "Data Enrichment (Pre-process)"
+    Z[Operator Catalogs] -->|Extract| E[Catalog-to-Product Map]
+    end
 
-## 3. The Precision Layer: Stream-Aware Auditing
-Red Hat Enterprise Linux (RHEL) utilizes "Backporting"—fixing bugs in older versions without incrementing the major version number. This makes traditional "version A > version B" logic unreliable.
+    A[RHACS Scan Result] -->|Binary RPM + CVE| B{Triage Engine}
+    C[Red Hat VEX / CSAF] -->|Vendor Authority| B
+    D[SPDX SBOM] -->|Lineage: Binary -> Source| B
+    E -->|Product Scope by Namespace| B
+    
+    B -->|Success| F[FALSE POSITIVE]
+    B -->|Affected| G[POSITIVE]
+    B -->|Drift Detected| H[MISMATCH]
 
-### Minor Stream Isolation (`elN_M`)
-The engine detects the specific RHEL minor stream (e.g., RHEL 8.10 vs. RHEL 9.4) from the image labels and package metadata.
-* **Logic:** It ensures that an installed package is only compared against fixes released for its **specific minor stream**.
-* **Impact:** Prevents "False Negatives" where a fix in a newer release (e.g., 9.4) is incorrectly assumed to have protected an older release (e.g., 9.2).
-
-### Module Stream Guarding
-RHEL supports parallel software versions via "Module Streams" (e.g., `nodejs:18` and `nodejs:20`). 
-* **The Check:** The engine identifies module-stream packages by the `+module+` string in their version release.
-* **The Logic:** It matches these packages exclusively against VEX Product IDs containing the `::module:stream` suffix.
-* **Impact:** Ensures that security fixes for one stream do not incorrectly clear vulnerabilities in a different stream.
-
----
-
-## 4. Contextual Scoping: Identifying the Product
-A single CVE might affect a package in RHEL, but the same package might be "Not Affected" when used within **OpenShift (OCP)** or a specific **Operator**.
-
-The engine builds a `WorkloadContext` for every image using:
-1.  **Registry Path:** Detects if it's a Base UBI, OCP component, or Operator.
-2.  **Image Labels:** Extracts CPE (Common Platform Enumeration) strings to identify the exact product version (e.g., OCP 4.18).
-3.  **VEX Scope Filtering:** The engine only applies "Not Affected" or "Fixed" statements if they are explicitly scoped to the detected product in the VEX document.
+    subgraph "Verification Logic"
+    B -.-> B1[RPM Stream Math]
+    B -.-> B2[Namespace Scoping]
+    B -.-> B3[SBOM Integrity Check]
+    end
+```
 
 ---
 
-## 5. Automated Product Scoping: The Catalog-to-Namespace Map
-For Red Hat Operators, identifying which VEX "Product ID" applies to an image is complex. A single registry namespace (e.g., `rhacm2`) might contain dozens of different images, each mapped to different product names in the VEX database.
+## 2. Key Technical Pillars
 
-To solve this, the engine uses an automated mapping file: **`data/ns_vex_prefixes.json`**.
+### Precision Scoping: The Catalog-to-Namespace Map
+One of the most difficult challenges in triage is knowing which VEX Product Name (e.g., advanced_cluster_management) applies to a specific image found in a registry namespace (e.g., rhacm2). Without a map, the engine would not know which advisories are relevant.
 
-### How it Works
-1.  **Catalog Harvesting:** The `build_ns_map.py` script pre-processes Red Hat OLM (Operator Lifecycle Manager) catalogs. It inspects every operator bundle to extract the **Registry Namespace**, the **OLM Package Name**, and the **Operator Display Name**.
-2.  **Normalization:** These names are normalized into "VEX-prefix candidates" (e.g., *"Advanced Cluster Security"* becomes `advanced_cluster_security`).
-3.  **Dynamic Scoping:** At runtime, when the triage engine identifies an image's registry namespace (e.g., `rhacm2`), it automatically loads all associated product prefixes from this map.
-4.  **Impact:** This allows the engine to automatically "know" that a CVE advisory for the product `advanced_cluster_management` is relevant to an image found in the `rhacm2` namespace. This eliminates the need for manual product-to-image lookups and ensures that Operator security data is scoped with surgical precision.
+*   **Rationale:** Registry namespaces and VEX product names often do not match. An image in rhacm2/multicluster-operators must be checked against Advanced Cluster Management advisories, not just RHEL base OS advisories.
+*   **Data Acquisition:** Instead of manual lists, the engine uses build_ns_map.py to harvest metadata directly from Red Hat OLM Operator Catalogs. It extracts:
+    1.  The Registry Namespace where the images live.
+    2.  The OLM Package Name (the technical identifier).
+    3.  The Display Name (the human-readable product name).
+*   **Accuracy:** Because this data is extracted from the same catalogs used to install the operators, it reflects the ground truth of how products are grouped. By normalizing these names into VEX-compatible prefixes, the engine dynamically scopes its search to the exact product family the image belongs to.
+
+### The Bridge: Binary-to-Source Mapping
+Scanners report Binary packages (e.g., python3-urllib3), but advisories are often published against the Source package (e.g., python-urllib3). 
+*   **Implementation:** The engine extracts the GENERATED_FROM relationship from the SPDX SBOM. This automatically maps binary findings to the correct source-level security advisories.
+
+### Stream-Aware Auditing (RPM Math)
+Red Hat fixes bugs in older versions (Backporting) without changing the major version number.
+*   **Implementation:** The engine identifies the RHEL Minor Stream (e.g., 9.2 vs 9.4) and Module Streams (+module+). It ensures a package is only cleared if the fix was released for its specific version stream.
+
+### The Sanity Check: SBOM Verification
+To prevent relying on stale scanner data, the engine performs a final check:
+*   **Implementation:** Every package and version that leads to a FALSE POSITIVE verdict is cross-referenced against the physical contents of the image SBOM. If they do not match, the finding is flagged for manual review.
 
 ---
 
-## 6. Non-RPM Logic (Go, npm, Python)
-For bundled binaries (Go, npm) where version comparison is difficult, the engine uses **Product ID (PID) Membership**.
-* **The Check:** Does the VEX document explicitly list this specific image (by its SHA256 digest) as "Fixed" or "Known Not Affected"?
-* **The Logic:** If the Vendor has signed off on the image hash, the finding is cleared regardless of version string complexity.
+## 3. Summary of Verdicts
 
----
-
-## 6. Integrity Verification (The Sanity Check)
-To ensure the triage results are never based on stale data, the engine performs a final **SBOM Consistency Check**:
-* **Validation:** Every package name and version used to reach a "False Positive" verdict is cross-referenced against the live SBOM.
-* **Outcome:** If the version in the scan result doesn't match the version physically present in the SBOM, the tool flags a **MISMATCH** for manual review.
-
----
-
-## 7. Conclusion
-By combining **physical lineage** (SBOM), **minor stream isolation** (RPM math), and **vendor authority** (VEX), we move from "best-guess" triage to **provable security integrity**. Every decision is backed by a specific relationship or version comparison that is 100% auditable.
+| Verdict | Meaning |
+| :--- | :--- |
+| **FALSE POSITIVE** | Vendor confirms code is not affected, OR the installed version is greater than or equal to the fix for that specific minor stream. |
+| **POSITIVE** | Confirmed affected; version is older than the fix in that stream. |
+| **MISMATCH** | The scanner data differs from the physical SBOM. Manual verification is required. |
