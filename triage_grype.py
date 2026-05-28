@@ -382,7 +382,7 @@ def _ctx_from_grype(grype_data: dict, image_ref: str,
     distro      = grype_data.get("distro") or {}
     distro_name = (distro.get("name") or "").lower()
     distro_ver  = distro.get("version") or ""
-    if not labels.get("cpe") and any(k in distro_name for k in ("red hat", "rhel", "ubi", "enterprise linux")):
+    if not labels.get("cpe") and any(k in distro_name for k in ("red hat", "rhel", "ubi", "enterprise linux", "redhat", "rhcos")):
         m = re.match(r"^(\d+)", distro_ver)
         if m:
             ctx.rhel_ver = m.group(1)
@@ -393,10 +393,15 @@ def _ctx_from_grype(grype_data: dict, image_ref: str,
         ctx.ocp_ver       = minor_ver
         ctx.display_name  = f"OpenShift {ocp_ver}"
         ctx.extra_prefixes = []
-        # Refine RHEL ver from distro name (e.g. "rhel:10.0") or comp_name hint
+        # Refine RHEL ver from distro block or comp_name hint.
+        # grype uses plain identifiers (e.g. "redhat", "rhcos") — not "rhel:10.0".
         os_rhel = re.search(r"(?:rhel|coreos):(\d+)", distro_name)
         if os_rhel:
             ctx.rhel_ver = os_rhel.group(1)
+        elif distro_name in ("redhat", "rhcos", "centos"):
+            m = re.match(r"^(\d+)", distro_ver)
+            if m:
+                ctx.rhel_ver = m.group(1)
         elif comp_name:
             cn_rhel = re.search(r"(?:rhel-[^-]+-|rhel-)(\d+)$", comp_name)
             if cn_rhel:

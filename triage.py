@@ -196,7 +196,8 @@ def parse_image_ref(image_ref: str) -> WorkloadContext:
 
     # ── Classify workload type ───────────────────────────────────────────
     ubi_ns = re.match(r'^ubi\d+', ns) or name == "" or ns in ("ubi", "rhel")
-    ocp_ns = ns in ("openshift4", "ocp4") or "ose-" in name
+    ocp_ns = ns in ("openshift4", "ocp4", "openshift-release-dev") \
+          or "ose-" in name or name.startswith("ocp-")
 
     if ubi_ns:
         ctx.workload_type = "ubi"
@@ -825,8 +826,7 @@ def _pid_module_stream(pid: str):
 def _version_is_module_stream(ver: str) -> bool:
     """Return True if the version-release string indicates an RPM module stream package.
 
-    Module-stream RPMs have '.module+' or '+module+' in their release field, e.g.:
-      2.4.37-64.module+el8.10.0+21332+dfb1b40e
+    Module-stream RPMs have '.module+' in their release field, e.g.:
       1.25.10-4.module+el8.5.0+11712+ea2d2be1
     Base (non-module) packages have simple release strings like:
       423.el8_10  or  1.24.2-9.el8_10
@@ -898,6 +898,21 @@ def _vex_product_for_row(row, ctx) -> str:
         return ''
 
 
+def _normalize_epoch(installed: str, fix: str) -> tuple[str, str]:
+    """Align epoch prefixes so compare_versions is not fooled by epoch mismatch.
+    VEX fixed versions often omit the epoch even though the RPM carries one.
+    Since both strings describe the same source package, the epoch is identical —
+    propagate the present epoch to the string that lacks it.
+    """
+    inst_m = re.match(r'^(\d+):', installed)
+    fix_m  = re.match(r'^(\d+):', fix)
+    if inst_m and not fix_m:
+        fix = f"{inst_m.group(1)}:{fix}"
+    elif fix_m and not inst_m:
+        installed = f"{fix_m.group(1)}:{installed}"
+    return installed, fix
+
+
 def _extract_sha256(ref: str):
     """Return the sha256 digest (hex string) from an image reference or VEX product_id.
 
@@ -911,8 +926,8 @@ def _extract_sha256(ref: str):
 
 def _detect_rhel_ver(version_str):
     """Extract RHEL major version number from an RPM version-release string.
-
-    Handles both standard (.el8, .el9_4) and module stream (+el8.10.0+) formats.
+    Handles both base RPMs (e.g. '2.28-151.el8') and module-stream RPMs
+    (e.g. '4.3.1-1.module+el8.4.0+11822+6cc1e7d7').
     """
     m = re.search(r'[.+]el(\d+)', version_str)
     return m.group(1) if m else None
@@ -933,7 +948,6 @@ def _detect_rhel_minor(version_str):
     if m:
         return m.group(2)
     return None
-    return m.group(1) if m else None
 
 def _is_rhel_base_product(pid: str, rhel_ver: str, rhel_base_pids: set) -> bool:
     """
@@ -1041,7 +1055,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
 
     data = _load_vex(cve)
     if data is None:
-        return pd.Series(["❌ POSITIVE", "N/A", "VEX file missing — cannot confirm fix; treat as vulnerable.", "UNKNOWN"])
+        return pd.Series(["❌ POSITIVE", "N/A", "VEX file missing — cannot confirm fix; treat as vulnerable.", "Unknown"])
 
     # Build product tree lookup maps — used throughout for human-readable labels
     pid_name, rel_parent, rhel_base_pids = _build_pid_name(data)
@@ -1116,10 +1130,16 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                                "Red Hat Product Security states no currently supported "
                                "Red Hat product is affected by this CVE.", _severity])
 
-    # Determine effective RHEL version: prefer context, fall back to RPM string
-    rhel_ver = _detect_rhel_ver(found_v) or ctx.rhel_ver
+    # Determine effective RHEL version: prefer RPM string, fall back to context.
+    # The RPM's own .elN marker is authoritative — mixed-RHEL images (e.g.
+    # ocp-release containing both el8 and el9 packages) need per-row scoping.
+    rpm_rhel = _detect_rhel_ver(found_v)
+    rhel_ver = rpm_rhel or ctx.rhel_ver
+    if rpm_rhel and rpm_rhel != ctx.rhel_ver:
+        ctx = WorkloadContext(**{f.name: getattr(ctx, f.name) for f in ctx.__dataclass_fields__.values()})
+        ctx.rhel_ver = rpm_rhel
 
-    if not _detect_rhel_ver(found_v):
+    if not rpm_rhel:
         # ── Non-RPM component (Go, npm, …) ──────────────────────────────────
         affected, fixed, not_affected, investigating = _summarise_vex_products(data, pid_name, rel_parent)
         if not affected and not fixed and not not_affected and not investigating:
@@ -1131,6 +1151,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         # same product family — if so it IS applicable
         if ctx.workload_type != "ubi":
             # 1. Check flags that explicitly mark our product as not-affected first.
+            _is_image_comp = '/' in comp
             for vuln in data.get('vulnerabilities', []):
                 for flag in vuln.get('flags', []):
                     if flag.get('label') not in _NOT_AFFECTED_FLAGS:
@@ -1140,9 +1161,17 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                             continue
                         pid_sha = _extract_sha256(pid)
                         if pid_sha:
-                            # sha256 image PID: only count as a match for our exact image build
                             our_sha = _extract_sha256(ctx.image_ref or "")
                             if not our_sha or pid_sha != our_sha:
+                                continue
+                        elif _is_image_comp and _is_rhel_base_product(pid, ctx.rhel_ver, rhel_base_pids):
+                            continue
+                        else:
+                            # Non-SHA PID: verify package name matches the component
+                            # being audited. Without this, a flag on an unrelated
+                            # package (e.g. conmon) would incorrectly clear stdlib.
+                            flag_pkg, _ = _parse_pkg_from_product_id(pid)
+                            if flag_pkg and flag_pkg not in _resolve_comp(comp, ctx):
                                 continue
                         lbl = _pid_label(pid, pid_name, rel_parent)
                         return pd.Series(["✅ FALSE POSITIVE", "N/A",
@@ -1152,6 +1181,63 @@ def audit_row_detailed(row, ctx: WorkloadContext):
 
             # 2. Check product_status entries for our scope.
             our_sha = _extract_sha256(ctx.image_ref or "")
+            is_image_component = '/' in comp
+
+            # 2a. For container image components, first check image-level VEX PIDs
+            #     (entries with @sha256: for the same image name).  These are more
+            #     specific than RHEL-base RPM PIDs and must take precedence.
+            if is_image_component:
+                comp_base = re.sub(r'[@:][^/]*$', '', comp)  # e.g. "quay/quay-rhel8"
+                _img_not_affected = False
+                _img_fixed_label = None
+                _img_fixed_ver = str(row.get('FIXED_VERSION', '')) if 'FIXED_VERSION' in row.index else None
+                for vuln in data.get('vulnerabilities', []):
+                    ps = vuln.get('product_status', {})
+                    for status in ('known_not_affected', 'fixed', 'known_affected', 'under_investigation'):
+                        for pid in ps.get(status, []):
+                            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                                continue
+                            pid_sha = _extract_sha256(pid)
+                            if not pid_sha:
+                                continue
+                            # Must reference the same image name
+                            pid_image = re.sub(r'@sha256:[a-f0-9]+.*$', '', pid.split(':', 1)[-1] if ':' in pid else pid)
+                            if pid_image != comp_base:
+                                continue
+                            lbl = _pid_label(pid, pid_name, rel_parent)
+                            if status == 'known_not_affected':
+                                if our_sha and pid_sha == our_sha:
+                                    return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                                                       f"Non-RPM — image build not affected per VEX ({lbl}).",
+                                                       _severity])
+                                _img_not_affected = True
+                            elif status == 'fixed':
+                                if our_sha and pid_sha == our_sha:
+                                    return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                                                       f"Non-RPM — this image build is the fixed version ({lbl}).",
+                                                       _severity])
+                                _img_fixed_label = lbl
+                            elif status == 'known_affected':
+                                if our_sha and pid_sha == our_sha:
+                                    fix_note = f"; fixed in {_img_fixed_ver}" if _img_fixed_ver else ""
+                                    return pd.Series(["❌ POSITIVE", _img_fixed_ver or "N/A",
+                                                       f"Non-RPM — image build confirmed affected ({lbl}){fix_note}.",
+                                                       _severity])
+                            elif status == 'under_investigation':
+                                if our_sha and pid_sha == our_sha:
+                                    return pd.Series(["❌ POSITIVE", "N/A",
+                                                       f"Under investigation by Red Hat for {ctx.display_name} — treat as vulnerable until resolved.",
+                                                       _severity])
+                # A fixed image build exists but our digest doesn't match it
+                # → we have an older vulnerable build.
+                if _img_fixed_label and not _img_not_affected:
+                    fix_note = f" Fixed in {_img_fixed_ver}." if _img_fixed_ver else ""
+                    return pd.Series(["❌ POSITIVE", _img_fixed_ver or "N/A",
+                                       f"Non-RPM — fixed image build exists ({_img_fixed_label}) "
+                                       f"but installed {found_v} is older.{fix_note}",
+                                       _severity])
+
+            # 2b. Generic product_status scan (RPM-level and non-SHA PIDs).
             for vuln in data.get('vulnerabilities', []):
                 ps = vuln.get('product_status', {})
                 for status in ('known_not_affected', 'known_affected', 'fixed', 'under_investigation'):
@@ -1160,10 +1246,14 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                             continue
                         pid_sha = _extract_sha256(pid)
                         if pid_sha:
-                            # sha256 image PID: require exact digest match with our image.
-                            # Without this, a fixed build of a *different* image version
-                            # would incorrectly mark us as FALSE POSITIVE.
                             if not our_sha or pid_sha != our_sha:
+                                continue
+                        elif _is_rhel_base_product(pid, ctx.rhel_ver, rhel_base_pids):
+                            # RHEL-base RPM PIDs describe RPM packages, not
+                            # container images or non-RPM components (Go, npm).
+                            # Verify the PID's package actually matches.
+                            pid_pkg, _ = _parse_pkg_from_product_id(pid)
+                            if pid_pkg and pid_pkg not in _resolve_comp(comp, ctx):
                                 continue
                         lbl = _pid_label(pid, pid_name, rel_parent)
                         if status == 'under_investigation':
@@ -1267,16 +1357,30 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             else:
                 compare_fixes = unique_fixed
 
+            # GA packages (no minor stream marker) must be >= ALL stream fixes.
+            # Old EUS fixes may have lower version numbers than the GA baseline,
+            # but newer-stream fixes prove the GA package is still vulnerable.
+            all_pass = True
+            any_fail_fix = None
             for fix_v in compare_fixes:
                 try:
-                    if compare_versions(found_v, fix_v) >= 0:
-                        return pd.Series(["✅ FALSE POSITIVE", fix_v,
-                                           f"{ctx.display_name} fix backported: installed {found_v} >= {fix_v}",
-                                           _severity])
+                    cmp_inst, cmp_fix = _normalize_epoch(found_v, fix_v)
+                    if compare_versions(cmp_inst, cmp_fix) < 0:
+                        all_pass = False
+                        if any_fail_fix is None:
+                            any_fail_fix = fix_v
                 except Exception:
                     pass
-            return pd.Series(["❌ POSITIVE", compare_fixes[0],
-                               f"{ctx.display_name} fix available ({compare_fixes[0]}); installed {found_v} is older.",
+            if all_pass and compare_fixes:
+                return pd.Series(["✅ FALSE POSITIVE", compare_fixes[0],
+                                   f"{ctx.display_name} fix backported: installed {found_v} >= {compare_fixes[0]}",
+                                   _severity])
+            if any_fail_fix:
+                return pd.Series(["❌ POSITIVE", any_fail_fix,
+                                   f"{ctx.display_name} fix available ({any_fail_fix}); installed {found_v} is older.",
+                                   _severity])
+            return pd.Series(["❌ POSITIVE", compare_fixes[0] if compare_fixes else "N/A",
+                               f"{ctx.display_name} fix available ({compare_fixes[0] if compare_fixes else '?'}); installed {found_v} is older.",
                                _severity])
 
         # --- KNOWN_AFFECTED in scope ------------------------------------------
@@ -1297,7 +1401,9 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                 other_products = set()
                 for fpid in ps.get('fixed', []):
                     if _is_any_rhel_ver_product(fpid, rhel_ver) and not _pid_in_scope(fpid, ctx, pid_name, rhel_base_pids):
-                        other_products.add(_pid_label(fpid, pid_name, rel_parent))
+                        fpkg, _ = _parse_pkg_from_product_id(fpid)
+                        if fpkg and fpkg in _resolve_comp(comp, ctx):
+                            other_products.add(_pid_label(fpid, pid_name, rel_parent))
                 if pid in no_fix_pids:
                     note = f"Confirmed affected in {ctx.display_name}; Red Hat will not fix this CVE (no_fix_planned) — not actionable."
                 elif other_products:
@@ -1315,7 +1421,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
                 continue
             pkg_name, _ = _parse_pkg_from_product_id(pid)
-            if pkg_name in _resolve_comp(comp, ctx) or _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+            if pkg_name in _resolve_comp(comp, ctx):
                 return pd.Series(["❌ POSITIVE", "N/A",
                                    f"Under investigation by Red Hat for {ctx.display_name} — treat as vulnerable until resolved.",
                                    _severity])
