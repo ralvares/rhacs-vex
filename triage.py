@@ -1248,10 +1248,11 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                         if pid_sha:
                             if not our_sha or pid_sha != our_sha:
                                 continue
-                        elif _is_rhel_base_product(pid, ctx.rhel_ver, rhel_base_pids):
-                            # RHEL-base RPM PIDs describe RPM packages, not
-                            # container images or non-RPM components (Go, npm).
-                            # Verify the PID's package actually matches.
+                        else:
+                            # Non-SHA PID: verify package name matches the
+                            # component being audited.  Without this, a status
+                            # on an unrelated package (e.g. conmon) would
+                            # incorrectly determine the verdict for stdlib.
                             pid_pkg, _ = _parse_pkg_from_product_id(pid)
                             if pid_pkg and pid_pkg not in _resolve_comp(comp, ctx):
                                 continue
@@ -1297,22 +1298,26 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             if flag.get('label') in _NOT_AFFECTED_FLAGS:
                 not_affected_ids.update(flag.get('product_ids', []))
 
+        installed_minor = _detect_rhel_minor(found_v)
         for pid in not_affected_ids:
             if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                 continue
-            # Skip module-stream-scoped PIDs (e.g. '::perl:5.32') when the
-            # installed package is a base (non-module) RPM.  A PID qualified
-            # with '::module:stream' only applies to packages installed from
-            # that module stream; base packages have no '+module+' in their
-            # version-release string.
             if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
                 continue
-            pkg_name, _ = _parse_pkg_from_product_id(pid)
-            if pkg_name in _resolve_comp(comp, ctx):
-                scope = ctx.display_name
-                return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                                   f"{scope}: component known not affected (vulnerable code not present or not executable).",
-                                   _severity])
+            pkg_name, pkg_ver = _parse_pkg_from_product_id(pid)
+            if pkg_name not in _resolve_comp(comp, ctx):
+                continue
+            # Stream-aware KNA: when the installed package carries a minor
+            # stream marker (el8_10), a KNA from a different stream (el8_4)
+            # does not apply — that stream's fix may differ.
+            if installed_minor and pkg_ver:
+                kna_minor = _detect_rhel_minor(pkg_ver)
+                if kna_minor and kna_minor != installed_minor:
+                    continue
+            scope = ctx.display_name
+            return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                               f"{scope}: component known not affected (vulnerable code not present or not executable).",
+                               _severity])
 
         # --- FIXED versions in scope ------------------------------------------
         scoped_fixed = []
