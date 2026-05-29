@@ -691,6 +691,7 @@ const esc = s => String(s ?? '')
 function statusBadge(raw) {
   const v = (raw || '').toUpperCase();
   if (v.includes('FALSE POSITIVE'))                                 return `<span class="badge bg-green">False Positive</span>`;
+  if (v.includes('NOT ASSESSED'))                                   return `<span class="badge bg-orange">Not Assessed</span>`;
   if (v.includes('POSITIVE'))                                       return `<span class="badge bg-red">Positive</span>`;
   if (v.includes('AFFECTED') || v.includes('VULNERABLE'))          return `<span class="badge bg-red">Affected</span>`;
   if (v.includes('UNDER INVEST') || v.includes('IN REVIEW') || v.includes('NEEDS REVIEW'))
@@ -704,6 +705,7 @@ function statusBadge(raw) {
 function statusKey(raw) {
   const v = (raw || '').toUpperCase();
   if (v.includes('FALSE POSITIVE'))                         return 'False Positive';
+  if (v.includes('NOT ASSESSED'))                           return 'Not Assessed';
   if (v.includes('POSITIVE'))                               return 'Positive';
   if (v.includes('AFFECTED') || v.includes('VULNERABLE'))  return 'Affected';
   if (v.includes('UNDER INVEST') || v.includes('IN REVIEW') || v.includes('NEEDS REVIEW')) return 'In Review';

@@ -1143,8 +1143,8 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         # ── Non-RPM component (Go, npm, …) ──────────────────────────────────
         affected, fixed, not_affected, investigating = _summarise_vex_products(data, pid_name, rel_parent)
         if not affected and not fixed and not not_affected and not investigating:
-            return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                               "Non-RPM component not tracked in VEX — vendor does not consider it affected.",
+            return pd.Series(["⚠️ NOT ASSESSED", "N/A",
+                               "Non-RPM component not tracked in VEX — no vendor assessment exists. Treat as potential risk until explicitly cleared.",
                                _severity])
 
         # If workload is an operator/OCP, check if the CVE is scoped to the
@@ -1457,8 +1457,8 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                                f"CVE tracked for '{comp}' in related products ({ctx_str}); no explicit clearance for {ctx.display_name} — treat as vulnerable.",
                                _severity])
 
-        return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                           f"Component '{comp}' not tracked in VEX for this CVE — vendor does not consider it affected.",
+        return pd.Series(["⚠️ NOT ASSESSED", "N/A",
+                           f"Component '{comp}' not tracked in VEX for this CVE — no vendor assessment exists. Treat as potential risk until explicitly cleared.",
                            _severity])
 
     return pd.Series(["❌ POSITIVE", "N/A", "No vulnerability entries in VEX file", _severity])
@@ -1486,7 +1486,8 @@ _RHACS_SEVERITY_MAP = {
 
 RESULT_STYLES = {
     "✅ FALSE POSITIVE": "bold green",
-    "❌ POSITIVE":     "bold red",
+    "❌ POSITIVE":       "bold red",
+    "⚠️ NOT ASSESSED":  "bold yellow",
 }
 
 SEVERITY_STYLES = {
@@ -1517,6 +1518,7 @@ def _sort_and_filter_df(df: pd.DataFrame, false_only: bool = False) -> pd.DataFr
     def _sort_key(row):
         j, r = row['JUSTIFICATION'], row['AUDIT_RESULT']
         if '✅' in r:                                            priority = 0
+        elif '⚠️' in r:                                          priority = 1
         elif 'Under investigation' in j:                         priority = 4
         elif 'VEX file missing' in j or 'VEX parse error' in j: priority = 3
         else:                                                    priority = 2
