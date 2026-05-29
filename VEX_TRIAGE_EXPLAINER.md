@@ -344,9 +344,15 @@ Three outcomes:
 
 Non-RPM components follow a different logic path because their version strings are not RPM-formatted and cannot be reliably compared using RPM version math.
 
-### Why version comparison fails for non-RPM
+### Why version comparison is not used for non-RPM
 
-Go binaries, Java JARs, npm packages, and Python wheels use their own versioning schemes. The version string reported by the scanner may not correspond to the version string in the VEX advisory. Red Hat often ships patched versions of these components under a version string that includes RPM-style release suffixes, making direct comparison meaningless.
+Red Hat does not publish per-component fix versions for Go modules, npm packages, Java JARs, or Python wheels in their VEX advisories. Instead, non-RPM components are tracked at the **container image level** — VEX entries reference the image's SHA256 digest, not individual library versions inside it.
+
+This means: for a Go module like `golang.org/x/net v0.17.0`, there is no VEX entry saying "fixed in v0.18.0." Instead, the VEX says "fixed in image `quay.io/…@sha256:abc123`." The engine cannot compare upstream semver versions against VEX data because VEX does not contain upstream semver versions.
+
+Even when VEX does reference a package name (rather than an image digest), the version string is in RPM NEVRA format (e.g., `go-toolset-1.19-golang-0:1.19.13-7.el7_9`), not upstream semver. The scanner reports `v1.19.13`; the VEX says `1.19.13-7.el7_9`. These are different version universes that cannot be reliably compared.
+
+The engine stays loyal to what VEX actually publishes rather than inventing its own version comparisons outside the vendor's data.
 
 ### How non-RPM false positives are detected
 
