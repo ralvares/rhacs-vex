@@ -156,19 +156,32 @@ REGISTRIES_TO_LOGIN = [
     "registry.connect.redhat.com",
 ]
 
+def _is_logged_in(podman_bin: str, registry: str, pull_secret: str) -> bool:
+    """Return True if podman can already authenticate to *registry*."""
+    proc = subprocess.run(
+        [podman_bin, "login", "--authfile", os.path.abspath(pull_secret),
+         "--get-login", registry],
+        capture_output=True, text=True,
+    )
+    return proc.returncode == 0 and proc.stdout.strip() != ""
+
+
 def stage_podman_login(pull_secret: str, podman_bin: str):
-    """Log in to Red Hat registries using the pull-secret as the auth file."""
+    """Log in to Red Hat registries, skipping any that already have valid credentials."""
     log("=== STAGE 0: podman login to Red Hat registries ===")
     failed = []
     for registry in REGISTRIES_TO_LOGIN:
+        if _is_logged_in(podman_bin, registry, pull_secret):
+            log(f"  SKIP  {registry} (already logged in)")
+            continue
         rc = run([podman_bin, "login", "--authfile", os.path.abspath(pull_secret), registry])
         if rc != 0:
             log(f"  WARNING: podman login failed for {registry}")
             failed.append(registry)
+        else:
+            log(f"  OK    {registry}")
     if failed:
         log(f"  WARNING: could not log in to: {', '.join(failed)} — subsequent stages may fail")
-    else:
-        log("  All registry logins succeeded.")
 
 
 # ---------------------------------------------------------------------------
