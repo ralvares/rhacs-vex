@@ -2066,7 +2066,11 @@ def main():
                     results_map[comp_name] = (image_ref, res)
                     status = "✅" if res.get("found") and res.get("result_df") is not None \
                              else ("⚠ " if res.get("found") is False else "❌")
-                    suffix = f"  [dim]{image_ref}[/dim]" if res.get("found") is False else ""
+                    suffix = ""
+                    if res.get("found") is False:
+                        suffix = f"  [dim]{image_ref}[/dim]"
+                    elif res.get("found") is None and res.get("error"):
+                        suffix = f"  [red]{res['error'][:80]}[/red]"
                     _console.print(f"  [{done}/{total}] {status} {comp_name}{suffix}", highlight=False)
 
             # Retry any images that failed due to API errors (found=None).
