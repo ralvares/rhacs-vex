@@ -218,10 +218,10 @@ def parse_image_ref(image_ref: str) -> WorkloadContext:
         ctx.extra_prefixes.append(f"{ns}/")               # short form used in some VEX trees
 
         # Pull in all prefix candidates from the catalog-derived map.
-        # The map already includes normalised display names, OLM package names,
-        # and hardcoded overrides for divergent product families (rhacm2, odf4, …).
+        # The map includes normalised display names, OLM package names,
+        # and relatedImage namespaces — no hardcoded strings here.
         for ns_key, prefixes in _NS_TO_VEX_PREFIXES.items():
-            if ns_key == ns or ns_key in ns or ns_key in name:
+            if ns_key == ns or ns_key in ns:
                 for p in prefixes:
                     if p not in ctx.extra_prefixes:
                         ctx.extra_prefixes.append(p)

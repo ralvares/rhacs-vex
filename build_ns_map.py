@@ -87,12 +87,26 @@ def _parse_catalog(path: str) -> dict[str, set[str]]:
     Parse one catalog JSON file and return {namespace: set_of_prefix_candidates}.
     The catalog is a series of concatenated JSON objects separated by blank lines /
     newlines — not a JSON array — so we split on top-level '{' boundaries.
+
+    For each olm.bundle, prefix candidates are derived from the OLM package name
+    and the operator displayName.  These candidates are attached to:
+      - the bundle image namespace
+      - every relatedImages namespace (workload images often live in a different
+        registry namespace than the bundle, e.g. rh-acs/ vs advanced-cluster-security/)
     """
     with open(path) as fh:
         content = fh.read()
 
     parts = re.split(r'\n(?=\{)', content)
     ns_candidates: dict[str, set[str]] = {}
+
+    # Namespaces that host generic base images shared across many operators;
+    # mapping them would pollute every operator's prefix set.
+    _SHARED_NS = frozenset({
+        'openshift4', 'openshift-release-dev', 'ocp4',
+        'ubi8', 'ubi9', 'ubi10', 'ubi8-minimal', 'ubi9-minimal',
+        'rhel7', 'rhel8', 'rhel9', 'rhel10',
+    })
 
     for part in parts:
         try:
@@ -103,18 +117,14 @@ def _parse_catalog(path: str) -> dict[str, set[str]]:
         if obj.get('schema') != 'olm.bundle':
             continue
 
-        image = obj.get('image', '')
-        ns = _namespace_from_image(image)
-        if not ns:
-            continue
-
-        bag = ns_candidates.setdefault(ns, set())
+        # Build the prefix candidates for this bundle.
+        candidates: set[str] = set()
 
         # 1. OLM package name (normalised)
         pkg = obj.get('package', '')
         if pkg:
             for c in _normalise(pkg):
-                bag.add(c)
+                candidates.add(c)
 
         # 2. displayName from olm.csv.metadata
         for prop in obj.get('properties', []):
@@ -122,8 +132,29 @@ def _parse_catalog(path: str) -> dict[str, set[str]]:
                 dn = prop.get('value', {}).get('displayName', '')
                 if dn:
                     for c in _normalise(dn):
-                        bag.add(c)
+                        candidates.add(c)
                 break
+
+        if not candidates:
+            continue
+
+        # Collect all namespaces this bundle touches:
+        # the bundle image itself + every relatedImage.
+        all_ns: set[str] = set()
+
+        bundle_ns = _namespace_from_image(obj.get('image', ''))
+        if bundle_ns:
+            all_ns.add(bundle_ns)
+
+        for ri in obj.get('relatedImages', []):
+            ri_image = ri.get('image', '')
+            ri_ns = _namespace_from_image(ri_image)
+            if ri_ns and ri_ns not in _SHARED_NS:
+                all_ns.add(ri_ns)
+
+        # Attach candidates to every namespace this bundle uses.
+        for ns in all_ns:
+            ns_candidates.setdefault(ns, set()).update(candidates)
 
     return ns_candidates
 
