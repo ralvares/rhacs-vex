@@ -95,6 +95,17 @@ Version,Release Status,Phase
 CATALOG_DIR = os.path.join("data", "catalogs")
 REPORTS_DIR = os.path.join("data", "reports")
 
+# Scanner backend → (OCP-release script, operator script).
+#   rhacs   — RHACS Central API           (needs ROX_ENDPOINT / ROX_API_TOKEN)
+#   grype   — local grype + syft          (needs `podman login`, stage 0)
+#   clairv4 — local StackRox Scanner V4   (needs the rhacs-scanner-local/ stack
+#                                           running; pull-secret forwarded to it)
+SCANNER_SCRIPTS = {
+    "rhacs":   ("triage.py",          "triage_operators.py"),
+    "grype":   ("triage_grype.py",    "triage_operators_grype.py"),
+    "clairv4": ("triage_clairv4.py",  "triage_operators_clairv4.py"),
+}
+
 
 def log(msg: str):
     print(f"[setup_and_scan] {msg}", flush=True)
@@ -277,11 +288,12 @@ def stage_ocp_pullspecs(versions: list[str], pull_secret: str, oc_bin: str,
 # ---------------------------------------------------------------------------
 
 def stage_ocp_triage(pullspec_files: list[str], workers: int,
-                     skip_existing: bool, false_only: bool, grype: bool = False):
-    log(f"=== STAGE 4: Triage OCP releases {'(grype)' if grype else '(RHACS)'} ===")
+                     skip_existing: bool, false_only: bool,
+                     scanner: str = "rhacs", pull_secret: str | None = None):
+    log(f"=== STAGE 4: Triage OCP releases ({scanner}) ===")
     os.makedirs(REPORTS_DIR, exist_ok=True)
 
-    scanner_script = "triage_grype.py" if grype else "triage.py"
+    scanner_script = SCANNER_SCRIPTS[scanner][0]
 
     for txt in pullspec_files:
         # Derive version from filename  e.g. "4.21.3.txt" → "4.21.3"
@@ -301,6 +313,10 @@ def stage_ocp_triage(pullspec_files: list[str], workers: int,
         ]
         if false_only:
             cmd.append("--false-only")
+        # Scanner V4 pulls private images via scannerctl, which needs the
+        # pull-secret forwarded (grype instead relies on the stage-0 podman login).
+        if scanner == "clairv4" and pull_secret:
+            cmd += ["--pull-secret", os.path.abspath(pull_secret)]
 
         rc = run(cmd)
         if rc != 0:
@@ -388,10 +404,11 @@ def stage_prefill_operator_reports(minor_versions: list[str]) -> int:
 # ---------------------------------------------------------------------------
 
 def stage_operator_triage(minor_versions: list[str], workers: int,
-                           skip_existing: bool, false_only: bool, grype: bool = False):
-    log(f"=== STAGE 5: Triage operators {'(grype)' if grype else '(RHACS)'} ===")
+                           skip_existing: bool, false_only: bool,
+                           scanner: str = "rhacs", pull_secret: str | None = None):
+    log(f"=== STAGE 5: Triage operators ({scanner}) ===")
 
-    scanner_script = "triage_operators_grype.py" if grype else "triage_operators.py"
+    scanner_script = SCANNER_SCRIPTS[scanner][1]
 
     cmd = [
         sys.executable, scanner_script,
@@ -402,6 +419,8 @@ def stage_operator_triage(minor_versions: list[str], workers: int,
         cmd.append("--skip-existing")
     if false_only:
         cmd.append("--false-only")
+    if scanner == "clairv4" and pull_secret:
+        cmd += ["--pull-secret", os.path.abspath(pull_secret)]
 
     rc = run(cmd)
     if rc != 0:
@@ -458,8 +477,15 @@ def parse_args() -> argparse.Namespace:
              "Useful for resuming an interrupted run.",
     )
     parser.add_argument(
+        "--scanner", choices=["rhacs", "grype", "clairv4"], default="rhacs",
+        help="Scanner backend (default: rhacs). "
+             "'grype' = local grype+syft; "
+             "'clairv4' = local StackRox Scanner V4 (needs the rhacs-scanner-local/ "
+             "stack running). grype and clairv4 need no ROX_ENDPOINT/ROX_API_TOKEN.",
+    )
+    parser.add_argument(
         "--grype", action="store_true", default=False,
-        help="Use grype instead of RHACS for scanning (no ROX_ENDPOINT/ROX_API_TOKEN required).",
+        help="Deprecated alias for --scanner grype.",
     )
 
     # Stage skip flags
@@ -486,8 +512,14 @@ def main():
     if not os.path.isfile(pull_secret):
         sys.exit(f"ERROR: pull-secret file not found: {pull_secret}")
 
+    # ── Resolve scanner backend (--grype is a deprecated alias) ─────────────
+    scanner = "grype" if args.grype else args.scanner
+    if args.grype and args.scanner not in ("rhacs", "grype"):
+        sys.exit("ERROR: --grype conflicts with --scanner " + args.scanner)
+    log(f"Scanner backend: {scanner}")
+
     # ── Check required env vars for scanning stages ─────────────────────────
-    if not args.grype and (not args.skip_ocp or not args.skip_operators):
+    if scanner == "rhacs" and (not args.skip_ocp or not args.skip_operators):
         missing = [v for v in ("ROX_ENDPOINT", "ROX_API_TOKEN")
                    if not os.environ.get(v)]
         if missing:
@@ -495,8 +527,19 @@ def main():
                 f"ERROR: required environment variable(s) not set: {', '.join(missing)}\n"
                 "  export ROX_ENDPOINT=central.example.com:443\n"
                 "  export ROX_API_TOKEN=<your-token>\n"
-                "  (or pass --grype to use grype instead of RHACS)"
+                "  (or pass --scanner grype / --scanner clairv4 to scan locally)"
             )
+
+    # ── clairv4: warn early if the local Scanner V4 stack looks unreachable ─
+    if scanner == "clairv4" and (not args.skip_ocp or not args.skip_operators):
+        import socket
+        host, _, port = os.environ.get("SCANNER_V4_INDEXER", "localhost:8443").partition(":")
+        try:
+            with socket.create_connection((host, int(port or 8443)), timeout=3):
+                pass
+        except OSError:
+            log(f"WARNING: Scanner V4 gRPC at {host}:{port or 8443} is not reachable. "
+                "Start the stack first (see rhacs-scanner-local/README.md).")
 
     # ── Load version list ───────────────────────────────────────────────────
     versions = load_versions(args.versions)
@@ -532,7 +575,7 @@ def main():
             versions, pull_secret, args.oc, args.arch, args.skip_existing
         )
         stage_ocp_triage(pullspec_files, args.workers, args.skip_existing,
-                         args.false_only, grype=args.grype)
+                         args.false_only, scanner=scanner, pull_secret=pull_secret)
     else:
         log("=== STAGES 3+4: SKIPPED (--skip-ocp) ===")
 
@@ -541,7 +584,7 @@ def main():
         stage_prefill_operator_reports(minor_versions_ordered)
         stage_operator_triage(
             minor_versions_ordered, args.workers, True, args.false_only,
-            grype=args.grype
+            scanner=scanner, pull_secret=pull_secret
         )
     else:
         log("=== STAGE 5: SKIPPED (--skip-operators) ===")

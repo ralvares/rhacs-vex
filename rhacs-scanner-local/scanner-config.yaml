@@ -1,0 +1,18 @@
+stackrox_services: true
+
+indexer:
+  enable: true
+  database:
+    conn_string: "host=scanner-v4-db port=5432 user=postgres password=scanner123 sslmode=disable"
+  get_layer_timeout: 1m
+
+matcher:
+  enable: true
+  database:
+    conn_string: "host=scanner-v4-db port=5432 user=postgres password=scanner123 sslmode=disable"
+  vulnerabilities_url: "https://central/api/extensions/scannerdefinitions?version=ROX_VERSION"
+  indexer_addr: ""
+
+http_listen_addr: "0.0.0.0:9443"
+grpc_listen_addr: "0.0.0.0:8443"
+log_level: "INFO"
