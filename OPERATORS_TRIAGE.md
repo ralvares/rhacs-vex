@@ -2,12 +2,18 @@
 
 Triages all operators from OLM catalogs against Red Hat VEX data.
 
-For each OCP catalog version in `data/catalogs/`, the tool:
-1. Parses the catalog (OLM FBC format) to find all operator packages.
-2. Identifies the head bundle of each operator's default channel.
-3. Retrieves all workload images from that bundle's `relatedImages`.
-4. Scans and triages every image via the RHACS API.
-5. Writes per-operator CSVs to `data/reports/ocp-{version}/`.
+The tool uses a three-phase approach with image-level dedup:
+
+**Phase 1 — Catalog analysis:** Parses all OCP catalog versions from `data/catalogs/`,
+identifies head bundles across all operators/channels, collects all unique workload
+images, and respects `--skip-existing` to skip already-completed reports.
+
+**Phase 2 — Batch scan:** Scans all unique images once via the RHACS API with parallel
+workers. Each image SHA is scanned exactly once, even if it appears in multiple
+operators or across OCP versions. Progress shows elapsed time and ETA.
+
+**Phase 3 — Report assembly:** Assembles per-operator CSV reports from cached scan
+results — no additional RHACS calls. Writes to `data/reports/ocp-{version}/`.
 
 ## Prerequisites
 

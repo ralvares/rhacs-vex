@@ -24,7 +24,7 @@ Before any CVE is triaged, `setup_and_scan.py` orchestrates a six-stage pipeline
 
 ### Stage 2 — Build the Namespace-to-VEX Prefix Map (`build_ns_map.py`)
 
-**What:** Parse every `catalog-*.json` file from Stage 1, extract three identifiers per operator bundle (registry namespace, OLM package name, and operator display name), normalise them to snake_case, and write the result to `data/ns_vex_prefixes.json`.
+**What:** Parse every `catalog-*.json` file from Stage 1, extract identifiers per operator bundle (registry namespace, OLM package name, and operator display name), plus the namespaces of all `relatedImages`. Normalise them to snake_case and write the result to `data/ns_vex_prefixes.json`. The `relatedImages` step is critical because workload images often live in a different registry namespace than the bundle (e.g., ACS bundles are in `advanced-cluster-security/` but workload images are in `rh-acs/`).
 
 **Why this exists — the naming mismatch problem:** This is the bridge between the container registry world and the VEX/CSAF world. Red Hat VEX advisories identify products using names like `red_hat_advanced_cluster_management_for_kubernetes_2`, while the container images for that same product live under the registry namespace `rhacm2/`. There is zero string overlap. Without the catalog-derived map, the engine would have no way to know that an image pulled from `registry.redhat.io/rhacm2/multicluster-engine-rhel8-operator` should be matched against VEX entries for "Advanced Cluster Management."
 
@@ -46,9 +46,14 @@ See Section 2 for the full explanation of how this map is used at triage time.
 
 ### Stage 5 — Triage Operators
 
-**What:** For each OCP minor version, parse the catalog from Stage 1 to find all operator packages, identify the head bundle of each operator's default channel, retrieve the bundle's `relatedImages`, and triage every image. Results are saved per-operator: `data/reports/ocp-4.21/{operator}-{channel}-{bundle_version}.csv`.
+**What:** Parse all OCP catalogs, collect every unique workload image across all operators/channels/versions, batch-scan them once via RHACS, then assemble per-operator CSV reports from cached results. Results are saved per-operator: `data/reports/ocp-4.21/{operator}-{channel}-{bundle_version}.csv`.
 
-**Why per-minor, not per-patch:** Operators are versioned by their OLM channel, not by OCP patch releases. The same operator bundle (and therefore the same images) ships across all patch versions of a given OCP minor. Stage 5a exploits this by pre-copying identical reports across minor versions to avoid redundant scans.
+The scan runs in three phases:
+1. **Catalog analysis** — parse all catalogs, deduplicate images across operators/channels/versions
+2. **Batch scan** — scan each unique image SHA exactly once via RHACS (parallel workers, progress with ETA)
+3. **Report assembly** — build per-operator CSVs from cached scan results (no RHACS calls)
+
+**Why image-level dedup:** The same image often appears in multiple operators or across OCP minor versions. Without dedup, ~63% of RHACS scans are redundant. Stage 5a additionally pre-copies identical report files across minor versions when the bundle version matches.
 
 ---
 
@@ -75,24 +80,30 @@ There is no algorithmic transformation from the left column to the right. The re
 
 The OLM operator catalog is the Rosetta Stone. Every `olm.bundle` entry in the catalog carries three pieces of information:
 
-1. **`image`** — the full registry URL, which gives us the namespace (e.g., `rhacm2`)
-2. **`package`** — the OLM package name (e.g., `advanced-cluster-management`)
-3. **`properties[olm.csv.metadata].displayName`** — the human-readable name (e.g., "Red Hat Advanced Cluster Management for Kubernetes")
+1. **`image`** — the full registry URL, which gives us the bundle namespace (e.g., `advanced-cluster-security`)
+2. **`package`** — the OLM package name (e.g., `rhacs-operator`)
+3. **`properties[olm.csv.metadata].displayName`** — the human-readable name (e.g., "Advanced Cluster Security for Kubernetes")
 
-`build_ns_map.py` normalises all three to snake_case (stripping common prefixes like "Red Hat OpenShift" to produce shorter candidates) and groups them by namespace. The result is a JSON map like:
+Additionally, each bundle lists its **`relatedImages`** — the actual workload images that get deployed. These often live in a different registry namespace than the bundle itself (e.g., ACS workload images are in `rh-acs/`, not `advanced-cluster-security/`).
+
+`build_ns_map.py` normalises the package name and display name to snake_case (stripping common prefixes like "Red Hat OpenShift" to produce shorter candidates) and attaches these prefixes to **every namespace** the bundle touches — both the bundle image namespace and all `relatedImages` namespaces. Shared base namespaces (`ubi8`, `ubi9`, `ubi10`, `rhel7`–`rhel10`, `openshift4`, etc.) are excluded to prevent prefix pollution. The result is a JSON map like:
 
 ```json
 {
-  "rhacm2": [
-    "advanced_cluster_management",
-    "advanced_cluster_management_for_kubernetes",
-    "multicluster_engine",
-    ...
+  "advanced-cluster-security": [
+    "advanced_cluster_security",
+    "advanced_cluster_security_for_kubernetes",
+    "rhacs_operator"
+  ],
+  "rh-acs": [
+    "advanced_cluster_security",
+    "advanced_cluster_security_for_kubernetes",
+    "rhacs_operator"
   ]
 }
 ```
 
-At triage time, when the engine encounters an image from `rhacm2/`, it loads these prefixes and checks whether any VEX product ID contains one of them. This substring match is deliberately fuzzy — Red Hat may name their VEX product `red_hat_advanced_cluster_management_for_kubernetes_2` or `advanced_cluster_management_2.10`, and the prefix `advanced_cluster_management` matches both.
+At triage time, when the engine encounters an image from `rh-acs/`, it loads these prefixes and checks whether any VEX product ID contains one of them. This substring match is deliberately fuzzy — Red Hat may name their VEX product `red_hat_advanced_cluster_security_4` or `advanced_cluster_security_for_kubernetes`, and the prefix `advanced_cluster_security` matches both.
 
 ### Why not hardcode it?
 

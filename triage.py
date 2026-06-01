@@ -52,7 +52,8 @@ SBOM_DIR    = os.path.join(BASE_DIR, "sbom")
 SCAN_DIR    = os.path.join(BASE_DIR, "scans")
 
 SCAN_FILE       = "scan.csv"
-SCAN_CACHE_TTL  = 4 * 3600   # seconds; re-fetch scan after 4 hours
+SCAN_CACHE_TTL  = 4 * 3600   # seconds; HTTP-level re-fetch after 4 hours
+LOCAL_CACHE_TTL = 24 * 3600  # seconds; re-use local JSON/SBOM files for 24 hours
 MAX_WORKERS     = 20
 
 # ── Product-ID prefix helpers ────────────────────────────────────────────────
@@ -499,12 +500,23 @@ def rhacs_scan_image(session, image_ref: str, force: bool = False,
     """Fetch (or trigger) a scan for an image via POST /v1/images/scan.
 
     RHACS returns the existing scan if it knows the image, or scans it fresh.
-    A pretty-printed JSON copy is saved to data/scans/ for offline inspection.
-    Pass force=True to bypass the local HTTP cache and ask RHACS to re-scan.
+    A JSON copy is saved to data/scans/ and reused on subsequent calls within
+    LOCAL_CACHE_TTL (24 h) to avoid redundant RHACS round-trips.
+    Pass force=True to bypass all caches and re-scan from scratch.
     Retries up to *retries* times on Timeout/ConnectionError, waiting *retry_delay*
     seconds between attempts (doubles each retry).
     """
     os.makedirs(SCAN_DIR, exist_ok=True)
+
+    # Check local file cache first (keyed by image_ref which contains the SHA).
+    ref_cache = _scan_cache_path("", image_ref)
+    if not force and _local_cache_fresh(ref_cache):
+        try:
+            with open(ref_cache) as fh:
+                return json.load(fh)
+        except Exception:
+            pass
+
     url = f"{session.base_url}/v1/images/scan"
     if force:
         session.cache.delete(urls=[url])
@@ -517,9 +529,8 @@ def rhacs_scan_image(session, image_ref: str, force: bool = False,
             if not data.get("id"):
                 return None
             cache_path = _scan_cache_path(data["id"], image_ref)
-            if force or not os.path.exists(cache_path):
-                with open(cache_path, "w") as fh:
-                    json.dump(data, fh, indent=2)
+            with open(cache_path, "w") as fh:
+                json.dump(data, fh, indent=2)
             return data
         except (requests.Timeout, requests.ConnectionError) as exc:
             if attempt <= retries:
@@ -539,17 +550,34 @@ def _scan_cache_path(image_id: str, image_ref: str = "") -> str:
     return os.path.join(SCAN_DIR, f"{safe}.json")
 
 
+def _local_cache_fresh(path: str) -> bool:
+    """Return True if *path* exists and is younger than LOCAL_CACHE_TTL seconds."""
+    try:
+        age = time.time() - os.path.getmtime(path)
+        return age < LOCAL_CACHE_TTL
+    except OSError:
+        return False
+
+
 def rhacs_get_image(session, image_id: str, force: bool = False, image_ref: str = "",
                     retries: int = 3, retry_delay: float = 10.0) -> dict:
     """Fetch full image detail (scan + metadata) from RHACS.
 
-    The CachedSession handles TTL-based caching (SCAN_CACHE_TTL) automatically.
-    A pretty-printed JSON copy is also saved to data/scans/ for offline inspection.
-    Pass force=True to invalidate the cache entry and fetch a fresh copy.
+    A JSON copy is saved to data/scans/ and reused within LOCAL_CACHE_TTL (24 h).
+    Pass force=True to bypass all caches and fetch a fresh copy.
     Retries up to *retries* times on Timeout/ConnectionError, waiting *retry_delay*
     seconds between attempts (doubles each retry).
     """
     os.makedirs(SCAN_DIR, exist_ok=True)
+
+    cache_path = _scan_cache_path(image_id, image_ref)
+    if not force and _local_cache_fresh(cache_path):
+        try:
+            with open(cache_path) as fh:
+                return json.load(fh)
+        except Exception:
+            pass
+
     url = f"{session.base_url}/v1/images/{image_id}"
     if force:
         session.cache.delete(urls=[url])
@@ -559,11 +587,8 @@ def rhacs_get_image(session, image_id: str, force: bool = False, image_ref: str 
             resp = session.get(url, params={"stripDescription": True}, timeout=60)
             resp.raise_for_status()
             data = resp.json()
-            # Keep a pretty-printed JSON copy in SCAN_DIR for offline inspection.
-            cache_path = _scan_cache_path(image_id, image_ref)
-            if force or not os.path.exists(cache_path):
-                with open(cache_path, "w") as fh:
-                    json.dump(data, fh, indent=2)
+            with open(cache_path, "w") as fh:
+                json.dump(data, fh, indent=2)
             return data
         except (requests.Timeout, requests.ConnectionError) as exc:
             if attempt <= retries:
@@ -584,22 +609,27 @@ def _sbom_cache_path(image_ref: str) -> str:
 def rhacs_get_sbom(session, image_ref: str, force: bool = False) -> dict:
     """Fetch SPDX 2.3 SBOM from RHACS.
 
-    The CachedSession caches SBOM responses for 7 days automatically.
-    A plain-JSON copy is also saved to data/sbom/ for offline inspection.
-    Pass force=True to invalidate the cache and fetch a fresh copy.
+    A JSON copy is saved to data/sbom/ and reused within LOCAL_CACHE_TTL (24 h).
+    Pass force=True to bypass all caches and fetch a fresh copy.
     """
     os.makedirs(SBOM_DIR, exist_ok=True)
+
+    cache_path = _sbom_cache_path(image_ref)
+    if not force and _local_cache_fresh(cache_path):
+        try:
+            with open(cache_path) as fh:
+                return json.load(fh)
+        except Exception:
+            pass
+
     url = f"{session.base_url}/api/v1/images/sbom"
     if force:
         session.cache.delete(urls=[url])
     resp = session.post(url, json={"imageName": image_ref, "force": force}, timeout=120)
     resp.raise_for_status()
     sbom = resp.json()
-    # Keep a plain-JSON copy in SBOM_DIR for offline inspection.
-    cache_path = _sbom_cache_path(image_ref)
-    if force or not os.path.exists(cache_path):
-        with open(cache_path, "w") as fh:
-            json.dump(sbom, fh, indent=2)
+    with open(cache_path, "w") as fh:
+        json.dump(sbom, fh, indent=2)
     return sbom
 
 
@@ -2018,11 +2048,13 @@ def main():
 
             _console.print(f"🚀 Scanning {total} images with [bold]{args.workers}[/bold] parallel workers...\n")
 
+            _force = getattr(args, 'force', False)
+
             with ThreadPoolExecutor(max_workers=args.workers) as ex:
                 future_to_comp = {
                     ex.submit(_fetch_and_audit, session, image_ref, None,
                               args.false_only, _manifest_ocp_ver,
-                              getattr(args, 'force', False), comp_name):
+                              _force, comp_name):
                         (comp_name, image_ref)
                     for comp_name, image_ref in images
                 }
@@ -2036,6 +2068,26 @@ def main():
                              else ("⚠ " if res.get("found") is False else "❌")
                     suffix = f"  [dim]{image_ref}[/dim]" if res.get("found") is False else ""
                     _console.print(f"  [{done}/{total}] {status} {comp_name}{suffix}", highlight=False)
+
+            # Retry any images that failed due to API errors (found=None).
+            failed = [(cn, ir) for cn, ir in images
+                      if results_map.get(cn, (None, {}))[1].get("found") is None]
+            if failed:
+                _console.print(f"\n[yellow]⚠  {len(failed)} image(s) failed — retrying...[/yellow]")
+                time.sleep(5)
+                with ThreadPoolExecutor(max_workers=args.workers) as ex:
+                    retry_futures = {
+                        ex.submit(_fetch_and_audit, session, ir, None,
+                                  args.false_only, _manifest_ocp_ver, True, cn):
+                            (cn, ir) for cn, ir in failed
+                    }
+                    for future in as_completed(retry_futures):
+                        cn, ir = retry_futures[future]
+                        res = future.result()
+                        results_map[cn] = (ir, res)
+                        status = "✅" if res.get("found") and res.get("result_df") is not None \
+                                 else ("⚠ " if res.get("found") is False else "❌")
+                        _console.print(f"  [retry] {status} {cn}", highlight=False)
 
             _console.print()
 

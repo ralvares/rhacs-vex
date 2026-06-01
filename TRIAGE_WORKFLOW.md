@@ -62,7 +62,9 @@ class WorkloadContext:
 - `parse_image_ref(ref)` — derives type/ns/name purely from the image path
 - `parse_context_from_labels(labels)` — refines from Docker `cpe` / `name` labels
 - `extra_prefixes` — loaded from `data/ns_vex_prefixes.json`, which is built from
-  the OLM operator catalogs by `build_ns_map.py`
+  the OLM operator catalogs by `build_ns_map.py` (covers both bundle image namespaces
+  and `relatedImages` namespaces, so workload images in a different registry namespace
+  than the bundle get the correct VEX prefixes)
 
 ---
 
@@ -281,7 +283,7 @@ Output example:
 | `--namespace` (API) | `_fetch_and_audit()` | ✅ yes | ✅ yes |
 | `--ocp` (API) | `_fetch_and_audit()` | ✅ yes | ✅ yes |
 | `--scan` (CSV) | `_audit_and_display()` | ❌ no API | ⚠️ empty (name-exact only) |
-| `triage_operators.py` | `_scan_and_audit_image()` | ✅ yes | ✅ yes |
+| `triage_operators.py` | `_fetch_and_audit()` (batch, deduped) | ✅ yes | ✅ yes |
 
 ---
 

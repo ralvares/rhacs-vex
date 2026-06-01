@@ -89,7 +89,7 @@ Each render may take a few minutes depending on network speed.
 python3 build_ns_map.py
 ```
 
-This reads every `catalog*.json` from `data/catalogs/`, extracts the registry namespace, OLM package name, and operator display name for each bundle, normalises them to snake_case VEX-prefix candidates, and writes the result to `data/ns_vex_prefixes.json`.
+This reads every `catalog*.json` from `data/catalogs/`, extracts the registry namespace, OLM package name, and operator display name for each bundle, plus the namespaces of all `relatedImages` (workload images often live in a different registry namespace than the bundle itself). All identifiers are normalised to snake_case VEX-prefix candidates and written to `data/ns_vex_prefixes.json`.
 
 `triage.py` loads this file automatically at startup.
 

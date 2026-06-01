@@ -503,6 +503,29 @@ def main() -> None:
                     f'{elapsed:.0f}s elapsed, ~{eta:.0f}s remaining'
                 )
 
+    # Retry any images that failed due to API errors (found=None).
+    failed = [img for img, res in scan_cache.items() if res.get('found') is None]
+    if failed:
+        console.print(f'\n[yellow]⚠  {len(failed)} image(s) failed — retrying...[/yellow]')
+        time.sleep(5)
+        with ThreadPoolExecutor(max_workers=args.workers) as ex:
+            retry_futures = {
+                ex.submit(triage._fetch_and_audit, session, img, None,
+                          args.false_only): img
+                for img in failed
+            }
+            for future in as_completed(retry_futures):
+                img = retry_futures[future]
+                try:
+                    scan_cache[img] = future.result()
+                except Exception:
+                    scan_cache[img] = {'found': None, 'error': 'retry failed'}
+
+        still_failed = sum(1 for img in failed if scan_cache[img].get('found') is None)
+        recovered = len(failed) - still_failed
+        console.print(f'  Recovered {recovered}/{len(failed)}'
+                      + (f', {still_failed} still failing' if still_failed else ''))
+
     t_scan_elapsed = time.time() - t_scan_start
     found = sum(1 for r in scan_cache.values() if r.get('found'))
     with_vulns = sum(1 for r in scan_cache.values() if r.get('result_df') is not None)
