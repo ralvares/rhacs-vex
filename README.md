@@ -63,6 +63,72 @@ export ROX_ENDPOINT=central-stackrox.apps.mycluster.example.com:443
 export ROX_API_TOKEN=<your-api-token>
 ```
 
+> `ROX_ENDPOINT` / `ROX_API_TOKEN` are only needed for the **RHACS** backend.
+> The local backends (**grype**, **clairv4**) need no Central.
+
+---
+
+## Scanner Backends
+
+The VEX triage engine is scanner-agnostic — it consumes a CVE list and cross-checks
+it against Red Hat VEX/SBOM/RPM data. Three scanner backends feed it, all producing
+the **same** report schema and verdicts:
+
+| Backend | Scanner | Needs Central? | Entry scripts | When to use |
+|---------|---------|----------------|---------------|-------------|
+| **rhacs** (default) | RHACS Central API | ✅ `ROX_ENDPOINT`/`ROX_API_TOKEN` | `triage.py`, `triage_operators.py` | You already run RHACS |
+| **grype** | local grype + syft | ❌ | `triage_grype.py`, `triage_operators_grype.py` | Quick local scan, no infra |
+| **clairv4** | local StackRox Scanner V4 (ClairCore — the same engine RHACS uses) | ❌ | `triage_clairv4.py`, `triage_operators_clairv4.py` | Local scan with RHACS-identical results |
+
+All three share the VEX engine, the `--ocp` / operator workflows, and the output
+format. Pick one with `setup_and_scan.py --scanner {rhacs,grype,clairv4}`.
+
+### Local Scanner V4 (clairv4)
+
+`clairv4` runs the **actual RHACS scanner** (Scanner V4 / ClairCore) locally in
+containers — so its package detection and CVE matching are identical to RHACS, with
+no OpenShift or Central required. Bring the stack up once (see
+[`rhacs-scanner-local/README.md`](rhacs-scanner-local/README.md)), then:
+
+```bash
+# single image (private registry → pull secret forwarded to the scanner)
+python3 triage_clairv4.py \
+  --image registry.redhat.io/advanced-cluster-security/rhacs-main-rhel8:4.10.2 \
+  --pull-secret ~/pullsecret.txt
+
+# SBOM (SPDX 2.3) for an image
+python3 triage_clairv4.py --image registry.access.redhat.com/ubi9/ubi:latest --sbom
+
+# every component in an OCP release
+python3 triage_clairv4.py --ocp 4.21.18.txt --pull-secret ~/pullsecret.txt \
+  --format csv --output data/reports/ocp-4.21.18.csv
+
+# every operator in an OCP catalog
+python3 triage_operators_clairv4.py --version 4.21 --pull-secret ~/pullsecret.txt
+```
+
+Auth notes (clairv4): the **scanner container** pulls the image, so credentials are
+parsed from `--pull-secret` (Docker-config or k8s-Secret JSON), matched per registry,
+and forwarded as basic auth. Public registries (e.g. `registry.access.redhat.com`)
+need no auth. Use `--auth user:pass` to force a single credential for all images.
+
+### Full pipeline (`setup_and_scan.py`)
+
+`setup_and_scan.py` orchestrates the whole flow — render catalogs, build the
+namespace map, fetch OCP pullspecs, triage releases, triage operators — for the
+chosen backend:
+
+```bash
+# RHACS (default) — needs ROX_ENDPOINT / ROX_API_TOKEN
+python3 setup_and_scan.py --pull-secret ~/pullsecret.txt
+
+# local grype — no Central
+python3 setup_and_scan.py --scanner grype --pull-secret ~/pullsecret.txt
+
+# local Scanner V4 — no Central (start the rhacs-scanner-local stack first)
+python3 setup_and_scan.py --scanner clairv4 --pull-secret ~/pullsecret.txt
+```
+
 ## Usage
 
 ```

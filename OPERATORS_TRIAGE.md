@@ -95,3 +95,30 @@ Each CSV contains a row per CVE finding with columns:
 | `JUSTIFICATION` | Human-readable explanation |
 
 A summary table is printed to the terminal after each OCP version completes.
+
+---
+
+## Local scanner variants (no RHACS)
+
+The same operator triage is available with local scanners — identical CLI, output,
+and reports, but **no `ROX_ENDPOINT` / `ROX_API_TOKEN`** required:
+
+| Script | Scanner |
+|--------|---------|
+| `triage_operators.py` | RHACS Central API (default) |
+| `triage_operators_grype.py` | local grype + syft |
+| `triage_operators_clairv4.py` | local StackRox Scanner V4 (ClairCore) — RHACS-identical results |
+
+```bash
+# grype (auth via `podman login`)
+python3 triage_operators_grype.py --version 4.21 --pull-secret ~/pullsecret.txt
+
+# Scanner V4 (start the rhacs-scanner-local stack first; pull secret forwarded
+# to the scanner container per registry)
+python3 triage_operators_clairv4.py --version 4.21 --pull-secret ~/pullsecret.txt
+```
+
+The `clairv4` variant adds `--auth user:pass`, `--indexer-address`,
+`--matcher-address`, and `--scannerctl` flags. See
+[`rhacs-scanner-local/README.md`](rhacs-scanner-local/README.md) to bring up the
+local Scanner V4 stack.
