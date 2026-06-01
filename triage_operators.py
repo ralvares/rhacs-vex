@@ -259,6 +259,34 @@ def triage_operator(
     return pd.concat(frame_parts, ignore_index=True)
 
 
+def _assemble_report_from_cache(
+    bundle: dict,
+    scan_cache: dict[str, dict],
+) -> pd.DataFrame | None:
+    """Build a triage report from pre-scanned image results.
+
+    Same output as triage_operator() but uses cached _fetch_and_audit results
+    instead of calling RHACS — no network I/O.
+    """
+    images = _get_unique_workload_images(bundle)
+    if not images:
+        return None
+
+    frame_parts: list = []
+    for role, img in images:
+        res = scan_cache.get(img)
+        if not res or not res.get('found') or res.get('result_df') is None:
+            continue
+        rdf = res['result_df'].copy()
+        rdf.insert(0, 'IMAGE', img)
+        rdf.insert(1, 'IMAGE_ROLE', role)
+        frame_parts.append(rdf)
+
+    if not frame_parts:
+        return None
+    return pd.concat(frame_parts, ignore_index=True)
+
+
 # ── Catalog version discovery ─────────────────────────────────────────────────
 
 def available_catalog_versions() -> list:
@@ -376,19 +404,21 @@ def main() -> None:
 
     session = triage._rhacs_session(ROX_ENDPOINT, ROX_API_TOKEN)
 
+    # ── Phase 1: Parse catalogs and collect work items ────────────────
+    console.rule('[bold]Phase 1: Analyzing operator catalogs[/bold]')
+
+    work_by_version: dict[str, list[dict]] = {}
+    all_unique_images: set[str] = set()
+
     for ocp_ver in versions:
         cat_path = os.path.join(CATALOG_DIR, f'catalog-{ocp_ver}.json')
         if not os.path.exists(cat_path):
             console.print(f'[yellow]⚠  Catalog not found for OCP {ocp_ver}: {cat_path}[/yellow]')
             continue
 
-        console.rule(f'[bold cyan]OCP {ocp_ver}[/bold cyan]')
         console.print(f'📂 Parsing [cyan]{cat_path}[/cyan] ...')
         op_index = build_operator_index(cat_path)
-        total_channels = sum(len(v) for v in op_index.values())
-        console.print(f'   {len(op_index)} operators, {total_channels} channels in catalog.')
 
-        # Apply operator filter
         operators = {
             k: v for k, v in op_index.items()
             if op_filter is None or k in op_filter
@@ -397,7 +427,8 @@ def main() -> None:
             console.print('[yellow]  No matching operators.[/yellow]')
             continue
 
-        summary_rows: list = []
+        items: list[dict] = []
+        n_skipped = 0
 
         for op_name, ch_entries in operators.items():
             for ch_entry in ch_entries:
@@ -406,7 +437,6 @@ def main() -> None:
                 bundle      = ch_entry['head_bundle']
                 bundle_name = bundle.get('name', '')
 
-                # Extract version token: find the first ".vN" in the bundle name.
                 _vm = re.search(r'\.v(\d)', bundle_name)
                 if _vm:
                     bundle_version = bundle_name[_vm.start(0) + 1:]
@@ -417,72 +447,136 @@ def main() -> None:
 
                 report_path = _report_path(ocp_ver, op_name, channel, bundle_version)
 
-                default_tag = ' [dim](default)[/dim]' if is_default else ''
                 if args.skip_existing and os.path.exists(report_path):
-                    console.print(f'  [dim]━ {op_name} / {channel} {bundle_version} — skipped (exists)[/dim]')
+                    n_skipped += 1
                     continue
 
                 images = _get_unique_workload_images(bundle)
+                for _, img in images:
+                    all_unique_images.add(img)
+
+                items.append({
+                    'op_name': op_name, 'channel': channel,
+                    'is_default': is_default, 'bundle': bundle,
+                    'bundle_version': bundle_version,
+                    'report_path': report_path, 'images': images,
+                })
+
+        work_by_version[ocp_ver] = items
+        console.print(f'   {len(operators)} operators, {len(items)} channels to scan'
+                      + (f', {n_skipped} skipped (exist)' if n_skipped else ''))
+
+    total_channels = sum(len(items) for items in work_by_version.values())
+    console.print(f'\n📊 [bold]{total_channels}[/bold] operator channels to scan, '
+                  f'[bold]{len(all_unique_images)}[/bold] unique images\n')
+
+    if not all_unique_images:
+        console.print('[bold green]Nothing to scan — all reports up to date.[/bold green]')
+        return
+
+    # ── Phase 2: Batch-scan all unique images ─────────────────────────
+    console.rule('[bold]Phase 2: Scanning unique images[/bold]')
+    t_scan_start = time.time()
+    console.print(f'🚀 Scanning [bold]{len(all_unique_images)}[/bold] unique images '
+                  f'with [bold]{args.workers}[/bold] workers...\n')
+
+    scan_cache: dict[str, dict] = {}
+    with ThreadPoolExecutor(max_workers=args.workers) as ex:
+        futures = {
+            ex.submit(triage._fetch_and_audit, session, img, None, args.false_only): img
+            for img in all_unique_images
+        }
+        done = 0
+        for future in as_completed(futures):
+            done += 1
+            img = futures[future]
+            try:
+                scan_cache[img] = future.result()
+            except Exception:
+                scan_cache[img] = {'found': None, 'error': 'exception'}
+            if done % 50 == 0 or done == len(all_unique_images):
+                elapsed = time.time() - t_scan_start
+                rate = done / elapsed if elapsed > 0 else 0
+                eta = (len(all_unique_images) - done) / rate if rate > 0 else 0
                 console.print(
-                    f'\n  [bold]{op_name}[/bold] / [cyan]{channel}[/cyan]{default_tag} '
-                    f'[dim]{bundle_version}[/dim] — [cyan]{len(images)}[/cyan] image(s)'
+                    f'  [{done}/{len(all_unique_images)}] '
+                    f'{elapsed:.0f}s elapsed, ~{eta:.0f}s remaining'
                 )
 
-                if not images:
-                    console.print('    [dim]No workload images in this bundle.[/dim]')
-                    summary_rows.append({
-                        'operator': op_name, 'channel': channel,
-                        'bundle_version': bundle_version,
-                        'images': 0, 'vulnerable': 0, 'false_positive': 0,
-                        'skipped': True, 'report': '',
-                    })
-                    continue
+    t_scan_elapsed = time.time() - t_scan_start
+    found = sum(1 for r in scan_cache.values() if r.get('found'))
+    with_vulns = sum(1 for r in scan_cache.values() if r.get('result_df') is not None)
+    console.print(f'\n✅ Scanned [bold]{found}[/bold]/{len(all_unique_images)} images '
+                  f'({with_vulns} with vulnerability data) in {t_scan_elapsed:.0f}s\n')
 
-                t0      = time.time()
-                df      = triage_operator(bundle, session,
-                                          false_only=args.false_only,
-                                          workers=args.workers)
-                elapsed = time.time() - t0
+    # ── Phase 3: Assemble operator reports ────────────────────────────
+    console.rule('[bold]Phase 3: Assembling operator reports[/bold]')
 
-                if df is None or df.empty:
-                    console.print(
-                        f'    [dim]No findings — images not in RHACS or no CVE data. '
-                        f'({elapsed:.1f}s)[/dim]'
-                    )
-                    summary_rows.append({
-                        'operator': op_name, 'channel': channel,
-                        'bundle_version': bundle_version,
-                        'images': len(images), 'vulnerable': 0, 'false_positive': 0,
-                        'skipped': False, 'report': '',
-                    })
-                    continue
+    for ocp_ver in versions:
+        items = work_by_version.get(ocp_ver)
+        if not items:
+            continue
 
-                df.to_csv(report_path, index=False)
+        console.rule(f'[bold cyan]OCP {ocp_ver}[/bold cyan]')
+        summary_rows: list = []
 
-                counts       = df['AUDIT_RESULT'].value_counts().to_dict()
-                n_vuln       = counts.get('❌ POSITIVE', 0)
-                n_fp         = counts.get('✅ FALSE POSITIVE', 0)
-                n_imgs_found = df['IMAGE'].nunique()
+        for item in items:
+            op_name        = item['op_name']
+            channel        = item['channel']
+            bundle         = item['bundle']
+            bundle_version = item['bundle_version']
+            report_path    = item['report_path']
+            images         = item['images']
 
-                if args.false_only:
-                    console.print(
-                        f'    [bold green]✅ {n_fp}[/bold green] false-positive  '
-                        f'({n_imgs_found}/{len(images)} images in RHACS)  '
-                        f'→ [cyan]{report_path}[/cyan]  [dim]({elapsed:.1f}s)[/dim]'
-                    )
-                else:
-                    console.print(
-                        f'    [bold green]✅ {n_fp}[/bold green] false-positive  '
-                        f'[bold red]❌ {n_vuln}[/bold red] positive  '
-                        f'({n_imgs_found}/{len(images)} images in RHACS)  '
-                        f'→ [cyan]{report_path}[/cyan]  [dim]({elapsed:.1f}s)[/dim]'
-                    )
+            if not images:
                 summary_rows.append({
                     'operator': op_name, 'channel': channel,
                     'bundle_version': bundle_version,
-                    'images': len(images), 'vulnerable': n_vuln,
-                    'false_positive': n_fp, 'skipped': False, 'report': report_path,
+                    'images': 0, 'vulnerable': 0, 'false_positive': 0,
+                    'skipped': True, 'report': '',
                 })
+                continue
+
+            df = _assemble_report_from_cache(bundle, scan_cache)
+
+            if df is None or df.empty:
+                console.print(f'  [dim]{op_name} / {channel} {bundle_version} — no findings[/dim]')
+                summary_rows.append({
+                    'operator': op_name, 'channel': channel,
+                    'bundle_version': bundle_version,
+                    'images': len(images), 'vulnerable': 0, 'false_positive': 0,
+                    'skipped': False, 'report': '',
+                })
+                continue
+
+            df.to_csv(report_path, index=False)
+
+            counts       = df['AUDIT_RESULT'].value_counts().to_dict()
+            n_vuln       = counts.get('❌ POSITIVE', 0)
+            n_fp         = counts.get('✅ FALSE POSITIVE', 0)
+            n_imgs_found = df['IMAGE'].nunique()
+
+            if args.false_only:
+                console.print(
+                    f'  [bold green]✅ {n_fp}[/bold green] FP  '
+                    f'({n_imgs_found}/{len(images)} images)  '
+                    f'{op_name} / {channel} {bundle_version}  '
+                    f'→ [cyan]{report_path}[/cyan]'
+                )
+            else:
+                console.print(
+                    f'  [bold green]✅ {n_fp}[/bold green] FP  '
+                    f'[bold red]❌ {n_vuln}[/bold red] POS  '
+                    f'({n_imgs_found}/{len(images)} images)  '
+                    f'{op_name} / {channel} {bundle_version}  '
+                    f'→ [cyan]{report_path}[/cyan]'
+                )
+            summary_rows.append({
+                'operator': op_name, 'channel': channel,
+                'bundle_version': bundle_version,
+                'images': len(images), 'vulnerable': n_vuln,
+                'false_positive': n_fp, 'skipped': False, 'report': report_path,
+            })
 
         console.print()
         if summary_rows:
