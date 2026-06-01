@@ -1,3 +1,9 @@
+> **Canonical reference:** For the full end-to-end technical explainer (all triage logic,
+> verification, and architecture), see
+> [VEX_TRIAGE_EXPLAINER.md](VEX_TRIAGE_EXPLAINER.md).
+> This document is a concise verification-focused companion covering the same integrity
+> checks from a presentation/audit perspective.
+
 This document provides a technical breakdown of the automated security checks performed by the `triage.py` engine. It is designed to be used as a technical reference or as the basis for a security architecture presentation.
 
 # **Title:** RHACS VEX Triage: Technical Integrity & Verification Framework

@@ -103,3 +103,11 @@ python3 build_ns_map.py
 ```
 
 The filename `catalog-4.22.json` is what registers `4.22` as an available version — ensure it matches the index tag.
+
+---
+
+## Related Documentation
+
+- [VEX_TRIAGE_EXPLAINER.md](VEX_TRIAGE_EXPLAINER.md) -- Comprehensive technical explainer covering all triage logic and architecture
+- [OPERATORS_TRIAGE.md](OPERATORS_TRIAGE.md) -- Operator triage usage and CLI options
+- [TRIAGE_WORKFLOW.md](TRIAGE_WORKFLOW.md) -- Code-level workflow and data flow details

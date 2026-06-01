@@ -122,3 +122,12 @@ The `clairv4` variant adds `--auth user:pass`, `--indexer-address`,
 `--matcher-address`, and `--scannerctl` flags. See
 [`rhacs-scanner-local/README.md`](rhacs-scanner-local/README.md) to bring up the
 local Scanner V4 stack.
+
+---
+
+## Related Documentation
+
+- [VEX_TRIAGE_EXPLAINER.md](VEX_TRIAGE_EXPLAINER.md) -- Comprehensive technical explainer covering all triage logic and architecture
+- [TRIAGE_WORKFLOW.md](TRIAGE_WORKFLOW.md) -- Code-level workflow and data flow details
+- [CATALOG_SETUP.md](CATALOG_SETUP.md) -- How to fetch operator catalogs and build the namespace map
+- [EXPLORER_GUIDE.md](EXPLORER_GUIDE.md) -- Browser-based UI for querying triage results

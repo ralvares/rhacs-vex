@@ -222,3 +222,12 @@ python3 build_parquet.py
 ```
 
 Then reload the page — the browser will re-fetch `data/ocp.parquet` automatically.
+
+---
+
+## Related Documentation
+
+- [VEX_TRIAGE_EXPLAINER.md](VEX_TRIAGE_EXPLAINER.md) -- Comprehensive technical explainer covering all triage logic and architecture
+- [OPERATORS_TRIAGE.md](OPERATORS_TRIAGE.md) -- Operator triage usage and CLI options
+- [TRIAGE_WORKFLOW.md](TRIAGE_WORKFLOW.md) -- Code-level workflow and data flow details
+- [VEX_TRIAGE_VERIFICATION_LOGIC.md](VEX_TRIAGE_VERIFICATION_LOGIC.md) -- Verification framework and audit reference

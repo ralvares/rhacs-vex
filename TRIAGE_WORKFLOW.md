@@ -1,3 +1,9 @@
+> **Canonical reference:** For the full end-to-end technical explainer (all triage logic,
+> verification, and architecture), see
+> [VEX_TRIAGE_EXPLAINER.md](VEX_TRIAGE_EXPLAINER.md).
+> This document is a code-level workflow companion showing data flow and implementation
+> details for each step.
+
 # VEX Triage Workflow
 
 This document explains how `triage.py` and `triage_operators.py` work together to

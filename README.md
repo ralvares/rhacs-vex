@@ -11,17 +11,13 @@
 
 Most VEX triage tools do one thing: look up a CVE ID in an advisory file and echo back "not affected". That's not triage - that's a string match with extra steps.
 
-## Why we are different
-
-RHACS is a powerful scanner - it knows the image, the packages, the CVEs, the product labels. But it still produces false positives. A package version in the scan results may not match what's actually installed. A CVE may be flagged for a component that Red Hat's own advisory explicitly marks as not affected for that exact product and RHEL version. Without cross-referencing that signal, every analyst ends up chasing ghosts.
-
-This tool takes the RHACS scan results and cross-checks them against three authoritative sources - Red Hat VEX/CSAF advisories, SPDX SBOMs, and RPM version data - to separate real vulnerabilities from noise:
+This tool takes scan results and cross-checks them against three authoritative sources - Red Hat VEX/CSAF advisories, SPDX SBOMs, and RPM version data - to separate real vulnerabilities from noise:
 
 | Layer | What it does |
 |-------|-------------|
-| **Image context detection** | Parses the image reference and live RHACS labels/CPEs to automatically determine product type (OCP, RHACM, UBI, operator, …), RHEL base version, and product release version - with no manual input |
+| **Image context detection** | Parses the image reference and live labels/CPEs to determine product type (OCP, RHACM, UBI, operator, ...), RHEL base version, and product release version - with no manual input |
 | **Scoped VEX cross-reference** | Fetches the authoritative Red Hat CSAF/VEX advisory for each CVE and scopes it to the *specific product and version* the image belongs to - not just "any Red Hat product" |
-| **SBOM version verification** | Pulls the SPDX 2.3 SBOM from RHACS and cross-checks every flagged component version against what is actually installed in the image - catching ghost versions left over from stale scan data |
+| **SBOM version verification** | Pulls the SPDX 2.3 SBOM and cross-checks every flagged component version against what is actually installed in the image |
 | **RPM backport detection** | Compares the installed RPM against the VEX fix version using proper RPM version comparison, automatically closing findings where the patch is already present |
 
 A finding is only marked **FALSE POSITIVE** when all of the following are true: the VEX says not-affected *for the right product and RHEL version*, the component version is confirmed in the SBOM, and (for RPMs) the installed version is at or beyond the fix. Everything else stays open.
@@ -32,39 +28,106 @@ No image pull. No container runtime. Works fully offline once the VEX and SBOM c
 
 ## Prerequisites
 
+### Red Hat Pull Secret (MANDATORY)
+
+> [!CAUTION]
+> **A Red Hat pull secret is required for ALL workflows.** Every image scanned by this tool lives in authenticated Red Hat registries (`registry.redhat.io`, `quay.io`). Without a valid pull secret, nothing works.
+
+Download yours from [console.redhat.com/openshift/install/pull-secret](https://console.redhat.com/openshift/install/pull-secret) and save it (e.g. `~/pullsecret.txt`).
+
 ### Python
 
 - **Python 3.10 or later** (the scripts use `X | Y` union type syntax introduced in 3.10)
 - `pip` / `pip3` for installing dependencies
 
-### External tools (required by `setup_and_scan.py`)
-
-| Tool | Purpose | Install |
-|------|---------|---------|
-| **podman** | Log in to Red Hat registries and pull container images | [podman.io](https://podman.io/getting-started/installation) or `dnf install podman` |
-| **oc** | Resolve OCP release pullspecs via `oc adm release info` | [mirror.openshift.com](https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/) |
-| **opm** | Render OLM operator index catalogs | [mirror.openshift.com](https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/) |
-
-All three binaries are assumed to be on your `PATH`. Use `--podman`, `--oc`, and `--opm` flags to specify custom paths if needed.
-
-### Red Hat pull secret
-
-A valid Red Hat pull secret is required to pull images from `registry.redhat.io` and `quay.io`.  
-Download yours from [console.redhat.com/openshift/install/pull-secret](https://console.redhat.com/openshift/install/pull-secret) and pass it via `--pull-secret ~/pull-secret.json`.
-
-## Setup
-
 ```bash
 pip install -r requirements.txt
 ```
 
+### External tools
+
+| Tool | Required by | Purpose | Install |
+|------|------------|---------|---------|
+| **podman** | all backends | Registry login, image pulls | [podman.io](https://podman.io/getting-started/installation) |
+| **oc** | `setup_and_scan.py` | Resolve OCP release pullspecs | [mirror.openshift.com](https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/) |
+| **opm** | `setup_and_scan.py` | Render OLM operator index catalogs | [mirror.openshift.com](https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/) |
+| **grype** + **syft** | grype backend | Local vulnerability scanning | [github.com/anchore/grype](https://github.com/anchore/grype) |
+| **Go 1.21+** | clairv4 backend | Build `scannerctl` CLI | [go.dev](https://go.dev/dl/) |
+
+All binaries are assumed to be on your `PATH`. Use `--podman`, `--oc`, and `--opm` flags to specify custom paths if needed.
+
+---
+
+## Quick Start
+
+### Option A: Full pipeline (scan everything)
+
 ```bash
+# Set up (choose your scanner backend)
+pip install -r requirements.txt
+
+# RHACS backend — needs a running RHACS Central
 export ROX_ENDPOINT=central-stackrox.apps.mycluster.example.com:443
 export ROX_API_TOKEN=<your-api-token>
+python3 setup_and_scan.py --pull-secret ~/pullsecret.txt
+
+# OR: grype backend — no infrastructure needed
+python3 setup_and_scan.py --scanner grype --pull-secret ~/pullsecret.txt
+
+# OR: clairv4 backend — RHACS-identical results, no Central
+# (start the local scanner first: see rhacs-scanner-local/deploy.sh)
+python3 setup_and_scan.py --scanner clairv4 --pull-secret ~/pullsecret.txt
 ```
 
-> `ROX_ENDPOINT` / `ROX_API_TOKEN` are only needed for the **RHACS** backend.
-> The local backends (**grype**, **clairv4**) need no Central.
+### Option B: Triage a single image
+
+```bash
+# With RHACS
+python3 triage.py --image registry.redhat.io/ubi9/ubi:latest --false-only
+
+# With grype (no RHACS needed)
+python3 triage_grype.py --image registry.redhat.io/ubi9/ubi:latest --pull-secret ~/pullsecret.txt
+
+# With local Scanner V4 (no RHACS needed)
+python3 triage_clairv4.py --image registry.redhat.io/ubi9/ubi:latest --pull-secret ~/pullsecret.txt
+```
+
+### Option C: Browse results in the explorer
+
+```bash
+python3 build_parquet.py          # combine CSV reports into parquet
+python3 -m http.server 8080       # serve the UI
+open http://localhost:8080         # search by CVE, package, operator
+```
+
+---
+
+## When to Use What
+
+### Choosing a scanner backend
+
+| Backend | Needs RHACS? | Needs infra? | Best for |
+|---------|:----------:|:----------:|----------|
+| **rhacs** | Yes (`ROX_ENDPOINT` + `ROX_API_TOKEN`) | RHACS Central | You already run RHACS in a cluster |
+| **grype** | No | grype + syft on PATH | Quick local scan, no infrastructure |
+| **clairv4** | No | Local podman containers | RHACS-identical results without RHACS — same scanner engine |
+
+All three produce the **same report schema and verdicts**. Pick based on what you have available.
+
+### Choosing a script
+
+| What you want to do | Script | Pull secret? |
+|---------------------|--------|:---:|
+| **Triage a single image** | `triage.py` / `triage_grype.py` / `triage_clairv4.py` | Yes |
+| **Triage all images in a namespace** | `triage.py --namespace <NS>` | Yes |
+| **Triage an entire OCP release** | `triage.py --ocp 4.21.2.txt` (or grype/clairv4 variant) | Yes |
+| **Triage all operators in OCP catalogs** | `triage_operators.py` (or grype/clairv4 variant) | Yes |
+| **Run the full pipeline** (catalogs + OCP releases + operators) | `setup_and_scan.py` | Yes |
+| **Find CVEs your scanner MISSED** | `false_negative_check.py` | No (uses cached data) |
+| **Build the namespace-to-VEX prefix map** | `build_ns_map.py` | No |
+| **Combine reports into parquet for the explorer** | `build_parquet.py` | No |
+| **Browse results in a browser** | `python3 -m http.server` + open `index.html` | No |
+| **Deploy local Scanner V4 stack** | `rhacs-scanner-local/deploy.sh` | No (uses public quay.io images) |
 
 ---
 
@@ -76,22 +139,38 @@ the **same** report schema and verdicts:
 
 | Backend | Scanner | Needs Central? | Entry scripts | When to use |
 |---------|---------|----------------|---------------|-------------|
-| **rhacs** (default) | RHACS Central API | ✅ `ROX_ENDPOINT`/`ROX_API_TOKEN` | `triage.py`, `triage_operators.py` | You already run RHACS |
-| **grype** | local grype + syft | ❌ | `triage_grype.py`, `triage_operators_grype.py` | Quick local scan, no infra |
-| **clairv4** | local StackRox Scanner V4 (ClairCore — the same engine RHACS uses) | ❌ | `triage_clairv4.py`, `triage_operators_clairv4.py` | Local scan with RHACS-identical results |
+| **rhacs** (default) | RHACS Central API | Yes | `triage.py`, `triage_operators.py` | You already run RHACS |
+| **grype** | local grype + syft | No | `triage_grype.py`, `triage_operators_grype.py` | Quick local scan, no infra |
+| **clairv4** | local StackRox Scanner V4 (ClairCore — the same engine RHACS uses) | No | `triage_clairv4.py`, `triage_operators_clairv4.py` | Local scan with RHACS-identical results |
 
 All three share the VEX engine, the `--ocp` / operator workflows, and the output
 format. Pick one with `setup_and_scan.py --scanner {rhacs,grype,clairv4}`.
+
+### RHACS backend (default)
+
+```bash
+export ROX_ENDPOINT=central-stackrox.apps.mycluster.example.com:443
+export ROX_API_TOKEN=<your-api-token>
+```
+
+> `ROX_ENDPOINT` / `ROX_API_TOKEN` are only needed for the **RHACS** backend.
+> The local backends (**grype**, **clairv4**) need no Central.
 
 ### Local Scanner V4 (clairv4)
 
 `clairv4` runs the **actual RHACS scanner** (Scanner V4 / ClairCore) locally in
 containers — so its package detection and CVE matching are identical to RHACS, with
-no OpenShift or Central required. Bring the stack up once (see
-[`rhacs-scanner-local/README.md`](rhacs-scanner-local/README.md)), then:
+no OpenShift or Central required. Bring the stack up once:
 
 ```bash
-# single image (private registry → pull secret forwarded to the scanner)
+cd rhacs-scanner-local
+./deploy.sh                 # automated setup: certs, vuln data, containers, health check
+```
+
+Then scan:
+
+```bash
+# single image (private registry — pull secret forwarded to the scanner)
 python3 triage_clairv4.py \
   --image registry.redhat.io/advanced-cluster-security/rhacs-main-rhel8:4.10.2 \
   --pull-secret ~/pullsecret.txt
@@ -112,6 +191,9 @@ parsed from `--pull-secret` (Docker-config or k8s-Secret JSON), matched per regi
 and forwarded as basic auth. Public registries (e.g. `registry.access.redhat.com`)
 need no auth. Use `--auth user:pass` to force a single credential for all images.
 
+See [`rhacs-scanner-local/README.md`](rhacs-scanner-local/README.md) for full details
+on the local scanner stack.
+
 ### Full pipeline (`setup_and_scan.py`)
 
 `setup_and_scan.py` orchestrates the whole flow — render catalogs, build the
@@ -128,6 +210,8 @@ python3 setup_and_scan.py --scanner grype --pull-secret ~/pullsecret.txt
 # local Scanner V4 — no Central (start the rhacs-scanner-local stack first)
 python3 setup_and_scan.py --scanner clairv4 --pull-secret ~/pullsecret.txt
 ```
+
+---
 
 ## Usage
 
@@ -154,6 +238,7 @@ python3 triage.py [--image IMAGE_REF]
 | `--false-only` | Show only `FALSE POSITIVE` rows |
 | `--sbom` | Print the full package list for `--image` - no container access needed |
 | `--workers N` | Parallel image workers for `--ocp` / `--namespace` (default: 10) |
+| `--pull-secret FILE` | Path to Red Hat pull secret (required for grype/clairv4 backends) |
 
 > **On-demand scan**: if the requested image is not already indexed in RHACS, the tool automatically triggers a scan via `POST /v1/images/scan` and waits for the result (up to 5 minutes).
 
@@ -177,6 +262,8 @@ For `json` and `csv`, all Rich/terminal output (progress messages, summaries) is
 | `NEEDS REVIEW` | VEX advisory exists but verdict is still under investigation |
 
 In `table` format, results are colour-coded (green / red). In `json` / `csv` output the values are plain text with no emoji or special characters.
+
+---
 
 ## Examples
 
@@ -287,6 +374,22 @@ VEX scope: registry.redhat.io/rhacm2/, rhacm2/, advanced_cluster_management, ...
   🔍 SBOM verified: 4/4 component versions confirmed in image
 ```
 
+---
+
+## Documentation
+
+| Document | What it covers |
+|----------|---------------|
+| **[VEX_TRIAGE_EXPLAINER.md](VEX_TRIAGE_EXPLAINER.md)** | Comprehensive technical explainer — the canonical reference for the entire triage engine, decision tree, all six RPM checks, non-RPM logic, and design invariants |
+| **[VEX_TRIAGE_VERIFICATION_LOGIC.md](VEX_TRIAGE_VERIFICATION_LOGIC.md)** | Concise verification framework — binary-to-source mapping, stream-aware auditing, SBOM integrity checks |
+| **[TRIAGE_WORKFLOW.md](TRIAGE_WORKFLOW.md)** | Code-level workflow — WorkloadContext, VEX scope filtering, module stream guards, data flow diagrams |
+| **[OPERATORS_TRIAGE.md](OPERATORS_TRIAGE.md)** | Operator triage — three-phase approach, catalog parsing, batch scanning, per-operator reports |
+| **[EXPLORER_GUIDE.md](EXPLORER_GUIDE.md)** | Browser-based explorer — DuckDB-WASM search interface, filters, severity mismatch analysis |
+| **[CATALOG_SETUP.md](CATALOG_SETUP.md)** | Catalog setup — installing `opm`, rendering operator index catalogs, generating namespace maps |
+| **[rhacs-scanner-local/README.md](rhacs-scanner-local/README.md)** | Local Scanner V4 stack — standalone podman deployment, architecture, scannerctl, troubleshooting |
+
+---
+
 ## Cache layout
 
 ```
@@ -358,4 +461,3 @@ CVE-2025-26625         Important  git-lfs         needs_fix         1  3.4.1-4.e
 `runc CVE-2025-31133` is a confirmed false negative: `runc 1.1.14-4.rhaos4.18.el9` is installed, the fix is at `1.2.9-1.rhaos4.18.el9` (same stream), and RHACS reports zero CVEs for that component.
 
 > **Note:** Findings require manual validation. `known_affected` entries may be for packages that are not exploitable in container context (e.g. kernel-rt headers in development images). The tool flags *potential* false negatives for analyst review.
-
