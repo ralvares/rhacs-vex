@@ -208,8 +208,8 @@ def stage_catalogs(minor_versions: list[str], pull_secret: str,
 
         for mv in minor_versions:
             dest = os.path.join(CATALOG_DIR, f"catalog-{mv}.json")
-            if skip_existing and os.path.exists(dest):
-                log(f"  SKIP  catalog-{mv}.json (already exists)")
+            if os.path.exists(dest) and os.path.getsize(dest) > 0:
+                log(f"  SKIP  catalog-{mv}.json (already exists, {os.path.getsize(dest) / 1e6:.0f} MB)")
                 continue
 
             image = f"registry.redhat.io/redhat/redhat-operator-index:v{mv}"
@@ -250,7 +250,7 @@ def stage_ocp_pullspecs(versions: list[str], pull_secret: str, oc_bin: str,
 
     for ver in versions:
         dest = f"{ver}.txt"
-        if skip_existing and os.path.exists(dest):
+        if os.path.exists(dest) and os.path.getsize(dest) > 0:
             log(f"  SKIP  {dest} (already exists)")
             ready.append(dest)
             continue
@@ -288,7 +288,7 @@ def stage_ocp_triage(pullspec_files: list[str], workers: int,
         ver = os.path.splitext(os.path.basename(txt))[0]
         out = os.path.join(REPORTS_DIR, f"ocp-{ver}.csv")
 
-        if skip_existing and os.path.exists(out):
+        if os.path.exists(out) and os.path.getsize(out) > 0:
             log(f"  SKIP  {out} (already exists)")
             continue
 
