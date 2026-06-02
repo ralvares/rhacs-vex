@@ -36,6 +36,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from shutil import which
@@ -53,6 +54,8 @@ from triage import (
     parse_image_ref,
     parse_context_from_labels,
     sbom_to_packages_df,
+    rhacs_to_df,
+    _build_sbom_src_map,
     _audit_and_display,
     _audit_silent,
     _render_triage_table,
@@ -60,6 +63,36 @@ from triage import (
     _print_sbom_summary,
     RESULT_STYLES,
 )
+
+# ── Scan result cache ────────────────────────────────────────────────────────
+# Cache raw VulnerabilityReport JSON to data/scans/ keyed by image ref.
+# Same directory as the RHACS backend, so a subsequent RHACS run can see
+# which images were already scanned (and vice versa).
+_SCAN_CACHE_DIR = os.path.join("data", "scans")
+_SCAN_CACHE_TTL = 24 * 3600  # 24 hours
+
+
+def _scan_cache_path(image_ref: str) -> str:
+    """Return the local cache file path for an image's scan result."""
+    safe = re.sub(r'[^\w@:.+-]', '_', image_ref)
+    return os.path.join(_SCAN_CACHE_DIR, f"{safe}.json")
+
+
+def _scan_cache_fresh(path: str, image_ref: str = "") -> bool:
+    """Return True if *path* exists and the cache is still valid.
+
+    Digest-pinned images (@sha256:...) never change — cache is valid forever.
+    Tag-based refs expire after _SCAN_CACHE_TTL (24h).
+    """
+    try:
+        if not os.path.exists(path):
+            return False
+        if "@sha256:" in image_ref:
+            return True
+        return (time.time() - os.path.getmtime(path)) < _SCAN_CACHE_TTL
+    except OSError:
+        return False
+
 
 # ── Scanner V4 connection defaults ───────────────────────────────────────────
 DEFAULT_INDEXER = os.environ.get("SCANNER_V4_INDEXER", "localhost:8443")
@@ -531,33 +564,169 @@ def _verify_sbom_dict(sbom: dict, result_df: pd.DataFrame) -> dict:
 
 # ── Per-image scan + audit pipeline ──────────────────────────────────────────
 
+_TRANSIENT_ERRORS = ("context canceled", "context deadline exceeded",
+                     "connection refused", "connection reset",
+                     "resource temporarily unavailable", "broken pipe",
+                     "EOF", "transport is closing")
+
+_SCAN_MAX_RETRIES = 3
+_SCAN_RETRY_BASE_DELAY = 15  # seconds; doubles each retry
+
+
+def _is_transient(error_msg: str) -> bool:
+    """Return True if the error is likely transient and worth retrying."""
+    msg = error_msg.lower()
+    return any(t in msg for t in _TRANSIENT_ERRORS)
+
+
+def _audit_cache_path(image_ref: str) -> str:
+    """Return the cache path for a completed audit result (CSV)."""
+    safe = re.sub(r'[^\w@:.+-]', '_', image_ref)
+    return os.path.join(_SCAN_CACHE_DIR, f"{safe}.audit.csv")
+
+
 def _scan_and_audit(image_ref: str,
                     false_only: bool = False,
                     ocp_ver: Optional[str] = None,
                     comp_name: Optional[str] = None) -> dict:
-    """Scan *image_ref* with Scanner V4, derive context, run the VEX audit."""
-    try:
-        report = _scan_image(image_ref)
-    except Exception as exc:
-        return {"found": None, "error": str(exc)}
+    """Scan *image_ref* with Scanner V4, derive context, run the VEX audit.
 
-    # If the vuln report didn't carry contents, fetch the index report for it.
-    if not (report.get("contents") or {}).get("packages"):
+    Two-layer cache:
+      1. Raw scan report (data/scans/<ref>.json) — avoids re-invoking scannerctl.
+      2. Audit result (data/scans/<ref>.audit.csv) — avoids re-running the VEX
+         decision tree. If the audit CSV is fresh, the entire function returns
+         in milliseconds.
+
+    The audit cache is invalidated when any VEX file in data/vex/ is newer than
+    the cached audit (a new advisory was fetched), ensuring fresh VEX data is
+    always picked up.
+
+    Retries up to _SCAN_MAX_RETRIES times on transient errors with backoff.
+    """
+    os.makedirs(_SCAN_CACHE_DIR, exist_ok=True)
+    cache_path = _scan_cache_path(image_ref)
+    audit_path = _audit_cache_path(image_ref)
+
+    def _ctx_and_os(report):
+        """Build context + os_info from either RHACS or Scanner V4 report."""
+        if "scan" in report and "components" in (report.get("scan") or {}):
+            labels = (report.get("metadata", {}).get("v1", {}) or {}).get("labels", {})
+            ctx = parse_context_from_labels(labels, image_ref) if labels else parse_image_ref(image_ref)
+            sbom_path = os.path.join("data", "sbom",
+                                     re.sub(r'[^\w@:.+-]', '_', image_ref) + ".sbom")
+            if os.path.exists(sbom_path):
+                try:
+                    with open(sbom_path) as fh:
+                        ctx.sbom_src_map = _build_sbom_src_map(json.load(fh))
+                except Exception:
+                    ctx.sbom_src_map = {}
+            else:
+                ctx.sbom_src_map = {}
+            os_info = ""
+        else:
+            ctx = _ctx_from_clair(report, image_ref, ocp_ver, comp_name)
+            os_info = _os_info_from_contents(report.get("contents") or {})
+        if ocp_ver:
+            minor_ver = ".".join(ocp_ver.split(".")[:2])
+            ctx.workload_type = "ocp"
+            ctx.ocp_ver = minor_ver
+            ctx.display_name = f"OpenShift {ocp_ver}"
+            ctx.extra_prefixes = []
+            if comp_name:
+                cn_rhel = re.search(r"(?:rhel-[^-]+-|rhel-)(\d+)$", comp_name)
+                if cn_rhel:
+                    ctx.rhel_ver = cn_rhel.group(1)
+        return ctx, os_info
+
+    # ── Layer 2: check audit result cache first ──────────────────────────
+    if _scan_cache_fresh(audit_path, image_ref) and _scan_cache_fresh(cache_path, image_ref):
         try:
-            idx = _index_image(image_ref)
-            report["contents"] = idx.get("contents", report.get("contents"))
+            audit_mtime = os.path.getmtime(audit_path)
+            vex_dir = os.path.join("data", "vex")
+            vex_stale = False
+            if os.path.isdir(vex_dir):
+                for vf in os.listdir(vex_dir):
+                    if vf.endswith(".json"):
+                        if os.path.getmtime(os.path.join(vex_dir, vf)) > audit_mtime:
+                            vex_stale = True
+                            break
+            if not vex_stale:
+                audit_df = pd.read_csv(audit_path)
+                with open(cache_path) as fh:
+                    report = json.load(fh)
+                ctx, os_info = _ctx_and_os(report)
+                if audit_df.empty:
+                    return {"found": True, "img_ctx": ctx, "os_info": os_info,
+                            "result_df": None, "error": None}
+                return {"found": True, "img_ctx": ctx, "os_info": os_info,
+                        "result_df": audit_df, "error": None}
+        except Exception:
+            pass  # fall through to full scan+audit
+
+    # ── Layer 1: check raw scan cache ────────────────────────────────────
+    report = None
+    if _scan_cache_fresh(cache_path, image_ref):
+        try:
+            with open(cache_path) as fh:
+                report = json.load(fh)
+        except Exception:
+            report = None
+
+    # Cache miss or stale — scan with scannerctl
+    if report is None:
+        last_error = None
+        for attempt in range(1, _SCAN_MAX_RETRIES + 1):
+            try:
+                report = _scan_image(image_ref)
+                last_error = None
+                break
+            except Exception as exc:
+                last_error = str(exc)
+                if attempt < _SCAN_MAX_RETRIES and _is_transient(last_error):
+                    delay = _SCAN_RETRY_BASE_DELAY * (2 ** (attempt - 1))
+                    time.sleep(delay)
+                    continue
+                return {"found": None, "error": last_error}
+
+        # If the vuln report didn't carry contents, fetch the index report.
+        if not (report.get("contents") or {}).get("packages"):
+            try:
+                idx = _index_image(image_ref)
+                report["contents"] = idx.get("contents", report.get("contents"))
+            except Exception:
+                pass
+
+        # Save raw scan to cache
+        try:
+            with open(cache_path, "w") as fh:
+                json.dump(report, fh)
         except Exception:
             pass
 
-    ctx = _ctx_from_clair(report, image_ref, ocp_ver, comp_name)
-    os_info = _os_info_from_contents(report.get("contents") or {})
-    img_df = clair_to_df(report)
+    # Build context (handles both RHACS and Scanner V4 format)
+    ctx, os_info = _ctx_and_os(report)
+
+    # Build DataFrame from the right format
+    is_rhacs_format = "scan" in report and "components" in (report.get("scan") or {})
+    img_df = rhacs_to_df(report) if is_rhacs_format else clair_to_df(report)
 
     if img_df.empty:
+        # Save empty audit marker
+        try:
+            pd.DataFrame().to_csv(audit_path, index=False)
+        except Exception:
+            pass
         return {"found": True, "img_ctx": ctx, "os_info": os_info,
                 "result_df": None, "error": None}
 
     result_df = _audit_silent(img_df, ctx, false_only)
+
+    # Save audit result to cache
+    try:
+        result_df.to_csv(audit_path, index=False)
+    except Exception:
+        pass
+
     return {"found": True, "img_ctx": ctx, "os_info": os_info,
             "result_df": result_df, "error": None}
 
@@ -621,7 +790,8 @@ def main() -> None:
     parser.add_argument("--false-only", action="store_true", default=False,
                         help="Only show FALSE POSITIVE findings.")
     parser.add_argument("--workers", type=int, default=4, metavar="N",
-                        help="Parallel image workers for --ocp mode (default: 4).")
+                        help="Parallel image workers for --ocp mode (default: 4). "
+                             "Transient scanner errors are retried automatically with backoff.")
     parser.add_argument("--auth", default=None, metavar="USER:PASS",
                         help="Single registry basic-auth credential, applied to ALL "
                              "images. Overrides --pull-secret.")
@@ -751,8 +921,12 @@ def main() -> None:
                 comp_name, image_ref = future_to_comp[future]
                 res = future.result()
                 results_map[comp_name] = (image_ref, res)
-                status = ("✅" if res.get("found") and res.get("result_df") is not None
-                          else ("⚠ " if res.get("found") is False else "❌"))
+                if res.get("error"):
+                    status = "❌"  # scan failed
+                elif res.get("found"):
+                    status = "✅"  # scan succeeded (with or without CVEs)
+                else:
+                    status = "⚠ "  # no output
                 console.print(f"  [{done}/{total}] {status} {comp_name}", highlight=False)
         console.print()
 

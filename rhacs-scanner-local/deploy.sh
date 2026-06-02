@@ -29,7 +29,11 @@ VULN_BUNDLE="$SCRIPT_DIR/vuln-data/vulnerabilities.zip"
 VULN_BUNDLE_MIN_SIZE=100000000  # 100 MB — catch truncated downloads
 CERT_FILES=(ca.pem ca-key.pem server-cert.pem server-key.pem cert.pem key.pem)
 CONTAINERS=(scanner-v4-db vuln-server scanner-v4)
-VULN_READY_MSG="all vulnerability bundles were updated at least once"
+# Any of these log messages means the scanner is ready to serve requests.
+# "all vulnerability bundles were updated" = cold start (first import done)
+# "completed update"                      = warm restart (DB already populated)
+# "libvuln initialized"                   = matcher ready (vuln data already in DB)
+VULN_READY_PATTERN="all vulnerability bundles were updated at least once|completed update|libvuln initialized"
 WAIT_TIMEOUT=1200  # 20 minutes in seconds
 
 # ---------------------------------------------------------------------------
@@ -478,7 +482,7 @@ if ! $FLAG_NO_WAIT; then
         # pipefail, podman logs then gets SIGPIPE (exit 141) which makes
         # the whole pipeline non-zero even though grep succeeded. We
         # disable pipefail in a subshell to avoid this.
-        if (set +o pipefail; podman logs scanner-v4 2>&1 | grep -q "$VULN_READY_MSG"); then
+        if (set +o pipefail; podman logs scanner-v4 2>&1 | grep -qE "$VULN_READY_PATTERN"); then
             IMPORT_DONE=true
             break
         fi
@@ -533,19 +537,21 @@ done
 if [[ -x "$SCANNERCTL" ]] && ! $FLAG_NO_WAIT; then
     info "Running a quick test scan with scannerctl..."
     TEST_OUTPUT=""
-    if TEST_OUTPUT=$(timeout 60 "$SCANNERCTL" scan \
-        --indexer-address localhost:8443 \
-        --matcher-address localhost:8443 \
-        --insecure-skip-tls-verify \
-        https://registry.hub.docker.com/library/alpine:latest 2>&1); then
-        if echo "$TEST_OUTPUT" | grep -q '"name"' 2>/dev/null; then
-            CVE_COUNT=$(echo "$TEST_OUTPUT" | grep -c '"name"' || true)
-            ok "Test scan succeeded (alpine:latest — $CVE_COUNT vulnerability entries)"
-        else
-            ok "Test scan completed (no vulnerabilities found for alpine:latest — expected for minimal image)"
-        fi
+    SCAN_CMD=("$SCANNERCTL" scan
+        --indexer-address localhost:8443
+        --matcher-address localhost:8443
+        --insecure-skip-tls-verify
+        https://registry.hub.docker.com/library/alpine:latest)
+    if command -v timeout &>/dev/null; then
+        TEST_OUTPUT=$(timeout 90 "${SCAN_CMD[@]}" 2>/dev/null) && SCAN_RC=0 || SCAN_RC=$?
     else
-        warn "Test scan did not succeed — scanner may still be initializing"
+        TEST_OUTPUT=$("${SCAN_CMD[@]}" 2>/dev/null) && SCAN_RC=0 || SCAN_RC=$?
+    fi
+    if [[ $SCAN_RC -eq 0 ]] && echo "$TEST_OUTPUT" | grep -q '"hash_id"' 2>/dev/null; then
+        PKG_COUNT=$(echo "$TEST_OUTPUT" | grep -c '"name"' || true)
+        ok "Test scan succeeded (alpine:latest — $PKG_COUNT packages indexed)"
+    else
+        warn "Test scan did not succeed (exit $SCAN_RC) — scanner may still be initializing"
         warn "Try manually: ./scannerctl scan https://registry.hub.docker.com/library/nginx:latest --indexer-address localhost:8443 --matcher-address localhost:8443 --insecure-skip-tls-verify"
     fi
 elif [[ -x "$SCANNERCTL" ]]; then

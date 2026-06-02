@@ -793,6 +793,7 @@ def rhacs_to_df(image_data: dict) -> pd.DataFrame:
     Rows with no CVEs are skipped.
     """
     rows = []
+    seen: set = set()
     for comp in (image_data.get("scan") or {}).get("components", []):
         cname   = comp.get("name", "")
         cver    = comp.get("version", "")
@@ -801,6 +802,10 @@ def rhacs_to_df(image_data: dict) -> pd.DataFrame:
             cve = vuln.get("cve", "")
             if not cve:
                 continue
+            key = (cname, cver, cve.upper().strip())
+            if key in seen:
+                continue
+            seen.add(key)
             rows.append({
                 "COMPONENT":    cname,
                 "VERSION":      cver,
@@ -1306,16 +1311,18 @@ def audit_row_detailed(row, ctx: WorkloadContext):
 
         # No in-scope match — decide based on what the VEX says about related products
         if not_affected and not affected and not fixed:
-            parts = [f"Not affected in: {', '.join(not_affected[:3])}"]
             return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                               f"Non-RPM — Red Hat states not affected: {'; '.join(parts)}.",
+                               f"Non-RPM — not tracked as affected for {ctx.display_name}. "
+                               f"VEX confirms not affected in other Red Hat products "
+                               f"({', '.join(not_affected[:3])}); no affected/fixed entry exists anywhere.",
                                _severity])
         parts = []
         if affected:     parts.append(f"Affected in: {', '.join(affected[:3])}")
         if fixed:        parts.append(f"Fixed in: {', '.join(fixed[:3])}")
         if not_affected: parts.append(f"Not affected in: {', '.join(not_affected[:3])}")
         return pd.Series(["❌ POSITIVE", "N/A",
-                           f"Non-RPM — VEX tracks CVE in related products: {'; '.join(parts)}. Treat as vulnerable.",
+                           f"Non-RPM — no explicit VEX entry for {ctx.display_name}. "
+                           f"CVE tracked in other products: {'; '.join(parts)}. Treat as vulnerable.",
                            _severity])
 
     for vuln in data.get('vulnerabilities', []):

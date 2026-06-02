@@ -663,10 +663,12 @@ def main() -> None:
                 comp_name, image_ref = future_to_comp[future]
                 res = future.result()
                 results_map[comp_name] = (image_ref, res)
-                status = (
-                    "✅" if res.get("found") and res.get("result_df") is not None
-                    else ("⚠ " if res.get("found") is False else "❌")
-                )
+                if res.get("error"):
+                    status = "❌"  # scan failed
+                elif res.get("found"):
+                    status = "✅"  # scan succeeded (with or without CVEs)
+                else:
+                    status = "⚠ "  # no output
                 console.print(f"  [{done}/{total}] {status} {comp_name}", highlight=False)
 
         console.print()
