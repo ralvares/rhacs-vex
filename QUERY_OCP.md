@@ -134,3 +134,32 @@ Pre-generated example outputs are in the [examples/](examples/) folder:
 | [cve-search-CVE-2026-4786.txt](examples/cve-search-CVE-2026-4786.txt) | `python3 query_ocp.py --cve CVE-2026-4786` (shows operator catalogs) |
 | [operator-rhacs-4.10.txt](examples/operator-rhacs-4.10.txt) | `python3 query_ocp.py 4.20 -o rhacs-operator-rhacs-4.10-v4.10.3` |
 | [list-versions.txt](examples/list-versions.txt) | `python3 query_ocp.py list` |
+
+## Web Dashboard
+
+[`dashboard.html`](dashboard.html) is an interactive browser-based dashboard powered by DuckDB WASM + Chart.js. No backend — all 23MB of parquet data loads and queries entirely in the browser.
+
+```bash
+python3 -m http.server 8080
+# Open http://localhost:8080/dashboard.html
+```
+
+### Features
+
+| Tab | What it shows |
+|-----|---------------|
+| **Overview** | Severity donut, fix availability breakdown (RPM fix vs Non-RPM), audit results, severity-by-fix stacked bar |
+| **Upgrade Path** | Line chart showing CVE trend across z-streams (stacked by severity) + upgrade target table with recommendation |
+| **Components** | Top 20 affected OCP components with stacked severity bars |
+| **Version Compare** | Side-by-side comparison of two versions: fixed, new, common CVEs |
+| **CVE Search** | Search any CVE — shows affected versions as color-coded chips + operator catalogs |
+
+### Fix Availability Categories
+
+The dashboard breaks down POSITIVE CVEs into:
+
+| Category | Meaning |
+|----------|---------|
+| **RPM Fix Available** | `VEX_FIX_VER` is set — an RPM package update exists but the OCP release ships an older version |
+| **Non-RPM Fixed Upstream** | Go/stdlib component — fix released in upstream/other products (JUSTIFICATION: "Non-RPM…Fixed in") |
+| **Non-RPM Affected** | Go/stdlib component — affected, fix not yet available in this stream (JUSTIFICATION: "Non-RPM…Affected in") |
