@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CVE Lookup — OCP</title>
+  <style>
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #1c2128;
+      --border:    #30363d;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --accent:    #58a6ff;
+      --green:     #3fb950;
+      --yellow:    #d29922;
+      --red:       #f85149;
+      --orange:    #e3b341;
+      --critical:  #f85149;
+      --important: #e3b341;
+      --moderate:  #58a6ff;
+      --low:       #8b949e;
+      --unknown:   #6e7681;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); min-height: 100vh;
+           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+    header {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: .9rem 2rem; display: flex; align-items: center; gap: 1rem;
+    }
+    header h1 { font-size: 1.15rem; font-weight: 700; }
+    header p  { font-size: .78rem; color: var(--muted); margin-top: .1rem; }
+    .nav-links { margin-left: auto; display: flex; gap: 1rem; align-items: center; }
+    .nav-links a { color: var(--accent); text-decoration: none; font-size: .82rem; }
+    .nav-links a:hover { text-decoration: underline; }
+    .db-status { display: flex; align-items: center; gap: .5rem; font-size: .78rem; color: var(--muted); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+    .dot.ready { background: var(--green); }
+    .dot.error { background: var(--red); }
+
+    main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+    .search-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.5rem; margin-bottom: 1.5rem;
+      display: flex; gap: .75rem; align-items: center;
+    }
+    .search-box input {
+      flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+      color: var(--text); padding: .75rem 1rem; font-size: 1rem;
+      font-family: 'Consolas','Monaco',monospace;
+    }
+    .search-box input:focus { outline: none; border-color: var(--accent); }
+    .search-box input::placeholder { color: var(--muted); }
+    .btn {
+      padding: .75rem 1.4rem; border-radius: 6px; border: none;
+      cursor: pointer; font-size: .88rem; font-weight: 600;
+    }
+    .btn:disabled { opacity: .45; cursor: not-allowed; }
+    .btn-primary { background: var(--accent); color: #000; }
+
+    .empty-state { text-align: center; color: var(--muted); padding: 3rem; font-size: .88rem; }
+    .loading { text-align: center; padding: 2rem; color: var(--muted); }
+    .loading::after { content: ''; display: inline-block; width: 16px; height: 16px;
+      border: 2px solid var(--muted); border-top-color: transparent;
+      border-radius: 50%; animation: spin .6s linear infinite; margin-left: .5rem; vertical-align: middle; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .cve-header { margin-bottom: 1.5rem; }
+    .cve-header .cve-id { font-size: 1.5rem; font-weight: 700; }
+    .cve-header .sev-badge { display: inline-block; padding: .3rem .7rem; border-radius: 6px;
+      font-size: .82rem; font-weight: 600; margin-left: .75rem; vertical-align: middle; }
+
+    .section { background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .section h2 { font-size: .9rem; font-weight: 700; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .5rem; }
+
+    .ver-grid { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .ver-chip { padding: .3rem .6rem; border-radius: 5px; font-size: .78rem; font-weight: 500;
+      font-family: 'Consolas','Monaco',monospace; }
+    .ver-chip.affected { background: rgba(248,81,73,.15); color: var(--red); }
+    .ver-chip.fixed { background: rgba(63,185,80,.15); color: var(--green); }
+
+    .fix-box { background: rgba(63,185,80,.08); border: 1px solid rgba(63,185,80,.2);
+      border-radius: 8px; padding: 1rem 1.25rem; margin-top: 1rem; }
+    .fix-box strong { color: var(--green); }
+
+    table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    thead th {
+      background: var(--surface2); padding: .65rem 1rem; text-align: left;
+      font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted);
+      white-space: nowrap; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 1;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface2); }
+    td { padding: .65rem 1rem; vertical-align: top; }
+    code { font-family: 'Consolas','Monaco',monospace; font-size: .78rem; }
+
+    .expand-cell { width: 36px; padding: .65rem .5rem .65rem .75rem; }
+    .expand-btn {
+      background: none; border: 1px solid var(--border); border-radius: 4px;
+      color: var(--muted); cursor: pointer; width: 22px; height: 22px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1rem; padding: 0; line-height: 1;
+      transition: color .15s, border-color .15s, transform .2s;
+    }
+    .expand-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .expand-btn.expanded { color: var(--accent); border-color: var(--accent); transform: rotate(90deg); }
+    .detail-row > td {
+      background: rgba(88,166,255,.04); padding: .65rem 1rem .65rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .detail-item { display: flex; gap: .75rem; align-items: baseline; margin-bottom: .35rem; }
+    .detail-item:last-child { margin-bottom: 0; }
+    .detail-label {
+      font-size: .68rem; text-transform: uppercase; letter-spacing: .05em;
+      color: var(--muted); flex-shrink: 0; min-width: 100px; font-weight: 600;
+    }
+    .detail-image { font-size: .72rem; font-family: 'Consolas','Monaco',monospace; display: block; word-break: break-all; }
+    .detail-just { font-size: .78rem; color: var(--text); line-height: 1.5; }
+
+    .table-wrap { max-height: 60vh; overflow: auto; border-radius: 8px; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: .25rem;
+      padding: .2rem .55rem; border-radius: 20px; font-size: .72rem; font-weight: 600;
+    }
+    .bg-crit { background: rgba(248,81,73,.18); color: var(--critical); }
+    .bg-imp  { background: rgba(227,179,65,.18); color: var(--important); }
+    .bg-mod  { background: rgba(88,166,255,.18); color: var(--moderate); }
+    .bg-low  { background: rgba(139,148,158,.18); color: var(--low); }
+    .bg-unk  { background: rgba(110,118,129,.18); color: var(--unknown); }
+
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); gap: 1rem; margin-bottom: 1rem; }
+    .summary-card { text-align: center; }
+    .summary-card .num { font-size: 1.6rem; font-weight: 700; }
+    .summary-card .lbl { font-size: .7rem; color: var(--muted); text-transform: uppercase; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>CVE Lookup</h1>
+    <p>Search any CVE — see affected versions, fix versions, components, images</p>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">Triage Explorer</a>
+    <a href="dashboard.html">Dashboard</a>
+    <div class="db-status">
+      <div class="dot" id="dot"></div>
+      <span id="status-text">Loading…</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="search-box">
+    <input type="text" id="cve-input" placeholder="CVE-2024-41110" autofocus>
+    <button class="btn btn-primary" id="search-btn" disabled>Search</button>
+  </div>
+  <div style="margin-top:-.75rem;margin-bottom:1.5rem;font-size:.78rem;color:var(--muted);">
+    Try:
+    <a href="#" class="example-cve" style="color:var(--green);margin:0 .3rem;">CVE-2023-3676</a>(fixed) ·
+    <a href="#" class="example-cve" style="color:var(--red);margin:0 .3rem;">CVE-2024-41110</a>(critical, unfixed) ·
+    <a href="#" class="example-cve" style="color:var(--important);margin:0 .3rem;">CVE-2021-25741</a>(important, fixed) ·
+    <a href="#" class="example-cve" style="color:var(--moderate);margin:0 .3rem;">CVE-2025-61725</a>(moderate, unfixed)
+  </div>
+
+  <div id="loading-state" class="empty-state">
+    <div class="loading">Initializing DuckDB WASM</div>
+  </div>
+
+  <div id="results"></div>
+</main>
+
+<footer style="background:var(--surface);border-top:1px solid var(--border);padding:1rem 2rem;
+  text-align:center;font-size:.75rem;color:var(--muted);margin-top:3rem;">
+  CVE Lookup — DuckDB WASM — No data leaves your browser
+</footer>
+
+<script type="module">
+import * as duckdb from 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/+esm';
+
+const $ = id => document.getElementById(id);
+const setStatus = (msg, state = '') => {
+  $('status-text').textContent = msg;
+  $('dot').className = 'dot' + (state ? ' ' + state : '');
+};
+
+let db, conn;
+
+const SEV_COLORS = {
+  Critical: '#f85149', Important: '#e3b341',
+  Moderate: '#58a6ff', Low: '#8b949e', Unknown: '#6e7681'
+};
+const SEV_BADGE = { Critical: 'bg-crit', Important: 'bg-imp', Moderate: 'bg-mod', Low: 'bg-low', Unknown: 'bg-unk' };
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+async function initDB() {
+  setStatus('Loading DuckDB…');
+  const bundles = duckdb.getJsDelivrBundles();
+  const bundle = await duckdb.selectBundle(bundles);
+  const wkUrl = URL.createObjectURL(
+    new Blob([`importScripts("${bundle.mainWorker}");`], { type: 'text/javascript' })
+  );
+  db = new duckdb.AsyncDuckDB(new duckdb.ConsoleLogger(), new Worker(wkUrl));
+  await db.instantiate(bundle.mainModule, bundle.pthreadWorker);
+  URL.revokeObjectURL(wkUrl);
+  conn = await db.connect();
+
+  setStatus('Fetching parquet…');
+  const res = await fetch('data/ocp.parquet');
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  await db.registerFileBuffer('ocp.parquet', new Uint8Array(await res.arrayBuffer()));
+
+  setStatus('Ready', 'ready');
+  $('search-btn').disabled = false;
+  $('loading-state').style.display = 'none';
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('cve')) {
+    $('cve-input').value = params.get('cve');
+    searchCVE();
+  }
+}
+
+async function query(sql) {
+  const result = await conn.query(sql);
+  const rows = [];
+  for (let i = 0; i < result.numRows; i++) {
+    const row = {};
+    for (const field of result.schema.fields) {
+      const col = result.getChild(field.name);
+      let v = col.get(i);
+      if (v !== null && typeof v === 'bigint') v = Number(v);
+      row[field.name] = v;
+    }
+    rows.push(row);
+  }
+  return rows;
+}
+
+function versionCmp(a, b) {
+  const pa = a.split('.').map(Number), pb = b.split('.').map(Number);
+  for (let i = 0; i < 3; i++) {
+    if ((pa[i]||0) !== (pb[i]||0)) return (pa[i]||0) - (pb[i]||0);
+  }
+  return 0;
+}
+
+$('search-btn').addEventListener('click', searchCVE);
+$('cve-input').addEventListener('keydown', e => { if (e.key === 'Enter') searchCVE(); });
+document.addEventListener('click', e => {
+  const link = e.target.closest('.example-cve');
+  if (!link) return;
+  e.preventDefault();
+  $('cve-input').value = link.textContent.trim();
+  searchCVE();
+});
+
+async function searchCVE() {
+  const cve = $('cve-input').value.trim().toUpperCase();
+  if (!cve) return;
+
+  $('results').innerHTML = '<div class="loading">Searching</div>';
+
+  // OCP platform versions
+  const platform = await query(`
+    SELECT
+      regexp_extract(source_file, 'reports/ocp-(\\d+\\.\\d+\\.\\d+)\\.csv', 1) AS ver,
+      AUDIT_RESULT AS audit,
+      SEVERITY AS sev
+    FROM 'ocp.parquet'
+    WHERE CVE = '${cve}'
+      AND source_file LIKE 'reports/ocp-%.csv'
+      AND source_file NOT LIKE '%/%/%'
+    GROUP BY ver, audit, sev
+    ORDER BY
+      CAST(split_part(ver, '.', 1) AS INT),
+      CAST(split_part(ver, '.', 2) AS INT),
+      CAST(split_part(ver, '.', 3) AS INT)
+  `);
+
+  if (!platform.length) {
+    $('results').innerHTML = '<div class="empty-state">CVE <strong>' + esc(cve) + '</strong> not found in any OCP version.</div>';
+    return;
+  }
+
+  const sev = platform[0].sev;
+  const affectedSet = new Set(
+    platform.filter(d => d.audit.includes('POSITIVE') && !d.audit.includes('FALSE')).map(d => d.ver)
+  );
+
+  // Get ALL OCP platform versions to find where CVE is absent (= fixed)
+  const allOcpVersions = await query(`
+    SELECT DISTINCT regexp_extract(source_file, 'reports/ocp-(\\d+\\.\\d+\\.\\d+)\\.csv', 1) AS ver
+    FROM 'ocp.parquet'
+    WHERE source_file LIKE 'reports/ocp-%.csv' AND source_file NOT LIKE '%/%/%'
+    ORDER BY CAST(split_part(ver,'.',1) AS INT), CAST(split_part(ver,'.',2) AS INT), CAST(split_part(ver,'.',3) AS INT)
+  `);
+  const allVers = allOcpVersions.map(v => v.ver);
+
+  // Only consider minors where CVE appears at all
+  const affectedMinors = new Set([...affectedSet].map(v => v.split('.').slice(0, 2).join('.')));
+  const affected = [];
+  const notAffected = [];
+  for (const v of allVers) {
+    const minor = v.split('.').slice(0, 2).join('.');
+    if (!affectedMinors.has(minor)) continue;
+    if (affectedSet.has(v)) affected.push(v);
+    else notAffected.push(v);
+  }
+
+  // Find fix per minor
+  const byMinor = {};
+  for (const v of allVers) {
+    const minor = v.split('.').slice(0, 2).join('.');
+    if (!affectedMinors.has(minor)) continue;
+    if (!byMinor[minor]) byMinor[minor] = [];
+    byMinor[minor].push(v);
+  }
+
+  let fixInfo = [];
+  for (const [minor, vers] of Object.entries(byMinor)) {
+    const firstAffected = vers.find(v => affectedSet.has(v));
+    const lastAffected = [...vers].reverse().find(v => affectedSet.has(v));
+    // First version AFTER lastAffected that is NOT affected = fix
+    const fixCandidates = vers.filter(v => versionCmp(v, lastAffected) > 0 && !affectedSet.has(v));
+    const firstFix = fixCandidates.length ? fixCandidates[0] : null;
+    fixInfo.push({ minor, fix: firstFix, first: firstAffected, last: lastAffected });
+  }
+
+  // Detail rows — components, images, justification
+  const details = await query(`
+    SELECT
+      OCP_COMPONENT AS ocp_component,
+      COMPONENT AS component,
+      VERSION AS version,
+      VEX_FIX_VER AS fix_ver,
+      IMAGE AS image,
+      JUSTIFICATION AS justification,
+      AUDIT_RESULT AS audit,
+      regexp_extract(source_file, 'reports/ocp-(\\d+\\.\\d+\\.\\d+)\\.csv', 1) AS ver
+    FROM 'ocp.parquet'
+    WHERE CVE = '${cve}'
+      AND source_file LIKE 'reports/ocp-%.csv'
+      AND source_file NOT LIKE '%/%/%'
+      AND AUDIT_RESULT = '❌ POSITIVE'
+    ORDER BY
+      CAST(split_part(ver, '.', 1) AS INT),
+      CAST(split_part(ver, '.', 2) AS INT),
+      CAST(split_part(ver, '.', 3) AS INT),
+      ocp_component, component
+    LIMIT 500
+  `);
+
+  // Unique components and images
+  const uniqComps = new Set(details.map(d => d.ocp_component).filter(Boolean));
+  const uniqImages = new Set(details.map(d => (d.image || '').split('@')[0]).filter(Boolean));
+
+  // Render
+  let html = '';
+
+  // Header
+  html += '<div class="cve-header">' +
+    '<span class="cve-id">' + esc(cve) + '</span>' +
+    '<span class="sev-badge" style="background:' + (SEV_COLORS[sev]||'#6e7681') + '20;color:' + (SEV_COLORS[sev]||'#6e7681') + '">' + esc(sev) + '</span>' +
+  '</div>';
+
+  // Summary cards
+  html += '<div class="summary-grid">' +
+    '<div class="summary-card"><div class="num" style="color:var(--red)">' + affected.length + '</div><div class="lbl">Affected Versions</div></div>' +
+    '<div class="summary-card"><div class="num" style="color:var(--green)">' + notAffected.length + '</div><div class="lbl">Not Affected</div></div>' +
+    '<div class="summary-card"><div class="num" style="color:var(--accent)">' + uniqComps.size + '</div><div class="lbl">Components</div></div>' +
+    '<div class="summary-card"><div class="num" style="color:var(--muted)">' + uniqImages.size + '</div><div class="lbl">Images</div></div>' +
+  '</div>';
+
+  // Version chips — show all versions in affected minors
+  html += '<div class="section"><h2>OCP Platform Versions</h2>';
+  for (const [minor, vers] of Object.entries(byMinor)) {
+    html += '<div style="margin-bottom:.75rem"><div style="font-size:.72rem;color:var(--muted);margin-bottom:.3rem;font-weight:600">' + minor + '.x</div>';
+    html += '<div class="ver-grid">';
+    for (const v of vers) {
+      const isAffected = affectedSet.has(v);
+      html += '<span class="ver-chip ' + (isAffected ? 'affected' : 'fixed') + '" title="' + (isAffected ? 'Affected' : 'Not affected / Fixed') + '">' + esc(v) + '</span>';
+    }
+    html += '</div></div>';
+  }
+
+  // Fix info
+  if (fixInfo.length) {
+    html += '<div class="fix-box">';
+    for (const f of fixInfo) {
+      if (f.fix) {
+        html += '<div style="margin-bottom:.3rem"><strong>' + f.minor + '.x:</strong> ' +
+          '<span style="color:var(--red)">affected ' + esc(f.first) + ' → ' + esc(f.last) + '</span>' +
+          ' · <span style="color:var(--green)">fixed in <strong>' + esc(f.fix) + '</strong></span></div>';
+      } else {
+        html += '<div style="margin-bottom:.3rem"><strong>' + f.minor + '.x:</strong> ' +
+          '<span style="color:var(--red)">no fix available</span> (affected ' + esc(f.first) + ' → ' + esc(f.last) + ')</div>';
+      }
+    }
+    html += '</div>';
+  }
+  html += '</div>';
+
+  // Detail table
+  if (details.length) {
+    html += '<div class="section"><h2>Affected Components (' + details.length + ' findings)</h2>';
+    html += '<div class="table-wrap"><table><thead><tr>' +
+      '<th style="width:36px"></th><th>Version</th><th>OCP Component</th><th>Package</th><th>Installed</th><th>Fix Version</th>' +
+    '</tr></thead><tbody>';
+
+    for (let i = 0; i < details.length; i++) {
+      const r = details[i];
+      const imgParts = (r.image || '').split('@');
+      const imgBase = imgParts[0] || '';
+      const imgSha = imgParts[1] || '';
+
+      html += '<tr class="main-row" data-idx="' + i + '">' +
+        '<td class="expand-cell"><button class="expand-btn" aria-expanded="false">›</button></td>' +
+        '<td><code>' + esc(r.ver || '') + '</code></td>' +
+        '<td><strong style="font-size:.8rem">' + esc(r.ocp_component || '—') + '</strong></td>' +
+        '<td><code>' + esc(r.component || '—') + '</code></td>' +
+        '<td><code>' + esc(r.version || '—') + '</code></td>' +
+        '<td><code>' + esc(r.fix_ver || '—') + '</code></td>' +
+      '</tr>' +
+      '<tr class="detail-row" id="dr-' + i + '" hidden>' +
+        '<td></td>' +
+        '<td colspan="5">' +
+          '<div class="detail-item">' +
+            '<span class="detail-label">Image</span>' +
+            '<div class="detail-value"><code class="detail-image">' + esc(imgBase) + '</code>' +
+              (imgSha ? '<code class="detail-image" style="color:var(--muted);font-size:.68rem;margin-top:.1rem">' + esc(imgSha) + '</code>' : '') +
+            '</div>' +
+          '</div>' +
+          '<div class="detail-item">' +
+            '<span class="detail-label">Justification</span>' +
+            '<div class="detail-value"><span class="detail-just">' + esc(r.justification || '—') + '</span></div>' +
+          '</div>' +
+        '</td>' +
+      '</tr>';
+    }
+
+    html += '</tbody></table></div></div>';
+  }
+
+  $('results').innerHTML = html;
+
+  // Expand/collapse
+  $('results').onclick = (e) => {
+    const btn = e.target.closest('.expand-btn');
+    if (!btn) return;
+    const idx = btn.closest('tr.main-row').dataset.idx;
+    const detail = document.getElementById('dr-' + idx);
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    btn.classList.toggle('expanded', !expanded);
+    if (expanded) detail.setAttribute('hidden', ''); else detail.removeAttribute('hidden');
+  };
+}
+
+initDB().catch(e => {
+  setStatus('DuckDB failed', 'error');
+  $('loading-state').innerHTML = '<div class="empty-state" style="color:var(--red)">' +
+    'Failed to load DuckDB WASM.<br>Serve via HTTP: <code>python3 -m http.server 8080</code></div>';
+  console.error(e);
+});
+</script>
+</body>
+</html>
