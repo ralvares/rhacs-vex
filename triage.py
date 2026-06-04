@@ -2328,6 +2328,12 @@ def main():
                 _console.print()
                 if args.output and args.output_fmt != "table":
                     _write_output(combined, args.output, args.output_fmt, _console)
+
+            # Exit with non-zero if images failed — signals to setup_and_scan
+            # that the report is incomplete and should be re-run.
+            if still_failed:
+                _console.print(f"[yellow]⚠  Exiting with code 2 — {len(still_failed)} image(s) still failed.[/yellow]")
+                raise SystemExit(2)
             raise SystemExit(0)
 
         except requests.RequestException as e:

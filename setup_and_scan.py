@@ -301,8 +301,22 @@ def stage_ocp_triage(pullspec_files: list[str], workers: int,
         out = os.path.join(REPORTS_DIR, f"ocp-{ver}.csv")
 
         if os.path.exists(out) and os.path.getsize(out) > 0:
-            log(f"  SKIP  {out} (already exists)")
-            continue
+            # Verify completeness: compare scanned components vs manifest
+            try:
+                import pandas as pd, re as _re
+                _df = pd.read_csv(out)
+                _scanned = _df['OCP_COMPONENT'].nunique() if 'OCP_COMPONENT' in _df.columns else 0
+                _expected = sum(1 for line in open(txt)
+                                if _re.match(r'^\S+\s+\S+@sha256:[a-f0-9]+', line.strip()))
+                if _scanned < _expected:
+                    log(f"  RERUN {out} (incomplete: {_scanned}/{_expected} components)")
+                    os.remove(out)
+                else:
+                    log(f"  SKIP  {out} ({_scanned}/{_expected} components)")
+                    continue
+            except Exception:
+                log(f"  SKIP  {out} (already exists)")
+                continue
 
         cmd = [
             sys.executable, scanner_script,
@@ -320,7 +334,7 @@ def stage_ocp_triage(pullspec_files: list[str], workers: int,
 
         rc = run(cmd)
         if rc != 0:
-            log(f"  WARNING: {scanner_script} exited non-zero for {ver}")
+            log(f"  WARNING: {scanner_script} exited non-zero for {ver} (rc={rc})")
 
 
 # ---------------------------------------------------------------------------
