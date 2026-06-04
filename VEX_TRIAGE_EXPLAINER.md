@@ -130,15 +130,17 @@ What the image reference **does not** tell you:
 
 Every Red Hat container image embeds Docker labels at build time. Two are critical:
 
-**The `name` label** (e.g., `rhacm2/multicluster-operators-subscription-rhel9`):
+**The `name` label** (e.g., `rhacm2/multicluster-operators-subscription-rhel9` or `openshift4/ose-etcd-rhel9`):
 This is the canonical image path — it survives registry mirrors. When an image is pulled from `registry.access.redhat.com` instead of `registry.redhat.io`, the path may differ, but the `name` label always contains the canonical form. The engine uses this label as the primary input for namespace resolution, falling back to the image reference URL only when the label is absent.
 
-**The `cpe` label** (e.g., `cpe:/a:redhat:acm:2.10::el9`):
+For OCP platform images, the `name` label also provides the **OCP component identity** used for Go module VEX matching (Section 9). The engine normalizes `openshift4/ose-etcd-rhel9` to `ocp_component=etcd`, which is then matched against VEX image-level product IDs. This is the key bridge between what the scanner reports (Go module path like `google.golang.org/grpc`) and what VEX tracks (container image name like `openshift4/ose-etcd-rhel9`).
+
+**The `cpe` label** (e.g., `cpe:/a:redhat:openshift:4.20::el9`):
 CPE (Common Platform Enumeration) is a structured identifier that encodes the product and platform. The engine parses it to extract:
 
-1. **RHEL major version** — from the language field (`el9` → RHEL 9). This is critical because VEX entries are scoped per RHEL major version. A fix for a package on RHEL 8 does not clear the same package on RHEL 9.
+1. **RHEL major version** — from the language field (`el9` → RHEL 9). This is critical because VEX entries are scoped per RHEL major version. A fix for a package on RHEL 8 does not clear the same package on RHEL 9. For Go module matching, this determines which RHEL-specific VEX entry applies when the same component has different verdicts across RHEL versions.
 
-2. **Product version** — from the version field (`2.10` for ACM). This refines the display name and, for OCP images, controls which VEX product entries match (VEX "4.18" does not match OCP 4.21).
+2. **Product version** — from the version field (`4.20` for OCP). This refines the display name and, for OCP images, controls which VEX product entries match (VEX "4.18" does not match OCP 4.21).
 
 ### What happens without labels
 
@@ -160,8 +162,10 @@ The engine cross-references five sources of truth for every finding:
 | Source | What it provides | Origin |
 | :--- | :--- | :--- |
 | **RHACS Scan Result** | Binary RPM name, version, CVE ID, scanner severity | RHACS API (`/v1/images/scan`) |
-| **Red Hat VEX/CSAF** | Authoritative vendor status per CVE per product | `security.access.redhat.com/data/csaf/v2/vex/` |
+| **RHACS Image Metadata** | Docker labels (`name`, `cpe`), OS info (`operatingSystem`), OCP component identity | RHACS API (`/v1/images/{id}` → `metadata.v1.labels`) |
+| **Red Hat VEX/CSAF** | Authoritative vendor status per CVE per product (source of truth) | `security.access.redhat.com/data/csaf/v2/vex/` |
 | **SPDX 2.3 SBOM** | Binary-to-source RPM lineage, package inventory | RHACS API (`/api/v1/images/sbom`) |
+| **OCP Release Manifest** | Component name → image digest mapping (e.g., `etcd` → `sha256:3654c…`) | `oc adm release info --pullspecs` |
 | **Namespace-to-VEX Map** | Product scope for operators (catalog-derived) | OLM operator catalogs via `build_ns_map.py` |
 | **RPM Version Database** | Epoch-aware RPM version comparison | `version_utils.rpm` library |
 
@@ -221,8 +225,18 @@ graph TD
     CATCHALL -->|Yes| FP1["FALSE POSITIVE: No Red Hat product affected"]
     CATCHALL -->|No| RPM{Is this an RPM package?}
     
-    RPM -->|No| NON_RPM["Non-RPM Path (Go, Java, npm, Python)"]
+    RPM -->|No| NON_RPM{Non-RPM: OCP image with ocp_component?}
     RPM -->|Yes| KNA{Known Not Affected in scope?}
+
+    NON_RPM -->|Yes| IMG_MATCH{Image-level VEX match?}
+    NON_RPM -->|No| NON_RPM_FALLBACK["Non-RPM checks 1–5"]
+
+    IMG_MATCH -->|"Match: known_not_affected"| FP_IMG["FALSE POSITIVE: OCP image not affected per VEX"]
+    IMG_MATCH -->|"Match: known_affected"| P_IMG["POSITIVE: OCP image confirmed affected per VEX"]
+    IMG_MATCH -->|No match| OCP4_ASSESSED{VEX assessed OCP4?}
+
+    OCP4_ASSESSED -->|"Yes (has OCP4 entries)"| FP_ABS["FALSE POSITIVE: Not listed as affected"]
+    OCP4_ASSESSED -->|"No (no OCP4 entries)"| NON_RPM_FALLBACK
     
     KNA -->|Yes| FP2["FALSE POSITIVE: Vulnerable code not present"]
     KNA -->|No| FIXED{Fix version exists in scope?}
@@ -357,7 +371,7 @@ Non-RPM components follow a different logic path because their version strings a
 
 ### Why version comparison is not used for non-RPM
 
-Red Hat does not publish per-component fix versions for Go modules, npm packages, Java JARs, or Python wheels in their VEX advisories. Instead, non-RPM components are tracked at the **container image level** — VEX entries reference the image's SHA256 digest, not individual library versions inside it.
+Red Hat does not publish per-component fix versions for Go modules, npm packages, Java JARs, or Python wheels in their VEX advisories. Instead, non-RPM components are tracked at the **container image level** — VEX entries reference the image's SHA256 digest or the container image name, not individual library versions inside it.
 
 This means: for a Go module like `golang.org/x/net v0.17.0`, there is no VEX entry saying "fixed in v0.18.0." Instead, the VEX says "fixed in image `quay.io/…@sha256:abc123`." The engine cannot compare upstream semver versions against VEX data because VEX does not contain upstream semver versions.
 
@@ -365,9 +379,75 @@ Even when VEX does reference a package name (rather than an image digest), the v
 
 The engine stays loyal to what VEX actually publishes rather than inventing its own version comparisons outside the vendor's data.
 
+### The Go module naming mismatch problem
+
+When RHACS scans an OCP container image, it reports Go dependencies by their **Go module path** — e.g., `google.golang.org/grpc` or `github.com/docker/docker`. Red Hat's VEX advisories track vulnerabilities at the **RPM or container image level** — e.g., the RPM package `grpc` or the container image `openshift4/ose-etcd-rhel9`. There is no string overlap between the Go module path and the VEX product ID.
+
+For example, CVE-2024-41110 (Docker Engine AuthZ bypass) affects the Go module `github.com/docker/docker`. Red Hat's VEX for this CVE lists:
+
+| VEX Product ID (OCP4) | Status | Justification |
+| :--- | :--- | :--- |
+| `podman` | Not affected | — |
+| `openshift4/ose-machine-config-operator` | Not affected | Component not Present |
+
+The VEX does not mention `github.com/docker/docker` (the Go module name), nor does it mention `docker-builder` or `docker-registry` (the OCP component names where the scanner finds the Go module). Without bridging this gap, the engine would flag all 258 findings as POSITIVE even though Red Hat assessed OCP4 and found it not affected.
+
+### How the engine bridges Go modules to VEX entries
+
+The engine uses three layers of context to match a Go module finding against VEX data:
+
+#### Layer 1: OCP manifest component name (`ocp_component`)
+
+In `--ocp` mode, the release manifest provides the component name for each image (e.g., `etcd`, `docker-builder`, `apiserver-network-proxy`). This name is stored on the `WorkloadContext` as `ocp_component`.
+
+In `--image` mode, the component name is derived from the image's Docker `name` label. For example, an image with label `name=openshift4/ose-etcd-rhel9` yields `ocp_component=etcd`.
+
+The normalization function `_normalize_vex_image_core()` extracts the core component name from VEX image-style PIDs:
+
+| VEX PID component | Normalized core |
+| :--- | :--- |
+| `openshift4/ose-etcd-rhel9` | `etcd` |
+| `openshift4/ose-cluster-etcd-rhel8-operator` | `cluster-etcd-operator` |
+| `openshift4/ose-docker-builder-rhel9` | `docker-builder` |
+| `openshift4/ose-agent-installer-api-server-rhel9` | `agent-installer-api-server` |
+| `openshift4/ose-machine-config-operator` | `machine-config-operator` |
+
+The pattern: strip `openshift4/ose-` prefix, strip `-rhel<N>` suffix, collapse double hyphens.
+
+#### Layer 2: RHEL-version-aware matching
+
+VEX entries are RHEL-version-specific. The same component can have opposite verdicts for different RHEL versions:
+
+| Image | RHEL | VEX Status (CVE-2026-33186) |
+| :--- | :--- | :--- |
+| `ose-agent-installer-api-server-rhel8` | 8 | **Not affected** (`vulnerable_code_not_present`) |
+| `ose-agent-installer-api-server-rhel9` | 9 | **Affected** (fix deferred) |
+
+The engine extracts the RHEL version from the VEX PID's `-rhel<N>` suffix and compares it against `ctx.rhel_ver` (derived from the image's CPE label, `operatingSystem` field, or the OCP manifest). Match priority:
+
+1. **Exact RHEL match** (quality=2): PID has `-rhel9`, context is RHEL 9
+2. **Suffixless PID** (quality=1): PID has no `-rhel<N>` → matches any RHEL version
+3. **Other RHEL** (quality=0): PID has `-rhel8`, context is RHEL 9 → only used if no better match exists
+
+When `known_affected` and `known_not_affected` coexist at the same quality level, `known_affected` takes precedence (conservative: the vulnerability is still actionable).
+
+#### Layer 3: VEX as source of truth — absence means not affected
+
+When the engine finds no image-level match for the OCP component (Layer 1 returns no result), it checks whether the VEX has **any** OCP4 entries at all (affected, not-affected, fixed, or flagged). If yes, Red Hat assessed OCP4 for this CVE — and a component not mentioned is not affected. VEX is the authoritative source: if Red Hat wanted to say a component is affected, they would have listed it.
+
+This matches what a user sees on the Red Hat CVE page (e.g., `access.redhat.com/security/cve/cve-2024-41110#cve-affected-packages`). If a component is not in the "Affected Packages" table, it is not affected.
+
+If the VEX has **zero** OCP4 entries, the CVE was not assessed for OCP4 — the engine falls through to the cross-product inference path.
+
 ### How non-RPM false positives are detected
 
-The engine uses four progressively broader checks:
+The engine uses six progressively broader checks for non-RPM components:
+
+**0. OCP image-level VEX matching** (OCP workloads only). When `ocp_component` is set, the engine matches it against VEX image PIDs using the normalization and RHEL-aware matching described above. This is the primary mechanism for clearing Go module findings. Three outcomes:
+- **Direct match found, status is `known_not_affected` or `fixed`**: FALSE POSITIVE — "OCP image not affected per VEX (`openshift4/ose-docker-builder-rhel9`): vulnerable code not present."
+- **Direct match found, status is `known_affected` or `under_investigation`**: POSITIVE — "OCP image confirmed affected per VEX (`openshift4/ose-etcd-rhel9`)."
+- **No direct match, but VEX assessed OCP4**: FALSE POSITIVE — "VEX assessed OCP4 for this CVE; `docker-builder` not listed as affected."
+- **No direct match, VEX did not assess OCP4**: Falls through to checks 1–5 below.
 
 **1. Not tracked in VEX at all.** If the VEX document contains no product entries for any Red Hat product mentioning this component — no affected, fixed, not affected, or investigating entries — the verdict is NOT ASSESSED. Red Hat's VEX coverage for non-RPM components (Go modules, Java JARs, npm packages) is not comprehensive — absence from VEX does not mean the component is safe, only that no vendor assessment exists. The finding should be treated as a potential risk until explicitly cleared.
 
@@ -441,10 +521,10 @@ Once the setup pipeline (Section 1) has prepared catalogs, namespace maps, and p
 
 1. **Fetch scan data** from RHACS (with 4-hour cache TTL).
 2. **Parse image reference** to determine workload type (UBI/OCP/operator), RHEL version, OCP version, and product scope.
-3. **Refine context** from Docker labels: extract RHEL version from CPE language field, product name from labels.
+3. **Refine context** from Docker labels: extract RHEL version from CPE language field (`el9` → RHEL 9), product version from CPE version field, and **OCP component identity** from the `name` label (e.g., `openshift4/ose-etcd-rhel9` → `ocp_component=etcd`). In `--ocp` mode, the component name comes from the release manifest instead.
 4. **Fetch SBOM** from RHACS (with 7-day cache TTL) and build binary-to-source RPM name mapping.
 5. **Download VEX files** for all unique CVEs in the scan results (with ETag-based caching).
-6. **Run the decision tree** for each CVE finding (component + version + CVE ID).
+6. **Run the decision tree** for each CVE finding (component + version + CVE ID). For non-RPM components in OCP images, this includes OCP image-level VEX matching using the normalized `ocp_component` against VEX image PIDs with RHEL-version-aware priority.
 7. **Detect severity mismatches** between scanner and VEX severity ratings.
 8. **Verify against SBOM** to catch stale scanner data.
 9. **Produce verdicts**: FALSE POSITIVE, POSITIVE, or flagged MISMATCH.
@@ -466,9 +546,11 @@ Once the setup pipeline (Section 1) has prepared catalogs, namespace maps, and p
 
 The engine avoids hardcoding wherever possible to remain accurate as Red Hat's product landscape evolves:
 
+- **VEX is the source of truth**: Red Hat's VEX/CSAF data is the authoritative vendor assessment. If a VEX file exists for a CVE and covers OCP4, a component not listed as affected is not affected — matching what users see on `access.redhat.com/security/cve/<CVE-ID>#cve-affected-packages`.
 - **No hardcoded VEX product names**: All product identification is derived from the CSAF product tree at runtime.
 - **No hardcoded RHEL stream names**: Base repo products are identified by matching VEX product names starting with "Red Hat Enterprise Linux".
 - **No hardcoded package mappings**: All binary-to-source RPM mappings come from the SBOM's `GENERATED_FROM` relationships.
 - **No hardcoded operator product scopes**: Operator-to-product mapping is catalog-derived from OLM bundle metadata.
+- **No hardcoded Go module-to-image mappings**: OCP component identity is derived at runtime from the release manifest (`comp_name`) or Docker `name` label, then normalized against VEX image PIDs using a deterministic pattern (`ose-<core>-rhel<N>`).
 - **Module stream detection uses only the version string**: The `+module+` marker in the RPM release field is the sole signal.
-- **SBOM is the source of truth**: The physical image contents (via SBOM) are used to verify scanner data, not the other way around.
+- **SBOM is the source of truth for package inventory**: The physical image contents (via SBOM) are used to verify scanner data, not the other way around.

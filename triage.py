@@ -1950,6 +1950,8 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
 
     except requests.RequestException as e:
         return {"found": None, "error": str(e)}
+    except Exception as e:
+        return {"found": None, "error": f"{type(e).__name__}: {e}"}
 
 
 def _display_image_result(console: Console, label: str, res: dict) -> None:
@@ -2301,10 +2303,19 @@ def main():
                     r["IMAGE"]         = image_ref_stored
                     all_results.append(r)
 
+            # Collect images that still failed after retry
+            still_failed = [(cn, ir) for cn, ir in images
+                            if results_map.get(cn, (None, {}))[1].get("found") is None]
+
             _console.rule("[bold]OCP Release Summary[/bold]")
-            _console.print(f"  Scanned : [bold]{total - len(not_found)}[/bold] / {total} component image(s)")
+            _console.print(f"  Scanned : [bold]{total - len(not_found) - len(still_failed)}[/bold] / {total} component image(s)")
             if not_found:
                 _console.print(f"  Skipped : [yellow]{len(not_found)}[/yellow] not found in RHACS")
+            if still_failed:
+                _console.print(f"  Failed  : [red]{len(still_failed)}[/red] errored after retry:")
+                for cn, ir in still_failed:
+                    err = results_map.get(cn, (None, {}))[1].get("error", "unknown")
+                    _console.print(f"    [red]•[/red] {cn}: {err[:120]}")
             _console.print()
 
             if all_results:
