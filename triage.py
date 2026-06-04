@@ -823,12 +823,15 @@ def rhacs_to_df(image_data: dict) -> pd.DataFrame:
                 "CVSS":         vuln.get("cvss", 0),
                 "LINK":         vuln.get("link", ""),
                 "FIXED_VERSION": vuln.get("fixedBy", "") or fixed_c,
+                "SOURCE":       comp.get("source", ""),
+                "LOCATION":     comp.get("location", ""),
                 "ADVISORY":     "",
                 "ADVISORY_LINK": "",
             })
     return pd.DataFrame(rows) if rows else pd.DataFrame(
         columns=["COMPONENT", "VERSION", "CVE", "SEVERITY", "CVSS",
-                 "LINK", "FIXED_VERSION", "ADVISORY", "ADVISORY_LINK"]
+                 "LINK", "FIXED_VERSION", "SOURCE", "LOCATION",
+                 "ADVISORY", "ADVISORY_LINK"]
     )
 
 
@@ -1725,12 +1728,22 @@ def _sort_and_filter_df(df: pd.DataFrame, false_only: bool = False) -> pd.DataFr
     cols = ['COMPONENT', 'VEX_PRODUCT', 'VERSION', 'CVE', 'SEVERITY',
             'AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION',
             'RHACS_SEVERITY', 'SEVERITY_MISMATCH']
+    # Include RHACS metadata columns when present
+    for extra in ('SOURCE', 'LOCATION', 'FIXED_VERSION', 'OCP_COMPONENT', 'IMAGE', 'IMAGE_ROLE'):
+        if extra in df.columns:
+            cols.append(extra)
     # Ensure all expected columns exist even on an empty DataFrame
     for col in cols:
         if col not in df.columns:
             df[col] = pd.Series(dtype=str)
 
     result_df = df[cols].copy()
+
+    # Add FIXABLE column: True if either VEX or RHACS reports a fix version
+    vex_fix = result_df['VEX_FIX_VER'].fillna('').astype(str).str.strip()
+    rhacs_fix = result_df['FIXED_VERSION'].fillna('').astype(str).str.strip() if 'FIXED_VERSION' in result_df.columns else pd.Series('', index=result_df.index)
+    result_df['FIXABLE'] = ((vex_fix != '') & (vex_fix != 'N/A') & (vex_fix != 'nan')) | \
+                           ((rhacs_fix != '') & (rhacs_fix != 'nan'))
     if result_df.empty:
         if false_only:
             result_df = result_df[result_df['AUDIT_RESULT'] == '✅ FALSE POSITIVE']

@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(kill 98407)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 triage.py --ocp 4.21.18.txt --format csv --output data/reports/ocp-4.21.18.csv --workers 10 --force)",
+      "Bash(python3 -c \"import build_parquet; print\\('OK'\\)\")",
+      "Bash(python3 triage_operators.py --help)",
+      "Bash(python3 triage_operators.py --version 4.21 --operator \"openshift-gitops-operator,metallb-operator\" --workers 10)",
+      "Bash(python3 triage.py --ocp 4.21.18.txt --format csv --output data/reports/ocp-4.21.18.csv --workers 10)",
+      "Bash(rm -rf data/reports/ocp-4.21/*.csv && python3 triage_operators.py --version 4.21 --operator \"openshift-gitops-operator,metallb-operator\" --workers 10 2>&1 | tail -10)",
+      "Bash(python3 triage_operators.py --version 4.20 --operator \"metallb-operator\" --workers 10)"
+    ],
+    "additionalDirectories": [
+      "/Users/ralvares/rhacs-vex/data/reports/ocp-4.21"
+    ]
+  }
+}
