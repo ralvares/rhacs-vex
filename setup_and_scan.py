@@ -78,7 +78,6 @@ Version,Release Status,Phase
 4.20.10,Stable,Full Support (EUS)
 4.20.9,Stable,Full Support (EUS)
 4.20.8,Stable,Full Support (EUS)
-4.20.7,Stable,Full Support (EUS)
 4.20.6,Stable,Full Support (EUS)
 4.20.5,Stable,Full Support (EUS)
 4.20.4,Stable,Full Support (EUS)
