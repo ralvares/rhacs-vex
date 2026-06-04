@@ -201,7 +201,7 @@ def parse_image_ref(image_ref: str) -> WorkloadContext:
 
     # ── Classify workload type ───────────────────────────────────────────
     ubi_ns = re.match(r'^ubi\d+', ns) or name == "" or ns in ("ubi", "rhel")
-    ocp_ns = ns in ("openshift4", "ocp4", "openshift-release-dev") \
+    ocp_ns = ns in ("openshift4", "openshift", "ocp4", "openshift-release-dev") \
           or "ose-" in name or name.startswith("ocp-")
 
     if ubi_ns:
@@ -370,6 +370,16 @@ def parse_context_from_labels(labels: dict, image_ref: str = "") -> WorkloadCont
         # at audit time via _pid_in_scope — no prefixes to set here.
         if ctx.workload_type == "ocp" and version_tok:
             ctx.ocp_ver = version_tok
+
+        # CPE product is exactly "openshift" → promote to OCP
+        # (not openshift_gitops, openshift_logging, etc. — those are separate products)
+        cpe_product = parts[2].lower() if len(parts) > 2 else ""
+        if ctx.workload_type == "operator" and cpe_product == "openshift":
+            ctx.workload_type = "ocp"
+            ctx.display_name = f"OpenShift {version_tok or ctx.ocp_ver or '4.x'}"
+            ctx.extra_prefixes = []
+            if version_tok:
+                ctx.ocp_ver = version_tok
 
     # Derive ocp_component from the image name label when available.
     # e.g. "openshift4/ose-etcd-rhel9" → "etcd"
