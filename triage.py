@@ -546,9 +546,9 @@ def rhacs_scan_image(session, image_ref: str, force: bool = False,
                 time.sleep(delay)
                 delay *= 2
                 continue
-            return None
-        except Exception:
-            return None
+            raise
+        except requests.HTTPError:
+            raise
     return None
 
 
