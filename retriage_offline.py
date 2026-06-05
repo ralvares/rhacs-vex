@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """Offline retriage — re-run audit on all OCP + operator reports from cached data. Zero network."""
-import sys, os, re, json, time, glob
+import sys, os, re, json, time, glob, argparse
+from concurrent.futures import ProcessPoolExecutor, as_completed
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import triage, pandas as pd
+import pandas as pd
 
 REPORT_DIR = 'data/reports'
 
+
 def retriage_ocp(txt):
+    import triage  # import per-process for multiprocessing
     ver = os.path.splitext(os.path.basename(txt))[0]
     out = os.path.join(REPORT_DIR, f'ocp-{ver}.csv')
     images, ocp_ver = [], None
@@ -115,26 +118,48 @@ def retriage_operators():
     return total
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Offline retriage — zero network calls')
+    parser.add_argument('--workers', type=int, default=10, help='Parallel workers (default: 10)')
+    parser.add_argument('--ocp-only', action='store_true', help='Skip operators')
+    parser.add_argument('--operators-only', action='store_true', help='Skip OCP')
+    parser.add_argument('--version', help='Single OCP version (e.g., 4.21.18)')
+    args = parser.parse_args()
+
     t0 = time.time()
 
-    # OCP versions
-    manifests = sorted(glob.glob('4.*.txt'), key=lambda f: tuple(int(x) for x in re.findall(r'\d+', f)))
-    print(f'=== Offline retriage: {len(manifests)} OCP versions ===')
-    for i, txt in enumerate(manifests, 1):
-        ver_t0 = time.time()
-        ver, ok, skip, nf = retriage_ocp(txt)
-        elapsed = time.time() - ver_t0
-        pct = int(100 * i / len(manifests))
-        print(f'  [{i}/{len(manifests)}] ({pct}%) {ver}: {ok} images, {skip} skipped, {nf} findings ({elapsed:.0f}s)')
+    if not args.operators_only:
+        if args.version:
+            manifests = [f'{args.version}.txt']
+        else:
+            manifests = sorted(glob.glob('4.*.txt'), key=lambda f: tuple(int(x) for x in re.findall(r'\d+', f)))
 
-    # Operators
-    print(f'\n=== Retriaging operators ===')
-    op_count = retriage_operators()
-    print(f'  {op_count} operator reports updated')
+        print(f'=== Offline retriage: {len(manifests)} OCP versions, {args.workers} workers ===', flush=True)
+
+        done = 0
+        with ProcessPoolExecutor(max_workers=args.workers) as ex:
+            futures = {ex.submit(retriage_ocp, txt): txt for txt in manifests}
+            for future in as_completed(futures):
+                done += 1
+                txt = futures[future]
+                try:
+                    ver, ok, skip, nf = future.result()
+                    pct = int(100 * done / len(manifests))
+                    print(f'  [{done}/{len(manifests)}] ({pct}%) {ver}: {ok} images, {skip} skipped, {nf} findings', flush=True)
+                except Exception as e:
+                    print(f'  [{done}/{len(manifests)}] ERROR {txt}: {e}', flush=True)
+
+        print(f'  OCP done in {time.time() - t0:.0f}s', flush=True)
+
+    if not args.ocp_only:
+        print(f'\n=== Retriaging operators ===', flush=True)
+        op_t0 = time.time()
+        op_count = retriage_operators()
+        print(f'  {op_count} operator reports updated in {time.time() - op_t0:.0f}s', flush=True)
 
     # Rebuild parquets
-    print(f'\n=== Rebuilding parquets ===')
+    print(f'\n=== Rebuilding parquets ===', flush=True)
     import subprocess
     subprocess.run([sys.executable, 'build_parquet.py'], check=False)
 
-    print(f'\nTotal: {time.time() - t0:.0f}s ({(time.time() - t0)/60:.1f} min)')
+    total = time.time() - t0
+    print(f'\nDone: {total:.0f}s ({total/60:.1f} min)', flush=True)
