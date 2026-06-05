@@ -855,8 +855,8 @@ async function renderCVESearch(initialCve) {
               : `<a href="#ocp/${r.OCP_VERSION}" style="color:var(--accent);text-decoration:none">${esc(r.OCP_VERSION)}</a>`
             }</td>
             <td class="op">${r.SCOPE && r.SCOPE.startsWith('operators/')
-              ? `<a href="#${r.SCOPE}" style="color:var(--accent);text-decoration:none;font-weight:600">${esc(r.OCP_COMPONENT || '')}</a>`
-              : `<strong>${esc(r.OCP_COMPONENT || '')}</strong>`
+              ? `<a href="#${r.SCOPE}" style="color:var(--accent);text-decoration:none;font-weight:600">${esc(r.OCP_COMPONENT || '')}</a><br><span style="font-size:.65rem;color:var(--muted)">${esc(r.SCOPE.replace('operators/','').replace(/\//,' / '))}</span>`
+              : `<strong>${esc(r.OCP_COMPONENT || '')}</strong><br><span style="font-size:.65rem;color:var(--muted)">OCP ${esc(r.OCP_VERSION || '')}</span>`
             }</td>
             <td><code>${esc(r.COMPONENT || '')}</code></td>
             <td><code>${esc(r.VERSION || '')}</code></td>
