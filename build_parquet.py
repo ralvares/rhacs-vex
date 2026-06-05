@@ -84,24 +84,30 @@ def build_one_version(csv_path, version):
                     write_statistics=True)
 
     size_kb = os.path.getsize(out_path) / 1024
-    audit = df["AUDIT_RESULT"].value_counts().to_dict()
-    positive = sum(v for k, v in audit.items() if "POSITIVE" in str(k) and "FALSE" not in str(k))
-    false_positive = sum(v for k, v in audit.items() if "FALSE" in str(k))
 
+    pos_mask = df["AUDIT_RESULT"].str.contains("POSITIVE", na=False) & \
+               ~df["AUDIT_RESULT"].str.contains("FALSE", na=False)
+    fp_mask  = df["AUDIT_RESULT"].str.contains("FALSE", na=False)
+
+    pos_df = df[pos_mask]
+    pos_cves = int(pos_df["CVE"].nunique()) if len(pos_df) else 0
+    fp_cves  = int(df[fp_mask]["CVE"].nunique()) if fp_mask.any() else 0
+
+    # Severity: unique CVEs per severity (positives only)
     sev = {}
-    if "SEVERITY" in df.columns:
-        sev = df["SEVERITY"].value_counts().to_dict()
+    if "SEVERITY" in pos_df.columns and len(pos_df):
+        sev = pos_df.drop_duplicates("CVE")["SEVERITY"].value_counts().to_dict()
 
     components = int(df["OCP_COMPONENT"].nunique()) if "OCP_COMPONENT" in df.columns else 0
-    images = int(df["IMAGE"].nunique()) if "IMAGE" in df.columns else 0
 
     stats = {
         "file": f"data/parquet/ocp/{version}.parquet",
         "rows": len(df),
-        "positive": int(positive),
-        "false_positive": int(false_positive),
+        "findings_positive": int(pos_mask.sum()),
+        "findings_fp": int(fp_mask.sum()),
+        "positive": pos_cves,
+        "false_positive": fp_cves,
         "components": components,
-        "images": images,
         "severity": {k: int(v) for k, v in sev.items()},
         "size_kb": round(size_kb, 1),
     }
@@ -168,10 +174,13 @@ def build_operators(ocp_version_dir):
                         write_statistics=True)
 
         size_kb = os.path.getsize(out_path) / 1024
-        audit = df["AUDIT_RESULT"].value_counts().to_dict()
-        positive = sum(v for k, v in audit.items() if "POSITIVE" in str(k) and "FALSE" not in str(k))
-        false_positive = sum(v for k, v in audit.items() if "FALSE" in str(k))
-        sev = df["SEVERITY"].value_counts().to_dict() if "SEVERITY" in df.columns else {}
+        pos_mask = df["AUDIT_RESULT"].str.contains("POSITIVE", na=False) & \
+                   ~df["AUDIT_RESULT"].str.contains("FALSE", na=False)
+        fp_mask  = df["AUDIT_RESULT"].str.contains("FALSE", na=False)
+        pos_df   = df[pos_mask]
+        pos_cves = int(pos_df["CVE"].nunique()) if len(pos_df) else 0
+        fp_cves  = int(df[fp_mask]["CVE"].nunique()) if fp_mask.any() else 0
+        sev = pos_df.drop_duplicates("CVE")["SEVERITY"].value_counts().to_dict() if len(pos_df) and "SEVERITY" in pos_df.columns else {}
 
         # Parse {operator}-{channel}-{version} from filename using catalog lookup
         op_name = base
@@ -200,8 +209,10 @@ def build_operators(ocp_version_dir):
             "ocp_version": ocp_ver,
             "type": "operator",
             "rows": len(df),
-            "positive": int(positive),
-            "false_positive": int(false_positive),
+            "findings_positive": int(pos_mask.sum()),
+            "findings_fp": int(fp_mask.sum()),
+            "positive": pos_cves,
+            "false_positive": fp_cves,
             "severity": {k: int(v) for k, v in sev.items()},
             "size_kb": round(size_kb, 1),
         }
@@ -479,12 +490,14 @@ def main():
             ver = os.path.splitext(os.path.basename(pf))[0]
             try:
                 df = pd.read_parquet(pf)
-                audit = df["AUDIT_RESULT"].value_counts().to_dict()
-                positive = sum(v for k, v in audit.items() if "POSITIVE" in str(k) and "FALSE" not in str(k))
-                false_positive = sum(v for k, v in audit.items() if "FALSE" in str(k))
-                sev = df["SEVERITY"].value_counts().to_dict() if "SEVERITY" in df.columns else {}
+                pos_mask = df["AUDIT_RESULT"].str.contains("POSITIVE", na=False) & \
+                           ~df["AUDIT_RESULT"].str.contains("FALSE", na=False)
+                fp_mask  = df["AUDIT_RESULT"].str.contains("FALSE", na=False)
+                pos_df   = df[pos_mask]
+                positive = int(pos_df["CVE"].nunique()) if len(pos_df) else 0
+                false_positive = int(df[fp_mask]["CVE"].nunique()) if fp_mask.any() else 0
+                sev = pos_df.drop_duplicates("CVE")["SEVERITY"].value_counts().to_dict() if len(pos_df) and "SEVERITY" in pos_df.columns else {}
                 components = int(df["OCP_COMPONENT"].nunique()) if "OCP_COMPONENT" in df.columns else 0
-                images = int(df["IMAGE"].nunique()) if "IMAGE" in df.columns else 0
                 scopes[f"ocp/{ver}"] = {
                     "file": f"data/parquet/ocp/{ver}.parquet",
                     "rows": len(df),

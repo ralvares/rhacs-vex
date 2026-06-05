@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-05T05:25:47Z",
+  "generated": "2026-06-05T08:45:59Z",
   "scopes": {
     "ocp/4.20.0": {
       "file": "data/parquet/ocp/4.20.0.parquet",
@@ -500,66 +500,66 @@
     "ocp/4.21.15": {
       "file": "data/parquet/ocp/4.21.15.parquet",
       "rows": 10737,
-      "positive": 7509,
-      "false_positive": 3214,
+      "findings_positive": 7523,
+      "findings_fp": 3200,
+      "positive": 483,
+      "false_positive": 165,
       "components": 190,
-      "images": 190,
       "severity": {
-        "Unknown": 5249,
-        "Moderate": 2930,
-        "Important": 1788,
-        "Low": 766,
-        "Critical": 4
+        "Moderate": 197,
+        "Low": 188,
+        "Unknown": 56,
+        "Important": 42
       },
-      "size_kb": 74.3
+      "size_kb": 75.2
     },
     "ocp/4.21.16": {
       "file": "data/parquet/ocp/4.21.16.parquet",
       "rows": 10584,
-      "positive": 7428,
-      "false_positive": 3142,
+      "findings_positive": 7441,
+      "findings_fp": 3129,
+      "positive": 481,
+      "false_positive": 164,
       "components": 190,
-      "images": 190,
       "severity": {
-        "Unknown": 5200,
-        "Moderate": 2890,
-        "Important": 1730,
-        "Low": 760,
-        "Critical": 4
+        "Moderate": 196,
+        "Low": 188,
+        "Unknown": 56,
+        "Important": 41
       },
-      "size_kb": 72.9
+      "size_kb": 73.5
     },
     "ocp/4.21.17": {
       "file": "data/parquet/ocp/4.21.17.parquet",
       "rows": 9744,
-      "positive": 6655,
-      "false_positive": 3075,
+      "findings_positive": 6667,
+      "findings_fp": 3063,
+      "positive": 467,
+      "false_positive": 157,
       "components": 182,
-      "images": 182,
       "severity": {
-        "Unknown": 5018,
-        "Moderate": 2476,
-        "Important": 1494,
-        "Low": 752,
-        "Critical": 4
+        "Moderate": 192,
+        "Low": 185,
+        "Unknown": 52,
+        "Important": 38
       },
-      "size_kb": 65.6
+      "size_kb": 66.6
     },
     "ocp/4.21.18": {
       "file": "data/parquet/ocp/4.21.18.parquet",
-      "rows": 9659,
-      "positive": 6585,
-      "false_positive": 3060,
+      "rows": 10218,
+      "findings_positive": 7177,
+      "findings_fp": 3027,
+      "positive": 451,
+      "false_positive": 158,
       "components": 182,
-      "images": 182,
       "severity": {
-        "Unknown": 5017,
-        "Moderate": 2432,
-        "Important": 1460,
-        "Low": 746,
-        "Critical": 4
+        "Low": 183,
+        "Moderate": 182,
+        "Unknown": 56,
+        "Important": 30
       },
-      "size_kb": 64.1
+      "size_kb": 66.8
     },
     "ocp/4.21.2": {
       "file": "data/parquet/ocp/4.21.2.parquet",
@@ -4426,6 +4426,27 @@
         "Important": 21
       },
       "size_kb": 17.6
+    },
+    "operators/4.20/metallb-operator-stable-v4.20.0-202605070645": {
+      "file": "data/parquet/operators/4.20/metallb-operator-stable-v4.20.0-202605070645.parquet",
+      "label": "metallb-operator-stable-v4.20.0-202605070645",
+      "operator": "metallb-operator",
+      "channel": "stable",
+      "bundle": "v4.20.0-202605070645",
+      "ocp_version": "4.20",
+      "type": "operator",
+      "rows": 262,
+      "findings_positive": 188,
+      "findings_fp": 72,
+      "positive": 86,
+      "false_positive": 39,
+      "severity": {
+        "Moderate": 45,
+        "Unknown": 31,
+        "Important": 7,
+        "Low": 3
+      },
+      "size_kb": 17.0
     },
     "operators/4.20/metallb-operator-stable-v4.20.0-202605260442": {
       "file": "data/parquet/operators/4.20/metallb-operator-stable-v4.20.0-202605260442.parquet",
@@ -12972,6 +12993,27 @@
       },
       "size_kb": 17.6
     },
+    "operators/4.21/metallb-operator-stable-v4.21.0-202605200241": {
+      "file": "data/parquet/operators/4.21/metallb-operator-stable-v4.21.0-202605200241.parquet",
+      "label": "metallb-operator-stable-v4.21.0-202605200241",
+      "operator": "metallb-operator",
+      "channel": "stable",
+      "bundle": "v4.21.0-202605200241",
+      "ocp_version": "4.21",
+      "type": "operator",
+      "rows": 244,
+      "findings_positive": 171,
+      "findings_fp": 71,
+      "positive": 83,
+      "false_positive": 39,
+      "severity": {
+        "Moderate": 43,
+        "Unknown": 31,
+        "Important": 6,
+        "Low": 3
+      },
+      "size_kb": 16.4
+    },
     "operators/4.21/metallb-operator-stable-v4.21.0-202605260453": {
       "file": "data/parquet/operators/4.21/metallb-operator-stable-v4.21.0-202605260453.parquet",
       "label": "metallb-operator-stable-v4.21.0-202605260453",
@@ -14063,15 +14105,17 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 6532,
-      "positive": 6292,
-      "false_positive": 165,
+      "findings_positive": 6292,
+      "findings_fp": 165,
+      "positive": 856,
+      "false_positive": 48,
       "severity": {
-        "Moderate": 3376,
-        "Low": 2256,
-        "Important": 898,
-        "Critical": 2
+        "Moderate": 444,
+        "Low": 284,
+        "Important": 127,
+        "Critical": 1
       },
-      "size_kb": 64.4
+      "size_kb": 65.8
     },
     "operators/4.21/openshift-gitops-operator-gitops-1.11-v1.11.7-0.1724840231.p": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-gitops-1.11-v1.11.7-0.1724840231.p.parquet",
@@ -14082,15 +14126,17 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 7089,
-      "positive": 6949,
-      "false_positive": 45,
+      "findings_positive": 6949,
+      "findings_fp": 45,
+      "positive": 709,
+      "false_positive": 26,
       "severity": {
-        "Moderate": 3580,
-        "Low": 2653,
-        "Important": 854,
-        "Critical": 2
+        "Moderate": 355,
+        "Low": 265,
+        "Important": 88,
+        "Critical": 1
       },
-      "size_kb": 60.3
+      "size_kb": 61.8
     },
     "operators/4.21/openshift-gitops-operator-gitops-1.12-v1.12.6": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-gitops-1.12-v1.12.6.parquet",
@@ -14101,15 +14147,17 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 6957,
-      "positive": 6820,
-      "false_positive": 44,
+      "findings_positive": 6820,
+      "findings_fp": 44,
+      "positive": 691,
+      "false_positive": 25,
       "severity": {
-        "Moderate": 3513,
-        "Low": 2640,
-        "Important": 802,
-        "Critical": 2
+        "Moderate": 340,
+        "Low": 264,
+        "Important": 86,
+        "Critical": 1
       },
-      "size_kb": 58.3
+      "size_kb": 59.6
     },
     "operators/4.21/openshift-gitops-operator-gitops-1.13-v1.13.3-0.1741683398.p": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-gitops-1.13-v1.13.3-0.1741683398.p.parquet",
@@ -14120,15 +14168,17 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 6973,
-      "positive": 6841,
-      "false_positive": 44,
+      "findings_positive": 6841,
+      "findings_fp": 44,
+      "positive": 688,
+      "false_positive": 25,
       "severity": {
-        "Moderate": 3517,
-        "Low": 2678,
-        "Important": 776,
-        "Critical": 2
+        "Moderate": 339,
+        "Low": 264,
+        "Important": 84,
+        "Critical": 1
       },
-      "size_kb": 57.8
+      "size_kb": 59.4
     },
     "operators/4.21/openshift-gitops-operator-gitops-1.14-v1.14.4": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-gitops-1.14-v1.14.4.parquet",
@@ -14139,15 +14189,17 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 7749,
-      "positive": 7635,
-      "false_positive": 45,
+      "findings_positive": 7635,
+      "findings_fp": 45,
+      "positive": 629,
+      "false_positive": 18,
       "severity": {
-        "Moderate": 3785,
-        "Low": 3266,
-        "Important": 696,
-        "Critical": 2
+        "Moderate": 305,
+        "Low": 260,
+        "Important": 63,
+        "Critical": 1
       },
-      "size_kb": 55.9
+      "size_kb": 57.7
     },
     "operators/4.21/openshift-gitops-operator-gitops-1.15-v1.15.4": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-gitops-1.15-v1.15.4.parquet",
@@ -14158,16 +14210,18 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 6262,
-      "positive": 6184,
-      "false_positive": 54,
+      "findings_positive": 6186,
+      "findings_fp": 52,
+      "positive": 785,
+      "false_positive": 25,
       "severity": {
-        "Moderate": 2915,
-        "Low": 2573,
-        "Important": 547,
-        "Unknown": 223,
-        "Critical": 4
+        "Moderate": 330,
+        "Low": 311,
+        "Important": 98,
+        "Unknown": 43,
+        "Critical": 3
       },
-      "size_kb": 56.2
+      "size_kb": 57.6
     },
     "operators/4.21/openshift-gitops-operator-gitops-1.16-v1.16.5": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-gitops-1.16-v1.16.5.parquet",
@@ -14178,16 +14232,18 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 4770,
-      "positive": 4588,
-      "false_positive": 158,
+      "findings_positive": 4589,
+      "findings_fp": 157,
+      "positive": 734,
+      "false_positive": 84,
       "severity": {
-        "Moderate": 2131,
-        "Low": 1863,
-        "Important": 420,
-        "Unknown": 352,
-        "Critical": 4
+        "Low": 303,
+        "Moderate": 295,
+        "Important": 89,
+        "Unknown": 44,
+        "Critical": 3
       },
-      "size_kb": 50.9
+      "size_kb": 51.5
     },
     "operators/4.21/openshift-gitops-operator-gitops-1.17-v1.17.5": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-gitops-1.17-v1.17.5.parquet",
@@ -14198,16 +14254,18 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 4733,
-      "positive": 4562,
-      "false_positive": 147,
+      "findings_positive": 4562,
+      "findings_fp": 147,
+      "positive": 666,
+      "false_positive": 75,
       "severity": {
-        "Low": 2010,
-        "Moderate": 1996,
-        "Important": 370,
-        "Unknown": 356,
+        "Low": 289,
+        "Moderate": 269,
+        "Important": 65,
+        "Unknown": 42,
         "Critical": 1
       },
-      "size_kb": 48.4
+      "size_kb": 48.9
     },
     "operators/4.21/openshift-gitops-operator-gitops-1.18-v1.18.6": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-gitops-1.18-v1.18.6.parquet",
@@ -14218,16 +14276,18 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 4556,
-      "positive": 4411,
-      "false_positive": 121,
+      "findings_positive": 4412,
+      "findings_fp": 120,
+      "positive": 649,
+      "false_positive": 64,
       "severity": {
-        "Low": 2027,
-        "Moderate": 1913,
-        "Unknown": 374,
-        "Important": 241,
+        "Low": 289,
+        "Moderate": 261,
+        "Important": 56,
+        "Unknown": 42,
         "Critical": 1
       },
-      "size_kb": 44.2
+      "size_kb": 44.8
     },
     "operators/4.21/openshift-gitops-operator-gitops-1.19-v1.19.4": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-gitops-1.19-v1.19.4.parquet",
@@ -14238,16 +14298,18 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 4264,
-      "positive": 4140,
-      "false_positive": 124,
+      "findings_positive": 4141,
+      "findings_fp": 123,
+      "positive": 590,
+      "false_positive": 64,
       "severity": {
-        "Low": 1961,
-        "Moderate": 1679,
-        "Unknown": 407,
-        "Important": 216,
+        "Low": 274,
+        "Moderate": 222,
+        "Important": 51,
+        "Unknown": 42,
         "Critical": 1
       },
-      "size_kb": 41.7
+      "size_kb": 42.0
     },
     "operators/4.21/openshift-gitops-operator-gitops-1.20-v1.20.4": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-gitops-1.20-v1.20.4.parquet",
@@ -14258,16 +14320,18 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 2950,
-      "positive": 2858,
-      "false_positive": 92,
+      "findings_positive": 2860,
+      "findings_fp": 90,
+      "positive": 472,
+      "false_positive": 52,
       "severity": {
-        "Moderate": 1232,
-        "Low": 1148,
-        "Unknown": 404,
-        "Important": 165,
+        "Low": 197,
+        "Moderate": 186,
+        "Important": 46,
+        "Unknown": 42,
         "Critical": 1
       },
-      "size_kb": 34.8
+      "size_kb": 34.7
     },
     "operators/4.21/openshift-gitops-operator-gitops-1.6-v1.6.6": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-gitops-1.6-v1.6.6.parquet",
@@ -14278,16 +14342,18 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 6054,
-      "positive": 5825,
-      "false_positive": 164,
+      "findings_positive": 5825,
+      "findings_fp": 164,
+      "positive": 1156,
+      "false_positive": 43,
       "severity": {
-        "Moderate": 3345,
-        "Low": 1932,
-        "Important": 769,
-        "Critical": 7,
+        "Moderate": 653,
+        "Low": 344,
+        "Important": 155,
+        "Critical": 3,
         "Unknown": 1
       },
-      "size_kb": 69.1
+      "size_kb": 70.3
     },
     "operators/4.21/openshift-gitops-operator-gitops-1.7-v1.7.4-0.1690486082.p": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-gitops-1.7-v1.7.4-0.1690486082.p.parquet",
@@ -14298,16 +14364,18 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 7381,
-      "positive": 7109,
-      "false_positive": 207,
+      "findings_positive": 7109,
+      "findings_fp": 207,
+      "positive": 1141,
+      "false_positive": 44,
       "severity": {
-        "Moderate": 4011,
-        "Low": 2411,
-        "Important": 949,
-        "Critical": 9,
+        "Moderate": 642,
+        "Low": 343,
+        "Important": 152,
+        "Critical": 3,
         "Unknown": 1
       },
-      "size_kb": 76.9
+      "size_kb": 78.9
     },
     "operators/4.21/openshift-gitops-operator-gitops-1.8-v1.8.6": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-gitops-1.8-v1.8.6.parquet",
@@ -14318,16 +14386,18 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 6654,
-      "positive": 6537,
-      "false_positive": 117,
+      "findings_positive": 6537,
+      "findings_fp": 117,
+      "positive": 1126,
+      "false_positive": 32,
       "severity": {
-        "Moderate": 3497,
-        "Low": 2310,
-        "Important": 838,
-        "Critical": 8,
+        "Moderate": 633,
+        "Low": 341,
+        "Important": 149,
+        "Critical": 2,
         "Unknown": 1
       },
-      "size_kb": 70.1
+      "size_kb": 71.8
     },
     "operators/4.21/openshift-gitops-operator-gitops-1.9-v1.9.4": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-gitops-1.9-v1.9.4.parquet",
@@ -14338,15 +14408,17 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 6687,
-      "positive": 6427,
-      "false_positive": 195,
+      "findings_positive": 6427,
+      "findings_fp": 195,
+      "positive": 861,
+      "false_positive": 37,
       "severity": {
-        "Moderate": 3470,
-        "Low": 2292,
-        "Important": 915,
-        "Critical": 10
+        "Moderate": 452,
+        "Low": 281,
+        "Important": 126,
+        "Critical": 2
       },
-      "size_kb": 65.5
+      "size_kb": 66.8
     },
     "operators/4.21/openshift-gitops-operator-latest-v1.20.4": {
       "file": "data/parquet/operators/4.21/openshift-gitops-operator-latest-v1.20.4.parquet",
@@ -14357,16 +14429,18 @@
       "ocp_version": "4.21",
       "type": "operator",
       "rows": 2950,
-      "positive": 2858,
-      "false_positive": 92,
+      "findings_positive": 2860,
+      "findings_fp": 90,
+      "positive": 472,
+      "false_positive": 52,
       "severity": {
-        "Moderate": 1232,
-        "Low": 1148,
-        "Unknown": 404,
-        "Important": 165,
+        "Low": 197,
+        "Moderate": 186,
+        "Important": 46,
+        "Unknown": 42,
         "Critical": 1
       },
-      "size_kb": 34.8
+      "size_kb": 34.7
     },
     "operators/4.21/openshift-pipelines-operator-rh-latest-v1.22.2": {
       "file": "data/parquet/operators/4.21/openshift-pipelines-operator-rh-latest-v1.22.2.parquet",

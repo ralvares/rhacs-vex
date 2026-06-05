@@ -330,7 +330,7 @@ async function renderVersion(scope) {
     const posCount = posRows.length;
     const fpCount  = rows.filter(r => statusKey(r.AUDIT_RESULT) === 'False Positive').length;
     const naCount  = rows.filter(r => statusKey(r.AUDIT_RESULT) === 'Not Assessed').length;
-    const uniqueCves = new Set(posRows.map(r => r.CVE)).size;
+    const uniquePosCves = new Set(posRows.map(r => r.CVE)).size;
 
     // Severity counts (unique CVEs, positives only)
     const sevCounts = {};
@@ -349,8 +349,8 @@ async function renderVersion(scope) {
         <span class="sub">${rows.length} findings across ${new Set(rows.map(r=>r.OCP_COMPONENT || r.COMPONENT)).size} components</span>
       </div>
       <div class="cards">
-        <div class="card"><div class="card-label">Positive CVEs</div><div class="card-value red">${uniqueCves}</div></div>
-        <div class="card"><div class="card-label">False Positive</div><div class="card-value green">${fpCount}</div></div>
+        <div class="card"><div class="card-label">Positive CVEs</div><div class="card-value red">${uniquePosCves}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${posCount.toLocaleString()} findings</div></div>
+        <div class="card"><div class="card-label">False Positive CVEs</div><div class="card-value green">${new Set(rows.filter(r=>statusKey(r.AUDIT_RESULT)==='False Positive').map(r=>r.CVE)).size}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${fpCount.toLocaleString()} findings</div></div>
         ${sevCounts.Critical ? `<div class="card"><div class="card-label">Critical</div><div class="card-value red">${sevCounts.Critical}</div></div>` : ''}
         ${sevCounts.Important ? `<div class="card"><div class="card-label">Important</div><div class="card-value" style="color:var(--orange)">${sevCounts.Important}</div></div>` : ''}
         ${sevCounts.Moderate ? `<div class="card"><div class="card-label">Moderate</div><div class="card-value yellow">${sevCounts.Moderate}</div></div>` : ''}
