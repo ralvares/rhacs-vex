@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OCP Vulnerability Intelligence</title>
+  <title>Security Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&family=Red+Hat+Mono:wght@400;500;700&family=Red+Hat+Text:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,8 +22,8 @@
   <nav class="sidebar">
     <div class="sidebar-brand">
       <div>
-        <h1>OCP Vuln Intel</h1>
-        <p>VEX triage &amp; false positive detection</p>
+        <h1>Security Dashboard</h1>
+        <p>CVE tracking, VEX triage &amp; version comparison</p>
       </div>
     </div>
     <div class="status-bar">
@@ -70,6 +70,21 @@ const setStatus = (msg, state) => {
   $('status-text').textContent = msg;
   $('dot').className = 'dot' + (state ? ' ' + state : '');
 };
+
+function fixInfo(r) {
+  const fi = (r.FIXED_IN || '').trim();
+  if (fi && fi !== 'nan') {
+    const label = fi.match(/^\d/) ? `OCP ${fi}` : fi;
+    return { has: true, label, badge: `<span class="badge bg-green">${esc(label)}</span>` };
+  }
+  const j = (r.JUSTIFICATION || '');
+  if (/fix available/i.test(j) && !/no fix available/i.test(j)) {
+    const pkgMatch = j.match(/fix available\s*\(([^)]+)\)/i);
+    const label = pkgMatch ? pkgMatch[1] : 'Fix available';
+    return { has: true, label, badge: `<span class="badge bg-blue">${esc(label)}</span>` };
+  }
+  return { has: false, label: 'No fix', badge: `<span class="badge bg-gray">No fix</span>` };
+}
 
 // ── Init ──
 async function init() {
@@ -252,59 +267,100 @@ function renderOverview() {
   let opFindings = 0, opPos = 0, opFP = 0;
   for (const v of uniqueOps) { opFindings += v.rows || 0; opPos += v.positive || 0; opFP += v.false_positive || 0; }
 
+  // Sort versions properly
+  const sortedOcp = ocpScopes.sort((a, b) => {
+    const pa = a[0].replace('ocp/','').split('.').map(Number);
+    const pb = b[0].replace('ocp/','').split('.').map(Number);
+    for (let i = 0; i < 3; i++) { if ((pa[i]||0) !== (pb[i]||0)) return (pa[i]||0) - (pb[i]||0); }
+    return 0;
+  });
+
   $('content').innerHTML = `
     <div class="section-header">
-      <h2>OCP Platform</h2>
-      <span class="sub">${ocpScopes.length} releases — ${ocpPos.toLocaleString()} positive, ${ocpFP.toLocaleString()} false positive</span>
+      <h2>OpenShift Container Platform</h2>
+      <span class="sub">${ocpScopes.length} versions scanned</span>
     </div>
-    <div class="version-grid">
-      ${ocpScopes.sort((a,b) => b[0].localeCompare(a[0])).map(([key, v]) => {
-        const ver = key.replace('ocp/', '');
-        const sev = v.severity || {};
-        return `
-          <div class="version-card" data-scope="${key}">
-            <h3>OCP ${esc(ver)}</h3>
-            <div class="stats">
-              <div class="stat"><span class="stat-val" style="color:var(--red)">${v.positive}</span><span class="stat-label">Positive</span></div>
-              <div class="stat"><span class="stat-val" style="color:var(--green)">${v.false_positive}</span><span class="stat-label">False Pos</span></div>
-              <div class="stat"><span class="stat-val">${v.components || 0}</span><span class="stat-label">Images</span></div>
-            </div>
-            <div style="margin-top:.5rem;display:flex;gap:.3rem;flex-wrap:wrap">
-              ${sev.Critical ? `<span class="badge bg-red">${sev.Critical} Crit</span>` : ''}
-              ${sev.Important ? `<span class="badge bg-orange">${sev.Important} Imp</span>` : ''}
-              ${sev.Moderate ? `<span class="badge bg-yellow">${sev.Moderate} Mod</span>` : ''}
-            </div>
-          </div>`;
-      }).join('')}
+    <div style="margin-bottom:.5rem">
+      <input type="text" id="overview-search" placeholder="Search versions, operators…"
+        style="width:300px;background:var(--surface);border:1px solid var(--border);border-radius:6px;
+        color:var(--text);font-size:.82rem;padding:.45rem .7rem">
+    </div>
+    <div class="table-wrap" id="ocp-table-wrap">
+      <table>
+        <thead><tr>
+          <th>Version</th>
+          <th>Positive CVEs</th>
+          <th>False Positive</th>
+          <th>Critical</th>
+          <th>Important</th>
+          <th>Moderate</th>
+          <th>Low</th>
+          <th>Components</th>
+          <th>Findings</th>
+        </tr></thead>
+        <tbody>
+          ${sortedOcp.map(([key, v]) => {
+            const ver = key.replace('ocp/', '');
+            const sev = v.severity || {};
+            return `<tr style="cursor:pointer" onclick="window.location.hash='${key}'">
+              <td><a href="#${key}" style="color:var(--accent);text-decoration:none;font-weight:600">${esc(ver)}</a></td>
+              <td style="color:var(--red);font-weight:600">${v.positive}</td>
+              <td style="color:var(--green)">${v.false_positive}</td>
+              <td style="color:${sev.Critical ? 'var(--red)' : 'var(--muted)'}">${sev.Critical || 0}</td>
+              <td style="color:${sev.Important ? 'var(--orange)' : 'var(--muted)'}">${sev.Important || 0}</td>
+              <td style="color:${sev.Moderate ? 'var(--yellow)' : 'var(--muted)'}">${sev.Moderate || 0}</td>
+              <td>${sev.Low || 0}</td>
+              <td>${v.components || 0}</td>
+              <td style="color:var(--muted)">${(v.rows || 0).toLocaleString()}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
     </div>
     ${uniqueOps.length ? `
-    <div class="section-header" style="margin-top:1.5rem">
+    <div class="section-header" style="margin-top:2rem">
       <h2>Operators</h2>
-      <span class="sub">${opNames.size} operators, ${uniqueOps.length} bundles — ${opPos.toLocaleString()} positive, ${opFP.toLocaleString()} false positive</span>
+      <span class="sub">${opNames.size} operators, ${uniqueOps.length} bundles</span>
     </div>
-    <div class="version-grid">
-      ${uniqueOps.sort((a,b) => (a.operator||'').localeCompare(b.operator||'') || (a.channel||'').localeCompare(b.channel||'')).map(v => {
-        const sev = v.severity || {};
-        const label = [v.operator, v.channel, v.bundle].filter(Boolean).join(' ');
-        return `
-          <div class="version-card" data-scope="${v.key}">
-            <h3>${esc(v.operator || v.label || '')}</h3>
-            <div style="font-size:.7rem;color:var(--muted);margin-bottom:.4rem">${esc([v.channel, v.bundle].filter(Boolean).join(' '))}</div>
-            <div class="stats">
-              <div class="stat"><span class="stat-val" style="color:var(--red)">${v.positive}</span><span class="stat-label">Positive</span></div>
-              <div class="stat"><span class="stat-val" style="color:var(--green)">${v.false_positive}</span><span class="stat-label">False Pos</span></div>
-            </div>
-            <div style="margin-top:.4rem;display:flex;gap:.3rem;flex-wrap:wrap">
-              ${sev.Critical ? `<span class="badge bg-red">${sev.Critical} Crit</span>` : ''}
-              ${sev.Important ? `<span class="badge bg-orange">${sev.Important} Imp</span>` : ''}
-            </div>
-          </div>`;
-      }).join('')}
+    <div class="table-wrap" id="ops-table-wrap">
+      <table>
+        <thead><tr>
+          <th>Operator</th>
+          <th>Channel</th>
+          <th>Bundle</th>
+          <th>Positive CVEs</th>
+          <th>False Positive</th>
+          <th>Findings</th>
+        </tr></thead>
+        <tbody>
+          ${uniqueOps.sort((a,b) => (a.operator||'').localeCompare(b.operator||'') || (a.channel||'').localeCompare(b.channel||'')).map(v => {
+            return `<tr style="cursor:pointer" onclick="window.location.hash='${v.key}'">
+              <td><a href="#${v.key}" style="color:var(--accent);text-decoration:none;font-weight:600">${esc(v.operator || v.label || '')}</a></td>
+              <td style="color:var(--muted)">${esc(v.channel || '')}</td>
+              <td style="color:var(--muted)">${esc(v.bundle || '')}</td>
+              <td style="color:var(--red);font-weight:600">${v.positive}</td>
+              <td style="color:var(--green)">${v.false_positive}</td>
+              <td style="color:var(--muted)">${(v.rows || 0).toLocaleString()}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
     </div>` : ''}`;
 
-  $('content').querySelectorAll('.version-card').forEach(card => {
-    card.addEventListener('click', () => navigate(card.dataset.scope));
-  });
+  const overviewSearch = $('overview-search');
+  if (overviewSearch) {
+    overviewSearch.addEventListener('input', () => {
+      const q = overviewSearch.value.toLowerCase();
+      const ocpWrap = $('ocp-table-wrap');
+      const opsWrap = $('ops-table-wrap');
+      if (ocpWrap) ocpWrap.querySelectorAll('tbody tr').forEach(tr => {
+        tr.style.display = tr.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+      if (opsWrap) opsWrap.querySelectorAll('tbody tr').forEach(tr => {
+        tr.style.display = tr.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+  }
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -332,15 +388,16 @@ async function renderVersion(scope) {
     const naCount  = rows.filter(r => statusKey(r.AUDIT_RESULT) === 'Not Assessed').length;
     const uniquePosCves = new Set(posRows.map(r => r.CVE)).size;
 
-    // Severity counts (unique CVEs, positives only)
-    const sevCounts = {};
-    const seenCve = new Set();
+    // Severity counts — all unique CVEs, with positive breakdown
+    const sevAll = {}, sevPos = {};
+    const seenAll = new Set(), seenPos = new Set();
+    rows.forEach(r => {
+      const s = r.SEVERITY || 'Unknown';
+      if (!seenAll.has(r.CVE)) { seenAll.add(r.CVE); sevAll[s] = (sevAll[s] || 0) + 1; }
+    });
     posRows.forEach(r => {
-      if (!seenCve.has(r.CVE)) {
-        seenCve.add(r.CVE);
-        const s = r.SEVERITY || 'Unknown';
-        sevCounts[s] = (sevCounts[s] || 0) + 1;
-      }
+      const s = r.SEVERITY || 'Unknown';
+      if (!seenPos.has(r.CVE)) { seenPos.add(r.CVE); sevPos[s] = (sevPos[s] || 0) + 1; }
     });
 
     $('content').innerHTML = `
@@ -349,13 +406,13 @@ async function renderVersion(scope) {
         <span class="sub">${rows.length} findings across ${new Set(rows.map(r=>r.OCP_COMPONENT || r.COMPONENT)).size} components</span>
       </div>
       <div class="cards">
+        <div class="card"><div class="card-label">Unique CVEs</div><div class="card-value blue">${seenAll.size}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${rows.length.toLocaleString()} total findings</div></div>
         <div class="card"><div class="card-label">Positive CVEs</div><div class="card-value red">${uniquePosCves}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${posCount.toLocaleString()} findings</div></div>
         <div class="card"><div class="card-label">False Positive CVEs</div><div class="card-value green">${new Set(rows.filter(r=>statusKey(r.AUDIT_RESULT)==='False Positive').map(r=>r.CVE)).size}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${fpCount.toLocaleString()} findings</div></div>
-        ${sevCounts.Critical ? `<div class="card"><div class="card-label">Critical</div><div class="card-value red">${sevCounts.Critical}</div></div>` : ''}
-        ${sevCounts.Important ? `<div class="card"><div class="card-label">Important</div><div class="card-value" style="color:var(--orange)">${sevCounts.Important}</div></div>` : ''}
-        ${sevCounts.Moderate ? `<div class="card"><div class="card-label">Moderate</div><div class="card-value yellow">${sevCounts.Moderate}</div></div>` : ''}
-        ${sevCounts.Low ? `<div class="card"><div class="card-label">Low</div><div class="card-value" style="color:var(--muted)">${sevCounts.Low}</div></div>` : ''}
-        <div class="card"><div class="card-label">Total Findings</div><div class="card-value blue">${rows.length}</div></div>
+        ${sevPos.Critical ? `<div class="card"><div class="card-label">Critical</div><div class="card-value red">${sevPos.Critical}</div></div>` : ''}
+        ${sevPos.Important ? `<div class="card"><div class="card-label">Important</div><div class="card-value" style="color:var(--orange)">${sevPos.Important}</div></div>` : ''}
+        ${sevPos.Moderate ? `<div class="card"><div class="card-label">Moderate</div><div class="card-value yellow">${sevPos.Moderate}</div></div>` : ''}
+        ${sevPos.Low ? `<div class="card"><div class="card-label">Low</div><div class="card-value" style="color:var(--muted)">${sevPos.Low}</div></div>` : ''}
       </div>
       <div class="filter-bar" id="filter-bar" style="display:flex;align-items:center;flex-wrap:wrap;gap:.35rem">
         <label>FILTER BY:</label>
@@ -420,8 +477,7 @@ async function renderVersion(scope) {
         if (filterState.state?.size     && !filterState.state.has(statusKey(r.AUDIT_RESULT))) return false;
         if (filterState.image?.size     && !filterState.image.has((r.IMAGE || '').replace(/@sha256:[0-9a-f]+$/, ''))) return false;
         if (filterState.fixable?.size) {
-          const fi = (r.FIXED_IN || '').trim();
-          const fixLabel = (fi && fi !== 'nan') ? 'Fix' : 'No fix';
+          const fixLabel = fixInfo(r).has ? 'Fix' : 'No fix';
           if (!filterState.fixable.has(fixLabel)) return false;
         }
         if (mismatchOnly && String(r.SEVERITY_MISMATCH).toLowerCase() !== 'true') return false;
@@ -438,14 +494,8 @@ async function renderVersion(scope) {
 
       const trs = filteredRows.map((r, i) => {
         const isMis = String(r.SEVERITY_MISMATCH).toLowerCase() === 'true';
-        const fixedIn = (r.FIXED_IN || '').trim();
-        const hasFixedIn = fixedIn && fixedIn !== 'nan';
-        const fixLabel = hasFixedIn
-          ? (fixedIn.match(/^\d/) ? `OCP ${fixedIn}` : fixedIn)
-          : '';
-        const fixBadge = hasFixedIn
-          ? `<span class="badge bg-green">${esc(fixLabel)}</span>`
-          : `<span class="badge bg-gray">No fix</span>`;
+        const fix = fixInfo(r);
+        const fixBadge = fix.badge;
         return `
           <tr class="main-row" data-idx="${i}">
             <td class="expand-cell"><button class="expand-btn">▸</button></td>
@@ -499,7 +549,7 @@ async function renderVersion(scope) {
 // ── COMPARE VIEW ──
 // ══════════════════════════════════════════════════════════════
 async function renderCompare() {
-  const ocpKeys = Object.keys(manifest.scopes || {}).filter(k => k.startsWith('ocp/')).sort().reverse();
+  const ocpKeys = Object.keys(manifest.scopes || {}).filter(k => k.startsWith('ocp/')).sort();
   const options = ocpKeys.map(k => `<option value="${k}">${k.replace('ocp/', 'OCP ')}</option>`).join('');
 
   $('content').innerHTML = `
@@ -512,7 +562,10 @@ async function renderCompare() {
     </div>
     <div id="cmp-results"></div>`;
 
-  if (ocpKeys.length >= 2) $('cmp-b').selectedIndex = 1;
+  if (ocpKeys.length >= 2) {
+    $('cmp-a').selectedIndex = ocpKeys.length - 2;
+    $('cmp-b').selectedIndex = ocpKeys.length - 1;
+  }
 
   $('cmp-go').addEventListener('click', async () => {
     const a = $('cmp-a').value, b = $('cmp-b').value;
@@ -861,8 +914,7 @@ async function renderCVESearch(initialCve) {
           if (cveFilterState.severity?.size  && !cveFilterState.severity.has(r.SEVERITY)) return false;
           if (cveFilterState.state?.size     && !cveFilterState.state.has(statusKey(r.AUDIT_RESULT))) return false;
           if (cveFilterState.fixable?.size) {
-            const fi = (r.FIXED_IN || '').trim();
-            const fixLabel = (fi && fi !== 'nan') ? 'Fix' : 'No fix';
+            const fixLabel = fixInfo(r).has ? 'Fix' : 'No fix';
             if (!cveFilterState.fixable.has(fixLabel)) return false;
           }
           return true;
@@ -893,13 +945,7 @@ async function renderCVESearch(initialCve) {
             <td><code>${esc(r.VERSION || '')}</code></td>
             <td>${severityCompare(r.SEVERITY, r.RHACS_SEVERITY, isMis)}</td>
             <td style="white-space:nowrap">${statusBadge(r.AUDIT_RESULT)}</td>
-            <td style="white-space:nowrap">${(() => {
-              const fi = (r.FIXED_IN || '').trim();
-              const fiLabel = fi.match(/^\d/) ? `OCP ${fi}` : fi;
-              return (fi && fi !== 'nan')
-                ? `<span class="badge bg-green">${esc(fiLabel)}</span>`
-                : `<span class="badge bg-gray">No fix</span>`;
-            })()}</td>
+            <td style="white-space:nowrap">${fixInfo(r).badge}</td>
           </tr>
           <tr class="detail-row" id="detail-cve${i}" hidden>
             <td></td><td colspan="7">${renderExpandRow(r)}</td>
