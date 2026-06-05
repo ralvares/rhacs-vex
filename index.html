@@ -78,31 +78,65 @@ function cleanComponent(name) {
   return s.toLowerCase().replace(/_/g, '-');
 }
 
+function compareVersions(a, b) {
+  const pa = (a.match(/[\d]+/g) || []).map(Number);
+  const pb = (b.match(/[\d]+/g) || []).map(Number);
+  for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+    const diff = (pa[i] || 0) - (pb[i] || 0);
+    if (diff !== 0) return diff;
+  }
+  return 0;
+}
+
 function fixInfo(r, currentScope) {
   const fi = (r.FIXED_IN || '').trim();
-  if (fi && fi !== 'nan') {
-    if (fi.match(/^\d/)) {
-      return { has: true, label: `OCP ${fi}`, badge: `<span class="badge bg-green">OCP ${esc(fi)}</span>` };
+  const fv = (r.FIXED_VERSION || '').trim();
+  const hasFV = fv && fv !== 'nan' && String(r.FIXABLE) === 'True';
+  const hasFI = fi && fi !== 'nan';
+  const opScope = currentScope || r.SCOPE || '';
+  const isOp = opScope.startsWith('operators/');
+
+  if (isOp) {
+    if (hasFI) {
+      const scopeEntry = manifest?.scopes?.[opScope] || {};
+      const curOp = (scopeEntry.operator || '').toLowerCase();
+      const fiOp = fi.split(/\s/)[0].toLowerCase();
+      if (!curOp || fiOp !== curOp) return _noFix();
+
+      const curChannel = scopeEntry.channel || '';
+      const fiAfterSlash = fi.includes('/') ? fi.split('/').pop() : '';
+
+      const curNums = curChannel.match(/[\d]+(?:\.[\d]+)*/);
+      const fiNums = fiAfterSlash.match(/[\d]+(?:\.[\d]+)*/);
+      if (curNums && fiNums && compareVersions(fiNums[0], curNums[0]) <= 0) return _noFix();
+
+      const label = fiAfterSlash || fi;
+      return { has: true, label, badge: `<span class="badge bg-green">${esc(label)}</span>` };
     }
-    if (currentScope && currentScope.startsWith('operators/')) {
-      const scopeEntry = manifest?.scopes?.[currentScope] || {};
-      const curChannel = (scopeEntry.channel || '').toLowerCase();
-      const fiChannel = fi.replace(/.*\//, '').toLowerCase().replace(/-v[\d._-]+$/, '');
-      if (curChannel && fiChannel && curChannel.replace(/-v[\d._-]+$/, '') === fiChannel) {
-        return { has: true, label: fi, badge: `<span class="badge bg-green">${esc(fi)}</span>` };
-      }
-      // cross-channel/cross-bundle — not a real fix path, suppress
-    } else {
-      return { has: true, label: fi, badge: `<span class="badge bg-green">${esc(fi)}</span>` };
-    }
+    return _noFix();
   }
+
+  // OCP
+  if (hasFV) {
+    return { has: true, label: fv, badge: `<span class="badge bg-green">${esc(fv)}</span>` };
+  }
+  if (hasFI) {
+    const label = fi.match(/^\d/) ? `OCP ${fi}` : fi;
+    return { has: true, label, badge: `<span class="badge bg-green">${esc(label)}</span>` };
+  }
+
   const j = (r.JUSTIFICATION || '');
   if (/fix available/i.test(j) && !/no fix available/i.test(j)) {
     const pkgMatch = j.match(/fix available\s*\(([^)]+)\)/i);
     const label = pkgMatch ? pkgMatch[1] : 'Fix available';
     return { has: true, label, badge: `<span class="badge bg-blue">${esc(label)}</span>` };
   }
-  return { has: false, label: 'No fix', badge: `<span class="badge bg-gray">No fix</span>` };
+
+  return _noFix();
+}
+
+function _noFix() {
+  return { has: false, label: '', badge: `<span class="badge bg-gray">No fix</span>` };
 }
 
 // ── Init ──
@@ -536,7 +570,7 @@ async function renderVersion(scope) {
             <td style="white-space:nowrap">${fixBadge}</td>
           </tr>
           <tr class="detail-row" id="detail-${i}" hidden>
-            <td></td><td colspan="7">${renderExpandRow(r)}</td>
+            <td></td><td colspan="7">${renderExpandRow(r, i, fix.has ? fix.label : '')}</td>
           </tr>`;
       }).join('');
 
@@ -973,10 +1007,10 @@ async function renderCVESearch(initialCve) {
             <td><code>${esc(r.VERSION || '')}</code></td>
             <td>${severityCompare(r.SEVERITY, r.RHACS_SEVERITY, isMis)}</td>
             <td style="white-space:nowrap">${statusBadge(r.AUDIT_RESULT)}</td>
-            <td style="white-space:nowrap">${fixInfo(r, r.SCOPE).badge}</td>
+            <td style="white-space:nowrap">${(() => { const f = fixInfo(r, r.SCOPE); r._fixLabel = f.has ? f.label : ''; return f.badge; })()}</td>
           </tr>
           <tr class="detail-row" id="detail-cve${i}" hidden>
-            <td></td><td colspan="7">${renderExpandRow(r)}</td>
+            <td></td><td colspan="7">${renderExpandRow(r, i, r._fixLabel)}</td>
           </tr>`;
         }).join('');
 

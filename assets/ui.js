@@ -126,14 +126,12 @@ export function createDropdown(id, label, options, onChanged) {
   return wrap;
 }
 
-export function renderExpandRow(r, i) {
+export function renderExpandRow(r, i, resolvedLabel) {
   const imgBase = (r.image || r.IMAGE || '').replace(/@sha256:[0-9a-f]+$/, '');
   const sha     = ((r.image || r.IMAGE || '').match(/(@sha256:[0-9a-f]+)$/) || [])[1] || '';
   const source   = r.source || r.SOURCE || '';
   const location = r.location || r.LOCATION || '';
   const justification = r.justification || r.JUSTIFICATION || '';
-  const fixedIn  = r.FIXED_IN || r.fixed_in || '';
-  const fixedInClean = fixedIn && fixedIn !== 'nan' && fixedIn.trim() ? fixedIn.trim() : '';
 
   return `
     <div class="detail-item">
@@ -149,9 +147,9 @@ export function renderExpandRow(r, i) {
       ${location ? `<div><span class="detail-label">Location</span>
         <div class="detail-value"><code style="font-size:.7rem;color:var(--muted)">${esc(location)}</code></div></div>` : ''}
     </div>` : ''}
-    ${fixedInClean ? `<div class="detail-item">
+    ${resolvedLabel ? `<div class="detail-item">
       <span class="detail-label">Resolved In</span>
-      <div class="detail-value"><span style="font-size:.78rem;color:var(--accent);font-weight:600">${fixedInClean.match(/^\d/) ? 'OCP ' : ''}${esc(fixedInClean)}</span></div>
+      <div class="detail-value"><span style="font-size:.78rem;color:var(--accent);font-weight:600">${esc(resolvedLabel)}</span></div>
     </div>` : ''}
     <div class="detail-item">
       <span class="detail-label">Justification</span>
