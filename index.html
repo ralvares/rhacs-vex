@@ -122,16 +122,22 @@ function buildVersionTree() {
       </div>
     </div>`;
   }
-  // Operator tree — group by operator name from manifest, then channel/bundle
+  // Operator tree — group by operator name, deduplicate identical bundles across OCP versions
   const opsByName = {};
   for (const [key, val] of Object.entries(scopes)) {
     if (!key.startsWith('operators/')) continue;
     const opName = val.operator || val.label || key;
     const ch = val.channel || '';
     const bun = val.bundle || '';
+    const dedupKey = `${opName}|${ch}|${bun}`;
     const shortLabel = [ch, bun].filter(Boolean).join(' ') || val.label || key.split('/').pop();
-    if (!opsByName[opName]) opsByName[opName] = [];
-    opsByName[opName].push({ shortLabel, key, ...val });
+    if (!opsByName[opName]) opsByName[opName] = {};
+    // Keep first occurrence per unique channel+bundle (dedup across OCP versions)
+    if (!opsByName[opName][dedupKey]) {
+      opsByName[opName][dedupKey] = { shortLabel, key, ocpVersions: [val.ocp_version], ...val };
+    } else {
+      opsByName[opName][dedupKey].ocpVersions.push(val.ocp_version);
+    }
   }
 
   if (Object.keys(opsByName).length) {
@@ -141,8 +147,8 @@ function buildVersionTree() {
           style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:5px;
           color:var(--text);font-size:.72rem;padding:.25rem .5rem">
       </div>`;
-    for (const [opName, versions] of Object.entries(opsByName).sort((a, b) => a[0].localeCompare(b[0]))) {
-      versions.sort((a, b) => a.shortLabel.localeCompare(b.shortLabel));
+    for (const [opName, bundles] of Object.entries(opsByName).sort((a, b) => a[0].localeCompare(b[0]))) {
+      const versions = Object.values(bundles).sort((a, b) => a.shortLabel.localeCompare(b.shortLabel));
       html += `<div class="nav-group op-group" data-opname="${esc(opName.toLowerCase())}">
         <div class="nav-group-header" onclick="this.classList.toggle('open')">
           <span class="caret">▸</span><span>${esc(opName)}</span>
