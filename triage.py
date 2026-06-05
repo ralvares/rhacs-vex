@@ -1513,6 +1513,28 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                                f"VEX confirms not affected in other Red Hat products "
                                f"({', '.join(not_affected[:3])}); no affected/fixed entry exists anywhere.",
                                _severity])
+
+        # Check if affected entries are only for older/different RHEL versions
+        # while the workload's RHEL version is explicitly not affected.
+        # e.g. CVE affects RHEL 7 docker, but RHEL 8/9 are not affected →
+        # an operator on RHEL 8 should not be flagged.
+        if affected and not_affected and ctx.rhel_ver:
+            rhel_tag = f"RHEL {ctx.rhel_ver}"
+            rhel_tag_long = f"Red Hat Enterprise Linux {ctx.rhel_ver}"
+            workload_rhel_clear = any(
+                rhel_tag in na or rhel_tag_long in na
+                for na in not_affected
+            )
+            workload_rhel_affected = any(
+                rhel_tag in af or rhel_tag_long in af
+                for af in affected
+            )
+            if workload_rhel_clear and not workload_rhel_affected:
+                return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                    f"Non-RPM — RHEL {ctx.rhel_ver} explicitly not affected per VEX. "
+                    f"CVE only affects older products ({', '.join(affected[:2])}).",
+                    _severity])
+
         parts = []
         if affected:     parts.append(f"Affected in: {', '.join(affected[:3])}")
         if fixed:        parts.append(f"Fixed in: {', '.join(fixed[:3])}")
