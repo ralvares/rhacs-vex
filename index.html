@@ -71,6 +71,13 @@ const setStatus = (msg, state) => {
   $('dot').className = 'dot' + (state ? ' ' + state : '');
 };
 
+function cleanComponent(name) {
+  if (!name) return '';
+  if (!/^[A-Z_]+$/.test(name)) return name;
+  let s = name.replace(/^IMAGE_/, '').replace(/_IMAGE$/, '');
+  return s.toLowerCase().replace(/_/g, '-');
+}
+
 function fixInfo(r) {
   const fi = (r.FIXED_IN || '').trim();
   if (fi && fi !== 'nan') {
@@ -499,7 +506,7 @@ async function renderVersion(scope) {
         return `
           <tr class="main-row" data-idx="${i}">
             <td class="expand-cell"><button class="expand-btn">▸</button></td>
-            <td class="op"><strong>${esc(r.OCP_COMPONENT || '')}</strong></td>
+            <td class="op"><strong>${esc(cleanComponent(r.OCP_COMPONENT))}</strong></td>
             <td><code>${esc(r.COMPONENT || '')}</code></td>
             <td><code>${esc(r.VERSION || '')}</code></td>
             <td><code>${esc(r.CVE || '')}</code></td>
@@ -938,8 +945,8 @@ async function renderCVESearch(initialCve) {
               : `<a href="#ocp/${r.OCP_VERSION}" style="color:var(--accent);text-decoration:none">${esc(r.OCP_VERSION)}</a>`
             }</td>
             <td class="op">${r.SCOPE && r.SCOPE.startsWith('operators/')
-              ? `<a href="#${r.SCOPE}" style="color:var(--accent);text-decoration:none;font-weight:600">${esc(r.OCP_COMPONENT || '')}</a><br><span style="font-size:.65rem;color:var(--muted)">${esc(r.SCOPE.replace('operators/','').replace(/\//,' / '))}</span>`
-              : `<strong>${esc(r.OCP_COMPONENT || '')}</strong><br><span style="font-size:.65rem;color:var(--muted)">OCP ${esc(r.OCP_VERSION || '')}</span>`
+              ? `<a href="#${r.SCOPE}" style="color:var(--accent);text-decoration:none;font-weight:600">${esc(cleanComponent(r.OCP_COMPONENT))}</a><br><span style="font-size:.65rem;color:var(--muted)">${esc(r.SCOPE.replace('operators/','').replace(/\//,' / '))}</span>`
+              : `<strong>${esc(cleanComponent(r.OCP_COMPONENT))}</strong><br><span style="font-size:.65rem;color:var(--muted)">OCP ${esc(r.OCP_VERSION || '')}</span>`
             }</td>
             <td><code>${esc(r.COMPONENT || '')}</code></td>
             <td><code>${esc(r.VERSION || '')}</code></td>
