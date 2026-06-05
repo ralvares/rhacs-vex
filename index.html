@@ -236,26 +236,27 @@ window.addEventListener('hashchange', () => navigate(window.location.hash.slice(
 function renderOverview() {
   const scopes = manifest.scopes || {};
   const ocpScopes = Object.entries(scopes).filter(([k]) => k.startsWith('ocp/'));
+  const opScopes  = Object.entries(scopes).filter(([k]) => k.startsWith('operators/'));
 
-  let totalFindings = 0, totalPos = 0, totalFP = 0;
-  for (const [, v] of ocpScopes) {
-    totalFindings += v.rows || 0;
-    totalPos += v.positive || 0;
-    totalFP += v.false_positive || 0;
+  // Deduplicate operators (same bundle across OCP versions)
+  const opDedup = {};
+  for (const [key, v] of opScopes) {
+    const dedupKey = `${v.operator || ''}|${v.channel || ''}|${v.bundle || ''}`;
+    if (!opDedup[dedupKey]) opDedup[dedupKey] = { key, ...v };
   }
+  const uniqueOps = Object.values(opDedup);
+  const opNames = new Set(uniqueOps.map(v => v.operator || ''));
+
+  let ocpFindings = 0, ocpPos = 0, ocpFP = 0;
+  for (const [, v] of ocpScopes) { ocpFindings += v.rows || 0; ocpPos += v.positive || 0; ocpFP += v.false_positive || 0; }
+  let opFindings = 0, opPos = 0, opFP = 0;
+  for (const v of uniqueOps) { opFindings += v.rows || 0; opPos += v.positive || 0; opFP += v.false_positive || 0; }
 
   $('content').innerHTML = `
     <div class="section-header">
-      <h2>Overview</h2>
-      <span class="sub">${ocpScopes.length} OCP releases scanned</span>
+      <h2>OCP Platform</h2>
+      <span class="sub">${ocpScopes.length} releases — ${ocpPos.toLocaleString()} positive, ${ocpFP.toLocaleString()} false positive</span>
     </div>
-    <div class="cards">
-      <div class="card"><div class="card-label">Total Findings</div><div class="card-value blue">${totalFindings.toLocaleString()}</div></div>
-      <div class="card"><div class="card-label">Positive</div><div class="card-value red">${totalPos.toLocaleString()}</div></div>
-      <div class="card"><div class="card-label">False Positive</div><div class="card-value green">${totalFP.toLocaleString()}</div></div>
-      <div class="card"><div class="card-label">OCP Versions</div><div class="card-value">${ocpScopes.length}</div></div>
-    </div>
-    <div class="section-header"><h2>OCP Releases</h2></div>
     <div class="version-grid">
       ${ocpScopes.sort((a,b) => b[0].localeCompare(a[0])).map(([key, v]) => {
         const ver = key.replace('ocp/', '');
@@ -275,7 +276,31 @@ function renderOverview() {
             </div>
           </div>`;
       }).join('')}
-    </div>`;
+    </div>
+    ${uniqueOps.length ? `
+    <div class="section-header" style="margin-top:1.5rem">
+      <h2>Operators</h2>
+      <span class="sub">${opNames.size} operators, ${uniqueOps.length} bundles — ${opPos.toLocaleString()} positive, ${opFP.toLocaleString()} false positive</span>
+    </div>
+    <div class="version-grid">
+      ${uniqueOps.sort((a,b) => (a.operator||'').localeCompare(b.operator||'') || (a.channel||'').localeCompare(b.channel||'')).map(v => {
+        const sev = v.severity || {};
+        const label = [v.operator, v.channel, v.bundle].filter(Boolean).join(' ');
+        return `
+          <div class="version-card" data-scope="${v.key}">
+            <h3>${esc(v.operator || v.label || '')}</h3>
+            <div style="font-size:.7rem;color:var(--muted);margin-bottom:.4rem">${esc([v.channel, v.bundle].filter(Boolean).join(' '))}</div>
+            <div class="stats">
+              <div class="stat"><span class="stat-val" style="color:var(--red)">${v.positive}</span><span class="stat-label">Positive</span></div>
+              <div class="stat"><span class="stat-val" style="color:var(--green)">${v.false_positive}</span><span class="stat-label">False Pos</span></div>
+            </div>
+            <div style="margin-top:.4rem;display:flex;gap:.3rem;flex-wrap:wrap">
+              ${sev.Critical ? `<span class="badge bg-red">${sev.Critical} Crit</span>` : ''}
+              ${sev.Important ? `<span class="badge bg-orange">${sev.Important} Imp</span>` : ''}
+            </div>
+          </div>`;
+      }).join('')}
+    </div>` : ''}`;
 
   $('content').querySelectorAll('.version-card').forEach(card => {
     card.addEventListener('click', () => navigate(card.dataset.scope));
