@@ -486,31 +486,69 @@ def main():
     if args.manifest_only:
         print("=== Manifest-only mode ===")
         scopes = {}
+
+        def _parquet_stats(pf, df):
+            pos_mask = df["AUDIT_RESULT"].str.contains("POSITIVE", na=False) & \
+                       ~df["AUDIT_RESULT"].str.contains("FALSE", na=False)
+            fp_mask  = df["AUDIT_RESULT"].str.contains("FALSE", na=False)
+            pos_df   = df[pos_mask]
+            pos_cves = int(pos_df["CVE"].nunique()) if len(pos_df) else 0
+            fp_cves  = int(df[fp_mask]["CVE"].nunique()) if fp_mask.any() else 0
+            sev = pos_df.drop_duplicates("CVE")["SEVERITY"].value_counts().to_dict() if len(pos_df) and "SEVERITY" in pos_df.columns else {}
+            components = int(df["OCP_COMPONENT"].nunique()) if "OCP_COMPONENT" in df.columns else 0
+            return {
+                "rows": len(df),
+                "findings_positive": int(pos_mask.sum()),
+                "findings_fp": int(fp_mask.sum()),
+                "positive": pos_cves,
+                "false_positive": fp_cves,
+                "components": components,
+                "severity": {k: int(v) for k, v in sev.items()},
+                "size_kb": round(os.path.getsize(pf) / 1024, 1),
+            }
+
         for pf in sorted(glob.glob(os.path.join(OCP_DIR, "*.parquet"))):
             ver = os.path.splitext(os.path.basename(pf))[0]
             try:
                 df = pd.read_parquet(pf)
-                pos_mask = df["AUDIT_RESULT"].str.contains("POSITIVE", na=False) & \
-                           ~df["AUDIT_RESULT"].str.contains("FALSE", na=False)
-                fp_mask  = df["AUDIT_RESULT"].str.contains("FALSE", na=False)
-                pos_df   = df[pos_mask]
-                positive = int(pos_df["CVE"].nunique()) if len(pos_df) else 0
-                false_positive = int(df[fp_mask]["CVE"].nunique()) if fp_mask.any() else 0
-                sev = pos_df.drop_duplicates("CVE")["SEVERITY"].value_counts().to_dict() if len(pos_df) and "SEVERITY" in pos_df.columns else {}
-                components = int(df["OCP_COMPONENT"].nunique()) if "OCP_COMPONENT" in df.columns else 0
-                scopes[f"ocp/{ver}"] = {
-                    "file": f"data/parquet/ocp/{ver}.parquet",
-                    "rows": len(df),
-                    "positive": int(positive),
-                    "false_positive": int(false_positive),
-                    "components": components,
-                    "images": images,
-                    "severity": {k: int(v) for k, v in sev.items()},
-                    "size_kb": round(os.path.getsize(pf) / 1024, 1),
-                }
-                print(f"  ✅ ocp/{ver}: {len(df):,} rows")
+                stats = _parquet_stats(pf, df)
+                stats["file"] = f"data/parquet/ocp/{ver}.parquet"
+                scopes[f"ocp/{ver}"] = stats
+                print(f"  ocp/{ver}: {len(df):,} rows")
             except Exception as e:
-                print(f"  SKIP {ver}: {e}")
+                print(f"  SKIP ocp/{ver}: {e}")
+
+        existing = {}
+        if os.path.exists(MANIFEST):
+            try:
+                with open(MANIFEST) as f:
+                    existing = json.load(f).get("scopes", {})
+            except Exception:
+                pass
+
+        op_dir = os.path.join(BASE_DIR, "data", "parquet", "operators")
+        for pf in sorted(glob.glob(os.path.join(op_dir, "**", "*.parquet"), recursive=True)):
+            rel = os.path.relpath(pf, os.path.join(BASE_DIR, "data", "parquet"))
+            parts = rel.split(os.sep)
+            ocp_ver = parts[1] if len(parts) > 2 else ""
+            base = os.path.splitext(parts[-1])[0]
+            scope_key = f"operators/{ocp_ver}/{base}"
+            try:
+                df = pd.read_parquet(pf)
+                stats = _parquet_stats(pf, df)
+                stats["file"] = os.path.relpath(pf, BASE_DIR)
+                old = existing.get(scope_key, {})
+                stats["label"] = old.get("label", base)
+                stats["operator"] = old.get("operator", "")
+                stats["channel"] = old.get("channel", "")
+                stats["bundle"] = old.get("bundle", "")
+                stats["ocp_version"] = old.get("ocp_version", ocp_ver)
+                stats["type"] = "operator"
+                scopes[scope_key] = stats
+                print(f"  {scope_key}: {len(df):,} rows")
+            except Exception as e:
+                print(f"  SKIP {scope_key}: {e}")
+
         build_manifest(scopes)
         print(f"\nDone in {time.time() - t0:.1f}s")
         return

@@ -78,11 +78,23 @@ function cleanComponent(name) {
   return s.toLowerCase().replace(/_/g, '-');
 }
 
-function fixInfo(r) {
+function fixInfo(r, currentScope) {
   const fi = (r.FIXED_IN || '').trim();
   if (fi && fi !== 'nan') {
-    const label = fi.match(/^\d/) ? `OCP ${fi}` : fi;
-    return { has: true, label, badge: `<span class="badge bg-green">${esc(label)}</span>` };
+    if (fi.match(/^\d/)) {
+      return { has: true, label: `OCP ${fi}`, badge: `<span class="badge bg-green">OCP ${esc(fi)}</span>` };
+    }
+    if (currentScope && currentScope.startsWith('operators/')) {
+      const scopeEntry = manifest?.scopes?.[currentScope] || {};
+      const curChannel = (scopeEntry.channel || '').toLowerCase();
+      const fiChannel = fi.replace(/.*\//, '').toLowerCase().replace(/-v[\d._-]+$/, '');
+      if (curChannel && fiChannel && curChannel.replace(/-v[\d._-]+$/, '') === fiChannel) {
+        return { has: true, label: fi, badge: `<span class="badge bg-green">${esc(fi)}</span>` };
+      }
+      // cross-channel/cross-bundle — not a real fix path, suppress
+    } else {
+      return { has: true, label: fi, badge: `<span class="badge bg-green">${esc(fi)}</span>` };
+    }
   }
   const j = (r.JUSTIFICATION || '');
   if (/fix available/i.test(j) && !/no fix available/i.test(j)) {
@@ -337,16 +349,25 @@ function renderOverview() {
           <th>Bundle</th>
           <th>Positive CVEs</th>
           <th>False Positive</th>
+          <th>Critical</th>
+          <th>Important</th>
+          <th>Moderate</th>
+          <th>Low</th>
           <th>Findings</th>
         </tr></thead>
         <tbody>
           ${uniqueOps.sort((a,b) => (a.operator||'').localeCompare(b.operator||'') || (a.channel||'').localeCompare(b.channel||'')).map(v => {
+            const sev = v.severity || {};
             return `<tr style="cursor:pointer" onclick="window.location.hash='${v.key}'">
               <td><a href="#${v.key}" style="color:var(--accent);text-decoration:none;font-weight:600">${esc(v.operator || v.label || '')}</a></td>
               <td style="color:var(--muted)">${esc(v.channel || '')}</td>
               <td style="color:var(--muted)">${esc(v.bundle || '')}</td>
               <td style="color:var(--red);font-weight:600">${v.positive}</td>
               <td style="color:var(--green)">${v.false_positive}</td>
+              <td style="color:${sev.Critical ? 'var(--red)' : 'var(--muted)'}">${sev.Critical || 0}</td>
+              <td style="color:${sev.Important ? 'var(--orange)' : 'var(--muted)'}">${sev.Important || 0}</td>
+              <td style="color:${sev.Moderate ? 'var(--yellow)' : 'var(--muted)'}">${sev.Moderate || 0}</td>
+              <td>${sev.Low || 0}</td>
               <td style="color:var(--muted)">${(v.rows || 0).toLocaleString()}</td>
             </tr>`;
           }).join('')}
@@ -484,7 +505,7 @@ async function renderVersion(scope) {
         if (filterState.state?.size     && !filterState.state.has(statusKey(r.AUDIT_RESULT))) return false;
         if (filterState.image?.size     && !filterState.image.has((r.IMAGE || '').replace(/@sha256:[0-9a-f]+$/, ''))) return false;
         if (filterState.fixable?.size) {
-          const fixLabel = fixInfo(r).has ? 'Fix' : 'No fix';
+          const fixLabel = fixInfo(r, scope).has ? 'Fix' : 'No fix';
           if (!filterState.fixable.has(fixLabel)) return false;
         }
         if (mismatchOnly && String(r.SEVERITY_MISMATCH).toLowerCase() !== 'true') return false;
@@ -501,7 +522,7 @@ async function renderVersion(scope) {
 
       const trs = filteredRows.map((r, i) => {
         const isMis = String(r.SEVERITY_MISMATCH).toLowerCase() === 'true';
-        const fix = fixInfo(r);
+        const fix = fixInfo(r, scope);
         const fixBadge = fix.badge;
         return `
           <tr class="main-row" data-idx="${i}">
@@ -921,7 +942,7 @@ async function renderCVESearch(initialCve) {
           if (cveFilterState.severity?.size  && !cveFilterState.severity.has(r.SEVERITY)) return false;
           if (cveFilterState.state?.size     && !cveFilterState.state.has(statusKey(r.AUDIT_RESULT))) return false;
           if (cveFilterState.fixable?.size) {
-            const fixLabel = fixInfo(r).has ? 'Fix' : 'No fix';
+            const fixLabel = fixInfo(r, r.SCOPE).has ? 'Fix' : 'No fix';
             if (!cveFilterState.fixable.has(fixLabel)) return false;
           }
           return true;
@@ -952,7 +973,7 @@ async function renderCVESearch(initialCve) {
             <td><code>${esc(r.VERSION || '')}</code></td>
             <td>${severityCompare(r.SEVERITY, r.RHACS_SEVERITY, isMis)}</td>
             <td style="white-space:nowrap">${statusBadge(r.AUDIT_RESULT)}</td>
-            <td style="white-space:nowrap">${fixInfo(r).badge}</td>
+            <td style="white-space:nowrap">${fixInfo(r, r.SCOPE).badge}</td>
           </tr>
           <tr class="detail-row" id="detail-cve${i}" hidden>
             <td></td><td colspan="7">${renderExpandRow(r)}</td>
