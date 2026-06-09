@@ -15,7 +15,10 @@
       "Bash(python3 retriage_offline.py)",
       "Bash(python3 build_parquet.py --manifest-only)",
       "Bash(python3 /Users/ralvares/rhacs-vex/build_parquet.py --manifest-only)",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(python3 -m http.server 8000)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8000/triage.html)",
+      "Bash(kill %1)"
     ],
     "additionalDirectories": [
       "/Users/ralvares/rhacs-vex/data/reports/ocp-4.21"

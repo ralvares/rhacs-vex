@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RHACS Report Triage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&family=Red+Hat+Mono:wght@400;500;700&family=Red+Hat+Text:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/theme.css">
+  <style>
+    body { font-family: 'Red Hat Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    h1, h2, h3 { font-family: 'Red Hat Display', -apple-system, sans-serif; }
+    code { font-family: 'Red Hat Mono', 'Consolas', 'Monaco', monospace; }
+
+    .triage-app { min-height: 100vh; padding: 1.5rem 2rem; max-width: 1600px; margin: 0 auto; }
+
+    .triage-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+      padding-bottom: .8rem; border-bottom: 1px solid var(--border);
+    }
+    .triage-header h1 { font-size: 1.2rem; font-weight: 700; }
+    .triage-header .back-link {
+      color: var(--accent); text-decoration: none; font-size: .82rem;
+      display: flex; align-items: center; gap: .3rem;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex; gap: 0; border-bottom: 2px solid var(--border); margin-bottom: 1.2rem;
+    }
+    .tab-btn {
+      padding: .5rem 1.2rem; font-size: .82rem; color: var(--muted); font-weight: 600;
+      border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent;
+      margin-bottom: -2px; transition: color .15s, border-color .15s;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Upload */
+    .upload-zone {
+      border: 2px dashed var(--border); border-radius: 12px; padding: 3rem 2rem;
+      text-align: center; cursor: pointer; transition: border-color .2s, background .2s;
+      margin-bottom: 1.5rem;
+    }
+    .upload-zone:hover, .upload-zone.drag-over {
+      border-color: var(--accent); background: rgba(88,166,255,.04);
+    }
+    .upload-zone h3 { font-size: 1rem; margin-bottom: .5rem; }
+    .upload-zone p { font-size: .78rem; color: var(--muted); }
+    .upload-zone input { display: none; }
+
+    /* Version bar */
+    .version-bar {
+      display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem;
+      padding: .5rem 1rem; background: var(--surface); border-radius: 8px;
+      border: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .version-bar label { font-size: .78rem; color: var(--muted); font-weight: 600; white-space: nowrap; }
+    .version-bar select {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 5px;
+      color: var(--text); font-size: .82rem; padding: .3rem .5rem;
+    }
+    .version-bar .info-text { font-size: .68rem; color: var(--muted); margin-left: auto; }
+    .detect-result { font-size: .72rem; color: var(--green); font-weight: 600; }
+
+    .triage-note {
+      font-size: .68rem; color: var(--muted); margin-bottom: 1rem;
+      padding: .4rem .8rem; background: rgba(210,153,34,.06); border-radius: 6px;
+      border-left: 3px solid var(--yellow);
+    }
+
+    /* Cluster/overview */
+    .cluster-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .8rem;
+      margin-bottom: 1.5rem;
+    }
+    .cluster-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: .8rem 1rem;
+    }
+    .cluster-card h3 { font-size: .85rem; font-weight: 700; margin-bottom: .5rem; color: var(--accent); }
+    .cluster-stat { display: flex; justify-content: space-between; font-size: .72rem; padding: .15rem 0; }
+    .cluster-stat .label { color: var(--muted); }
+    .cluster-stat .value { font-weight: 600; }
+
+    .new-upload-btn {
+      font-size: .72rem; color: var(--accent); background: none; border: 1px solid var(--border);
+      border-radius: 5px; padding: .25rem .6rem; cursor: pointer;
+    }
+    .new-upload-btn:hover { border-color: var(--accent); }
+
+    /* Insights */
+    .insight-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.2rem;
+      margin-top: 1rem;
+    }
+    .insight-panel {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 1rem;
+    }
+    .insight-panel h3 { font-size: .82rem; font-weight: 700; margin-bottom: .6rem; color: var(--text); }
+    .insight-bar {
+      display: flex; align-items: center; gap: .5rem; padding: .25rem 0; font-size: .72rem;
+    }
+    .insight-bar .bar-label { width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); }
+    .insight-bar .bar-fill {
+      height: 14px; border-radius: 3px; min-width: 2px; transition: width .3s;
+    }
+    .insight-bar .bar-value { font-weight: 600; min-width: 30px; }
+  </style>
+</head>
+<body class="pf-v5-theme-dark">
+<div class="triage-app">
+
+  <div class="triage-header">
+    <a href="index.html" class="back-link">&larr; Dashboard</a>
+    <h1>RHACS Report Triage</h1>
+    <button class="new-upload-btn" id="new-upload-btn" style="display:none">Upload new CSV</button>
+    <span id="status-text" style="font-size:.72rem;color:var(--muted);margin-left:auto">
+      <span class="dot" id="dot"></span> Loading&hellip;
+    </span>
+  </div>
+
+  <div id="upload-section">
+    <div class="upload-zone" id="upload-zone">
+      <h3>Upload RHACS Vulnerability Report</h3>
+      <p>Drag &amp; drop a CSV file here, or click to select</p>
+      <p style="margin-top:.5rem;font-size:.68rem">CSV is processed entirely in your browser &mdash; nothing leaves your machine</p>
+      <input type="file" id="file-input" accept=".csv">
+    </div>
+  </div>
+
+  <div id="main-content" style="display:none">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="overview">Overview</button>
+      <button class="tab-btn" data-tab="triage">Triage</button>
+      <button class="tab-btn" data-tab="insights">Insights</button>
+    </div>
+
+    <!-- ══ OVERVIEW TAB ══ -->
+    <div class="tab-panel active" id="panel-overview">
+      <div class="version-bar">
+        <label>OCP Version:</label>
+        <select id="version-select"></select>
+        <button class="btn-export" id="auto-detect" style="padding:.3rem .8rem;font-size:.78rem;color:var(--accent)">Auto-detect</button>
+        <button class="btn-export" id="run-triage" style="padding:.3rem .8rem;font-size:.78rem">Run Triage</button>
+        <span id="detect-result" class="detect-result"></span>
+      </div>
+      <div id="cluster-overview"></div>
+      <div id="operators-overview"></div>
+    </div>
+
+    <!-- ══ TRIAGE TAB ══ -->
+    <div class="tab-panel" id="panel-triage">
+      <div class="triage-note">
+        Triage matches CVE + package component against VEX data for the selected OCP version.
+        Verdicts are version-specific. POSITIVE wins ties (safe default for security).
+        "No VEX Data" = no VEX statement for that CVE+component pair.
+      </div>
+      <div class="cards" id="summary-cards"></div>
+      <div class="filter-bar" style="display:flex;align-items:center;flex-wrap:wrap;gap:.35rem">
+        <label>FILTER BY:</label>
+        <div id="filters" style="display:flex;align-items:center;flex-wrap:wrap;gap:.35rem"></div>
+        <span class="filter-count" id="filter-count"></span>
+        <button class="filter-clear" id="filter-clear" style="display:none">Clear all</button>
+      </div>
+      <div style="margin-bottom:.5rem;display:flex;gap:.5rem;justify-content:flex-end">
+        <button class="btn-export" id="export-btn">Export Triaged CSV</button>
+        <button class="btn-export" id="export-fp-btn" style="color:var(--green)">Export False Positives Only</button>
+      </div>
+      <div class="table-wrap" id="table-wrap"></div>
+    </div>
+
+    <!-- ══ INSIGHTS TAB ══ -->
+    <div class="tab-panel" id="panel-insights">
+      <div class="cards" id="insight-cards"></div>
+      <div class="insight-grid" id="insight-grid"></div>
+    </div>
+  </div>
+
+</div>
+
+<script type="module">
+import { initDuckDB, registerFileByURL, query, getDB, loadManifest } from './assets/db.js';
+import { esc, severityBadge, createDropdown, downloadCSV } from './assets/ui.js';
+
+const $ = id => document.getElementById(id);
+const setStatus = (msg, state) => {
+  $('status-text').innerHTML = `<span class="dot${state ? ' '+state : ''}"></span> ${esc(msg)}`;
+};
+
+// DuckDB WASM Arrow rows may have case-variant keys — normalize on load
+function normalizeRow(r) {
+  const out = {};
+  const keyMap = {
+    cluster: 'Cluster', namespace: 'Namespace', deployment: 'Deployment',
+    image: 'Image', component: 'Component', cve: 'CVE', fixable: 'Fixable',
+    severity: 'Severity', cvss: 'CVSS', nvdcvss: 'NVDCVSS', reference: 'Reference',
+  };
+  for (const k of Object.keys(r)) {
+    const mapped = keyMap[k.toLowerCase()] || k;
+    if (!(mapped in out)) out[mapped] = r[k];
+  }
+  return out;
+}
+
+let manifest = null;
+let allRows = [];
+let filteredRows = [];
+let csvLoaded = false;
+let cveIndexLoaded = false;
+let detectedVersion = '';
+const filterState = {};
+let dropdowns = {};
+
+function triageBadge(status) {
+  const s = (status || '').toLowerCase();
+  if (s.includes('false'))        return `<span class="badge bg-green">False Positive</span>`;
+  if (s.includes('no vex'))       return `<span class="badge bg-gray">No VEX Data</span>`;
+  if (s.includes('not assessed')) return `<span class="badge bg-yellow">Not Assessed</span>`;
+  if (s.includes('positive'))     return `<span class="badge bg-red">Positive</span>`;
+  return `<span class="badge bg-gray">${esc(status || 'Unknown')}</span>`;
+}
+
+function triageKey(raw) {
+  const s = String(raw || '').toLowerCase();
+  if (s.includes('false'))        return 'False Positive';
+  if (s.includes('no vex'))       return 'No VEX Data';
+  if (s.includes('not assessed')) return 'Not Assessed';
+  if (s.includes('positive'))     return 'Positive';
+  return 'No VEX Data';
+}
+
+const imgBase = img => (img || '').replace(/@sha256:[0-9a-f]+$/, '');
+const imgSha  = img => ((img || '').match(/@(sha256:[0-9a-f]+)$/) || [])[1] || '';
+
+function compareVersions(a, b) {
+  const pa = (a.match(/[\d]+/g) || []).map(Number);
+  const pb = (b.match(/[\d]+/g) || []).map(Number);
+  for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+    const diff = (pa[i] || 0) - (pb[i] || 0);
+    if (diff !== 0) return diff;
+  }
+  return 0;
+}
+
+// ── Tabs ──
+document.querySelector('.tabs').addEventListener('click', e => {
+  const btn = e.target.closest('.tab-btn');
+  if (!btn) return;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+});
+
+// ── Register version parquet (lazy, cached) ──
+const registeredVersions = new Set();
+async function registerVersion(ver) {
+  const name = `ocp_${ver.replace(/\./g, '_')}.parquet`;
+  if (registeredVersions.has(ver)) return name;
+  const url = new URL(`data/parquet/ocp/${ver}.parquet`, window.location.href).href;
+  await registerFileByURL(name, url);
+  registeredVersions.add(ver);
+  return name;
+}
+
+// ── Init ──
+async function init() {
+  try {
+    manifest = await loadManifest();
+    await initDuckDB(setStatus);
+
+    setStatus('Loading CVE index…');
+    await registerFileByURL('cve_index.parquet', new URL('data/cve-index.parquet', window.location.href).href);
+    cveIndexLoaded = true;
+
+    const versions = await query(`
+      SELECT DISTINCT OCP_VERSION FROM 'cve_index.parquet' ORDER BY
+        CAST(SPLIT_PART(OCP_VERSION,'.',1) AS INT) DESC,
+        CAST(SPLIT_PART(OCP_VERSION,'.',2) AS INT) DESC,
+        CAST(SPLIT_PART(OCP_VERSION,'.',3) AS INT) DESC
+    `);
+    const sel = $('version-select');
+    versions.forEach(v => {
+      const opt = document.createElement('option');
+      opt.value = v.OCP_VERSION;
+      opt.textContent = 'OCP ' + v.OCP_VERSION;
+      sel.appendChild(opt);
+    });
+    if (versions.length) sel.value = versions[0].OCP_VERSION;
+
+    setStatus('Ready — upload a CSV', 'ready');
+  } catch (e) {
+    console.error(e);
+    setStatus('Error: ' + e.message, 'error');
+  }
+}
+
+// ── File Upload ──
+const zone = $('upload-zone');
+const fileInput = $('file-input');
+zone.addEventListener('click', () => fileInput.click());
+zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+zone.addEventListener('drop', e => {
+  e.preventDefault(); zone.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', () => { if (fileInput.files.length) handleFile(fileInput.files[0]); });
+
+$('new-upload-btn').addEventListener('click', () => {
+  $('upload-section').style.display = '';
+  $('main-content').style.display = 'none';
+  $('new-upload-btn').style.display = 'none';
+  fileInput.value = '';
+});
+
+async function handleFile(file) {
+  if (!file.name.endsWith('.csv')) { setStatus('Please upload a .csv file', 'error'); return; }
+  setStatus('Loading CSV…');
+  try {
+    const db = getDB();
+    const buf = new Uint8Array(await file.arrayBuffer());
+    await db.registerFileBuffer('upload.csv', buf);
+    await query(`DROP TABLE IF EXISTS rhacs`);
+    await query(`CREATE TABLE rhacs AS SELECT * FROM read_csv_auto('upload.csv', header=true, all_varchar=true)`);
+
+    const count = await query(`SELECT COUNT(*) as cnt FROM rhacs`);
+    csvLoaded = true;
+    setStatus(`CSV loaded: ${Number(count[0].cnt).toLocaleString()} rows`, 'ready');
+
+    $('upload-section').style.display = 'none';
+    $('main-content').style.display = '';
+    $('new-upload-btn').style.display = '';
+
+    await autoDetectVersion();
+    await Promise.all([renderClusterOverview(), renderOperatorsOverview()]);
+    await runTriage();
+    renderInsights();
+  } catch (e) {
+    console.error(e);
+    setStatus('CSV error: ' + e.message, 'error');
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+// ── OVERVIEW TAB ──
+// ══════════════════════════════════════════════════════════════
+
+async function renderClusterOverview() {
+  try {
+    const clusters = await query(`
+      SELECT
+        Cluster,
+        COUNT(DISTINCT CVE) as cves,
+        COUNT(*) as findings,
+        COUNT(DISTINCT Namespace) as namespaces,
+        COUNT(DISTINCT Deployment) as deployments,
+        COUNT(DISTINCT Image) as images,
+        COUNT(DISTINCT CASE WHEN UPPER(Severity) = 'CRITICAL' THEN CVE END) as critical,
+        COUNT(DISTINCT CASE WHEN UPPER(Severity) = 'IMPORTANT' THEN CVE END) as important
+      FROM rhacs GROUP BY Cluster ORDER BY findings DESC
+    `);
+    if (!clusters.length) return;
+
+    $('cluster-overview').innerHTML = `
+      <div class="section-header" style="margin-bottom:.8rem">
+        <h2 style="font-size:.95rem">Clusters</h2>
+        <span class="sub">${clusters.length} cluster${clusters.length > 1 ? 's' : ''}</span>
+      </div>
+      <div class="cluster-grid">
+        ${clusters.map(c => `
+          <div class="cluster-card">
+            <h3>${esc(c.Cluster)}</h3>
+            <div class="cluster-stat"><span class="label">Unique CVEs</span><span class="value" style="color:var(--accent)">${c.cves}</span></div>
+            <div class="cluster-stat"><span class="label">Findings</span><span class="value">${Number(c.findings).toLocaleString()}</span></div>
+            <div class="cluster-stat"><span class="label">Namespaces</span><span class="value">${c.namespaces}</span></div>
+            <div class="cluster-stat"><span class="label">Deployments</span><span class="value">${c.deployments}</span></div>
+            <div class="cluster-stat"><span class="label">Images</span><span class="value">${c.images}</span></div>
+            ${Number(c.critical) ? `<div class="cluster-stat"><span class="label">Critical</span><span class="value" style="color:var(--red)">${c.critical}</span></div>` : ''}
+            ${Number(c.important) ? `<div class="cluster-stat"><span class="label">Important</span><span class="value" style="color:var(--orange)">${c.important}</span></div>` : ''}
+            ${detectedVersion ? `<div class="cluster-stat"><span class="label">OCP Version</span><span class="value" style="color:var(--green)">${esc(detectedVersion)}</span></div>` : ''}
+          </div>
+        `).join('')}
+      </div>`;
+  } catch (e) { console.error('Cluster overview error:', e); }
+}
+
+// ── Operator Detection via manifest + image hash ──
+let detectedOperators = [];
+
+async function detectOperators() {
+  if (!manifest || !csvLoaded) return;
+  const majorMinor = detectedVersion ? detectedVersion.split('.').slice(0, 2).join('.') : '4.21';
+  const scopes = manifest.scopes || {};
+
+  // Get non-OCP image repos + hashes
+  const nonOcpImages = await query(`
+    SELECT DISTINCT Image FROM rhacs
+    WHERE Image NOT LIKE '%openshift-release-dev/ocp-%'
+  `);
+  if (!nonOcpImages.length) return;
+
+  // Extract keywords from image repos for narrowing
+  const repoKeywords = new Set();
+  nonOcpImages.forEach(r => {
+    const repo = (r.Image || '').split('@')[0];
+    const parts = repo.split('/');
+    parts.forEach(p => {
+      const words = p.replace(/rhel[0-9]*/g, '').replace(/-operator$/,'').split('-').filter(w => w.length > 2);
+      words.forEach(w => repoKeywords.add(w.toLowerCase()));
+    });
+  });
+
+  // Find candidate operator scopes from manifest (keyword match)
+  const candidateScopes = [];
+  for (const [key, val] of Object.entries(scopes)) {
+    if (!key.startsWith(`operators/${majorMinor}/`)) continue;
+    const opName = (val.operator || '').toLowerCase();
+    const label = (val.label || '').toLowerCase();
+    if ([...repoKeywords].some(kw => opName.includes(kw) || label.includes(kw))) {
+      candidateScopes.push({ key, ...val });
+    }
+  }
+
+  setStatus(`Detecting operators (${candidateScopes.length} candidates)…`);
+
+  // Load candidate parquets and match by image hash
+  const matched = new Map();
+  for (const scope of candidateScopes) {
+    try {
+      const safeName = scope.key.replace(/[^a-zA-Z0-9_]/g, '_') + '.parquet';
+      if (!registeredVersions.has(scope.key)) {
+        const url = new URL(scope.file, window.location.href).href;
+        await registerFileByURL(safeName, url);
+        registeredVersions.add(scope.key);
+      }
+      const [result] = await query(`
+        SELECT COUNT(DISTINCT r.Image) as matched
+        FROM rhacs r INNER JOIN '${safeName}' v ON r.Image = v.IMAGE
+      `);
+      if (Number(result.matched) > 0) {
+        const opKey = scope.operator || scope.label;
+        if (!matched.has(opKey) || Number(result.matched) > matched.get(opKey).imageMatch) {
+          matched.set(opKey, {
+            operator: scope.operator || '',
+            channel: scope.channel || '',
+            bundle: scope.bundle || '',
+            imageMatch: Number(result.matched),
+            positive: scope.positive || 0,
+            false_positive: scope.false_positive || 0,
+            severity: scope.severity || {},
+            parquetName: safeName,
+            scopeKey: scope.key,
+          });
+        }
+      }
+    } catch (e) { /* skip unloadable parquets */ }
+  }
+
+  detectedOperators = [...matched.values()].sort((a, b) => b.imageMatch - a.imageMatch);
+  setStatus('Operators detected', 'ready');
+}
+
+async function renderOperatorsOverview() {
+  try {
+    await detectOperators();
+
+    const imageStats = await query(`
+      SELECT
+        SPLIT_PART(Image, '@', 1) as image_repo,
+        COUNT(DISTINCT CVE) as cves,
+        COUNT(*) as findings,
+        COUNT(DISTINCT Image) as images,
+        MIN(Namespace) as sample_ns,
+        COUNT(DISTINCT CASE WHEN UPPER(Severity) = 'CRITICAL' THEN CVE END) as critical,
+        COUNT(DISTINCT CASE WHEN UPPER(Severity) = 'IMPORTANT' THEN CVE END) as important
+      FROM rhacs GROUP BY image_repo ORDER BY findings DESC
+    `);
+
+    const ocpImages = imageStats.filter(o => (o.image_repo || '').includes('openshift-release-dev/ocp-'));
+    const opImages = imageStats.filter(o => !(o.image_repo || '').includes('openshift-release-dev/ocp-'));
+    const shortName = repo => { const p = (repo || '').split('/'); return p[p.length - 1] || repo; };
+
+    let html = '';
+
+    // Operator Inventory
+    if (detectedOperators.length) {
+      html += `
+        <div class="section-header" style="margin-bottom:.8rem;margin-top:1rem">
+          <h2 style="font-size:.95rem">Operator Inventory</h2>
+          <span class="sub">${detectedOperators.length} operators detected via image hash matching</span>
+        </div>
+        <div class="table-wrap" style="margin-bottom:1.2rem">
+          <table><thead><tr>
+            <th>Operator</th><th>Channel</th><th>Version</th>
+            <th>VEX Positive</th><th>VEX False Positive</th>
+            <th>Critical</th><th>Important</th><th>Moderate</th>
+          </tr></thead><tbody>
+            ${detectedOperators.map(op => {
+              const sev = op.severity || {};
+              return `<tr>
+                <td style="font-weight:600;color:var(--accent)">${esc(op.operator)}</td>
+                <td style="font-size:.75rem;color:var(--muted)">${esc(op.channel)}</td>
+                <td><code style="font-size:.75rem">${esc(op.bundle)}</code></td>
+                <td style="color:var(--red);font-weight:600">${op.positive}</td>
+                <td style="color:var(--green)">${op.false_positive}</td>
+                <td style="color:${sev.Critical ? 'var(--red)' : 'var(--muted)'}">${sev.Critical || 0}</td>
+                <td style="color:${sev.Important ? 'var(--orange)' : 'var(--muted)'}">${sev.Important || 0}</td>
+                <td style="color:${sev.Moderate ? 'var(--yellow)' : 'var(--muted)'}">${sev.Moderate || 0}</td>
+              </tr>`;
+            }).join('')}
+          </tbody></table>
+        </div>`;
+    }
+
+    // Image breakdown
+    html += `
+      <div class="section-header" style="margin-bottom:.8rem">
+        <h2 style="font-size:.95rem">Image Breakdown</h2>
+        <span class="sub">${ocpImages.length} OCP core, ${opImages.length} add-on images</span>
+      </div>`;
+
+    if (opImages.length) {
+      html += `
+        <div class="table-wrap" style="margin-bottom:1rem">
+          <table><thead><tr>
+            <th>Image</th><th>Namespace</th><th>CVEs</th><th>Critical</th><th>Important</th><th>Findings</th>
+          </tr></thead><tbody>
+            ${opImages.map(o => `<tr>
+              <td><code style="font-size:.72rem">${esc(shortName(o.image_repo))}</code></td>
+              <td style="font-size:.75rem;color:var(--muted)">${esc(o.sample_ns)}</td>
+              <td style="color:var(--accent);font-weight:600">${o.cves}</td>
+              <td style="color:${Number(o.critical) ? 'var(--red)' : 'var(--muted)'}">${o.critical}</td>
+              <td style="color:${Number(o.important) ? 'var(--orange)' : 'var(--muted)'}">${o.important}</td>
+              <td style="color:var(--muted)">${Number(o.findings).toLocaleString()}</td>
+            </tr>`).join('')}
+          </tbody></table>
+        </div>`;
+    }
+
+    html += `
+      <details style="margin-bottom:1rem">
+        <summary style="cursor:pointer;font-size:.78rem;color:var(--muted);font-weight:600">
+          OCP Core Images (${ocpImages.length})
+        </summary>
+        <div class="table-wrap" style="margin-top:.5rem;max-height:30vh;overflow-y:auto">
+          <table><thead><tr><th>Image</th><th>CVEs</th><th>Findings</th></tr></thead><tbody>
+            ${ocpImages.map(o => `<tr>
+              <td><code style="font-size:.72rem">${esc(shortName(o.image_repo))}</code></td>
+              <td style="color:var(--accent)">${o.cves}</td>
+              <td style="color:var(--muted)">${Number(o.findings).toLocaleString()}</td>
+            </tr>`).join('')}
+          </tbody></table>
+        </div>
+      </details>`;
+
+    $('operators-overview').innerHTML = html;
+  } catch (e) { console.error('Operators overview error:', e); }
+}
+
+// ── Auto-detect OCP Version ──
+async function autoDetectVersion() {
+  if (!csvLoaded || !cveIndexLoaded) return;
+  $('detect-result').textContent = 'Detecting…';
+  setStatus('Auto-detecting OCP version (phase 1: CVE match)…');
+
+  try {
+    const candidates = await query(`
+      WITH report_pairs AS (SELECT DISTINCT CVE, Component AS COMPONENT FROM rhacs)
+      SELECT ci.OCP_VERSION, COUNT(DISTINCT ci.CVE || '|' || ci.COMPONENT) AS matched
+      FROM 'cve_index.parquet' ci
+      INNER JOIN report_pairs rp ON ci.CVE = rp.CVE AND ci.COMPONENT = rp.COMPONENT
+      GROUP BY ci.OCP_VERSION
+      ORDER BY matched DESC,
+        CAST(SPLIT_PART(ci.OCP_VERSION,'.',1) AS INT) DESC,
+        CAST(SPLIT_PART(ci.OCP_VERSION,'.',2) AS INT) DESC,
+        CAST(SPLIT_PART(ci.OCP_VERSION,'.',3) AS INT) DESC
+      LIMIT 15
+    `);
+
+    if (!candidates.length) {
+      $('detect-result').textContent = 'No matching version found';
+      $('detect-result').style.color = 'var(--yellow)';
+      return;
+    }
+
+    // Phase 2: refine with image hash matching
+    setStatus('Auto-detecting OCP version (phase 2: image hashes)…');
+    let bestVer = candidates[0].OCP_VERSION;
+    let bestImageMatch = -1;
+
+    for (const c of candidates) {
+      try {
+        const pName = await registerVersion(c.OCP_VERSION);
+        const [result] = await query(`
+          SELECT COUNT(DISTINCT r.Image) as matched
+          FROM rhacs r INNER JOIN '${pName}' v ON r.Image = v.IMAGE
+        `);
+        const m = Number(result.matched);
+        // Prefer higher image match; on tie, prefer newer version (semver)
+        if (m > bestImageMatch || (m === bestImageMatch && compareVersions(c.OCP_VERSION, bestVer) > 0)) {
+          bestImageMatch = m;
+          bestVer = c.OCP_VERSION;
+        }
+      } catch (e) { console.warn(`Skipping ${c.OCP_VERSION}:`, e.message); }
+    }
+
+    const [imgTotal] = await query(`SELECT COUNT(DISTINCT Image) as cnt FROM rhacs`);
+    detectedVersion = bestVer;
+    $('version-select').value = bestVer;
+
+    if (bestImageMatch > 0) {
+      $('detect-result').innerHTML = `Detected: <strong>OCP ${esc(bestVer)}</strong> (${bestImageMatch}/${imgTotal.cnt} images matched by sha256)`;
+    } else {
+      $('detect-result').innerHTML = `Best guess: OCP ${esc(bestVer)} (CVE match only)`;
+      $('detect-result').style.color = 'var(--yellow)';
+    }
+    setStatus('Version detected', 'ready');
+  } catch (e) {
+    console.error('Auto-detect error:', e);
+    $('detect-result').textContent = 'Detection failed';
+    $('detect-result').style.color = 'var(--red)';
+  }
+}
+
+$('auto-detect').addEventListener('click', async () => { await autoDetectVersion(); await renderClusterOverview(); });
+$('run-triage').addEventListener('click', async () => { await runTriage(); renderInsights(); });
+
+// ══════════════════════════════════════════════════════════════
+// ── TRIAGE TAB ──
+// ══════════════════════════════════════════════════════════════
+
+async function runTriage() {
+  if (!csvLoaded || !cveIndexLoaded) return;
+  const ver = $('version-select').value;
+  setStatus(`Running triage against OCP ${ver}…`);
+
+  try {
+    const pName = await registerVersion(ver);
+
+    // Build UNION of OCP + detected operator parquets for full coverage
+    const vexSources = [`SELECT CVE, COMPONENT, IMAGE, SEVERITY, JUSTIFICATION, AUDIT_RESULT FROM '${pName}'`];
+    for (const op of detectedOperators) {
+      vexSources.push(`SELECT CVE, COMPONENT, IMAGE, SEVERITY, JUSTIFICATION, AUDIT_RESULT FROM '${op.parquetName}'`);
+    }
+    const vexUnion = vexSources.join(' UNION ALL ');
+
+    // Join on CVE + Component + Image for per-image accuracy
+    allRows = await query(`
+      WITH all_vex AS (${vexUnion}),
+      ranked AS (
+        SELECT CVE, COMPONENT, IMAGE, SEVERITY, JUSTIFICATION, AUDIT_RESULT,
+          ROW_NUMBER() OVER (PARTITION BY CVE, COMPONENT, IMAGE ORDER BY
+            CASE WHEN AUDIT_RESULT LIKE '%POSITIVE%' AND AUDIT_RESULT NOT LIKE '%FALSE%' THEN 0
+                 WHEN AUDIT_RESULT LIKE '%FALSE%' THEN 1 ELSE 2 END
+          ) AS rn
+        FROM all_vex
+      ),
+      vex AS (
+        SELECT CVE, COMPONENT, IMAGE, SEVERITY AS vex_severity, JUSTIFICATION AS vex_justification,
+          CASE
+            WHEN AUDIT_RESULT LIKE '%POSITIVE%' AND AUDIT_RESULT NOT LIKE '%FALSE%' THEN 'Positive'
+            WHEN AUDIT_RESULT LIKE '%FALSE%' THEN 'False Positive'
+            WHEN AUDIT_RESULT LIKE '%NOT ASSESSED%' THEN 'Not Assessed'
+            ELSE 'Unknown'
+          END AS vex_status
+        FROM ranked WHERE rn = 1
+      )
+      SELECT r.*,
+        COALESCE(v.vex_status, 'No VEX Data') AS TRIAGE_STATUS,
+        v.vex_severity AS VEX_SEVERITY,
+        v.vex_justification AS VEX_JUSTIFICATION
+      FROM rhacs r
+      LEFT JOIN vex v ON r.CVE = v.CVE AND r.Component = v.COMPONENT AND r.Image = v.IMAGE
+      ORDER BY
+        CASE COALESCE(v.vex_status, 'No VEX Data')
+          WHEN 'Positive' THEN 0 WHEN 'Not Assessed' THEN 1
+          WHEN 'False Positive' THEN 2 ELSE 3
+        END,
+        CASE UPPER(r.Severity)
+          WHEN 'CRITICAL' THEN 0 WHEN 'IMPORTANT' THEN 1 WHEN 'MODERATE' THEN 2 ELSE 3
+        END,
+        r.CVE
+    `);
+
+    allRows = allRows.map(normalizeRow);
+    setStatus(`Triage complete: ${allRows.length} findings against OCP ${ver}`, 'ready');
+    buildFilters();
+    renderTriageTable();
+
+    // Stay on overview tab
+  } catch (e) {
+    console.error(e);
+    setStatus('Triage error: ' + e.message, 'error');
+  }
+}
+
+// ── Filters ──
+function buildFilters() {
+  const filtersEl = $('filters');
+  filtersEl.innerHTML = '';
+  Object.keys(filterState).forEach(k => delete filterState[k]);
+
+  const onFilter = (id, selected) => { filterState[id] = selected; renderTriageTable(); };
+  const vals = key => [...new Set(allRows.map(r => r[key] || '').filter(Boolean))].sort();
+
+  dropdowns = {};
+  dropdowns.triage    = createDropdown('triage', 'Triage', [...new Set(allRows.map(r => triageKey(r.TRIAGE_STATUS)))].sort(), onFilter);
+  const vexSevVals = [...new Set(allRows.map(r => effectiveSev(r)))].sort();
+  dropdowns.severity  = createDropdown('severity', 'VEX Severity', vexSevVals, onFilter);
+  dropdowns.cluster   = createDropdown('cluster', 'Cluster', vals('Cluster'), onFilter);
+  dropdowns.ns        = createDropdown('ns', 'Namespace', vals('Namespace'), onFilter);
+  dropdowns.deploy    = createDropdown('deploy', 'Deployment', vals('Deployment'), onFilter);
+  dropdowns.fixable   = createDropdown('fixable', 'Fixable', vals('Fixable'), onFilter);
+  dropdowns.component = createDropdown('component', 'Component', vals('Component'), onFilter);
+  Object.values(dropdowns).forEach(d => filtersEl.appendChild(d.el));
+
+  $('filter-clear').onclick = () => {
+    Object.keys(filterState).forEach(k => filterState[k] = new Set());
+    filtersEl.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+    filtersEl.querySelectorAll('.ms-badge').forEach(b => b.style.display = 'none');
+    filtersEl.querySelectorAll('.ms-btn').forEach(b => b.classList.remove('active'));
+    renderTriageTable();
+  };
+}
+
+function applyFilters() {
+  filteredRows = allRows.filter(r => {
+    if (filterState.triage?.size    && !filterState.triage.has(triageKey(r.TRIAGE_STATUS))) return false;
+    if (filterState.severity?.size  && !filterState.severity.has(effectiveSev(r))) return false;
+    if (filterState.cluster?.size   && !filterState.cluster.has(r.Cluster)) return false;
+    if (filterState.ns?.size        && !filterState.ns.has(r.Namespace)) return false;
+    if (filterState.deploy?.size    && !filterState.deploy.has(r.Deployment)) return false;
+    if (filterState.fixable?.size   && !filterState.fixable.has(r.Fixable)) return false;
+    if (filterState.component?.size && !filterState.component.has(r.Component)) return false;
+    return true;
+  });
+}
+
+// ── Triage Table ──
+function renderTriageTable() {
+  applyFilters();
+
+  const totalCves = new Set(filteredRows.map(r => r.CVE)).size;
+  const fpRows    = filteredRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'False Positive');
+  const posRows   = filteredRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'Positive');
+  const naRows    = filteredRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'Not Assessed');
+  const noVexRows = filteredRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'No VEX Data');
+  const fpCves    = new Set(fpRows.map(r => r.CVE)).size;
+  const posCves   = new Set(posRows.map(r => r.CVE)).size;
+  const naCves    = new Set(naRows.map(r => r.CVE)).size;
+  const noVexCves = new Set(noVexRows.map(r => r.CVE)).size;
+  const fpPct     = totalCves ? Math.round(fpCves / totalCves * 100) : 0;
+
+  $('summary-cards').innerHTML = `
+    <div class="card"><div class="card-label">Total Findings</div><div class="card-value blue">${filteredRows.length.toLocaleString()}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${totalCves} unique CVEs</div></div>
+    <div class="card"><div class="card-label">False Positive</div><div class="card-value green">${fpRows.length.toLocaleString()}</div><div style="font-size:.65rem;color:var(--green);margin-top:.2rem">${fpCves} unique CVEs · ${fpPct}% noise</div></div>
+    <div class="card"><div class="card-label">Positive</div><div class="card-value red">${posRows.length.toLocaleString()}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${posCves} unique CVEs</div></div>
+    <div class="card"><div class="card-label">Not Assessed</div><div class="card-value yellow">${naRows.length.toLocaleString()}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${naCves} unique CVEs</div></div>
+    <div class="card"><div class="card-label">No VEX Data</div><div class="card-value" style="color:var(--muted)">${noVexRows.length.toLocaleString()}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${noVexCves} unique CVEs</div></div>
+  `;
+
+  $('filter-count').textContent = `${filteredRows.length} of ${allRows.length} shown`;
+  $('filter-clear').style.display = Object.values(filterState).some(s => s?.size) ? '' : 'none';
+
+  Object.entries(dropdowns).forEach(([key, dd]) => {
+    const fn = key === 'triage' ? r => triageKey(r.TRIAGE_STATUS)
+      : key === 'severity' ? r => effectiveSev(r)
+      : key === 'ns' ? r => r.Namespace || ''
+      : r => r[key.charAt(0).toUpperCase() + key.slice(1)] || '';
+    dd.updateVisible(new Set(filteredRows.map(fn)));
+  });
+
+  if (!filteredRows.length) {
+    $('table-wrap').innerHTML = `<div class="empty"><h3>No matches</h3><p>Adjust filters above.</p></div>`;
+    return;
+  }
+
+  const trs = filteredRows.map((r, i) => {
+    const epss = r['EPSS Probability Percentage'] || '';
+    const cvss = r.CVSS || '';
+    const advisory = r['Advisory Name'] || '';
+    const advisoryLink = r['Advisory Link'] || '';
+    const fixBadge = r.Fixable === 'true'
+      ? `<span class="badge bg-green">Yes</span>`
+      : `<span class="badge bg-gray">No</span>`;
+    const sevMatch = (r.VEX_SEVERITY || '').toLowerCase() !== (r.Severity || '').toLowerCase();
+
+    return `
+      <tr class="main-row" data-idx="${i}">
+        <td class="expand-cell"><button class="expand-btn">▸</button></td>
+        <td style="white-space:nowrap">${triageBadge(r.TRIAGE_STATUS)}</td>
+        <td><code style="font-size:.75rem">${esc(r.CVE || '')}</code></td>
+        <td>${severityBadge(r.Severity)}</td>
+        <td>${r.VEX_SEVERITY ? severityBadge(r.VEX_SEVERITY) : `<span class="badge bg-gray">—</span>`}${sevMatch ? `<span style="margin-left:.3rem;color:var(--yellow);font-size:.65rem">⚠</span>` : ''}</td>
+        <td><code style="font-size:.72rem">${esc(r.Component || '')}</code></td>
+        <td style="font-size:.75rem;color:var(--muted)">${esc(r.Cluster || '')}</td>
+        <td style="font-size:.75rem;color:var(--muted)">${esc(r.Namespace || '')}</td>
+        <td style="white-space:nowrap">${fixBadge}</td>
+      </tr>
+      <tr class="detail-row" id="detail-${i}" hidden>
+        <td></td>
+        <td colspan="8">
+          <div class="detail-item">
+            <span class="detail-label">Deployment</span>
+            <div class="detail-value">${esc(r.Deployment || '')}</div>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Image</span>
+            <div class="detail-value">
+              <code class="detail-image" style="font-size:.7rem">${esc(imgBase(r.Image))}</code>
+              ${imgSha(r.Image) ? `<br><code class="detail-sha" style="font-size:.62rem;color:var(--muted)">${esc(imgSha(r.Image))}</code>` : ''}
+            </div>
+          </div>
+          <div class="detail-item" style="display:flex;gap:2rem;flex-wrap:wrap">
+            <div><span class="detail-label">CVSS</span><div class="detail-value">${esc(cvss)}</div></div>
+            <div><span class="detail-label">NVD CVSS</span><div class="detail-value">${esc(r.NVDCVSS || '')}</div></div>
+            <div><span class="detail-label">EPSS</span><div class="detail-value">${epss ? epss + '%' : 'N/A'}</div></div>
+            ${r['CVE Fixed In'] ? `<div><span class="detail-label">Fixed In</span><div class="detail-value"><code style="font-size:.72rem">${esc(r['CVE Fixed In'])}</code></div></div>` : ''}
+          </div>
+          <div class="detail-item"><span class="detail-label">Discovered</span><div class="detail-value" style="font-size:.75rem;color:var(--muted)">${esc(r['Discovered At'] || '')}</div></div>
+          ${r.Reference ? `<div class="detail-item"><span class="detail-label">Reference</span><div class="detail-value"><a href="${esc(r.Reference)}" target="_blank" rel="noopener" style="font-size:.72rem;color:var(--accent)">${esc(r.Reference)}</a></div></div>` : ''}
+          ${advisory ? `<div class="detail-item"><span class="detail-label">Advisory</span><div class="detail-value">${advisoryLink ? `<a href="${esc(advisoryLink)}" target="_blank" rel="noopener" style="font-size:.72rem;color:var(--accent)">${esc(advisory)}</a>` : esc(advisory)}</div></div>` : ''}
+          ${r.VEX_SEVERITY ? `<div class="detail-item"><span class="detail-label">VEX Severity</span><div class="detail-value">${severityBadge(r.VEX_SEVERITY)}</div></div>` : ''}
+          ${r.VEX_JUSTIFICATION ? `<div class="detail-item"><span class="detail-label">Justification</span><div class="detail-value"><span style="font-size:.72rem;color:var(--muted);line-height:1.5">${esc(r.VEX_JUSTIFICATION)}</span></div></div>` : ''}
+        </td>
+      </tr>`;
+  }).join('');
+
+  $('table-wrap').innerHTML = `<table><thead><tr>
+    <th style="width:32px"></th><th>Triage</th><th>CVE</th><th>RHACS Severity</th><th>VEX Severity</th>
+    <th>Component</th><th>Cluster</th><th>Namespace</th><th>Fix</th>
+  </tr></thead><tbody>${trs}</tbody></table>`;
+
+  wireExpand($('table-wrap'));
+}
+
+function wireExpand(container) {
+  if (container._wired) return;
+  container._wired = true;
+  container.addEventListener('click', e => {
+    const btn = e.target.closest('.expand-btn');
+    if (!btn) return;
+    const idx = btn.closest('tr.main-row')?.dataset?.idx;
+    if (!idx) return;
+    const detail = $('detail-' + idx);
+    if (!detail) return;
+    detail.hidden = !detail.hidden;
+    btn.classList.toggle('expanded', !detail.hidden);
+  });
+}
+
+// ══════════════════════════════════════════════════════════════
+// ── INSIGHTS TAB ──
+// ══════════════════════════════════════════════════════════════
+
+function normSev(s) {
+  if (!s) return 'Unknown';
+  const l = s.toLowerCase();
+  if (l === 'critical') return 'Critical';
+  if (l === 'important') return 'Important';
+  if (l === 'moderate') return 'Moderate';
+  if (l === 'low') return 'Low';
+  return 'Unknown';
+}
+
+function effectiveSev(r) {
+  return normSev(r.VEX_SEVERITY || r.Severity || 'Unknown');
+}
+
+function classifySource(r) {
+  const repo = (r.Image || '').split('@')[0];
+  if (repo.includes('openshift-release-dev/ocp-')) return 'OCP Platform';
+  for (const op of detectedOperators) {
+    const needle = op.operator.toLowerCase().replace(/-operator$/, '');
+    if (repo.toLowerCase().includes(needle)) return `${op.operator} ${op.bundle}`;
+  }
+  const parts = repo.split('/');
+  return parts[parts.length - 1] || 'Unknown';
+}
+
+function buildSevDetail(sev) {
+  // Group by CVE+Component, collect all deployments/images/justifications
+  const cveMap = {};
+  allRows.forEach(r => {
+    if (effectiveSev(r) !== sev) return;
+    const tk = triageKey(r.TRIAGE_STATUS);
+    const key = r.CVE + '|' + r.Component;
+    if (!cveMap[key]) {
+      cveMap[key] = {
+        cve: r.CVE, component: r.Component, status: tk,
+        source: classifySource(r), findings: 0,
+        fixable: r.Fixable === 'true',
+        fixedIn: r['CVE Fixed In'] || '',
+        vexSev: r.VEX_SEVERITY || '',
+        justification: r.VEX_JUSTIFICATION || '',
+        deployments: new Set(),
+        namespaces: new Set(),
+        images: new Set(),
+      };
+    }
+    cveMap[key].findings++;
+    if (r.Deployment) cveMap[key].deployments.add(r.Deployment);
+    if (r.Namespace) cveMap[key].namespaces.add(r.Namespace);
+    if (r.Image) cveMap[key].images.add(r.Image);
+  });
+  const entries = Object.values(cveMap).sort((a, b) => {
+    const order = { 'Positive': 0, 'Not Assessed': 1, 'No VEX Data': 2, 'False Positive': 3 };
+    return (order[a.status] ?? 4) - (order[b.status] ?? 4) || b.findings - a.findings;
+  });
+  if (!entries.length) return '<div style="padding:.5rem;font-size:.72rem;color:var(--muted)">No CVEs</div>';
+
+  let idx = 0;
+  return `<div style="padding:.3rem .5rem;max-height:50vh;overflow-y:auto" class="sev-detail-wrap">
+    <table style="font-size:.72rem"><thead><tr>
+      <th style="width:20px"></th><th>Triage</th><th>CVE</th><th>Component</th><th>Source</th><th>OCP Components</th><th>Fix</th><th>Findings</th>
+    </tr></thead><tbody>
+    ${entries.map(e => {
+      const id = `sevd-${sev}-${idx++}`;
+      const deploys = [...e.deployments].sort();
+      const imgs = [...e.images];
+      const shortImgs = imgs.map(i => { const s = imgSha(i); return s ? s.slice(0,19) : ''; }).filter(Boolean);
+      return `<tr style="cursor:pointer" onclick="document.getElementById('${id}').hidden=!document.getElementById('${id}').hidden">
+        <td style="color:var(--muted);font-size:.6rem">▸</td>
+        <td style="white-space:nowrap">${triageBadge(e.status)}</td>
+        <td><code>${esc(e.cve)}</code></td>
+        <td><code style="color:var(--muted)">${esc(e.component)}</code></td>
+        <td style="color:var(--accent);font-size:.68rem">${esc(e.source)}</td>
+        <td style="font-size:.68rem;color:var(--muted);max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(deploys.join(', '))}">${esc(deploys.slice(0,3).join(', '))}${deploys.length > 3 ? ` +${deploys.length-3}` : ''}</td>
+        <td>${e.fixable ? `<span class="badge bg-green">Yes</span>` : `<span class="badge bg-gray">No</span>`}</td>
+        <td style="color:var(--muted)">${e.findings}</td>
+      </tr>
+      <tr id="${id}" hidden><td></td><td colspan="7" style="padding:.4rem .6rem;background:var(--bg);border-radius:4px">
+        <div style="display:flex;flex-wrap:wrap;gap:1.5rem;font-size:.7rem;line-height:1.6">
+          <div style="min-width:200px">
+            <div style="color:var(--muted);font-weight:600;margin-bottom:.2rem">OCP Components (${deploys.length})</div>
+            ${deploys.map(d => `<div>${esc(d)}</div>`).join('')}
+          </div>
+          <div style="min-width:200px;flex:1">
+            <div style="color:var(--muted);font-weight:600;margin-bottom:.2rem">Images (${imgs.length})</div>
+            ${imgs.slice(0,5).map(i => `<div><code style="font-size:.62rem;color:var(--muted)">${esc(imgBase(i))}</code> <code style="font-size:.58rem;color:#6e7681">${esc(imgSha(i).slice(0,19))}</code></div>`).join('')}
+            ${imgs.length > 5 ? `<div style="color:var(--muted)">+${imgs.length-5} more</div>` : ''}
+          </div>
+          ${e.fixedIn ? `<div><div style="color:var(--muted);font-weight:600;margin-bottom:.2rem">Fixed In</div><code>${esc(e.fixedIn)}</code></div>` : ''}
+        </div>
+        ${e.justification ? `<div style="margin-top:.5rem;font-size:.68rem"><div style="color:var(--muted);font-weight:600;margin-bottom:.2rem">VEX Justification</div><span style="color:var(--muted);line-height:1.5">${esc(e.justification)}</span></div>` : ''}
+      </td></tr>`;
+    }).join('')}
+    </tbody></table>
+  </div>`;
+}
+
+function renderInsights() {
+  if (!allRows.length) return;
+
+  const ver = $('version-select').value;
+  const totalFinds = allRows.length;
+  const posFinds   = allRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'Positive');
+  const fpFinds    = allRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'False Positive');
+  const naFinds    = allRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'Not Assessed');
+  const noVexFinds = allRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'No VEX Data');
+  const totalCves  = new Set(allRows.map(r => r.CVE)).size;
+  const posCves    = new Set(posFinds.map(r => r.CVE)).size;
+  const fpCves     = new Set(fpFinds.map(r => r.CVE)).size;
+  const noVexCves  = new Set(noVexFinds.map(r => r.CVE)).size;
+  const fixable    = new Set(posFinds.filter(r => r.Fixable === 'true').map(r => r.CVE)).size;
+  const fpPct      = totalCves ? Math.round(fpCves / totalCves * 100) : 0;
+
+  const sevOrder  = ['Critical', 'Important', 'Moderate', 'Low', 'Unknown'];
+  const sevColors = { Critical: 'var(--red)', Important: 'var(--orange)', Moderate: 'var(--yellow)', Low: 'var(--muted)', Unknown: '#6e7681' };
+
+  // ── Severity Mismatches ──
+  const mismatches = [];
+  const mmSeen = new Set();
+  allRows.forEach(r => {
+    if (!r.VEX_SEVERITY || !r.Severity) return;
+    if ((r.VEX_SEVERITY || '').toLowerCase() === (r.Severity || '').toLowerCase()) return;
+    const key = r.CVE + '|' + r.Component;
+    if (mmSeen.has(key)) return;
+    mmSeen.add(key);
+    mismatches.push({
+      cve: r.CVE, component: r.Component,
+      rhacsSev: r.Severity, vexSev: r.VEX_SEVERITY,
+      status: triageKey(r.TRIAGE_STATUS),
+      findings: allRows.filter(x => x.CVE === r.CVE && x.Component === r.Component).length,
+    });
+  });
+  mismatches.sort((a, b) => {
+    const sa = sevOrder.indexOf((a.rhacsSev||'').toUpperCase());
+    const sb = sevOrder.indexOf((b.rhacsSev||'').toUpperCase());
+    return sa - sb || b.findings - a.findings;
+  });
+
+  // ── Report vs Triage: severity before/after (using VEX severity) ──
+  const reportSev = {};
+  const triagedSev = {};
+  const reportSeen = {};
+  const triagedSeen = {};
+  allRows.forEach(r => {
+    const s = effectiveSev(r);
+    if (!reportSeen[s]) reportSeen[s] = new Set();
+    if (!reportSeen[s].has(r.CVE)) { reportSeen[s].add(r.CVE); reportSev[s] = (reportSev[s] || 0) + 1; }
+  });
+  posFinds.forEach(r => {
+    const s = effectiveSev(r);
+    if (!triagedSeen[s]) triagedSeen[s] = new Set();
+    if (!triagedSeen[s].has(r.CVE)) { triagedSeen[s].add(r.CVE); triagedSev[s] = (triagedSev[s] || 0) + 1; }
+  });
+
+  // ── FP breakdown: what got eliminated ──
+  const fpByComp = {};
+  fpFinds.forEach(r => {
+    const c = r.Component || 'unknown';
+    if (!fpByComp[c]) fpByComp[c] = new Set();
+    fpByComp[c].add(r.CVE);
+  });
+  const fpCompEntries = Object.entries(fpByComp)
+    .map(([comp, cves]) => ({ comp, cves: cves.size }))
+    .sort((a, b) => b.cves - a.cves).slice(0, 15);
+  const maxFpComp = Math.max(...fpCompEntries.map(e => e.cves), 1);
+
+  // ── Triage by namespace ──
+  const nsCounts = {};
+  allRows.forEach(r => {
+    const ns = r.Namespace || 'unknown';
+    if (!nsCounts[ns]) nsCounts[ns] = { pos: new Set(), fp: new Set(), noVex: new Set(), total: new Set() };
+    nsCounts[ns].total.add(r.CVE);
+    const tk = triageKey(r.TRIAGE_STATUS);
+    if (tk === 'Positive') nsCounts[ns].pos.add(r.CVE);
+    else if (tk === 'False Positive') nsCounts[ns].fp.add(r.CVE);
+    else if (tk === 'No VEX Data') nsCounts[ns].noVex.add(r.CVE);
+  });
+  const nsEntries = Object.entries(nsCounts)
+    .map(([ns, c]) => ({ ns, pos: c.pos.size, fp: c.fp.size, noVex: c.noVex.size, total: c.total.size }))
+    .sort((a, b) => b.pos - a.pos);
+  const maxNs = Math.max(...nsEntries.map(e => e.total), 1);
+
+  // ── Top positive CVEs (with full context) ──
+  const cveCounts = {};
+  posFinds.forEach(r => {
+    if (!cveCounts[r.CVE]) {
+      cveCounts[r.CVE] = {
+        sev: effectiveSev(r), findings: 0, fixable: r.Fixable === 'true',
+        fixedIn: r['CVE Fixed In'] || '', justification: r.VEX_JUSTIFICATION || '',
+        ns: new Set(), deploys: new Set(), components: new Set(), sources: new Set(),
+      };
+    }
+    const d = cveCounts[r.CVE];
+    d.findings++;
+    if (r.Namespace) d.ns.add(r.Namespace);
+    if (r.Deployment) d.deploys.add(r.Deployment);
+    if (r.Component) d.components.add(r.Component);
+    d.sources.add(classifySource(r));
+    if (!d.justification && r.VEX_JUSTIFICATION) d.justification = r.VEX_JUSTIFICATION;
+  });
+  const topCves = Object.entries(cveCounts)
+    .map(([cve, d]) => ({ cve, ...d, nsCount: d.ns.size }))
+    .sort((a, b) => {
+      const so = sevOrder.indexOf(a.sev) - sevOrder.indexOf(b.sev);
+      return so || b.findings - a.findings;
+    }).slice(0, 30);
+  const maxCve = Math.max(...topCves.map(c => c.findings), 1);
+
+  // ── Most affected components (positive) ──
+  const compCounts = {};
+  posFinds.forEach(r => {
+    const c = r.Component || 'unknown';
+    if (!compCounts[c]) compCounts[c] = new Set();
+    compCounts[c].add(r.CVE);
+  });
+  const compEntries = Object.entries(compCounts)
+    .map(([comp, cves]) => ({ comp, cves: cves.size }))
+    .sort((a, b) => b.cves - a.cves).slice(0, 20);
+  const maxComp = Math.max(...compEntries.map(e => e.cves), 1);
+
+  // ── Operator inventory ──
+  let opInventoryHtml = '';
+  if (detectedOperators.length) {
+    const opRows = detectedOperators.map(op => {
+      const opFinds = allRows.filter(r => {
+        const repo = (r.Image || '').split('@')[0].toLowerCase();
+        return repo.includes(op.operator.toLowerCase().replace(/-operator$/, ''));
+      });
+      const opPos = opFinds.filter(r => triageKey(r.TRIAGE_STATUS) === 'Positive');
+      const opFP  = opFinds.filter(r => triageKey(r.TRIAGE_STATUS) === 'False Positive');
+      return { ...op, triagedPos: new Set(opPos.map(r => r.CVE)).size, triagedFP: new Set(opFP.map(r => r.CVE)).size, triagedFinds: opFinds.length };
+    });
+
+    opInventoryHtml = `
+      <div class="insight-panel" style="grid-column: 1 / -1">
+        <h3>Operator Inventory (Triaged)</h3>
+        <div class="table-wrap">
+          <table><thead><tr>
+            <th>Operator</th><th>Channel</th><th>Version</th>
+            <th style="color:var(--red)">Positive CVEs</th>
+            <th style="color:var(--green)">False Positive CVEs</th>
+            <th>Findings</th>
+          </tr></thead><tbody>
+          <tr>
+            <td style="font-weight:600;color:var(--accent)">OCP Platform</td>
+            <td style="color:var(--muted)">&mdash;</td>
+            <td><code style="font-size:.75rem">${esc(ver)}</code></td>
+            <td style="color:var(--red);font-weight:600">${posCves}</td>
+            <td style="color:var(--green)">${fpCves}</td>
+            <td style="color:var(--muted)">${totalFinds.toLocaleString()}</td>
+          </tr>
+          ${opRows.map(op => `<tr>
+            <td style="font-weight:600;color:var(--accent)">${esc(op.operator)}</td>
+            <td style="font-size:.75rem;color:var(--muted)">${esc(op.channel)}</td>
+            <td><code style="font-size:.75rem">${esc(op.bundle)}</code></td>
+            <td style="color:var(--red);font-weight:600">${op.triagedPos}</td>
+            <td style="color:var(--green)">${op.triagedFP}</td>
+            <td style="color:var(--muted)">${op.triagedFinds.toLocaleString()}</td>
+          </tr>`).join('')}
+          </tbody></table>
+        </div>
+      </div>`;
+  }
+
+  // ── Cards ──
+  $('insight-cards').innerHTML = `
+    <div class="card"><div class="card-label">Triaged Against</div><div class="card-value">${esc(ver)}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${detectedOperators.length} operators</div></div>
+    <div class="card"><div class="card-label">Report CVEs</div><div class="card-value blue">${totalCves}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${totalFinds.toLocaleString()} findings</div></div>
+    <div class="card"><div class="card-label">After Triage</div><div class="card-value red">${posCves}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${posFinds.length} positive findings</div></div>
+    <div class="card"><div class="card-label">Noise Removed</div><div class="card-value green">${fpPct}%</div><div style="font-size:.65rem;color:var(--green);margin-top:.2rem">${fpCves} false positive CVEs</div></div>
+    <div class="card"><div class="card-label">Severity Mismatches</div><div class="card-value" style="color:var(--yellow)">${mismatches.length}</div><div style="font-size:.65rem;color:var(--yellow);margin-top:.2rem">RHACS ≠ VEX severity</div></div>
+    <div class="card"><div class="card-label">Fixable (Positive)</div><div class="card-value" style="color:var(--green)">${fixable}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">of ${posCves} positive CVEs</div></div>
+  `;
+
+  // ── Grid ──
+  $('insight-grid').innerHTML = `
+    ${opInventoryHtml}
+
+    <div class="insight-panel" style="grid-column: 1 / -1">
+      <h3>Report vs Triage: Severity Breakdown (VEX Severity)</h3>
+      <p style="font-size:.68rem;color:var(--muted);margin-bottom:.6rem">Unique CVEs per VEX severity — click a row to drill down to exact CVEs, components, and justifications</p>
+      <div class="table-wrap">
+        <table><thead><tr>
+          <th>VEX Severity</th><th>All CVEs</th><th>Positive</th><th>Eliminated</th><th>Reduction</th>
+        </tr></thead><tbody>
+        ${sevOrder.filter(s => reportSev[s]).map(s => {
+          const before = reportSev[s] || 0;
+          const after = triagedSev[s] || 0;
+          const elim = before - after;
+          const pct = before ? Math.round(elim / before * 100) : 0;
+          return `<tr class="sev-toggle" style="cursor:pointer" data-sev="${s}">
+            <td>${severityBadge(s)}</td>
+            <td style="font-weight:600">${before}</td>
+            <td style="color:var(--red);font-weight:600">${after}</td>
+            <td style="color:var(--green)">${elim > 0 ? '-' + elim : '0'}</td>
+            <td style="color:var(--green)">${pct}%</td>
+          </tr>
+          <tr class="sev-detail" data-sev-detail="${s}" hidden><td colspan="5" style="padding:0">
+            ${buildSevDetail(s)}
+          </td></tr>`;
+        }).join('')}
+        <tr style="border-top:2px solid var(--border)">
+          <td style="font-weight:700">Total</td>
+          <td style="font-weight:700">${totalCves}</td>
+          <td style="color:var(--red);font-weight:700">${posCves}</td>
+          <td style="color:var(--green);font-weight:700">-${totalCves - posCves}</td>
+          <td style="color:var(--green);font-weight:700">${fpPct}%</td>
+        </tr>
+        </tbody></table>
+      </div>
+    </div>
+
+    ${mismatches.length ? `
+    <div class="insight-panel" style="grid-column: 1 / -1">
+      <h3>Severity Mismatches (${mismatches.length})</h3>
+      <p style="font-size:.68rem;color:var(--muted);margin-bottom:.6rem">RHACS scanner severity differs from Red Hat VEX. VEX reflects Red Hat's official analysis.</p>
+      <div class="table-wrap">
+        <table><thead><tr>
+          <th>CVE</th><th>Component</th><th>RHACS</th><th></th><th>VEX</th><th>Triage</th><th>Findings</th>
+        </tr></thead><tbody>
+        ${mismatches.map(m => `<tr>
+          <td><code style="font-size:.72rem">${esc(m.cve)}</code></td>
+          <td><code style="font-size:.68rem;color:var(--muted)">${esc(m.component)}</code></td>
+          <td>${severityBadge(m.rhacsSev)}</td>
+          <td style="color:var(--yellow)">&rarr;</td>
+          <td>${severityBadge(m.vexSev)}</td>
+          <td>${triageBadge(m.status)}</td>
+          <td style="color:var(--muted)">${m.findings}</td>
+        </tr>`).join('')}
+        </tbody></table>
+      </div>
+    </div>` : ''}
+
+    <div class="insight-panel" style="grid-column: 1 / -1">
+      <h3>Top Positive CVEs &mdash; Action Required (${topCves.length})</h3>
+      <div class="table-wrap">
+        <table><thead><tr>
+          <th style="width:20px"></th><th>Severity</th><th>CVE</th><th>Component</th><th>Source</th><th>Fix</th><th>Namespaces</th><th>Findings</th>
+        </tr></thead><tbody>
+        ${topCves.map((c, ci) => {
+          const id = `topcve-${ci}`;
+          const comps = [...c.components];
+          const deps = [...c.deploys].sort();
+          const srcs = [...c.sources];
+          return `<tr style="cursor:pointer" onclick="document.getElementById('${id}').hidden=!document.getElementById('${id}').hidden">
+            <td style="color:var(--muted);font-size:.6rem">▸</td>
+            <td>${severityBadge(c.sev)}</td>
+            <td><code style="font-size:.72rem">${esc(c.cve)}</code></td>
+            <td><code style="font-size:.68rem;color:var(--muted)">${esc(comps[0] || '')}${comps.length > 1 ? ` +${comps.length-1}` : ''}</code></td>
+            <td style="font-size:.68rem;color:var(--accent)">${esc(srcs[0] || '')}${srcs.length > 1 ? ` +${srcs.length-1}` : ''}</td>
+            <td>${c.fixable ? '<span class="badge bg-green">Yes</span>' : '<span class="badge bg-gray">No</span>'}</td>
+            <td style="color:var(--muted)">${c.nsCount}</td>
+            <td style="font-weight:600">${c.findings}</td>
+          </tr>
+          <tr id="${id}" hidden><td></td><td colspan="7" style="padding:.5rem .6rem;background:var(--bg);border-radius:4px">
+            <div style="display:flex;flex-wrap:wrap;gap:1.5rem;font-size:.7rem;line-height:1.6">
+              <div style="min-width:180px">
+                <div style="color:var(--muted);font-weight:600;margin-bottom:.2rem">Components (${comps.length})</div>
+                ${comps.map(cp => `<div><code>${esc(cp)}</code></div>`).join('')}
+              </div>
+              <div style="min-width:200px">
+                <div style="color:var(--muted);font-weight:600;margin-bottom:.2rem">OCP Deployments (${deps.length})</div>
+                ${deps.slice(0, 10).map(d => `<div>${esc(d)}</div>`).join('')}
+                ${deps.length > 10 ? `<div style="color:var(--muted)">+${deps.length - 10} more</div>` : ''}
+              </div>
+              <div style="min-width:120px">
+                <div style="color:var(--muted);font-weight:600;margin-bottom:.2rem">Source</div>
+                ${srcs.map(s => `<div style="color:var(--accent)">${esc(s)}</div>`).join('')}
+              </div>
+              ${c.fixedIn ? `<div>
+                <div style="color:var(--muted);font-weight:600;margin-bottom:.2rem">Fixed In</div>
+                <code>${esc(c.fixedIn)}</code>
+              </div>` : ''}
+            </div>
+            ${c.justification ? `<div style="margin-top:.5rem;font-size:.68rem">
+              <div style="color:var(--muted);font-weight:600;margin-bottom:.2rem">VEX Justification</div>
+              <span style="color:var(--muted);line-height:1.5">${esc(c.justification)}</span>
+            </div>` : ''}
+          </td></tr>`;
+        }).join('')}
+        </tbody></table>
+      </div>
+    </div>
+
+    <div class="insight-panel">
+      <h3>False Positives by Component</h3>
+      <p style="font-size:.68rem;color:var(--muted);margin-bottom:.5rem">Components with most noise eliminated</p>
+      <div class="table-wrap">
+        <table><thead><tr><th>Component</th><th style="color:var(--green)">FP CVEs</th></tr></thead><tbody>
+        ${fpCompEntries.map(e => `<tr>
+          <td><code style="font-size:.72rem">${esc(e.comp)}</code></td>
+          <td style="color:var(--green);font-weight:600">${e.cves}</td>
+        </tr>`).join('')}
+        </tbody></table>
+      </div>
+    </div>
+
+    <div class="insight-panel">
+      <h3>Triage by Namespace</h3>
+      <div class="table-wrap">
+        <table><thead><tr>
+          <th>Namespace</th>
+          <th style="color:var(--red)">Positive</th>
+          <th style="color:var(--green)">False Positive</th>
+          <th style="color:#6e7681">No VEX</th>
+          <th>Total</th>
+        </tr></thead><tbody>
+        ${nsEntries.map(e => `<tr>
+          <td style="font-size:.72rem">${esc(e.ns)}</td>
+          <td style="color:var(--red);font-weight:600">${e.pos}</td>
+          <td style="color:var(--green)">${e.fp}</td>
+          <td style="color:#6e7681">${e.noVex}</td>
+          <td style="color:var(--muted)">${e.total}</td>
+        </tr>`).join('')}
+        </tbody></table>
+      </div>
+    </div>
+
+    <div class="insight-panel">
+      <h3>Most Affected Components (Positive)</h3>
+      <div class="table-wrap">
+        <table><thead><tr><th>Component</th><th style="color:var(--red)">Positive CVEs</th></tr></thead><tbody>
+        ${compEntries.map(e => `<tr>
+          <td><code style="font-size:.72rem">${esc(e.comp)}</code></td>
+          <td style="color:var(--red);font-weight:600">${e.cves}</td>
+        </tr>`).join('')}
+        </tbody></table>
+      </div>
+    </div>
+  `;
+
+  // Wire severity drill-down toggles
+  document.querySelectorAll('.sev-toggle').forEach(tr => {
+    tr.addEventListener('click', () => {
+      const sev = tr.dataset.sev;
+      const detail = document.querySelector(`[data-sev-detail="${sev}"]`);
+      if (detail) {
+        detail.hidden = !detail.hidden;
+        tr.style.background = detail.hidden ? '' : 'rgba(88,166,255,.06)';
+      }
+    });
+  });
+}
+
+// ── Export ──
+function exportCols(fpOnly) {
+  const rows = fpOnly ? filteredRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'False Positive') : filteredRows;
+  const cols = [
+    ['Triage Status', r => triageKey(r.TRIAGE_STATUS)],
+    ['CVE', r => r.CVE],
+    ['Component', r => r.Component],
+    ['Severity', r => r.Severity],
+    ['VEX Severity', r => r.VEX_SEVERITY || ''],
+    ['CVSS', r => r.CVSS],
+    ['EPSS', r => r['EPSS Probability Percentage'] || ''],
+    ['Fixable', r => r.Fixable],
+    ['Fixed In', r => r['CVE Fixed In'] || ''],
+    ['Cluster', r => r.Cluster],
+    ['Namespace', r => r.Namespace],
+    ['Deployment', r => r.Deployment],
+    ['Image', r => r.Image],
+    ['Discovered At', r => r['Discovered At'] || ''],
+    ['Reference', r => r.Reference || ''],
+    ['Advisory', r => r['Advisory Name'] || ''],
+    ['Advisory Link', r => r['Advisory Link'] || ''],
+    ['VEX Justification', r => r.VEX_JUSTIFICATION || ''],
+  ];
+  const ver = $('version-select').value;
+  const suffix = fpOnly ? '-false-positives' : '-triaged';
+  downloadCSV(rows, cols, `rhacs-triage-ocp${ver}${suffix}.csv`);
+}
+
+$('export-btn').addEventListener('click', () => exportCols(false));
+$('export-fp-btn').addEventListener('click', () => exportCols(true));
+
+init();
+</script>
+</body>
+</html>
