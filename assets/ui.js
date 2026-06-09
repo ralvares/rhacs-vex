@@ -2,6 +2,7 @@
 
 export function esc(s) {
   if (s == null) return '';
+  if (typeof s === 'object') s = s.label || s.value || '';
   const d = document.createElement('div');
   d.textContent = String(s);
   return d.innerHTML;
@@ -66,6 +67,7 @@ export function downloadCSV(rows, columns, filename) {
 }
 
 export function createDropdown(id, label, options, onChanged) {
+  const items = options.map(o => typeof o === 'object' ? o : { value: o, label: o });
   const html = `
     <div class="ms-wrap" data-filter="${id}">
       <button class="ms-btn" type="button">
@@ -76,10 +78,10 @@ export function createDropdown(id, label, options, onChanged) {
       <div class="ms-panel">
         <input class="ms-search" type="text" placeholder="Filter…">
         <div class="ms-list">
-          ${options.map(o => `
+          ${items.map(o => `
             <label class="ms-item">
-              <input type="checkbox" value="${esc(o)}">
-              <span>${esc(o)}</span>
+              <input type="checkbox" value="${esc(o.value)}">
+              <span>${esc(o.label)}</span>
             </label>
           `).join('')}
         </div>
@@ -94,7 +96,7 @@ export function createDropdown(id, label, options, onChanged) {
   const panel = wrap.querySelector('.ms-panel');
   const badge = wrap.querySelector('.ms-badge');
   const search = wrap.querySelector('.ms-search');
-  const items  = wrap.querySelectorAll('.ms-item');
+  const itemEls = wrap.querySelectorAll('.ms-item');
 
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -105,7 +107,7 @@ export function createDropdown(id, label, options, onChanged) {
 
   search.addEventListener('input', () => {
     const q = search.value.toLowerCase();
-    items.forEach(item => {
+    itemEls.forEach(item => {
       const text = item.querySelector('span').textContent.toLowerCase();
       item.style.display = text.includes(q) ? '' : 'none';
     });
@@ -123,7 +125,17 @@ export function createDropdown(id, label, options, onChanged) {
     if (!wrap.contains(e.target)) panel.classList.remove('open');
   });
 
-  return wrap;
+  const result = {
+    el: wrap,
+    updateVisible(validValues) {
+      itemEls.forEach(item => {
+        const cb = item.querySelector('input[type=checkbox]');
+        if (cb.checked) return;
+        item.style.display = validValues.has(cb.value) ? '' : 'none';
+      });
+    }
+  };
+  return result;
 }
 
 export function renderExpandRow(r, i, resolvedLabel) {

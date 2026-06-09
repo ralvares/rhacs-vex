@@ -70,12 +70,25 @@ const setStatus = (msg, state) => {
   $('status-text').textContent = msg;
   $('dot').className = 'dot' + (state ? ' ' + state : '');
 };
+const imgBase = r => (r.IMAGE || '').replace(/@sha256:[0-9a-f]+$/, '');
 
-function cleanComponent(name) {
+function cleanComponent(name, r) {
   if (!name) return '';
-  if (!/^[A-Z_]+$/.test(name)) return name;
-  let s = name.replace(/^IMAGE_/, '').replace(/_IMAGE$/, '');
-  return s.toLowerCase().replace(/_/g, '-');
+  if (/^[a-z0-9]([a-z0-9-]*[a-z0-9])?$/.test(name)) return name;
+  if (name.length > 60 || /-[0-9a-f]{10,}-annotation$/.test(name)) {
+    const img = r && (r.IMAGE || '');
+    if (img) { const p = img.split('/').pop().split('@')[0]; if (p) return p; }
+    return name.split('-').slice(0, 3).join('-');
+  }
+  if (/^[A-Z0-9_]+$/.test(name) && name.includes('_')) {
+    return name.replace(/^IMAGE_/, '').replace(/_IMAGE$/, '').toLowerCase().replace(/_/g, '-');
+  }
+  if (/^[a-z][a-z0-9_]*$/.test(name) && name.includes('_')) {
+    const img = r && (r.IMAGE || '');
+    if (img) { const p = img.split('/').pop().split('@')[0]; if (p) return p; }
+    return name.replace(/_/g, '-');
+  }
+  return name;
 }
 
 function compareVersions(a, b) {
@@ -444,37 +457,20 @@ async function renderVersion(scope) {
       CASE SEVERITY WHEN 'Critical' THEN 0 WHEN 'Important' THEN 1 WHEN 'Moderate' THEN 2 ELSE 3 END,
       COMPONENT`);
 
-    const posRows  = rows.filter(r => statusKey(r.AUDIT_RESULT) === 'Positive');
-    const posCount = posRows.length;
-    const fpCount  = rows.filter(r => statusKey(r.AUDIT_RESULT) === 'False Positive').length;
-    const naCount  = rows.filter(r => statusKey(r.AUDIT_RESULT) === 'Not Assessed').length;
-    const uniquePosCves = new Set(posRows.map(r => r.CVE)).size;
-
-    // Severity counts — all unique CVEs, with positive breakdown
-    const sevAll = {}, sevPos = {};
-    const seenAll = new Set(), seenPos = new Set();
-    rows.forEach(r => {
-      const s = r.SEVERITY || 'Unknown';
-      if (!seenAll.has(r.CVE)) { seenAll.add(r.CVE); sevAll[s] = (sevAll[s] || 0) + 1; }
-    });
-    posRows.forEach(r => {
-      const s = r.SEVERITY || 'Unknown';
-      if (!seenPos.has(r.CVE)) { seenPos.add(r.CVE); sevPos[s] = (sevPos[s] || 0) + 1; }
-    });
-
     $('content').innerHTML = `
       <div class="section-header">
         <h2>${esc(label)}</h2>
-        <span class="sub">${rows.length} findings across ${new Set(rows.map(r=>r.OCP_COMPONENT || r.COMPONENT)).size} components</span>
+        <span class="sub" id="v-header-sub">${rows.length} findings across ${new Set(rows.map(r=>r.OCP_COMPONENT || r.COMPONENT)).size} components</span>
       </div>
       <div class="cards">
-        <div class="card"><div class="card-label">Unique CVEs</div><div class="card-value blue">${seenAll.size}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${rows.length.toLocaleString()} total findings</div></div>
-        <div class="card"><div class="card-label">Positive CVEs</div><div class="card-value red">${uniquePosCves}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${posCount.toLocaleString()} findings</div></div>
-        <div class="card"><div class="card-label">False Positive CVEs</div><div class="card-value green">${new Set(rows.filter(r=>statusKey(r.AUDIT_RESULT)==='False Positive').map(r=>r.CVE)).size}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${fpCount.toLocaleString()} findings</div></div>
-        ${sevPos.Critical ? `<div class="card"><div class="card-label">Critical</div><div class="card-value red">${sevPos.Critical}</div></div>` : ''}
-        ${sevPos.Important ? `<div class="card"><div class="card-label">Important</div><div class="card-value" style="color:var(--orange)">${sevPos.Important}</div></div>` : ''}
-        ${sevPos.Moderate ? `<div class="card"><div class="card-label">Moderate</div><div class="card-value yellow">${sevPos.Moderate}</div></div>` : ''}
-        ${sevPos.Low ? `<div class="card"><div class="card-label">Low</div><div class="card-value" style="color:var(--muted)">${sevPos.Low}</div></div>` : ''}
+        <div class="card"><div class="card-label">Unique CVEs</div><div class="card-value blue" id="v-card-cves">0</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem" id="v-card-findings">0 total findings</div></div>
+        <div class="card"><div class="card-label">Positive CVEs</div><div class="card-value red" id="v-card-positive">0</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem" id="v-card-pos-findings">0 findings</div></div>
+        <div class="card"><div class="card-label">False Positive CVEs</div><div class="card-value green" id="v-card-fp">0</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem" id="v-card-fp-findings">0 findings</div></div>
+        <div class="card"><div class="card-label">Images</div><div class="card-value" id="v-card-images">0</div></div>
+        <div class="card" id="v-card-crit-wrap"><div class="card-label">Critical</div><div class="card-value red" id="v-card-critical">0</div></div>
+        <div class="card"><div class="card-label">Important</div><div class="card-value" style="color:var(--orange)" id="v-card-important">0</div></div>
+        <div class="card"><div class="card-label">Moderate</div><div class="card-value yellow" id="v-card-moderate">0</div></div>
+        <div class="card"><div class="card-label">Low</div><div class="card-value" style="color:var(--muted)" id="v-card-low">0</div></div>
       </div>
       <div class="filter-bar" id="filter-bar" style="display:flex;align-items:center;flex-wrap:wrap;gap:.35rem">
         <label>FILTER BY:</label>
@@ -489,24 +485,33 @@ async function renderVersion(scope) {
 
     const filterState = {};
     const allCves       = [...new Set(rows.map(r => (r.CVE || '').trim()).filter(Boolean))].sort();
-    const allComponents = [...new Set(rows.map(r => r.OCP_COMPONENT || '').filter(Boolean))].sort();
+    const compMap = {};
+    rows.forEach(r => {
+      const raw = r.OCP_COMPONENT || '';
+      if (raw && !compMap[raw]) compMap[raw] = cleanComponent(raw, r);
+    });
+    const allComponents = Object.entries(compMap)
+      .map(([value, label]) => ({ value, label: label || value }))
+      .sort((a, b) => a.label.localeCompare(b.label));
     const allPackages   = [...new Set(rows.map(r => r.COMPONENT || '').filter(Boolean))].sort();
     const allVersions   = [...new Set(rows.map(r => r.VERSION || '').filter(Boolean))].sort();
     const allSeverities = [...new Set(rows.map(r => r.SEVERITY || '').filter(Boolean))].sort();
     const allStates     = [...new Set(rows.map(r => statusKey(r.AUDIT_RESULT)).filter(Boolean))].sort();
-    const allImages     = [...new Set(rows.map(r => (r.IMAGE || '').replace(/@sha256:[0-9a-f]+$/, '')).filter(Boolean))].sort();
+    const allImages     = [...new Set(rows.map(imgBase).filter(Boolean))].sort();
     const mismatchCount = rows.filter(r => String(r.SEVERITY_MISMATCH).toLowerCase() === 'true').length;
 
     const filtersEl = $('filters');
     const onFilter = (id, selected) => { filterState[id] = selected; renderTable(); };
-    filtersEl.appendChild(createDropdown('cve', 'CVE', allCves, onFilter));
-    filtersEl.appendChild(createDropdown('component', 'Component', allComponents, onFilter));
-    filtersEl.appendChild(createDropdown('package', 'Package', allPackages, onFilter));
-    filtersEl.appendChild(createDropdown('pkgver', 'Pkg Version', allVersions, onFilter));
-    filtersEl.appendChild(createDropdown('severity', 'Severity', allSeverities, onFilter));
-    filtersEl.appendChild(createDropdown('state', 'State', allStates, onFilter));
-    filtersEl.appendChild(createDropdown('image', 'Image', allImages, onFilter));
-    filtersEl.appendChild(createDropdown('fixable', 'Fix', ['Fix', 'No fix'], onFilter));
+    const dd = {};
+    dd.cve       = createDropdown('cve', 'CVE', allCves, onFilter);
+    dd.component = createDropdown('component', 'Component', allComponents, onFilter);
+    dd.package   = createDropdown('package', 'Package', allPackages, onFilter);
+    dd.pkgver    = createDropdown('pkgver', 'Pkg Version', allVersions, onFilter);
+    dd.severity  = createDropdown('severity', 'Severity', allSeverities, onFilter);
+    dd.state     = createDropdown('state', 'State', allStates, onFilter);
+    dd.image     = createDropdown('image', 'Image', allImages, onFilter);
+    dd.fixable   = createDropdown('fixable', 'Fix', ['Fix', 'No fix'], onFilter);
+    Object.values(dd).forEach(d => filtersEl.appendChild(d.el));
 
     let mismatchOnly = false;
     const mismatchBtn = document.createElement('button');
@@ -537,7 +542,7 @@ async function renderVersion(scope) {
         if (filterState.pkgver?.size    && !filterState.pkgver.has(r.VERSION)) return false;
         if (filterState.severity?.size  && !filterState.severity.has(r.SEVERITY)) return false;
         if (filterState.state?.size     && !filterState.state.has(statusKey(r.AUDIT_RESULT))) return false;
-        if (filterState.image?.size     && !filterState.image.has((r.IMAGE || '').replace(/@sha256:[0-9a-f]+$/, ''))) return false;
+        if (filterState.image?.size     && !filterState.image.has(imgBase(r))) return false;
         if (filterState.fixable?.size) {
           const fixLabel = fixInfo(r, scope).has ? 'Fix' : 'No fix';
           if (!filterState.fixable.has(fixLabel)) return false;
@@ -548,6 +553,34 @@ async function renderVersion(scope) {
 
       $('filter-count').textContent = `${filteredRows.length} of ${rows.length} shown`;
       $('filter-clear').style.display = Object.values(filterState).some(s => s?.size) ? '' : 'none';
+
+      const fPos = filteredRows.filter(r => statusKey(r.AUDIT_RESULT) === 'Positive');
+      const fFP = filteredRows.filter(r => statusKey(r.AUDIT_RESULT) === 'False Positive');
+      const fSeenAll = new Set(), fSeenPos = new Set(), fSevPos = {};
+      filteredRows.forEach(r => fSeenAll.add(r.CVE));
+      fPos.forEach(r => {
+        if (!fSeenPos.has(r.CVE)) { fSeenPos.add(r.CVE); const s = r.SEVERITY || 'Unknown'; fSevPos[s] = (fSevPos[s] || 0) + 1; }
+      });
+      $('v-card-cves').textContent = fSeenAll.size;
+      $('v-card-findings').textContent = `${filteredRows.length.toLocaleString()} total findings`;
+      $('v-card-positive').textContent = fSeenPos.size;
+      $('v-card-pos-findings').textContent = `${fPos.length.toLocaleString()} findings`;
+      $('v-card-fp').textContent = new Set(fFP.map(r => r.CVE)).size;
+      $('v-card-fp-findings').textContent = `${fFP.length.toLocaleString()} findings`;
+      $('v-card-images').textContent = new Set(filteredRows.map(imgBase).filter(Boolean)).size;
+      $('v-card-critical').textContent = fSevPos.Critical || 0;
+      $('v-card-important').textContent = fSevPos.Important || 0;
+      $('v-card-moderate').textContent = fSevPos.Moderate || 0;
+      $('v-card-low').textContent = fSevPos.Low || 0;
+
+      dd.cve.updateVisible(new Set(filteredRows.map(r => (r.CVE || '').trim())));
+      dd.component.updateVisible(new Set(filteredRows.map(r => r.OCP_COMPONENT || '')));
+      dd.package.updateVisible(new Set(filteredRows.map(r => r.COMPONENT || '')));
+      dd.pkgver.updateVisible(new Set(filteredRows.map(r => r.VERSION || '')));
+      dd.severity.updateVisible(new Set(filteredRows.map(r => r.SEVERITY || '')));
+      dd.state.updateVisible(new Set(filteredRows.map(r => statusKey(r.AUDIT_RESULT))));
+      dd.image.updateVisible(new Set(filteredRows.map(imgBase)));
+      dd.fixable.updateVisible(new Set(filteredRows.map(r => fixInfo(r, scope).has ? 'Fix' : 'No fix')));
 
       if (!filteredRows.length) {
         $('table-wrap').innerHTML = `<div class="empty"><h3>No matches</h3><p>Adjust filters above.</p></div>`;
@@ -561,7 +594,7 @@ async function renderVersion(scope) {
         return `
           <tr class="main-row" data-idx="${i}">
             <td class="expand-cell"><button class="expand-btn">▸</button></td>
-            <td class="op"><strong>${esc(cleanComponent(r.OCP_COMPONENT))}</strong></td>
+            <td class="op"><strong>${esc(cleanComponent(r.OCP_COMPONENT, r))}</strong></td>
             <td><code>${esc(r.COMPONENT || '')}</code></td>
             <td><code>${esc(r.VERSION || '')}</code></td>
             <td><code>${esc(r.CVE || '')}</code></td>
@@ -598,12 +631,12 @@ async function renderVersion(scope) {
         ['Image', r => r.IMAGE || ''],
         ['Justification', r => r.JUSTIFICATION],
       ];
-      downloadCSV(filteredRows, cols, `ocp-${ver}-triage.csv`);
+      downloadCSV(filteredRows, cols, `${scope.replace(/\//g, '-')}-triage.csv`);
     });
 
   } catch (e) {
     console.error(e);
-    $('content').innerHTML = `<div class="empty"><h3>Error loading ${esc(ver)}</h3><p>${esc(e.message)}</p></div>`;
+    $('content').innerHTML = `<div class="empty"><h3>Error loading ${esc(label)}</h3><p>${esc(e.message)}</p></div>`;
   }
 }
 
@@ -921,24 +954,27 @@ async function renderCVESearch(initialCve) {
       }
 
       const versions    = [...new Set(rows.map(r => r.OCP_VERSION))].sort();
-      const components  = [...new Set(rows.map(r => r.OCP_COMPONENT || '').filter(Boolean))].sort();
+      const componentSet = new Set();
+      rows.forEach(r => {
+        const isOp = r.SCOPE && r.SCOPE.startsWith('operators/');
+        componentSet.add(isOp ? r.SCOPE.split('/').pop() : (r.OCP_COMPONENT || ''));
+      });
+      const components = [...componentSet].filter(Boolean).sort();
       const packages    = [...new Set(rows.map(r => r.COMPONENT || '').filter(Boolean))].sort();
       const severities  = [...new Set(rows.map(r => r.SEVERITY || '').filter(Boolean))].sort();
       const states      = [...new Set(rows.map(r => statusKey(r.AUDIT_RESULT)).filter(Boolean))].sort();
-      const posCount    = rows.filter(r => !String(r.AUDIT_RESULT).includes('FALSE') && String(r.AUDIT_RESULT).includes('POSITIVE')).length;
-      const fpCount     = rows.filter(r => String(r.AUDIT_RESULT).includes('FALSE')).length;
-      const uniqueImgs  = new Set(rows.map(r => r.OCP_COMPONENT)).size;
 
       const cveFilterState = {};
       let cveFilteredRows = rows;
 
       $('cve-results').innerHTML = `
         <div class="cards">
-          <div class="card"><div class="card-label">Total Findings</div><div class="card-value blue">${rows.length}</div></div>
-          <div class="card"><div class="card-label">Versions</div><div class="card-value">${versions.length}</div></div>
-          <div class="card"><div class="card-label">Components</div><div class="card-value">${uniqueImgs}</div></div>
-          <div class="card"><div class="card-label">Positive</div><div class="card-value red">${posCount}</div></div>
-          <div class="card"><div class="card-label">False Positive</div><div class="card-value green">${fpCount}</div></div>
+          <div class="card"><div class="card-label">Total Findings</div><div class="card-value blue" id="cve-card-findings">0</div></div>
+          <div class="card"><div class="card-label">Versions</div><div class="card-value" id="cve-card-versions">0</div></div>
+          <div class="card"><div class="card-label">Components</div><div class="card-value" id="cve-card-components">0</div></div>
+          <div class="card"><div class="card-label">Images</div><div class="card-value" id="cve-card-images">0</div></div>
+          <div class="card"><div class="card-label">Positive</div><div class="card-value red" id="cve-card-positive">0</div></div>
+          <div class="card"><div class="card-label">False Positive</div><div class="card-value green" id="cve-card-fp">0</div></div>
         </div>
         <div class="filter-bar" style="display:flex;align-items:center;flex-wrap:wrap;gap:.35rem">
           <label>FILTER BY:</label>
@@ -953,12 +989,14 @@ async function renderCVESearch(initialCve) {
 
       const cveFiltersEl = $('cve-filters');
       const onCveFilter = (id, selected) => { cveFilterState[id] = selected; renderCveTable(); };
-      cveFiltersEl.appendChild(createDropdown('version', 'OCP Version', versions, onCveFilter));
-      cveFiltersEl.appendChild(createDropdown('component', 'Component', components, onCveFilter));
-      cveFiltersEl.appendChild(createDropdown('package', 'Package', packages, onCveFilter));
-      cveFiltersEl.appendChild(createDropdown('severity', 'Severity', severities, onCveFilter));
-      cveFiltersEl.appendChild(createDropdown('state', 'State', states, onCveFilter));
-      cveFiltersEl.appendChild(createDropdown('fixable', 'Fix', ['Fix', 'No fix'], onCveFilter));
+      const cdd = {};
+      cdd.version   = createDropdown('version', 'OCP Version', versions, onCveFilter);
+      cdd.component = createDropdown('component', 'Component', components, onCveFilter);
+      cdd.package   = createDropdown('package', 'Package', packages, onCveFilter);
+      cdd.severity  = createDropdown('severity', 'Severity', severities, onCveFilter);
+      cdd.state     = createDropdown('state', 'State', states, onCveFilter);
+      cdd.fixable   = createDropdown('fixable', 'Fix', ['Fix', 'No fix'], onCveFilter);
+      Object.values(cdd).forEach(d => cveFiltersEl.appendChild(d.el));
 
       $('cve-filter-clear').addEventListener('click', () => {
         Object.keys(cveFilterState).forEach(k => cveFilterState[k] = new Set());
@@ -970,8 +1008,17 @@ async function renderCVESearch(initialCve) {
 
       function renderCveTable() {
         cveFilteredRows = rows.filter(r => {
-          if (cveFilterState.version?.size   && !cveFilterState.version.has(r.OCP_VERSION)) return false;
-          if (cveFilterState.component?.size && !cveFilterState.component.has(r.OCP_COMPONENT)) return false;
+          if (cveFilterState.version?.size) {
+            const rv = r.OCP_VERSION || '';
+            const match = cveFilterState.version.has(rv) ||
+              [...cveFilterState.version].some(sv => sv.startsWith(rv + '.') || rv.startsWith(sv + '.'));
+            if (!match) return false;
+          }
+          if (cveFilterState.component?.size) {
+            const isOp = r.SCOPE && r.SCOPE.startsWith('operators/');
+            const compKey = isOp ? r.SCOPE.split('/').pop() : (r.OCP_COMPONENT || '');
+            if (!cveFilterState.component.has(compKey)) return false;
+          }
           if (cveFilterState.package?.size   && !cveFilterState.package.has(r.COMPONENT)) return false;
           if (cveFilterState.severity?.size  && !cveFilterState.severity.has(r.SEVERITY)) return false;
           if (cveFilterState.state?.size     && !cveFilterState.state.has(statusKey(r.AUDIT_RESULT))) return false;
@@ -985,6 +1032,23 @@ async function renderCVESearch(initialCve) {
         $('cve-filter-count').textContent = `${cveFilteredRows.length} of ${rows.length} shown`;
         $('cve-filter-clear').style.display = Object.values(cveFilterState).some(s => s?.size) ? '' : 'none';
 
+        const fPos = cveFilteredRows.filter(r => !String(r.AUDIT_RESULT).includes('FALSE') && String(r.AUDIT_RESULT).includes('POSITIVE')).length;
+        const fFP = cveFilteredRows.filter(r => String(r.AUDIT_RESULT).includes('FALSE')).length;
+        $('cve-card-findings').textContent = cveFilteredRows.length;
+        $('cve-card-versions').textContent = new Set(cveFilteredRows.map(r => r.OCP_VERSION)).size;
+        $('cve-card-components').textContent = new Set(cveFilteredRows.map(r => r.OCP_COMPONENT).filter(Boolean)).size;
+        $('cve-card-images').textContent = new Set(cveFilteredRows.map(imgBase).filter(Boolean)).size;
+        $('cve-card-positive').textContent = fPos;
+        $('cve-card-fp').textContent = fFP;
+
+        const compKeyFn = r => { const isOp = r.SCOPE && r.SCOPE.startsWith('operators/'); return isOp ? r.SCOPE.split('/').pop() : (r.OCP_COMPONENT || ''); };
+        cdd.version.updateVisible(new Set(cveFilteredRows.map(r => r.OCP_VERSION)));
+        cdd.component.updateVisible(new Set(cveFilteredRows.map(compKeyFn)));
+        cdd.package.updateVisible(new Set(cveFilteredRows.map(r => r.COMPONENT || '')));
+        cdd.severity.updateVisible(new Set(cveFilteredRows.map(r => r.SEVERITY || '')));
+        cdd.state.updateVisible(new Set(cveFilteredRows.map(r => statusKey(r.AUDIT_RESULT))));
+        cdd.fixable.updateVisible(new Set(cveFilteredRows.map(r => fixInfo(r, r.SCOPE).has ? 'Fix' : 'No fix')));
+
         if (!cveFilteredRows.length) {
           $('cve-table-wrap').innerHTML = `<div class="empty"><h3>No matches</h3><p>Adjust filters above.</p></div>`;
           return;
@@ -992,25 +1056,27 @@ async function renderCVESearch(initialCve) {
 
         const trs = cveFilteredRows.map((r, i) => {
           const isMis = String(r.SEVERITY_MISMATCH).toLowerCase() === 'true';
+          const fix = fixInfo(r, r.SCOPE);
+          const isOp = r.SCOPE && r.SCOPE.startsWith('operators/');
+          const versionLink = isOp
+            ? `<a href="#${r.SCOPE}" style="color:var(--accent);text-decoration:none">${esc(r.OCP_VERSION)}</a>`
+            : `<a href="#ocp/${r.OCP_VERSION}" style="color:var(--accent);text-decoration:none">${esc(r.OCP_VERSION)}</a>`;
+          const componentCell = isOp
+            ? `<a href="#${r.SCOPE}" style="color:var(--accent);text-decoration:none;font-weight:600">${esc(cleanComponent(r.OCP_COMPONENT, r))}</a><br><span style="font-size:.65rem;color:var(--muted)">${esc(r.SCOPE.replace('operators/','').replace(/\//,' / '))}</span>`
+            : `<strong>${esc(cleanComponent(r.OCP_COMPONENT, r))}</strong><br><span style="font-size:.65rem;color:var(--muted)">OCP ${esc(r.OCP_VERSION || '')}</span>`;
           return `
           <tr class="main-row" data-idx="cve${i}">
             <td class="expand-cell"><button class="expand-btn">▸</button></td>
-            <td>${r.SCOPE && r.SCOPE.startsWith('operators/')
-              ? `<a href="#${r.SCOPE}" style="color:var(--accent);text-decoration:none">${esc(r.OCP_VERSION)}</a>`
-              : `<a href="#ocp/${r.OCP_VERSION}" style="color:var(--accent);text-decoration:none">${esc(r.OCP_VERSION)}</a>`
-            }</td>
-            <td class="op">${r.SCOPE && r.SCOPE.startsWith('operators/')
-              ? `<a href="#${r.SCOPE}" style="color:var(--accent);text-decoration:none;font-weight:600">${esc(cleanComponent(r.OCP_COMPONENT))}</a><br><span style="font-size:.65rem;color:var(--muted)">${esc(r.SCOPE.replace('operators/','').replace(/\//,' / '))}</span>`
-              : `<strong>${esc(cleanComponent(r.OCP_COMPONENT))}</strong><br><span style="font-size:.65rem;color:var(--muted)">OCP ${esc(r.OCP_VERSION || '')}</span>`
-            }</td>
+            <td>${versionLink}</td>
+            <td class="op">${componentCell}</td>
             <td><code>${esc(r.COMPONENT || '')}</code></td>
             <td><code>${esc(r.VERSION || '')}</code></td>
             <td>${severityCompare(r.SEVERITY, r.RHACS_SEVERITY, isMis)}</td>
             <td style="white-space:nowrap">${statusBadge(r.AUDIT_RESULT)}</td>
-            <td style="white-space:nowrap">${(() => { const f = fixInfo(r, r.SCOPE); r._fixLabel = f.has ? f.label : ''; return f.badge; })()}</td>
+            <td style="white-space:nowrap">${fix.badge}</td>
           </tr>
           <tr class="detail-row" id="detail-cve${i}" hidden>
-            <td></td><td colspan="7">${renderExpandRow(r, i, r._fixLabel)}</td>
+            <td></td><td colspan="7">${renderExpandRow(r, i, fix.has ? fix.label : '')}</td>
           </tr>`;
         }).join('');
 
