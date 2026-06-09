@@ -92,6 +92,24 @@
     }
     .new-upload-btn:hover { border-color: var(--accent); }
 
+    /* Loading overlay */
+    .loading-overlay {
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(13,17,23,.88); backdrop-filter: blur(4px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 1rem;
+    }
+    .loading-overlay .spinner-lg {
+      width: 48px; height: 48px; border: 3px solid var(--border);
+      border-top-color: var(--accent); border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-step { font-size: .9rem; color: var(--text); font-weight: 600; text-align: center; }
+    .loading-sub { font-size: .72rem; color: var(--muted); text-align: center; max-width: 400px; }
+    .loading-progress { width: 300px; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .loading-progress-bar { height: 100%; background: var(--accent); border-radius: 3px; transition: width .3s ease; width: 0%; }
+
     /* Insights */
     .insight-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.2rem;
@@ -113,6 +131,13 @@
   </style>
 </head>
 <body class="pf-v5-theme-dark">
+<div id="loading-overlay" class="loading-overlay" style="display:none">
+  <div class="spinner-lg"></div>
+  <div class="loading-step" id="loading-step">Processing…</div>
+  <div class="loading-sub" id="loading-sub"></div>
+  <div class="loading-progress"><div class="loading-progress-bar" id="loading-bar"></div></div>
+</div>
+
 <div class="triage-app">
 
   <div class="triage-header">
@@ -191,6 +216,15 @@ const $ = id => document.getElementById(id);
 const setStatus = (msg, state) => {
   $('status-text').innerHTML = `<span class="dot${state ? ' '+state : ''}"></span> ${esc(msg)}`;
 };
+
+function showLoading(step, sub, pct) {
+  $('loading-overlay').style.display = 'flex';
+  $('loading-step').textContent = step;
+  $('loading-sub').textContent = sub || '';
+  $('loading-bar').style.width = (pct || 0) + '%';
+}
+function hideLoading() { $('loading-overlay').style.display = 'none'; }
+const tick = () => new Promise(r => setTimeout(r, 0));
 
 // DuckDB WASM Arrow rows may have case-variant keys — normalize on load
 function normalizeRow(r) {
@@ -321,7 +355,7 @@ $('new-upload-btn').addEventListener('click', () => {
 
 async function handleFile(file) {
   if (!file.name.endsWith('.csv')) { setStatus('Please upload a .csv file', 'error'); return; }
-  setStatus('Loading CSV…');
+  showLoading('Loading CSV…', file.name, 5);
   try {
     const db = getDB();
     const buf = new Uint8Array(await file.arrayBuffer());
@@ -331,17 +365,33 @@ async function handleFile(file) {
 
     const count = await query(`SELECT COUNT(*) as cnt FROM rhacs`);
     csvLoaded = true;
-    setStatus(`CSV loaded: ${Number(count[0].cnt).toLocaleString()} rows`, 'ready');
+    showLoading('CSV loaded', `${Number(count[0].cnt).toLocaleString()} rows parsed`, 15);
+    await tick();
 
     $('upload-section').style.display = 'none';
     $('main-content').style.display = '';
     $('new-upload-btn').style.display = '';
 
+    showLoading('Detecting OCP version…', 'Matching image hashes against VEX data', 25);
+    await tick();
     await autoDetectVersion();
+
+    showLoading('Detecting operators…', 'Scanning operator parquets for image matches', 45);
+    await tick();
     await Promise.all([renderClusterOverview(), renderOperatorsOverview()]);
+
+    showLoading('Running triage…', `Joining ${Number(count[0].cnt).toLocaleString()} findings against VEX data`, 65);
+    await tick();
     await runTriage();
+
+    showLoading('Building insights…', 'Analyzing severity, mismatches, and components', 90);
+    await tick();
     renderInsights();
+
+    hideLoading();
+    setStatus(`Triage complete`, 'ready');
   } catch (e) {
+    hideLoading();
     console.error(e);
     setStatus('CSV error: ' + e.message, 'error');
   }
