@@ -1122,14 +1122,17 @@ function renderInsights() {
       </div>`;
   }
 
+  const mmFindings = mismatches.reduce((s, m) => s + m.findings, 0);
+  const fixableFinds = posFinds.filter(r => r.Fixable === 'true').length;
+
   // ── Cards ──
   $('insight-cards').innerHTML = `
     <div class="card"><div class="card-label">Triaged Against</div><div class="card-value">${esc(ver)}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${detectedOperators.length} operators</div></div>
-    <div class="card"><div class="card-label">Report CVEs</div><div class="card-value blue">${totalCves}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${totalFinds.toLocaleString()} findings</div></div>
-    <div class="card"><div class="card-label">After Triage</div><div class="card-value red">${posCves}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${posFinds.length} positive findings</div></div>
-    <div class="card"><div class="card-label">Noise Removed</div><div class="card-value green">${fpPct}%</div><div style="font-size:.65rem;color:var(--green);margin-top:.2rem">${fpCves} false positive CVEs</div></div>
-    <div class="card"><div class="card-label">Severity Mismatches</div><div class="card-value" style="color:var(--yellow)">${mismatches.length}</div><div style="font-size:.65rem;color:var(--yellow);margin-top:.2rem">RHACS ≠ VEX severity</div></div>
-    <div class="card"><div class="card-label">Fixable (Positive)</div><div class="card-value" style="color:var(--green)">${fixable}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">of ${posCves} positive CVEs</div></div>
+    <div class="card"><div class="card-label">Report</div><div class="card-value blue">${totalFinds.toLocaleString()}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${totalCves} unique CVEs</div></div>
+    <div class="card"><div class="card-label">After Triage</div><div class="card-value red">${posFinds.length.toLocaleString()}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${posCves} unique CVEs</div></div>
+    <div class="card"><div class="card-label">Noise Removed</div><div class="card-value green">${fpFinds.length.toLocaleString()}</div><div style="font-size:.65rem;color:var(--green);margin-top:.2rem">${fpCves} unique CVEs &middot; ${fpPct}%</div></div>
+    <div class="card"><div class="card-label">Severity Mismatches</div><div class="card-value" style="color:var(--yellow)">${mmFindings.toLocaleString()}</div><div style="font-size:.65rem;color:var(--yellow);margin-top:.2rem">${mismatches.length} unique CVE+component</div></div>
+    <div class="card"><div class="card-label">Fixable (Positive)</div><div class="card-value" style="color:var(--green)">${fixableFinds.toLocaleString()}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${fixable} unique CVEs of ${posCves}</div></div>
   `;
 
   // ── Grid ──
