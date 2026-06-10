@@ -491,7 +491,9 @@ async function detectOperators() {
       }
       const [result] = await query(`
         SELECT COUNT(DISTINCT r.Image) as matched
-        FROM rhacs r INNER JOIN '${safeName}' v ON r.Image = v.IMAGE
+        FROM rhacs r INNER JOIN '${safeName}' v
+          ON SPLIT_PART(r.Image, '@sha256:', 2) = SPLIT_PART(v.IMAGE, '@sha256:', 2)
+        WHERE r.Image LIKE '%@sha256:%' AND v.IMAGE LIKE '%@sha256:%'
       `);
       if (Number(result.matched) > 0) {
         const opKey = scope.operator || scope.label;
@@ -617,57 +619,49 @@ async function renderOperatorsOverview() {
 async function autoDetectVersion() {
   if (!csvLoaded || !cveIndexLoaded) return;
   $('detect-result').textContent = 'Detecting…';
-  setStatus('Auto-detecting OCP version (phase 1: CVE match)…');
 
   try {
-    const candidates = await query(`
-      WITH report_pairs AS (SELECT DISTINCT CVE, Component AS COMPONENT FROM rhacs)
-      SELECT ci.OCP_VERSION, COUNT(DISTINCT ci.CVE || '|' || ci.COMPONENT) AS matched
-      FROM 'cve_index.parquet' ci
-      INNER JOIN report_pairs rp ON ci.CVE = rp.CVE AND ci.COMPONENT = rp.COMPONENT
-      GROUP BY ci.OCP_VERSION
-      ORDER BY matched DESC,
-        CAST(SPLIT_PART(ci.OCP_VERSION,'.',1) AS INT) DESC,
-        CAST(SPLIT_PART(ci.OCP_VERSION,'.',2) AS INT) DESC,
-        CAST(SPLIT_PART(ci.OCP_VERSION,'.',3) AS INT) DESC
-      LIMIT 15
-    `);
-
-    if (!candidates.length) {
-      $('detect-result').textContent = 'No matching version found';
+    // Get all known versions
+    const allVersions = [...$('version-select').options].map(o => o.value).filter(Boolean);
+    if (!allVersions.length) {
+      $('detect-result').textContent = 'No versions available';
       $('detect-result').style.color = 'var(--yellow)';
       return;
     }
 
-    // Phase 2: refine with image hash matching
-    setStatus('Auto-detecting OCP version (phase 2: image hashes)…');
-    let bestVer = candidates[0].OCP_VERSION;
-    let bestImageMatch = -1;
+    // Match by image sha256 digest across ALL versions
+    setStatus('Auto-detecting OCP version (matching image hashes)…');
+    let bestVer = '';
+    let bestImageMatch = 0;
 
-    for (const c of candidates) {
+    for (let i = 0; i < allVersions.length; i++) {
+      const ver = allVersions[i];
+      setStatus(`Matching image hashes… ${i + 1}/${allVersions.length} (${ver})`);
       try {
-        const pName = await registerVersion(c.OCP_VERSION);
+        const pName = await registerVersion(ver);
         const [result] = await query(`
           SELECT COUNT(DISTINCT r.Image) as matched
-          FROM rhacs r INNER JOIN '${pName}' v ON r.Image = v.IMAGE
+          FROM rhacs r INNER JOIN '${pName}' v
+            ON SPLIT_PART(r.Image, '@sha256:', 2) = SPLIT_PART(v.IMAGE, '@sha256:', 2)
+          WHERE r.Image LIKE '%@sha256:%' AND v.IMAGE LIKE '%@sha256:%'
         `);
         const m = Number(result.matched);
-        // Prefer higher image match; on tie, prefer newer version (semver)
-        if (m > bestImageMatch || (m === bestImageMatch && compareVersions(c.OCP_VERSION, bestVer) > 0)) {
+        if (m > bestImageMatch || (m === bestImageMatch && compareVersions(ver, bestVer) > 0)) {
           bestImageMatch = m;
-          bestVer = c.OCP_VERSION;
+          bestVer = ver;
         }
-      } catch (e) { console.warn(`Skipping ${c.OCP_VERSION}:`, e.message); }
+      } catch (e) { console.warn(`Skipping ${ver}:`, e.message); }
     }
 
-    const [imgTotal] = await query(`SELECT COUNT(DISTINCT Image) as cnt FROM rhacs`);
-    detectedVersion = bestVer;
-    $('version-select').value = bestVer;
+    const [imgTotal] = await query(`SELECT COUNT(DISTINCT Image) as cnt FROM rhacs WHERE Image LIKE '%@sha256:%'`);
 
     if (bestImageMatch > 0) {
+      detectedVersion = bestVer;
+      $('version-select').value = bestVer;
       $('detect-result').innerHTML = `Detected: <strong>OCP ${esc(bestVer)}</strong> (${bestImageMatch}/${imgTotal.cnt} images matched by sha256)`;
+      $('detect-result').style.color = 'var(--green)';
     } else {
-      $('detect-result').innerHTML = `Best guess: OCP ${esc(bestVer)} (CVE match only)`;
+      $('detect-result').textContent = 'No version detected — select manually';
       $('detect-result').style.color = 'var(--yellow)';
     }
     setStatus('Version detected', 'ready');
@@ -726,7 +720,9 @@ async function runTriage() {
         v.vex_severity AS VEX_SEVERITY,
         v.vex_justification AS VEX_JUSTIFICATION
       FROM rhacs r
-      LEFT JOIN vex v ON r.CVE = v.CVE AND r.Component = v.COMPONENT AND r.Image = v.IMAGE
+      LEFT JOIN vex v ON r.CVE = v.CVE AND r.Component = v.COMPONENT
+        AND SPLIT_PART(r.Image, '@sha256:', 2) = SPLIT_PART(v.IMAGE, '@sha256:', 2)
+        AND r.Image LIKE '%@sha256:%' AND v.IMAGE LIKE '%@sha256:%'
       ORDER BY
         CASE COALESCE(v.vex_status, 'No VEX Data')
           WHEN 'Positive' THEN 0 WHEN 'Not Assessed' THEN 1
