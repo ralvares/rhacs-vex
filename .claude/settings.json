@@ -23,7 +23,11 @@
       "Bash(duckdb -c \"SELECT COUNT\\(DISTINCT r.Image\\) m FROM read_csv_auto\\('examples/RHACS_Vulnerability_Report_AA-jun09-2026-d1fdaba7_09_June_2026.csv'\\) r INNER JOIN read_parquet\\('data/parquet/ocp/4.21.13.parquet'\\) v ON SPLIT_PART\\(r.Image,'@sha256:',2\\)=SPLIT_PART\\(v.IMAGE,'@sha256:',2\\) WHERE r.Image LIKE '%@sha256:%' AND v.IMAGE LIKE '%@sha256:%'\")",
       "Bash(duckdb -c \"SELECT COUNT\\(DISTINCT r.Image\\) m FROM read_csv_auto\\('examples/RHACS_Vulnerability_Report_AA-jun10-2026-95442ac2_10_June_2026.csv'\\) r INNER JOIN read_parquet\\('data/parquet/ocp/4.21.18.parquet'\\) v ON SPLIT_PART\\(r.Image,'@sha256:',2\\)=SPLIT_PART\\(v.IMAGE,'@sha256:',2\\) WHERE r.Image LIKE '%@sha256:%' AND v.IMAGE LIKE '%@sha256:%'\")",
       "Bash(duckdb -c \"SELECT OCP_VERSION FROM read_parquet\\('data/cve-index.parquet'\\) WHERE OCP_VERSION IN \\('4.21.13','4.21.14','4.21.15','4.21.18'\\) GROUP BY 1 ORDER BY 1\")",
-      "Bash(python3 triage.py --ocp 4.21.19.txt --format csv --output data/reports/ocp-4.21.19.csv --workers 10)"
+      "Bash(python3 triage.py --ocp 4.21.19.txt --format csv --output data/reports/ocp-4.21.19.csv --workers 10)",
+      "Bash(grep -v '.txt$')",
+      "Bash(awk -F. '{print $1\".\"$2}')",
+      "Bash(oc version *)",
+      "Bash(rtk proxy *)"
     ],
     "additionalDirectories": [
       "/Users/ralvares/rhacs-vex/data/reports/ocp-4.21"

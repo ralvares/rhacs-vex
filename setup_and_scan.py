@@ -42,6 +42,9 @@ import tempfile
 # ---------------------------------------------------------------------------
 EMBEDDED_VERSIONS_CSV = """\
 Version,Release Status,Phase
+4.22.1,Stable,Full Support
+4.22.0,Generally Available,Full Support
+4.21.20,Stable,Full Support
 4.21.19,Stable,Full Support
 4.21.18,Stable,Full Support
 4.21.17,Stable,Full Support
@@ -62,6 +65,7 @@ Version,Release Status,Phase
 4.21.2,Stable,Full Support
 4.21.1,Stable,Full Support
 4.21.0,Generally Available,Full Support
+4.20.25,Stable,Full Support (EUS)
 4.20.24,Stable,Full Support (EUS)
 4.20.23,Stable,Full Support (EUS)
 4.20.22,Stable,Full Support (EUS)
