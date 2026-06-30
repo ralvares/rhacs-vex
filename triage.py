@@ -570,7 +570,11 @@ def rhacs_scan_image(session, image_ref: str, force: bool = False,
                 delay *= 2
                 continue
             raise
-        except requests.HTTPError:
+        except requests.HTTPError as exc:
+            if exc.response is not None and exc.response.status_code >= 500 and attempt <= retries:
+                time.sleep(delay)
+                delay *= 2
+                continue
             raise
     return None
 
@@ -626,6 +630,12 @@ def rhacs_get_image(session, image_id: str, force: bool = False, image_ref: str 
             return data
         except (requests.Timeout, requests.ConnectionError) as exc:
             if attempt <= retries:
+                time.sleep(delay)
+                delay *= 2
+                continue
+            raise
+        except requests.HTTPError as exc:
+            if exc.response is not None and exc.response.status_code >= 500 and attempt <= retries:
                 time.sleep(delay)
                 delay *= 2
                 continue
