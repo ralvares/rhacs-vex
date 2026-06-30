@@ -35,7 +35,9 @@
       "Bash(python3 triage.py --ocp 4.21.19.txt --output data/reports/ocp-4.21.19-test.csv)",
       "Bash(python3 triage_operators.py --version 4.21 --operator kubevirt-hyperconverged --workers 5)",
       "Bash(python3 triage_operators.py --version 4.21 --operator advanced-cluster-management,metallb-operator --workers 5)",
-      "Bash(rtk ps *)"
+      "Bash(rtk ps *)",
+      "Bash(rtk pip *)",
+      "Bash(rtk grep *)"
     ],
     "additionalDirectories": [
       "/Users/ralvares/rhacs-vex/data/reports/ocp-4.21"

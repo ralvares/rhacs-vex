@@ -51,8 +51,13 @@ For non-RPM components, version strings are often inconsistent and difficult to 
 
 ### **Contextual Scoping**
 * **The Check:** Instead of comparing version numbers, the script checks for **Product ID (PID) Membership**.
-* **Logic:** It asks: "Has the vendor explicitly listed this specific OpenShift or Operator image (by SHA/Digest) as 'Fixed' or 'Not Affected' in the VEX document?"
-* **Outcome:** Provides 100% accuracy for bundled binaries where traditional version math would be unreliable.
+* **Logic — two tiers:**
+    1. **Image-level (SHA match):** "Has the vendor listed this exact image build (by SHA256 digest) as 'Fixed' or 'Not Affected'?"  If the installed image build matches a `fixed` entry, the engine compares image build timestamps to verify the fix is applied.
+    2. **Generic product-level:** For non-SHA PIDs, the engine checks `product_status`:
+        - `known_not_affected` → **FALSE POSITIVE** (vendor explicitly clears this product)
+        - `fixed` → **POSITIVE** (a fix exists, but the installed version cannot be verified as patched — conservative to avoid silent false negatives)
+        - `known_affected` / `under_investigation` → **POSITIVE**
+* **Outcome:** Image-level SHA matching provides 100% accuracy for bundled binaries.  Generic product-level matching is conservative — it never marks a finding as FALSE POSITIVE unless the vendor explicitly states "not affected."
 
 ---
 
@@ -72,11 +77,20 @@ The final step is a "Sanity Check" to ensure the data provided by the scanner ha
 
 | Verdict | Logic Applied |
 | :--- | :--- |
-| **✅ FALSE POSITIVE** | Vendor states the code is not present/executable, OR the version installed is $\ge$ the fix version for that specific RHEL minor stream. |
-| **❌ POSITIVE** | The version installed is older than the fix version, OR the vendor has explicitly marked the product as "Known Affected." |
+| **✅ FALSE POSITIVE** | Vendor states the code is not present/executable (`known_not_affected`), OR the RPM version installed is ≥ the fix version for that specific RHEL minor stream (with at least one successful version comparison). |
+| **❌ POSITIVE** | The version installed is older than the fix version, OR the vendor has marked the product as `known_affected` or `under_investigation`, OR a fix exists but the installed version cannot be verified (non-RPM `fixed` status). |
 | **⚠️ MISMATCH** | The triage results do not align with the SBOM package list. Manual intervention is required to verify image contents. |
 
 ---
 
-## **7. Conclusion**
+## **7. Reliability**
+
+The engine is designed for safe concurrent operation and conservative defaults:
+
+* **Atomic file I/O:** All cached files (VEX, scans, SBOMs) use atomic write-then-rename to prevent data corruption during parallel scans.
+* **Conservative on ambiguity:** When version comparison fails (parse errors), the engine does NOT default to FALSE POSITIVE — at least one successful comparison is required.  Non-RPM `fixed` entries are treated as POSITIVE unless the exact image build is confirmed.
+* **Corrupt file recovery:** Corrupt VEX JSON files are logged, deleted, and re-downloaded on the next run rather than being silently cached as "missing."
+* **Explicit validation:** `--ocp` and `--namespace` modes fail fast with a clear error if `ROX_ENDPOINT` / `ROX_API_TOKEN` are not set, instead of silently falling through to CSV mode.
+
+## **8. Conclusion**
 By combining **lineage tracking** (SBOM), **minor stream isolation** (RPM math), and **vendor authority** (VEX), this script moves security operations from "Best Effort" guesses to **Provable Integrity**. Every decision made by the script is backed by a specific relationship or version comparison that is 100% auditable.

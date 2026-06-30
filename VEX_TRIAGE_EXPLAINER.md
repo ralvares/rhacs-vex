@@ -459,7 +459,10 @@ The engine uses six progressively broader checks for non-RPM components:
 
 **3. Product-level flags.** The engine checks not-affected flags scoped to the workload's product family. These flags use VEX `flag` entries (label: `vulnerable_code_not_present` or similar) applied to specific product IDs. If a flag matches the workload scope and the package name, the verdict is FALSE POSITIVE.
 
-**4. Generic product status scan.** The engine checks `known_not_affected`, `known_affected`, `fixed`, and `under_investigation` entries for any in-scope product ID where the package name matches, applying SHA256 verification for image-level PIDs.
+**4. Generic product status scan.** The engine checks `known_not_affected`, `known_affected`, `fixed`, and `under_investigation` entries for any in-scope product ID where the package name matches, applying SHA256 verification for image-level PIDs. For non-SHA PIDs:
+- `known_not_affected` → FALSE POSITIVE
+- `fixed` → POSITIVE (a fix exists but the installed version cannot be verified as patched — conservative to avoid silent false negatives)
+- `known_affected` / `under_investigation` → POSITIVE
 
 **5. Cross-product inference.** Same logic as the RPM fallback: if only not-affected entries exist in related products, FALSE POSITIVE. If any affected/fixed entries exist, POSITIVE.
 
@@ -554,3 +557,7 @@ The engine avoids hardcoding wherever possible to remain accurate as Red Hat's p
 - **No hardcoded Go module-to-image mappings**: OCP component identity is derived at runtime from the release manifest (`comp_name`) or Docker `name` label, then normalized against VEX image PIDs using a deterministic pattern (`ose-<core>-rhel<N>`).
 - **Module stream detection uses only the version string**: The `+module+` marker in the RPM release field is the sole signal.
 - **SBOM is the source of truth for package inventory**: The physical image contents (via SBOM) are used to verify scanner data, not the other way around.
+- **Conservative on ambiguity**: Version comparison failures (parse errors) do not default to FALSE POSITIVE — at least one successful comparison is required. Non-RPM `fixed` entries are treated as POSITIVE unless the exact image build is confirmed.
+- **Atomic file I/O**: All cached files (VEX JSON, scan results, SBOMs) use atomic write-then-rename (`os.replace()`) to prevent corruption during concurrent scans.
+- **Corrupt VEX recovery**: Corrupt VEX files are detected, logged, and deleted for re-download rather than silently cached as "missing."
+- **Explicit mode validation**: `--ocp` and `--namespace` fail fast with a clear error if `ROX_ENDPOINT` / `ROX_API_TOKEN` are not set.

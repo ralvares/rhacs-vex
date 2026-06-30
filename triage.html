@@ -144,8 +144,9 @@
     <a href="index.html" class="back-link">&larr; Dashboard</a>
     <h1>RHACS Report Triage</h1>
     <button class="new-upload-btn" id="new-upload-btn" style="display:none">Upload new CSV</button>
+    <button class="new-upload-btn" id="clear-cache-btn" style="display:none" title="Clear cached parquet files and re-fetch from server">Clear Cache</button>
     <span id="status-text" style="font-size:.72rem;color:var(--muted);margin-left:auto">
-      <span class="dot" id="dot"></span> Loading&hellip;
+      <span class="dot ready" id="dot"></span> Ready &mdash; upload a CSV
     </span>
   </div>
 
@@ -209,7 +210,7 @@
 </div>
 
 <script type="module">
-import { initDuckDB, registerFileByURL, query, getDB, loadManifest } from './assets/db.js';
+import { initDuckDB, registerFileByURL, registerCveIndex, clearRegistered, query, getDB, loadManifest } from './assets/db.js';
 import { esc, severityBadge, createDropdown, downloadCSV } from './assets/ui.js';
 
 const $ = id => document.getElementById(id);
@@ -302,36 +303,36 @@ async function registerVersion(ver) {
   return name;
 }
 
-// ── Init ──
-async function init() {
-  try {
-    manifest = await loadManifest();
-    await initDuckDB(setStatus);
+// ── Init (lazy — only runs on first CSV upload) ──
+let initDone = false;
+async function ensureInit() {
+  if (initDone) return;
+  showLoading('Loading DuckDB…', 'First load may take a few seconds', 5);
+  await tick();
+  manifest = await loadManifest();
+  await initDuckDB(setStatus);
+  showLoading('Loading CVE index…', '', 10);
+  await tick();
+  await registerCveIndex();
+  cveIndexLoaded = true;
 
-    setStatus('Loading CVE index…');
-    await registerFileByURL('cve_index.parquet', new URL('data/cve-index.parquet', window.location.href).href);
-    cveIndexLoaded = true;
+  const versions = await query(`
+    SELECT DISTINCT OCP_VERSION FROM 'cve_index.parquet' ORDER BY
+      CAST(SPLIT_PART(OCP_VERSION,'.',1) AS INT) DESC,
+      CAST(SPLIT_PART(OCP_VERSION,'.',2) AS INT) DESC,
+      CAST(SPLIT_PART(OCP_VERSION,'.',3) AS INT) DESC
+  `);
+  const sel = $('version-select');
+  sel.innerHTML = '';
+  versions.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = v.OCP_VERSION;
+    opt.textContent = 'OCP ' + v.OCP_VERSION;
+    sel.appendChild(opt);
+  });
+  if (versions.length) sel.value = versions[0].OCP_VERSION;
 
-    const versions = await query(`
-      SELECT DISTINCT OCP_VERSION FROM 'cve_index.parquet' ORDER BY
-        CAST(SPLIT_PART(OCP_VERSION,'.',1) AS INT) DESC,
-        CAST(SPLIT_PART(OCP_VERSION,'.',2) AS INT) DESC,
-        CAST(SPLIT_PART(OCP_VERSION,'.',3) AS INT) DESC
-    `);
-    const sel = $('version-select');
-    versions.forEach(v => {
-      const opt = document.createElement('option');
-      opt.value = v.OCP_VERSION;
-      opt.textContent = 'OCP ' + v.OCP_VERSION;
-      sel.appendChild(opt);
-    });
-    if (versions.length) sel.value = versions[0].OCP_VERSION;
-
-    setStatus('Ready — upload a CSV', 'ready');
-  } catch (e) {
-    console.error(e);
-    setStatus('Error: ' + e.message, 'error');
-  }
+  initDone = true;
 }
 
 // ── File Upload ──
@@ -350,13 +351,26 @@ $('new-upload-btn').addEventListener('click', () => {
   $('upload-section').style.display = '';
   $('main-content').style.display = 'none';
   $('new-upload-btn').style.display = 'none';
+  $('clear-cache-btn').style.display = 'none';
   fileInput.value = '';
+});
+
+$('clear-cache-btn').addEventListener('click', async () => {
+  clearRegistered();
+  registeredVersions.clear();
+  cveIndexLoaded = false;
+  initDone = false;
+  setStatus('Cache cleared', 'ready');
 });
 
 async function handleFile(file) {
   if (!file.name.endsWith('.csv')) { setStatus('Please upload a .csv file', 'error'); return; }
-  showLoading('Loading CSV…', file.name, 5);
+  showLoading('Initializing…', file.name, 0);
   try {
+    await ensureInit();
+
+    showLoading('Loading CSV…', file.name, 15);
+    await tick();
     const db = getDB();
     const buf = new Uint8Array(await file.arrayBuffer());
     await db.registerFileBuffer('upload.csv', buf);
@@ -365,14 +379,15 @@ async function handleFile(file) {
 
     const count = await query(`SELECT COUNT(*) as cnt FROM rhacs`);
     csvLoaded = true;
-    showLoading('CSV loaded', `${Number(count[0].cnt).toLocaleString()} rows parsed`, 15);
+    showLoading('CSV loaded', `${Number(count[0].cnt).toLocaleString()} rows parsed`, 20);
     await tick();
 
     $('upload-section').style.display = 'none';
     $('main-content').style.display = '';
     $('new-upload-btn').style.display = '';
+    $('clear-cache-btn').style.display = '';
 
-    showLoading('Detecting OCP version…', 'Matching image hashes against VEX data', 25);
+    showLoading('Detecting OCP version…', 'Matching CVEs against index', 25);
     await tick();
     await autoDetectVersion();
 
@@ -629,14 +644,24 @@ async function autoDetectVersion() {
       return;
     }
 
-    // Match by image sha256 digest across ALL versions
-    setStatus('Auto-detecting OCP version (matching image hashes)…');
+    // Pre-filter: use cve-index to find versions with most CVE overlap (fast, no parquet loading)
+    setStatus('Auto-detecting OCP version (matching CVEs against index)…');
+    const candidates = await query(`
+      SELECT ci.OCP_VERSION, COUNT(DISTINCT ci.CVE) as cve_overlap
+      FROM 'cve_index.parquet' ci
+      INNER JOIN rhacs r ON r.CVE = ci.CVE
+      GROUP BY ci.OCP_VERSION
+      ORDER BY cve_overlap DESC
+      LIMIT 5
+    `);
+
+    // Match by image sha256 digest only against top candidates
     let bestVer = '';
     let bestImageMatch = 0;
 
-    for (let i = 0; i < allVersions.length; i++) {
-      const ver = allVersions[i];
-      setStatus(`Matching image hashes… ${i + 1}/${allVersions.length} (${ver})`);
+    for (let i = 0; i < candidates.length; i++) {
+      const ver = candidates[i].OCP_VERSION;
+      setStatus(`Matching image hashes… ${i + 1}/${candidates.length} (${ver})`);
       try {
         const pName = await registerVersion(ver);
         const [result] = await query(`
@@ -682,6 +707,7 @@ $('run-triage').addEventListener('click', async () => { await runTriage(); rende
 async function runTriage() {
   if (!csvLoaded || !cveIndexLoaded) return;
   const ver = $('version-select').value;
+  if (!ver) { setStatus('No OCP version selected', 'error'); return; }
   setStatus(`Running triage against OCP ${ver}…`);
 
   try {
@@ -818,6 +844,7 @@ function renderTriageTable() {
     const fn = key === 'triage' ? r => triageKey(r.TRIAGE_STATUS)
       : key === 'severity' ? r => effectiveSev(r)
       : key === 'ns' ? r => r.Namespace || ''
+      : key === 'deploy' ? r => r.Deployment || ''
       : r => r[key.charAt(0).toUpperCase() + key.slice(1)] || '';
     dd.updateVisible(new Set(filteredRows.map(fn)));
   });
@@ -1382,7 +1409,7 @@ function exportCols(fpOnly) {
 $('export-btn').addEventListener('click', () => exportCols(false));
 $('export-fp-btn').addEventListener('click', () => exportCols(true));
 
-init();
+
 </script>
 </body>
 </html>

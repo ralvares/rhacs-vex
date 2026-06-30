@@ -7,6 +7,7 @@ import os
 import re
 import json
 import time
+import tempfile
 import pandas as pd
 from dataclasses import dataclass, field
 from typing import Optional, List
@@ -310,10 +311,19 @@ def download_and_convert_with_lib(cve_id: str) -> tuple[str, bool]:
         # Write the JSON when: (a) server returned new content, or (b) the
         # json file was manually deleted while the HTTP cache still has the body.
         if res.status_code == 200 and (not res.from_cache or not os.path.exists(json_path)):
-            with open(json_path, "w") as f:
-                f.write(res.text)
+            fd, tmp = tempfile.mkstemp(dir=VEX_DIR, suffix='.tmp')
+            try:
+                with os.fdopen(fd, 'w') as f:
+                    f.write(res.text)
+                os.replace(tmp, json_path)
+            except Exception:
+                try:
+                    os.unlink(tmp)
+                except OSError:
+                    pass
+                raise
         return cve_id, res.status_code == 200
-    except Exception:
+    except requests.RequestException:
         return cve_id, os.path.exists(json_path)
 
 # --- 4. RHACS API CLIENT ---
@@ -456,7 +466,7 @@ def rhacs_find_image(session, image_ref: str) -> Optional[str]:
         # Helper: extract fullName from either string or dict form
         def _full_name(img: dict) -> str:
             n = img.get("name", "")
-            return n if isinstance(n, str) else n.get("fullName", "")
+            return n if isinstance(n, str) else (n.get("fullName", "") if n else "")
 
         # Prefer exact digest match if available
         digest = re.search(r'@(sha256:[a-f0-9]+)', image_ref)
@@ -464,6 +474,7 @@ def rhacs_find_image(session, image_ref: str) -> Optional[str]:
             for img in results:
                 if digest.group(1) in json.dumps(img):
                     return img["id"]
+            continue
 
         # Floating ref (no tag/digest): prefer ':latest' across all queries.
         # Don't stop at the first result set — accumulate all candidates first
@@ -548,8 +559,10 @@ def rhacs_scan_image(session, image_ref: str, force: bool = False,
             if not data.get("id"):
                 return None
             cache_path = _scan_cache_path(data["id"], image_ref)
-            with open(cache_path, "w") as fh:
+            fd, tmp = tempfile.mkstemp(dir=SCAN_DIR, suffix='.tmp')
+            with os.fdopen(fd, 'w') as fh:
                 json.dump(data, fh, indent=2)
+            os.replace(tmp, cache_path)
             return data
         except (requests.Timeout, requests.ConnectionError) as exc:
             if attempt <= retries:
@@ -606,8 +619,10 @@ def rhacs_get_image(session, image_id: str, force: bool = False, image_ref: str 
             resp = session.get(url, params={"stripDescription": True}, timeout=60)
             resp.raise_for_status()
             data = resp.json()
-            with open(cache_path, "w") as fh:
+            fd, tmp = tempfile.mkstemp(dir=SCAN_DIR, suffix='.tmp')
+            with os.fdopen(fd, 'w') as fh:
                 json.dump(data, fh, indent=2)
+            os.replace(tmp, cache_path)
             return data
         except (requests.Timeout, requests.ConnectionError) as exc:
             if attempt <= retries:
@@ -647,8 +662,10 @@ def rhacs_get_sbom(session, image_ref: str, force: bool = False) -> dict:
     resp = session.post(url, json={"imageName": image_ref, "force": force}, timeout=120)
     resp.raise_for_status()
     sbom = resp.json()
-    with open(cache_path, "w") as fh:
+    fd, tmp = tempfile.mkstemp(dir=SBOM_DIR, suffix='.tmp')
+    with os.fdopen(fd, 'w') as fh:
         json.dump(sbom, fh, indent=2)
+    os.replace(tmp, cache_path)
     return sbom
 
 
@@ -676,11 +693,11 @@ def _build_sbom_src_map(sbom: dict) -> dict:
     except Exception:
         # Non-fatal fallback: manual dict walking (identical to v1 behaviour)
         src_map: dict = {}
-        by_id = {pkg["SPDXID"]: pkg for pkg in sbom.get("packages", [])}
+        by_id = {pkg.get("SPDXID"): pkg for pkg in sbom.get("packages", []) if pkg.get("SPDXID")}
         for rel in sbom.get("relationships", []):
             if rel.get("relationshipType") == "GENERATED_FROM":
-                bin_pkg = by_id.get(rel["spdxElementId"])
-                src_pkg = by_id.get(rel["relatedSpdxElement"])
+                bin_pkg = by_id.get(rel.get("spdxElementId"))
+                src_pkg = by_id.get(rel.get("relatedSpdxElement"))
                 if bin_pkg and src_pkg:
                     bn, sn = bin_pkg.get("name", ""), src_pkg.get("name", "")
                     if bn and sn and bn != sn:
@@ -829,9 +846,9 @@ def rhacs_to_df(image_data: dict) -> pd.DataFrame:
                 "COMPONENT":    cname,
                 "VERSION":      cver,
                 "CVE":          cve.upper().strip(),
-                "SEVERITY":     vuln.get("severity", ""),
-                "CVSS":         vuln.get("cvss", 0),
-                "LINK":         vuln.get("link", ""),
+                "SEVERITY":     vuln.get("severity") or "",
+                "CVSS":         vuln.get("cvss") or 0,
+                "LINK":         vuln.get("link") or "",
                 "FIXED_VERSION": vuln.get("fixedBy", "") or fixed_c,
                 "SOURCE":       comp.get("source", ""),
                 "LOCATION":     comp.get("location", ""),
@@ -1031,7 +1048,7 @@ def _get_vex_product(data: dict, comp: str, ctx) -> str:
         ps    = vuln.get('product_status', {})
         flags = vuln.get('flags', [])
         all_pids: set = set()
-        for s in ('known_affected', 'fixed', 'known_not_affected'):
+        for s in ('known_affected', 'fixed', 'known_not_affected', 'under_investigation'):
             all_pids.update(ps.get(s, []))
         for flag in flags:
             if flag.get('label') in _NOT_AFFECTED_FLAGS:
@@ -1065,7 +1082,15 @@ def _load_vex(cve_id: str) -> Optional[dict]:
     try:
         with open(vex_path) as fh:
             return json.load(fh)
-    except Exception:
+    except FileNotFoundError:
+        return None
+    except Exception as exc:
+        import logging
+        logging.warning("Corrupt VEX file %s: %s — deleting to allow re-download", vex_path, exc)
+        try:
+            os.unlink(vex_path)
+        except OSError:
+            pass
         return None
 
 
@@ -1349,29 +1374,32 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                         img_lbl = ctx.display_name
 
                     if verdict == 'FALSE_POSITIVE':
-                        flag_desc = f": {extra.replace('_', ' ')}" if extra else ""
+                        flag_desc = f" ({extra.replace('_', ' ')})" if extra else ""
                         return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                            f"Non-RPM — image not affected per VEX ({img_lbl}){flag_desc}.",
+                            f"VEX status: known_not_affected{flag_desc}. "
+                            f"Image matched: {img_lbl}.",
                             _severity])
                     elif verdict == 'POSITIVE':
-                        if extra == 'under_investigation':
+                        vex_status = extra if extra in ('known_affected', 'under_investigation', 'fixed') else 'known_affected'
+                        if vex_status == 'under_investigation':
                             return pd.Series(["❌ POSITIVE", "N/A",
-                                f"Under investigation by Red Hat for {ctx.display_name} ({img_lbl}) "
-                                f"— treat as vulnerable until resolved.",
+                                f"VEX status: under_investigation for {img_lbl}. "
+                                f"No fix available yet — treat as vulnerable until resolved.",
                                 _severity])
                         return pd.Series(["❌ POSITIVE", "N/A",
-                            f"Non-RPM — image confirmed affected per VEX ({img_lbl}).",
+                            f"VEX status: {vex_status}. "
+                            f"Image matched: {img_lbl}. No fix available.",
                             _severity])
                     elif verdict == 'POSITIVE_OTHER_RHEL':
                         return pd.Series(["❌ POSITIVE", "N/A",
-                            f"Non-RPM — image affected in other RHEL version ({img_lbl}); "
-                            f"no explicit VEX entry for RHEL {ctx.rhel_ver}. Treat as vulnerable.",
+                            f"VEX status: known_affected for different RHEL version ({img_lbl}). "
+                            f"No explicit entry for RHEL {ctx.rhel_ver} — treat as vulnerable.",
                             _severity])
                     elif verdict == 'NOT_LISTED':
                         comp_ref = ctx.ocp_component or ctx.display_name
                         return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                            f"Non-RPM — VEX assessed {comp_ref} product family; "
-                            f"{comp_ref} not listed as affected.",
+                            f"VEX assessed {comp_ref} product family; "
+                            f"image not listed as affected or under investigation.",
                             _severity])
 
             # 1. Check flags that explicitly mark our product as not-affected first.
@@ -1485,49 +1513,64 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                             return pd.Series(["❌ POSITIVE", "N/A",
                                                f"Under investigation by Red Hat for {ctx.display_name} — treat as vulnerable until resolved.",
                                                _severity])
-                        result = "❌ POSITIVE" if status == "known_affected" else \
-                                 "✅ FALSE POSITIVE" if status in ("known_not_affected", "fixed") else \
-                                 "❌ POSITIVE"
+                        if status == "known_not_affected":
+                            result = "✅ FALSE POSITIVE"
+                            note = f"Non-RPM CVE scoped to {ctx.display_name} ({lbl})."
+                        elif status == "fixed":
+                            result = "❌ POSITIVE"
+                            note = f"Non-RPM CVE — fix exists for {ctx.display_name} ({lbl}) but installed version not verified."
+                        else:
+                            result = "❌ POSITIVE"
+                            note = f"Non-RPM CVE scoped to {ctx.display_name} ({lbl})."
                         return pd.Series([result, "N/A",
-                                           f"Non-RPM CVE scoped to {ctx.display_name} ({lbl}).",
+                                           note,
                                            _severity])
 
         # ── Unscoped fallthrough (UBI or no in-scope match) ────────────────
         # Scope investigating/affected labels to avoid cross-contamination
         # from unrelated product families.
         if ctx.workload_type != "ubi" and (affected or investigating):
-            scoped_labels = []
+            scoped_affected = []
+            scoped_investigating = []
             for vuln in data.get('vulnerabilities', []):
                 ps = vuln.get('product_status', {})
-                for status in ('known_affected', 'under_investigation'):
-                    for pid in ps.get(status, []):
-                        if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
-                            scoped_labels.append(_pid_label(pid, pid_name, rel_parent))
-            if scoped_labels:
-                unique_labels = sorted(set(scoped_labels))
+                for pid in ps.get('known_affected', []):
+                    if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                        scoped_affected.append(_pid_label(pid, pid_name, rel_parent))
+                for pid in ps.get('under_investigation', []):
+                    if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                        scoped_investigating.append(_pid_label(pid, pid_name, rel_parent))
+            if scoped_affected:
+                unique_labels = sorted(set(scoped_affected))
                 return pd.Series(["❌ POSITIVE", "N/A",
-                    f"Non-RPM — CVE tracked in {ctx.display_name} product family: "
-                    f"{', '.join(unique_labels[:3])}. Treat as vulnerable.",
+                    f"VEX status: known_affected in {ctx.display_name} product family "
+                    f"({', '.join(unique_labels[:3])}). No fix available.",
+                    _severity])
+            if scoped_investigating:
+                unique_labels = sorted(set(scoped_investigating))
+                return pd.Series(["❌ POSITIVE", "N/A",
+                    f"VEX status: under_investigation in {ctx.display_name} product family "
+                    f"({', '.join(unique_labels[:3])}). No fix available yet.",
                     _severity])
 
         # For operators that reach here: VEX has no assessment for this
         # product family.  Avoid listing unrelated products in justification.
         if ctx.workload_type == "operator" and (affected or investigating or fixed):
             return pd.Series(["❌ POSITIVE", "N/A",
-                f"Non-RPM — no VEX assessment for {ctx.display_name}. "
-                f"Treat as vulnerable until vendor assessment available.",
+                f"No VEX assessment for {ctx.display_name}. "
+                f"CVE affects other Red Hat products — treat as vulnerable until assessed.",
                 _severity])
 
         if investigating:
             return pd.Series(["❌ POSITIVE", "N/A",
-                               f"Under investigation by Red Hat — treat as vulnerable until resolved. Tracked in: {', '.join(investigating[:3])}.",
+                               f"VEX status: under_investigation. Tracked in: {', '.join(investigating[:3])}. No fix available yet.",
                                _severity])
 
         if not_affected and not affected and not fixed:
             return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                               f"Non-RPM — not tracked as affected for {ctx.display_name}. "
-                               f"VEX confirms not affected in other Red Hat products "
-                               f"({', '.join(not_affected[:3])}); no affected/fixed entry exists anywhere.",
+                               f"VEX status: known_not_affected. "
+                               f"Confirmed not affected in: {', '.join(not_affected[:3])}. "
+                               f"No affected/fixed entry exists.",
                                _severity])
 
         if affected and not_affected and ctx.rhel_ver:
@@ -1634,17 +1677,19 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             # Old EUS fixes may have lower version numbers than the GA baseline,
             # but newer-stream fixes prove the GA package is still vulnerable.
             all_pass = True
+            any_compared = False
             any_fail_fix = None
             for fix_v in compare_fixes:
                 try:
                     cmp_inst, cmp_fix = _normalize_epoch(found_v, fix_v)
+                    any_compared = True
                     if compare_versions(cmp_inst, cmp_fix) < 0:
                         all_pass = False
                         if any_fail_fix is None:
                             any_fail_fix = fix_v
                 except Exception:
                     pass
-            if all_pass and compare_fixes:
+            if all_pass and compare_fixes and any_compared:
                 return pd.Series(["✅ FALSE POSITIVE", compare_fixes[0],
                                    f"{ctx.display_name} fix backported: installed {found_v} >= {compare_fixes[0]}",
                                    _severity])
@@ -2139,6 +2184,13 @@ def main():
         and not use_ocp
     )
 
+    if args.ocp is not None and not use_ocp:
+        _console.print("[red]Error:[/red] --ocp requires ROX_ENDPOINT and ROX_API_TOKEN environment variables.")
+        raise SystemExit(1)
+    if args.namespace is not None and not use_namespace:
+        _console.print("[red]Error:[/red] --namespace requires ROX_ENDPOINT and ROX_API_TOKEN environment variables.")
+        raise SystemExit(1)
+
     # Suppress HTTPS certificate warnings for RHACS API calls (self-signed certs are common)
     if use_ocp or use_namespace or use_api or use_sbom or use_show_scan:
         import urllib3
@@ -2316,7 +2368,7 @@ def main():
                     comp_name, image_ref = future_to_comp[future]
                     res = future.result()
                     results_map[comp_name] = (image_ref, res)
-                    status = "✅" if res.get("found") and res.get("result_df") is not None \
+                    status = "✅" if res.get("found") \
                              else ("⚠ " if res.get("found") is False else "❌")
                     suffix = ""
                     if res.get("found") is False:
@@ -2341,7 +2393,7 @@ def main():
                         cn, ir = retry_futures[future]
                         res = future.result()
                         results_map[cn] = (ir, res)
-                        status = "✅" if res.get("found") and res.get("result_df") is not None \
+                        status = "✅" if res.get("found") \
                                  else ("⚠ " if res.get("found") is False else "❌")
                         _console.print(f"  [retry] {status} {cn}", highlight=False)
 
@@ -2352,7 +2404,7 @@ def main():
             for comp_name, image_ref in images:
                 image_ref_stored, res = results_map.get(comp_name, (image_ref, {"found": False, "error": None}))
                 _display_image_result(_console, f"{comp_name}  [dim]{image_ref_stored}[/dim]", res)
-                if not res.get("found"):
+                if res.get("found") is False:
                     not_found.append(comp_name)
                 elif res.get("result_df") is not None:
                     r = res["result_df"].copy()

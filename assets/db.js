@@ -47,6 +47,7 @@ export async function registerScope(manifest, scopeKey) {
   const url = new URL(entry.file, window.location.href).href;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch ${entry.file}: HTTP ${res.status}`);
+  try { await db.dropFile(name); } catch {}
   await db.registerFileBuffer(name, new Uint8Array(await res.arrayBuffer()));
   registered.add(name);
   return name;
@@ -74,13 +75,10 @@ export async function queryFromScopes(scopeKeys, sql) {
 export async function registerFileByURL(name, url) {
   if (registered.has(name)) return;
   if (!db) throw new Error('DuckDB not initialized');
-  try {
-    await db.registerFileURL(name, url, duckdb.DuckDBDataProtocol.HTTP, false);
-  } catch {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`Failed to fetch ${url}: HTTP ${res.status}`);
-    await db.registerFileBuffer(name, new Uint8Array(await res.arrayBuffer()));
-  }
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to fetch ${url}: HTTP ${res.status}`);
+  try { await db.dropFile(name); } catch {}
+  await db.registerFileBuffer(name, new Uint8Array(await res.arrayBuffer()));
   registered.add(name);
 }
 
@@ -90,9 +88,11 @@ export async function registerCveIndex(path = 'data/parquet/cve-index.parquet') 
   const url = new URL(path, window.location.href).href;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch cve-index: HTTP ${res.status}`);
+  try { await db.dropFile('cve_index.parquet'); } catch {}
   await db.registerFileBuffer('cve_index.parquet', new Uint8Array(await res.arrayBuffer()));
   registered.add('cve_index.parquet');
 }
 
+export function clearRegistered() { registered.clear(); }
 export function getDB() { return db; }
 export function getConn() { return conn; }

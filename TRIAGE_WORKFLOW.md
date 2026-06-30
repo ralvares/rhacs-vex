@@ -238,8 +238,12 @@ For each `(component, version, CVE)` row, after loading the VEX file:
    └─ ✅ FALSE POSITIVE
 
 2. Non-RPM component (Go binary, npm, pip — no el8/el9 in version string)?
-   ├─ Check scope-specific flags and product_status entries
-   └─ Result based on what VEX says for this product family
+   ├─ 2a. Check image-level PIDs (SHA match) — fixed image build comparison
+   └─ 2b. Generic product_status scan (non-SHA PIDs):
+        ├─ known_not_affected  → ✅ FALSE POSITIVE
+        ├─ fixed               → ❌ POSITIVE (fix exists but installed version not verified)
+        ├─ known_affected      → ❌ POSITIVE
+        └─ under_investigation → ❌ POSITIVE (treat as vulnerable until resolved)
 
 3. RPM component — resolve names: {binary_name, source_name}
    │
@@ -329,3 +333,28 @@ registry.redhat.io/<image>@sha256:<digest>
 - **SBOM is the bridge**.  The SPDX SBOM is produced by the same scanner (RHACS)
   that generates the CVE findings, so binary→source mappings are always consistent
   with what is actually installed in the image.
+- **Conservative on `fixed`**.  For non-RPM components, a VEX `fixed` status means
+  a fix *exists* — but cannot verify the installed version is patched.  The engine
+  marks these as POSITIVE (not FALSE POSITIVE) to avoid silent false negatives.
+- **Conservative on parse failure**.  If all version comparisons fail (e.g. malformed
+  version strings), the engine does NOT default to FALSE POSITIVE.  At least one
+  successful comparison is required to clear a finding.
+
+---
+
+## Reliability & Concurrency
+
+The `--ocp` and `--namespace` modes scan images in parallel using a thread pool
+(default 10 workers).  Several safeguards prevent data corruption:
+
+- **Atomic file writes**.  All cache files (VEX JSON, scan results, SBOMs) are
+  written to a temporary file first, then atomically swapped via `os.replace()`.
+  This prevents concurrent readers from seeing truncated JSON.
+- **VEX LRU cache**.  `_load_vex()` caches parsed VEX dicts per CVE ID.  Corrupt
+  files are detected, logged, and deleted (so re-download can occur on the next run).
+- **Digest-exact image lookup**.  When an image reference contains `@sha256:...`,
+  the engine only returns a match if the digest is found in the RHACS response.
+  No fallback to "first result" on digest mismatch.
+- **Explicit env-var validation**.  `--ocp` and `--namespace` modes require
+  `ROX_ENDPOINT` and `ROX_API_TOKEN`.  Missing vars produce a clear error instead
+  of silently falling through to CSV mode.

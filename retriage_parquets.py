@@ -13,7 +13,7 @@ import time
 import multiprocessing
 
 TRIAGE_COLS = ['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY']
-BAD_PATTERN = r'Tracked in:|CVE tracked in other products|not listed as affected\. No fix'
+BAD_PATTERN = r'Tracked in:|CVE tracked in other products|not listed as affected\. No fix|Under investigation by Red Hat|Treat as vulnerable'
 
 
 def retriage_file(filepath):
@@ -53,7 +53,7 @@ def retriage_file(filepath):
 
 
 def main():
-    dirs = sys.argv[1:] or ['data/parquet/operators/4.21', 'data/parquet/operators/4.20']
+    dirs = sys.argv[1:] or ['data/parquet/ocp', 'data/parquet/operators/4.21', 'data/parquet/operators/4.20']
     workers = max(1, multiprocessing.cpu_count() - 2)
 
     dirty_files = []
