@@ -1369,16 +1369,9 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                             _severity])
                     elif verdict == 'NOT_LISTED':
                         comp_ref = ctx.ocp_component or ctx.display_name
-                        # OCP: VEX is comprehensive — unlisted = not affected.
-                        # Operator: only clear when no product is affected globally.
-                        if ctx.workload_type == "ocp" or (not affected and not investigating):
-                            return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                                f"Non-RPM — VEX assessed {comp_ref} product family; "
-                                f"{comp_ref} not listed as affected.",
-                                _severity])
-                        return pd.Series(["❌ POSITIVE", "N/A",
+                        return pd.Series(["✅ FALSE POSITIVE", "N/A",
                             f"Non-RPM — VEX assessed {comp_ref} product family; "
-                            f"{comp_ref} not listed as affected. No fix available.",
+                            f"{comp_ref} not listed as affected.",
                             _severity])
 
             # 1. Check flags that explicitly mark our product as not-affected first.

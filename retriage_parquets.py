@@ -13,7 +13,7 @@ import time
 import multiprocessing
 
 TRIAGE_COLS = ['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY']
-BAD_PATTERN = r'Tracked in:|CVE tracked in other products'
+BAD_PATTERN = r'Tracked in:|CVE tracked in other products|not listed as affected\. No fix'
 
 
 def retriage_file(filepath):
