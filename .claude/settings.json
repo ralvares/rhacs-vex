@@ -27,7 +27,15 @@
       "Bash(grep -v '.txt$')",
       "Bash(awk -F. '{print $1\".\"$2}')",
       "Bash(oc version *)",
-      "Bash(rtk proxy *)"
+      "Bash(rtk proxy *)",
+      "Bash(python3 -c \"import os; print\\('ROX_ENDPOINT:', os.environ.get\\('ROX_ENDPOINT', 'NOT SET'\\)\\); print\\('ROX_API_TOKEN:', 'SET' if os.environ.get\\('ROX_API_TOKEN'\\) else 'NOT SET'\\)\")",
+      "Bash(python3 triage.py --image quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:95b5c242233038bd2cdade307d507ae434ee75e665a313509cec6eec1068ba94 --ocp 4.21.19 --comp-name etcd)",
+      "Bash(python3 triage.py --help)",
+      "Bash(python3 triage.py --image quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:95b5c242233038bd2cdade307d507ae434ee75e665a313509cec6eec1068ba94)",
+      "Bash(python3 triage.py --ocp 4.21.19.txt --output data/reports/ocp-4.21.19-test.csv)",
+      "Bash(python3 triage_operators.py --version 4.21 --operator kubevirt-hyperconverged --workers 5)",
+      "Bash(python3 triage_operators.py --version 4.21 --operator advanced-cluster-management,metallb-operator --workers 5)",
+      "Bash(rtk ps *)"
     ],
     "additionalDirectories": [
       "/Users/ralvares/rhacs-vex/data/reports/ocp-4.21"

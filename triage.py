@@ -258,12 +258,12 @@ def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict, rhel_base_pids
         parent_pid  = pid.split(':')[0]
         parent_name = pid_name.get(parent_pid) or pid_name.get(pid, '')
         if 'openshift container platform' in parent_name.lower():
-            if not ctx.ocp_ver:
-                return True
+            # Default to OCP 4 when version unknown (openshift4/ images are 4.x)
+            effective_ver = ctx.ocp_ver or "4"
             # Component-wise prefix match: VEX "4" covers any 4.x;
             # VEX "4.21" covers 4.21.x; VEX "4.18" does NOT match 4.21
             name_ver = parent_name.split()[-1]          # "4" or "4.21"
-            c = ctx.ocp_ver.split('.')
+            c = effective_ver.split('.')
             n = name_ver.split('.')
             return c[:len(n)] == n
         return False
@@ -897,20 +897,36 @@ def _extract_rhel_from_vex_image(img: str) -> Optional[str]:
     return m.group(1) if m else None
 
 
-def _ocp_image_vex_lookup(comp_name: str, rhel_ver: str, ctx: WorkloadContext,
-                          data: dict, pid_name: dict, rhel_base_pids: set
-                          ) -> Optional[pd.Series]:
-    """Check VEX image-level entries for an OCP manifest component.
+def _image_vex_lookup(ctx: WorkloadContext, data: dict,
+                      pid_name: dict, rhel_base_pids: set):
+    """Check VEX image-level entries for an OCP or operator workload.
 
-    When an OCP image contains a Non-RPM component (Go module) that can't be
-    matched by package name, this function matches via the OCP manifest
-    component name against VEX PIDs like 'openshift4/ose-<core>-rhel<N>'.
+    For non-RPM components (Go stdlib, npm) the package name never matches
+    VEX PIDs that reference container images.  This function matches the
+    workload's image identity against image-path PIDs in scope:
+      - OCP:      _normalize_vex_image_core(pid) == ctx.ocp_component
+      - operator: pid image name == ctx.image_name
 
-    Returns a pd.Series verdict if a match is found, or None to fall through.
+    Returns (verdict, pid, extra, family_assessed) or None.
+    Verdicts: POSITIVE, FALSE_POSITIVE, POSITIVE_OTHER_RHEL, NOT_LISTED.
     """
-    _severity = None  # caller must set this; we return None here to fall through
+    if ctx.workload_type == "ocp":
+        comp = ctx.ocp_component or (
+            _normalize_vex_image_core(ctx.image_name) if ctx.image_name else None)
+        if not comp:
+            return None
+        def _matches(pid_pkg):
+            return _normalize_vex_image_core(pid_pkg) == comp
+    elif ctx.workload_type == "operator":
+        if not ctx.image_name:
+            return None
+        def _matches(pid_pkg):
+            return pid_pkg.split('/')[-1] == ctx.image_name
+    else:
+        return None
 
-    matches = []  # (status, pid, rhel_quality, flag_label)
+    matches = []       # (status, pid, rhel_quality, flag_label)
+    family_assessed = False
 
     for vuln in data.get('vulnerabilities', []):
         ps = vuln.get('product_status', {})
@@ -929,13 +945,12 @@ def _ocp_image_vex_lookup(comp_name: str, rhel_ver: str, ctx: WorkloadContext,
                 pid_pkg, _ = _parse_pkg_from_product_id(pid)
                 if not pid_pkg or '/' not in pid_pkg:
                     continue
-                core = _normalize_vex_image_core(pid_pkg)
-                if core != comp_name:
+                family_assessed = True
+                if not _matches(pid_pkg):
                     continue
                 pid_rhel = _extract_rhel_from_vex_image(pid_pkg)
-                rhel_quality = 2 if pid_rhel == rhel_ver else (1 if pid_rhel is None else 0)
-                fl = flag_map.get(pid, '')
-                matches.append((status, pid, rhel_quality, fl))
+                rhel_q = 2 if pid_rhel == ctx.rhel_ver else (1 if pid_rhel is None else 0)
+                matches.append((status, pid, rhel_q, flag_map.get(pid, '')))
 
         for flag in flags:
             if flag.get('label') not in _NOT_AFFECTED_FLAGS:
@@ -946,42 +961,43 @@ def _ocp_image_vex_lookup(comp_name: str, rhel_ver: str, ctx: WorkloadContext,
                 pid_pkg, _ = _parse_pkg_from_product_id(pid)
                 if not pid_pkg or '/' not in pid_pkg:
                     continue
-                core = _normalize_vex_image_core(pid_pkg)
-                if core != comp_name:
+                family_assessed = True
+                if not _matches(pid_pkg):
                     continue
                 pid_rhel = _extract_rhel_from_vex_image(pid_pkg)
-                rhel_quality = 2 if pid_rhel == rhel_ver else (1 if pid_rhel is None else 0)
+                rhel_q = 2 if pid_rhel == ctx.rhel_ver else (1 if pid_rhel is None else 0)
                 if not any(p == pid and s == 'known_not_affected' for s, p, _, _ in matches):
-                    matches.append(('known_not_affected', pid, rhel_quality, flag.get('label', '')))
+                    matches.append(('known_not_affected', pid, rhel_q, flag.get('label', '')))
 
     if not matches:
-        return None
+        return ('NOT_LISTED', '', '', True) if family_assessed else None
 
+    # OCP uses RHEL-version quality scoring; operators always have quality 2
     best_quality = max(m[2] for m in matches)
     if best_quality == 0:
-        other_affected = [(s, p, fl) for s, p, q, fl in matches
-                          if s in ('known_affected', 'under_investigation')]
-        if other_affected:
-            return ('POSITIVE_OTHER_RHEL', other_affected[0][1], other_affected[0][2])
-        return None
+        aff = [(s, p, fl) for s, p, q, fl in matches
+               if s in ('known_affected', 'under_investigation')]
+        if aff:
+            return ('POSITIVE_OTHER_RHEL', aff[0][1], aff[0][2], family_assessed)
+        return ('NOT_LISTED', '', '', True) if family_assessed else None
 
     candidates = [(s, p, fl) for s, p, q, fl in matches if q >= max(best_quality, 1)]
     if not candidates:
-        return None
+        return ('NOT_LISTED', '', '', True) if family_assessed else None
 
-    has_affected = any(s in ('known_affected', 'under_investigation') for s, p, fl in candidates)
-    has_clear = any(s in ('known_not_affected', 'fixed') for s, p, fl in candidates)
-
+    has_affected = any(s in ('known_affected', 'under_investigation') for s, _, _ in candidates)
     if has_affected:
-        pid_for_label = next(p for s, p, fl in candidates if s in ('known_affected', 'under_investigation'))
-        status = next(s for s, p, fl in candidates if s in ('known_affected', 'under_investigation'))
-        return ('POSITIVE', pid_for_label, status)
-    elif has_clear:
-        pid_for_label = next(p for s, p, fl in candidates if s in ('known_not_affected', 'fixed'))
-        flag_lbl = next((fl for s, p, fl in candidates if s in ('known_not_affected', 'fixed') and fl), '')
-        return ('FALSE_POSITIVE', pid_for_label, flag_lbl)
+        pid_match = next(p for s, p, _ in candidates if s in ('known_affected', 'under_investigation'))
+        status = next(s for s, _, _ in candidates if s in ('known_affected', 'under_investigation'))
+        return ('POSITIVE', pid_match, status, family_assessed)
 
-    return None
+    has_clear = any(s in ('known_not_affected', 'fixed') for s, _, _ in candidates)
+    if has_clear:
+        pid_match = next(p for s, p, _ in candidates if s in ('known_not_affected', 'fixed'))
+        flag_lbl = next((fl for s, _, fl in candidates if s in ('known_not_affected', 'fixed') and fl), '')
+        return ('FALSE_POSITIVE', pid_match, flag_lbl, family_assessed)
+
+    return ('NOT_LISTED', '', '', True) if family_assessed else None
 
 
 def _pid_module_stream(pid: str):
@@ -1318,68 +1334,51 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         # If workload is an operator/OCP, check if the CVE is scoped to the
         # same product family — if so it IS applicable
         if ctx.workload_type != "ubi":
-            # 0. OCP image-level VEX matching for Go modules.
-            #    When ocp_component is set and package-name matching can't work
-            #    (Go module path ≠ RPM/image name), match the manifest component
-            #    against VEX image PIDs like "openshift4/ose-<core>-rhel<N>".
-            if ctx.ocp_component and ctx.workload_type == "ocp":
-                _img_result = _ocp_image_vex_lookup(
-                    ctx.ocp_component, ctx.rhel_ver, ctx,
-                    data, pid_name, rhel_base_pids)
+            # 0. Image-level VEX matching for non-RPM components (Go, npm).
+            #    Package-name matching fails because "stdlib" ≠ image PIDs.
+            #    Match the workload's image identity against VEX image PIDs.
+            if ctx.workload_type in ("ocp", "operator"):
+                _img_result = _image_vex_lookup(ctx, data, pid_name, rhel_base_pids)
                 if _img_result is not None:
-                    verdict, pid_match, extra = _img_result
-                    lbl = _pid_label(pid_match, pid_name, rel_parent)
-                    pid_pkg = pid_match.split(':', 1)[1] if ':' in pid_match else pid_match
-                    img_lbl = f"{lbl} — {pid_pkg}" if pid_pkg not in lbl else lbl
+                    verdict, pid_match, extra, _fam = _img_result
+                    if pid_match:
+                        lbl = _pid_label(pid_match, pid_name, rel_parent)
+                        pid_pkg = pid_match.split(':', 1)[1] if ':' in pid_match else pid_match
+                        img_lbl = f"{lbl} — {pid_pkg}" if pid_pkg not in lbl else lbl
+                    else:
+                        img_lbl = ctx.display_name
+
                     if verdict == 'FALSE_POSITIVE':
                         flag_desc = f": {extra.replace('_', ' ')}" if extra else ""
                         return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                            f"Non-RPM — OCP image not affected per VEX ({img_lbl}){flag_desc}.",
+                            f"Non-RPM — image not affected per VEX ({img_lbl}){flag_desc}.",
                             _severity])
                     elif verdict == 'POSITIVE':
                         if extra == 'under_investigation':
                             return pd.Series(["❌ POSITIVE", "N/A",
-                                f"Under investigation by Red Hat for {ctx.display_name} ({pid_pkg}) "
+                                f"Under investigation by Red Hat for {ctx.display_name} ({img_lbl}) "
                                 f"— treat as vulnerable until resolved.",
                                 _severity])
                         return pd.Series(["❌ POSITIVE", "N/A",
-                            f"Non-RPM — OCP image confirmed affected per VEX ({img_lbl}).",
+                            f"Non-RPM — image confirmed affected per VEX ({img_lbl}).",
                             _severity])
                     elif verdict == 'POSITIVE_OTHER_RHEL':
                         return pd.Series(["❌ POSITIVE", "N/A",
-                            f"Non-RPM — OCP image affected in other RHEL version ({img_lbl}); "
+                            f"Non-RPM — image affected in other RHEL version ({img_lbl}); "
                             f"no explicit VEX entry for RHEL {ctx.rhel_ver}. Treat as vulnerable.",
                             _severity])
-                else:
-                    # No image-level match for this component.  If the VEX
-                    # has ANY OCP4 entries (affected or not), Red Hat assessed
-                    # OCP4 for this CVE.  A component not mentioned = not
-                    # affected.  VEX is the source of truth.
-                    _ocp4_assessed = False
-                    for vuln in data.get('vulnerabilities', []):
-                        ps = vuln.get('product_status', {})
-                        for status in ('known_affected', 'known_not_affected', 'fixed', 'under_investigation'):
-                            for pid in ps.get(status, []):
-                                if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
-                                    _ocp4_assessed = True
-                                    break
-                            if _ocp4_assessed:
-                                break
-                        if not _ocp4_assessed:
-                            for flag in vuln.get('flags', []):
-                                if flag.get('label') in _NOT_AFFECTED_FLAGS:
-                                    for pid in flag.get('product_ids', []):
-                                        if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
-                                            _ocp4_assessed = True
-                                            break
-                                if _ocp4_assessed:
-                                    break
-                        if _ocp4_assessed:
-                            break
-                    if _ocp4_assessed:
-                        return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                            f"Non-RPM — VEX assessed OCP4 for this CVE; "
-                            f"{ctx.ocp_component} not listed as affected.",
+                    elif verdict == 'NOT_LISTED':
+                        comp_ref = ctx.ocp_component or ctx.display_name
+                        # OCP: VEX is comprehensive — unlisted = not affected.
+                        # Operator: only clear when no product is affected globally.
+                        if ctx.workload_type == "ocp" or (not affected and not investigating):
+                            return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                                f"Non-RPM — VEX assessed {comp_ref} product family; "
+                                f"{comp_ref} not listed as affected.",
+                                _severity])
+                        return pd.Series(["❌ POSITIVE", "N/A",
+                            f"Non-RPM — VEX assessed {comp_ref} product family; "
+                            f"{comp_ref} not listed as affected. No fix available.",
                             _severity])
 
             # 1. Check flags that explicitly mark our product as not-affected first.
@@ -1500,13 +1499,37 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                                            f"Non-RPM CVE scoped to {ctx.display_name} ({lbl}).",
                                            _severity])
 
-        # Check for under_investigation entries even outside operator scope
+        # ── Unscoped fallthrough (UBI or no in-scope match) ────────────────
+        # Scope investigating/affected labels to avoid cross-contamination
+        # from unrelated product families.
+        if ctx.workload_type != "ubi" and (affected or investigating):
+            scoped_labels = []
+            for vuln in data.get('vulnerabilities', []):
+                ps = vuln.get('product_status', {})
+                for status in ('known_affected', 'under_investigation'):
+                    for pid in ps.get(status, []):
+                        if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                            scoped_labels.append(_pid_label(pid, pid_name, rel_parent))
+            if scoped_labels:
+                unique_labels = sorted(set(scoped_labels))
+                return pd.Series(["❌ POSITIVE", "N/A",
+                    f"Non-RPM — CVE tracked in {ctx.display_name} product family: "
+                    f"{', '.join(unique_labels[:3])}. Treat as vulnerable.",
+                    _severity])
+
+        # For operators that reach here: VEX has no assessment for this
+        # product family.  Avoid listing unrelated products in justification.
+        if ctx.workload_type == "operator" and (affected or investigating or fixed):
+            return pd.Series(["❌ POSITIVE", "N/A",
+                f"Non-RPM — no VEX assessment for {ctx.display_name}. "
+                f"Treat as vulnerable until vendor assessment available.",
+                _severity])
+
         if investigating:
             return pd.Series(["❌ POSITIVE", "N/A",
                                f"Under investigation by Red Hat — treat as vulnerable until resolved. Tracked in: {', '.join(investigating[:3])}.",
                                _severity])
 
-        # No in-scope match — decide based on what the VEX says about related products
         if not_affected and not affected and not fixed:
             return pd.Series(["✅ FALSE POSITIVE", "N/A",
                                f"Non-RPM — not tracked as affected for {ctx.display_name}. "
@@ -1514,10 +1537,6 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                                f"({', '.join(not_affected[:3])}); no affected/fixed entry exists anywhere.",
                                _severity])
 
-        # Check if affected entries are only for older/different RHEL versions
-        # while the workload's RHEL version is explicitly not affected.
-        # e.g. CVE affects RHEL 7 docker, but RHEL 8/9 are not affected →
-        # an operator on RHEL 8 should not be flagged.
         if affected and not_affected and ctx.rhel_ver:
             rhel_tag = f"RHEL {ctx.rhel_ver}"
             rhel_tag_long = f"Red Hat Enterprise Linux {ctx.rhel_ver}"
