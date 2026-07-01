@@ -59,7 +59,7 @@ MAX_WORKERS     = 20
 
 # ── Product-ID prefix helpers ────────────────────────────────────────────────
 
-def _build_pid_name(data: dict) -> tuple[dict, dict, set, dict]:
+def _build_pid_name(data: dict) -> tuple[dict, dict, set, dict, dict]:
     """
     Build lookup maps from a VEX product tree — no hardcoded labels needed.
 
@@ -72,9 +72,15 @@ def _build_pid_name(data: dict) -> tuple[dict, dict, set, dict]:
       pid_purl        : {product_id → purl_string}  from product_identification_helper.
                         Red Hat VEX uses purl type to distinguish RPMs (pkg:rpm/redhat/…)
                         from non-RPM platform components (pkg:generic/redhat/…, e.g. rhcos).
+      vex_ns_map      : {registry_namespace → set_of_parent_product_ids}  derived dynamically
+                        from OCI purls in the VEX product tree.  Maps registry namespaces
+                        (e.g. "rhbk") to VEX product family IDs (e.g. "red_hat_build_of_keycloak")
+                        so operator images can be scoped to the correct VEX product even when
+                        the static ns_vex_prefixes.json mapping is incomplete.
     """
     pid_name: dict = {}
     pid_purl: dict = {}
+    pid_cpe: dict = {}
 
     def _walk(branches):
         for b in branches:
@@ -82,28 +88,57 @@ def _build_pid_name(data: dict) -> tuple[dict, dict, set, dict]:
             pid = p.get('product_id')
             if pid:
                 pid_name[pid] = p.get('name', '')
-                purl = (p.get('product_identification_helper') or {}).get('purl', '')
+                helper = p.get('product_identification_helper') or {}
+                purl = helper.get('purl', '')
                 if purl:
                     pid_purl[pid] = purl
+                cpe = helper.get('cpe', '')
+                if cpe:
+                    pid_cpe[pid] = cpe
             _walk(b.get('branches', []))
 
     _walk(data.get('product_tree', {}).get('branches', []))
 
     rel_parent: dict = {}
+    # Also build component → parent_pid mapping for namespace discovery
+    comp_to_parent_pid: dict = {}
     for rel in data.get('product_tree', {}).get('relationships', []):
         fpid   = rel.get('full_product_name', {}).get('product_id', '')
         parent = rel.get('relates_to_product_reference', '')
+        comp   = rel.get('product_reference', '')
         if fpid and parent:
             rel_parent[fpid] = pid_name.get(parent, parent)
+        if comp and parent:
+            comp_to_parent_pid[comp] = parent
 
     # Derive RHEL base repo PIDs directly from VEX product names — no hardcoded prefixes.
-    # Red Hat names every base RHEL stream product as "Red Hat Enterprise Linux <stream>".
     rhel_base_pids: set = {
         pid for pid, name in pid_name.items()
         if name.startswith('Red Hat Enterprise Linux')
     }
 
-    return pid_name, rel_parent, rhel_base_pids, pid_purl
+    # Build dynamic namespace → product family map from OCI purls.
+    # For each OCI component, extract the registry namespace from its purl
+    # and map it to the parent product family.
+    vex_ns_map: dict = {}
+    for comp_pid, purl in pid_purl.items():
+        if not purl.startswith('pkg:oci/'):
+            continue
+        m = re.search(r'repository_url=[^/]+/([^/&]+)', purl)
+        if not m:
+            continue
+        oci_ns = m.group(1).lower()
+        parent_pid = comp_to_parent_pid.get(comp_pid)
+        if parent_pid:
+            vex_ns_map.setdefault(oci_ns, set()).add(parent_pid)
+            # Also add the CPE product token for broader matching
+            cpe = pid_cpe.get(parent_pid, '')
+            if cpe:
+                cpe_parts = cpe.replace('cpe:/', '').split(':')
+                if len(cpe_parts) > 2:
+                    vex_ns_map[oci_ns].add(cpe_parts[2])
+
+    return pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map
 
 
 def _pid_label(pid: str, pid_name: dict, rel_parent: dict) -> str:
@@ -246,7 +281,8 @@ def parse_image_ref(image_ref: str) -> WorkloadContext:
     return ctx
 
 
-def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict, rhel_base_pids: set) -> bool:
+def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict, rhel_base_pids: set,
+                   vex_ns_map: Optional[dict] = None) -> bool:
     """
     Return True if a VEX product_id is relevant to the given WorkloadContext.
 
@@ -255,7 +291,8 @@ def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict, rhel_base_pids
                  "Red Hat OpenShift Container Platform <version>" — version
                  matched component-wise so "4" covers all 4.x and "4.21" is exact
     - operator : RHEL base repos + catalog-derived prefixes in ctx.extra_prefixes
-                 (never hardcoded here; built from data/ns_vex_prefixes.json)
+                 (built from data/ns_vex_prefixes.json) + dynamic VEX-derived
+                 namespace→product mapping from OCI purls/CPEs in the VEX product tree
     """
     if _is_rhel_base_product(pid, ctx.rhel_ver, rhel_base_pids):
         return True
@@ -277,12 +314,23 @@ def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict, rhel_base_pids
             return c[:len(n)] == n
         return False
 
-    # operator: use catalog-derived prefixes only (ctx.extra_prefixes populated
-    # from data/ns_vex_prefixes.json — no hardcoded strings here)
+    # operator: catalog-derived prefixes (ctx.extra_prefixes from ns_vex_prefixes.json)
+    # + dynamic VEX-derived namespace→product mapping from OCI purls/CPEs
     pid_lower = pid.lower()
     for prefix in ctx.extra_prefixes:
         if prefix.lower() in pid_lower:
             return True
+    # Dynamic: check if the VEX product tree maps the operator's registry
+    # namespace to this PID's parent product via OCI purl data
+    if vex_ns_map and ctx.image_ns:
+        parent_pid = pid.split(':')[0]
+        ns_products = vex_ns_map.get(ctx.image_ns.lower(), set())
+        if parent_pid in ns_products:
+            return True
+        # Also check CPE product token match
+        for prod_id in ns_products:
+            if prod_id.lower() in pid_lower:
+                return True
     return False
 
 # Create the folder structure
@@ -967,7 +1015,8 @@ def _normalize_ocp_component(name: str) -> str:
 
 def _image_vex_lookup(ctx: WorkloadContext, data: dict,
                       pid_name: dict, rhel_base_pids: set,
-                      pid_purl: Optional[dict] = None):
+                      pid_purl: Optional[dict] = None,
+                      vex_ns_map: Optional[dict] = None):
     """Check VEX image-level and generic-component entries for OCP/operator workloads.
 
     For non-RPM components (Go, npm, Python) the package name never matches
@@ -1022,7 +1071,7 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
 
         for status in ('known_not_affected', 'known_affected', 'fixed', 'under_investigation'):
             for pid in ps.get(status, []):
-                if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
                     continue
                 pid_pkg, _ = _parse_pkg_from_product_id(pid)
                 if not pid_pkg:
@@ -1049,7 +1098,7 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
             if flag.get('label') not in _NOT_AFFECTED_FLAGS:
                 continue
             for pid in flag.get('product_ids', []):
-                if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
                     continue
                 pid_pkg, _ = _parse_pkg_from_product_id(pid)
                 if not pid_pkg:
@@ -1070,6 +1119,41 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
                     matches.append(('known_not_affected', pid, rhel_q, flag.get('label', '')))
 
     if not matches:
+        # ── Red Hat errata policy ──────────────────────────────────────────
+        # "Unless explicitly stated as not affected, all previous versions
+        # of packages in any minor update stream of a product listed here
+        # should be assumed vulnerable, although may not have been subject
+        # to full analysis."
+        #
+        # Applied here: when no broad product match exists for the current
+        # OCP version, check version-specific OCP streams (RHOSE-4.xx).
+        #  • Current version OLDER than fixed → "previous version" → POSITIVE
+        #  • Current version NEWER than fixed → NOT a "previous version" →
+        #    FALSE POSITIVE (policy only assumes previous versions vulnerable)
+        #  • Current version EQUALS fixed → fixed in this stream → FALSE POSITIVE
+        if not family_assessed and ctx.workload_type == "ocp" and ctx.ocp_ver:
+            cur_parts = [int(x) for x in ctx.ocp_ver.split('.') if x.isdigit()]
+            fixed_ocp_vers: set = set()
+            affected_ocp_vers: set = set()
+            for vuln in data.get('vulnerabilities', []):
+                ps = vuln.get('product_status', {})
+                for pid in ps.get('fixed', []):
+                    m = re.search(r'RHOSE[.-](\d+\.\d+)', pid)
+                    if m:
+                        fixed_ocp_vers.add(m.group(1))
+                for pid in ps.get('known_affected', []):
+                    m = re.search(r'RHOSE[.-](\d+\.\d+)', pid)
+                    if m:
+                        affected_ocp_vers.add(m.group(1))
+            if fixed_ocp_vers:
+                newest_fix = max(fixed_ocp_vers,
+                                key=lambda v: [int(x) for x in v.split('.')])
+                fix_parts = [int(x) for x in newest_fix.split('.')]
+                if cur_parts == fix_parts:
+                    return ('FALSE_POSITIVE', '', f'errata_fixed:{newest_fix}', False)
+                if fix_parts < cur_parts:
+                    return ('FALSE_POSITIVE', '', f'errata_not_previous:{newest_fix}', False)
+
         return ('NOT_LISTED', '', '', True) if family_assessed else None
 
     # OCP uses RHEL-version quality scoring; operators always have quality 2
@@ -1122,7 +1206,7 @@ def _get_vex_product(data: dict, comp: str, ctx) -> str:
     """Return a short product label (e.g. 'OCP 4.20', 'Ceph 7.1') for the
     VEX entry that matches *comp* in the given context.  Returns '' if not found.
     """
-    pid_name, rel_parent, rhel_base_pids, _pid_purl = _build_pid_name(data)
+    pid_name, rel_parent, rhel_base_pids, _pid_purl, vex_ns_map = _build_pid_name(data)
 
     # Scan all matched PIDs across all vulnerability entries
     labels: set = set()
@@ -1137,7 +1221,7 @@ def _get_vex_product(data: dict, comp: str, ctx) -> str:
             if flag.get('label') in _NOT_AFFECTED_FLAGS:
                 all_pids.update(flag.get('product_ids', []))
         for pid in all_pids:
-            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
                 continue
             any_in_scope = True
             pkg_name, _ = _parse_pkg_from_product_id(pid)
@@ -1350,7 +1434,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         return pd.Series(["❌ POSITIVE", "N/A", "VEX file missing — cannot confirm fix; treat as vulnerable.", "Unknown"])
 
     # Build product tree lookup maps — used throughout for human-readable labels
-    pid_name, rel_parent, rhel_base_pids, pid_purl = _build_pid_name(data)
+    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map = _build_pid_name(data)
 
     # Extract Red Hat severity rating from threats[category=impact]
     # Values: Critical, Important, Moderate, Low  (Red Hat scale)
@@ -1446,7 +1530,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             #    Package-name matching fails because "stdlib" ≠ image PIDs.
             #    Match the workload's image identity against VEX image PIDs.
             if ctx.workload_type in ("ocp", "operator"):
-                _img_result = _image_vex_lookup(ctx, data, pid_name, rhel_base_pids, pid_purl)
+                _img_result = _image_vex_lookup(ctx, data, pid_name, rhel_base_pids, pid_purl, vex_ns_map)
                 if _img_result is not None:
                     verdict, pid_match, extra, _fam = _img_result
                     if pid_match:
@@ -1457,6 +1541,20 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                         img_lbl = ctx.display_name
 
                     if verdict == 'FALSE_POSITIVE':
+                        if extra and extra.startswith('errata_'):
+                            tag, fixed_in_ver = extra.split(':', 1)
+                            policy = ("Per Red Hat errata policy: all previous versions of packages "
+                                      "should be assumed vulnerable unless explicitly stated as not affected.")
+                            if tag == 'errata_fixed':
+                                return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                                    f"{policy} CVE fixed in OCP {fixed_in_ver}; "
+                                    f"{ctx.display_name} matches this fixed release.",
+                                    _severity])
+                            else:
+                                return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                                    f"{policy} CVE fixed in OCP {fixed_in_ver}; "
+                                    f"{ctx.display_name} is a newer release — not a previous version.",
+                                    _severity])
                         flag_desc = f" ({extra.replace('_', ' ')})" if extra else ""
                         return pd.Series(["✅ FALSE POSITIVE", "N/A",
                             f"VEX status: known_not_affected{flag_desc}. "
@@ -1492,7 +1590,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                     if flag.get('label') not in _NOT_AFFECTED_FLAGS:
                         continue
                     for pid in flag.get('product_ids', []):
-                        if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                        if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
                             continue
                         pid_sha = _extract_sha256(pid)
                         if pid_sha:
@@ -1530,7 +1628,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                     ps = vuln.get('product_status', {})
                     for status in ('known_not_affected', 'fixed', 'known_affected', 'under_investigation'):
                         for pid in ps.get(status, []):
-                            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
                                 continue
                             pid_sha = _extract_sha256(pid)
                             if not pid_sha:
@@ -1577,7 +1675,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                 ps = vuln.get('product_status', {})
                 for status in ('known_not_affected', 'known_affected', 'fixed', 'under_investigation'):
                     for pid in ps.get(status, []):
-                        if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                        if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
                             continue
                         pid_sha = _extract_sha256(pid)
                         if pid_sha:
@@ -1618,10 +1716,10 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             for vuln in data.get('vulnerabilities', []):
                 ps = vuln.get('product_status', {})
                 for pid in ps.get('known_affected', []):
-                    if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                    if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
                         scoped_affected.append(_pid_label(pid, pid_name, rel_parent))
                 for pid in ps.get('under_investigation', []):
-                    if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                    if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
                         scoped_investigating.append(_pid_label(pid, pid_name, rel_parent))
             if scoped_affected:
                 unique_labels = sorted(set(scoped_affected))
@@ -1694,7 +1792,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
 
         installed_minor = _detect_rhel_minor(found_v)
         for pid in not_affected_ids:
-            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
                 continue
             if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
                 continue
@@ -1716,7 +1814,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         # --- FIXED versions in scope ------------------------------------------
         scoped_fixed = []
         for pid in ps.get('fixed', []):
-            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
                 continue
             if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
                 continue
@@ -1792,7 +1890,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                 no_fix_pids.update(remed.get('product_ids', []))
 
         for pid in ps.get('known_affected', []):
-            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
                 continue
             if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
                 continue
@@ -1801,7 +1899,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                 # Check if a fix exists outside the in-scope products (context note)
                 other_products = set()
                 for fpid in ps.get('fixed', []):
-                    if _is_any_rhel_ver_product(fpid, rhel_ver) and not _pid_in_scope(fpid, ctx, pid_name, rhel_base_pids):
+                    if _is_any_rhel_ver_product(fpid, rhel_ver) and not _pid_in_scope(fpid, ctx, pid_name, rhel_base_pids, vex_ns_map):
                         fpkg, _ = _parse_pkg_from_product_id(fpid)
                         if fpkg and fpkg in _resolve_comp(comp, ctx):
                             other_products.add(_pid_label(fpid, pid_name, rel_parent))
@@ -1817,7 +1915,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
 
         # --- UNDER_INVESTIGATION in scope -------------------------------------
         for pid in ps.get('under_investigation', []):
-            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
                 continue
             if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
                 continue
@@ -1831,7 +1929,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         other_vuln, other_safe = set(), set()
         for status in ('fixed', 'known_affected', 'known_not_affected'):
             for pid in ps.get(status, []):
-                if _is_any_rhel_ver_product(pid, rhel_ver) and not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
+                if _is_any_rhel_ver_product(pid, rhel_ver) and not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
                     if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
                         continue
                     pkg_name, _ = _parse_pkg_from_product_id(pid)

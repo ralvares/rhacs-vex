@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Offline retriage — re-run audit on all OCP + operator reports from cached data. Zero network."""
 import sys, os, re, json, time, glob, argparse
-from concurrent.futures import ProcessPoolExecutor, as_completed
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pandas as pd
 
@@ -61,60 +61,89 @@ def retriage_ocp(txt):
         return ver, scanned, skipped, len(combined)
     return ver, scanned, skipped, 0
 
-def retriage_operators():
-    """Re-run audit on all operator CSVs using cached scan data."""
+def _retriage_one_operator_csv(csv_path):
+    """Retriage a single operator CSV. Returns (basename, success_bool, error_str)."""
+    import triage  # imported once per worker process, cached by Python
+    basename = os.path.basename(csv_path)
+    try:
+        df = pd.read_csv(csv_path, dtype=str)
+        if df.empty:
+            return basename, False, None
+        image_groups = df.groupby('IMAGE') if 'IMAGE' in df.columns else [(None, df)]
+        parts = []
+        for image_ref, group in image_groups:
+            if not image_ref or pd.isna(image_ref):
+                continue
+            cache_path = triage._scan_cache_path('', str(image_ref))
+            if os.path.exists(cache_path):
+                try:
+                    with open(cache_path) as fh:
+                        image_data = json.load(fh)
+                    labels = (image_data.get('metadata') or {}).get('v1', {}).get('labels') or {}
+                    img_ctx = triage.parse_context_from_labels(labels, str(image_ref)) if labels else triage.parse_image_ref(str(image_ref))
+                    os_info = (image_data.get('scan') or {}).get('operatingSystem', '')
+                    if os_info:
+                        os_rhel = re.search(r'(?:rhel|coreos):(\d+)', os_info)
+                        if os_rhel:
+                            img_ctx.rhel_ver = os_rhel.group(1)
+                except Exception:
+                    img_ctx = triage.parse_image_ref(str(image_ref))
+            else:
+                img_ctx = triage.parse_image_ref(str(image_ref))
+
+            if hasattr(triage, '_sbom_cache_path'):
+                sp = triage._sbom_cache_path(str(image_ref))
+                if os.path.exists(sp):
+                    try:
+                        with open(sp) as fh:
+                            img_ctx.sbom_src_map = triage._build_sbom_src_map(json.load(fh))
+                    except Exception:
+                        pass
+
+            img_df = triage.rhacs_to_df(image_data) if os.path.exists(cache_path) else pd.DataFrame()
+            if img_df.empty:
+                continue
+            img_df['RHACS_SEVERITY'] = img_df['SEVERITY'].apply(lambda s: triage._RHACS_SEVERITY_MAP.get(str(s).strip().upper(), 'Unknown'))
+            img_df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY']] = img_df.apply(lambda row: list(triage.audit_row_detailed(row, img_ctx)), axis=1, result_type='expand')
+            img_df['VEX_PRODUCT'] = img_df.apply(lambda row: triage._vex_product_for_row(row, img_ctx), axis=1)
+            img_df['SEVERITY_MISMATCH'] = (img_df['RHACS_SEVERITY'] != 'Unknown') & (img_df['SEVERITY'] != img_df['RHACS_SEVERITY'])
+            img_df['IMAGE'] = str(image_ref)
+            img_df['IMAGE_ROLE'] = group.iloc[0].get('IMAGE_ROLE', '') if 'IMAGE_ROLE' in group.columns else ''
+            parts.append(triage._sort_and_filter_df(img_df, False))
+
+        if parts:
+            combined = pd.concat(parts, ignore_index=True)
+            combined.to_csv(csv_path, index=False)
+            return basename, True, None
+        return basename, False, None
+    except Exception as e:
+        return basename, False, str(e)
+
+
+def retriage_operators(workers=10):
+    """Re-run audit on all operator CSVs using cached scan data (threaded).
+
+    Uses ThreadPoolExecutor (not Process) so all workers share the _load_vex
+    LRU cache — each VEX file is read from disk once instead of once-per-process.
+    """
     op_dirs = sorted(glob.glob(os.path.join(REPORT_DIR, 'ocp-*')))
     op_dirs = [d for d in op_dirs if os.path.isdir(d)]
-    total = 0
-    for d in op_dirs:
-        csvs = sorted(glob.glob(os.path.join(d, '*.csv')))
-        for csv_path in csvs:
-            try:
-                df = pd.read_csv(csv_path, dtype=str)
-                if df.empty: continue
-                # Re-audit each row using cached VEX
-                image_groups = df.groupby('IMAGE') if 'IMAGE' in df.columns else [(None, df)]
-                parts = []
-                for image_ref, group in image_groups:
-                    if not image_ref or pd.isna(image_ref): continue
-                    cache_path = triage._scan_cache_path('', str(image_ref))
-                    if os.path.exists(cache_path):
-                        try:
-                            with open(cache_path) as fh: image_data = json.load(fh)
-                            labels = (image_data.get('metadata') or {}).get('v1', {}).get('labels') or {}
-                            img_ctx = triage.parse_context_from_labels(labels, str(image_ref)) if labels else triage.parse_image_ref(str(image_ref))
-                            os_info = (image_data.get('scan') or {}).get('operatingSystem', '')
-                            if os_info:
-                                os_rhel = re.search(r'(?:rhel|coreos):(\d+)', os_info)
-                                if os_rhel: img_ctx.rhel_ver = os_rhel.group(1)
-                        except:
-                            img_ctx = triage.parse_image_ref(str(image_ref))
-                    else:
-                        img_ctx = triage.parse_image_ref(str(image_ref))
+    all_csvs = [csv for d in op_dirs for csv in sorted(glob.glob(os.path.join(d, '*.csv')))]
+    print(f'  Found {len(all_csvs)} operator CSVs across {len(op_dirs)} OCP versions, {workers} threads', flush=True)
 
-                    if hasattr(triage, '_sbom_cache_path'):
-                        sp = triage._sbom_cache_path(str(image_ref))
-                        if os.path.exists(sp):
-                            try:
-                                with open(sp) as fh: img_ctx.sbom_src_map = triage._build_sbom_src_map(json.load(fh))
-                            except: pass
-
-                    img_df = triage.rhacs_to_df(image_data) if os.path.exists(cache_path) else pd.DataFrame()
-                    if img_df.empty: continue
-                    img_df['RHACS_SEVERITY'] = img_df['SEVERITY'].apply(lambda s: triage._RHACS_SEVERITY_MAP.get(str(s).strip().upper(), 'Unknown'))
-                    img_df[['AUDIT_RESULT','VEX_FIX_VER','JUSTIFICATION','SEVERITY']] = img_df.apply(lambda row: list(triage.audit_row_detailed(row, img_ctx)), axis=1, result_type='expand')
-                    img_df['VEX_PRODUCT'] = img_df.apply(lambda row: triage._vex_product_for_row(row, img_ctx), axis=1)
-                    img_df['SEVERITY_MISMATCH'] = (img_df['RHACS_SEVERITY'] != 'Unknown') & (img_df['SEVERITY'] != img_df['RHACS_SEVERITY'])
-                    img_df['IMAGE'] = str(image_ref)
-                    img_df['IMAGE_ROLE'] = group.iloc[0].get('IMAGE_ROLE', '') if 'IMAGE_ROLE' in group.columns else ''
-                    parts.append(triage._sort_and_filter_df(img_df, False))
-
-                if parts:
-                    combined = pd.concat(parts, ignore_index=True)
-                    combined.to_csv(csv_path, index=False)
-                    total += 1
-            except Exception as e:
-                print(f'  ERROR {os.path.basename(csv_path)}: {e}')
+    total = done = errors = 0
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        futures = {ex.submit(_retriage_one_operator_csv, csv): csv for csv in all_csvs}
+        for future in as_completed(futures):
+            done += 1
+            basename, ok, err = future.result()
+            if ok:
+                total += 1
+            if err:
+                errors += 1
+                print(f'  ERROR {basename}: {err}', flush=True)
+            if done % 20 == 0 or done == len(all_csvs):
+                print(f'  [{done}/{len(all_csvs)}] ({100*done//len(all_csvs)}%) updated={total} errors={errors}', flush=True)
     return total
 
 if __name__ == '__main__':
@@ -153,7 +182,7 @@ if __name__ == '__main__':
     if not args.ocp_only:
         print(f'\n=== Retriaging operators ===', flush=True)
         op_t0 = time.time()
-        op_count = retriage_operators()
+        op_count = retriage_operators(workers=args.workers)
         print(f'  {op_count} operator reports updated in {time.time() - op_t0:.0f}s', flush=True)
 
     # Rebuild parquets

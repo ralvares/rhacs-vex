@@ -73,6 +73,13 @@ def _normalise(text: str) -> list[str]:
         if trimmed and trimmed != c:
             candidates.add(trimmed)
 
+    # Strip trailing _operator suffix: VEX product IDs often omit it.
+    # e.g. OLM "keycloak_operator" → VEX "red_hat_build_of_keycloak"
+    for c in list(candidates):
+        base = re.sub(r'_operator$', '', c)
+        if base and base != c:
+            candidates.add(base)
+
     return sorted(candidates)
 
 

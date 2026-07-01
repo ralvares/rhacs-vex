@@ -109,6 +109,18 @@ At triage time, when the engine encounters an image from `rh-acs/`, it loads the
 
 Red Hat ships 150+ operators. Their marketing names change, new operators appear every OCP release, and some operators move between product families (e.g., when a component is promoted from Tech Preview to GA under a different name). A hardcoded table would require manual updates after every OCP release. The catalog-derived map rebuilds itself automatically from the source of truth.
 
+### Dynamic VEX namespace mapping
+
+The catalog-derived map covers most operators but can have gaps — OLM package names don't always match VEX product IDs (e.g., OLM has `keycloak_operator` but VEX uses `red_hat_build_of_keycloak`).
+
+To close this gap, the engine also builds a **dynamic namespace map at triage time** directly from the VEX product tree. Every VEX file contains OCI purls (`pkg:oci/…?repository_url=registry.redhat.io/NAMESPACE/IMAGE`) and CPE identifiers (`cpe:/a:redhat:PRODUCT:VERSION`). The engine extracts registry namespaces from OCI purls and maps them to parent product families using the VEX relationship structure.
+
+This means: even if the static catalog mapping is missing or incomplete, the engine can still determine that an image in the `rhbk/` namespace belongs to `red_hat_build_of_keycloak` — because the VEX file itself says so.
+
+The two maps are complementary:
+- **Static (catalog)**: Available before any CVE is triaged; covers the full operator landscape
+- **Dynamic (VEX)**: Per-CVE; fills gaps where catalog names diverge from VEX product IDs
+
 ---
 
 ## 3. Why Image Labels Matter
@@ -166,7 +178,7 @@ The engine cross-references five sources of truth for every finding:
 | **Red Hat VEX/CSAF** | Authoritative vendor status per CVE per product (source of truth) | `security.access.redhat.com/data/csaf/v2/vex/` |
 | **SPDX 2.3 SBOM** | Binary-to-source RPM lineage, package inventory | RHACS API (`/api/v1/images/sbom`) |
 | **OCP Release Manifest** | Component name → image digest mapping (e.g., `etcd` → `sha256:3654c…`) | `oc adm release info --pullspecs` |
-| **Namespace-to-VEX Map** | Product scope for operators (catalog-derived) | OLM operator catalogs via `build_ns_map.py` |
+| **Namespace-to-VEX Map** | Product scope for operators (catalog-derived + dynamic VEX) | OLM catalogs via `build_ns_map.py` + OCI purls/CPEs from VEX product tree at triage time |
 | **RPM Version Database** | Epoch-aware RPM version comparison | `version_utils.rpm` library |
 
 Each VEX file is a CSAF 2.0 document published by Red Hat Product Security. It contains a **product tree** (which products exist) and **vulnerability entries** (which products are affected, fixed, not affected, or under investigation for that CVE).
@@ -225,15 +237,18 @@ graph TD
     CATCHALL -->|Yes| FP1["FALSE POSITIVE: No Red Hat product affected"]
     CATCHALL -->|No| RPM{Is this an RPM package?}
     
-    RPM -->|No| NON_RPM{Non-RPM: OCP image with ocp_component?}
+    RPM -->|No| NON_RPM{Non-RPM: OCP/operator workload?}
     RPM -->|Yes| KNA{Known Not Affected in scope?}
 
-    NON_RPM -->|Yes| IMG_MATCH{Image-level VEX match?}
+    NON_RPM -->|Yes| IMG_MATCH{"_image_vex_lookup: match via<br/>image-path + generic + purl"}
     NON_RPM -->|No| NON_RPM_FALLBACK["Non-RPM checks 1–5"]
 
-    IMG_MATCH -->|"Match: known_not_affected"| FP_IMG["FALSE POSITIVE: OCP image not affected per VEX"]
-    IMG_MATCH -->|"Match: known_affected"| P_IMG["POSITIVE: OCP image confirmed affected per VEX"]
-    IMG_MATCH -->|No match| OCP4_ASSESSED{VEX assessed OCP4?}
+    IMG_MATCH -->|"Match: known_not_affected<br/>(image-path, generic/rhcos, or purl)"| FP_IMG["FALSE POSITIVE: component not affected per VEX"]
+    IMG_MATCH -->|"Match: known_affected"| P_IMG["POSITIVE: component confirmed affected per VEX"]
+    IMG_MATCH -->|No match| ERRATA{"Red Hat errata policy:<br/>fixes in older OCP streams?"}
+
+    ERRATA -->|"Fixes in OCP ≤4.18,<br/>scanning 4.22 (newer)"| FP_ERRATA["FALSE POSITIVE: not a previous version"]
+    ERRATA -->|"No OCP fixes"| OCP4_ASSESSED{VEX assessed OCP4 family?}
 
     OCP4_ASSESSED -->|"Yes (has OCP4 entries)"| FP_ABS["FALSE POSITIVE: Not listed as affected"]
     OCP4_ASSESSED -->|"No (no OCP4 entries)"| NON_RPM_FALLBACK
@@ -367,7 +382,7 @@ Three outcomes:
 
 ## 9. Non-RPM Path: Go, Java, npm, Python
 
-Non-RPM components follow a different logic path because their version strings are not RPM-formatted and cannot be reliably compared using RPM version math.
+Non-RPM components follow a different logic path because their version strings are not RPM-formatted and cannot be reliably compared using RPM version math. Instead of version comparison, the engine uses **product-level and image-level VEX matching** — reading CPE and purl identifiers from the VEX product tree to determine scope.
 
 ### Why version comparison is not used for non-RPM
 
@@ -375,32 +390,90 @@ Red Hat does not publish per-component fix versions for Go modules, npm packages
 
 This means: for a Go module like `golang.org/x/net v0.17.0`, there is no VEX entry saying "fixed in v0.18.0." Instead, the VEX says "fixed in image `quay.io/…@sha256:abc123`." The engine cannot compare upstream semver versions against VEX data because VEX does not contain upstream semver versions.
 
-Even when VEX does reference a package name (rather than an image digest), the version string is in RPM NEVRA format (e.g., `go-toolset-1.19-golang-0:1.19.13-7.el7_9`), not upstream semver. The scanner reports `v1.19.13`; the VEX says `1.19.13-7.el7_9`. These are different version universes that cannot be reliably compared.
-
 The engine stays loyal to what VEX actually publishes rather than inventing its own version comparisons outside the vendor's data.
+
+### What Red Hat VEX provides per package type
+
+Across 7,000+ VEX files, Red Hat uses these purl (Package URL) types to identify components:
+
+| RHACS SOURCE | VEX purl type | Coverage | Example |
+| :--- | :--- | :--- | :--- |
+| **OS** (RPM) | `pkg:rpm/redhat/…` | 1.9M entries | `pkg:rpm/redhat/podman` |
+| **GO** | None | 0 entries | VEX never tracks Go modules directly |
+| **JAVA** | `pkg:maven/…` | 21K entries | `pkg:maven/com.nimbusds/nimbus-jose-jwt` |
+| **NODEJS** | `pkg:npm/…` | 6.7K entries | `pkg:npm/http-proxy-middleware` |
+| **PYTHON** | `pkg:pypi/…` | 2 entries | `pkg:pypi/urllib3` |
+| (platform) | `pkg:generic/redhat/…` | 2.9K entries | `pkg:generic/redhat/rhcos` |
+| (container) | `pkg:oci/…` | 1M entries | `pkg:oci/keycloak-rhel9?repository_url=…` |
+
+Key insight: **Go and Python are never tracked at module level.** Go vulnerabilities are assessed at the containing level — the RPM (`podman`), the platform component (`rhcos`), or the OCI image (`openshift4/ose-etcd-rhel9`).
+
+Product families are identified by CPE at the top of the product tree:
+
+```
+cpe:/a:redhat:openshift:4                    → Red Hat OpenShift Container Platform 4
+cpe:/a:redhat:advanced_cluster_security:4    → Red Hat Advanced Cluster Security 4
+cpe:/a:redhat:build_keycloak                 → Red Hat build of Keycloak
+```
+
+### How the engine matches non-RPM components to VEX entries
+
+The engine reads the VEX product tree at triage time and builds matching maps dynamically — no assumptions, no hardcoded tables.
+
+#### Step 1: Build product tree maps (`_build_pid_name`)
+
+When a VEX file is loaded, the engine walks the product tree and extracts:
+
+| Map | What it contains | Source |
+| :--- | :--- | :--- |
+| `pid_name` | product_id → human name | Branch nodes |
+| `pid_purl` | product_id → purl string | `product_identification_helper.purl` |
+| `vex_ns_map` | registry namespace → product families | OCI purls + relationships |
+
+The `vex_ns_map` is the key innovation. For each OCI component purl, the engine extracts the registry namespace from the `repository_url` parameter and maps it back to the parent product family:
+
+```
+VEX purl: pkg:oci/keycloak-rhel9?repository_url=registry.redhat.io/rhbk/keycloak-rhel9
+                                                                      ^^^^
+Extracted namespace: "rhbk"
+Parent product: "red_hat_build_of_keycloak"
+
+Result: vex_ns_map["rhbk"] = {"red_hat_build_of_keycloak", "build_keycloak"}
+```
+
+This map is built dynamically from every VEX file — no pre-built mapping or catalog data needed. It works for products the engine has never seen before, as long as the VEX product tree contains OCI purls.
+
+#### Step 2: Scope matching (`_pid_in_scope`)
+
+When checking if a VEX entry applies to the current workload, the engine uses three layers:
+
+1. **Static catalog prefixes** — from `ns_vex_prefixes.json` (built from OLM catalogs)
+2. **Dynamic VEX namespace map** — `vex_ns_map` built from OCI purls in the current VEX file
+3. **CPE product token matching** — extracted from the VEX product family's CPE
+
+For operators, this means: even if the static catalog mapping is incomplete, the engine can still match because it reads the VEX product tree directly.
+
+#### Step 3: Component name bridging (`_resolve_comp`)
+
+RHACS and VEX use different naming conventions. The engine bridges them:
+
+| RHACS format | VEX format | Bridge |
+| :--- | :--- | :--- |
+| `python3-urllib3` (binary RPM) | `python-urllib3` (source RPM) | SBOM `GENERATED_FROM` mapping |
+| `com.nimbusds:nimbus-jose-jwt` (Maven) | `nimbus-jose-jwt` (bare artifact) | Extract artifactId after `:` |
+| `http-proxy-middleware` (npm) | `http-proxy-middleware` | Direct match |
+| `github.com/containers/podman/v5` (Go) | No VEX entry | Matched at image/component level instead |
+
+For Maven Java components, RHACS reports the full coordinate (`groupId:artifactId`) while VEX uses the bare artifact name. The engine extracts the artifactId from the RHACS name so `com.nimbusds:nimbus-jose-jwt` resolves to `{com.nimbusds:nimbus-jose-jwt, nimbus-jose-jwt}`.
 
 ### The Go module naming mismatch problem
 
-When RHACS scans an OCP container image, it reports Go dependencies by their **Go module path** — e.g., `google.golang.org/grpc` or `github.com/docker/docker`. Red Hat's VEX advisories track vulnerabilities at the **RPM or container image level** — e.g., the RPM package `grpc` or the container image `openshift4/ose-etcd-rhel9`. There is no string overlap between the Go module path and the VEX product ID.
+Go modules are the hardest case. RHACS reports `github.com/containers/podman/v5`; VEX has no `pkg:golang` entry. The engine cannot match by component name.
 
-For example, CVE-2024-41110 (Docker Engine AuthZ bypass) affects the Go module `github.com/docker/docker`. Red Hat's VEX for this CVE lists:
+Instead, the engine matches at the **containing component level**:
 
-| VEX Product ID (OCP4) | Status | Justification |
-| :--- | :--- | :--- |
-| `podman` | Not affected | — |
-| `openshift4/ose-machine-config-operator` | Not affected | Component not Present |
-
-The VEX does not mention `github.com/docker/docker` (the Go module name), nor does it mention `docker-builder` or `docker-registry` (the OCP component names where the scanner finds the Go module). Without bridging this gap, the engine would flag all 258 findings as POSITIVE even though Red Hat assessed OCP4 and found it not affected.
-
-### How the engine bridges Go modules to VEX entries
-
-The engine uses three layers of context to match a Go module finding against VEX data:
-
-#### Layer 1: OCP manifest component name (`ocp_component`)
-
-In `--ocp` mode, the release manifest provides the component name for each image (e.g., `etcd`, `docker-builder`, `apiserver-network-proxy`). This name is stored on the `WorkloadContext` as `ocp_component`.
-
-In `--image` mode, the component name is derived from the image's Docker `name` label. For example, an image with label `name=openshift4/ose-etcd-rhel9` yields `ocp_component=etcd`.
+1. **Image-path PIDs**: `openshift4/ose-etcd-rhel9` → normalized to `etcd` → matched against `ctx.ocp_component`
+2. **Generic component PIDs**: `rhcos` with `pkg:generic/redhat/rhcos` → matched against `rhel-coreos-10` via `_normalize_ocp_component` (bridges the `rhcos` ↔ `rhel-coreos` alias)
 
 The normalization function `_normalize_vex_image_core()` extracts the core component name from VEX image-style PIDs:
 
@@ -409,60 +482,77 @@ The normalization function `_normalize_vex_image_core()` extracts the core compo
 | `openshift4/ose-etcd-rhel9` | `etcd` |
 | `openshift4/ose-cluster-etcd-rhel8-operator` | `cluster-etcd-operator` |
 | `openshift4/ose-docker-builder-rhel9` | `docker-builder` |
-| `openshift4/ose-agent-installer-api-server-rhel9` | `agent-installer-api-server` |
-| `openshift4/ose-machine-config-operator` | `machine-config-operator` |
 
-The pattern: strip `openshift4/ose-` prefix, strip `-rhel<N>` suffix, collapse double hyphens.
+For RHCOS (the OCP base OS), VEX uses the bare product ID `rhcos` with `pkg:generic/redhat/rhcos`. The OCP manifest calls it `rhel-coreos-10`. The engine normalizes both to `rhel-coreos` for matching.
 
-#### Layer 2: RHEL-version-aware matching
+### RHEL-version-aware matching
 
-VEX entries are RHEL-version-specific. The same component can have opposite verdicts for different RHEL versions:
-
-| Image | RHEL | VEX Status (CVE-2026-33186) |
-| :--- | :--- | :--- |
-| `ose-agent-installer-api-server-rhel8` | 8 | **Not affected** (`vulnerable_code_not_present`) |
-| `ose-agent-installer-api-server-rhel9` | 9 | **Affected** (fix deferred) |
-
-The engine extracts the RHEL version from the VEX PID's `-rhel<N>` suffix and compares it against `ctx.rhel_ver` (derived from the image's CPE label, `operatingSystem` field, or the OCP manifest). Match priority:
+VEX entries are RHEL-version-specific. The same component can have opposite verdicts for different RHEL versions. The engine extracts the RHEL version from the VEX PID's `-rhel<N>` suffix and uses quality scoring:
 
 1. **Exact RHEL match** (quality=2): PID has `-rhel9`, context is RHEL 9
 2. **Suffixless PID** (quality=1): PID has no `-rhel<N>` → matches any RHEL version
 3. **Other RHEL** (quality=0): PID has `-rhel8`, context is RHEL 9 → only used if no better match exists
 
-When `known_affected` and `known_not_affected` coexist at the same quality level, `known_affected` takes precedence (conservative: the vulnerability is still actionable).
+When `known_affected` and `known_not_affected` coexist at the same quality level, `known_affected` takes precedence (conservative).
 
-#### Layer 3: VEX as source of truth — absence means not affected
+### Red Hat errata policy — stale VEX handling
 
-When the engine finds no image-level match for the OCP component (Layer 1 returns no result), it checks whether the VEX has **any** OCP4 entries at all (affected, not-affected, fixed, or flagged). If yes, Red Hat assessed OCP4 for this CVE — and a component not mentioned is not affected. VEX is the authoritative source: if Red Hat wanted to say a component is affected, they would have listed it.
+Red Hat's errata policy states: *"Unless explicitly stated as not affected, all previous versions of packages in any minor update stream of a product listed here should be assumed vulnerable, although may not have been subject to full analysis."*
 
-This matches what a user sees on the Red Hat CVE page (e.g., `access.redhat.com/security/cve/cve-2024-41110#cve-affected-packages`). If a component is not in the "Affected Packages" table, it is not affected.
+The engine applies this policy: if a VEX file has fixes for an older OCP version (e.g., OCP 4.18) but no entry for the current version (e.g., OCP 4.22), the current version is **not a previous version** — it is newer. Per the policy, only previous versions are assumed vulnerable. The newer version is not assumed vulnerable.
 
-If the VEX has **zero** OCP4 entries, the CVE was not assessed for OCP4 — the engine falls through to the cross-product inference path.
+This handles stale VEX files where Red Hat fixed a CVE in OCP 4.15 but never updated the VEX to include 4.22. The engine checks for `RHOSE-4.xx` version-specific fix entries and compares them against the current OCP version.
+
+Important: this check only fires when there is **no broad product match** (i.e., `_image_vex_lookup` found nothing). If the VEX has a broad `known_affected` entry for `red_hat_openshift_container_platform_4:rhcos`, that takes priority — it means Red Hat is still tracking the issue for OCP 4 broadly, and fixes in older streams don't clear the current version.
+
+### The complete non-RPM decision flow
+
+```
+Non-RPM CVE (Go, Java, npm, Python)
+│
+├─ _image_vex_lookup: match OCP component / operator image against VEX
+│   │
+│   ├─ Image-path PID match (openshift4/ose-etcd-rhel9)
+│   │   └─ Normalize → compare with ocp_component → verdict
+│   │
+│   ├─ Generic component match (rhcos via pkg:generic)
+│   │   └─ _normalize_ocp_component → bridges rhcos ↔ rhel-coreos-10
+│   │
+│   ├─ No match → Red Hat errata policy check
+│   │   └─ Fixes in older OCP? Current is newer? → FALSE POSITIVE
+│   │
+│   └─ No match, no fixes → fall through
+│
+├─ Product-level flags (vulnerable_code_not_present)
+│
+├─ Package name matching (_resolve_comp)
+│   └─ Maven: extract artifactId; RPM: SBOM binary→source; npm: direct match
+│
+├─ SHA256 image-digest matching (container image components)
+│
+├─ Cross-product inference
+│
+└─ No match → "Non-RPM — no explicit VEX entry" (POSITIVE)
+```
 
 ### How non-RPM false positives are detected
 
 The engine uses six progressively broader checks for non-RPM components:
 
-**0. OCP image-level VEX matching** (OCP workloads only). When `ocp_component` is set, the engine matches it against VEX image PIDs using the normalization and RHEL-aware matching described above. This is the primary mechanism for clearing Go module findings. Three outcomes:
-- **Direct match found, status is `known_not_affected` or `fixed`**: FALSE POSITIVE — "OCP image not affected per VEX (`openshift4/ose-docker-builder-rhel9`): vulnerable code not present."
-- **Direct match found, status is `known_affected` or `under_investigation`**: POSITIVE — "OCP image confirmed affected per VEX (`openshift4/ose-etcd-rhel9`)."
-- **No direct match, but VEX assessed OCP4**: FALSE POSITIVE — "VEX assessed OCP4 for this CVE; `docker-builder` not listed as affected."
-- **No direct match, VEX did not assess OCP4**: Falls through to checks 1–5 below.
+**0. OCP image-level and generic component VEX matching** (OCP/operator workloads). The engine matches the workload identity against three types of VEX PIDs:
+- **Image-path PIDs** (e.g., `openshift4/ose-etcd-rhel9`): Matched via `_normalize_vex_image_core`
+- **Generic component PIDs** (e.g., `rhcos` with `pkg:generic/redhat/rhcos`): Matched via `_normalize_ocp_component`, which bridges the RHCOS naming mismatch
+- **Red Hat errata policy**: When no broad match exists but fixes exist in older OCP streams, newer OCP versions are not assumed vulnerable
 
-**1. Not tracked in VEX at all.** If the VEX document contains no product entries for any Red Hat product mentioning this component — no affected, fixed, not affected, or investigating entries — the verdict is NOT ASSESSED. Red Hat's VEX coverage for non-RPM components (Go modules, Java JARs, npm packages) is not comprehensive — absence from VEX does not mean the component is safe, only that no vendor assessment exists. The finding should be treated as a potential risk until explicitly cleared.
+For operators, scope matching uses the dynamic `vex_ns_map` built from OCI purls in the VEX product tree — no pre-built mapping needed.
 
-**2. SHA256 image-digest matching.** For container image components (identified by `/` in the component name), the engine checks for VEX product IDs that contain the exact SHA256 digest of the image being scanned. This provides **build-level precision**:
-- If the exact image digest is listed as `known_not_affected`: FALSE POSITIVE — "Image build not affected per VEX."
-- If the exact image digest is listed as `fixed`: FALSE POSITIVE — "This image build is the fixed version."
-- If the exact image digest is listed as `known_affected`: POSITIVE — "Image build confirmed affected."
-- If a fixed digest exists but does not match the installed digest: POSITIVE — "Fixed image build exists but installed version is older."
+**1. Not tracked in VEX at all.** If the VEX document contains no product entries for any Red Hat product mentioning this component — no affected, fixed, not affected, or investigating entries — the verdict is NOT ASSESSED.
 
-**3. Product-level flags.** The engine checks not-affected flags scoped to the workload's product family. These flags use VEX `flag` entries (label: `vulnerable_code_not_present` or similar) applied to specific product IDs. If a flag matches the workload scope and the package name, the verdict is FALSE POSITIVE.
+**2. SHA256 image-digest matching.** For container image components (identified by `/` in the component name), the engine checks for VEX product IDs that contain the exact SHA256 digest of the image being scanned. This provides **build-level precision**.
 
-**4. Generic product status scan.** The engine checks `known_not_affected`, `known_affected`, `fixed`, and `under_investigation` entries for any in-scope product ID where the package name matches, applying SHA256 verification for image-level PIDs. For non-SHA PIDs:
-- `known_not_affected` → FALSE POSITIVE
-- `fixed` → POSITIVE (a fix exists but the installed version cannot be verified as patched — conservative to avoid silent false negatives)
-- `known_affected` / `under_investigation` → POSITIVE
+**3. Product-level flags.** The engine checks not-affected flags scoped to the workload's product family.
+
+**4. Generic product status scan.** The engine checks `known_not_affected`, `known_affected`, `fixed`, and `under_investigation` entries for any in-scope product ID where the package name matches (using `_resolve_comp` for Maven artifactId extraction and SBOM binary→source bridging).
 
 **5. Cross-product inference.** Same logic as the RPM fallback: if only not-affected entries exist in related products, FALSE POSITIVE. If any affected/fixed entries exist, POSITIVE.
 
