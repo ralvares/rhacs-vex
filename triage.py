@@ -184,6 +184,9 @@ class WorkloadContext:
     # e.g. {"python3-urllib3": "python-urllib3", "libgcc": "gcc", ...}
     # Populated by callers that have SBOM access; empty dict means no mapping.
     sbom_src_map  : dict            = field(default_factory=dict)
+    # SBOM package inventory: {name → set(versions)}.  Populated alongside
+    # sbom_src_map when SBOM is available; empty dict means no SBOM loaded.
+    sbom_packages : dict            = field(default_factory=dict)
     # OCP manifest component name (e.g. "etcd", "apiserver-network-proxy").
     # Set from the release manifest in --ocp mode.  Used to match VEX image-
     # level PIDs (e.g. "openshift4/ose-etcd-rhel9") for Non-RPM Go modules.
@@ -343,6 +346,8 @@ _VEX_SESSION = requests_cache.CachedSession(
     cache_name=os.path.join(VEX_DIR, '.http_cache'),
     cache_control=True,   # honour ETag / Last-Modified from the Red Hat CDN
     stale_if_error=True,  # fall back to stale cache on network failure
+    backend='sqlite',
+    wal=True,
 )
 
 # --- 3. SYNC ENGINE: Dual-Format Mirror ---
@@ -473,6 +478,8 @@ def _rhacs_session(endpoint: str, token: str) -> requests_cache.CachedSession:
             "*":                          requests_cache.DO_NOT_CACHE,
         },
         stale_if_error=True,
+        backend='sqlite',
+        wal=True,
     )
     s.headers.update({"Authorization": f"Bearer {token}", "Accept": "application/json"})
     s.verify = False   # Central may use self-signed cert
@@ -769,6 +776,66 @@ def _build_sbom_src_map(sbom: dict) -> dict:
                     if bn and sn and bn != sn:
                         src_map[bn] = sn
         return src_map
+
+
+def _build_sbom_packages(sbom: dict) -> dict:
+    """Build {name → set(versions)} from an SPDX SBOM for per-row verification."""
+    pkgs: dict = {}
+    try:
+        parser = _SBOMParser(sbom_type="spdx")
+        parser.parse_string(json.dumps(sbom))
+        for pkg in parser.get_packages():
+            name = pkg.get("name", "")
+            ver = pkg.get("version", "")
+            if name:
+                pkgs.setdefault(name, set()).add(ver)
+    except Exception:
+        for pkg in sbom.get("packages", []):
+            name = pkg.get("name", "")
+            ver = pkg.get("versionInfo", "")
+            if name:
+                pkgs.setdefault(name, set()).add(ver)
+    return pkgs
+
+
+def _sbom_note(comp: str, version: str, ctx) -> str:
+    """Return SBOM verification fragment for an OS/RPM component.
+
+    Uses RPM version comparison (compare_versions) to relate the scanner-
+    reported version against the SBOM inventory.  Only produces output when
+    sbom_packages is populated.  Returns '' when SBOM is unavailable.
+    """
+    if not ctx.sbom_packages:
+        return ''
+    names = _resolve_comp(comp, ctx)
+    for name in names:
+        sbom_vers = ctx.sbom_packages.get(name)
+        if sbom_vers is None:
+            continue
+        # Find the highest SBOM version via RPM comparison
+        sbom_list = sorted(sbom_vers)
+        best_sbom = sbom_list[0]
+        for sv in sbom_list[1:]:
+            try:
+                i, f = _normalize_epoch(sv, best_sbom)
+                if compare_versions(i, f) > 0:
+                    best_sbom = sv
+            except Exception:
+                pass
+        # Compare scanner version against best SBOM version
+        try:
+            cmp_scan, cmp_sbom = _normalize_epoch(version, best_sbom)
+            cmp = compare_versions(cmp_scan, cmp_sbom)
+        except Exception:
+            cmp = None
+        if cmp == 0:
+            return f"{comp}-{version} (SBOM verified)"
+        elif cmp is not None and cmp > 0:
+            return f"{comp}-{version} (scanner reports newer than SBOM: {best_sbom})"
+        elif cmp is not None and cmp < 0:
+            return f"{comp}-{version} (SBOM has newer: {best_sbom})"
+        return f"{comp}-{version} (SBOM has: {best_sbom})"
+    return f"{comp}-{version} (not in SBOM)"
 
 
 def sbom_to_packages_df(sbom: dict) -> pd.DataFrame:
@@ -1807,8 +1874,10 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                 if kna_minor and kna_minor != installed_minor:
                     continue
             scope = ctx.display_name
+            _sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
+            _prefix = f"{_sn}; " if _sn else ''
             return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                               f"{scope}: component known not affected (vulnerable code not present or not executable).",
+                               f"{_prefix}{scope}: component known not affected (vulnerable code not present or not executable).",
                                _severity])
 
         # --- FIXED versions in scope ------------------------------------------
@@ -1847,8 +1916,10 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                     # Fix exists in other streams but the patch for THIS minor
                     # stream has not been released yet → still VULNERABLE.
                     best_ref = unique_fixed[0]
+                    _sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
+                    _prefix = f"{_sn}; " if _sn else ''
                     return pd.Series(["❌ POSITIVE", best_ref,
-                                       f"{ctx.display_name} fix not yet released in el{ctx.rhel_ver}_{installed_minor} stream "
+                                       f"{_prefix}{ctx.display_name} fix not yet released in el{ctx.rhel_ver}_{installed_minor} stream "
                                        f"(installed {found_v}); fixed in other streams: {best_ref}.",
                                        _severity])
             else:
@@ -1870,17 +1941,16 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                             any_fail_fix = fix_v
                 except Exception:
                     pass
+            _sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
             if all_pass and compare_fixes and any_compared:
-                return pd.Series(["✅ FALSE POSITIVE", compare_fixes[0],
-                                   f"{ctx.display_name} fix backported: installed {found_v} >= {compare_fixes[0]}",
-                                   _severity])
+                note = f"{_sn + '; ' if _sn else ''}{ctx.display_name} fix backported: installed {found_v} >= {compare_fixes[0]}"
+                return pd.Series(["✅ FALSE POSITIVE", compare_fixes[0], note, _severity])
             if any_fail_fix:
-                return pd.Series(["❌ POSITIVE", any_fail_fix,
-                                   f"{ctx.display_name} fix available ({any_fail_fix}); installed {found_v} is older.",
-                                   _severity])
-            return pd.Series(["❌ POSITIVE", compare_fixes[0] if compare_fixes else "N/A",
-                               f"{ctx.display_name} fix available ({compare_fixes[0] if compare_fixes else '?'}); installed {found_v} is older.",
-                               _severity])
+                note = f"{_sn + '; ' if _sn else ''}{ctx.display_name} fix available ({any_fail_fix}); installed {found_v} is older."
+                return pd.Series(["❌ POSITIVE", any_fail_fix, note, _severity])
+            fix_ref = compare_fixes[0] if compare_fixes else "?"
+            note = f"{_sn + '; ' if _sn else ''}{ctx.display_name} fix available ({fix_ref}); installed {found_v} is older."
+            return pd.Series(["❌ POSITIVE", compare_fixes[0] if compare_fixes else "N/A", note, _severity])
 
         # --- KNOWN_AFFECTED in scope ------------------------------------------
         # Build set of product IDs covered by no_fix_planned remediations
@@ -1903,14 +1973,16 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                         fpkg, _ = _parse_pkg_from_product_id(fpid)
                         if fpkg and fpkg in _resolve_comp(comp, ctx):
                             other_products.add(_pid_label(fpid, pid_name, rel_parent))
+                _sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
+                _prefix = f"{_sn}; " if _sn else ''
                 if pid in no_fix_pids:
-                    note = f"Confirmed affected in {ctx.display_name}; Red Hat will not fix this CVE (no_fix_planned) — not actionable."
+                    note = f"{_prefix}Confirmed affected in {ctx.display_name}; Red Hat will not fix this CVE (no_fix_planned) — not actionable."
                 elif other_products:
                     ctx_str = ", ".join(sorted(other_products))
-                    note = (f"Confirmed affected in {ctx.display_name}. "
+                    note = (f"{_prefix}Confirmed affected in {ctx.display_name}. "
                             f"Fix exists only in: {ctx_str} — fix not applicable to this workload.")
                 else:
-                    note = f"Confirmed affected in {ctx.display_name}; no fix available yet."
+                    note = f"{_prefix}Confirmed affected in {ctx.display_name}; no fix available yet."
                 return pd.Series(["❌ POSITIVE", "N/A", note, _severity])
 
         # --- UNDER_INVESTIGATION in scope -------------------------------------
@@ -2181,11 +2253,20 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
         if image_id is None:
             # No internal ID known — use POST /v1/images/scan which returns the
             # existing scan if RHACS already knows the image, or triggers a new scan.
-            image_data = rhacs_scan_image(session, image_ref, force=force)
+            try:
+                image_data = rhacs_scan_image(session, image_ref, force=force)
+            except TypeError:
+                # Corrupted requests_cache entry — purge and retry without cache
+                session.cache.delete(expired=True)
+                image_data = rhacs_scan_image(session, image_ref, force=True)
             if not image_data:
                 return {"found": False, "error": None}
         else:
-            image_data = rhacs_get_image(session, image_id, force=force, image_ref=image_ref)
+            try:
+                image_data = rhacs_get_image(session, image_id, force=force, image_ref=image_ref)
+            except TypeError:
+                session.cache.delete(expired=True)
+                image_data = rhacs_get_image(session, image_id, force=True, image_ref=image_ref)
         labels     = (image_data.get("metadata") or {}).get("v1", {}).get("labels") or {}
         img_ctx    = parse_context_from_labels(labels, image_ref) if labels \
                      else parse_image_ref(image_ref)
@@ -2217,6 +2298,7 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
         try:
             _sbom = rhacs_get_sbom(session, image_ref, force=force)
             img_ctx.sbom_src_map = _build_sbom_src_map(_sbom)
+            img_ctx.sbom_packages = _build_sbom_packages(_sbom)
         except Exception:
             pass  # non-fatal; matching falls back to exact name
 
@@ -2724,6 +2806,7 @@ def main():
             try:
                 _sbom = rhacs_get_sbom(session, args.image, force=_force)
                 ctx.sbom_src_map = _build_sbom_src_map(_sbom)
+                ctx.sbom_packages = _build_sbom_packages(_sbom)
             except Exception:
                 pass
 
