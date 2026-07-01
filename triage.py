@@ -59,7 +59,7 @@ MAX_WORKERS     = 20
 
 # ── Product-ID prefix helpers ────────────────────────────────────────────────
 
-def _build_pid_name(data: dict) -> tuple[dict, dict, set]:
+def _build_pid_name(data: dict) -> tuple[dict, dict, set, dict]:
     """
     Build lookup maps from a VEX product tree — no hardcoded labels needed.
 
@@ -69,14 +69,22 @@ def _build_pid_name(data: dict) -> tuple[dict, dict, set]:
       rhel_base_pids  : set of product_ids whose VEX name starts with
                         'Red Hat Enterprise Linux' — these are the RHEL base repos
                         (BaseOS, AppStream, CRB, SAP, …) as declared in the VEX tree itself
+      pid_purl        : {product_id → purl_string}  from product_identification_helper.
+                        Red Hat VEX uses purl type to distinguish RPMs (pkg:rpm/redhat/…)
+                        from non-RPM platform components (pkg:generic/redhat/…, e.g. rhcos).
     """
     pid_name: dict = {}
+    pid_purl: dict = {}
 
     def _walk(branches):
         for b in branches:
             p = b.get('product', {})
-            if p.get('product_id'):
-                pid_name[p['product_id']] = p.get('name', '')
+            pid = p.get('product_id')
+            if pid:
+                pid_name[pid] = p.get('name', '')
+                purl = (p.get('product_identification_helper') or {}).get('purl', '')
+                if purl:
+                    pid_purl[pid] = purl
             _walk(b.get('branches', []))
 
     _walk(data.get('product_tree', {}).get('branches', []))
@@ -95,7 +103,7 @@ def _build_pid_name(data: dict) -> tuple[dict, dict, set]:
         if name.startswith('Red Hat Enterprise Linux')
     }
 
-    return pid_name, rel_parent, rhel_base_pids
+    return pid_name, rel_parent, rhel_base_pids, pid_purl
 
 
 def _pid_label(pid: str, pid_name: dict, rel_parent: dict) -> str:
@@ -887,16 +895,24 @@ _NOT_AFFECTED_FLAGS = {
 def _resolve_comp(comp: str, ctx) -> set:
     """Return the set of package names to try when matching VEX product IDs.
 
-    RHACS reports binary RPM names (e.g. ``python3-urllib3``) while Red Hat
-    VEX files use the *source* RPM name (e.g. ``python-urllib3``).  When the
-    caller has populated ``ctx.sbom_src_map`` from the image SBOM's
-    ``GENERATED_FROM`` relationships, we include the source name so the match
-    succeeds without any hardcoding.
+    Bridges naming differences between RHACS scan components and Red Hat VEX:
+      - RPM binary→source: ``python3-urllib3`` → ``python-urllib3`` (via SBOM)
+      - Maven groupId:artifactId → bare artifactId: VEX PIDs use the Maven
+        artifact name (e.g. ``nimbus-jose-jwt``), while RHACS reports the full
+        coordinate (``com.nimbusds:nimbus-jose-jwt``).
     """
     names = {comp}
     src = ctx.sbom_src_map.get(comp) if ctx.sbom_src_map else None
     if src and src != comp:
         names.add(src)
+    # Maven groupId:artifactId → extract bare artifactId.
+    # VEX uses bare artifact name as PID (e.g. "nimbus-jose-jwt"),
+    # RHACS reports "com.nimbusds:nimbus-jose-jwt".
+    # Guard: must have ':' but NOT '/' (avoid Go module paths or image refs).
+    if ':' in comp and '/' not in comp and not comp.startswith('cpe:'):
+        artifact = comp.rsplit(':', 1)[-1]
+        if artifact and artifact != comp:
+            names.add(artifact)
     return names
 
 
@@ -924,26 +940,60 @@ def _extract_rhel_from_vex_image(img: str) -> Optional[str]:
     return m.group(1) if m else None
 
 
-def _image_vex_lookup(ctx: WorkloadContext, data: dict,
-                      pid_name: dict, rhel_base_pids: set):
-    """Check VEX image-level entries for an OCP or operator workload.
+# OCP component name ↔ VEX generic component name normalization.
+# RHCOS ships as a bare VEX PID (pkg:generic/redhat/rhcos), not as an
+# ose-* image-path PID like other OCP components.  The OCP release manifest
+# names it "rhel-coreos-10" (with RHEL version suffix); VEX calls it "rhcos".
+_OCP_GENERIC_ALIASES = {'rhcos': 'rhel-coreos'}
 
-    For non-RPM components (Go stdlib, npm) the package name never matches
-    VEX PIDs that reference container images.  This function matches the
-    workload's image identity against image-path PIDs in scope:
-      - OCP:      _normalize_vex_image_core(pid) == ctx.ocp_component
-      - operator: pid image name == ctx.image_name
+
+def _normalize_ocp_component(name: str) -> str:
+    """Normalize OCP manifest / VEX generic component names for matching.
+
+    Handles the well-known RHCOS alias and strips trailing RHEL version:
+      'rhcos'           → 'rhel-coreos'   (VEX generic name → expanded)
+      'rhel-coreos-10'  → 'rhel-coreos'   (OCP manifest name → base form)
+      'rhel-coreos-9'   → 'rhel-coreos'
+      'etcd'            → 'etcd'          (unchanged)
+    """
+    name = name.lower()
+    if name in _OCP_GENERIC_ALIASES:
+        return _OCP_GENERIC_ALIASES[name]
+    # Strip trailing RHEL version suffix from OCP component names like rhel-coreos-10.
+    # Anchored to rhel-coreos pattern to avoid mangling unrelated components.
+    name = re.sub(r'^(rhel-coreos)-\d+$', r'\1', name)
+    return name
+
+
+def _image_vex_lookup(ctx: WorkloadContext, data: dict,
+                      pid_name: dict, rhel_base_pids: set,
+                      pid_purl: Optional[dict] = None):
+    """Check VEX image-level and generic-component entries for OCP/operator workloads.
+
+    For non-RPM components (Go, npm, Python) the package name never matches
+    VEX PIDs.  Red Hat VEX rarely contains pkg:golang or pkg:pypi purls — Go
+    and Python are almost always assessed at the containing component level.
+    This function
+    matches the workload's identity against:
+      - Image-path PIDs: openshift4/ose-etcd-rhel9 (matched via _normalize_vex_image_core)
+      - Generic component PIDs: rhcos (purl pkg:generic/..., matched via _normalize_ocp_component)
 
     Returns (verdict, pid, extra, family_assessed) or None.
     Verdicts: POSITIVE, FALSE_POSITIVE, POSITIVE_OTHER_RHEL, NOT_LISTED.
     """
+    if pid_purl is None:
+        pid_purl = {}
+
     if ctx.workload_type == "ocp":
         comp = ctx.ocp_component or (
             _normalize_vex_image_core(ctx.image_name) if ctx.image_name else None)
         if not comp:
             return None
+        _comp_normalized = _normalize_ocp_component(comp)
         def _matches(pid_pkg):
-            return _normalize_vex_image_core(pid_pkg) == comp
+            if '/' in pid_pkg:
+                return _normalize_vex_image_core(pid_pkg) == comp
+            return _normalize_ocp_component(pid_pkg) == _comp_normalized
     elif ctx.workload_type == "operator":
         if not ctx.image_name:
             return None
@@ -951,6 +1001,11 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
             return pid_pkg.split('/')[-1] == ctx.image_name
     else:
         return None
+
+    def _is_generic_component(pid_pkg: str) -> bool:
+        """Return True if the VEX PID package is a generic (non-RPM) component."""
+        purl = pid_purl.get(pid_pkg, '')
+        return purl.startswith('pkg:generic/')
 
     matches = []       # (status, pid, rhel_quality, flag_label)
     family_assessed = False
@@ -970,11 +1025,22 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
                 if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                     continue
                 pid_pkg, _ = _parse_pkg_from_product_id(pid)
-                if not pid_pkg or '/' not in pid_pkg:
+                if not pid_pkg:
                     continue
-                family_assessed = True
+                has_path = '/' in pid_pkg
+                is_generic = not has_path and _is_generic_component(pid_pkg)
+                # Image-path PIDs and generic components are eligible for matching.
+                # Bare RPM PIDs (pkg:rpm/...) are handled by the RPM audit path.
+                if not has_path and not is_generic:
+                    continue
+                if has_path:
+                    family_assessed = True
                 if not _matches(pid_pkg):
                     continue
+                # Generic PIDs only set family_assessed when they actually match,
+                # to avoid NOT_LISTED → FALSE POSITIVE for unrelated generics.
+                if is_generic:
+                    family_assessed = True
                 pid_rhel = _extract_rhel_from_vex_image(pid_pkg)
                 rhel_q = 2 if pid_rhel == ctx.rhel_ver else (1 if pid_rhel is None else 0)
                 matches.append((status, pid, rhel_q, flag_map.get(pid, '')))
@@ -986,11 +1052,18 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
                 if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids):
                     continue
                 pid_pkg, _ = _parse_pkg_from_product_id(pid)
-                if not pid_pkg or '/' not in pid_pkg:
+                if not pid_pkg:
                     continue
-                family_assessed = True
+                has_path = '/' in pid_pkg
+                is_generic = not has_path and _is_generic_component(pid_pkg)
+                if not has_path and not is_generic:
+                    continue
+                if has_path:
+                    family_assessed = True
                 if not _matches(pid_pkg):
                     continue
+                if is_generic:
+                    family_assessed = True
                 pid_rhel = _extract_rhel_from_vex_image(pid_pkg)
                 rhel_q = 2 if pid_rhel == ctx.rhel_ver else (1 if pid_rhel is None else 0)
                 if not any(p == pid and s == 'known_not_affected' for s, p, _, _ in matches):
@@ -1049,7 +1122,7 @@ def _get_vex_product(data: dict, comp: str, ctx) -> str:
     """Return a short product label (e.g. 'OCP 4.20', 'Ceph 7.1') for the
     VEX entry that matches *comp* in the given context.  Returns '' if not found.
     """
-    pid_name, rel_parent, rhel_base_pids = _build_pid_name(data)
+    pid_name, rel_parent, rhel_base_pids, _pid_purl = _build_pid_name(data)
 
     # Scan all matched PIDs across all vulnerability entries
     labels: set = set()
@@ -1277,7 +1350,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         return pd.Series(["❌ POSITIVE", "N/A", "VEX file missing — cannot confirm fix; treat as vulnerable.", "Unknown"])
 
     # Build product tree lookup maps — used throughout for human-readable labels
-    pid_name, rel_parent, rhel_base_pids = _build_pid_name(data)
+    pid_name, rel_parent, rhel_base_pids, pid_purl = _build_pid_name(data)
 
     # Extract Red Hat severity rating from threats[category=impact]
     # Values: Critical, Important, Moderate, Low  (Red Hat scale)
@@ -1373,7 +1446,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             #    Package-name matching fails because "stdlib" ≠ image PIDs.
             #    Match the workload's image identity against VEX image PIDs.
             if ctx.workload_type in ("ocp", "operator"):
-                _img_result = _image_vex_lookup(ctx, data, pid_name, rhel_base_pids)
+                _img_result = _image_vex_lookup(ctx, data, pid_name, rhel_base_pids, pid_purl)
                 if _img_result is not None:
                     verdict, pid_match, extra, _fam = _img_result
                     if pid_match:
