@@ -139,6 +139,13 @@ function fixInfo(r, currentScope) {
   }
 
   const j = (r.JUSTIFICATION || '');
+  // New style: "Installed X < fix Y."
+  const ltMatch = j.match(/< fix\s+(\S+)/);
+  if (ltMatch) {
+    const label = ltMatch[1].replace(/\.$/, '');
+    return { has: true, label, badge: `<span class="badge bg-blue">${esc(label)}</span>` };
+  }
+  // Old style: "fix available (version)"
   if (/fix available/i.test(j) && !/no fix available/i.test(j)) {
     const pkgMatch = j.match(/fix available\s*\(([^)]+)\)/i);
     const label = pkgMatch ? pkgMatch[1] : 'Fix available';
