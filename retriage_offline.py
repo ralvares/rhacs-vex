@@ -120,45 +120,72 @@ def _retriage_one_operator_csv(csv_path):
         return basename, False, str(e)
 
 
-def retriage_operators(workers=10):
-    """Re-run audit on all operator CSVs using cached scan data (threaded).
+def retriage_operators(workers=10, minor_versions=None):
+    """Re-run audit on operator CSVs using cached scan data (threaded).
 
     Uses ThreadPoolExecutor (not Process) so all workers share the _load_vex
     LRU cache — each VEX file is read from disk once instead of once-per-process.
+
+    When minor_versions is set (e.g. {'4.22'}), only directories matching those
+    minor versions are processed.  Operators shared across versions (identical
+    CSV content) are triaged once and the result is copied to duplicates.
     """
     op_dirs = sorted(glob.glob(os.path.join(REPORT_DIR, 'ocp-*')))
     op_dirs = [d for d in op_dirs if os.path.isdir(d)]
+    if minor_versions:
+        op_dirs = [d for d in op_dirs
+                   if os.path.basename(d).replace('ocp-', '') in minor_versions]
     all_csvs = [csv for d in op_dirs for csv in sorted(glob.glob(os.path.join(d, '*.csv')))]
-    print(f'  Found {len(all_csvs)} operator CSVs across {len(op_dirs)} OCP versions, {workers} threads', flush=True)
 
-    total = done = errors = 0
+    # Deduplicate: group CSVs by basename, pick one canonical path per group,
+    # triage it, then copy the result to duplicates.
+    from collections import defaultdict
+    by_name = defaultdict(list)
+    for csv in all_csvs:
+        by_name[os.path.basename(csv)].append(csv)
+    canonical = [paths[0] for paths in by_name.values()]
+    dupes_map = {paths[0]: paths[1:] for paths in by_name.values() if len(paths) > 1}
+    n_deduped = len(all_csvs) - len(canonical)
+
+    print(f'  Found {len(all_csvs)} operator CSVs across {len(op_dirs)} OCP version(s), '
+          f'{len(canonical)} unique, {n_deduped} duplicates, {workers} threads', flush=True)
+
+    total = done = errors = copied = 0
     with ThreadPoolExecutor(max_workers=workers) as ex:
-        futures = {ex.submit(_retriage_one_operator_csv, csv): csv for csv in all_csvs}
+        futures = {ex.submit(_retriage_one_operator_csv, csv): csv for csv in canonical}
         for future in as_completed(futures):
             done += 1
+            csv_path = futures[future]
             basename, ok, err = future.result()
             if ok:
                 total += 1
+                for dup in dupes_map.get(csv_path, []):
+                    try:
+                        import shutil
+                        shutil.copy2(csv_path, dup)
+                        copied += 1
+                    except Exception:
+                        pass
             if err:
                 errors += 1
                 print(f'  ERROR {basename}: {err}', flush=True)
-            if done % 20 == 0 or done == len(all_csvs):
-                print(f'  [{done}/{len(all_csvs)}] ({100*done//len(all_csvs)}%) updated={total} errors={errors}', flush=True)
-    return total
+            if done % 20 == 0 or done == len(canonical):
+                print(f'  [{done}/{len(canonical)}] ({100*done//len(canonical)}%) updated={total} errors={errors} copied={copied}', flush=True)
+    return total + copied
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Offline retriage — zero network calls')
     parser.add_argument('--workers', type=int, default=10, help='Parallel workers (default: 10)')
     parser.add_argument('--ocp-only', action='store_true', help='Skip operators')
     parser.add_argument('--operators-only', action='store_true', help='Skip OCP')
-    parser.add_argument('--version', help='Single OCP version (e.g., 4.21.18)')
+    parser.add_argument('--version', help='OCP version(s), comma-separated (e.g., 4.22.0,4.22.1)')
     args = parser.parse_args()
 
     t0 = time.time()
 
     if not args.operators_only:
         if args.version:
-            manifests = [f'{args.version}.txt']
+            manifests = [f'{v.strip()}.txt' for v in args.version.split(',') if v.strip()]
         else:
             manifests = sorted(glob.glob('4.*.txt'), key=lambda f: tuple(int(x) for x in re.findall(r'\d+', f)))
 
@@ -182,7 +209,10 @@ if __name__ == '__main__':
     if not args.ocp_only:
         print(f'\n=== Retriaging operators ===', flush=True)
         op_t0 = time.time()
-        op_count = retriage_operators(workers=args.workers)
+        minor_vers = None
+        if args.version:
+            minor_vers = {'.'.join(v.strip().split('.')[:2]) for v in args.version.split(',') if v.strip()}
+        op_count = retriage_operators(workers=args.workers, minor_versions=minor_vers)
         print(f'  {op_count} operator reports updated in {time.time() - op_t0:.0f}s', flush=True)
 
     # Rebuild parquets

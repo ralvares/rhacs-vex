@@ -387,7 +387,7 @@ async function handleFile(file) {
     $('new-upload-btn').style.display = '';
     $('clear-cache-btn').style.display = '';
 
-    showLoading('Detecting OCP version…', 'Matching CVEs against index', 25);
+    showLoading('Detecting OCP version…', 'Loading all version parquets for image hash matching', 25);
     await tick();
     await autoDetectVersion();
 
@@ -636,7 +636,6 @@ async function autoDetectVersion() {
   $('detect-result').textContent = 'Detecting…';
 
   try {
-    // Get all known versions
     const allVersions = [...$('version-select').options].map(o => o.value).filter(Boolean);
     if (!allVersions.length) {
       $('detect-result').textContent = 'No versions available';
@@ -644,46 +643,66 @@ async function autoDetectVersion() {
       return;
     }
 
-    // Pre-filter: use cve-index to find versions with most CVE overlap (fast, no parquet loading)
-    setStatus('Auto-detecting OCP version (matching CVEs against index)…');
-    const candidates = await query(`
-      SELECT ci.OCP_VERSION, COUNT(DISTINCT ci.CVE) as cve_overlap
-      FROM 'cve_index.parquet' ci
-      INNER JOIN rhacs r ON r.CVE = ci.CVE
-      GROUP BY ci.OCP_VERSION
-      ORDER BY cve_overlap DESC
-      LIMIT 5
-    `);
-
-    // Match by image sha256 digest only against top candidates
-    let bestVer = '';
-    let bestImageMatch = 0;
-
-    for (let i = 0; i < candidates.length; i++) {
-      const ver = candidates[i].OCP_VERSION;
-      setStatus(`Matching image hashes… ${i + 1}/${candidates.length} (${ver})`);
-      try {
-        const pName = await registerVersion(ver);
-        const [result] = await query(`
-          SELECT COUNT(DISTINCT r.Image) as matched
-          FROM rhacs r INNER JOIN '${pName}' v
-            ON SPLIT_PART(r.Image, '@sha256:', 2) = SPLIT_PART(v.IMAGE, '@sha256:', 2)
-          WHERE r.Image LIKE '%@sha256:%' AND v.IMAGE LIKE '%@sha256:%'
-        `);
-        const m = Number(result.matched);
-        if (m > bestImageMatch || (m === bestImageMatch && compareVersions(ver, bestVer) > 0)) {
-          bestImageMatch = m;
-          bestVer = ver;
-        }
-      } catch (e) { console.warn(`Skipping ${ver}:`, e.message); }
+    // Load ALL version parquets — each ~100KB, ~5MB total.
+    // Adjacent patches share most image digests but diverge a few patches apart,
+    // forming a tight matching cluster around the true version.
+    // CVE overlap is unreliable (older versions rank higher), so image hash
+    // matching against all versions is the only reliable detection signal.
+    setStatus('Loading version parquets for detection…');
+    const BATCH = 8;
+    for (let i = 0; i < allVersions.length; i += BATCH) {
+      const batch = allVersions.slice(i, i + BATCH);
+      showLoading('Detecting OCP version…',
+        `Loading parquets ${i + 1}–${Math.min(i + BATCH, allVersions.length)} of ${allVersions.length}`,
+        25 + (i / allVersions.length) * 15);
+      await tick();
+      await Promise.all(batch.map(v => registerVersion(v).catch(e => {
+        console.warn(`Skipping ${v}:`, e.message);
+        return null;
+      })));
     }
+
+    // Build UNION ALL of all registered version parquets
+    showLoading('Detecting OCP version…', 'Matching image hashes against all versions', 42);
+    await tick();
+    const unions = allVersions
+      .filter(v => registeredVersions.has(v))
+      .map(v => {
+        const name = `ocp_${v.replace(/\./g, '_')}.parquet`;
+        return `SELECT IMAGE, OCP_VERSION FROM '${name}'`;
+      });
+    if (!unions.length) {
+      $('detect-result').textContent = 'No version parquets loaded';
+      $('detect-result').style.color = 'var(--yellow)';
+      return;
+    }
+
+    // Single query: match CSV image hashes against all versions at once
+    const matches = await query(`
+      WITH all_vex AS (${unions.join(' UNION ALL ')})
+      SELECT v.OCP_VERSION, COUNT(DISTINCT r.Image) as matched
+      FROM rhacs r
+      INNER JOIN all_vex v
+        ON SPLIT_PART(r.Image, '@sha256:', 2) = SPLIT_PART(v.IMAGE, '@sha256:', 2)
+      WHERE r.Image LIKE '%@sha256:%' AND v.IMAGE LIKE '%@sha256:%'
+      GROUP BY v.OCP_VERSION
+      ORDER BY matched DESC
+    `);
 
     const [imgTotal] = await query(`SELECT COUNT(DISTINCT Image) as cnt FROM rhacs WHERE Image LIKE '%@sha256:%'`);
 
-    if (bestImageMatch > 0) {
+    if (matches.length && Number(matches[0].matched) > 0) {
+      // Tiebreak: if multiple versions match same count, pick highest version
+      const bestCount = Number(matches[0].matched);
+      const tied = matches.filter(m => Number(m.matched) === bestCount);
+      const bestVer = tied.reduce((a, b) =>
+        compareVersions(a.OCP_VERSION, b.OCP_VERSION) >= 0 ? a : b
+      ).OCP_VERSION;
+
       detectedVersion = bestVer;
       $('version-select').value = bestVer;
-      $('detect-result').innerHTML = `Detected: <strong>OCP ${esc(bestVer)}</strong> (${bestImageMatch}/${imgTotal.cnt} images matched by sha256)`;
+      const tieTxt = tied.length > 1 ? ` (${tied.length} versions tied — picked newest)` : '';
+      $('detect-result').innerHTML = `Detected: <strong>OCP ${esc(bestVer)}</strong> (${bestCount}/${imgTotal.cnt} images matched by sha256)${tieTxt}`;
       $('detect-result').style.color = 'var(--green)';
     } else {
       $('detect-result').textContent = 'No version detected — select manually';

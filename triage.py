@@ -1240,6 +1240,40 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
     if has_affected:
         pid_match = next(p for s, p, _ in candidates if s in ('known_affected', 'under_investigation'))
         status = next(s for s, _, _ in candidates if s in ('known_affected', 'under_investigation'))
+
+        # ── Errata policy override for generic product-level PIDs ─────
+        # A generic known_affected PID (e.g. "…platform_4:rhcos" with no
+        # RHOSE-4.xx stream) catches ALL OCP 4.x versions.  When version-
+        # specific fixed entries exist (RHOSE-4.16 … 4.20), an OCP version
+        # NEWER than the newest fixed stream is not a "previous version"
+        # per Red Hat errata policy and should be FALSE POSITIVE.
+        if ctx.workload_type == "ocp" and ctx.ocp_ver:
+            affected_has_stream = any(
+                re.search(r'RHOSE[.-]\d+\.\d+', p)
+                for s, p, q, fl in matches
+                if s in ('known_affected', 'under_investigation')
+            )
+            if not affected_has_stream:
+                cur_parts = [int(x) for x in ctx.ocp_ver.split('.') if x.isdigit()]
+                cur_minor = '.'.join(str(x) for x in cur_parts[:2])
+                fixed_ocp_vers = set()
+                for vuln in data.get('vulnerabilities', []):
+                    ps = vuln.get('product_status', {})
+                    for fpid in ps.get('fixed', []):
+                        fm = re.search(r'RHOSE[.-](\d+\.\d+)', fpid)
+                        if fm:
+                            fixed_ocp_vers.add(fm.group(1))
+                if fixed_ocp_vers:
+                    if cur_minor in fixed_ocp_vers:
+                        return ('FALSE_POSITIVE', pid_match,
+                                f'errata_fixed:{cur_minor}', family_assessed)
+                    newest_fix = max(fixed_ocp_vers,
+                                    key=lambda v: [int(x) for x in v.split('.')])
+                    fix_parts = [int(x) for x in newest_fix.split('.')]
+                    if fix_parts < cur_parts:
+                        return ('FALSE_POSITIVE', pid_match,
+                                f'errata_not_previous:{newest_fix}', family_assessed)
+
         return ('POSITIVE', pid_match, status, family_assessed)
 
     has_clear = any(s in ('known_not_affected', 'fixed') for s, _, _ in candidates)
@@ -1498,7 +1532,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
 
     data = _load_vex(cve)
     if data is None:
-        return pd.Series(["❌ POSITIVE", "N/A", "VEX file missing — cannot confirm fix; treat as vulnerable.", "Unknown"])
+        return pd.Series(["❌ POSITIVE", "N/A", "VEX file missing.", "Unknown"])
 
     # Build product tree lookup maps — used throughout for human-readable labels
     pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map = _build_pid_name(data)
@@ -1570,8 +1604,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         )
         if catchall_not_affected:
             return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                               "Red Hat Product Security states no currently supported "
-                               "Red Hat product is affected by this CVE.", _severity])
+                               "No supported Red Hat product affected.", _severity])
 
     # Determine effective RHEL version: prefer RPM string, fall back to context.
     # The RPM's own .elN marker is authoritative — mixed-RHEL images (e.g.
@@ -1587,7 +1620,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         affected, fixed, not_affected, investigating = _summarise_vex_products(data, pid_name, rel_parent)
         if not affected and not fixed and not not_affected and not investigating:
             return pd.Series(["⚠️ NOT ASSESSED", "N/A",
-                               "Non-RPM component not tracked in VEX — no vendor assessment exists. Treat as potential risk until explicitly cleared.",
+                               "Non-RPM component not tracked in VEX.",
                                _severity])
 
         # If workload is an operator/OCP, check if the CVE is scoped to the
@@ -1610,44 +1643,30 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                     if verdict == 'FALSE_POSITIVE':
                         if extra and extra.startswith('errata_'):
                             tag, fixed_in_ver = extra.split(':', 1)
-                            policy = ("Per Red Hat errata policy: all previous versions of packages "
-                                      "should be assumed vulnerable unless explicitly stated as not affected.")
-                            if tag == 'errata_fixed':
-                                return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                                    f"{policy} CVE fixed in OCP {fixed_in_ver}; "
-                                    f"{ctx.display_name} matches this fixed release.",
-                                    _severity])
-                            else:
-                                return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                                    f"{policy} CVE fixed in OCP {fixed_in_ver}; "
-                                    f"{ctx.display_name} is a newer release — not a previous version.",
-                                    _severity])
+                            return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                                f"Fixed in OCP {fixed_in_ver}.",
+                                _severity])
                         flag_desc = f" ({extra.replace('_', ' ')})" if extra else ""
                         return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                            f"VEX status: known_not_affected{flag_desc}. "
-                            f"Image matched: {img_lbl}.",
+                            f"known_not_affected{flag_desc}. {img_lbl}.",
                             _severity])
                     elif verdict == 'POSITIVE':
                         vex_status = extra if extra in ('known_affected', 'under_investigation', 'fixed') else 'known_affected'
                         if vex_status == 'under_investigation':
                             return pd.Series(["❌ POSITIVE", "N/A",
-                                f"VEX status: under_investigation for {img_lbl}. "
-                                f"No fix available yet — treat as vulnerable until resolved.",
+                                f"under_investigation. {img_lbl}.",
                                 _severity])
                         return pd.Series(["❌ POSITIVE", "N/A",
-                            f"VEX status: {vex_status}. "
-                            f"Image matched: {img_lbl}. No fix available.",
+                            f"{vex_status}. {img_lbl}.",
                             _severity])
                     elif verdict == 'POSITIVE_OTHER_RHEL':
                         return pd.Series(["❌ POSITIVE", "N/A",
-                            f"VEX status: known_affected for different RHEL version ({img_lbl}). "
-                            f"No explicit entry for RHEL {ctx.rhel_ver} — treat as vulnerable.",
+                            f"known_affected for different RHEL ({img_lbl}).",
                             _severity])
                     elif verdict == 'NOT_LISTED':
                         comp_ref = ctx.ocp_component or ctx.display_name
                         return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                            f"VEX assessed {comp_ref} product family; "
-                            f"image not listed as affected or under investigation.",
+                            f"{comp_ref} not listed as affected.",
                             _severity])
 
             # 1. Check flags that explicitly mark our product as not-affected first.
@@ -1675,8 +1694,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                                 continue
                         lbl = _pid_label(pid, pid_name, rel_parent)
                         return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                                           f"Non-RPM — not affected in {ctx.display_name} ({lbl}): "
-                                           f"{flag.get('label', 'flag').replace('_', ' ')}.",
+                                           f"Not affected in {ctx.display_name} ({lbl}): {flag.get('label', 'flag').replace('_', ' ')}.",
                                            _severity])
 
             # 2. Check product_status entries for our scope.
@@ -1708,33 +1726,32 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                             if status == 'known_not_affected':
                                 if our_sha and pid_sha == our_sha:
                                     return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                                                       f"Non-RPM — image build not affected per VEX ({lbl}).",
+                                                       f"Image build not affected ({lbl}).",
                                                        _severity])
                                 _img_not_affected = True
                             elif status == 'fixed':
                                 if our_sha and pid_sha == our_sha:
                                     return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                                                       f"Non-RPM — this image build is the fixed version ({lbl}).",
+                                                       f"Image build is the fixed version ({lbl}).",
                                                        _severity])
                                 _img_fixed_label = lbl
                             elif status == 'known_affected':
                                 if our_sha and pid_sha == our_sha:
-                                    fix_note = f"; fixed in {_img_fixed_ver}" if _img_fixed_ver else ""
+                                    fix_note = f"; fix: {_img_fixed_ver}" if _img_fixed_ver else ""
                                     return pd.Series(["❌ POSITIVE", _img_fixed_ver or "N/A",
-                                                       f"Non-RPM — image build confirmed affected ({lbl}){fix_note}.",
+                                                       f"Image build affected ({lbl}){fix_note}.",
                                                        _severity])
                             elif status == 'under_investigation':
                                 if our_sha and pid_sha == our_sha:
                                     return pd.Series(["❌ POSITIVE", "N/A",
-                                                       f"Under investigation by Red Hat for {ctx.display_name} — treat as vulnerable until resolved.",
+                                                       f"under_investigation for {ctx.display_name}.",
                                                        _severity])
                 # A fixed image build exists but our digest doesn't match it
                 # → we have an older vulnerable build.
                 if _img_fixed_label and not _img_not_affected:
-                    fix_note = f" Fixed in {_img_fixed_ver}." if _img_fixed_ver else ""
+                    fix_note = f" Fix: {_img_fixed_ver}." if _img_fixed_ver else ""
                     return pd.Series(["❌ POSITIVE", _img_fixed_ver or "N/A",
-                                       f"Non-RPM — fixed image build exists ({_img_fixed_label}) "
-                                       f"but installed {found_v} is older.{fix_note}",
+                                       f"Fixed build exists ({_img_fixed_label}); installed {found_v} is older.{fix_note}",
                                        _severity])
 
             # 2b. Generic product_status scan (RPM-level and non-SHA PIDs).
@@ -1759,17 +1776,17 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                         lbl = _pid_label(pid, pid_name, rel_parent)
                         if status == 'under_investigation':
                             return pd.Series(["❌ POSITIVE", "N/A",
-                                               f"Under investigation by Red Hat for {ctx.display_name} — treat as vulnerable until resolved.",
+                                               f"under_investigation for {ctx.display_name}.",
                                                _severity])
                         if status == "known_not_affected":
                             result = "✅ FALSE POSITIVE"
-                            note = f"Non-RPM CVE scoped to {ctx.display_name} ({lbl})."
+                            note = f"known_not_affected ({lbl})."
                         elif status == "fixed":
                             result = "❌ POSITIVE"
-                            note = f"Non-RPM CVE — fix exists for {ctx.display_name} ({lbl}) but installed version not verified."
+                            note = f"Fix exists ({lbl}); installed version not verified."
                         else:
                             result = "❌ POSITIVE"
-                            note = f"Non-RPM CVE scoped to {ctx.display_name} ({lbl})."
+                            note = f"known_affected ({lbl})."
                         return pd.Series([result, "N/A",
                                            note,
                                            _severity])
@@ -1791,34 +1808,29 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             if scoped_affected:
                 unique_labels = sorted(set(scoped_affected))
                 return pd.Series(["❌ POSITIVE", "N/A",
-                    f"VEX status: known_affected in {ctx.display_name} product family "
-                    f"({', '.join(unique_labels[:3])}). No fix available.",
+                    f"known_affected in {', '.join(unique_labels[:3])}.",
                     _severity])
             if scoped_investigating:
                 unique_labels = sorted(set(scoped_investigating))
                 return pd.Series(["❌ POSITIVE", "N/A",
-                    f"VEX status: under_investigation in {ctx.display_name} product family "
-                    f"({', '.join(unique_labels[:3])}). No fix available yet.",
+                    f"under_investigation in {', '.join(unique_labels[:3])}.",
                     _severity])
 
         # For operators that reach here: VEX has no assessment for this
         # product family.  Avoid listing unrelated products in justification.
         if ctx.workload_type == "operator" and (affected or investigating or fixed):
             return pd.Series(["❌ POSITIVE", "N/A",
-                f"No VEX assessment for {ctx.display_name}. "
-                f"CVE affects other Red Hat products — treat as vulnerable until assessed.",
+                f"No VEX assessment for {ctx.display_name}.",
                 _severity])
 
         if investigating:
             return pd.Series(["❌ POSITIVE", "N/A",
-                               f"VEX status: under_investigation. Tracked in: {', '.join(investigating[:3])}. No fix available yet.",
+                               f"under_investigation in {', '.join(investigating[:3])}.",
                                _severity])
 
         if not_affected and not affected and not fixed:
             return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                               f"VEX status: known_not_affected. "
-                               f"Confirmed not affected in: {', '.join(not_affected[:3])}. "
-                               f"No affected/fixed entry exists.",
+                               f"known_not_affected in {', '.join(not_affected[:3])}.",
                                _severity])
 
         if affected and not_affected and ctx.rhel_ver:
@@ -1834,17 +1846,15 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             )
             if workload_rhel_clear and not workload_rhel_affected:
                 return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                    f"Non-RPM — RHEL {ctx.rhel_ver} explicitly not affected per VEX. "
-                    f"CVE only affects older products ({', '.join(affected[:2])}).",
+                    f"RHEL {ctx.rhel_ver} not affected. Only affects: {', '.join(affected[:2])}.",
                     _severity])
 
         parts = []
-        if affected:     parts.append(f"Affected in: {', '.join(affected[:3])}")
-        if fixed:        parts.append(f"Fixed in: {', '.join(fixed[:3])}")
-        if not_affected: parts.append(f"Not affected in: {', '.join(not_affected[:3])}")
+        if affected:     parts.append(f"affected: {', '.join(affected[:3])}")
+        if fixed:        parts.append(f"fixed: {', '.join(fixed[:3])}")
+        if not_affected: parts.append(f"not affected: {', '.join(not_affected[:3])}")
         return pd.Series(["❌ POSITIVE", "N/A",
-                           f"Non-RPM — no explicit VEX entry for {ctx.display_name}. "
-                           f"CVE tracked in other products: {'; '.join(parts)}. Treat as vulnerable.",
+                           f"No VEX entry for {ctx.display_name}. Other products: {'; '.join(parts)}.",
                            _severity])
 
     for vuln in data.get('vulnerabilities', []):
@@ -1877,7 +1887,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             _sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
             _prefix = f"{_sn}; " if _sn else ''
             return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                               f"{_prefix}{scope}: component known not affected (vulnerable code not present or not executable).",
+                               f"{_prefix}{scope}: known_not_affected.",
                                _severity])
 
         # --- FIXED versions in scope ------------------------------------------
@@ -1919,8 +1929,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                     _sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
                     _prefix = f"{_sn}; " if _sn else ''
                     return pd.Series(["❌ POSITIVE", best_ref,
-                                       f"{_prefix}{ctx.display_name} fix not yet released in el{ctx.rhel_ver}_{installed_minor} stream "
-                                       f"(installed {found_v}); fixed in other streams: {best_ref}.",
+                                       f"{_prefix}No fix in el{ctx.rhel_ver}_{installed_minor}. Fix in other streams: {best_ref}.",
                                        _severity])
             else:
                 compare_fixes = unique_fixed
@@ -1943,13 +1952,13 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                     pass
             _sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
             if all_pass and compare_fixes and any_compared:
-                note = f"{_sn + '; ' if _sn else ''}{ctx.display_name} fix backported: installed {found_v} >= {compare_fixes[0]}"
+                note = f"{_sn + '; ' if _sn else ''}Installed {found_v} >= fix {compare_fixes[0]}."
                 return pd.Series(["✅ FALSE POSITIVE", compare_fixes[0], note, _severity])
             if any_fail_fix:
-                note = f"{_sn + '; ' if _sn else ''}{ctx.display_name} fix available ({any_fail_fix}); installed {found_v} is older."
+                note = f"{_sn + '; ' if _sn else ''}Installed {found_v} < fix {any_fail_fix}."
                 return pd.Series(["❌ POSITIVE", any_fail_fix, note, _severity])
             fix_ref = compare_fixes[0] if compare_fixes else "?"
-            note = f"{_sn + '; ' if _sn else ''}{ctx.display_name} fix available ({fix_ref}); installed {found_v} is older."
+            note = f"{_sn + '; ' if _sn else ''}Installed {found_v} < fix {fix_ref}."
             return pd.Series(["❌ POSITIVE", compare_fixes[0] if compare_fixes else "N/A", note, _severity])
 
         # --- KNOWN_AFFECTED in scope ------------------------------------------
@@ -1976,13 +1985,12 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                 _sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
                 _prefix = f"{_sn}; " if _sn else ''
                 if pid in no_fix_pids:
-                    note = f"{_prefix}Confirmed affected in {ctx.display_name}; Red Hat will not fix this CVE (no_fix_planned) — not actionable."
+                    note = f"{_prefix}known_affected. no_fix_planned."
                 elif other_products:
                     ctx_str = ", ".join(sorted(other_products))
-                    note = (f"{_prefix}Confirmed affected in {ctx.display_name}. "
-                            f"Fix exists only in: {ctx_str} — fix not applicable to this workload.")
+                    note = f"{_prefix}known_affected. Fix only in: {ctx_str}."
                 else:
-                    note = f"{_prefix}Confirmed affected in {ctx.display_name}; no fix available yet."
+                    note = f"{_prefix}known_affected. No fix available."
                 return pd.Series(["❌ POSITIVE", "N/A", note, _severity])
 
         # --- UNDER_INVESTIGATION in scope -------------------------------------
@@ -1994,7 +2002,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             pkg_name, _ = _parse_pkg_from_product_id(pid)
             if pkg_name in _resolve_comp(comp, ctx):
                 return pd.Series(["❌ POSITIVE", "N/A",
-                                   f"Under investigation by Red Hat for {ctx.display_name} — treat as vulnerable until resolved.",
+                                   f"under_investigation for {ctx.display_name}.",
                                    _severity])
 
         # --- No in-scope entry — check if any other product covers it ---------
@@ -2015,19 +2023,19 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         if other_safe and not other_vuln:
             ctx_str = ", ".join(sorted(other_safe))
             return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                               f"Red Hat states '{comp}' not affected in related products ({ctx_str}); not tracked as affected for {ctx.display_name}.",
+                               f"'{comp}' not affected in related products ({ctx_str}).",
                                _severity])
         if other_vuln:
             ctx_str = ", ".join(sorted(other_vuln))
             return pd.Series(["❌ POSITIVE", "N/A",
-                               f"CVE tracked for '{comp}' in related products ({ctx_str}); no explicit clearance for {ctx.display_name} — treat as vulnerable.",
+                               f"'{comp}' affected in related products ({ctx_str}).",
                                _severity])
 
         return pd.Series(["⚠️ NOT ASSESSED", "N/A",
-                           f"Component '{comp}' not tracked in VEX for this CVE — no vendor assessment exists. Treat as potential risk until explicitly cleared.",
+                           f"'{comp}' not tracked in VEX.",
                            _severity])
 
-    return pd.Series(["❌ POSITIVE", "N/A", "No vulnerability entries in VEX file", _severity])
+    return pd.Series(["❌ POSITIVE", "N/A", "No vulnerability entries in VEX.", _severity])
 
 
 # ── Display helpers (used by both single-image and namespace modes) ───────────
