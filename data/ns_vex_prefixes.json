@@ -3,13 +3,16 @@
     "3scale",
     "3scale_apicast_gateway",
     "3scale_operator",
+    "apicast",
     "apicast_operator",
     "cryostat",
     "cryostat_operator",
+    "jws",
     "jws_operator",
     "red_hat_build_of_cryostat",
     "red_hat_integration_3scale",
     "red_hat_integration_3scale_apicast_gateway",
+    "runtimes_inventory",
     "runtimes_inventory_operator",
     "webserver"
   ],
@@ -19,6 +22,7 @@
     "3scale_apicast_gateway_managed_application_services",
     "3scale_managed_application_services",
     "3scale_operator",
+    "apicast",
     "apicast_operator",
     "red_hat_integration_3scale",
     "red_hat_integration_3scale_apicast_gateway",
@@ -33,6 +37,7 @@
   "advanced-cluster-security": [
     "advanced_cluster_security",
     "advanced_cluster_security_for_kubernetes",
+    "rhacs",
     "rhacs_operator"
   ],
   "agent-sandbox": [
@@ -41,6 +46,7 @@
     "red_hat_build_of_agent_sandbox"
   ],
   "albo": [
+    "aws_load_balancer",
     "aws_load_balancer_operator"
   ],
   "amq-streams": [
@@ -54,6 +60,7 @@
     "streams_for_apache_kafka_proxy"
   ],
   "amq7": [
+    "amq7_interconnect",
     "amq7_interconnect_operator",
     "amq_broker_for_rhel",
     "amq_broker_for_rhel_8",
@@ -62,8 +69,10 @@
     "amq_broker_rhel9",
     "amq_interconnect",
     "amq_streams",
+    "bamoe_businessautomation",
     "bamoe_businessautomation_operator",
     "business_automation",
+    "businessautomation",
     "businessautomation_operator",
     "fuse_online",
     "ibm_business_automation",
@@ -113,6 +122,7 @@
     "apicurio_registry_3",
     "red_hat_build_of_apicurio_registry",
     "red_hat_build_of_apicurio_registry_3",
+    "service_registry",
     "service_registry_operator"
   ],
   "application-interconnect": [
@@ -120,7 +130,9 @@
     "skupper_operator"
   ],
   "bpfman": [
+    "bpfman",
     "bpfman_operator",
+    "ebpf_manager",
     "ebpf_manager_operator"
   ],
   "build-of-trustee": [
@@ -130,6 +142,7 @@
   ],
   "cert-manager": [
     "cert_manager_operator_for_red_hat_openshift",
+    "openshift_cert_manager",
     "openshift_cert_manager_operator"
   ],
   "cli-manager": [
@@ -139,14 +152,20 @@
     "advanced_cluster_management",
     "advanced_cluster_management_for_kubernetes",
     "ai",
+    "cluster_observability",
     "cluster_observability_operator",
     "red_hat_openshift_ai",
+    "rhods",
     "rhods_operator",
+    "service_telemetry",
     "service_telemetry_operator"
   ],
   "compliance": [
+    "compliance",
     "compliance_operator",
+    "file_integrity",
     "file_integrity_operator",
+    "security_profiles",
     "security_profiles_operator"
   ],
   "confidential-compute-attestation-tech-preview": [
@@ -159,7 +178,9 @@
     "openshift_virtualization"
   ],
   "costmanagement": [
+    "cost_management_metrics",
     "cost_management_metrics_operator",
+    "costmanagement_metrics",
     "costmanagement_metrics_operator"
   ],
   "cryostat": [
@@ -174,11 +195,14 @@
   ],
   "custom-metrics-autoscaler": [
     "custom_metrics_autoscaler",
+    "openshift_custom_metrics_autoscaler",
     "openshift_custom_metrics_autoscaler_operator"
   ],
   "datagrid": [
+    "bamoe_businessautomation",
     "bamoe_businessautomation_operator",
     "business_automation",
+    "businessautomation",
     "businessautomation_operator",
     "data_grid",
     "datagrid",
@@ -197,22 +221,28 @@
   "devworkspace": [
     "dev_spaces",
     "devspaces",
+    "devworkspace",
     "devworkspace_operator",
     "red_hat_openshift_dev_spaces"
   ],
   "dvo": [
+    "deployment_validation",
     "deployment_validation_operator"
   ],
   "edo": [
+    "external_dns",
     "external_dns_operator",
+    "externaldns",
     "externaldns_operator"
   ],
   "exploit-intelligence-tech-preview": [
+    "exploit_iq",
     "exploit_iq_operator",
     "rhtpa_exploit_intelligence"
   ],
   "external-secrets-operator": [
     "external_secrets_operator_for_red_hat_openshift",
+    "openshift_external_secrets",
     "openshift_external_secrets_operator"
   ],
   "fuse7": [
@@ -225,18 +255,23 @@
     "red_hat_integration_fuse_online"
   ],
   "gatekeeper": [
+    "gatekeeper",
     "gatekeeper_operator",
     "gatekeeper_operator_product"
   ],
   "ibm-bamoe": [
+    "bamoe_businessautomation",
     "bamoe_businessautomation_operator",
+    "bamoe_kogito",
     "bamoe_kogito_operator",
+    "ibm_bamoe_kogito",
     "ibm_bamoe_kogito_operator",
     "ibm_business_automation"
   ],
   "insights-runtimes-tech-preview": [
     "cryostat",
     "cryostat_operator",
+    "jws",
     "jws_operator",
     "red_hat_build_of_cryostat",
     "webserver"
@@ -245,12 +280,16 @@
     "camel_k",
     "red_hat_camel_k",
     "red_hat_integration_camel_k",
+    "red_hat_integration_service_registry",
     "red_hat_integration_service_registry_operator",
+    "service_registry",
     "service_registry_operator"
   ],
   "jboss-datagrid-7": [
+    "bamoe_businessautomation",
     "bamoe_businessautomation_operator",
     "business_automation",
+    "businessautomation",
     "businessautomation_operator",
     "ibm_business_automation"
   ],
@@ -263,10 +302,12 @@
     "jboss_eap"
   ],
   "jboss-webserver": [
+    "jws",
     "jws_operator",
     "webserver"
   ],
   "jboss-webserver-5": [
+    "jws",
     "jws_operator",
     "webserver"
   ],
@@ -279,7 +320,9 @@
     "kernel_module_management_hub"
   ],
   "kube-descheduler-operator": [
+    "cluster_kube_descheduler",
     "cluster_kube_descheduler_operator",
+    "kube_descheduler",
     "kube_descheduler_operator"
   ],
   "kueue": [
@@ -293,34 +336,47 @@
     "red_hat_build_of_leader_worker_set"
   ],
   "lightspeed-core": [
+    "lightspeed",
     "lightspeed_operator",
+    "migration_toolkit_for_applications",
     "migration_toolkit_for_applications_operator",
+    "mta",
     "mta_operator",
+    "openshift_lightspeed",
     "openshift_lightspeed_operator"
   ],
   "lvms4": [
     "lvm_storage",
+    "lvms",
     "lvms_operator"
   ],
   "migration-toolkit-virtualization": [
     "kubevirt_hyperconverged",
+    "migration_toolkit_for_virtualization",
     "migration_toolkit_for_virtualization_operator",
+    "mtv",
     "mtv_operator",
     "openshift_virtualization"
   ],
   "mongodb": [
+    "exploit_iq",
     "exploit_iq_operator",
     "rhtpa_exploit_intelligence"
   ],
   "mta": [
+    "migration_toolkit_for_applications",
     "migration_toolkit_for_applications_operator",
+    "mta",
     "mta_operator"
   ],
   "mtr": [
+    "migration_toolkit_for_runtimes",
     "migration_toolkit_for_runtimes_operator",
+    "mtr",
     "mtr_operator"
   ],
   "multiarch-tuning": [
+    "multiarch_tuning",
     "multiarch_tuning_operator"
   ],
   "multicluster-engine": [
@@ -328,64 +384,90 @@
     "multicluster_engine_for_kubernetes"
   ],
   "multicluster-globalhub": [
+    "multicluster_global_hub",
     "multicluster_global_hub_operator",
     "multicluster_global_hub_operator_rh"
   ],
   "nbde-tang-server": [
     "nbde_tang_server",
+    "tang",
     "tang_operator"
   ],
   "network-observability": [
+    "netobserv",
     "netobserv_operator",
     "network_observability"
   ],
   "nginxinc": [
+    "exploit_iq",
     "exploit_iq_operator",
     "rhtpa_exploit_intelligence"
   ],
   "noo": [
+    "node_observability",
     "node_observability_operator"
   ],
   "oadp": [
+    "oadp",
     "oadp_operator",
+    "redhat_oadp",
     "redhat_oadp_operator"
   ],
   "oauth2-proxy": [
+    "exploit_iq",
     "exploit_iq_operator",
     "rhtpa_exploit_intelligence"
   ],
   "ocp-tools-4": [
+    "rh_service_binding",
     "rh_service_binding_operator",
+    "service_binding",
     "service_binding_operator"
   ],
   "ocp-tools-4-tech-preview": [
     "red_hat_openshift_serverless",
+    "rh_service_binding",
     "rh_service_binding_operator",
     "serverless",
     "serverless_operator",
+    "service_binding",
     "service_binding_operator"
   ],
   "odf4": [
+    "cephcsi",
     "cephcsi_operator",
     "csi_addons",
     "data_foundation_dependencies",
+    "mcg",
     "mcg_operator",
+    "noobaa",
     "noobaa_operator",
+    "ocs",
+    "ocs_client",
     "ocs_client_operator",
     "ocs_operator",
+    "odf",
+    "odf_csi_addons",
     "odf_csi_addons_operator",
     "odf_dependencies",
+    "odf_external_snapshotter",
     "odf_external_snapshotter_operator",
     "odf_multicluster_orchestrator",
     "odf_operator",
+    "odf_prometheus",
     "odf_prometheus_operator",
+    "odr_cluster",
     "odr_cluster_operator",
+    "odr_hub",
     "odr_hub_operator",
     "openshift_container_storage",
     "openshift_data_foundation",
     "openshift_data_foundation_client",
+    "openshift_dr_cluster",
     "openshift_dr_cluster_operator",
+    "openshift_dr_hub",
     "openshift_dr_hub_operator",
+    "prometheus",
     "prometheus_operator",
     "recipe",
     "rook_ceph",
@@ -393,26 +475,34 @@
     "snapshot_controller"
   ],
   "openshift-builds": [
+    "builds_for_red_hat_openshift",
     "builds_for_red_hat_openshift_operator",
+    "openshift_builds",
     "openshift_builds_operator"
   ],
   "openshift-gitops-1": [
     "gitops",
+    "openshift_gitops",
     "openshift_gitops_operator",
     "red_hat_openshift_gitops"
   ],
   "openshift-istio": [
+    "kiali",
     "kiali_operator",
     "kiali_ossm"
   ],
   "openshift-lightspeed": [
+    "lightspeed",
     "lightspeed_operator",
+    "openshift_lightspeed",
     "openshift_lightspeed_operator"
   ],
   "openshift-logging": [
     "cluster_logging",
     "logging",
+    "loki",
     "loki_operator",
+    "netobserv",
     "netobserv_operator",
     "network_observability",
     "red_hat_openshift_logging"
@@ -423,25 +513,33 @@
     "red_hat_openshift_pipelines"
   ],
   "openshift-power-monitoring": [
+    "power_monitoring",
     "power_monitoring_for_red_hat_openshift",
     "power_monitoring_operator"
   ],
   "openshift-sandboxed-containers": [
+    "openshift_sandboxed_containers",
     "openshift_sandboxed_containers_operator",
+    "sandboxed_containers",
     "sandboxed_containers_operator"
   ],
   "openshift-sandboxed-containers-tech-preview": [
+    "openshift_sandboxed_containers",
     "openshift_sandboxed_containers_operator",
+    "sandboxed_containers",
     "sandboxed_containers_operator"
   ],
   "openshift-secondary-scheduler-operator": [
+    "openshift_secondary_scheduler",
     "openshift_secondary_scheduler_operator",
     "secondary_scheduler_operator_for_red_hat_openshift"
   ],
   "openshift-serverless-1": [
+    "logic",
     "logic_operator",
     "logic_operator_rhel8",
     "openshift_pipelines_operator_rh",
+    "openshift_serverless_logic",
     "openshift_serverless_logic_operator",
     "pipelines",
     "red_hat_openshift_pipelines",
@@ -456,6 +554,7 @@
   ],
   "openshift-service-mesh": [
     "ai",
+    "kiali",
     "kiali_operator",
     "kiali_ossm",
     "red_hat_openshift_ai",
@@ -463,6 +562,7 @@
     "red_hat_openshift_service_mesh",
     "red_hat_openshift_service_mesh_2",
     "red_hat_openshift_service_mesh_3",
+    "rhods",
     "rhods_operator",
     "serverless",
     "serverless_operator",
@@ -480,6 +580,7 @@
     "servicemeshoperator3"
   ],
   "openshift-service-mesh-tech-preview": [
+    "kiali",
     "kiali_operator",
     "kiali_ossm",
     "red_hat_openshift_service_mesh",
@@ -489,42 +590,64 @@
     "servicemeshoperator3"
   ],
   "openshift-update-service": [
+    "cincinnati",
     "cincinnati_operator",
     "openshift_update_service"
   ],
   "openshift3": [
     "business_automation",
+    "businessautomation",
     "businessautomation_operator"
   ],
   "openshift4": [
+    "aws_efs_csi_driver",
     "aws_efs_csi_driver_operator",
+    "cifs_smb_csi_driver",
     "cifs_smb_csi_driver_operator",
+    "cluster_kube_descheduler",
     "cluster_kube_descheduler_operator",
     "clusterresourceoverride",
     "clusterresourceoverride_operator",
+    "compliance",
     "compliance_operator",
+    "dpu",
+    "dpu_network",
     "dpu_network_operator",
     "dpu_operator",
+    "file_integrity",
     "file_integrity_operator",
+    "gcp_filestore_csi_driver",
     "gcp_filestore_csi_driver_operator",
     "ingress_node_firewall",
     "ingress_node_firewall_operator",
+    "kube_descheduler",
     "kube_descheduler_operator",
+    "kubernetes_nmstate",
     "kubernetes_nmstate_operator",
     "lifecycle_agent",
     "local_storage",
     "local_storage_operator",
+    "metallb",
     "metallb_operator",
     "nfd",
+    "node_feature_discovery",
     "node_feature_discovery_operator",
+    "numa_resources",
     "numa_resources_operator",
+    "numaresources",
     "numaresources_operator",
     "o_cloud_manager",
+    "pf_status_relay",
     "pf_status_relay_operator",
+    "ptp",
     "ptp_operator",
+    "secrets_store_csi_driver",
     "secrets_store_csi_driver_operator",
+    "smb_csi_driver",
     "smb_csi_driver_operator",
+    "sr_iov_network",
     "sr_iov_network_operator",
+    "sriov_network",
     "sriov_network_operator",
     "support_log_gather",
     "support_log_gather_operator",
@@ -533,46 +656,60 @@
     "vertical_pod_autoscaler_operator"
   ],
   "openshift4-dev-preview-beta": [
+    "openperouter",
     "openperouter_operator"
   ],
   "openshift4-wincw": [
+    "windows_machine_config",
     "windows_machine_config_operator"
   ],
   "quay": [
+    "container_security",
     "container_security_operator",
     "quay",
+    "quay_bridge",
     "quay_bridge_operator",
     "quay_container_security",
     "quay_container_security_operator",
     "quay_operator",
     "red_hat_quay",
+    "red_hat_quay_bridge",
     "red_hat_quay_bridge_operator",
+    "red_hat_quay_container_security",
     "red_hat_quay_container_security_operator"
   ],
   "rh-acs": [
     "advanced_cluster_security",
     "advanced_cluster_security_for_kubernetes",
+    "rhacs",
     "rhacs_operator"
   ],
   "rh-lightspeed-runtimes": [
     "cryostat",
     "cryostat_operator",
+    "jws",
     "jws_operator",
     "red_hat_build_of_cryostat",
+    "runtimes_inventory",
     "runtimes_inventory_operator",
     "webserver"
   ],
   "rh-sso-7": [
     "gitops",
+    "openshift_gitops",
     "openshift_gitops_operator",
     "red_hat_openshift_gitops",
+    "red_hat_single_sign_on",
     "red_hat_single_sign_on_operator",
+    "rhsso",
     "rhsso_operator",
+    "single_sign_on",
     "single_sign_on_operator"
   ],
   "rhacm2": [
     "advanced_cluster_management",
     "advanced_cluster_management_for_kubernetes",
+    "jws",
     "jws_operator",
     "submariner",
     "volsync",
@@ -582,46 +719,64 @@
   "rhaii": [
     "ai",
     "red_hat_openshift_ai",
+    "rhods",
     "rhods_operator"
   ],
   "rhaii-early-access": [
     "ai",
     "red_hat_openshift_ai",
+    "rhods",
     "rhods_operator"
   ],
   "rhaiis": [
     "ai",
     "red_hat_openshift_ai",
+    "rhods",
     "rhods_operator"
   ],
   "rhbac-4": [
+    "hawtio",
     "hawtio_operator",
+    "red_hat_hawtio",
     "red_hat_hawtio_operator"
   ],
   "rhbac-4-tech-preview": [
+    "hawtio",
     "hawtio_operator",
+    "red_hat_hawtio",
     "red_hat_hawtio_operator"
   ],
   "rhbk": [
+    "keycloak",
     "keycloak_operator",
+    "red_hat_build_of_keycloak",
     "red_hat_build_of_keycloak_operator",
+    "rhbk",
     "rhbk_operator"
   ],
   "rhceph": [
+    "ocs",
     "ocs_operator",
     "openshift_container_storage"
   ],
   "rhcl-1": [
+    "authorino",
     "authorino_operator",
     "connectivity_link",
+    "dns",
     "dns_operator",
+    "kuadrant",
     "kuadrant_operator",
     "limitador",
     "limitador_operator",
+    "red_hat_authorino",
     "red_hat_authorino_operator",
     "red_hat_connectivity_link",
+    "red_hat_dns",
     "red_hat_dns_operator",
+    "red_hat_limitador",
     "red_hat_limitador_operator",
+    "rhcl",
     "rhcl_operator"
   ],
   "rhcl-tech-preview": [
@@ -629,17 +784,21 @@
     "mcp_gateway_operator"
   ],
   "rhdh": [
+    "developer_hub",
     "developer_hub_operator",
+    "red_hat_developer_hub",
     "red_hat_developer_hub_operator",
     "rhdh"
   ],
   "rhdm-7": [
     "business_automation",
+    "businessautomation",
     "businessautomation_operator"
   ],
   "rhelai1": [
     "ai",
     "red_hat_openshift_ai",
+    "rhods",
     "rhods_operator"
   ],
   "rhem": [
@@ -647,19 +806,25 @@
     "advanced_cluster_management_for_kubernetes"
   ],
   "rhmtc": [
+    "migration_toolkit_for_containers",
     "migration_toolkit_for_containers_operator",
+    "mtc",
     "mtc_operator"
   ],
   "rhoai": [
     "ai",
     "red_hat_openshift_ai",
+    "rhods",
     "rhods_operator"
   ],
   "rhods": [
     "data_science",
+    "prometheus",
     "prometheus_operator",
     "red_hat_openshift_data_science",
+    "rhods",
     "rhods_operator",
+    "rhods_prometheus",
     "rhods_prometheus_operator"
   ],
   "rhosdt": [
@@ -668,20 +833,25 @@
     "opentelemetry_product",
     "red_hat_build_of_opentelemetry",
     "red_hat_openshift_distributed_tracing_data_collection",
+    "tempo",
     "tempo_operator",
     "tempo_product"
   ],
   "rhpam-7": [
     "business_automation",
+    "businessautomation",
     "businessautomation_operator",
+    "rhpam_kogito",
     "rhpam_kogito_operator"
   ],
   "rhscl": [
     "3scale",
     "3scale_managed_application_services",
     "3scale_operator",
+    "bamoe_businessautomation",
     "bamoe_businessautomation_operator",
     "business_automation",
+    "businessautomation",
     "businessautomation_operator",
     "dev_spaces",
     "devspaces",
@@ -693,18 +863,23 @@
     "red_hat_openshift_dev_spaces"
   ],
   "rhtas": [
+    "model_validation",
     "model_validation_operator",
+    "policy_controller",
     "policy_controller_operator",
     "red_hat_trusted_artifact_signer",
+    "rhtas",
     "rhtas_operator",
     "trusted_artifact_signer"
   ],
   "rhtpa": [
     "red_hat_trusted_profile_analyzer",
+    "rhtpa",
     "rhtpa_operator",
     "trusted_profile_analyzer"
   ],
   "run-once-duration-override-operator": [
+    "run_once_duration_override",
     "run_once_duration_override_operator"
   ],
   "service-interconnect": [
@@ -712,11 +887,15 @@
     "red_hat_service_interconnect_network_observer",
     "service_interconnect",
     "service_interconnect_network_observer",
+    "skupper",
+    "skupper_netobs",
     "skupper_netobs_operator",
     "skupper_operator"
   ],
   "source-to-image": [
+    "builds_for_red_hat_openshift",
     "builds_for_red_hat_openshift_operator",
+    "openshift_builds",
     "openshift_builds_operator",
     "openshift_pipelines_operator_rh",
     "pipelines",
@@ -726,10 +905,13 @@
     "serverless_operator"
   ],
   "stf": [
+    "service_telemetry",
     "service_telemetry_operator",
+    "smart_gateway",
     "smart_gateway_operator"
   ],
   "ubi8-micro": [
+    "devworkspace",
     "devworkspace_operator"
   ],
   "web-terminal": [
@@ -743,8 +925,11 @@
     "fence_agents_remediation_operator",
     "machine_deletion_remediation",
     "machine_deletion_remediation_operator",
+    "node_health_check",
     "node_health_check_operator",
+    "node_healthcheck",
     "node_healthcheck_operator",
+    "node_maintenance",
     "node_maintenance_operator",
     "sbd",
     "self_node_remediation",
