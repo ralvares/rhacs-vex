@@ -104,7 +104,7 @@ function compareVersions(a, b) {
 function fixInfo(r, currentScope) {
   const fi = (r.FIXED_IN || '').trim();
   const fv = (r.FIXED_VERSION || '').trim();
-  const hasFV = fv && fv !== 'nan' && String(r.FIXABLE) === 'True';
+  const hasFV = fv && fv !== 'nan' && (String(r.FIXABLE) === 'True' || r.FIXABLE === true);
   const hasFI = fi && fi !== 'nan';
   const opScope = currentScope || r.SCOPE || '';
   const isOp = opScope.startsWith('operators/');
@@ -132,6 +132,11 @@ function fixInfo(r, currentScope) {
   // OCP
   if (hasFV) {
     return { has: true, label: fv, badge: `<span class="badge bg-green">${esc(fv)}</span>` };
+  }
+  // VEX fix version fallback
+  const vfv = (r.VEX_FIX_VER || '').trim();
+  if (vfv && vfv !== 'nan' && vfv !== 'N/A') {
+    return { has: true, label: vfv, badge: `<span class="badge bg-green">${esc(vfv)}</span>` };
   }
   if (hasFI) {
     const label = fi.match(/^\d/) ? `OCP ${fi}` : fi;
