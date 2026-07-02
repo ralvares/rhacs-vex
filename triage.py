@@ -315,6 +315,10 @@ def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict, rhel_base_pids
             c = effective_ver.split('.')
             n = name_ver.split('.')
             return c[:len(n)] == n
+        # OCP images pull RPMs from multiple repos (Fast Datapath, etc.)
+        # — any product matching the RHEL version is in scope.
+        if _is_any_rhel_ver_product(pid, ctx.rhel_ver):
+            return True
         return False
 
     # operator: catalog-derived prefixes (ctx.extra_prefixes from ns_vex_prefixes.json)
@@ -1455,6 +1459,8 @@ def _is_any_rhel_ver_product(pid, rhel_ver):
     """
     pid_lower = pid.lower()
     if f'enterprise_linux_{rhel_ver}' in pid_lower:
+        return True
+    if f'_rhel_{rhel_ver}' in pid_lower or f'_rhel{rhel_ver}' in pid_lower:
         return True
     if re.search(rf'\.el{rhel_ver}[_.\-a-z]', pid) or re.search(rf'\.el{rhel_ver}$', pid):
         return True

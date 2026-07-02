@@ -253,19 +253,15 @@ let dropdowns = {};
 
 function triageBadge(status) {
   const s = (status || '').toLowerCase();
-  if (s.includes('false'))        return `<span class="badge bg-green">False Positive</span>`;
-  if (s.includes('no vex'))       return `<span class="badge bg-gray">No VEX Data</span>`;
-  if (s.includes('not assessed')) return `<span class="badge bg-yellow">Not Assessed</span>`;
-  if (s.includes('positive'))     return `<span class="badge bg-red">Positive</span>`;
-  return `<span class="badge bg-gray">${esc(status || 'Unknown')}</span>`;
+  if (s.includes('false'))    return `<span class="badge bg-green">False Positive</span>`;
+  if (s.includes('positive')) return `<span class="badge bg-red">Positive</span>`;
+  return `<span class="badge bg-gray">No VEX Data</span>`;
 }
 
 function triageKey(raw) {
   const s = String(raw || '').toLowerCase();
-  if (s.includes('false'))        return 'False Positive';
-  if (s.includes('no vex'))       return 'No VEX Data';
-  if (s.includes('not assessed')) return 'Not Assessed';
-  if (s.includes('positive'))     return 'Positive';
+  if (s.includes('false'))    return 'False Positive';
+  if (s.includes('positive')) return 'Positive';
   return 'No VEX Data';
 }
 
@@ -730,16 +726,21 @@ async function runTriage() {
   setStatus(`Running triage against OCP ${ver}…`);
 
   try {
-    const pName = await registerVersion(ver);
-
-    // Build UNION of OCP + detected operator parquets for full coverage
-    const vexSources = [`SELECT CVE, COMPONENT, IMAGE, SEVERITY, JUSTIFICATION, AUDIT_RESULT FROM '${pName}'`];
+    // Register all OCP parquets for same minor version for full VEX coverage
+    const minor = ver.split('.').slice(0, 2).join('.');
+    const allVers = [...$('version-select').options].map(o => o.value).filter(Boolean);
+    const sameMinor = allVers.filter(v => v.startsWith(minor + '.'));
+    const vexSources = [];
+    for (const v of sameMinor) {
+      const n = await registerVersion(v);
+      vexSources.push(`SELECT CVE, COMPONENT, IMAGE, SEVERITY, JUSTIFICATION, AUDIT_RESULT FROM '${n}'`);
+    }
     for (const op of detectedOperators) {
       vexSources.push(`SELECT CVE, COMPONENT, IMAGE, SEVERITY, JUSTIFICATION, AUDIT_RESULT FROM '${op.parquetName}'`);
     }
     const vexUnion = vexSources.join(' UNION ALL ');
 
-    // Join on CVE + Component + Image for per-image accuracy
+    // Join on CVE + Component; prefer SHA-matched row, fall back to any match
     allRows = await query(`
       WITH all_vex AS (${vexUnion}),
       ranked AS (
@@ -751,42 +752,40 @@ async function runTriage() {
         FROM all_vex
       ),
       vex AS (
-        SELECT CVE, COMPONENT, IMAGE, SEVERITY AS vex_severity, JUSTIFICATION AS vex_justification,
+        SELECT CVE, COMPONENT, IMAGE,
+          SEVERITY AS vex_severity, JUSTIFICATION AS vex_justification,
+          AUDIT_RESULT AS vex_audit,
           CASE
-            WHEN AUDIT_RESULT LIKE '%POSITIVE%' AND AUDIT_RESULT NOT LIKE '%FALSE%' THEN 'Positive'
             WHEN AUDIT_RESULT LIKE '%FALSE%' THEN 'False Positive'
-            WHEN AUDIT_RESULT LIKE '%NOT ASSESSED%' THEN 'Not Assessed'
-            ELSE 'Unknown'
+            WHEN AUDIT_RESULT LIKE '%POSITIVE%' THEN 'Positive'
+            ELSE NULL
           END AS vex_status
         FROM ranked WHERE rn = 1
       ),
-      vex_by_sha AS (
-        SELECT DISTINCT CVE, COMPONENT,
-          SPLIT_PART(IMAGE, '@sha256:', 2) AS sha
-        FROM vex
-        WHERE IMAGE LIKE '%@sha256:%'
-      ),
-      vex_nosha AS (
+      vex_best AS (
         SELECT CVE, COMPONENT,
-          FIRST(vex_status) AS vex_status,
-          FIRST(vex_severity) AS vex_severity,
-          FIRST(vex_justification) AS vex_justification
+          FIRST(vex_status ORDER BY
+            CASE vex_status WHEN 'Positive' THEN 0 WHEN 'False Positive' THEN 1 ELSE 2 END
+          ) AS vex_status,
+          FIRST(vex_severity ORDER BY
+            CASE vex_status WHEN 'Positive' THEN 0 WHEN 'False Positive' THEN 1 ELSE 2 END
+          ) AS vex_severity,
+          FIRST(vex_justification ORDER BY
+            CASE vex_status WHEN 'Positive' THEN 0 WHEN 'False Positive' THEN 1 ELSE 2 END
+          ) AS vex_justification
         FROM vex
+        WHERE vex_status IS NOT NULL
         GROUP BY CVE, COMPONENT
       )
       SELECT r.*,
-        COALESCE(v_sha.vex_status, v_cve.vex_status, 'No VEX Data') AS TRIAGE_STATUS,
-        COALESCE(v_sha.vex_severity, v_cve.vex_severity) AS VEX_SEVERITY,
-        COALESCE(v_sha.vex_justification, v_cve.vex_justification) AS VEX_JUSTIFICATION
+        COALESCE(v.vex_status, 'No VEX Data') AS TRIAGE_STATUS,
+        v.vex_severity AS VEX_SEVERITY,
+        v.vex_justification AS VEX_JUSTIFICATION
       FROM rhacs r
-      LEFT JOIN vex v_sha ON r.CVE = v_sha.CVE AND r.Component = v_sha.COMPONENT
-        AND SPLIT_PART(r.Image, '@sha256:', 2) = SPLIT_PART(v_sha.IMAGE, '@sha256:', 2)
-        AND r.Image LIKE '%@sha256:%' AND v_sha.IMAGE LIKE '%@sha256:%'
-      LEFT JOIN vex_nosha v_cve ON r.CVE = v_cve.CVE AND r.Component = v_cve.COMPONENT
-        AND v_sha.CVE IS NULL
+      LEFT JOIN vex_best v ON r.CVE = v.CVE AND r.Component = v.COMPONENT
       ORDER BY
-        CASE COALESCE(v_sha.vex_status, v_cve.vex_status, 'No VEX Data')
-          WHEN 'Positive' THEN 0 WHEN 'Not Assessed' THEN 1
+        CASE COALESCE(v.vex_status, 'No VEX Data')
+          WHEN 'Positive' THEN 0 WHEN 'No VEX Data' THEN 1
           WHEN 'False Positive' THEN 2 ELSE 3
         END,
         CASE UPPER(r.Severity)
@@ -856,11 +855,9 @@ function renderTriageTable() {
   const totalCves = new Set(filteredRows.map(r => r.CVE)).size;
   const fpRows    = filteredRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'False Positive');
   const posRows   = filteredRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'Positive');
-  const naRows    = filteredRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'Not Assessed');
   const noVexRows = filteredRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'No VEX Data');
   const fpCves    = new Set(fpRows.map(r => r.CVE)).size;
   const posCves   = new Set(posRows.map(r => r.CVE)).size;
-  const naCves    = new Set(naRows.map(r => r.CVE)).size;
   const noVexCves = new Set(noVexRows.map(r => r.CVE)).size;
   const fpPct     = totalCves ? Math.round(fpCves / totalCves * 100) : 0;
 
@@ -868,7 +865,6 @@ function renderTriageTable() {
     <div class="card"><div class="card-label">Total Findings</div><div class="card-value blue">${filteredRows.length.toLocaleString()}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${totalCves} unique CVEs</div></div>
     <div class="card"><div class="card-label">False Positive</div><div class="card-value green">${fpRows.length.toLocaleString()}</div><div style="font-size:.65rem;color:var(--green);margin-top:.2rem">${fpCves} unique CVEs · ${fpPct}% noise</div></div>
     <div class="card"><div class="card-label">Positive</div><div class="card-value red">${posRows.length.toLocaleString()}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${posCves} unique CVEs</div></div>
-    <div class="card"><div class="card-label">Not Assessed</div><div class="card-value yellow">${naRows.length.toLocaleString()}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${naCves} unique CVEs</div></div>
     <div class="card"><div class="card-label">No VEX Data</div><div class="card-value" style="color:var(--muted)">${noVexRows.length.toLocaleString()}</div><div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">${noVexCves} unique CVEs</div></div>
   `;
 
@@ -1018,7 +1014,7 @@ function buildSevDetail(sev) {
     if (r.Image) cveMap[key].images.add(r.Image);
   });
   const entries = Object.values(cveMap).sort((a, b) => {
-    const order = { 'Positive': 0, 'Not Assessed': 1, 'No VEX Data': 2, 'False Positive': 3 };
+    const order = { 'Positive': 0, 'No VEX Data': 1, 'False Positive': 2 };
     return (order[a.status] ?? 4) - (order[b.status] ?? 4) || b.findings - a.findings;
   });
   if (!entries.length) return '<div style="padding:.5rem;font-size:.72rem;color:var(--muted)">No CVEs</div>';
@@ -1070,7 +1066,6 @@ function renderInsights() {
   const totalFinds = allRows.length;
   const posFinds   = allRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'Positive');
   const fpFinds    = allRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'False Positive');
-  const naFinds    = allRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'Not Assessed');
   const noVexFinds = allRows.filter(r => triageKey(r.TRIAGE_STATUS) === 'No VEX Data');
   const totalCves  = new Set(allRows.map(r => r.CVE)).size;
   const posCves    = new Set(posFinds.map(r => r.CVE)).size;
