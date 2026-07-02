@@ -785,7 +785,7 @@ async function runTriage() {
       LEFT JOIN vex_nosha v_cve ON r.CVE = v_cve.CVE AND r.Component = v_cve.COMPONENT
         AND v_sha.CVE IS NULL
       ORDER BY
-        CASE COALESCE(v.vex_status, 'No VEX Data')
+        CASE COALESCE(v_sha.vex_status, v_cve.vex_status, 'No VEX Data')
           WHEN 'Positive' THEN 0 WHEN 'Not Assessed' THEN 1
           WHEN 'False Positive' THEN 2 ELSE 3
         END,
