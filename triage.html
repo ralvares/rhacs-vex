@@ -759,15 +759,31 @@ async function runTriage() {
             ELSE 'Unknown'
           END AS vex_status
         FROM ranked WHERE rn = 1
+      ),
+      vex_by_sha AS (
+        SELECT DISTINCT CVE, COMPONENT,
+          SPLIT_PART(IMAGE, '@sha256:', 2) AS sha
+        FROM vex
+        WHERE IMAGE LIKE '%@sha256:%'
+      ),
+      vex_nosha AS (
+        SELECT CVE, COMPONENT,
+          FIRST(vex_status) AS vex_status,
+          FIRST(vex_severity) AS vex_severity,
+          FIRST(vex_justification) AS vex_justification
+        FROM vex
+        GROUP BY CVE, COMPONENT
       )
       SELECT r.*,
-        COALESCE(v.vex_status, 'No VEX Data') AS TRIAGE_STATUS,
-        v.vex_severity AS VEX_SEVERITY,
-        v.vex_justification AS VEX_JUSTIFICATION
+        COALESCE(v_sha.vex_status, v_cve.vex_status, 'No VEX Data') AS TRIAGE_STATUS,
+        COALESCE(v_sha.vex_severity, v_cve.vex_severity) AS VEX_SEVERITY,
+        COALESCE(v_sha.vex_justification, v_cve.vex_justification) AS VEX_JUSTIFICATION
       FROM rhacs r
-      LEFT JOIN vex v ON r.CVE = v.CVE AND r.Component = v.COMPONENT
-        AND SPLIT_PART(r.Image, '@sha256:', 2) = SPLIT_PART(v.IMAGE, '@sha256:', 2)
-        AND r.Image LIKE '%@sha256:%' AND v.IMAGE LIKE '%@sha256:%'
+      LEFT JOIN vex v_sha ON r.CVE = v_sha.CVE AND r.Component = v_sha.COMPONENT
+        AND SPLIT_PART(r.Image, '@sha256:', 2) = SPLIT_PART(v_sha.IMAGE, '@sha256:', 2)
+        AND r.Image LIKE '%@sha256:%' AND v_sha.IMAGE LIKE '%@sha256:%'
+      LEFT JOIN vex_nosha v_cve ON r.CVE = v_cve.CVE AND r.Component = v_cve.COMPONENT
+        AND v_sha.CVE IS NULL
       ORDER BY
         CASE COALESCE(v.vex_status, 'No VEX Data')
           WHEN 'Positive' THEN 0 WHEN 'Not Assessed' THEN 1
