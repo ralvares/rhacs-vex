@@ -53,7 +53,7 @@ def retriage_file(filepath):
 
 
 def main():
-    dirs = sys.argv[1:] or ['data/parquet/ocp', 'data/parquet/operators/4.21', 'data/parquet/operators/4.20']
+    dirs = sys.argv[1:] or ['data/parquet/ocp', 'data/parquet/operators']
     workers = max(1, multiprocessing.cpu_count() - 2)
 
     dirty_files = []

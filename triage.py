@@ -2340,6 +2340,9 @@ def _audit_rpm(comp, found_v, data, ctx, pid_name, rel_parent,
                 f"{prefix}{ctx.display_name}: known_not_affected.", severity])
 
         # ── Fixed versions in scope ─────────────────────────────────────
+        # Collect (version, from_rhel_base) so RHEL base-repo fixes are
+        # preferred as the reported reference over add-on product builds
+        # (e.g. AppStream 1.26.19-3.el9_8 beats Ansible's 2.7.0-1.el9ap).
         scoped_fixed = []
         for pid in ps.get('fixed', []):
             if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
@@ -2351,11 +2354,13 @@ def _audit_rpm(comp, found_v, data, ctx, pid_name, rel_parent,
             if pkg_name in names_to_match and pkg_ver:
                 if pid in pid_severity:
                     severity = pid_severity[pid]
-                scoped_fixed.append(pkg_ver)
+                is_base = pid.split(':')[0] in rhel_base_pids
+                scoped_fixed.append((pkg_ver, is_base))
 
         if scoped_fixed:
+            scoped_fixed.sort(key=lambda t: not t[1])   # base repos first
             seen, unique_fixed = set(), []
-            for v in scoped_fixed:
+            for v, _b in scoped_fixed:
                 if v not in seen:
                     seen.add(v)
                     unique_fixed.append(v)
