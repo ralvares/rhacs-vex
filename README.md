@@ -19,6 +19,7 @@ This tool takes scan results and cross-checks them against three authoritative s
 | **Scoped VEX cross-reference** | Fetches the authoritative Red Hat CSAF/VEX advisory for each CVE and scopes it to the *specific product and version* the image belongs to - not just "any Red Hat product" |
 | **SBOM version verification** | Pulls the SPDX 2.3 SBOM and cross-checks every flagged component version against what is actually installed in the image |
 | **RPM backport detection** | Compares the installed RPM against the VEX fix version using proper RPM version comparison, automatically closing findings where the patch is already present |
+| **Build-exact identity matching** | Matches the image's own OCI purl and SHA256 digest against VEX product IDs, so a vendor assessment of the *exact build* overrides generic product-level entries |
 
 A finding is only marked **FALSE POSITIVE** when all of the following are true: the VEX says not-affected *for the right product and RHEL version*, the component version is confirmed in the SBOM, and (for RPMs) the installed version is at or beyond the fix. Everything else stays open.
 
@@ -325,54 +326,37 @@ python3 triage.py --scan scan.csv --image "registry.../myimage@sha256:..." --fal
 
 ```
 $ python3 triage.py \
-    --image "registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9@sha256:58f24f4a..." \
-    --false-only
+    --image "registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9@sha256:58f24f4a..."
 
 Image: registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9@sha256:58f24f4a...
 Mode: RHACS API  endpoint=central-stackrox.apps.ocp.example.com:443
-🔍 Searching for image in RHACS...
-✅ Found image ID: sha256:58f24f4a9869b9fc5f67dfe5aed1bdaae61880654b20c750e17ca12867b1d9a4
-📥 Fetching full scan data...
-🏷  Labels found - refining context from CPE...
+📥 Fetching scan data...
 OS: rhel:9
 Found: 112 CVE findings across 38 components
 Context: type=operator  rhel=9  display=rhacm2/multicluster-operators-subscription-rhel9 2.16 (RHEL 9)
 VEX scope: registry.redhat.io/rhacm2/, rhacm2/, advanced_cluster_management, ...
 
-🔄 Syncing 80 CVEs into /vex folder...
+🔄 Syncing 80 new/updated CVEs (0 cached)...
 ✅ Sync Complete in 1.59s.
-🚀 Running Structured Audit - context: rhacm2/multicluster-operators-subscription-rhel9 2.16 (RHEL 9)
+🚀 Running Structured Audit — context: rhacm2/multicluster-operators-subscription-rhel9 2.16 (RHEL 9)
+┌────────────────┬───────────┬───────────┬───────────┬────────────────┬─────────────────┬────────────────────────────────────────────────────┐
+│ CVE            │ Component │ RHACS Sev │ VEX Sev   │ Verdict        │ Fix             │ Justification                                      │
+├────────────────┼───────────┼───────────┼───────────┼────────────────┼─────────────────┼────────────────────────────────────────────────────┤
+│ CVE-2026-27532 │ openssl   │ Important │ Important │ POSITIVE       │ 3.2.2-6.el9_5.1 │ Installed 3.2.2-6.el9_5 < fix 3.2.2-6.el9_5.1.     │
+│ CVE-2026-33186 │ grpc      │ Important │ Important │ FALSE POSITIVE │ -               │ Not affected (vulnerable code not present). Red H… │
+│ CVE-2026-25679 │ stdlib    │ Important │ Moderate  │ FALSE POSITIVE │ -               │ known_not_affected (Red Hat Advanced Cluster Mana… │
+│ CVE-2026-1229  │ circl     │ Moderate  │ Moderate  │ FALSE POSITIVE │ -               │ No supported Red Hat product affected.             │
+└────────────────┴───────────┴───────────┴───────────┴────────────────┴─────────────────┴────────────────────────────────────────────────────┘
 
-          VEX Triage Report - rhacm2/multicluster-operators-subscription-rhel9 2.16 (RHEL 9)
-╭─────────────────────────────┬───────────────────┬─────────┬────────────────┬───────────┬───────────────────┬─────────────┬──────────────────────╮
-│ Component                   │ Product           │ Version │ CVE            │ Severity  │ Result            │ Fix Version │ Justification        │
-├─────────────────────────────┼───────────────────┼─────────┼────────────────┼───────────┼───────────────────┼─────────────┼──────────────────────┤
-│ google.golang.org/grpc      │ rhacm2/multiclu…  │ v1.79.1 │ CVE-2026-33186 │ Important │ ✅ FALSE POSITIVE │ N/A         │ Non-RPM - not        │
-│                             │ 2.16 (RHEL 9)     │         │                │           │                   │             │ affected in          │
-│                             │                   │         │                │           │                   │             │ rhacm2/multiclus…    │
-│                             │                   │         │                │           │                   │             │ 2.16 (RHEL 9):       │
-│                             │                   │         │                │           │                   │             │ vulnerable code      │
-│                             │                   │         │                │           │                   │             │ not present.         │
-├─────────────────────────────┼───────────────────┼─────────┼────────────────┼───────────┼───────────────────┼─────────────┼──────────────────────┤
-│ stdlib                      │ rhacm2/multiclu…  │ 1.25.7  │ CVE-2026-25679 │ Important │ ✅ FALSE POSITIVE │ N/A         │ Non-RPM - not        │
-│                             │ 2.16 (RHEL 9)     │         │                │           │                   │             │ affected in          │
-│                             │                   │         │                │           │                   │             │ rhacm2/multiclus…    │
-│                             │                   │         │                │           │                   │             │ 2.16 (RHEL 9):       │
-│                             │                   │         │                │           │                   │             │ vulnerable code      │
-│                             │                   │         │                │           │                   │             │ not present.         │
-├─────────────────────────────┼───────────────────┼─────────┼────────────────┼───────────┼───────────────────┼─────────────┼──────────────────────┤
-│ github.com/cloudflare/circl │                   │ v1.6.1  │ CVE-2026-1229  │ Moderate  │ ✅ FALSE POSITIVE │ N/A         │ Red Hat Product      │
-│                             │                   │         │                │           │                   │             │ Security states no   │
-│                             │                   │         │                │           │                   │             │ currently supported  │
-│                             │                   │         │                │           │                   │             │ Red Hat product is   │
-│                             │                   │         │                │           │                   │             │ affected by this CVE │
-╰─────────────────────────────┴───────────────────┴─────────┴────────────────┴───────────┴───────────────────┴─────────────┴──────────────────────╯
-
-  ✅ FALSE POSITIVE: 7
+Image: registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9 (sha256:58f24f...)
+RHACS reports 112 findings (2 Critical, 31 Important, 64 Moderate, 15 Low) → VEX triage: 98 false positives (87%), 14 real.
+6 finding(s) rated differently by Red Hat VEX than by the scanner.
 
 🔍 Verifying component versions against SBOM...
-  🔍 SBOM verified: 4/4 component versions confirmed in image
+  🔍 SBOM verified: 38/38 component versions confirmed in image
 ```
+
+Findings are sorted real POSITIVEs first, then by VEX severity. The **RHACS Sev** and **VEX Sev** columns sit side by side so severity disagreements between the scanner and Red Hat's own product-specific assessment are visible at a glance; long Go module paths are shortened to their final segment (`google.golang.org/grpc` → `grpc`).
 
 ---
 

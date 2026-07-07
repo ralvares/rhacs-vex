@@ -61,6 +61,9 @@ class WorkloadContext:
     display_name  : str          # human label for justification text
     extra_prefixes: list[str]    # catalog-derived VEX scope prefixes
     sbom_src_map  : dict         # binary RPM → source RPM  (see §3 below)
+    sbom_packages : dict         # SBOM inventory {name → set(versions)}
+    ocp_component : str | None   # OCP manifest component name ("etcd")
+    cpe           : str | None   # raw image CPE label, for VEX CPE matching
 ```
 
 **Context derivation (no hardcoding):**
@@ -82,8 +85,8 @@ to this workload.  Rules — no hardcoded product names:
 | Workload type | In-scope PIDs |
 |---------------|---------------|
 | `ubi` | RHEL base repos only (PIDs whose VEX name starts with *"Red Hat Enterprise Linux"*) |
-| `ocp` | RHEL base repos + any PID whose parent product name contains *"OpenShift Container Platform"*, version-matched component-wise |
-| `operator` | RHEL base repos + any PID whose ID contains a prefix from `ctx.extra_prefixes` |
+| `ocp` | RHEL base repos + any PID whose parent product name contains *"OpenShift Container Platform"* (version-matched component-wise) + any parent product whose VEX CPE prefix-matches the image's `cpe` label (`_cpe_prefix_match`) + any RHEL-version-matching product (Fast Datapath etc.) |
+| `operator` | RHEL base repos + any PID whose ID contains a prefix from `ctx.extra_prefixes` + any PID whose parent product appears in the dynamic `vex_ns_map` (namespace → product families, built from OCI purls in the VEX product tree) |
 
 ---
 
@@ -237,9 +240,21 @@ For each `(component, version, CVE)` row, after loading the VEX file:
 1. Red Hat states NO product is affected (catch-all red_hat_products PID)?
    └─ ✅ FALSE POSITIVE
 
-2. Non-RPM component (Go binary, npm, pip — no el8/el9 in version string)?
-   ├─ 2a. Check image-level PIDs (SHA match) — fixed image build comparison
-   └─ 2b. Generic product_status scan (non-SHA PIDs):
+1a. Our exact image digest (@sha256:...) appears in any product_status PID?
+    Applies to EVERY component in the image — RPM and non-RPM alike.
+    ├─ known_affected / under_investigation → ❌ POSITIVE  (this build affected)
+    └─ known_not_affected / fixed           → ✅ FALSE POSITIVE (this build cleared)
+    (affected wins if both present; severity taken from the decisive PID)
+
+2. Non-RPM component (Go binary, npm, pip — no el8/el9 in version string
+   AND scan SOURCE ≠ OS; SOURCE=OS components are treated as RPMs)?
+   ├─ 2a. _image_vex_lookup (OCP/operator): match workload identity, most specific first
+   │      ├─ OCI purl exact match (_build_image_purl repository_url vs VEX purls)
+   │      ├─ image-path PID normalization (openshift4/ose-etcd-rhel9 → etcd)
+   │      ├─ generic component PIDs (rhcos, via pkg:generic purl)
+   │      └─ SHA-exact entries (our digest) override all generic matches
+   ├─ 2b. Image-level SHA PIDs for image-ref components — build comparison
+   └─ 2c. Generic product_status scan (non-SHA PIDs):
         ├─ known_not_affected  → ✅ FALSE POSITIVE
         ├─ fixed               → ❌ POSITIVE (fix exists but installed version not verified)
         ├─ known_affected      → ❌ POSITIVE
@@ -267,7 +282,7 @@ For each `(component, version, CVE)` row, after loading the VEX file:
    └─ [no in-scope entry — check other RHEL products for this comp]
         other_vuln only?    → ❌ POSITIVE
         other_safe only?    → ✅ FALSE POSITIVE
-        nothing at all?     → ✅ FALSE POSITIVE (not tracked)
+        nothing at all?     → ⚠️ NOT ASSESSED (not tracked in VEX)
 ```
 
 ---

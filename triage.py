@@ -9,6 +9,7 @@ import json
 import time
 import tempfile
 import pandas as pd
+from collections import Counter
 from dataclasses import dataclass, field
 from typing import Optional, List
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -59,7 +60,7 @@ MAX_WORKERS     = 20
 
 # ── Product-ID prefix helpers ────────────────────────────────────────────────
 
-def _build_pid_name(data: dict) -> tuple[dict, dict, set, dict, dict]:
+def _build_pid_name(data: dict) -> tuple[dict, dict, set, dict, dict, dict]:
     """
     Build lookup maps from a VEX product tree — no hardcoded labels needed.
 
@@ -77,6 +78,9 @@ def _build_pid_name(data: dict) -> tuple[dict, dict, set, dict, dict]:
                         (e.g. "rhbk") to VEX product family IDs (e.g. "red_hat_build_of_keycloak")
                         so operator images can be scoped to the correct VEX product even when
                         the static ns_vex_prefixes.json mapping is incomplete.
+      pid_cpe         : {product_id → cpe_string}  from product_identification_helper.
+                        Maps parent product IDs to their CPE strings so that _pid_in_scope
+                        can match image CPE labels against VEX product tree CPEs.
     """
     pid_name: dict = {}
     pid_purl: dict = {}
@@ -138,7 +142,7 @@ def _build_pid_name(data: dict) -> tuple[dict, dict, set, dict, dict]:
                 if len(cpe_parts) > 2:
                     vex_ns_map[oci_ns].add(cpe_parts[2])
 
-    return pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map
+    return pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe
 
 
 def _pid_label(pid: str, pid_name: dict, rel_parent: dict) -> str:
@@ -191,6 +195,9 @@ class WorkloadContext:
     # Set from the release manifest in --ocp mode.  Used to match VEX image-
     # level PIDs (e.g. "openshift4/ose-etcd-rhel9") for Non-RPM Go modules.
     ocp_component : Optional[str]   = None
+    # Raw CPE label from the container image (e.g. "cpe:/a:redhat:openshift:4.12::el8").
+    # Used for CPE-based matching against VEX product tree CPEs in _pid_in_scope.
+    cpe           : Optional[str]   = None
 
 
 # Namespace → VEX prefix map loaded from data/ns_vex_prefixes.json.
@@ -284,15 +291,63 @@ def parse_image_ref(image_ref: str) -> WorkloadContext:
     return ctx
 
 
+def _cpe_prefix_match(image_cpe: str, vex_cpe: str) -> bool:
+    """Return True if the image CPE matches the VEX product CPE as a prefix.
+
+    CPE format: cpe:/part:vendor:product:version:update:edition:lang
+    The VEX CPE may be less specific (e.g. "cpe:/a:redhat:openshift:4")
+    while the image CPE is more specific (e.g. "cpe:/a:redhat:openshift:4.12::el8").
+
+    Matching: split both into components, skip empty trailing components in
+    the VEX CPE, and check that the image CPE starts with the same components.
+    """
+    def _parse_cpe(cpe: str) -> list:
+        # Normalize: strip "cpe:/" or "cpe:2.3:" prefix
+        cpe = re.sub(r'^cpe:[/\d.]*:*', '', cpe).strip(':')
+        return [p for p in cpe.split(':')]
+
+    img_parts = _parse_cpe(image_cpe)
+    vex_parts = _parse_cpe(vex_cpe)
+
+    # Strip trailing empty components from VEX CPE (e.g. "::el8" → keep vendor,product,version)
+    while vex_parts and vex_parts[-1] == '':
+        vex_parts.pop()
+    if not vex_parts:
+        return False
+
+    # Must match at least part:vendor:product (first 3 components)
+    if len(vex_parts) < 3 or len(img_parts) < 3:
+        return False
+
+    # Component-wise prefix match: each non-empty VEX component must match
+    for i, vex_comp in enumerate(vex_parts):
+        if i >= len(img_parts):
+            return False
+        if not vex_comp:
+            # Empty VEX component is a wildcard (matches anything)
+            continue
+        # Version component: prefix match (VEX "4" matches image "4.12")
+        if i == 3:  # version position
+            img_ver_parts = img_parts[i].split('.')
+            vex_ver_parts = vex_comp.split('.')
+            if img_ver_parts[:len(vex_ver_parts)] != vex_ver_parts:
+                return False
+        elif vex_comp.lower() != img_parts[i].lower():
+            return False
+    return True
+
+
 def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict, rhel_base_pids: set,
-                   vex_ns_map: Optional[dict] = None) -> bool:
+                   vex_ns_map: Optional[dict] = None,
+                   pid_cpe: Optional[dict] = None) -> bool:
     """
     Return True if a VEX product_id is relevant to the given WorkloadContext.
 
     - UBI      : only RHEL base repos (derived from VEX product tree names)
     - OCP      : RHEL base repos + any product whose VEX name is
                  "Red Hat OpenShift Container Platform <version>" — version
-                 matched component-wise so "4" covers all 4.x and "4.21" is exact
+                 matched component-wise so "4" covers all 4.x and "4.21" is exact.
+                 Also checks CPE from image labels against VEX product tree CPEs.
     - operator : RHEL base repos + catalog-derived prefixes in ctx.extra_prefixes
                  (built from data/ns_vex_prefixes.json) + dynamic VEX-derived
                  namespace→product mapping from OCI purls/CPEs in the VEX product tree
@@ -315,6 +370,12 @@ def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict, rhel_base_pids
             c = effective_ver.split('.')
             n = name_ver.split('.')
             return c[:len(n)] == n
+        # CPE-based matching: when the image has a CPE label, check it
+        # against the VEX parent product's CPE for structural matching.
+        if pid_cpe and ctx.cpe:
+            vex_parent_cpe = pid_cpe.get(parent_pid, '')
+            if vex_parent_cpe and _cpe_prefix_match(ctx.cpe, vex_parent_cpe):
+                return True
         # OCP images pull RPMs from multiple repos (Fast Datapath, etc.)
         # — any product matching the RHEL version is in scope.
         if _is_any_rhel_ver_product(pid, ctx.rhel_ver):
@@ -423,6 +484,10 @@ def parse_context_from_labels(labels: dict, image_ref: str = "") -> WorkloadCont
     if image_ref:
         ctx.image_ref = image_ref
 
+    # Store raw CPE label for downstream CPE-based matching
+    if cpe:
+        ctx.cpe = cpe
+
     # ── Extract version info from CPE ────────────────────────────────────
     if cpe:
         cpe_clean = re.sub(r'^cpe:[/\d.]*:*', '', cpe).strip(':')
@@ -460,6 +525,14 @@ def parse_context_from_labels(labels: dict, image_ref: str = "") -> WorkloadCont
     # e.g. "openshift4/ose-etcd-rhel9" → "etcd"
     if ctx.workload_type == "ocp" and name and not ctx.ocp_component:
         ctx.ocp_component = _normalize_vex_image_core(name)
+
+    # The pulled image reference is authoritative for the RHEL variant —
+    # Brew labels can lag a rebuild (label says rhel8, registry path rhel9).
+    if image_ref:
+        ref_base = re.sub(r'[@:][^/]*$', '', image_ref).split('/')[-1]
+        rm = re.search(r'rhel(\d+)', ref_base)
+        if rm:
+            ctx.rhel_ver = rm.group(1)
 
     return ctx
 
@@ -1084,25 +1157,102 @@ def _normalize_ocp_component(name: str) -> str:
     return name
 
 
+def _build_image_purl(image_ref: Optional[str], image_name_label: Optional[str] = None):
+    """Build OCI identity candidates for the image.
+
+    Returns (candidates, sha) where candidates is a list of
+    (repository_url, image_name) pairs derived from:
+      1. the image reference — authoritative, it is what the cluster pulls
+         and what VEX purls use for registry.redhat.io images
+      2. the image's `name` label — Brew metadata whose namespace/suffix may
+         differ from the registry path (openshift/ vs openshift4/,
+         managed-open-data-hub/ vs rhoai/)
+    No namespace rewriting: the caller matches by exact repository_url first
+    and falls back to purl package-name equality.
+    """
+    candidates = []
+    sha = None
+    if image_ref:
+        m = re.search(r'@sha256:([a-f0-9]+)', image_ref)
+        sha = m.group(1) if m else None
+        bare = re.sub(r'[@:][^/]*$', '', image_ref)
+        parts = bare.split('/')
+        if len(parts) >= 2:
+            candidates.append((bare, parts[-1]))
+    if image_name_label and '/' in image_name_label:
+        name = image_name_label.split('/')[-1]
+        repo = f"registry.redhat.io/{image_name_label}"
+        if all(c[0] != repo for c in candidates):
+            candidates.append((repo, name))
+    return candidates, sha
+
+
+def _purl_matched_leaf_pids(pid_purl: dict, candidates: list) -> set:
+    """VEX component PIDs whose OCI purl matches one of the image candidates.
+
+    Exact repository_url match wins; when no repo matches, fall back to purl
+    package-name equality — this bridges Brew label namespaces to registry
+    namespaces without any hardcoded mapping.
+    """
+    if not candidates:
+        return set()
+    repos = {c[0] for c in candidates}
+    names = {c[1] for c in candidates}
+    by_repo, by_name = set(), set()
+    for pid, purl in pid_purl.items():
+        if not purl.startswith('pkg:oci/'):
+            continue
+        r = re.search(r'repository_url=([^&]+)', purl)
+        if r and r.group(1) in repos:
+            by_repo.add(pid)
+            continue
+        m = re.match(r'pkg:oci/([^?@]+)', purl)
+        if m and m.group(1) in names:
+            by_name.add(pid)
+    return by_repo if by_repo else by_name
+
+
 def _image_vex_lookup(ctx: WorkloadContext, data: dict,
                       pid_name: dict, rhel_base_pids: set,
                       pid_purl: Optional[dict] = None,
-                      vex_ns_map: Optional[dict] = None):
+                      vex_ns_map: Optional[dict] = None,
+                      pid_cpe: Optional[dict] = None):
     """Check VEX image-level and generic-component entries for OCP/operator workloads.
 
-    For non-RPM components (Go, npm, Python) the package name never matches
-    VEX PIDs.  Red Hat VEX rarely contains pkg:golang or pkg:pypi purls — Go
-    and Python are almost always assessed at the containing component level.
-    This function
-    matches the workload's identity against:
-      - Image-path PIDs: openshift4/ose-etcd-rhel9 (matched via _normalize_vex_image_core)
-      - Generic component PIDs: rhcos (purl pkg:generic/..., matched via _normalize_ocp_component)
+    Matches the workload's identity against VEX PIDs using:
+      1. OCI purl matching (exact, from image ref/labels)
+      2. String normalization fallback (for PIDs without purls)
+      3. Generic component PIDs: rhcos (purl pkg:generic/...)
 
     Returns (verdict, pid, extra, family_assessed) or None.
     Verdicts: POSITIVE, FALSE_POSITIVE, POSITIVE_OTHER_RHEL, NOT_LISTED.
     """
     if pid_purl is None:
         pid_purl = {}
+
+    # Build image identity candidates for direct matching against the VEX
+    # product tree (exact repository_url first, purl-name fallback).
+    _label_name = None
+    if ctx.image_ns and ctx.image_name:
+        _label_name = f"{ctx.image_ns}/{ctx.image_name}"
+    _candidates, _image_sha = _build_image_purl(ctx.image_ref, _label_name)
+    _purl_matched_pids = _purl_matched_leaf_pids(pid_purl, _candidates)
+
+    # Also match PIDs that contain our exact image SHA digest.
+    # VEX has SHA-specific PIDs like "8Base-RHOSE-4.15:openshift4/ose-cli@sha256:34ae..."
+    # When we have the SHA from ctx.image_ref, match it directly.
+    # We add the parsed leaf form (pid_pkg) since downstream _matches() checks
+    # pid_pkg membership, not the raw stream-prefixed PID.
+    if _image_sha:
+        for vuln in data.get('vulnerabilities', []):
+            ps = vuln.get('product_status', {})
+            for status in ('known_not_affected', 'known_affected', 'fixed', 'under_investigation'):
+                for pid in ps.get(status, []):
+                    pid_sha = _extract_sha256(pid)
+                    if pid_sha and pid_sha == _image_sha:
+                        _leaf, _ = _parse_pkg_from_product_id(pid)
+                        if _leaf:
+                            _purl_matched_pids.add(_leaf)
 
     if ctx.workload_type == "ocp":
         comp = ctx.ocp_component or (
@@ -1111,6 +1261,10 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
             return None
         _comp_normalized = _normalize_ocp_component(comp)
         def _matches(pid_pkg):
+            # Purl match first (exact)
+            if pid_pkg in _purl_matched_pids:
+                return True
+            # String normalization fallback
             if '/' in pid_pkg:
                 return _normalize_vex_image_core(pid_pkg) == comp
             return _normalize_ocp_component(pid_pkg) == _comp_normalized
@@ -1118,6 +1272,8 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
         if not ctx.image_name:
             return None
         def _matches(pid_pkg):
+            if pid_pkg in _purl_matched_pids:
+                return True
             return pid_pkg.split('/')[-1] == ctx.image_name
     else:
         return None
@@ -1127,8 +1283,21 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
         purl = pid_purl.get(pid_pkg, '')
         return purl.startswith('pkg:generic/')
 
-    matches = []       # (status, pid, rhel_quality, flag_label)
+    # Match specificity tiers (Red Hat VEX semantics):
+    #   2 = PID carries OUR exact image digest — assessment of THIS build,
+    #       overrides everything else (e.g. generic known_affected + our-SHA
+    #       known_not_affected means our build contains the fix).
+    #   1 = generic PID (no digest) or same-image PID for another build —
+    #       stream-level evidence, weighed by RHEL-version quality.
+    matches = []       # (status, pid, rhel_quality, flag_label, specificity)
     family_assessed = False
+
+    def _pid_specificity(pid: str):
+        """Return 2 when the PID carries our exact image digest, else 1."""
+        pid_sha = _extract_sha256(pid)
+        if pid_sha and _image_sha and pid_sha == _image_sha:
+            return 2
+        return 1
 
     for vuln in data.get('vulnerabilities', []):
         ps = vuln.get('product_status', {})
@@ -1142,7 +1311,8 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
 
         for status in ('known_not_affected', 'known_affected', 'fixed', 'under_investigation'):
             for pid in ps.get(status, []):
-                if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+                if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
                     continue
                 pid_pkg, _ = _parse_pkg_from_product_id(pid)
                 if not pid_pkg:
@@ -1155,6 +1325,7 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
                     continue
                 if has_path:
                     family_assessed = True
+                spec = _pid_specificity(pid)
                 if not _matches(pid_pkg):
                     continue
                 # Generic PIDs only set family_assessed when they actually match,
@@ -1163,13 +1334,14 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
                     family_assessed = True
                 pid_rhel = _extract_rhel_from_vex_image(pid_pkg)
                 rhel_q = 2 if pid_rhel == ctx.rhel_ver else (1 if pid_rhel is None else 0)
-                matches.append((status, pid, rhel_q, flag_map.get(pid, '')))
+                matches.append((status, pid, rhel_q, flag_map.get(pid, ''), spec))
 
         for flag in flags:
             if flag.get('label') not in _NOT_AFFECTED_FLAGS:
                 continue
             for pid in flag.get('product_ids', []):
-                if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+                if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
                     continue
                 pid_pkg, _ = _parse_pkg_from_product_id(pid)
                 if not pid_pkg:
@@ -1180,14 +1352,20 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
                     continue
                 if has_path:
                     family_assessed = True
+                spec = _pid_specificity(pid)
                 if not _matches(pid_pkg):
                     continue
                 if is_generic:
                     family_assessed = True
                 pid_rhel = _extract_rhel_from_vex_image(pid_pkg)
                 rhel_q = 2 if pid_rhel == ctx.rhel_ver else (1 if pid_rhel is None else 0)
-                if not any(p == pid and s == 'known_not_affected' for s, p, _, _ in matches):
-                    matches.append(('known_not_affected', pid, rhel_q, flag.get('label', '')))
+                if not any(p == pid and s == 'known_not_affected' for s, p, _, _, _ in matches):
+                    matches.append(('known_not_affected', pid, rhel_q, flag.get('label', ''), spec))
+
+    # SHA-exact assessments override generic ones: when VEX assessed our
+    # exact build, use only those entries for the verdict.
+    if any(m[4] == 2 for m in matches):
+        matches = [m for m in matches if m[4] == 2]
 
     if not matches:
         # ── Red Hat errata policy ──────────────────────────────────────────
@@ -1230,13 +1408,13 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
     # OCP uses RHEL-version quality scoring; operators always have quality 2
     best_quality = max(m[2] for m in matches)
     if best_quality == 0:
-        aff = [(s, p, fl) for s, p, q, fl in matches
+        aff = [(s, p, fl) for s, p, q, fl, _sp in matches
                if s in ('known_affected', 'under_investigation')]
         if aff:
             return ('POSITIVE_OTHER_RHEL', aff[0][1], aff[0][2], family_assessed)
         return ('NOT_LISTED', '', '', True) if family_assessed else None
 
-    candidates = [(s, p, fl) for s, p, q, fl in matches if q >= max(best_quality, 1)]
+    candidates = [(s, p, fl) for s, p, q, fl, _sp in matches if q >= max(best_quality, 1)]
     if not candidates:
         return ('NOT_LISTED', '', '', True) if family_assessed else None
 
@@ -1254,7 +1432,7 @@ def _image_vex_lookup(ctx: WorkloadContext, data: dict,
         if ctx.workload_type == "ocp" and ctx.ocp_ver:
             affected_has_stream = any(
                 re.search(r'RHOSE[.-]\d+\.\d+', p)
-                for s, p, q, fl in matches
+                for s, p, q, fl, _sp in matches
                 if s in ('known_affected', 'under_investigation')
             )
             if not affected_has_stream:
@@ -1311,7 +1489,7 @@ def _get_vex_product(data: dict, comp: str, ctx) -> str:
     """Return a short product label (e.g. 'OCP 4.20', 'Ceph 7.1') for the
     VEX entry that matches *comp* in the given context.  Returns '' if not found.
     """
-    pid_name, rel_parent, rhel_base_pids, _pid_purl, vex_ns_map = _build_pid_name(data)
+    pid_name, rel_parent, rhel_base_pids, _pid_purl, vex_ns_map, _pid_cpe = _build_pid_name(data)
 
     # Scan all matched PIDs across all vulnerability entries
     labels: set = set()
@@ -1326,7 +1504,8 @@ def _get_vex_product(data: dict, comp: str, ctx) -> str:
             if flag.get('label') in _NOT_AFFECTED_FLAGS:
                 all_pids.update(flag.get('product_ids', []))
         for pid in all_pids:
-            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=_pid_cpe):
                 continue
             any_in_scope = True
             pkg_name, _ = _parse_pkg_from_product_id(pid)
@@ -1531,135 +1710,166 @@ def _summarise_vex_products(data, pid_name: dict, rel_parent: dict):
                     not_affected.add(_pid_label(pid, pid_name, rel_parent))
     return sorted(affected), sorted(fixed), sorted(not_affected), sorted(investigating)
 
-def audit_row_detailed(row, ctx: WorkloadContext):
-    comp    = row['COMPONENT']
-    found_v = str(row['VERSION'])
-    cve     = row['CVE'].strip().upper()
-
-    data = _load_vex(cve)
-    if data is None:
-        return pd.Series(["❌ POSITIVE", "N/A", "VEX file missing.", "Unknown"])
-
-    # Build product tree lookup maps — used throughout for human-readable labels
-    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map = _build_pid_name(data)
-
-    # Extract Red Hat severity rating from threats[category=impact].
-    # VEX threats can be scoped to specific product_ids — use the per-product
-    # impact when available (more accurate than aggregate for the workload).
-    # Priority: per-product threat → generic threat → aggregate_severity →
-    #           CVSS baseSeverity → RHACS scan severity.
-    _severity = "UNKNOWN"
-    _names_to_match = _resolve_comp(comp, ctx)
-    # Build PID → severity map from per-product threats.
-    # Used here for component-name match and later by the audit
-    # to refine severity from the actual matched PID.
-    _pid_severity = {}
-    for _vuln in data.get('vulnerabilities', []):
-        for _threat in _vuln.get('threats', []):
-            if _threat.get('category') != 'impact' or not _threat.get('details'):
+def _build_pid_severity_map(data: dict) -> dict:
+    """Build {product_id: severity_title} from per-product VEX threats."""
+    pid_severity = {}
+    for vuln in data.get('vulnerabilities', []):
+        for threat in vuln.get('threats', []):
+            if threat.get('category') != 'impact' or not threat.get('details'):
                 continue
-            _det = _threat['details'].title()
-            for _tpid in _threat.get('product_ids', []):
-                _pid_severity[_tpid] = _det
-    # Priority: image-level PID (generic, no SHA) > component-name > fallback.
-    # Image-level PIDs like "openshift4/ose-cli" carry the per-image severity
-    # which is more specific than RPM-level for container triage.
-    if ctx.workload_type in ("ocp", "operator"):
-        _img_comp = ctx.ocp_component or (
+            det = threat['details'].title()
+            for tpid in threat.get('product_ids', []):
+                pid_severity[tpid] = det
+    return pid_severity
+
+
+def _resolve_base_severity(data, comp, ctx, pid_name, rhel_base_pids,
+                            vex_ns_map, pid_severity, row,
+                            pid_cpe: Optional[dict] = None,
+                            pid_purl: Optional[dict] = None) -> str:
+    """Resolve VEX severity through a multi-level priority chain.
+
+    Priority: OCI purl match > image-level PID (generic, no SHA) >
+    RPM purl match > component-name PID >
+    in-scope known_affected/fixed PID > aggregate_severity > generic threat >
+    CVSS baseSeverity > RHACS scan severity.
+    """
+    severity = "UNKNOWN"
+    names_to_match = _resolve_comp(comp, ctx)
+
+    # 0. OCI purl match — highest priority for container triage.
+    #    When we can match the image's OCI purl against a VEX PID's purl,
+    #    use that PID's threat severity directly.
+    if pid_purl and ctx.workload_type in ("ocp", "operator"):
+        _label_name = None
+        if ctx.image_ns and ctx.image_name:
+            _label_name = f"{ctx.image_ns}/{ctx.image_name}"
+        _candidates, _ = _build_image_purl(ctx.image_ref, _label_name)
+        for _pid in _purl_matched_leaf_pids(pid_purl, _candidates):
+            # pid_purl keys are component-level (leaf) PIDs, but pid_severity
+            # keys are stream-prefixed relationship PIDs.  Check direct match
+            # first, then any severity PID ending with :<component_pid>.
+            if _pid in pid_severity:
+                severity = pid_severity[_pid]
+                break
+            for _spid, _sev in pid_severity.items():
+                if _spid.endswith(':' + _pid):
+                    severity = _sev
+                    break
+            if severity != "UNKNOWN":
+                break
+
+    # 1. Image-level PID severity (generic, no SHA) — most specific for
+    #    container triage (e.g. openshift4/ose-cli carries per-image impact).
+    if severity == "UNKNOWN" and ctx.workload_type in ("ocp", "operator"):
+        img_comp = ctx.ocp_component or (
             _normalize_vex_image_core(ctx.image_name) if ctx.image_name else None)
-        if _img_comp:
-            _img_norm = _normalize_ocp_component(_img_comp)
-            for _pid, _sev in _pid_severity.items():
-                if '@sha256:' in _pid:
+        if img_comp:
+            img_norm = _normalize_ocp_component(img_comp)
+            for pid, sev in pid_severity.items():
+                if '@sha256:' in pid:
                     continue
-                if not _pid_in_scope(_pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+                if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
                     continue
-                _tpkg, _ = _parse_pkg_from_product_id(_pid)
-                if not _tpkg:
+                tpkg, _ = _parse_pkg_from_product_id(pid)
+                if not tpkg:
                     continue
-                if '/' in _tpkg and _normalize_vex_image_core(_tpkg) == _img_comp:
-                    _severity = _sev
+                if '/' in tpkg and _normalize_vex_image_core(tpkg) == img_comp:
+                    severity = sev
                     break
-                if '/' not in _tpkg and _normalize_ocp_component(_tpkg) == _img_norm:
-                    _severity = _sev
+                if '/' not in tpkg and _normalize_ocp_component(tpkg) == img_norm:
+                    severity = sev
                     break
-    # Fall back to component-name match
-    if _severity == "UNKNOWN":
-        for _pid, _sev in _pid_severity.items():
-            if not _pid_in_scope(_pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+
+    # 2. Component-name match.
+    if severity == "UNKNOWN":
+        for pid, sev in pid_severity.items():
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
                 continue
-            _tpkg, _ = _parse_pkg_from_product_id(_pid)
-            if _tpkg and _tpkg in _names_to_match:
-                _severity = _sev
+            tpkg, _ = _parse_pkg_from_product_id(pid)
+            if tpkg and tpkg in names_to_match:
+                severity = sev
                 break
 
-    # Fall back to severity from in-scope known_affected/fixed PIDs
-    if _severity == "UNKNOWN":
-        _aff_sevs = set()
-        for _vuln in data.get('vulnerabilities', []):
-            for _st in ('known_affected', 'fixed'):
-                for _pid in _vuln.get('product_status', {}).get(_st, []):
-                    if _pid in _pid_severity and _pid_in_scope(_pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
-                        _aff_sevs.add(_pid_severity[_pid])
-        if _aff_sevs:
-            _sev_order = {'Critical': 0, 'Important': 1, 'Moderate': 2, 'Low': 3}
-            _severity = min(_aff_sevs, key=lambda s: _sev_order.get(s, 9))
+    # 3. In-scope known_affected/fixed PID severity (pick highest).
+    if severity == "UNKNOWN":
+        aff_sevs = set()
+        for vuln in data.get('vulnerabilities', []):
+            for st in ('known_affected', 'fixed'):
+                for pid in vuln.get('product_status', {}).get(st, []):
+                    if pid in pid_severity and _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
+                        aff_sevs.add(pid_severity[pid])
+        if aff_sevs:
+            sev_order = {'Critical': 0, 'Important': 1, 'Moderate': 2, 'Low': 3}
+            severity = min(aff_sevs, key=lambda s: sev_order.get(s, 9))
 
-    if _severity == "UNKNOWN":
-        _agg = data.get('document', {}).get('aggregate_severity', {}).get('text', '')
-        if _agg and _agg.strip().lower() not in ('', 'none'):
-            _severity = _agg.title()
+    # 4. Aggregate severity from document header.
+    if severity == "UNKNOWN":
+        agg = data.get('document', {}).get('aggregate_severity', {}).get('text', '')
+        if agg and agg.strip().lower() not in ('', 'none'):
+            severity = agg.title()
 
-    if _severity == "UNKNOWN":
-        for _vuln in data.get('vulnerabilities', []):
-            for _threat in _vuln.get('threats', []):
-                if _threat.get('category') == 'impact' and _threat.get('details'):
-                    _severity = _threat['details'].title()
+    # 5. Generic threat impact (any unscoped threat entry).
+    if severity == "UNKNOWN":
+        for vuln in data.get('vulnerabilities', []):
+            for threat in vuln.get('threats', []):
+                if threat.get('category') == 'impact' and threat.get('details'):
+                    severity = threat['details'].title()
                     break
-            if _severity != "UNKNOWN":
+            if severity != "UNKNOWN":
                 break
 
-    if _severity == "UNKNOWN":
-        for _vuln in data.get('vulnerabilities', []):
-            for _score in _vuln.get('scores', []):
-                _cvss = _score.get('cvss_v3') or _score.get('cvss_v2') or {}
-                _base = _cvss.get('baseSeverity', '').upper()
-                if _base:
-                    _severity = {'CRITICAL': 'Critical', 'HIGH': 'Important',
-                                 'MEDIUM': 'Moderate', 'LOW': 'Low'}.get(_base, _base.title())
+    # 6. CVSS baseSeverity.
+    if severity == "UNKNOWN":
+        for vuln in data.get('vulnerabilities', []):
+            for score in vuln.get('scores', []):
+                cvss = score.get('cvss_v3') or score.get('cvss_v2') or {}
+                base = cvss.get('baseSeverity', '').upper()
+                if base:
+                    severity = {'CRITICAL': 'Critical', 'HIGH': 'Important',
+                                'MEDIUM': 'Moderate', 'LOW': 'Low'}.get(base, base.title())
                     break
-            if _severity != "UNKNOWN":
+            if severity != "UNKNOWN":
                 break
 
-    if _severity in ("UNKNOWN", "None", ""):
-        _rhacs_raw = str(row.get('SEVERITY', '')).strip().upper()
-        _mapped = _RHACS_SEVERITY_MAP.get(_rhacs_raw)
-        if _mapped:
-            _severity = _mapped
+    # 7. RHACS scan severity (last resort).
+    if severity in ("UNKNOWN", "None", ""):
+        rhacs_raw = str(row.get('SEVERITY', '')).strip().upper()
+        mapped = _RHACS_SEVERITY_MAP.get(rhacs_raw)
+        if mapped:
+            severity = mapped
 
-    if _severity in ("UNKNOWN", "None", "", "nan"):
-        _severity = "Unknown"
-    # product_tree (e.g. "red_hat_products" with cpe:/a:redhat — vendor-level,
-    # meaning Red Hat explicitly says NONE of their products are affected).
-    _catchall_pids: set = set()
+    if severity in ("UNKNOWN", "None", "", "nan"):
+        severity = "Unknown"
+
+    return severity
+
+
+def _is_catchall_not_affected(data: dict) -> bool:
+    """True if a vendor-level catch-all PID marks all products as not-affected.
+
+    Detects vendor-level PIDs (e.g. "red_hat_products" with cpe:/a:redhat)
+    and checks if they appear in known_not_affected or not-affected flags.
+    """
+    catchall_pids: set = set()
     for branch in data.get('product_tree', {}).get('branches', []):
         prod = branch.get('product', {})
         helper = prod.get('product_identification_helper') or {}
         cpe_str = str(helper.get('cpe', ''))
-        # cpe:/a:redhat  →  split(':') = ['cpe', '/a', 'redhat']
-        # true catch-all has ≤3 meaningful parts (no product token)
         cpe_parts = [p for p in cpe_str.split(':') if p not in ('', 'cpe', '/a', '/o', '/h')]
         if len(cpe_parts) == 1 and cpe_parts[0].lower() in ('redhat', 'red_hat'):
             pid = prod.get('product_id', '')
             if pid:
-                _catchall_pids.add(pid)
-    # Also always include the well-known static catch-all product ID
-    _catchall_pids.add('red_hat_products')
+                catchall_pids.add(pid)
+    catchall_pids.add('red_hat_products')
 
     for vuln in data.get('vulnerabilities', []):
-        ps    = vuln.get('product_status', {})
+        ps = vuln.get('product_status', {})
         flags = vuln.get('flags', [])
-        catchall_not_affected = _catchall_pids & (
+        catchall_not_affected = catchall_pids & (
             set(ps.get('known_not_affected', [])) |
             {pid
              for flag in flags
@@ -1667,265 +1877,370 @@ def audit_row_detailed(row, ctx: WorkloadContext):
              for pid in flag.get('product_ids', [])}
         )
         if catchall_not_affected:
-            return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                               "No supported Red Hat product affected.", _severity])
+            return True
+    return False
 
-    # Determine effective RHEL version: prefer RPM string, fall back to context.
-    # The RPM's own .elN marker is authoritative — mixed-RHEL images (e.g.
-    # ocp-release containing both el8 and el9 packages) need per-row scoping.
-    rpm_rhel = _detect_rhel_ver(found_v)
-    rhel_ver = rpm_rhel or ctx.rhel_ver
-    if rpm_rhel and rpm_rhel != ctx.rhel_ver:
-        ctx = WorkloadContext(**{f.name: getattr(ctx, f.name) for f in ctx.__dataclass_fields__.values()})
-        ctx.rhel_ver = rpm_rhel
 
-    if not rpm_rhel:
-        # ── Non-RPM component (Go, npm, …) ──────────────────────────────────
-        affected, fixed, not_affected, investigating = _summarise_vex_products(data, pid_name, rel_parent)
-        if not affected and not fixed and not not_affected and not investigating:
-            return pd.Series(["⚠️ NOT ASSESSED", "N/A",
-                               "Non-RPM component not tracked in VEX.",
-                               _severity])
+def _audit_nonrpm(comp, found_v, data, ctx, pid_name, rel_parent,
+                   rhel_base_pids, pid_purl, vex_ns_map, severity, row,
+                   pid_cpe: Optional[dict] = None):
+    """Audit a non-RPM component (Go, npm, Python, image ref).
 
-        # If workload is an operator/OCP, check if the CVE is scoped to the
-        # same product family — if so it IS applicable
-        if ctx.workload_type != "ubi":
-            # 0. Image-level VEX matching for non-RPM components (Go, npm).
-            #    Package-name matching fails because "stdlib" ≠ image PIDs.
-            #    Match the workload's image identity against VEX image PIDs.
-            if ctx.workload_type in ("ocp", "operator"):
-                _img_result = _image_vex_lookup(ctx, data, pid_name, rhel_base_pids, pid_purl, vex_ns_map)
-                if _img_result is not None:
-                    verdict, pid_match, extra, _fam = _img_result
-                    if pid_match:
-                        lbl = _pid_label(pid_match, pid_name, rel_parent)
-                        pid_pkg = pid_match.split(':', 1)[1] if ':' in pid_match else pid_match
-                        img_lbl = f"{lbl} — {pid_pkg}" if pid_pkg not in lbl else lbl
-                    else:
-                        img_lbl = ctx.display_name
+    Called when the installed version has no .elN marker.  Non-RPM components
+    cannot be matched by RPM version comparison, so the audit relies on
+    image-level VEX entries, flags, and product-status scoping.
 
-                    if verdict == 'FALSE_POSITIVE':
-                        if extra and extra.startswith('errata_'):
-                            tag, fixed_in_ver = extra.split(':', 1)
-                            return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                                f"Fixed in OCP {fixed_in_ver}.",
-                                _severity])
-                        flag_desc = f" ({extra.replace('_', ' ')})" if extra else ""
+    Returns pd.Series([verdict, fix, justification, severity]).
+    """
+    affected, fixed, not_affected, investigating = _summarise_vex_products(
+        data, pid_name, rel_parent)
+
+    # ── No VEX data at all for any product ──────────────────────────────
+    if not affected and not fixed and not not_affected and not investigating:
+        return pd.Series(["⚠️ NOT ASSESSED", "N/A",
+                           "Non-RPM component not tracked in VEX.", severity])
+
+    # ── OCP/operator: image-level and scoped matching ───────────────────
+    if ctx.workload_type != "ubi":
+
+        # 0. Image-level VEX matching (identity-based, not package-name).
+        if ctx.workload_type in ("ocp", "operator"):
+            img_result = _image_vex_lookup(
+                ctx, data, pid_name, rhel_base_pids, pid_purl, vex_ns_map,
+                pid_cpe=pid_cpe)
+            if img_result is not None:
+                verdict, pid_match, extra, _fam = img_result
+                if pid_match:
+                    lbl = _pid_label(pid_match, pid_name, rel_parent)
+                    pid_pkg = pid_match.split(':', 1)[1] if ':' in pid_match else pid_match
+                    img_lbl = f"{lbl} — {pid_pkg}" if pid_pkg not in lbl else lbl
+                else:
+                    img_lbl = ctx.display_name
+
+                if verdict == 'FALSE_POSITIVE':
+                    if extra and extra.startswith('errata_'):
+                        _tag, fixed_in_ver = extra.split(':', 1)
                         return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                            f"known_not_affected{flag_desc}. {img_lbl}.",
-                            _severity])
-                    elif verdict == 'POSITIVE':
-                        vex_status = extra if extra in ('known_affected', 'under_investigation', 'fixed') else 'known_affected'
-                        if vex_status == 'under_investigation':
-                            return pd.Series(["❌ POSITIVE", "N/A",
-                                f"under_investigation. {img_lbl}.",
-                                _severity])
+                            f"Fixed in OCP {fixed_in_ver}.", severity])
+                    flag_desc = f" ({extra.replace('_', ' ')})" if extra else ""
+                    return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                        f"known_not_affected{flag_desc}. {img_lbl}.", severity])
+                elif verdict == 'POSITIVE':
+                    vex_status = extra if extra in (
+                        'known_affected', 'under_investigation', 'fixed') else 'known_affected'
+                    if vex_status == 'under_investigation':
                         return pd.Series(["❌ POSITIVE", "N/A",
-                            f"{vex_status}. {img_lbl}.",
-                            _severity])
-                    elif verdict == 'POSITIVE_OTHER_RHEL':
-                        return pd.Series(["❌ POSITIVE", "N/A",
-                            f"known_affected for different RHEL ({img_lbl}).",
-                            _severity])
-                    elif verdict == 'NOT_LISTED':
-                        comp_ref = ctx.ocp_component or ctx.display_name
-                        return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                            f"{comp_ref} not listed as affected.",
-                            _severity])
+                            f"under_investigation. {img_lbl}.", severity])
+                    return pd.Series(["❌ POSITIVE", "N/A",
+                        f"{vex_status}. {img_lbl}.", severity])
+                elif verdict == 'POSITIVE_OTHER_RHEL':
+                    return pd.Series(["❌ POSITIVE", "N/A",
+                        f"known_affected for different RHEL ({img_lbl}).", severity])
+                elif verdict == 'NOT_LISTED':
+                    comp_ref = ctx.ocp_component or ctx.display_name
+                    return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                        f"{comp_ref} not listed as affected.", severity])
 
-            # 1. Check flags that explicitly mark our product as not-affected first.
-            _is_image_comp = '/' in comp
-            for vuln in data.get('vulnerabilities', []):
-                for flag in vuln.get('flags', []):
-                    if flag.get('label') not in _NOT_AFFECTED_FLAGS:
+        # 1. Flags that explicitly mark our product as not-affected.
+        is_image_comp = '/' in comp
+        for vuln in data.get('vulnerabilities', []):
+            for flag in vuln.get('flags', []):
+                if flag.get('label') not in _NOT_AFFECTED_FLAGS:
+                    continue
+                for pid in flag.get('product_ids', []):
+                    if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
                         continue
-                    for pid in flag.get('product_ids', []):
-                        if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+                    pid_sha = _extract_sha256(pid)
+                    if pid_sha:
+                        our_sha = _extract_sha256(ctx.image_ref or "")
+                        if not our_sha or pid_sha != our_sha:
                             continue
-                        pid_sha = _extract_sha256(pid)
-                        if pid_sha:
-                            our_sha = _extract_sha256(ctx.image_ref or "")
-                            if not our_sha or pid_sha != our_sha:
-                                continue
-                        elif _is_image_comp and _is_rhel_base_product(pid, ctx.rhel_ver, rhel_base_pids):
+                    elif is_image_comp and _is_rhel_base_product(
+                            pid, ctx.rhel_ver, rhel_base_pids):
+                        continue
+                    else:
+                        flag_pkg, _ = _parse_pkg_from_product_id(pid)
+                        if flag_pkg and flag_pkg not in _resolve_comp(comp, ctx):
                             continue
-                        else:
-                            # Non-SHA PID: verify package name matches the component
-                            # being audited. Without this, a flag on an unrelated
-                            # package (e.g. conmon) would incorrectly clear stdlib.
-                            flag_pkg, _ = _parse_pkg_from_product_id(pid)
-                            if flag_pkg and flag_pkg not in _resolve_comp(comp, ctx):
-                                continue
-                        lbl = _pid_label(pid, pid_name, rel_parent)
-                        return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                                           f"Not affected in {ctx.display_name} ({lbl}): {flag.get('label', 'flag').replace('_', ' ')}.",
-                                           _severity])
+                    lbl = _pid_label(pid, pid_name, rel_parent)
+                    return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                        f"Not affected in {ctx.display_name} ({lbl}): "
+                        f"{flag.get('label', 'flag').replace('_', ' ')}.",
+                        severity])
 
-            # 2. Check product_status entries for our scope.
-            our_sha = _extract_sha256(ctx.image_ref or "")
-            is_image_component = '/' in comp
+        # 2. Product-status entries for our scope.
+        our_sha = _extract_sha256(ctx.image_ref or "")
+        is_image_component = '/' in comp
 
-            # 2a. For container image components, first check image-level VEX PIDs
-            #     (entries with @sha256: for the same image name).  These are more
-            #     specific than RHEL-base RPM PIDs and must take precedence.
-            if is_image_component:
-                comp_base = re.sub(r'[@:][^/]*$', '', comp)  # e.g. "quay/quay-rhel8"
-                _img_not_affected = False
-                _img_fixed_label = None
-                _img_fixed_ver = str(row.get('FIXED_VERSION', '')) if 'FIXED_VERSION' in row.index else None
-                for vuln in data.get('vulnerabilities', []):
-                    ps = vuln.get('product_status', {})
-                    for status in ('known_not_affected', 'fixed', 'known_affected', 'under_investigation'):
-                        for pid in ps.get(status, []):
-                            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
-                                continue
-                            pid_sha = _extract_sha256(pid)
-                            if not pid_sha:
-                                continue
-                            # Must reference the same image name
-                            pid_image = re.sub(r'@sha256:[a-f0-9]+.*$', '', pid.split(':', 1)[-1] if ':' in pid else pid)
-                            if pid_image != comp_base:
-                                continue
-                            lbl = _pid_label(pid, pid_name, rel_parent)
-                            if status == 'known_not_affected':
-                                if our_sha and pid_sha == our_sha:
-                                    return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                                                       f"Image build not affected ({lbl}).",
-                                                       _severity])
-                                _img_not_affected = True
-                            elif status == 'fixed':
-                                if our_sha and pid_sha == our_sha:
-                                    return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                                                       f"Image build is the fixed version ({lbl}).",
-                                                       _severity])
-                                _img_fixed_label = lbl
-                            elif status == 'known_affected':
-                                if our_sha and pid_sha == our_sha:
-                                    fix_note = f"; fix: {_img_fixed_ver}" if _img_fixed_ver else ""
-                                    return pd.Series(["❌ POSITIVE", _img_fixed_ver or "N/A",
-                                                       f"Image build affected ({lbl}){fix_note}.",
-                                                       _severity])
-                            elif status == 'under_investigation':
-                                if our_sha and pid_sha == our_sha:
-                                    return pd.Series(["❌ POSITIVE", "N/A",
-                                                       f"under_investigation for {ctx.display_name}.",
-                                                       _severity])
-                # A fixed image build exists but our digest doesn't match it
-                # → we have an older vulnerable build.
-                if _img_fixed_label and not _img_not_affected:
-                    fix_note = f" Fix: {_img_fixed_ver}." if _img_fixed_ver else ""
-                    return pd.Series(["❌ POSITIVE", _img_fixed_ver or "N/A",
-                                       f"Fixed build exists ({_img_fixed_label}); installed {found_v} is older.{fix_note}",
-                                       _severity])
+        # 2a. Image-level SHA PIDs (more specific than RPM-level PIDs).
+        if is_image_component:
+            result = _audit_nonrpm_image_sha(
+                comp, found_v, data, ctx, pid_name, rel_parent,
+                rhel_base_pids, vex_ns_map, severity, our_sha, row,
+                pid_cpe=pid_cpe)
+            if result is not None:
+                return result
 
-            # 2b. Generic product_status scan (RPM-level and non-SHA PIDs).
-            for vuln in data.get('vulnerabilities', []):
-                ps = vuln.get('product_status', {})
-                for status in ('known_not_affected', 'known_affected', 'fixed', 'under_investigation'):
-                    for pid in ps.get(status, []):
-                        if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+        # 2b. Generic product_status scan (non-SHA PIDs matched by name).
+        for vuln in data.get('vulnerabilities', []):
+            ps = vuln.get('product_status', {})
+            for status in ('known_not_affected', 'known_affected', 'fixed',
+                           'under_investigation'):
+                for pid in ps.get(status, []):
+                    if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
+                        continue
+                    pid_sha = _extract_sha256(pid)
+                    if pid_sha:
+                        if not our_sha or pid_sha != our_sha:
                             continue
-                        pid_sha = _extract_sha256(pid)
-                        if pid_sha:
-                            if not our_sha or pid_sha != our_sha:
-                                continue
-                        else:
-                            # Non-SHA PID: verify package name matches the
-                            # component being audited.  Without this, a status
-                            # on an unrelated package (e.g. conmon) would
-                            # incorrectly determine the verdict for stdlib.
-                            pid_pkg, _ = _parse_pkg_from_product_id(pid)
-                            if pid_pkg and pid_pkg not in _resolve_comp(comp, ctx):
-                                continue
-                        lbl = _pid_label(pid, pid_name, rel_parent)
-                        if status == 'under_investigation':
-                            return pd.Series(["❌ POSITIVE", "N/A",
-                                               f"under_investigation for {ctx.display_name}.",
-                                               _severity])
-                        if status == "known_not_affected":
-                            result = "✅ FALSE POSITIVE"
-                            note = f"known_not_affected ({lbl})."
-                        elif status == "fixed":
-                            result = "❌ POSITIVE"
-                            note = f"Fix exists ({lbl}); installed version not verified."
-                        else:
-                            result = "❌ POSITIVE"
-                            note = f"known_affected ({lbl})."
-                        return pd.Series([result, "N/A",
-                                           note,
-                                           _severity])
+                    else:
+                        pid_pkg, _ = _parse_pkg_from_product_id(pid)
+                        if pid_pkg and pid_pkg not in _resolve_comp(comp, ctx):
+                            continue
+                    lbl = _pid_label(pid, pid_name, rel_parent)
+                    if status == 'under_investigation':
+                        return pd.Series(["❌ POSITIVE", "N/A",
+                            f"under_investigation for {ctx.display_name}.",
+                            severity])
+                    if status == "known_not_affected":
+                        result = "✅ FALSE POSITIVE"
+                        note = f"known_not_affected ({lbl})."
+                    elif status == "fixed":
+                        result = "❌ POSITIVE"
+                        note = f"Fix exists ({lbl}); installed version not verified."
+                    else:
+                        result = "❌ POSITIVE"
+                        note = f"known_affected ({lbl})."
+                    return pd.Series([result, "N/A", note, severity])
 
-        # ── Unscoped fallthrough (UBI or no in-scope match) ────────────────
-        # Scope investigating/affected labels to avoid cross-contamination
-        # from unrelated product families.
-        if ctx.workload_type != "ubi" and (affected or investigating):
-            scoped_affected = []
-            scoped_investigating = []
-            for vuln in data.get('vulnerabilities', []):
-                ps = vuln.get('product_status', {})
-                for pid in ps.get('known_affected', []):
-                    if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
-                        scoped_affected.append(_pid_label(pid, pid_name, rel_parent))
-                for pid in ps.get('under_investigation', []):
-                    if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
-                        scoped_investigating.append(_pid_label(pid, pid_name, rel_parent))
-            if scoped_affected:
-                unique_labels = sorted(set(scoped_affected))
-                return pd.Series(["❌ POSITIVE", "N/A",
-                    f"known_affected in {', '.join(unique_labels[:3])}.",
-                    _severity])
-            if scoped_investigating:
-                unique_labels = sorted(set(scoped_investigating))
-                return pd.Series(["❌ POSITIVE", "N/A",
-                    f"under_investigation in {', '.join(unique_labels[:3])}.",
-                    _severity])
+    # ── Fallthrough: no in-scope match found ────────────────────────────
+    return _audit_nonrpm_fallthrough(
+        comp, ctx, pid_name, rel_parent, rhel_base_pids, vex_ns_map,
+        severity, affected, fixed, not_affected, investigating, data,
+        pid_cpe=pid_cpe)
 
-        # For operators that reach here: VEX has no assessment for this
-        # product family.  Avoid listing unrelated products in justification.
-        if ctx.workload_type == "operator" and (affected or investigating or fixed):
-            return pd.Series(["❌ POSITIVE", "N/A",
-                f"No VEX assessment for {ctx.display_name}.",
-                _severity])
 
-        if investigating:
-            return pd.Series(["❌ POSITIVE", "N/A",
-                               f"under_investigation in {', '.join(investigating[:3])}.",
-                               _severity])
+def _audit_nonrpm_image_sha(comp, found_v, data, ctx, pid_name, rel_parent,
+                             rhel_base_pids, vex_ns_map, severity, our_sha, row,
+                             pid_cpe: Optional[dict] = None):
+    """Check image-level VEX PIDs with @sha256: digests.
 
-        if not_affected and not affected and not fixed:
-            return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                               f"known_not_affected in {', '.join(not_affected[:3])}.",
-                               _severity])
-
-        if affected and not_affected and ctx.rhel_ver:
-            rhel_tag = f"RHEL {ctx.rhel_ver}"
-            rhel_tag_long = f"Red Hat Enterprise Linux {ctx.rhel_ver}"
-            workload_rhel_clear = any(
-                rhel_tag in na or rhel_tag_long in na
-                for na in not_affected
-            )
-            workload_rhel_affected = any(
-                rhel_tag in af or rhel_tag_long in af
-                for af in affected
-            )
-            if workload_rhel_clear and not workload_rhel_affected:
-                return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                    f"RHEL {ctx.rhel_ver} not affected. Only affects: {', '.join(affected[:2])}.",
-                    _severity])
-
-        parts = []
-        if affected:     parts.append(f"affected: {', '.join(affected[:3])}")
-        if fixed:        parts.append(f"fixed: {', '.join(fixed[:3])}")
-        if not_affected: parts.append(f"not affected: {', '.join(not_affected[:3])}")
-        return pd.Series(["❌ POSITIVE", "N/A",
-                           f"No VEX entry for {ctx.display_name}. Other products: {'; '.join(parts)}.",
-                           _severity])
+    Returns pd.Series result or None if no conclusion reached.
+    """
+    comp_base = re.sub(r'[@:][^/]*$', '', comp)
+    img_not_affected = False
+    img_fixed_label = None
+    img_fixed_ver = str(row.get('FIXED_VERSION', '')) if 'FIXED_VERSION' in row.index else None
 
     for vuln in data.get('vulnerabilities', []):
-        ps    = vuln.get('product_status', {})
+        ps = vuln.get('product_status', {})
+        for status in ('known_not_affected', 'fixed', 'known_affected',
+                       'under_investigation'):
+            for pid in ps.get(status, []):
+                if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
+                    continue
+                pid_sha = _extract_sha256(pid)
+                if not pid_sha:
+                    continue
+                pid_image = re.sub(
+                    r'@sha256:[a-f0-9]+.*$', '',
+                    pid.split(':', 1)[-1] if ':' in pid else pid)
+                if pid_image != comp_base:
+                    continue
+                lbl = _pid_label(pid, pid_name, rel_parent)
+                if status == 'known_not_affected':
+                    if our_sha and pid_sha == our_sha:
+                        return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                            f"Image build not affected ({lbl}).", severity])
+                    img_not_affected = True
+                elif status == 'fixed':
+                    if our_sha and pid_sha == our_sha:
+                        return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                            f"Image build is the fixed version ({lbl}).",
+                            severity])
+                    img_fixed_label = lbl
+                elif status == 'known_affected':
+                    if our_sha and pid_sha == our_sha:
+                        fix_note = f"; fix: {img_fixed_ver}" if img_fixed_ver else ""
+                        return pd.Series(["❌ POSITIVE", img_fixed_ver or "N/A",
+                            f"Image build affected ({lbl}){fix_note}.",
+                            severity])
+                elif status == 'under_investigation':
+                    if our_sha and pid_sha == our_sha:
+                        return pd.Series(["❌ POSITIVE", "N/A",
+                            f"under_investigation for {ctx.display_name}.",
+                            severity])
+
+    # A fixed image build exists but our digest doesn't match it.
+    if img_fixed_label and not img_not_affected:
+        fix_note = f" Fix: {img_fixed_ver}." if img_fixed_ver else ""
+        return pd.Series(["❌ POSITIVE", img_fixed_ver or "N/A",
+            f"Fixed build exists ({img_fixed_label}); installed {found_v} "
+            f"is older.{fix_note}", severity])
+
+    return None
+
+
+def _audit_nonrpm_fallthrough(comp, ctx, pid_name, rel_parent, rhel_base_pids,
+                               vex_ns_map, severity, affected, fixed,
+                               not_affected, investigating, data,
+                               pid_cpe: Optional[dict] = None):
+    """Handle unscoped non-RPM fallthrough (UBI or no in-scope match).
+
+    Returns pd.Series([verdict, fix, justification, severity]).
+    """
+    # Scope status labels to the workload context to avoid cross-contamination
+    # from unrelated product families.  Verdict order within scope:
+    # affected > under_investigation > clear (known_not_affected/fixed).
+    # A product whose in-scope entries for this CVE are ALL clear was assessed
+    # by Red Hat with nothing affected — the finding is a false positive even
+    # when the component name itself never appears (e.g. a Go module tracked
+    # at the RPM level under the same product).
+    if ctx.workload_type != "ubi":
+        scoped_affected = []
+        scoped_investigating = []
+        scoped_clear = []
+        for vuln in data.get('vulnerabilities', []):
+            ps = vuln.get('product_status', {})
+            for pid in ps.get('known_affected', []):
+                if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
+                    scoped_affected.append(_pid_label(pid, pid_name, rel_parent))
+            for pid in ps.get('under_investigation', []):
+                if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
+                    scoped_investigating.append(_pid_label(pid, pid_name, rel_parent))
+            for status in ('known_not_affected', 'fixed'):
+                for pid in ps.get(status, []):
+                    if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                     pid_cpe=pid_cpe):
+                        scoped_clear.append(_pid_label(pid, pid_name, rel_parent))
+        if scoped_affected:
+            unique_labels = sorted(set(scoped_affected))
+            return pd.Series(["❌ POSITIVE", "N/A",
+                f"known_affected in {', '.join(unique_labels[:3])}.", severity])
+        if scoped_investigating:
+            unique_labels = sorted(set(scoped_investigating))
+            return pd.Series(["❌ POSITIVE", "N/A",
+                f"under_investigation in {', '.join(unique_labels[:3])}.",
+                severity])
+        if scoped_clear:
+            unique_labels = sorted(set(scoped_clear))
+            return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                f"No affected entry in {', '.join(unique_labels[:3])} "
+                f"(known_not_affected/fixed only).", severity])
+
+    # Operator with no VEX assessment for this product family.
+    if ctx.workload_type == "operator" and (affected or investigating or fixed):
+        return pd.Series(["❌ POSITIVE", "N/A",
+            f"No VEX assessment for {ctx.display_name}.", severity])
+
+    if investigating:
+        return pd.Series(["❌ POSITIVE", "N/A",
+            f"under_investigation in {', '.join(investigating[:3])}.", severity])
+
+    if not_affected and not affected and not fixed:
+        return pd.Series(["✅ FALSE POSITIVE", "N/A",
+            f"known_not_affected in {', '.join(not_affected[:3])}.", severity])
+
+    # RHEL-version-specific check: our RHEL not affected but others are.
+    if affected and not_affected and ctx.rhel_ver:
+        rhel_tag = f"RHEL {ctx.rhel_ver}"
+        rhel_tag_long = f"Red Hat Enterprise Linux {ctx.rhel_ver}"
+        workload_rhel_clear = any(
+            rhel_tag in na or rhel_tag_long in na for na in not_affected)
+        workload_rhel_affected = any(
+            rhel_tag in af or rhel_tag_long in af for af in affected)
+        if workload_rhel_clear and not workload_rhel_affected:
+            return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                f"RHEL {ctx.rhel_ver} not affected. Only affects: "
+                f"{', '.join(affected[:2])}.", severity])
+
+    parts = []
+    if affected:     parts.append(f"affected: {', '.join(affected[:3])}")
+    if fixed:        parts.append(f"fixed: {', '.join(fixed[:3])}")
+    if not_affected: parts.append(f"not affected: {', '.join(not_affected[:3])}")
+    return pd.Series(["❌ POSITIVE", "N/A",
+        f"No VEX entry for {ctx.display_name}. Other products: "
+        f"{'; '.join(parts)}.", severity])
+
+
+def _compare_fixed_rpm(found_v, unique_fixed, comp, ctx, severity, rpm_rhel):
+    """Stream-aware RPM version comparison against VEX fixed versions.
+
+    Red Hat backports fixes to older EUS/E4S minor streams with lower upstream
+    version numbers.  When the installed package carries a minor stream marker
+    (el9_4), only compare against fixes from the same minor stream.
+
+    Returns pd.Series([verdict, fix, justification, severity]).
+    """
+    installed_minor = _detect_rhel_minor(found_v)
+    sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
+
+    if installed_minor:
+        same_stream = [v for v in unique_fixed
+                       if _detect_rhel_minor(v) == installed_minor]
+        if same_stream:
+            compare_fixes = same_stream
+        else:
+            # Fix in other streams but not this minor stream yet.
+            best_ref = unique_fixed[0]
+            prefix = f"{sn}; " if sn else ''
+            return pd.Series(["❌ POSITIVE", best_ref,
+                f"{prefix}No fix in el{ctx.rhel_ver}_{installed_minor}. "
+                f"Fix in other streams: {best_ref}.", severity])
+    else:
+        compare_fixes = unique_fixed
+
+    # GA packages (no minor stream marker) must be >= ALL stream fixes.
+    all_pass = True
+    any_compared = False
+    any_fail_fix = None
+    for fix_v in compare_fixes:
+        try:
+            cmp_inst, cmp_fix = _normalize_epoch(found_v, fix_v)
+            any_compared = True
+            if compare_versions(cmp_inst, cmp_fix) < 0:
+                all_pass = False
+                if any_fail_fix is None:
+                    any_fail_fix = fix_v
+        except Exception:
+            pass
+
+    if all_pass and compare_fixes and any_compared:
+        note = f"{sn + '; ' if sn else ''}Installed {found_v} >= fix {compare_fixes[0]}."
+        return pd.Series(["✅ FALSE POSITIVE", compare_fixes[0], note, severity])
+    if any_fail_fix:
+        note = f"{sn + '; ' if sn else ''}Installed {found_v} < fix {any_fail_fix}."
+        return pd.Series(["❌ POSITIVE", any_fail_fix, note, severity])
+    fix_ref = compare_fixes[0] if compare_fixes else "?"
+    note = f"{sn + '; ' if sn else ''}Installed {found_v} < fix {fix_ref}."
+    return pd.Series(["❌ POSITIVE",
+                       compare_fixes[0] if compare_fixes else "N/A",
+                       note, severity])
+
+
+def _audit_rpm(comp, found_v, data, ctx, pid_name, rel_parent,
+               rhel_base_pids, pid_purl, vex_ns_map, severity, pid_severity,
+               rhel_ver, rpm_rhel, row,
+               pid_cpe: Optional[dict] = None):
+    """Audit an RPM component (version has .elN marker).
+
+    Checks VEX product_status entries with RPM version comparison, respecting
+    module-stream boundaries and minor-stream backport tracks.
+
+    Returns pd.Series([verdict, fix, justification, severity]).
+    """
+    names_to_match = _resolve_comp(comp, ctx)
+
+    for vuln in data.get('vulnerabilities', []):
+        ps = vuln.get('product_status', {})
         flags = vuln.get('flags', [])
 
-        # --- Collect NOT_AFFECTED product IDs (product_status + all not-affected flags) -----
+        # ── Known-not-affected (product_status + not-affected flags) ────
         not_affected_ids = set(ps.get('known_not_affected', []))
         for flag in flags:
             if flag.get('label') in _NOT_AFFECTED_FLAGS:
@@ -1933,40 +2248,39 @@ def audit_row_detailed(row, ctx: WorkloadContext):
 
         installed_minor = _detect_rhel_minor(found_v)
         for pid in not_affected_ids:
-            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
                 continue
             if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
                 continue
             pkg_name, pkg_ver = _parse_pkg_from_product_id(pid)
-            if pkg_name not in _resolve_comp(comp, ctx):
+            if pkg_name not in names_to_match:
                 continue
-            if pid in _pid_severity:
-                _severity = _pid_severity[pid]
-            # Stream-aware KNA: when the installed package carries a minor
-            # stream marker (el8_10), a KNA from a different stream (el8_4)
-            # does not apply — that stream's fix may differ.
+            if pid in pid_severity:
+                severity = pid_severity[pid]
+            # Stream-aware KNA: a KNA from a different minor stream does not
+            # apply — that stream's fix status may differ.
             if installed_minor and pkg_ver:
                 kna_minor = _detect_rhel_minor(pkg_ver)
                 if kna_minor and kna_minor != installed_minor:
                     continue
-            scope = ctx.display_name
-            _sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
-            _prefix = f"{_sn}; " if _sn else ''
+            sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
+            prefix = f"{sn}; " if sn else ''
             return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                               f"{_prefix}{scope}: known_not_affected.",
-                               _severity])
+                f"{prefix}{ctx.display_name}: known_not_affected.", severity])
 
-        # --- FIXED versions in scope ------------------------------------------
+        # ── Fixed versions in scope ─────────────────────────────────────
         scoped_fixed = []
         for pid in ps.get('fixed', []):
-            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
                 continue
             if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
                 continue
             pkg_name, pkg_ver = _parse_pkg_from_product_id(pid)
-            if pkg_name in _resolve_comp(comp, ctx) and pkg_ver:
-                if pid in _pid_severity:
-                    _severity = _pid_severity[pid]
+            if pkg_name in names_to_match and pkg_ver:
+                if pid in pid_severity:
+                    severity = pid_severity[pid]
                 scoped_fixed.append(pkg_ver)
 
         if scoped_fixed:
@@ -1975,114 +2289,70 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                 if v not in seen:
                     seen.add(v)
                     unique_fixed.append(v)
+            return _compare_fixed_rpm(
+                found_v, unique_fixed, comp, ctx, severity, rpm_rhel)
 
-            # ── Stream-aware comparison ──────────────────────────────────────
-            # Red Hat backports fixes to older EUS/E4S minor streams with lower
-            # upstream version numbers.  e.g. the RHEL 9.0 fix for python3 may
-            # be at 3.9.10-4.el9_0.9 while the RHEL 9.4 fix is 3.9.18-3.el9_4.11.
-            # Comparing installed 3.9.18-3.el9_4.10 >= 3.9.10-4.el9_0.9 would be
-            # a false positive — they are on different version tracks.
-            # Solution: when the installed package carries a minor stream marker
-            # (el9_4), only compare against fixes from the same minor stream.
-            installed_minor = _detect_rhel_minor(found_v)
-            if installed_minor:
-                same_stream = [v for v in unique_fixed
-                               if _detect_rhel_minor(v) == installed_minor]
-                if same_stream:
-                    compare_fixes = same_stream
-                else:
-                    # Fix exists in other streams but the patch for THIS minor
-                    # stream has not been released yet → still VULNERABLE.
-                    best_ref = unique_fixed[0]
-                    _sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
-                    _prefix = f"{_sn}; " if _sn else ''
-                    return pd.Series(["❌ POSITIVE", best_ref,
-                                       f"{_prefix}No fix in el{ctx.rhel_ver}_{installed_minor}. Fix in other streams: {best_ref}.",
-                                       _severity])
-            else:
-                compare_fixes = unique_fixed
-
-            # GA packages (no minor stream marker) must be >= ALL stream fixes.
-            # Old EUS fixes may have lower version numbers than the GA baseline,
-            # but newer-stream fixes prove the GA package is still vulnerable.
-            all_pass = True
-            any_compared = False
-            any_fail_fix = None
-            for fix_v in compare_fixes:
-                try:
-                    cmp_inst, cmp_fix = _normalize_epoch(found_v, fix_v)
-                    any_compared = True
-                    if compare_versions(cmp_inst, cmp_fix) < 0:
-                        all_pass = False
-                        if any_fail_fix is None:
-                            any_fail_fix = fix_v
-                except Exception:
-                    pass
-            _sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
-            if all_pass and compare_fixes and any_compared:
-                note = f"{_sn + '; ' if _sn else ''}Installed {found_v} >= fix {compare_fixes[0]}."
-                return pd.Series(["✅ FALSE POSITIVE", compare_fixes[0], note, _severity])
-            if any_fail_fix:
-                note = f"{_sn + '; ' if _sn else ''}Installed {found_v} < fix {any_fail_fix}."
-                return pd.Series(["❌ POSITIVE", any_fail_fix, note, _severity])
-            fix_ref = compare_fixes[0] if compare_fixes else "?"
-            note = f"{_sn + '; ' if _sn else ''}Installed {found_v} < fix {fix_ref}."
-            return pd.Series(["❌ POSITIVE", compare_fixes[0] if compare_fixes else "N/A", note, _severity])
-
-        # --- KNOWN_AFFECTED in scope ------------------------------------------
-        # Build set of product IDs covered by no_fix_planned remediations
+        # ── Known-affected in scope ─────────────────────────────────────
         no_fix_pids = set()
         for remed in vuln.get('remediations', []):
             if remed.get('category') == 'no_fix_planned':
                 no_fix_pids.update(remed.get('product_ids', []))
 
         for pid in ps.get('known_affected', []):
-            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
                 continue
             if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
                 continue
             pkg_name, _ = _parse_pkg_from_product_id(pid)
-            if pkg_name in _resolve_comp(comp, ctx):
-                if pid in _pid_severity:
-                    _severity = _pid_severity[pid]
+            if pkg_name in names_to_match:
+                if pid in pid_severity:
+                    severity = pid_severity[pid]
                 other_products = set()
                 for fpid in ps.get('fixed', []):
-                    if _is_any_rhel_ver_product(fpid, rhel_ver) and not _pid_in_scope(fpid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+                    if (_is_any_rhel_ver_product(fpid, rhel_ver)
+                            and not _pid_in_scope(fpid, ctx, pid_name,
+                                                  rhel_base_pids, vex_ns_map,
+                                                  pid_cpe=pid_cpe)):
                         fpkg, _ = _parse_pkg_from_product_id(fpid)
-                        if fpkg and fpkg in _resolve_comp(comp, ctx):
-                            other_products.add(_pid_label(fpid, pid_name, rel_parent))
-                _sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
-                _prefix = f"{_sn}; " if _sn else ''
+                        if fpkg and fpkg in names_to_match:
+                            other_products.add(
+                                _pid_label(fpid, pid_name, rel_parent))
+                sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
+                prefix = f"{sn}; " if sn else ''
                 if pid in no_fix_pids:
-                    note = f"{_prefix}known_affected. no_fix_planned."
+                    note = f"{prefix}known_affected. no_fix_planned."
                 elif other_products:
                     ctx_str = ", ".join(sorted(other_products))
-                    note = f"{_prefix}known_affected. Fix only in: {ctx_str}."
+                    note = f"{prefix}known_affected. Fix only in: {ctx_str}."
                 else:
-                    note = f"{_prefix}known_affected. No fix available."
-                return pd.Series(["❌ POSITIVE", "N/A", note, _severity])
+                    note = f"{prefix}known_affected. No fix available."
+                return pd.Series(["❌ POSITIVE", "N/A", note, severity])
 
-        # --- UNDER_INVESTIGATION in scope -------------------------------------
+        # ── Under-investigation in scope ────────────────────────────────
         for pid in ps.get('under_investigation', []):
-            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
                 continue
             if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
                 continue
             pkg_name, _ = _parse_pkg_from_product_id(pid)
-            if pkg_name in _resolve_comp(comp, ctx):
+            if pkg_name in names_to_match:
                 return pd.Series(["❌ POSITIVE", "N/A",
-                                   f"under_investigation for {ctx.display_name}.",
-                                   _severity])
+                    f"under_investigation for {ctx.display_name}.", severity])
 
-        # --- No in-scope entry — check if any other product covers it ---------
+        # ── Cross-product fallback ──────────────────────────────────────
         other_vuln, other_safe = set(), set()
         for status in ('fixed', 'known_affected', 'known_not_affected'):
             for pid in ps.get(status, []):
-                if _is_any_rhel_ver_product(pid, rhel_ver) and not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+                if (_is_any_rhel_ver_product(pid, rhel_ver)
+                        and not _pid_in_scope(pid, ctx, pid_name,
+                                              rhel_base_pids, vex_ns_map,
+                                              pid_cpe=pid_cpe)):
                     if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
                         continue
                     pkg_name, _ = _parse_pkg_from_product_id(pid)
-                    if pkg_name in _resolve_comp(comp, ctx):
+                    if pkg_name in names_to_match:
                         label = _pid_label(pid, pid_name, rel_parent)
                         if status in ('known_affected', 'fixed'):
                             other_vuln.add(label)
@@ -2092,19 +2362,118 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         if other_safe and not other_vuln:
             ctx_str = ", ".join(sorted(other_safe))
             return pd.Series(["✅ FALSE POSITIVE", "N/A",
-                               f"'{comp}' not affected in related products ({ctx_str}).",
-                               _severity])
+                f"'{comp}' not affected in related products ({ctx_str}).",
+                severity])
         if other_vuln:
             ctx_str = ", ".join(sorted(other_vuln))
             return pd.Series(["❌ POSITIVE", "N/A",
-                               f"'{comp}' affected in related products ({ctx_str}).",
-                               _severity])
+                f"'{comp}' affected in related products ({ctx_str}).",
+                severity])
 
         return pd.Series(["⚠️ NOT ASSESSED", "N/A",
-                           f"'{comp}' not tracked in VEX.",
-                           _severity])
+            f"'{comp}' not tracked in VEX.", severity])
 
-    return pd.Series(["❌ POSITIVE", "N/A", "No vulnerability entries in VEX.", _severity])
+    return pd.Series(["❌ POSITIVE", "N/A",
+                       "No vulnerability entries in VEX.", severity])
+
+
+def audit_row_detailed(row, ctx: WorkloadContext):
+    """Triage a single CVE row against the Red Hat VEX database.
+
+    Loads the VEX file for the CVE, matches product IDs against the workload
+    context, and returns a verdict with justification.
+
+    Returns pd.Series([verdict, fix_version, justification, severity]).
+    """
+    comp    = row['COMPONENT']
+    found_v = str(row['VERSION'])
+    cve     = row['CVE'].strip().upper()
+
+    # ── Load VEX data and build lookup maps ─────────────────────────────
+    data = _load_vex(cve)
+    if data is None:
+        return pd.Series(["❌ POSITIVE", "N/A", "VEX file missing.", "Unknown"])
+
+    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = _build_pid_name(data)
+    pid_severity = _build_pid_severity_map(data)
+
+    # ── Resolve severity (baseline — RPM branch may override per-PID) ───
+    severity = _resolve_base_severity(
+        data, comp, ctx, pid_name, rhel_base_pids, vex_ns_map,
+        pid_severity, row, pid_cpe=pid_cpe, pid_purl=pid_purl)
+
+    # ── Catch-all: vendor-level "no Red Hat product affected" ───────────
+    if _is_catchall_not_affected(data):
+        return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                           "No supported Red Hat product affected.", severity])
+
+    # ── Build-level override: our exact image digest assessed in VEX ────
+    # A digest is globally unique; a VEX statement about it describes THIS
+    # build and overrides stream-level entries for every component in it
+    # (RPM and non-RPM alike).
+    img_sha = _extract_sha256(ctx.image_ref or '')
+    if img_sha:
+        sha_hits = {}
+        for vuln in data.get('vulnerabilities', []):
+            ps_ = vuln.get('product_status', {})
+            for status in ('known_affected', 'under_investigation',
+                           'fixed', 'known_not_affected'):
+                for pid in ps_.get(status, []):
+                    if img_sha in pid:
+                        sha_hits.setdefault(status, pid)
+        if sha_hits:
+            if 'known_affected' in sha_hits or 'under_investigation' in sha_hits:
+                st = ('known_affected' if 'known_affected' in sha_hits
+                      else 'under_investigation')
+            else:
+                st = ('known_not_affected' if 'known_not_affected' in sha_hits
+                      else 'fixed')
+            decisive = sha_hits[st]
+            if decisive in pid_severity:
+                severity = pid_severity[decisive]
+            lbl = _pid_label(decisive, pid_name, rel_parent)
+            if st in ('known_affected', 'under_investigation'):
+                return pd.Series(["❌ POSITIVE", "N/A",
+                    f"{st} — this image build ({lbl}).", severity])
+            note = ("This image build is the fixed build"
+                    if st == 'fixed' else "known_not_affected — this image build")
+            return pd.Series(["✅ FALSE POSITIVE", "N/A",
+                f"{note} ({lbl}).", severity])
+
+    # ── Determine effective RHEL version from RPM version string ────────
+    # The RPM's own .elN marker is authoritative — mixed-RHEL images
+    # need per-row scoping.
+    rpm_rhel = _detect_rhel_ver(found_v)
+
+    # SOURCE-based classification: RHACS scan components carry a SOURCE field
+    # (OS, GO, JAVA, NPM, PYTHON, etc.). SOURCE=OS means the component is an
+    # OS/RPM package even if the version string lacks the usual .elN marker.
+    # This catches edge cases where RPM versions are atypical.
+    comp_source = str(row.get('SOURCE', '')) if 'SOURCE' in row.index else ''
+    if not rpm_rhel and comp_source == 'OS' and '/' not in comp:
+        # OS component without .elN marker — treat as RPM using context RHEL
+        # version.  Components with '/' are image refs (RHACS image-identity
+        # pseudo-components carry source=OS too) and belong to the non-RPM path.
+        rpm_rhel = ctx.rhel_ver
+
+    rhel_ver = rpm_rhel or ctx.rhel_ver
+    if rpm_rhel and rpm_rhel != ctx.rhel_ver:
+        ctx = WorkloadContext(
+            **{f.name: getattr(ctx, f.name)
+               for f in ctx.__dataclass_fields__.values()})
+        ctx.rhel_ver = rpm_rhel
+
+    # ── Branch: non-RPM (Go, npm, image ref) vs RPM ────────────────────
+    if not rpm_rhel:
+        return _audit_nonrpm(
+            comp, found_v, data, ctx, pid_name, rel_parent,
+            rhel_base_pids, pid_purl, vex_ns_map, severity, row,
+            pid_cpe=pid_cpe)
+
+    return _audit_rpm(
+        comp, found_v, data, ctx, pid_name, rel_parent,
+        rhel_base_pids, pid_purl, vex_ns_map, severity, pid_severity,
+        rhel_ver, rpm_rhel, row, pid_cpe=pid_cpe)
 
 
 # ── Display helpers (used by both single-image and namespace modes) ───────────
@@ -2185,55 +2554,129 @@ def _sort_and_filter_df(df: pd.DataFrame, false_only: bool = False) -> pd.DataFr
     return result_df
 
 
-def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None:
-    """Render a Rich triage table and print per-verdict counts."""
-    table = Table(
-        title=f"VEX Triage Report — [bold cyan]{ctx.display_name}[/bold cyan]",
-        box=box.ROUNDED, show_header=True, header_style="bold white", show_lines=True,
-    )
-    table.add_column("Component", style="cyan", no_wrap=True)
-    table.add_column("Product", style="magenta", no_wrap=False, max_width=30)
-    table.add_column("Version", style="dim")
-    table.add_column("CVE", style="bold")
-    table.add_column("Severity", no_wrap=True)
-    table.add_column("Result", no_wrap=True)
-    table.add_column("Fix Version", style="dim")
-    table.add_column("Justification")
+def _short_component(comp: str) -> str:
+    """Shorten module paths for display using structural rules only.
 
+    A first path segment containing a dot is a hostname — drop it. From the
+    remainder, keep the last segment, or the last two when the final one is a
+    bare major-version suffix (v5): github.com/go-git/go-git/v5 → go-git/v5.
+    """
+    if '/' not in comp:
+        return comp
+    parts = comp.split('/')
+    if '.' in parts[0]:
+        parts = parts[1:]
+    if not parts:
+        return comp
+    if len(parts) >= 2 and re.fullmatch(r'v\d+', parts[-1]):
+        return '/'.join(parts[-2:])
+    return parts[-1]
+
+
+def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None:
+    """Render a compact box table: POSITIVE first, one line per finding,
+    RHACS vs VEX severity side by side, summary footer.
+
+    The box is drawn manually with fixed computed widths so the layout never
+    collapses when the terminal is narrow or output is piped.
+    """
+    _vstyle = {'POSITIVE': 'bold red', 'FALSE POSITIVE': 'bold green',
+               'NOT ASSESSED': 'bold yellow'}
+    _sev_rank = {'Critical': 0, 'Important': 1, 'Moderate': 2, 'Low': 3, 'Unknown': 4}
+
+    rows = []
     for _, row in result_df.iterrows():
-        result      = row['AUDIT_RESULT']
-        severity    = str(row.get('SEVERITY', 'Unknown'))
-        scanner_sev = str(row.get('RHACS_SEVERITY', 'Unknown'))
-        mismatch    = bool(row.get('SEVERITY_MISMATCH', False))
-        r_style  = RESULT_STYLES.get(result, "")
-        s_style  = SEVERITY_STYLES.get(severity.split()[0].title(), "dim")
-        if mismatch and scanner_sev not in ('Unknown', severity):
-            sev_cell = (
-                f"[{s_style}]{severity}[/{s_style}]"
-                f" [yellow]⚠[/yellow] [dim](scanner: {scanner_sev})[/dim]"
-            )
-        else:
-            sev_cell = f"[{s_style}]{severity}[/{s_style}]"
-        table.add_row(
-            row['COMPONENT'],
-            str(row.get('VEX_PRODUCT', '') or ''),
-            row['VERSION'], row['CVE'],
-            sev_cell,
-            f"[{r_style}]{result}[/{r_style}]",
-            str(row['VEX_FIX_VER']), row['JUSTIFICATION'],
-        )
-    console.print(table)
-    counts = result_df['AUDIT_RESULT'].value_counts()
-    console.print()
-    for label, count in counts.items():
-        style = RESULT_STYLES.get(str(label), "")
-        console.print(f"  [{style}]{label}[/{style}]: [bold]{count}[/bold]")
-    mismatch_count = int(result_df.get('SEVERITY_MISMATCH', pd.Series(dtype=bool)).sum())
-    if mismatch_count:
-        console.print(
-            f"  [yellow]⚠  {mismatch_count} CVE(s) have a severity difference "
-            f"between scanner and VEX[/yellow]"
-        )
+        verdict = str(row['AUDIT_RESULT'])
+        verdict_plain = ('FALSE POSITIVE' if 'FALSE' in verdict
+                         else 'NOT ASSESSED' if 'NOT ASSESSED' in verdict
+                         else 'POSITIVE')
+        fix = str(row.get('VEX_FIX_VER', '') or '')
+        rows.append({
+            'cve': str(row['CVE']),
+            'comp': _short_component(str(row['COMPONENT'])),
+            'rhacs': str(row.get('RHACS_SEVERITY', 'Unknown')),
+            'vex': str(row.get('SEVERITY', 'Unknown')),
+            'verdict': verdict_plain,
+            'fix': fix if fix not in ('', 'N/A', 'nan') else '-',
+            'just': str(row['JUSTIFICATION']),
+        })
+    rows.sort(key=lambda r: (
+        0 if r['verdict'] == 'POSITIVE' else 1 if r['verdict'] == 'NOT ASSESSED' else 2,
+        _sev_rank.get(r['vex'], 9),
+        _sev_rank.get(r['rhacs'], 9),
+        r['cve'],
+    ))
+
+    # Fixed-layout box: width = min(longest content, cap), never terminal-fitted.
+    columns = [
+        ('CVE',           'cve',     18),
+        ('Component',     'comp',    26),
+        ('RHACS Sev',     'rhacs',   10),
+        ('VEX Sev',       'vex',     10),
+        ('Verdict',       'verdict', 14),
+        ('Fix',           'fix',     18),
+        ('Justification', 'just',    50),
+    ]
+    widths = [max(len(h), min(max((len(r[k]) for r in rows), default=0), cap))
+              for h, k, cap in columns]
+
+    def cell(text, w):
+        return (text[:w - 1] + '…') if len(text) > w else text.ljust(w)
+
+    def style_for(key, r):
+        if key in ('rhacs', 'vex'):
+            return SEVERITY_STYLES.get(r[key], 'dim')
+        if key == 'verdict':
+            return _vstyle[r['verdict']]
+        if key == 'comp':
+            return 'cyan'
+        if key == 'fix':
+            return 'dim'
+        return ''
+
+    top = '┌─' + '─┬─'.join('─' * w for w in widths) + '─┐'
+    mid = '├─' + '─┼─'.join('─' * w for w in widths) + '─┤'
+    bot = '└─' + '─┴─'.join('─' * w for w in widths) + '─┘'
+
+    console.print(top, markup=False, soft_wrap=True)
+    hdr = '│ ' + ' │ '.join(cell(h, w) for (h, _, _), w in zip(columns, widths)) + ' │'
+    console.print(f"[bold]{hdr}[/bold]", soft_wrap=True)
+    console.print(mid, markup=False, soft_wrap=True)
+    for r in rows:
+        parts = []
+        for (_, key, _), w in zip(columns, widths):
+            text = cell(r[key], w)
+            st = style_for(key, r)
+            parts.append(f"[{st}]{text}[/{st}]" if st else text)
+        console.print('│ ' + ' │ '.join(parts) + ' │', soft_wrap=True)
+    console.print(bot, markup=False, soft_wrap=True)
+
+    # ── Summary footer ───────────────────────────────────────────────────
+    total = len(rows)
+    if not total:
+        return
+    fp  = sum(1 for r in rows if r['verdict'] == 'FALSE POSITIVE')
+    pos = sum(1 for r in rows if r['verdict'] == 'POSITIVE')
+    na  = sum(1 for r in rows if r['verdict'] == 'NOT ASSESSED')
+
+    rhacs_counts = Counter(r['rhacs'] for r in rows)
+    rhacs_str = ", ".join(f"{n} {s}" for s, n in
+                          sorted(rhacs_counts.items(), key=lambda kv: _sev_rank.get(kv[0], 9)))
+    sev_shift = sum(1 for r in rows if r['rhacs'] not in ('Unknown', r['vex']))
+
+    label = ctx.image_ref or ctx.display_name
+    m = re.search(r'@sha256:([a-f0-9]{6})', label or '')
+    if m:
+        label = re.sub(r'@sha256:[a-f0-9]+', f" (sha256:{m.group(1)}...)", label)
+    console.print(f"\nImage: [bold cyan]{label}[/bold cyan]")
+    na_str = f", {na} not assessed" if na else ""
+    console.print(
+        f"RHACS reports [bold]{total}[/bold] findings ({rhacs_str}) → VEX triage: "
+        f"[bold green]{fp} false positives[/bold green] ({100 * fp // total}%), "
+        f"[bold red]{pos} real[/bold red]{na_str}."
+    )
+    if sev_shift:
+        console.print(f"[yellow]{sev_shift} finding(s) rated differently by Red Hat VEX than by the scanner.[/yellow]")
     console.print()
 
 
