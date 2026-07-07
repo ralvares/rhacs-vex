@@ -1543,21 +1543,82 @@ def audit_row_detailed(row, ctx: WorkloadContext):
     # Build product tree lookup maps — used throughout for human-readable labels
     pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map = _build_pid_name(data)
 
-    # Extract Red Hat severity rating from threats[category=impact]
-    # Values: Critical, Important, Moderate, Low  (Red Hat scale)
-    # Falls back to aggregate_severity, then CVSS baseSeverity, then RHACS scan severity
+    # Extract Red Hat severity rating from threats[category=impact].
+    # VEX threats can be scoped to specific product_ids — use the per-product
+    # impact when available (more accurate than aggregate for the workload).
+    # Priority: per-product threat → generic threat → aggregate_severity →
+    #           CVSS baseSeverity → RHACS scan severity.
     _severity = "UNKNOWN"
-    _agg = data.get('document', {}).get('aggregate_severity', {}).get('text', '')
-    if _agg and _agg.strip().lower() not in ('', 'none'):
-        _severity = _agg.title()
+    _names_to_match = _resolve_comp(comp, ctx)
+    # Build PID → severity map from per-product threats.
+    # Used here for component-name match and later by the audit
+    # to refine severity from the actual matched PID.
+    _pid_severity = {}
     for _vuln in data.get('vulnerabilities', []):
         for _threat in _vuln.get('threats', []):
-            if _threat.get('category') == 'impact' and _threat.get('details'):
-                _severity = _threat['details'].title()
+            if _threat.get('category') != 'impact' or not _threat.get('details'):
+                continue
+            _det = _threat['details'].title()
+            for _tpid in _threat.get('product_ids', []):
+                _pid_severity[_tpid] = _det
+    # Priority: image-level PID (generic, no SHA) > component-name > fallback.
+    # Image-level PIDs like "openshift4/ose-cli" carry the per-image severity
+    # which is more specific than RPM-level for container triage.
+    if ctx.workload_type in ("ocp", "operator"):
+        _img_comp = ctx.ocp_component or (
+            _normalize_vex_image_core(ctx.image_name) if ctx.image_name else None)
+        if _img_comp:
+            _img_norm = _normalize_ocp_component(_img_comp)
+            for _pid, _sev in _pid_severity.items():
+                if '@sha256:' in _pid:
+                    continue
+                if not _pid_in_scope(_pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+                    continue
+                _tpkg, _ = _parse_pkg_from_product_id(_pid)
+                if not _tpkg:
+                    continue
+                if '/' in _tpkg and _normalize_vex_image_core(_tpkg) == _img_comp:
+                    _severity = _sev
+                    break
+                if '/' not in _tpkg and _normalize_ocp_component(_tpkg) == _img_norm:
+                    _severity = _sev
+                    break
+    # Fall back to component-name match
+    if _severity == "UNKNOWN":
+        for _pid, _sev in _pid_severity.items():
+            if not _pid_in_scope(_pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+                continue
+            _tpkg, _ = _parse_pkg_from_product_id(_pid)
+            if _tpkg and _tpkg in _names_to_match:
+                _severity = _sev
                 break
-        if _severity != "UNKNOWN":
-            break
-    # Last resort: CVSS baseSeverity → map to Red Hat equivalents
+
+    # Fall back to severity from in-scope known_affected/fixed PIDs
+    if _severity == "UNKNOWN":
+        _aff_sevs = set()
+        for _vuln in data.get('vulnerabilities', []):
+            for _st in ('known_affected', 'fixed'):
+                for _pid in _vuln.get('product_status', {}).get(_st, []):
+                    if _pid in _pid_severity and _pid_in_scope(_pid, ctx, pid_name, rhel_base_pids, vex_ns_map):
+                        _aff_sevs.add(_pid_severity[_pid])
+        if _aff_sevs:
+            _sev_order = {'Critical': 0, 'Important': 1, 'Moderate': 2, 'Low': 3}
+            _severity = min(_aff_sevs, key=lambda s: _sev_order.get(s, 9))
+
+    if _severity == "UNKNOWN":
+        _agg = data.get('document', {}).get('aggregate_severity', {}).get('text', '')
+        if _agg and _agg.strip().lower() not in ('', 'none'):
+            _severity = _agg.title()
+
+    if _severity == "UNKNOWN":
+        for _vuln in data.get('vulnerabilities', []):
+            for _threat in _vuln.get('threats', []):
+                if _threat.get('category') == 'impact' and _threat.get('details'):
+                    _severity = _threat['details'].title()
+                    break
+            if _severity != "UNKNOWN":
+                break
+
     if _severity == "UNKNOWN":
         for _vuln in data.get('vulnerabilities', []):
             for _score in _vuln.get('scores', []):
@@ -1570,15 +1631,12 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             if _severity != "UNKNOWN":
                 break
 
-    # Final fallback: use RHACS-provided severity from the scan row
     if _severity in ("UNKNOWN", "None", ""):
         _rhacs_raw = str(row.get('SEVERITY', '')).strip().upper()
-        # RHACS format: LOW_VULNERABILITY_SEVERITY, MODERATE_VULNERABILITY_SEVERITY, etc.
         _mapped = _RHACS_SEVERITY_MAP.get(_rhacs_raw)
         if _mapped:
             _severity = _mapped
 
-    # Normalize final value to clean display form
     if _severity in ("UNKNOWN", "None", "", "nan"):
         _severity = "Unknown"
     # product_tree (e.g. "red_hat_products" with cpe:/a:redhat — vendor-level,
@@ -1882,6 +1940,8 @@ def audit_row_detailed(row, ctx: WorkloadContext):
             pkg_name, pkg_ver = _parse_pkg_from_product_id(pid)
             if pkg_name not in _resolve_comp(comp, ctx):
                 continue
+            if pid in _pid_severity:
+                _severity = _pid_severity[pid]
             # Stream-aware KNA: when the installed package carries a minor
             # stream marker (el8_10), a KNA from a different stream (el8_4)
             # does not apply — that stream's fix may differ.
@@ -1905,6 +1965,8 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                 continue
             pkg_name, pkg_ver = _parse_pkg_from_product_id(pid)
             if pkg_name in _resolve_comp(comp, ctx) and pkg_ver:
+                if pid in _pid_severity:
+                    _severity = _pid_severity[pid]
                 scoped_fixed.append(pkg_ver)
 
         if scoped_fixed:
@@ -1981,7 +2043,8 @@ def audit_row_detailed(row, ctx: WorkloadContext):
                 continue
             pkg_name, _ = _parse_pkg_from_product_id(pid)
             if pkg_name in _resolve_comp(comp, ctx):
-                # Check if a fix exists outside the in-scope products (context note)
+                if pid in _pid_severity:
+                    _severity = _pid_severity[pid]
                 other_products = set()
                 for fpid in ps.get('fixed', []):
                     if _is_any_rhel_ver_product(fpid, rhel_ver) and not _pid_in_scope(fpid, ctx, pid_name, rhel_base_pids, vex_ns_map):
