@@ -1152,6 +1152,40 @@ def _resolve_comp(comp: str, ctx) -> set:
     return names
 
 
+def _src_alias_names(data: dict, comp: str, found_v: str) -> set:
+    """Source-RPM aliases for a binary package, derived from the VEX itself.
+
+    Red Hat VEX often tracks only the source package (ceph, perl) while the
+    scanner reports binary subpackages (ceph-mon, perl-libs).  A .src NEVRA
+    whose version-release exactly equals the installed component's — and whose
+    name is a dash-prefix of the component name — is the source that built it.
+    Purely data-driven; no name lists.
+    """
+    src_vr = data.get('__src_vr__')
+    if src_vr is None:
+        src_vr = {}
+        for vuln in data.get('vulnerabilities', []):
+            ps = vuln.get('product_status', {})
+            for st in ('known_affected', 'fixed', 'known_not_affected',
+                       'under_investigation'):
+                for pid in ps.get(st, []):
+                    base = pid.split('::')[0]
+                    if not base.endswith('.src'):
+                        continue
+                    name, vr = _parse_pkg_from_product_id(pid)
+                    if name:
+                        # vr is None for version-less product-level PIDs
+                        # (red_hat_ceph_storage:ceph.src) — record as wildcard.
+                        src_vr.setdefault(name, set()).add(vr)
+        data['__src_vr__'] = src_vr
+    vr = found_v.split(':', 1)[-1] if ':' in found_v else found_v
+    out = set()
+    for src, vrs in src_vr.items():
+        if comp.startswith(src + '-') and (vr in vrs or None in vrs):
+            out.add(src)
+    return out
+
+
 def _normalize_vex_image_core(img: str) -> str:
     """Extract the OCP component core name from a VEX image-style PID component.
 
@@ -1673,6 +1707,22 @@ def _is_rhel_base_product(pid: str, rhel_ver: str, rhel_base_pids: set) -> bool:
     if re.search(rf'^[a-zA-Z]+-{rhel_ver}[.\-]', pid):
         return True
     return False
+
+def _is_version_neutral_product(pid: str) -> bool:
+    """True when the PID carries no RHEL/el version marker at all.
+
+    Product-level PIDs like red_hat_openshift_container_platform_4:openshift-clients
+    are version-agnostic — they cannot contradict the workload's RHEL version,
+    so they are admissible as related-product evidence.
+    """
+    if re.search(r'[.+]el\d', pid):
+        return False
+    if re.search(r'_rhel_?\d', pid.lower()):
+        return False
+    if 'enterprise_linux_' in pid.lower():
+        return False
+    return True
+
 
 def _is_any_rhel_ver_product(pid, rhel_ver):
     """
@@ -2305,6 +2355,8 @@ def _audit_rpm(comp, found_v, data, ctx, pid_name, rel_parent,
     Returns pd.Series([verdict, fix, justification, severity]).
     """
     names_to_match = _resolve_comp(comp, ctx)
+    # VEX-derived source aliases (ceph-mon → ceph) — see _src_alias_names.
+    names_to_match |= _src_alias_names(data, comp, found_v)
 
     for vuln in data.get('vulnerabilities', []):
         ps = vuln.get('product_status', {})
@@ -2417,10 +2469,15 @@ def _audit_rpm(comp, found_v, data, ctx, pid_name, rel_parent,
                     f"under_investigation for {ctx.display_name}.", severity])
 
         # ── Cross-product fallback ──────────────────────────────────────
+        # Related-product evidence: PIDs matching the workload's RHEL version
+        # OR version-neutral product PIDs (no el/rhel marker — e.g.
+        # red_hat_openshift_container_platform_4:openshift-clients), which
+        # cannot contradict the workload's RHEL version.
         other_vuln, other_safe = set(), set()
         for status in ('fixed', 'known_affected', 'known_not_affected'):
             for pid in ps.get(status, []):
-                if (_is_any_rhel_ver_product(pid, rhel_ver)
+                if ((_is_any_rhel_ver_product(pid, rhel_ver)
+                        or _is_version_neutral_product(pid))
                         and not _pid_in_scope(pid, ctx, pid_name,
                                               rhel_base_pids, vex_ns_map,
                                               pid_cpe=pid_cpe)):
@@ -2582,19 +2639,21 @@ def _audit_verdict(row, ctx: WorkloadContext):
 
     # ── Determine effective RHEL version from RPM version string ────────
     # The RPM's own .elN marker is authoritative — mixed-RHEL images
-    # need per-row scoping.
-    rpm_rhel = _detect_rhel_ver(found_v)
+    # need per-row scoping.  Components with '/' are image refs (RHACS
+    # image-identity pseudo-components carry SOURCE=OS and sometimes
+    # elN-looking versions) — they always take the non-RPM path.
+    if '/' in comp:
+        rpm_rhel = None
+    else:
+        rpm_rhel = _detect_rhel_ver(found_v)
 
-    # SOURCE-based classification: RHACS scan components carry a SOURCE field
-    # (OS, GO, JAVA, NPM, PYTHON, etc.). SOURCE=OS means the component is an
-    # OS/RPM package even if the version string lacks the usual .elN marker.
-    # This catches edge cases where RPM versions are atypical.
-    comp_source = str(row.get('SOURCE', '')) if 'SOURCE' in row.index else ''
-    if not rpm_rhel and comp_source == 'OS' and '/' not in comp:
-        # OS component without .elN marker — treat as RPM using context RHEL
-        # version.  Components with '/' are image refs (RHACS image-identity
-        # pseudo-components carry source=OS too) and belong to the non-RPM path.
-        rpm_rhel = ctx.rhel_ver
+        # SOURCE-based classification: RHACS scan components carry a SOURCE
+        # field (OS, GO, JAVA, NPM, PYTHON, etc.).  SOURCE=OS means the
+        # component is an OS/RPM package even when the version string lacks
+        # the usual .elN marker.
+        comp_source = str(row.get('SOURCE', '')) if 'SOURCE' in row.index else ''
+        if not rpm_rhel and comp_source == 'OS':
+            rpm_rhel = ctx.rhel_ver
 
     rhel_ver = rpm_rhel or ctx.rhel_ver
     if rpm_rhel and rpm_rhel != ctx.rhel_ver:
