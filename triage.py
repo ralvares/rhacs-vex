@@ -63,6 +63,8 @@ MAX_WORKERS     = 20
 def _build_pid_name(data: dict) -> tuple[dict, dict, set, dict, dict, dict]:
     """
     Build lookup maps from a VEX product tree — no hardcoded labels needed.
+    Memoized inside the (lru-cached) VEX dict itself so the product tree is
+    walked once per CVE instead of once per finding row.
 
     Returns:
       pid_name        : {product_id → human_name}  from branch nodes
@@ -82,6 +84,10 @@ def _build_pid_name(data: dict) -> tuple[dict, dict, set, dict, dict, dict]:
                         Maps parent product IDs to their CPE strings so that _pid_in_scope
                         can match image CPE labels against VEX product tree CPEs.
     """
+    cached = data.get('__pid_maps__')
+    if cached is not None:
+        return cached
+
     pid_name: dict = {}
     pid_purl: dict = {}
     pid_cpe: dict = {}
@@ -142,7 +148,9 @@ def _build_pid_name(data: dict) -> tuple[dict, dict, set, dict, dict, dict]:
                 if len(cpe_parts) > 2:
                     vex_ns_map[oci_ns].add(cpe_parts[2])
 
-    return pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe
+    result = (pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe)
+    data['__pid_maps__'] = result
+    return result
 
 
 def _pid_label(pid: str, pid_name: dict, rel_parent: dict) -> str:
@@ -351,12 +359,40 @@ def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict, rhel_base_pids
     - operator : RHEL base repos + catalog-derived prefixes in ctx.extra_prefixes
                  (built from data/ns_vex_prefixes.json) + dynamic VEX-derived
                  namespace→product mapping from OCI purls/CPEs in the VEX product tree
+
+    Results are memoized per (workload identity, pid) in a cache carried by
+    the per-CVE vex_ns_map — the same pid is checked thousands of times per
+    image across statuses, flags, threats and remediations.
     """
+    # Single-workload memo slot: hits repeat heavily within one image
+    # (statuses, flags, threats, remediations check the same pids), so cache
+    # per-pid verdicts only for the CURRENT workload and wipe on change.
+    # Keeps memory at O(pids) per CVE instead of O(pids × images).
+    _cache = None
+    _key = pid
+    if isinstance(vex_ns_map, dict):
+        _fp = (ctx.workload_type, ctx.rhel_ver, ctx.ocp_ver, ctx.image_ns,
+               ctx.image_name, ctx.ocp_component, ctx.cpe,
+               tuple(ctx.extra_prefixes))
+        _slot = vex_ns_map.get('__scope_cache__')
+        if _slot is None or _slot[0] != _fp:
+            _slot = (_fp, {})
+            vex_ns_map['__scope_cache__'] = _slot
+        _cache = _slot[1]
+        _hit = _cache.get(_key)
+        if _hit is not None:
+            return _hit
+
+    def _memo(result: bool) -> bool:
+        if _cache is not None:
+            _cache[_key] = result
+        return result
+
     if _is_rhel_base_product(pid, ctx.rhel_ver, rhel_base_pids):
-        return True
+        return _memo(True)
 
     if ctx.workload_type == "ubi":
-        return False
+        return _memo(False)
 
     if ctx.workload_type == "ocp":
         parent_pid  = pid.split(':')[0]
@@ -369,37 +405,37 @@ def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict, rhel_base_pids
             name_ver = parent_name.split()[-1]          # "4" or "4.21"
             c = effective_ver.split('.')
             n = name_ver.split('.')
-            return c[:len(n)] == n
+            return _memo(c[:len(n)] == n)
         # CPE-based matching: when the image has a CPE label, check it
         # against the VEX parent product's CPE for structural matching.
         if pid_cpe and ctx.cpe:
             vex_parent_cpe = pid_cpe.get(parent_pid, '')
             if vex_parent_cpe and _cpe_prefix_match(ctx.cpe, vex_parent_cpe):
-                return True
+                return _memo(True)
         # OCP images pull RPMs from multiple repos (Fast Datapath, etc.)
         # — any product matching the RHEL version is in scope.
         if _is_any_rhel_ver_product(pid, ctx.rhel_ver):
-            return True
-        return False
+            return _memo(True)
+        return _memo(False)
 
     # operator: catalog-derived prefixes (ctx.extra_prefixes from ns_vex_prefixes.json)
     # + dynamic VEX-derived namespace→product mapping from OCI purls/CPEs
     pid_lower = pid.lower()
     for prefix in ctx.extra_prefixes:
         if prefix.lower() in pid_lower:
-            return True
+            return _memo(True)
     # Dynamic: check if the VEX product tree maps the operator's registry
     # namespace to this PID's parent product via OCI purl data
     if vex_ns_map and ctx.image_ns:
         parent_pid = pid.split(':')[0]
         ns_products = vex_ns_map.get(ctx.image_ns.lower(), set())
         if parent_pid in ns_products:
-            return True
+            return _memo(True)
         # Also check CPE product token match
         for prod_id in ns_products:
             if prod_id.lower() in pid_lower:
-                return True
-    return False
+                return _memo(True)
+    return _memo(False)
 
 # Create the folder structure
 os.makedirs(VEX_DIR, exist_ok=True)
@@ -680,7 +716,7 @@ def rhacs_scan_image(session, image_ref: str, force: bool = False,
 
     # Check local file cache first (keyed by image_ref which contains the SHA).
     ref_cache = _scan_cache_path("", image_ref)
-    if not force and _local_cache_fresh(ref_cache):
+    if not force and _local_cache_fresh(ref_cache, image_ref):
         try:
             with open(ref_cache) as fh:
                 return json.load(fh)
@@ -726,9 +762,17 @@ def _scan_cache_path(image_id: str, image_ref: str = "") -> str:
     return os.path.join(SCAN_DIR, f"{safe}.json")
 
 
-def _local_cache_fresh(path: str) -> bool:
-    """Return True if *path* exists and is younger than LOCAL_CACHE_TTL seconds."""
+def _local_cache_fresh(path: str, image_ref: str = "") -> bool:
+    """Return True when the cached copy at *path* is still usable.
+
+    Digest-pinned references (@sha256:) are content-addressed — the image can
+    never change, so a cached scan/SBOM for it is valid forever.  This keeps
+    re-runs from hammering RHACS Central for images it has already scanned.
+    Tag/floating references keep the LOCAL_CACHE_TTL window.
+    """
     try:
+        if '@sha256:' in (image_ref or ''):
+            return os.path.getsize(path) > 0
         age = time.time() - os.path.getmtime(path)
         return age < LOCAL_CACHE_TTL
     except OSError:
@@ -747,7 +791,7 @@ def rhacs_get_image(session, image_id: str, force: bool = False, image_ref: str 
     os.makedirs(SCAN_DIR, exist_ok=True)
 
     cache_path = _scan_cache_path(image_id, image_ref)
-    if not force and _local_cache_fresh(cache_path):
+    if not force and _local_cache_fresh(cache_path, image_ref):
         try:
             with open(cache_path) as fh:
                 return json.load(fh)
@@ -799,7 +843,7 @@ def rhacs_get_sbom(session, image_ref: str, force: bool = False) -> dict:
     os.makedirs(SBOM_DIR, exist_ok=True)
 
     cache_path = _sbom_cache_path(image_ref)
-    if not force and _local_cache_fresh(cache_path):
+    if not force and _local_cache_fresh(cache_path, image_ref):
         try:
             with open(cache_path) as fh:
                 return json.load(fh)
@@ -1519,7 +1563,7 @@ def _get_vex_product(data: dict, comp: str, ctx) -> str:
     return ''
 
 
-@functools.lru_cache(maxsize=512)
+@functools.lru_cache(maxsize=int(os.environ.get('VEX_CACHE_SIZE', '512')))
 def _load_vex(cve_id: str) -> Optional[dict]:
     """Load and cache a Red Hat VEX JSON file by CVE ID.
 
@@ -1711,7 +1755,11 @@ def _summarise_vex_products(data, pid_name: dict, rel_parent: dict):
     return sorted(affected), sorted(fixed), sorted(not_affected), sorted(investigating)
 
 def _build_pid_severity_map(data: dict) -> dict:
-    """Build {product_id: severity_title} from per-product VEX threats."""
+    """Build {product_id: severity_title} from per-product VEX threats.
+    Memoized inside the VEX dict — built once per CVE."""
+    cached = data.get('__pid_severity__')
+    if cached is not None:
+        return cached
     pid_severity = {}
     for vuln in data.get('vulnerabilities', []):
         for threat in vuln.get('threats', []):
@@ -1720,6 +1768,7 @@ def _build_pid_severity_map(data: dict) -> dict:
             det = threat['details'].title()
             for tpid in threat.get('product_ids', []):
                 pid_severity[tpid] = det
+    data['__pid_severity__'] = pid_severity
     return pid_severity
 
 
@@ -1744,20 +1793,41 @@ def _resolve_base_severity(data, comp, ctx, pid_name, rhel_base_pids,
         _label_name = None
         if ctx.image_ns and ctx.image_name:
             _label_name = f"{ctx.image_ns}/{ctx.image_name}"
-        _candidates, _ = _build_image_purl(ctx.image_ref, _label_name)
-        for _pid in _purl_matched_leaf_pids(pid_purl, _candidates):
+        _candidates, _img_sha = _build_image_purl(ctx.image_ref, _label_name)
+
+        def _leaf_severity(_pid):
             # pid_purl keys are component-level (leaf) PIDs, but pid_severity
             # keys are stream-prefixed relationship PIDs.  Check direct match
             # first, then any severity PID ending with :<component_pid>.
             if _pid in pid_severity:
-                severity = pid_severity[_pid]
-                break
+                return pid_severity[_pid]
             for _spid, _sev in pid_severity.items():
                 if _spid.endswith(':' + _pid):
-                    severity = _sev
-                    break
-            if severity != "UNKNOWN":
+                    return _sev
+            return None
+
+        # Digest-specific severities describe individual builds.  Priority:
+        #   1. our own digest — authoritative for this build
+        #   2. generic (no-digest) PID — Red Hat's current per-image rating
+        #   3. other builds of the same image, but only when they all agree —
+        #      a uniform rating across every listed build is the image's
+        #      rating; mixed ratings are ambiguous and skipped.
+        _matched = _purl_matched_leaf_pids(pid_purl, _candidates)
+        _own = [p for p in _matched
+                if _img_sha and _img_sha in p]
+        _generic = [p for p in _matched if '@sha256:' not in p]
+        for _pid in _own + _generic:
+            _sev = _leaf_severity(_pid)
+            if _sev:
+                severity = _sev
                 break
+        if severity == "UNKNOWN":
+            _other_sevs = {s for s in
+                           (_leaf_severity(p) for p in _matched
+                            if '@sha256:' in p and p not in _own)
+                           if s}
+            if len(_other_sevs) == 1:
+                severity = _other_sevs.pop()
 
     # 1. Image-level PID severity (generic, no SHA) — most specific for
     #    container triage (e.g. openshift4/ose-cli carries per-image impact).
@@ -2377,14 +2447,79 @@ def _audit_rpm(comp, found_v, data, ctx, pid_name, rel_parent,
                        "No vulnerability entries in VEX.", severity])
 
 
+def _derive_state(verdict: str, fix: str, justification: str, data,
+                  ctx: WorkloadContext, comp: str) -> str:
+    """Derive the Red Hat page State (Will not fix / Fix deferred / Affected /
+    Not affected / Fixed / Fix available / Under investigation) for the finding.
+
+    Data-driven from VEX remediations: `no_fix_planned` and `none_available`
+    entries carry the display text in their `details` field.
+    """
+    if data is None or 'VEX file missing' in justification:
+        return 'Unknown'
+
+    if 'NOT ASSESSED' in verdict:
+        return 'Not assessed'
+
+    if 'FALSE' in verdict:
+        j = justification
+        if '>= fix' in j or 'Fixed in' in j or 'fixed build' in j or 'backported' in j:
+            return 'Fixed'
+        return 'Not affected'
+
+    # POSITIVE
+    if 'under_investigation' in justification:
+        return 'Under investigation'
+    if fix and fix not in ('N/A', '', 'nan', '-'):
+        return 'Fix available'
+
+    # Look up remediation state for the in-scope affected PIDs.
+    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = _build_pid_name(data)
+    rem_map = data.get('__rem_map__')
+    if rem_map is None:
+        rem_map = {}
+        for vuln in data.get('vulnerabilities', []):
+            for rem in vuln.get('remediations', []):
+                cat = rem.get('category', '')
+                det = (rem.get('details') or '').strip()
+                for pid in rem.get('product_ids', []):
+                    rem_map.setdefault(pid, []).append((cat, det))
+        data['__rem_map__'] = rem_map
+
+    no_fix_det, none_avail_det = None, None
+    for vuln in data.get('vulnerabilities', []):
+        for pid in vuln.get('product_status', {}).get('known_affected', []):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
+                continue
+            for cat, det in rem_map.get(pid, []):
+                if cat == 'no_fix_planned' and no_fix_det is None:
+                    no_fix_det = det or 'Will not fix'
+                elif cat == 'none_available' and none_avail_det is None:
+                    none_avail_det = det or 'Affected'
+    if no_fix_det:
+        return no_fix_det
+    if none_avail_det:
+        return 'Fix deferred' if 'defer' in none_avail_det.lower() else none_avail_det
+    return 'Affected'
+
+
 def audit_row_detailed(row, ctx: WorkloadContext):
     """Triage a single CVE row against the Red Hat VEX database.
 
-    Loads the VEX file for the CVE, matches product IDs against the workload
-    context, and returns a verdict with justification.
-
-    Returns pd.Series([verdict, fix_version, justification, severity]).
+    Returns pd.Series([verdict, fix_version, justification, severity, state])
+    where state is Red Hat's remediation state (Will not fix, Fix deferred,
+    Affected, Not affected, Fixed, Fix available, Under investigation).
     """
+    res = _audit_verdict(row, ctx)
+    cve = row['CVE'].strip().upper()
+    state = _derive_state(res.iloc[0], str(res.iloc[1]), str(res.iloc[2]),
+                          _load_vex(cve), ctx, row['COMPONENT'])
+    return pd.Series([res.iloc[0], res.iloc[1], res.iloc[2], res.iloc[3], state])
+
+
+def _audit_verdict(row, ctx: WorkloadContext):
+    """Core verdict engine — returns pd.Series([verdict, fix, justification, severity])."""
     comp    = row['COMPONENT']
     found_v = str(row['VERSION'])
     cve     = row['CVE'].strip().upper()
@@ -2514,7 +2649,7 @@ SEVERITY_STYLES = {
 def _sort_and_filter_df(df: pd.DataFrame, false_only: bool = False) -> pd.DataFrame:
     """Sort audit results by priority/severity, filter to false-positives if requested."""
     cols = ['COMPONENT', 'VEX_PRODUCT', 'VERSION', 'CVE', 'SEVERITY',
-            'AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION',
+            'AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'VEX_STATE',
             'RHACS_SEVERITY', 'SEVERITY_MISMATCH']
     # Include RHACS metadata columns when present
     for extra in ('SOURCE', 'LOCATION', 'FIXED_VERSION', 'OCP_COMPONENT', 'IMAGE', 'IMAGE_ROLE'):
@@ -2597,6 +2732,7 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
             'rhacs': str(row.get('RHACS_SEVERITY', 'Unknown')),
             'vex': str(row.get('SEVERITY', 'Unknown')),
             'verdict': verdict_plain,
+            'state': str(row.get('VEX_STATE', '') or '-'),
             'fix': fix if fix not in ('', 'N/A', 'nan') else '-',
             'just': str(row['JUSTIFICATION']),
         })
@@ -2614,8 +2750,9 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
         ('RHACS Sev',     'rhacs',   10),
         ('VEX Sev',       'vex',     10),
         ('Verdict',       'verdict', 14),
+        ('State',         'state',   20),
         ('Fix',           'fix',     18),
-        ('Justification', 'just',    50),
+        ('Justification', 'just',    46),
     ]
     widths = [max(len(h), min(max((len(r[k]) for r in rows), default=0), cap))
               for h, k, cap in columns]
@@ -2711,11 +2848,11 @@ def _audit_and_display(df: pd.DataFrame, ctx,
 
     if df.empty:
         console.print("[yellow]⚠  No CVE findings to audit.[/yellow]")
-        for col in ['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY', 'VEX_PRODUCT',
-                    'RHACS_SEVERITY', 'SEVERITY_MISMATCH']:
+        for col in ['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY', 'VEX_STATE',
+                    'VEX_PRODUCT', 'RHACS_SEVERITY', 'SEVERITY_MISMATCH']:
             df[col] = pd.Series(dtype=str)
     else:
-        df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY']] = df.apply(
+        df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY', 'VEX_STATE']] = df.apply(
             lambda row: list(audit_row_detailed(row, ctx)), axis=1, result_type='expand'
         )
         df['VEX_PRODUCT'] = df.apply(lambda row: _vex_product_for_row(row, ctx), axis=1)
@@ -2745,7 +2882,7 @@ def _audit_silent(df: pd.DataFrame, ctx, false_only: bool = False) -> pd.DataFra
         df['RHACS_SEVERITY'] = df['SEVERITY'].apply(
             lambda s: _RHACS_SEVERITY_MAP.get(str(s).strip().upper(), 'Unknown')
         )
-        df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY']] = df.apply(
+        df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY', 'VEX_STATE']] = df.apply(
             lambda row: list(audit_row_detailed(row, ctx)), axis=1, result_type='expand'
         )
         df['VEX_PRODUCT'] = df.apply(lambda row: _vex_product_for_row(row, ctx), axis=1)

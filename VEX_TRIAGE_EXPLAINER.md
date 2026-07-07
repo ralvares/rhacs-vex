@@ -484,7 +484,7 @@ Go modules are the hardest case. RHACS reports `github.com/containers/podman/v5`
 
 Instead, the engine matches at the **containing component level**, in order of precision:
 
-1. **OCI purl exact match**: the engine constructs the image's own OCI purl (`pkg:oci/{name}?repository_url={registry}/{ns}/{name}` via `_build_image_purl`) from the image reference or `name` label and compares its `repository_url` against the purls in the VEX product tree — an exact match, no string normalization needed. PIDs that carry the scanned image's exact SHA256 digest are also collected here.
+1. **OCI purl match**: the engine builds OCI identity candidates (`_build_image_purl`) from **both** the image reference (authoritative — it is what the cluster pulls) and the image's `name` label (Brew metadata whose namespace may differ, e.g. `openshift/` vs `openshift4/`, `managed-open-data-hub/` vs `rhoai/`). `_purl_matched_leaf_pids` then matches VEX OCI purls by **exact `repository_url`** first; when no repo matches, it falls back to **purl package-name equality** — bridging label-vs-registry namespace differences with no hardcoded rewriting. PIDs that carry the scanned image's exact SHA256 digest are also collected here.
 2. **Image-path PIDs** (string-normalization fallback): `openshift4/ose-etcd-rhel9` → normalized to `etcd` → matched against `ctx.ocp_component`
 3. **Generic component PIDs**: `rhcos` with `pkg:generic/redhat/rhcos` → matched against `rhel-coreos-10` via `_normalize_ocp_component` (bridges the `rhcos` ↔ `rhel-coreos` alias)
 
@@ -560,7 +560,7 @@ Non-RPM CVE (Go, Java, npm, Python)
 The engine uses six progressively broader checks for non-RPM components:
 
 **0. OCP image-level and generic component VEX matching** (OCP/operator workloads). The engine matches the workload identity against VEX PIDs in order of precision:
-- **OCI purl exact match**: the image's constructed purl (`_build_image_purl`) compared against VEX purl `repository_url` values — exact identity, checked first
+- **OCI purl match**: identity candidates from the image ref and `name` label (`_build_image_purl`) matched against VEX purls — exact `repository_url` first, purl package-name equality as fallback (`_purl_matched_leaf_pids`) — checked first
 - **Image-path PIDs** (e.g., `openshift4/ose-etcd-rhel9`): Matched via `_normalize_vex_image_core` as a string fallback for PIDs without purls
 - **Generic component PIDs** (e.g., `rhcos` with `pkg:generic/redhat/rhcos`): Matched via `_normalize_ocp_component`, which bridges the RHCOS naming mismatch
 - **Digest-exact override**: entries whose PID carries the scanned image's exact SHA256 digest override all generic entries for the verdict
@@ -602,7 +602,7 @@ This guard is applied at every check in the decision tree: known not affected, f
 
 The engine extracts the severity rating from VEX rather than relying solely on the scanner's CVSS score. Red Hat rates the same CVE differently per product — the `threats` array carries per-product-ID impact ratings (`_build_pid_severity_map`). The resolver (`_resolve_base_severity`) walks a priority chain from most-specific to least-specific:
 
-1. **OCI purl match** (OCP/operator): the image's own OCI purl matched against VEX purls — the per-image threat rating for exactly this image.
+1. **OCI purl match** (OCP/operator): the image's identity candidates matched against VEX purls — the per-image threat rating for exactly this image. Digest-specific ratings describe individual builds, so within this step the priority is: a PID carrying **our own digest** → a **generic (no-digest)** PID → **other builds' digest PIDs only when they all agree** (a uniform rating across every listed build is the image's rating; mixed ratings are ambiguous and skipped).
 2. **Image-level PID match** (OCP/operator): generic (non-SHA) image PIDs matched by normalized component name (e.g. `openshift4/ose-cli` carries per-image impact).
 3. **Component-name PID match**: threat entries whose in-scope PID parses to the component name (binary or source RPM, or Maven artifactId, via `_resolve_comp`).
 4. **In-scope affected/fixed PID severity**: highest severity among threat ratings attached to in-scope `known_affected`/`fixed` entries.
@@ -616,6 +616,23 @@ On the RPM audit path, a matched product-status PID that carries its own threat 
 ### Severity mismatch detection
 
 After triage, the engine compares the scanner's severity with the VEX-derived severity. When they differ, the finding is flagged with a severity mismatch indicator. This alerts operators when the scanner reports a different risk level than the vendor's own assessment — common when CVSS scores diverge from Red Hat's product-specific impact analysis.
+
+### Remediation state (the State column)
+
+Alongside the verdict, every finding carries a **State** (`VEX_STATE` column) mirroring the "State" shown on Red Hat's CVE pages. `_derive_state` computes it from the verdict plus the VEX remediations:
+
+| State | When |
+| :--- | :--- |
+| **Fixed** | FALSE POSITIVE because the installed version is at/beyond the fix, the build is the fixed build, or the fix was backported |
+| **Not affected** | FALSE POSITIVE for any other reason (vendor clearance, catch-all, scoping) |
+| **Fix available** | POSITIVE with a known fix version the workload hasn't picked up |
+| **Under investigation** | Red Hat still analyzing |
+| **Will not fix** | POSITIVE and the in-scope affected PID has a `no_fix_planned` remediation (display text taken from the remediation's `details` field) |
+| **Fix deferred** / **Affected** | POSITIVE with a `none_available` remediation — "Fix deferred" when the details say so, otherwise the details text (default "Affected") |
+| **Not assessed** | Component not tracked in VEX |
+| **Unknown** | VEX file missing |
+
+The state text is data-driven: `no_fix_planned` and `none_available` remediation entries carry Red Hat's own display wording in their `details` field, so the engine reports exactly what the CVE page shows rather than a hardcoded label.
 
 ---
 
@@ -648,7 +665,7 @@ Once the setup pipeline (Section 1) has prepared catalogs, namespace maps, and p
 6. **Run the decision tree** for each CVE finding (component + version + CVE ID). For non-RPM components in OCP images, this includes OCP image-level VEX matching using the normalized `ocp_component` against VEX image PIDs with RHEL-version-aware priority.
 7. **Detect severity mismatches** between scanner and VEX severity ratings.
 8. **Verify against SBOM** to catch stale scanner data.
-9. **Produce verdicts**: FALSE POSITIVE, POSITIVE, or flagged MISMATCH.
+9. **Produce verdicts**: FALSE POSITIVE, POSITIVE, or flagged MISMATCH — each with a Red Hat remediation **State** (Fixed, Not affected, Fix available, Will not fix, Fix deferred, Affected, Under investigation).
 
 ---
 

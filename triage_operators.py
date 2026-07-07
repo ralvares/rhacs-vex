@@ -201,14 +201,48 @@ def _get_unique_workload_images(bundle: dict) -> list:
 
 def _report_path(ocp_version: str, operator_name: str, channel: str, bundle_version: str) -> str:
     """
-    Build and ensure the output CSV path:
-      data/reports/ocp-{version}/{operator}-{channel}-{bundle_version}.csv
+    Build and ensure the flat, OCP-version-agnostic output CSV path:
+      data/reports/operators/{operator}-{channel}-{bundle_version}.csv
+
+    The same operator bundle serves multiple OCP minors, so it is stored ONCE.
+    The ocp_version parameter is kept for signature/caller compatibility but is
+    intentionally NOT part of the path — the minor→bundle association lives only
+    in data/reports/operators_index.json.
     """
     safe_ver = re.sub(r'[/\\:*?"<>|]', '_', bundle_version)
     safe_ch  = re.sub(r'[/\\:*?"<>|]', '_', channel)
-    dirname  = os.path.join(REPORTS_DIR, f"ocp-{ocp_version}")
+    dirname  = os.path.join(REPORTS_DIR, "operators")
     os.makedirs(dirname, exist_ok=True)
     return os.path.join(dirname, f"{operator_name}-{safe_ch}-{safe_ver}.csv")
+
+
+def _write_operators_index(versions_by_report: dict) -> None:
+    """
+    Merge this run's {report_basename: {minor, ...}} mapping into
+    data/reports/operators_index.json.
+
+    Loads any existing index and UNIONS the version lists so partial or
+    incremental runs never lose previously-recorded mappings.  This file is the
+    single source of truth for which OCP minors' catalogs reference each bundle.
+    """
+    index_path = os.path.join(REPORTS_DIR, "operators_index.json")
+    existing: dict = {}
+    if os.path.exists(index_path):
+        try:
+            with open(index_path) as f:
+                existing = {k: set(v) for k, v in json.load(f).items()}
+        except Exception:
+            existing = {}
+
+    for base, minors in versions_by_report.items():
+        existing.setdefault(base, set()).update(minors)
+
+    serialisable = {k: sorted(v) for k, v in sorted(existing.items())}
+    os.makedirs(REPORTS_DIR, exist_ok=True)
+    with open(index_path, "w") as f:
+        json.dump(serialisable, f, indent=2)
+
+    console.print(f'📝 operators_index.json: {len(serialisable)} bundles → [cyan]{index_path}[/cyan]')
 
 
 # ── Core triage logic ─────────────────────────────────────────────────────────
@@ -407,7 +441,11 @@ def main() -> None:
     # ── Phase 1: Parse catalogs and collect work items ────────────────
     console.rule('[bold]Phase 1: Analyzing operator catalogs[/bold]')
 
-    work_by_version: dict[str, list[dict]] = {}
+    # Dedupe work across OCP minors by report basename: the same operator bundle
+    # is referenced by several catalogs but is scanned/assembled ONCE.
+    work_items: dict[str, dict] = {}          # basename → work item (deduped)
+    versions_by_report: dict[str, set] = {}   # basename → {OCP minor, ...}
+    skipped_bases: set[str] = set()
     all_unique_images: set[str] = set()
 
     for ocp_ver in versions:
@@ -427,8 +465,7 @@ def main() -> None:
             console.print('[yellow]  No matching operators.[/yellow]')
             continue
 
-        items: list[dict] = []
-        n_skipped = 0
+        n_new = n_skipped = 0
 
         for op_name, ch_entries in operators.items():
             for ch_entry in ch_entries:
@@ -446,8 +483,17 @@ def main() -> None:
                     bundle_version = bundle_name
 
                 report_path = _report_path(ocp_ver, op_name, channel, bundle_version)
+                basename = os.path.splitext(os.path.basename(report_path))[0]
+
+                # Record the minor→bundle reference unconditionally (even when
+                # deduped or skipped) so operators_index.json is complete.
+                versions_by_report.setdefault(basename, set()).add(ocp_ver)
+
+                if basename in work_items or basename in skipped_bases:
+                    continue
 
                 if args.skip_existing and os.path.exists(report_path):
+                    skipped_bases.add(basename)
                     n_skipped += 1
                     continue
 
@@ -455,19 +501,22 @@ def main() -> None:
                 for _, img in images:
                     all_unique_images.add(img)
 
-                items.append({
+                work_items[basename] = {
                     'op_name': op_name, 'channel': channel,
                     'is_default': is_default, 'bundle': bundle,
                     'bundle_version': bundle_version,
                     'report_path': report_path, 'images': images,
-                })
+                }
+                n_new += 1
 
-        work_by_version[ocp_ver] = items
-        console.print(f'   {len(operators)} operators, {len(items)} channels to scan'
+        console.print(f'   {len(operators)} operators, {n_new} new bundle(s) to scan'
                       + (f', {n_skipped} skipped (exist)' if n_skipped else ''))
 
-    total_channels = sum(len(items) for items in work_by_version.values())
-    console.print(f'\n📊 [bold]{total_channels}[/bold] operator channels to scan, '
+    # Persist the minor→bundle index right after catalog analysis so even a
+    # skip-existing / nothing-to-scan run updates the mappings (union-merge).
+    _write_operators_index(versions_by_report)
+
+    console.print(f'\n📊 [bold]{len(work_items)}[/bold] unique operator bundles to scan, '
                   f'[bold]{len(all_unique_images)}[/bold] unique images\n')
 
     if not all_unique_images:
@@ -532,78 +581,77 @@ def main() -> None:
     console.print(f'\n✅ Scanned [bold]{found}[/bold]/{len(all_unique_images)} images '
                   f'({with_vulns} with vulnerability data) in {t_scan_elapsed:.0f}s\n')
 
-    # ── Phase 3: Assemble operator reports ────────────────────────────
+    # ── Phase 3: Assemble operator reports (once per unique bundle) ────
     console.rule('[bold]Phase 3: Assembling operator reports[/bold]')
 
-    for ocp_ver in versions:
-        items = work_by_version.get(ocp_ver)
-        if not items:
-            continue
+    report_by_base: dict[str, dict] = {}
+    for basename, item in work_items.items():
+        op_name        = item['op_name']
+        channel        = item['channel']
+        bundle         = item['bundle']
+        bundle_version = item['bundle_version']
+        report_path    = item['report_path']
+        images         = item['images']
 
-        console.rule(f'[bold cyan]OCP {ocp_ver}[/bold cyan]')
-        summary_rows: list = []
-
-        for item in items:
-            op_name        = item['op_name']
-            channel        = item['channel']
-            bundle         = item['bundle']
-            bundle_version = item['bundle_version']
-            report_path    = item['report_path']
-            images         = item['images']
-
-            if not images:
-                summary_rows.append({
-                    'operator': op_name, 'channel': channel,
-                    'bundle_version': bundle_version,
-                    'images': 0, 'vulnerable': 0, 'false_positive': 0,
-                    'skipped': True, 'report': '',
-                })
-                continue
-
-            df = _assemble_report_from_cache(bundle, scan_cache)
-
-            if df is None or df.empty:
-                console.print(f'  [dim]{op_name} / {channel} {bundle_version} — no findings[/dim]')
-                summary_rows.append({
-                    'operator': op_name, 'channel': channel,
-                    'bundle_version': bundle_version,
-                    'images': len(images), 'vulnerable': 0, 'false_positive': 0,
-                    'skipped': False, 'report': '',
-                })
-                continue
-
-            df.to_csv(report_path, index=False)
-
-            counts       = df['AUDIT_RESULT'].value_counts().to_dict()
-            n_vuln       = counts.get('❌ POSITIVE', 0)
-            n_fp         = counts.get('✅ FALSE POSITIVE', 0)
-            n_imgs_found = df['IMAGE'].nunique()
-
-            if args.false_only:
-                console.print(
-                    f'  [bold green]✅ {n_fp}[/bold green] FP  '
-                    f'({n_imgs_found}/{len(images)} images)  '
-                    f'{op_name} / {channel} {bundle_version}  '
-                    f'→ [cyan]{report_path}[/cyan]'
-                )
-            else:
-                console.print(
-                    f'  [bold green]✅ {n_fp}[/bold green] FP  '
-                    f'[bold red]❌ {n_vuln}[/bold red] POS  '
-                    f'({n_imgs_found}/{len(images)} images)  '
-                    f'{op_name} / {channel} {bundle_version}  '
-                    f'→ [cyan]{report_path}[/cyan]'
-                )
-            summary_rows.append({
+        if not images:
+            report_by_base[basename] = {
                 'operator': op_name, 'channel': channel,
                 'bundle_version': bundle_version,
-                'images': len(images), 'vulnerable': n_vuln,
-                'false_positive': n_fp, 'skipped': False, 'report': report_path,
-            })
+                'images': 0, 'vulnerable': 0, 'false_positive': 0,
+                'skipped': True, 'report': '',
+            }
+            continue
 
-        console.print()
-        if summary_rows:
-            _print_version_summary(ocp_ver, summary_rows, false_only=args.false_only)
+        df = _assemble_report_from_cache(bundle, scan_cache)
+
+        if df is None or df.empty:
+            console.print(f'  [dim]{op_name} / {channel} {bundle_version} — no findings[/dim]')
+            report_by_base[basename] = {
+                'operator': op_name, 'channel': channel,
+                'bundle_version': bundle_version,
+                'images': len(images), 'vulnerable': 0, 'false_positive': 0,
+                'skipped': False, 'report': '',
+            }
+            continue
+
+        df.to_csv(report_path, index=False)
+
+        counts       = df['AUDIT_RESULT'].value_counts().to_dict()
+        n_vuln       = counts.get('❌ POSITIVE', 0)
+        n_fp         = counts.get('✅ FALSE POSITIVE', 0)
+        n_imgs_found = df['IMAGE'].nunique()
+
+        if args.false_only:
+            console.print(
+                f'  [bold green]✅ {n_fp}[/bold green] FP  '
+                f'({n_imgs_found}/{len(images)} images)  '
+                f'{op_name} / {channel} {bundle_version}  '
+                f'→ [cyan]{report_path}[/cyan]'
+            )
+        else:
+            console.print(
+                f'  [bold green]✅ {n_fp}[/bold green] FP  '
+                f'[bold red]❌ {n_vuln}[/bold red] POS  '
+                f'({n_imgs_found}/{len(images)} images)  '
+                f'{op_name} / {channel} {bundle_version}  '
+                f'→ [cyan]{report_path}[/cyan]'
+            )
+        report_by_base[basename] = {
+            'operator': op_name, 'channel': channel,
+            'bundle_version': bundle_version,
+            'images': len(images), 'vulnerable': n_vuln,
+            'false_positive': n_fp, 'skipped': False, 'report': report_path,
+        }
+
+    # Per-version summaries — group the freshly-assembled bundles by the OCP
+    # minors that reference them (from versions_by_report).
+    for ocp_ver in versions:
+        rows = [report_by_base[b] for b in sorted(report_by_base)
+                if ocp_ver in versions_by_report.get(b, set())]
+        if not rows:
+            continue
+        console.rule(f'[bold cyan]OCP {ocp_ver}[/bold cyan]')
+        _print_version_summary(ocp_ver, rows, false_only=args.false_only)
 
     console.print('\n[bold green]Done.[/bold green]')
 

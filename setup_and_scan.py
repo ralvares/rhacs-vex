@@ -203,8 +203,13 @@ def stage_podman_login(pull_secret: str, podman_bin: str):
 # Stage 1 — operator index catalogs
 # ---------------------------------------------------------------------------
 
+def _age_days(path: str) -> float:
+    import time
+    return (time.time() - os.path.getmtime(path)) / 86400.0
+
+
 def stage_catalogs(minor_versions: list[str], pull_secret: str,
-                   opm_bin: str, skip_existing: bool):
+                   opm_bin: str, skip_existing: bool, max_age_days: int = 7):
     log("=== STAGE 1: Render operator index catalogs ===")
     os.makedirs(CATALOG_DIR, exist_ok=True)
 
@@ -224,17 +229,24 @@ def stage_catalogs(minor_versions: list[str], pull_secret: str,
         for mv in minor_versions:
             dest = os.path.join(CATALOG_DIR, f"catalog-{mv}.json")
             if os.path.exists(dest) and os.path.getsize(dest) > 0:
-                log(f"  SKIP  catalog-{mv}.json (already exists, {os.path.getsize(dest) / 1e6:.0f} MB)")
-                continue
+                age = _age_days(dest)
+                if max_age_days <= 0 or age < max_age_days:
+                    log(f"  SKIP  catalog-{mv}.json ({os.path.getsize(dest) / 1e6:.0f} MB, {age:.1f}d old)")
+                    continue
+                log(f"  STALE catalog-{mv}.json ({age:.1f}d > {max_age_days}d) — re-rendering")
 
+            # Render to a temp file first so a failed render never clobbers
+            # the previous good catalog.
             image = f"registry.redhat.io/redhat/redhat-operator-index:v{mv}"
+            tmp_dest = dest + ".tmp"
             rc = run([opm_bin, "render", image, "-o", "json"], env=env,
-                     output_file=dest)
-            if rc != 0:
-                log(f"  WARNING: opm render failed for {mv} — removing empty output")
-                # Remove the empty file so stage 2 doesn't process a blank catalog.
-                if os.path.exists(dest) and os.path.getsize(dest) == 0:
-                    os.remove(dest)
+                     output_file=tmp_dest)
+            if rc == 0 and os.path.exists(tmp_dest) and os.path.getsize(tmp_dest) > 0:
+                os.replace(tmp_dest, dest)
+            else:
+                log(f"  WARNING: opm render failed for {mv} — keeping previous catalog")
+                if os.path.exists(tmp_dest):
+                    os.remove(tmp_dest)
     finally:
         shutil.rmtree(tmpdir, ignore_errors=True)
 
@@ -293,7 +305,8 @@ def stage_ocp_pullspecs(versions: list[str], pull_secret: str, oc_bin: str,
 
 def stage_ocp_triage(pullspec_files: list[str], workers: int,
                      skip_existing: bool, false_only: bool,
-                     scanner: str = "rhacs", pull_secret: str | None = None):
+                     scanner: str = "rhacs", pull_secret: str | None = None,
+                     max_report_age: int = 7):
     log(f"=== STAGE 4: Triage OCP releases ({scanner}) ===")
     os.makedirs(REPORTS_DIR, exist_ok=True)
 
@@ -305,18 +318,26 @@ def stage_ocp_triage(pullspec_files: list[str], workers: int,
         out = os.path.join(REPORTS_DIR, f"ocp-{ver}.csv")
 
         if os.path.exists(out) and os.path.getsize(out) > 0:
-            # Verify completeness: compare scanned components vs manifest
+            # Two independent freshness dimensions:
+            #  - completeness: every manifest component scanned
+            #  - verdict age:  VEX data updates daily; reports older than
+            #    --max-report-age get re-audited.  Re-runs are cheap and
+            #    Central-friendly: digest-pinned scans/SBOMs come from the
+            #    permanent local cache, only VEX re-syncs (ETag/304).
             try:
                 import pandas as pd, re as _re
                 _df = pd.read_csv(out)
                 _scanned = _df['OCP_COMPONENT'].nunique() if 'OCP_COMPONENT' in _df.columns else 0
                 _expected = sum(1 for line in open(txt)
                                 if _re.match(r'^\S+\s+\S+@sha256:[a-f0-9]+', line.strip()))
+                _age = _age_days(out)
                 if _scanned < _expected:
                     log(f"  RERUN {out} (incomplete: {_scanned}/{_expected} components)")
                     os.remove(out)
+                elif max_report_age > 0 and _age >= max_report_age:
+                    log(f"  STALE {out} ({_age:.1f}d > {max_report_age}d) — re-auditing from cached scans")
                 else:
-                    log(f"  SKIP  {out} ({_scanned}/{_expected} components)")
+                    log(f"  SKIP  {out} ({_scanned}/{_expected} components, {_age:.1f}d old)")
                     continue
             except Exception:
                 log(f"  SKIP  {out} (already exists)")
@@ -342,79 +363,11 @@ def stage_ocp_triage(pullspec_files: list[str], workers: int,
 
 
 # ---------------------------------------------------------------------------
-# Stage 5a — pre-fill duplicate operator reports across minor versions
+# Stage 5a — operator report prefill: REMOVED
 # ---------------------------------------------------------------------------
-
-def stage_prefill_operator_reports(minor_versions: list[str]) -> int:
-    """
-    Parse every local catalog and build a cross-version map of expected report
-    basenames.  The filename {operator}-{channel}-{bundle_version}.csv is a
-    content fingerprint: same name = same head bundle = same images = same
-    scan result.
-
-    If a file already exists under any ocp-{ver}/ directory, copy it to every
-    other version directory that expects the same file.  The subsequent
-    triage_operators --skip-existing call then skips all pre-populated entries,
-    avoiding redundant RHACS scans.
-
-    Returns the total number of files copied.
-    """
-    log("=== STAGE 5a: Pre-fill shared operator reports across minor versions ===")
-
-    # Import catalog helpers (no credentials needed for parsing).
-    import triage_operators as _to
-
-    # basename → {ocp_minor_ver: absolute_dest_path}
-    basename_map: dict[str, dict[str, str]] = {}
-
-    for ver in minor_versions:
-        cat_path = os.path.join(CATALOG_DIR, f"catalog-{ver}.json")
-        if not os.path.exists(cat_path):
-            log(f"  SKIP  catalog-{ver}.json not found — cannot prefill for {ver}")
-            continue
-        try:
-            op_index = _to.build_operator_index(cat_path)
-        except Exception as exc:
-            log(f"  WARNING: failed to parse catalog-{ver}.json: {exc}")
-            continue
-
-        for op_name, ch_entries in op_index.items():
-            for ch_entry in ch_entries:
-                channel     = ch_entry["channel"]
-                bundle      = ch_entry["head_bundle"]
-                bundle_name = bundle.get("name", "")
-
-                # Mirror the version extraction logic in triage_operators.py main().
-                _vm = re.search(r"\.v(\d)", bundle_name)
-                if _vm:
-                    bundle_version = bundle_name[_vm.start(0) + 1:]
-                elif bundle_name.startswith(op_name + "."):
-                    bundle_version = bundle_name[len(op_name) + 1:]
-                else:
-                    bundle_version = bundle_name
-
-                dest = _to._report_path(ver, op_name, channel, bundle_version)
-                basename_map.setdefault(os.path.basename(dest), {})[ver] = dest
-
-    copied = 0
-    for basename, ver_paths in basename_map.items():
-        if len(ver_paths) < 2:
-            continue  # only appears in one version catalog — nothing to share
-
-        existing = {v: p for v, p in ver_paths.items() if os.path.exists(p)}
-        if not existing:
-            continue  # not yet scanned anywhere
-
-        src_ver, src_path = next(iter(existing.items()))
-        for dest_ver, dest_path in ver_paths.items():
-            if os.path.exists(dest_path):
-                continue  # already present in this version dir
-            log(f"  COPY  {basename}  ({src_ver} → {dest_ver})")
-            shutil.copy2(src_path, dest_path)
-            copied += 1
-
-    log(f"  Pre-filled {copied} shared report(s) — triage will skip these.")
-    return copied
+# Operator reports are now stored flat (data/reports/operators/, one CSV per
+# unique bundle) with the minor→bundle association in operators_index.json, so
+# the old cross-version prefill/copy is obsolete — deduplication is structural.
 
 
 # ---------------------------------------------------------------------------
@@ -493,6 +446,22 @@ def parse_args() -> argparse.Namespace:
         "--skip-existing", action="store_true", default=False,
         help="Skip catalogs / pullspec files / reports that already exist on disk. "
              "Useful for resuming an interrupted run.",
+    )
+    parser.add_argument(
+        "--max-report-age", type=int, default=7, metavar="DAYS",
+        help="Re-audit OCP report CSVs older than this many days so verdicts track "
+             "current VEX data (0 = never). Re-runs use the permanent digest-pinned "
+             "scan/SBOM cache — no extra load on RHACS Central. Default: 7.",
+    )
+    parser.add_argument(
+        "--max-catalog-age", type=int, default=7, metavar="DAYS",
+        help="Re-render operator index catalogs older than this many days so new "
+             "bundle versions get picked up (0 = never). Default: 7.",
+    )
+    parser.add_argument(
+        "--refresh-operator-verdicts", action="store_true", default=False,
+        help="After Stage 5, re-audit all operator report verdicts offline from "
+             "cached scans (retriage_offline.py) — CPU only, zero Central load.",
     )
     parser.add_argument(
         "--scanner", choices=["rhacs", "grype", "clairv4"], default="rhacs",
@@ -577,7 +546,8 @@ def main():
 
     # ── Stage 1: operator catalogs ──────────────────────────────────────────
     if not args.skip_catalogs:
-        stage_catalogs(minor_versions_ordered, pull_secret, args.opm, args.skip_existing)
+        stage_catalogs(minor_versions_ordered, pull_secret, args.opm,
+                       args.skip_existing, max_age_days=args.max_catalog_age)
     else:
         log("=== STAGE 1: SKIPPED (--skip-catalogs) ===")
 
@@ -593,19 +563,34 @@ def main():
             versions, pull_secret, args.oc, args.arch, args.skip_existing
         )
         stage_ocp_triage(pullspec_files, args.workers, args.skip_existing,
-                         args.false_only, scanner=scanner, pull_secret=pull_secret)
+                         args.false_only, scanner=scanner, pull_secret=pull_secret,
+                         max_report_age=args.max_report_age)
     else:
         log("=== STAGES 3+4: SKIPPED (--skip-ocp) ===")
 
     # ── Stage 5: operator triage ─────────────────────────────────────────────
     if not args.skip_operators:
-        stage_prefill_operator_reports(minor_versions_ordered)
+        log("=== STAGE 5a: Prefill no longer needed (flat operator storage) ===")
         stage_operator_triage(
             minor_versions_ordered, args.workers, True, args.false_only,
             scanner=scanner, pull_secret=pull_secret
         )
     else:
         log("=== STAGE 5: SKIPPED (--skip-operators) ===")
+
+    # ── Stage 6: offline verdict refresh for operators ──────────────────────
+    # Operator report filenames encode the bundle version, so skip-existing is
+    # correct for scan coverage — but the VEX verdicts inside age.  The offline
+    # retriage recomputes them from cached scans with zero RHACS/network load.
+    if args.refresh_operator_verdicts and not args.skip_operators:
+        log("=== STAGE 6: Offline operator verdict refresh (no Central load) ===")
+        run([sys.executable, "retriage_offline.py",
+             "--operators-only",
+             "--version", ",".join(minor_versions_ordered),
+             "--workers", str(args.workers)])
+    elif not args.skip_operators:
+        log("HINT: operator verdicts age as VEX updates — refresh offline anytime with:")
+        log(f"      python3 retriage_offline.py --operators-only --version {','.join(minor_versions_ordered)}")
 
     log("All stages complete.")
 

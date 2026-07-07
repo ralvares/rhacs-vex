@@ -234,7 +234,13 @@ against a module-stream installed package.
 
 ## Step 5 — `audit_row_detailed` Decision Tree
 
-For each `(component, version, CVE)` row, after loading the VEX file:
+For each `(component, version, CVE)` row, after loading the VEX file.
+`audit_row_detailed` is a thin wrapper: `_audit_verdict` produces
+`[verdict, fix, justification, severity]`, then `_derive_state` appends a 5th
+value — the Red Hat CVE-page **State** (Fixed / Not affected / Fix available /
+Under investigation / Will not fix / Fix deferred / Affected), read from VEX
+`no_fix_planned` / `none_available` remediation details. Exposed as the
+`VEX_STATE` column in table and CSV/JSON output.
 
 ```
 1. Red Hat states NO product is affected (catch-all red_hat_products PID)?
@@ -249,7 +255,9 @@ For each `(component, version, CVE)` row, after loading the VEX file:
 2. Non-RPM component (Go binary, npm, pip — no el8/el9 in version string
    AND scan SOURCE ≠ OS; SOURCE=OS components are treated as RPMs)?
    ├─ 2a. _image_vex_lookup (OCP/operator): match workload identity, most specific first
-   │      ├─ OCI purl exact match (_build_image_purl repository_url vs VEX purls)
+   │      ├─ OCI purl match: candidates from image ref + name label
+   │      │  (exact repository_url first, purl package-name fallback —
+   │      │   bridges Brew label ns vs registry ns, no hardcoded rewrites)
    │      ├─ image-path PID normalization (openshift4/ose-etcd-rhel9 → etcd)
    │      ├─ generic component PIDs (rhcos, via pkg:generic purl)
    │      └─ SHA-exact entries (our digest) override all generic matches

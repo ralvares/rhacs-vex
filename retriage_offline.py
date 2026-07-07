@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Offline retriage — re-run audit on all OCP + operator reports from cached data. Zero network."""
 import sys, os, re, json, time, glob, argparse
+
+# Bound each worker process's parsed-VEX LRU cache BEFORE triage is imported
+# anywhere (the cache size is fixed at import time).  N worker processes
+# otherwise multiply a gigabyte-scale cache and swap the machine.
+os.environ.setdefault('VEX_CACHE_SIZE', '96')
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pandas as pd
@@ -48,7 +53,7 @@ def retriage_ocp(txt):
         img_df = triage.rhacs_to_df(image_data)
         if img_df.empty: scanned += 1; continue
         img_df['RHACS_SEVERITY'] = img_df['SEVERITY'].apply(lambda s: triage._RHACS_SEVERITY_MAP.get(str(s).strip().upper(), 'Unknown'))
-        img_df[['AUDIT_RESULT','VEX_FIX_VER','JUSTIFICATION','SEVERITY']] = img_df.apply(lambda row: list(triage.audit_row_detailed(row, img_ctx)), axis=1, result_type='expand')
+        img_df[['AUDIT_RESULT','VEX_FIX_VER','JUSTIFICATION','SEVERITY','VEX_STATE']] = img_df.apply(lambda row: list(triage.audit_row_detailed(row, img_ctx)), axis=1, result_type='expand')
         img_df['VEX_PRODUCT'] = img_df.apply(lambda row: triage._vex_product_for_row(row, img_ctx), axis=1)
         img_df['SEVERITY_MISMATCH'] = (img_df['RHACS_SEVERITY'] != 'Unknown') & (img_df['SEVERITY'] != img_df['RHACS_SEVERITY'])
         img_df['OCP_COMPONENT'] = comp_name
@@ -104,7 +109,7 @@ def _retriage_one_operator_csv(csv_path):
             if img_df.empty:
                 continue
             img_df['RHACS_SEVERITY'] = img_df['SEVERITY'].apply(lambda s: triage._RHACS_SEVERITY_MAP.get(str(s).strip().upper(), 'Unknown'))
-            img_df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY']] = img_df.apply(lambda row: list(triage.audit_row_detailed(row, img_ctx)), axis=1, result_type='expand')
+            img_df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY', 'VEX_STATE']] = img_df.apply(lambda row: list(triage.audit_row_detailed(row, img_ctx)), axis=1, result_type='expand')
             img_df['VEX_PRODUCT'] = img_df.apply(lambda row: triage._vex_product_for_row(row, img_ctx), axis=1)
             img_df['SEVERITY_MISMATCH'] = (img_df['RHACS_SEVERITY'] != 'Unknown') & (img_df['SEVERITY'] != img_df['RHACS_SEVERITY'])
             img_df['IMAGE'] = str(image_ref)
@@ -121,57 +126,61 @@ def _retriage_one_operator_csv(csv_path):
 
 
 def retriage_operators(workers=10, minor_versions=None):
-    """Re-run audit on operator CSVs using cached scan data (threaded).
+    """Re-run audit on the flat operator CSVs using cached scan data.
 
-    Uses ThreadPoolExecutor (not Process) so all workers share the _load_vex
-    LRU cache — each VEX file is read from disk once instead of once-per-process.
+    Reports are stored flat now (data/reports/operators/*.csv, one file per
+    unique bundle), so there is no cross-version duplication to dedup.
 
-    When minor_versions is set (e.g. {'4.22'}), only directories matching those
-    minor versions are processed.  Operators shared across versions (identical
-    CSV content) are triaged once and the result is copied to duplicates.
+    When minor_versions is set (e.g. {'4.22'}), CSVs are filtered via
+    operators_index.json: a CSV is kept when its recorded OCP-minor list
+    intersects minor_versions.  If the index is missing, or a basename is absent
+    from it, the CSV is included (fail-open).
     """
-    op_dirs = sorted(glob.glob(os.path.join(REPORT_DIR, 'ocp-*')))
-    op_dirs = [d for d in op_dirs if os.path.isdir(d)]
+    all_csvs = sorted(glob.glob(os.path.join(REPORT_DIR, 'operators', '*.csv')))
+
     if minor_versions:
-        op_dirs = [d for d in op_dirs
-                   if os.path.basename(d).replace('ocp-', '') in minor_versions]
-    all_csvs = [csv for d in op_dirs for csv in sorted(glob.glob(os.path.join(d, '*.csv')))]
+        index = {}
+        index_path = os.path.join(REPORT_DIR, 'operators_index.json')
+        if os.path.exists(index_path):
+            try:
+                with open(index_path) as f:
+                    index = json.load(f)
+            except Exception:
+                index = {}
 
-    # Deduplicate: group CSVs by basename, pick one canonical path per group,
-    # triage it, then copy the result to duplicates.
-    from collections import defaultdict
-    by_name = defaultdict(list)
-    for csv in all_csvs:
-        by_name[os.path.basename(csv)].append(csv)
-    canonical = [paths[0] for paths in by_name.values()]
-    dupes_map = {paths[0]: paths[1:] for paths in by_name.values() if len(paths) > 1}
-    n_deduped = len(all_csvs) - len(canonical)
+        def _keep(csv):
+            base = os.path.splitext(os.path.basename(csv))[0]
+            mins = index.get(base)
+            if not mins:                       # missing index or unknown base → include
+                return True
+            return bool(set(mins) & set(minor_versions))
 
-    print(f'  Found {len(all_csvs)} operator CSVs across {len(op_dirs)} OCP version(s), '
-          f'{len(canonical)} unique, {n_deduped} duplicates, {workers} threads', flush=True)
+        all_csvs = [c for c in all_csvs if _keep(c)]
 
-    total = done = errors = copied = 0
-    with ThreadPoolExecutor(max_workers=workers) as ex:
-        futures = {ex.submit(_retriage_one_operator_csv, csv): csv for csv in canonical}
+    print(f'  Found {len(all_csvs)} operator CSVs to retriage, '
+          f'{workers} worker processes', flush=True)
+
+    total = done = errors = 0
+    # ProcessPool, not ThreadPool: the audit is pure CPU-bound Python, so
+    # threads serialize on the GIL and give zero parallelism.  Fork context —
+    # children inherit the parsed module state and each keeps its own
+    # _load_vex LRU (bounded at 512 entries).
+    import multiprocessing as _mp
+    with ProcessPoolExecutor(max_workers=workers,
+                             mp_context=_mp.get_context('fork')) as ex:
+        futures = {ex.submit(_retriage_one_operator_csv, csv): csv for csv in all_csvs}
         for future in as_completed(futures):
             done += 1
-            csv_path = futures[future]
             basename, ok, err = future.result()
             if ok:
                 total += 1
-                for dup in dupes_map.get(csv_path, []):
-                    try:
-                        import shutil
-                        shutil.copy2(csv_path, dup)
-                        copied += 1
-                    except Exception:
-                        pass
             if err:
                 errors += 1
                 print(f'  ERROR {basename}: {err}', flush=True)
-            if done % 20 == 0 or done == len(canonical):
-                print(f'  [{done}/{len(canonical)}] ({100*done//len(canonical)}%) updated={total} errors={errors} copied={copied}', flush=True)
-    return total + copied
+            if done % 20 == 0 or done == len(all_csvs):
+                print(f'  [{done}/{len(all_csvs)}] ({100*done//len(all_csvs)}%) '
+                      f'updated={total} errors={errors}', flush=True)
+    return total
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Offline retriage — zero network calls')

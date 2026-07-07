@@ -59,7 +59,7 @@ If scan data doesn't exist for an image, it is skipped (shown as "skipped" in ou
 
 - After changing triage logic in `triage.py` (new VEX matching rules, bug fixes)
 - After updating VEX files (`data/vex/`) with fresh Red Hat advisories
-- To regenerate reports with new output columns (SOURCE, LOCATION, FIXABLE, etc.)
+- To regenerate reports with new output columns (SOURCE, LOCATION, FIXABLE, VEX_STATE, etc.)
 - To rebuild parquets with FIXED_IN cross-version enrichment
 
 ## What it does NOT do

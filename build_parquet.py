@@ -20,6 +20,7 @@ import glob
 import json
 import os
 import re
+import shutil
 import sys
 import time
 
@@ -32,6 +33,8 @@ REPORTS_DIR = os.path.join(BASE_DIR, "data", "reports")
 PARQUET_DIR = os.path.join(BASE_DIR, "data", "parquet")
 OCP_DIR     = os.path.join(PARQUET_DIR, "ocp")
 OPS_DIR     = os.path.join(PARQUET_DIR, "operators")
+OPS_REPORTS_DIR = os.path.join(REPORTS_DIR, "operators")
+OPS_INDEX       = os.path.join(REPORTS_DIR, "operators_index.json")
 MANIFEST    = os.path.join(BASE_DIR, "data", "manifest.json")
 CVE_INDEX   = os.path.join(PARQUET_DIR, "cve-index.parquet")
 LEGACY_OUT  = os.path.join(BASE_DIR, "data", "ocp.parquet")
@@ -114,23 +117,28 @@ def build_one_version(csv_path, version):
     return version, stats
 
 
-def build_operators(ocp_version_dir):
-    """Build per-operator parquets from CSVs in data/reports/ocp-{ver}/."""
-    scopes = {}
-    ocp_ver = os.path.basename(ocp_version_dir).replace("ocp-", "")
+def load_operators_index():
+    """Load data/reports/operators_index.json → {base: [minor, ...]}.
 
-    csvs = sorted(glob.glob(os.path.join(ocp_version_dir, "*.csv")))
-    if not csvs:
-        return scopes
+    This is now the ONLY place the operator-bundle → OCP-minor association
+    lives (reports are stored flat, one CSV per unique bundle)."""
+    if os.path.exists(OPS_INDEX):
+        try:
+            with open(OPS_INDEX) as f:
+                return {k: list(v) for k, v in json.load(f).items()}
+        except Exception as e:
+            print(f"  WARN: could not read {OPS_INDEX}: {e}")
+    return {}
 
-    # Build operator name lookup from catalog if available
-    minor = '.'.join(ocp_ver.split('.')[:2])
-    catalog_path = os.path.join(BASE_DIR, "data", "catalogs", f"catalog-{minor}.json")
-    known_operators = set()
-    if os.path.exists(catalog_path):
+
+def load_known_operators():
+    """Union of olm.package names across all available catalogs, used to split
+    a report basename into (operator, channel, bundle)."""
+    known = set()
+    for cat in glob.glob(os.path.join(BASE_DIR, "data", "catalogs", "catalog-*.json")):
         try:
             buf, depth = '', 0
-            with open(catalog_path) as cf:
+            with open(cat) as cf:
                 for line in cf:
                     buf += line
                     depth += line.count('{') - line.count('}')
@@ -138,12 +146,71 @@ def build_operators(ocp_version_dir):
                         try:
                             obj = json.loads(buf)
                             if obj.get('schema') == 'olm.package':
-                                known_operators.add(obj['name'])
+                                known.add(obj['name'])
                         except Exception:
                             pass
                         buf = ''
         except Exception:
             pass
+    return known
+
+
+def parse_operator_base(base, known_operators):
+    """Split a report basename into (operator, channel, bundle).
+
+    e.g. 'openshift-gitops-operator-gitops-1.20-v1.20.4' →
+         ('openshift-gitops-operator', 'gitops-1.20', 'v1.20.4')
+    """
+    op_name, op_channel, op_bundle = base, "", ""
+    for known in sorted(known_operators, key=len, reverse=True):
+        if base.startswith(known + "-"):
+            op_name = known
+            rest = base[len(known) + 1:]
+            v_match = re.search(r'-v(\d[\d._-]*)$', rest)
+            if v_match:
+                op_bundle = "v" + v_match.group(1)
+                op_channel = rest[:v_match.start()]
+            else:
+                op_channel = rest
+            break
+    return op_name, op_channel, op_bundle
+
+
+def build_operators():
+    """Build one flat parquet per unique operator bundle from
+    data/reports/operators/*.csv and emit one ALIAS manifest scope per
+    (OCP-minor, bundle) pair from operators_index.json.
+
+    Every alias scope for a bundle carries the same manifest schema as before
+    and its "file" points at the SAME shared flat parquet
+    (data/parquet/operators/{base}.parquet), so the UI's
+    operators/{minor}/{base} scope keys keep resolving unchanged while the
+    bytes are stored exactly once.
+
+    Because the parquet is shared across a bundle's minors, its baked
+    OCP_VERSION/SCOPE columns use the bundle's primary (lowest) minor — enough
+    for fixInfo()/navigation in the CVE-search view to resolve a valid scope.
+
+    Returns (scopes, meta) where meta[base] = (operator, channel, bundle);
+    meta feeds the FIXED_IN cross-bundle enrichment with fresh in-memory
+    metadata instead of the (possibly stale) on-disk manifest.
+    """
+    scopes = {}
+    meta = {}
+
+    csvs = sorted(glob.glob(os.path.join(OPS_REPORTS_DIR, "*.csv")))
+    if not csvs:
+        return scopes, meta
+
+    index = load_operators_index()
+    known_operators = load_known_operators()
+    os.makedirs(OPS_DIR, exist_ok=True)
+
+    # Drop stale per-version parquet subdirs (data/parquet/operators/{minor}/)
+    # left over from the old layout — storage is flat now.
+    for sub in glob.glob(os.path.join(OPS_DIR, "*")):
+        if os.path.isdir(sub):
+            shutil.rmtree(sub)
 
     for csv_path in csvs:
         base = os.path.splitext(os.path.basename(csv_path))[0]
@@ -151,21 +218,22 @@ def build_operators(ocp_version_dir):
         if df is None or df.empty:
             continue
 
-        df["OCP_VERSION"] = ocp_ver
-        scope_key = f"operators/{ocp_ver}/{base}"
-        df["SCOPE"] = scope_key
+        minors = sorted(index.get(base, []))
+        if not minors:
+            print(f"  WARN: {base} absent from operators_index.json — "
+                  f"parquet built but no scope emitted")
+        primary_minor = minors[0] if minors else ""
+
+        df["OCP_VERSION"] = primary_minor
+        df["SCOPE"] = f"operators/{primary_minor}/{base}" if primary_minor else f"operators/{base}"
         df["source_file"] = os.path.relpath(csv_path, BASE_DIR)
-        # Ensure consistent columns with OCP parquets
         if "OCP_COMPONENT" not in df.columns:
             df["OCP_COMPONENT"] = df.get("IMAGE_ROLE", "")
         for col in ("SOURCE", "LOCATION", "IMAGE", "FIXED_IN"):
             if col not in df.columns:
                 df[col] = ""
 
-        out_dir = os.path.join(OPS_DIR, ocp_ver)
-        os.makedirs(out_dir, exist_ok=True)
-        out_path = os.path.join(out_dir, f"{base}.parquet")
-
+        out_path = os.path.join(OPS_DIR, f"{base}.parquet")
         table = pa.Table.from_pandas(df, preserve_index=False)
         pq.write_table(table, out_path,
                         compression=COMPRESSION,
@@ -182,31 +250,16 @@ def build_operators(ocp_version_dir):
         fp_cves  = int(df[fp_mask]["CVE"].nunique()) if fp_mask.any() else 0
         sev = pos_df.drop_duplicates("CVE")["SEVERITY"].value_counts().to_dict() if len(pos_df) and "SEVERITY" in pos_df.columns else {}
 
-        # Parse {operator}-{channel}-{version} from filename using catalog lookup
-        op_name = base
-        op_channel = ""
-        op_bundle = ""
-        for known in sorted(known_operators, key=len, reverse=True):
-            if base.startswith(known + "-"):
-                op_name = known
-                rest = base[len(known) + 1:]
-                # rest = "gitops-1.20-v1.20.4" → channel "gitops-1.20", bundle "v1.20.4"
-                # Find last -v segment as bundle version
-                v_match = re.search(r'-v(\d[\d._-]*)$', rest)
-                if v_match:
-                    op_bundle = "v" + v_match.group(1)
-                    op_channel = rest[:v_match.start()]
-                else:
-                    op_channel = rest
-                break
+        op_name, op_channel, op_bundle = parse_operator_base(base, known_operators)
+        meta[base] = (op_name, op_channel, op_bundle)
 
-        scopes[scope_key] = {
-            "file": os.path.relpath(out_path, BASE_DIR),
+        rel_file = os.path.relpath(out_path, BASE_DIR)
+        stats_common = {
+            "file": rel_file,
             "label": base,
             "operator": op_name,
             "channel": op_channel,
             "bundle": op_bundle,
-            "ocp_version": ocp_ver,
             "type": "operator",
             "rows": len(df),
             "findings_positive": int(pos_mask.sum()),
@@ -217,7 +270,15 @@ def build_operators(ocp_version_dir):
             "size_kb": round(size_kb, 1),
         }
 
-    return scopes
+        # One alias scope per OCP minor referencing this bundle — all share the
+        # same flat parquet (rel_file); only ocp_version differs.
+        for minor in minors:
+            entry = dict(stats_common)
+            entry["ocp_version"] = minor
+            entry["file"] = rel_file  # explicit: shared flat path
+            scopes[f"operators/{minor}/{base}"] = entry
+
+    return scopes, meta
 
 
 def _version_sort_key(ver):
@@ -296,59 +357,63 @@ def enrich_fixed_in():
     print(f"  Total: {enriched} findings enriched")
 
 
-def enrich_operator_fixed_in():
-    """Add FIXED_IN column to operator parquets — cross-version across all OCP dirs."""
-    op_dirs = sorted(glob.glob(os.path.join(OPS_DIR, "*")))
-    op_dirs = [d for d in op_dirs if os.path.isdir(d)]
-    if not op_dirs:
+def _bundle_sort_key(bundle):
+    """Version-aware ordering key for a bundle string ('v1.20.4', 'v7.10.7-opr-1')."""
+    nums = tuple(int(x) for x in re.findall(r'\d+', bundle or ''))
+    return (nums, bundle or "")
+
+
+def enrich_operator_fixed_in(meta):
+    """Add FIXED_IN to the flat operator parquets — cross-BUNDLE within each
+    operator.
+
+    Reports are now flat (one parquet per unique bundle, OCP-version-agnostic),
+    so a bundle is compared against the operator's *other* bundles ordered by
+    (channel, bundle-version).  This is the faithful analog of the old
+    per-OCP-dir logic: comparing a bundle against an identical copy of itself in
+    another OCP dir always produced an empty FIXED_IN, so collapsing to
+    per-bundle ordering preserves the meaningful behavior.
+
+    *meta* maps base → (operator, channel, bundle) (fresh from build_operators;
+    avoids depending on the possibly-stale manifest).  The FIXED_IN label keeps
+    the '{operator} {x}/{channel}' shape the UI's fixInfo() parses (first token
+    = operator, text after last '/' = channel).
+    """
+    parquets = sorted(glob.glob(os.path.join(OPS_DIR, "*.parquet")))
+    if not parquets:
         return
 
-    print("\n=== Enriching FIXED_IN across operator versions ===")
+    print("\n=== Enriching FIXED_IN across operator bundles ===")
 
-    # Load manifest for operator name grouping
-    manifest_data = {}
-    if os.path.exists(MANIFEST):
-        try:
-            with open(MANIFEST) as f:
-                manifest_data = json.load(f).get("scopes", {})
-        except Exception:
-            pass
-
-    # Collect ALL operator parquets across ALL OCP version dirs, group by operator name
-    op_groups = {}  # operator_name → [(sort_key, label, parquet_path)]
-    for op_dir in op_dirs:
-        ocp_ver = os.path.basename(op_dir)
-        for pf in sorted(glob.glob(os.path.join(op_dir, "*.parquet"))):
-            base = os.path.splitext(os.path.basename(pf))[0]
-            scope_key = f"operators/{ocp_ver}/{base}"
-            entry = manifest_data.get(scope_key, {})
-            op_name = entry.get("operator", base)
-            channel = entry.get("channel", "")
-            # Sort key: OCP version + channel for cross-version ordering
-            sort_key = f"{ocp_ver}-{channel}"
-            label = f"{op_name} {ocp_ver}/{channel}" if channel else f"{op_name} {ocp_ver}"
-            op_groups.setdefault(op_name, []).append((sort_key, label, base, pf))
+    # Group parquets by operator name; order each operator's bundles by
+    # (channel, bundle-version).
+    op_groups = {}  # operator → [(sort_key, base, channel, bundle, pf)]
+    for pf in parquets:
+        base = os.path.splitext(os.path.basename(pf))[0]
+        op_name, channel, bundle = meta.get(base, (base, "", ""))
+        sort_key = (channel, _bundle_sort_key(bundle))
+        op_groups.setdefault(op_name, []).append((sort_key, base, channel, bundle, pf))
 
     total_enriched = 0
-    for op_name, versions in op_groups.items():
-        if len(versions) < 2:
+    for op_name, bundles in op_groups.items():
+        if len(bundles) < 2:
             continue
 
-        versions.sort(key=lambda x: x[0])
+        bundles.sort(key=lambda x: x[0])
 
-        # Build positive sets per version
-        positive_by_ver = {}
-        for sort_key, label, base, pf in versions:
+        # Positive (CVE, COMPONENT) sets per base
+        positive_by_base = {}
+        for _sk, base, _ch, _bn, pf in bundles:
             try:
                 df = pd.read_parquet(pf, columns=["CVE", "COMPONENT", "AUDIT_RESULT"])
                 pos = df[df["AUDIT_RESULT"].str.contains("POSITIVE", na=False) &
                           ~df["AUDIT_RESULT"].str.contains("FALSE", na=False)]
-                positive_by_ver[base] = set(zip(pos["CVE"], pos["COMPONENT"]))
+                positive_by_base[base] = set(zip(pos["CVE"], pos["COMPONENT"]))
             except Exception:
                 pass
 
-        for idx, (sort_key, label, base, pf) in enumerate(versions):
-            later = versions[idx + 1:]
+        for idx, (_sk, base, channel, bundle, pf) in enumerate(bundles):
+            later = bundles[idx + 1:]
             if not later:
                 continue
             try:
@@ -365,9 +430,10 @@ def enrich_operator_fixed_in():
                     continue
                 key = (row["CVE"], row["COMPONENT"])
                 found = ""
-                for l_sk, l_label, l_base, l_pf in later:
-                    if key not in positive_by_ver.get(l_base, set()):
-                        found = l_label
+                for _l_sk, l_base, l_channel, l_bundle, _l_pf in later:
+                    if key not in positive_by_base.get(l_base, set()):
+                        found = (f"{op_name} {l_bundle}/{l_channel}"
+                                 if l_channel else f"{op_name} {l_bundle}")
                         break
                 fixed_in.append(found)
 
@@ -381,6 +447,7 @@ def enrich_operator_fixed_in():
             n = sum(1 for f in fixed_in if f)
             if n:
                 total_enriched += n
+                label = f"{op_name} {bundle}/{channel}" if channel else f"{op_name} {bundle}"
                 print(f"  {label}: {n} findings")
 
     if total_enriched:
@@ -420,8 +487,14 @@ def build_cve_index():
     print(f"  CVE index: {len(combined):,} rows, {size_kb:.0f} KB")
 
 
-def build_manifest(scopes):
-    """Write manifest.json with summary stats per scope."""
+def build_manifest(scopes, prune_operators=False):
+    """Write manifest.json with summary stats per scope.
+
+    Existing scopes are merged (so single-version / OCP-only builds don't drop
+    unrelated scopes).  When prune_operators=True (a full operator rebuild),
+    stale operators/* keys not in *scopes* are dropped first — this clears dead
+    scope keys whose backing per-version parquet has been removed by the flat
+    migration."""
     existing = {}
     if os.path.exists(MANIFEST):
         try:
@@ -429,6 +502,9 @@ def build_manifest(scopes):
                 existing = json.load(f).get("scopes", {})
         except Exception:
             pass
+
+    if prune_operators:
+        existing = {k: v for k, v in existing.items() if not k.startswith("operators/")}
 
     existing.update(scopes)
 
@@ -526,30 +602,38 @@ def main():
             except Exception:
                 pass
 
-        op_dir = os.path.join(BASE_DIR, "data", "parquet", "operators")
-        for pf in sorted(glob.glob(os.path.join(op_dir, "**", "*.parquet"), recursive=True)):
-            rel = os.path.relpath(pf, os.path.join(BASE_DIR, "data", "parquet"))
-            parts = rel.split(os.sep)
-            ocp_ver = parts[1] if len(parts) > 2 else ""
-            base = os.path.splitext(parts[-1])[0]
-            scope_key = f"operators/{ocp_ver}/{base}"
+        # Flat operator parquets → alias scopes operators/{minor}/{base} from
+        # operators_index.json (all aliases share the one flat parquet).
+        index = load_operators_index()
+        known_operators = load_known_operators()
+        for pf in sorted(glob.glob(os.path.join(OPS_DIR, "*.parquet"))):
+            base = os.path.splitext(os.path.basename(pf))[0]
+            minors = sorted(index.get(base, []))
             try:
                 df = pd.read_parquet(pf)
-                stats = _parquet_stats(pf, df)
-                stats["file"] = os.path.relpath(pf, BASE_DIR)
-                old = existing.get(scope_key, {})
-                stats["label"] = old.get("label", base)
-                stats["operator"] = old.get("operator", "")
-                stats["channel"] = old.get("channel", "")
-                stats["bundle"] = old.get("bundle", "")
-                stats["ocp_version"] = old.get("ocp_version", ocp_ver)
-                stats["type"] = "operator"
-                scopes[scope_key] = stats
-                print(f"  {scope_key}: {len(df):,} rows")
             except Exception as e:
-                print(f"  SKIP {scope_key}: {e}")
+                print(f"  SKIP operators/*/{base}: {e}")
+                continue
+            stats = _parquet_stats(pf, df)
+            rel_file = os.path.relpath(pf, BASE_DIR)
+            op_name, op_channel, op_bundle = parse_operator_base(base, known_operators)
+            if not minors:
+                print(f"  WARN operators/*/{base}: absent from operators_index.json")
+            for minor in minors:
+                scope_key = f"operators/{minor}/{base}"
+                old = existing.get(scope_key, {})
+                entry = dict(stats)
+                entry["file"] = rel_file
+                entry["label"] = old.get("label", base)
+                entry["operator"] = old.get("operator", op_name)
+                entry["channel"] = old.get("channel", op_channel)
+                entry["bundle"] = old.get("bundle", op_bundle)
+                entry["ocp_version"] = minor
+                entry["type"] = "operator"
+                scopes[scope_key] = entry
+            print(f"  operators/*/{base}: {len(df):,} rows → {len(minors)} alias scope(s)")
 
-        build_manifest(scopes)
+        build_manifest(scopes, prune_operators=True)
         print(f"\nDone in {time.time() - t0:.1f}s")
         return
 
@@ -595,24 +679,20 @@ def main():
         # Enrich OCP parquets with FIXED_IN — cross-version lookup
         enrich_fixed_in()
 
-        # Build operator parquets from subdirectories
-        op_dirs = sorted(glob.glob(os.path.join(REPORTS_DIR, "ocp-*")))
-        op_dirs = [d for d in op_dirs if os.path.isdir(d)]
-        if op_dirs:
-            print(f"\n=== Building operator parquets ({len(op_dirs)} OCP versions) ===")
-            op_count = 0
-            for d in op_dirs:
-                op_scopes = build_operators(d)
-                scopes.update(op_scopes)
-                op_count += len(op_scopes)
-                if op_scopes:
-                    ocp_v = os.path.basename(d).replace("ocp-", "")
-                    print(f"  ocp-{ocp_v}: {len(op_scopes)} operators")
-            print(f"  Total: {op_count} operator parquets")
+        # Build one flat parquet per unique operator bundle (data/reports/
+        # operators/*.csv) and emit alias scopes operators/{minor}/{base} from
+        # operators_index.json, all pointing at the shared flat parquet.
+        print(f"\n=== Building operator parquets (flat) ===")
+        op_scopes, op_meta = build_operators()
+        scopes.update(op_scopes)
+        n_bundles = len({s["file"] for s in op_scopes.values()}) if op_scopes else 0
+        print(f"  {n_bundles} unique bundles → {len(op_scopes)} alias scopes")
 
-        enrich_operator_fixed_in()
+        enrich_operator_fixed_in(op_meta)
 
-        build_manifest(scopes)
+        # prune_operators=True drops dead operators/* keys carried over from the
+        # old per-version layout (their per-version parquets are gone now).
+        build_manifest(scopes, prune_operators=True)
         build_cve_index()
 
         if args.legacy:

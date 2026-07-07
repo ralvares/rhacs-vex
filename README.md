@@ -339,14 +339,15 @@ VEX scope: registry.redhat.io/rhacm2/, rhacm2/, advanced_cluster_management, ...
 🔄 Syncing 80 new/updated CVEs (0 cached)...
 ✅ Sync Complete in 1.59s.
 🚀 Running Structured Audit — context: rhacm2/multicluster-operators-subscription-rhel9 2.16 (RHEL 9)
-┌────────────────┬───────────┬───────────┬───────────┬────────────────┬─────────────────┬────────────────────────────────────────────────────┐
-│ CVE            │ Component │ RHACS Sev │ VEX Sev   │ Verdict        │ Fix             │ Justification                                      │
-├────────────────┼───────────┼───────────┼───────────┼────────────────┼─────────────────┼────────────────────────────────────────────────────┤
-│ CVE-2026-27532 │ openssl   │ Important │ Important │ POSITIVE       │ 3.2.2-6.el9_5.1 │ Installed 3.2.2-6.el9_5 < fix 3.2.2-6.el9_5.1.     │
-│ CVE-2026-33186 │ grpc      │ Important │ Important │ FALSE POSITIVE │ -               │ Not affected (vulnerable code not present). Red H… │
-│ CVE-2026-25679 │ stdlib    │ Important │ Moderate  │ FALSE POSITIVE │ -               │ known_not_affected (Red Hat Advanced Cluster Mana… │
-│ CVE-2026-1229  │ circl     │ Moderate  │ Moderate  │ FALSE POSITIVE │ -               │ No supported Red Hat product affected.             │
-└────────────────┴───────────┴───────────┴───────────┴────────────────┴─────────────────┴────────────────────────────────────────────────────┘
+┌────────────────┬───────────┬───────────┬───────────┬────────────────┬───────────────┬─────────────────┬────────────────────────────────────────────────┐
+│ CVE            │ Component │ RHACS Sev │ VEX Sev   │ Verdict        │ State         │ Fix             │ Justification                                  │
+├────────────────┼───────────┼───────────┼───────────┼────────────────┼───────────────┼─────────────────┼────────────────────────────────────────────────┤
+│ CVE-2026-27532 │ openssl   │ Important │ Important │ POSITIVE       │ Fix available │ 3.2.2-6.el9_5.1 │ Installed 3.2.2-6.el9_5 < fix 3.2.2-6.el9_5.1. │
+│ CVE-2026-30991 │ pam       │ Moderate  │ Moderate  │ POSITIVE       │ Will not fix  │ -               │ known_affected. no_fix_planned.                │
+│ CVE-2026-33186 │ grpc      │ Important │ Important │ FALSE POSITIVE │ Not affected  │ -               │ Not affected (vulnerable code not present). R… │
+│ CVE-2026-25679 │ stdlib    │ Important │ Moderate  │ FALSE POSITIVE │ Not affected  │ -               │ known_not_affected (Red Hat Advanced Cluster … │
+│ CVE-2026-1229  │ circl     │ Moderate  │ Moderate  │ FALSE POSITIVE │ Not affected  │ -               │ No supported Red Hat product affected.         │
+└────────────────┴───────────┴───────────┴───────────┴────────────────┴───────────────┴─────────────────┴────────────────────────────────────────────────┘
 
 Image: registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9 (sha256:58f24f...)
 RHACS reports 112 findings (2 Critical, 31 Important, 64 Moderate, 15 Low) → VEX triage: 98 false positives (87%), 14 real.
@@ -356,7 +357,7 @@ RHACS reports 112 findings (2 Critical, 31 Important, 64 Moderate, 15 Low) → V
   🔍 SBOM verified: 38/38 component versions confirmed in image
 ```
 
-Findings are sorted real POSITIVEs first, then by VEX severity. The **RHACS Sev** and **VEX Sev** columns sit side by side so severity disagreements between the scanner and Red Hat's own product-specific assessment are visible at a glance; long Go module paths are shortened to their final segment (`google.golang.org/grpc` → `grpc`).
+Findings are sorted real POSITIVEs first, then by VEX severity. The **RHACS Sev** and **VEX Sev** columns sit side by side so severity disagreements between the scanner and Red Hat's own product-specific assessment are visible at a glance; long Go module paths are shortened to their final segment (`google.golang.org/grpc` → `grpc`). The **State** column mirrors the "State" on Red Hat's CVE pages (Fixed, Not affected, Fix available, Will not fix, Fix deferred, Affected, Under investigation), taken from the VEX remediation data — it is also exported as `VEX_STATE` in CSV/JSON output.
 
 ---
 

@@ -12,7 +12,7 @@ import glob
 import time
 import multiprocessing
 
-TRIAGE_COLS = ['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY']
+TRIAGE_COLS = ['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY', 'VEX_STATE']
 BAD_PATTERN = r'Tracked in:|CVE tracked in other products|Under investigation by Red Hat|Treat as vulnerable|treat as vulnerable|until resolved|until cleared|no vendor assessment exists|Per Red Hat errata policy|Red Hat Product Security states|Confirmed affected in|Red Hat will not fix this CVE|component known not affected \(vulnerable'
 
 
