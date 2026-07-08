@@ -2,19 +2,22 @@
 """Offline retriage — re-run audit on all OCP + operator reports from cached data. Zero network."""
 import sys, os, re, json, time, glob, argparse
 
-# Bound each worker process's parsed-VEX LRU cache BEFORE triage is imported
-# anywhere (the cache size is fixed at import time).  N worker processes
-# otherwise multiply a gigabyte-scale cache and swap the machine.
+# Bound each worker process's parsed-VEX LRU cache BEFORE the engine is imported
+# anywhere (the cache size is fixed at import time via engine's lru_cache).  N
+# worker processes otherwise multiply a gigabyte-scale cache and swap the
+# machine.  This module must not import .engine (directly or via .triage) at top
+# level — the worker functions import triage lazily so this setdefault wins, and
+# the rhacs_vex package __init__ deliberately defers its engine re-export.
 os.environ.setdefault('VEX_CACHE_SIZE', '96')
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pandas as pd
 
 REPORT_DIR = 'data/reports'
+PULLSPEC_DIR = os.path.join('data', 'pullspecs')
 
 
 def retriage_ocp(txt):
-    import triage  # import per-process for multiprocessing
+    from . import triage  # import per-process for multiprocessing
     ver = os.path.splitext(os.path.basename(txt))[0]
     out = os.path.join(REPORT_DIR, f'ocp-{ver}.csv')
     images, ocp_ver = [], None
@@ -68,7 +71,7 @@ def retriage_ocp(txt):
 
 def _retriage_one_operator_csv(csv_path):
     """Retriage a single operator CSV. Returns (basename, success_bool, error_str)."""
-    import triage  # imported once per worker process, cached by Python
+    from . import triage  # imported once per worker process, cached by Python
     basename = os.path.basename(csv_path)
     try:
         df = pd.read_csv(csv_path, dtype=str)
@@ -182,7 +185,7 @@ def retriage_operators(workers=10, minor_versions=None):
                       f'updated={total} errors={errors}', flush=True)
     return total
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser(description='Offline retriage — zero network calls')
     parser.add_argument('--workers', type=int, default=10, help='Parallel workers (default: 10)')
     parser.add_argument('--ocp-only', action='store_true', help='Skip operators')
@@ -194,9 +197,11 @@ if __name__ == '__main__':
 
     if not args.operators_only:
         if args.version:
-            manifests = [f'{v.strip()}.txt' for v in args.version.split(',') if v.strip()]
+            manifests = [os.path.join(PULLSPEC_DIR, f'{v.strip()}.txt')
+                         for v in args.version.split(',') if v.strip()]
         else:
-            manifests = sorted(glob.glob('4.*.txt'), key=lambda f: tuple(int(x) for x in re.findall(r'\d+', f)))
+            manifests = sorted(glob.glob(os.path.join(PULLSPEC_DIR, '4.*.txt')),
+                               key=lambda f: tuple(int(x) for x in re.findall(r'\d+', f)))
 
         print(f'=== Offline retriage: {len(manifests)} OCP versions, {args.workers} workers ===', flush=True)
 
@@ -227,7 +232,11 @@ if __name__ == '__main__':
     # Rebuild parquets
     print(f'\n=== Rebuilding parquets ===', flush=True)
     import subprocess
-    subprocess.run([sys.executable, 'build_parquet.py'], check=False)
+    subprocess.run([sys.executable, '-m', 'rhacs_vex.parquet'], check=False)
 
     total = time.time() - t0
     print(f'\nDone: {total:.0f}s ({total/60:.1f} min)', flush=True)
+
+
+if __name__ == '__main__':
+    main()

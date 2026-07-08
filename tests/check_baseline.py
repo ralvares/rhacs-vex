@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Check audit results against baseline — reports any regressions."""
 import sys, json, os
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# Run from the repo root (data/ paths are cwd-relative).  Add src/ so the
+# package imports even without `pip install -e .`.
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src'))
 import pandas as pd
-from triage import (audit_row_detailed, WorkloadContext, parse_context_from_labels,
-                    rhacs_to_df, download_and_convert_with_lib)
+from rhacs_vex.triage import (audit_row_detailed, WorkloadContext, parse_context_from_labels,
+                              rhacs_to_df, download_and_convert_with_lib)
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 with open('data/baseline.json') as f:

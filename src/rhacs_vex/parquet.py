@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-build_parquet.py — Build per-version parquet files + manifest + CVE index.
+parquet.py — Build per-version parquet files + manifest + CVE index.
 
-Usage:
-    python3 build_parquet.py                      # all CSVs → per-version parquets
-    python3 build_parquet.py --version 4.21.15    # single version only
-    python3 build_parquet.py --manifest-only       # regenerate manifest.json from existing parquets
-    python3 build_parquet.py --legacy              # also build combined data/ocp.parquet (backwards compat)
+Usage (run from the repository root):
+    python3 -m rhacs_vex.parquet                   # all CSVs → per-version parquets
+    python3 -m rhacs_vex.parquet --version 4.21.15 # single version only
+    python3 -m rhacs_vex.parquet --manifest-only   # regenerate manifest.json from existing parquets
+    python3 -m rhacs_vex.parquet --legacy          # also build combined data/ocp.parquet (backwards compat)
 
 Output:
     data/parquet/ocp/<version>.parquet   — one per OCP release
@@ -28,7 +28,10 @@ import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-BASE_DIR    = os.path.dirname(os.path.abspath(__file__))
+# Data lives under ./data relative to the current working directory: run all
+# tools from the repository root (the `data/` paths are cwd-relative, and the
+# relative paths stored in manifest.json must resolve for the static UI).
+BASE_DIR    = os.getcwd()
 REPORTS_DIR = os.path.join(BASE_DIR, "data", "reports")
 PARQUET_DIR = os.path.join(BASE_DIR, "data", "parquet")
 OCP_DIR     = os.path.join(PARQUET_DIR, "ocp")

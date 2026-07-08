@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 """
-triage_operators.py — Triage all operators from OLM catalogs against Red Hat VEX data.
+operators.py — Triage all operators from OLM catalogs against Red Hat VEX data.
 
 For each OCP catalog version found in data/catalogs/, the tool:
   1. Parses the catalog to find all operator packages.
   2. Identifies the head bundle of each operator's default channel.
   3. Retrieves all workload images from that bundle's relatedImages.
-  4. Triages every image via the RHACS API using the VEX audit engine from triage.py.
-  5. Writes per-operator reports to:
-       data/reports/ocp-{version}/{operator}-{bundle_version}.csv
+  4. Triages every image via the RHACS API using the VEX audit engine.
+  5. Writes per-operator reports (flat, one CSV per unique bundle) to:
+       data/reports/operators/{operator}-{channel}-{bundle_version}.csv
+
+Run from the repository root:  python3 -m rhacs_vex.operators [OPTIONS]
 
 Environment variables required:
   ROX_ENDPOINT  — RHACS Central hostname:port (e.g. central.example.com:443)
@@ -33,7 +35,7 @@ from rich.console import Console
 from rich import box
 from rich.table import Table
 
-import triage as triage  # noqa: E402
+from . import triage  # noqa: E402
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -385,7 +387,7 @@ def main() -> None:
         description=(
             'Triage all operators from OLM catalogs against Red Hat VEX data.\n\n'
             'Scans each operator\'s latest bundle images via RHACS and writes\n'
-            'per-operator CSV reports to data/reports/ocp-{version}/.\n\n'
+            'per-operator CSV reports to data/reports/operators/.\n\n'
             'Requires: ROX_ENDPOINT and ROX_API_TOKEN environment variables.'
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,

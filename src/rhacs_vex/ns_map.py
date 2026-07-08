@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-build_ns_map.py — Generate data/ns_vex_prefixes.json from Red Hat operator index catalogs.
+ns_map.py — Generate data/ns_vex_prefixes.json from Red Hat operator index catalogs.
 
 Reads every catalog*.json file in data/catalogs/, parses olm.bundle entries
 and extracts:
@@ -9,11 +9,11 @@ and extracts:
   - Operator display name  (from olm.csv.metadata.displayName)
 
 All three are normalised to snake_case VEX-prefix candidates and merged per namespace.
-The result is written to data/ns_vex_prefixes.json and used by triage.py at runtime
-to scope VEX product-ID matching for operator images — replacing the old hardcoded table.
+The result is written to data/ns_vex_prefixes.json and used by the engine at
+runtime to scope VEX product-ID matching for operator images.
 
-Usage:
-  python3 build_ns_map.py [catalog*.json ...]
+Usage (run from the repository root):
+  python3 -m rhacs_vex.ns_map [catalog*.json ...]
 
   With no arguments, all catalog*.json files in data/catalogs/ are processed.
 """
@@ -181,7 +181,8 @@ def build_map(catalog_files: list[str]) -> dict[str, list[str]]:
 
 
 def main():
-    default_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'catalogs')
+    # cwd-relative: run from the repository root (see module docstring).
+    default_dir = os.path.join('data', 'catalogs')
     catalog_files = sys.argv[1:] or sorted(glob.glob(os.path.join(default_dir, 'catalog*.json')))
     if not catalog_files:
         print(f"No catalog*.json files found in {default_dir}. Pass paths as arguments or place catalogs there.")

@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """
-setup_and_scan.py — Download OCP + operator catalogs and run full VEX triage.
+pipeline.py — Download OCP + operator catalogs and run the full VEX triage.
 
-Pipeline stages (all enabled by default):
+The one-command end-to-end pipeline (console script ``rhacs-vex-pipeline``).
+Stages (all enabled by default; each has a --skip-* flag):
+  0. podman login to the Red Hat registries.
   1. Render OLM operator index catalogs via opm (one per unique minor version).
-  2. Build the namespace→VEX prefix map  (build_ns_map.py).
+  2. Build the namespace→VEX prefix map      (python -m rhacs_vex.ns_map).
   3. Fetch OCP release pullspecs via `oc adm release info` for each full version.
-  4. Triage each OCP release          (triage.py --ocp ...).
-  5. Triage all operators             (triage_operators.py).
+  4. Triage each OCP release                 (python -m rhacs_vex.triage --ocp).
+  5. Triage all operators                     (python -m rhacs_vex.operators).
 
 Requires:
   ROX_ENDPOINT   — RHACS Central hostname:port
@@ -15,16 +17,18 @@ Requires:
 
 Usage examples:
   # Full run with embedded version list
-  python3 setup_and_scan.py --pull-secret ~/pullsecret.txt
+  rhacs-vex-pipeline --pull-secret ~/pullsecret.txt
 
   # Only download catalogs, skip scanning
-  python3 setup_and_scan.py --pull-secret ~/pullsecret.txt --skip-ocp --skip-operators
+  rhacs-vex-pipeline --pull-secret ~/pullsecret.txt --skip-ocp --skip-operators
 
   # Resume after an interruption, skip already-done items
-  python3 setup_and_scan.py --pull-secret ~/pullsecret.txt --skip-existing
+  rhacs-vex-pipeline --pull-secret ~/pullsecret.txt --skip-existing
 
   # Supply a custom versions CSV
-  python3 setup_and_scan.py --pull-secret ~/pullsecret.txt --versions my_versions.csv
+  rhacs-vex-pipeline --pull-secret ~/pullsecret.txt --versions my_versions.csv
+
+Run from the repository root — all tool paths are relative to ./data.
 """
 
 import argparse
@@ -96,23 +100,19 @@ Version,Release Status,Phase
 # Helpers
 # ---------------------------------------------------------------------------
 
-CATALOG_DIR = os.path.join("data", "catalogs")
-REPORTS_DIR = os.path.join("data", "reports")
+CATALOG_DIR  = os.path.join("data", "catalogs")
+REPORTS_DIR  = os.path.join("data", "reports")
+PULLSPEC_DIR = os.path.join("data", "pullspecs")
 
-# Scanner backend → (OCP-release script, operator script).
-#   rhacs   — RHACS Central API           (needs ROX_ENDPOINT / ROX_API_TOKEN)
-#   grype   — local grype + syft          (needs `podman login`, stage 0)
-#   clairv4 — local StackRox Scanner V4   (needs the rhacs-scanner-local/ stack
-#                                           running; pull-secret forwarded to it)
-SCANNER_SCRIPTS = {
-    "rhacs":   ("triage.py",          "triage_operators.py"),
-    "grype":   ("triage_grype.py",    "triage_operators_grype.py"),
-    "clairv4": ("triage_clairv4.py",  "triage_operators_clairv4.py"),
-}
+# Triage modules run as subprocesses (`python -m ...`) for process isolation and
+# stdout redirection.  RHACS Central API backend (needs ROX_ENDPOINT /
+# ROX_API_TOKEN); OCP-release triage and operator triage respectively.
+OCP_TRIAGE_MODULE      = "rhacs_vex.triage"
+OPERATOR_TRIAGE_MODULE = "rhacs_vex.operators"
 
 
 def log(msg: str):
-    print(f"[setup_and_scan] {msg}", flush=True)
+    print(f"[rhacs-vex-pipeline] {msg}", flush=True)
 
 
 def run(cmd: list[str], *, env: dict | None = None, capture_stdout: bool = False,
@@ -257,9 +257,9 @@ def stage_catalogs(minor_versions: list[str], pull_secret: str,
 
 def stage_ns_map():
     log("=== STAGE 2: Build namespace VEX prefix map ===")
-    rc = run([sys.executable, "build_ns_map.py"])
+    rc = run([sys.executable, "-m", "rhacs_vex.ns_map"])
     if rc != 0:
-        log("WARNING: build_ns_map.py exited non-zero")
+        log("WARNING: rhacs_vex.ns_map exited non-zero")
 
 
 # ---------------------------------------------------------------------------
@@ -273,10 +273,11 @@ def stage_ocp_pullspecs(versions: list[str], pull_secret: str, oc_bin: str,
     that were successfully created.
     """
     log("=== STAGE 3: Fetch OCP release pullspecs ===")
+    os.makedirs(PULLSPEC_DIR, exist_ok=True)
     ready = []
 
     for ver in versions:
-        dest = f"{ver}.txt"
+        dest = os.path.join(PULLSPEC_DIR, f"{ver}.txt")
         if os.path.exists(dest) and os.path.getsize(dest) > 0:
             log(f"  SKIP  {dest} (already exists)")
             ready.append(dest)
@@ -305,12 +306,9 @@ def stage_ocp_pullspecs(versions: list[str], pull_secret: str, oc_bin: str,
 
 def stage_ocp_triage(pullspec_files: list[str], workers: int,
                      skip_existing: bool, false_only: bool,
-                     scanner: str = "rhacs", pull_secret: str | None = None,
                      max_report_age: int = 7):
-    log(f"=== STAGE 4: Triage OCP releases ({scanner}) ===")
+    log("=== STAGE 4: Triage OCP releases (rhacs) ===")
     os.makedirs(REPORTS_DIR, exist_ok=True)
-
-    scanner_script = SCANNER_SCRIPTS[scanner][0]
 
     for txt in pullspec_files:
         # Derive version from filename  e.g. "4.21.3.txt" → "4.21.3"
@@ -344,7 +342,7 @@ def stage_ocp_triage(pullspec_files: list[str], workers: int,
                 continue
 
         cmd = [
-            sys.executable, scanner_script,
+            sys.executable, "-m", OCP_TRIAGE_MODULE,
             "--ocp", txt,
             "--format", "csv",
             "--output", out,
@@ -352,14 +350,10 @@ def stage_ocp_triage(pullspec_files: list[str], workers: int,
         ]
         if false_only:
             cmd.append("--false-only")
-        # Scanner V4 pulls private images via scannerctl, which needs the
-        # pull-secret forwarded (grype instead relies on the stage-0 podman login).
-        if scanner == "clairv4" and pull_secret:
-            cmd += ["--pull-secret", os.path.abspath(pull_secret)]
 
         rc = run(cmd)
         if rc != 0:
-            log(f"  WARNING: {scanner_script} exited non-zero for {ver} (rc={rc})")
+            log(f"  WARNING: {OCP_TRIAGE_MODULE} exited non-zero for {ver} (rc={rc})")
 
 
 # ---------------------------------------------------------------------------
@@ -375,14 +369,11 @@ def stage_ocp_triage(pullspec_files: list[str], workers: int,
 # ---------------------------------------------------------------------------
 
 def stage_operator_triage(minor_versions: list[str], workers: int,
-                           skip_existing: bool, false_only: bool,
-                           scanner: str = "rhacs", pull_secret: str | None = None):
-    log(f"=== STAGE 5: Triage operators ({scanner}) ===")
-
-    scanner_script = SCANNER_SCRIPTS[scanner][1]
+                           skip_existing: bool, false_only: bool):
+    log("=== STAGE 5: Triage operators (rhacs) ===")
 
     cmd = [
-        sys.executable, scanner_script,
+        sys.executable, "-m", OPERATOR_TRIAGE_MODULE,
         "--version", ",".join(minor_versions),
         "--workers", str(workers),
     ]
@@ -390,12 +381,10 @@ def stage_operator_triage(minor_versions: list[str], workers: int,
         cmd.append("--skip-existing")
     if false_only:
         cmd.append("--false-only")
-    if scanner == "clairv4" and pull_secret:
-        cmd += ["--pull-secret", os.path.abspath(pull_secret)]
 
     rc = run(cmd)
     if rc != 0:
-        log(f"WARNING: {scanner_script} exited non-zero")
+        log(f"WARNING: {OPERATOR_TRIAGE_MODULE} exited non-zero")
 
 
 # ---------------------------------------------------------------------------
@@ -436,7 +425,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--workers", type=int, default=10, metavar="N",
-        help="Parallel image workers passed to triage.py and triage_operators.py (default: 10).",
+        help="Parallel image workers passed to the triage / operators stages (default: 10).",
     )
     parser.add_argument(
         "--false-only", action="store_true", default=False,
@@ -461,18 +450,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--refresh-operator-verdicts", action="store_true", default=False,
         help="After Stage 5, re-audit all operator report verdicts offline from "
-             "cached scans (retriage_offline.py) — CPU only, zero Central load.",
-    )
-    parser.add_argument(
-        "--scanner", choices=["rhacs", "grype", "clairv4"], default="rhacs",
-        help="Scanner backend (default: rhacs). "
-             "'grype' = local grype+syft; "
-             "'clairv4' = local StackRox Scanner V4 (needs the rhacs-scanner-local/ "
-             "stack running). grype and clairv4 need no ROX_ENDPOINT/ROX_API_TOKEN.",
-    )
-    parser.add_argument(
-        "--grype", action="store_true", default=False,
-        help="Deprecated alias for --scanner grype.",
+             "cached scans (python -m rhacs_vex.retriage) — CPU only, zero Central load.",
     )
 
     # Stage skip flags
@@ -499,14 +477,8 @@ def main():
     if not os.path.isfile(pull_secret):
         sys.exit(f"ERROR: pull-secret file not found: {pull_secret}")
 
-    # ── Resolve scanner backend (--grype is a deprecated alias) ─────────────
-    scanner = "grype" if args.grype else args.scanner
-    if args.grype and args.scanner not in ("rhacs", "grype"):
-        sys.exit("ERROR: --grype conflicts with --scanner " + args.scanner)
-    log(f"Scanner backend: {scanner}")
-
     # ── Check required env vars for scanning stages ─────────────────────────
-    if scanner == "rhacs" and (not args.skip_ocp or not args.skip_operators):
+    if not args.skip_ocp or not args.skip_operators:
         missing = [v for v in ("ROX_ENDPOINT", "ROX_API_TOKEN")
                    if not os.environ.get(v)]
         if missing:
@@ -514,19 +486,8 @@ def main():
                 f"ERROR: required environment variable(s) not set: {', '.join(missing)}\n"
                 "  export ROX_ENDPOINT=central.example.com:443\n"
                 "  export ROX_API_TOKEN=<your-token>\n"
-                "  (or pass --scanner grype / --scanner clairv4 to scan locally)"
+                "  (or pass --skip-ocp --skip-operators to run the non-scanning stages)"
             )
-
-    # ── clairv4: warn early if the local Scanner V4 stack looks unreachable ─
-    if scanner == "clairv4" and (not args.skip_ocp or not args.skip_operators):
-        import socket
-        host, _, port = os.environ.get("SCANNER_V4_INDEXER", "localhost:8443").partition(":")
-        try:
-            with socket.create_connection((host, int(port or 8443)), timeout=3):
-                pass
-        except OSError:
-            log(f"WARNING: Scanner V4 gRPC at {host}:{port or 8443} is not reachable. "
-                "Start the stack first (see rhacs-scanner-local/README.md).")
 
     # ── Load version list ───────────────────────────────────────────────────
     versions = load_versions(args.versions)
@@ -563,8 +524,7 @@ def main():
             versions, pull_secret, args.oc, args.arch, args.skip_existing
         )
         stage_ocp_triage(pullspec_files, args.workers, args.skip_existing,
-                         args.false_only, scanner=scanner, pull_secret=pull_secret,
-                         max_report_age=args.max_report_age)
+                         args.false_only, max_report_age=args.max_report_age)
     else:
         log("=== STAGES 3+4: SKIPPED (--skip-ocp) ===")
 
@@ -572,8 +532,7 @@ def main():
     if not args.skip_operators:
         log("=== STAGE 5a: Prefill no longer needed (flat operator storage) ===")
         stage_operator_triage(
-            minor_versions_ordered, args.workers, True, args.false_only,
-            scanner=scanner, pull_secret=pull_secret
+            minor_versions_ordered, args.workers, True, args.false_only
         )
     else:
         log("=== STAGE 5: SKIPPED (--skip-operators) ===")
@@ -584,13 +543,13 @@ def main():
     # retriage recomputes them from cached scans with zero RHACS/network load.
     if args.refresh_operator_verdicts and not args.skip_operators:
         log("=== STAGE 6: Offline operator verdict refresh (no Central load) ===")
-        run([sys.executable, "retriage_offline.py",
+        run([sys.executable, "-m", "rhacs_vex.retriage",
              "--operators-only",
              "--version", ",".join(minor_versions_ordered),
              "--workers", str(args.workers)])
     elif not args.skip_operators:
         log("HINT: operator verdicts age as VEX updates — refresh offline anytime with:")
-        log(f"      python3 retriage_offline.py --operators-only --version {','.join(minor_versions_ordered)}")
+        log(f"      python3 -m rhacs_vex.retriage --operators-only --version {','.join(minor_versions_ordered)}")
 
     log("All stages complete.")
 
