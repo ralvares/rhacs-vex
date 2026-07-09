@@ -182,6 +182,9 @@ node or a `relationship.full_product_name.product_id`. Counts are refs over the 
 3. NEVRA detection: `-(\d+):` = the epoch colon → `name` before it, `ver-rel[.arch]` after.
    Strip trailing `.<arch>` in `{aarch64,x86_64,ppc64le,s390x,i686,i386,noarch,src}`.
 4. No epoch colon → bare package name (version-less leaf).
+5. **RHEL parents now carry image-path components too** (Konflux era):
+   `red_hat_enterprise_linux_9:redhat-user-workloads/bootc-image-builder-9-6` — a `/` in the
+   component means an image even under a RHEL base product; never treat it as an RPM name.
 
 ### 3b. Registry-URL PIDs (newer layered products)
 `<Human Product Name>:registry.redhat.io/<ns>/<img>@sha256:<hex>_<arch>` — the component is a
@@ -250,6 +253,15 @@ Global qparam frequency: `arch` 2,767,907 · `repository_url` 1,074,615 · `tag`
 **Load-bearing:** image matching must key on the OCI purl — exact `repository_url` match
 first, then `pkg:oci/<name>` package-name equality as fallback (bridges Brew-label namespace ≠
 registry namespace without hardcoding).
+
+**Two purl eras coexist, even inside one file.** Older nodes: purl name is the bare image
+(`pkg:oci/ose-cli@…`) and `repository_url` is the **full repo path**
+(`registry.redhat.io/openshift4/ose-cli`), `tag=` is a Brew NVR with a timestamp
+(`v4.15.0-202404030309.p0…`). Newer (Konflux-era) nodes: purl name carries the namespace
+(`pkg:oci/openshift/ose-cli@…`), `repository_url` is the **namespace only**
+(`registry.redhat.io/openshift4`), and `tag=` is **epoch seconds** (`1781813947`).
+Matching must compose the effective repo — `repository_url` + the purl name's last segment
+when the URL doesn't already end with it — so both eras compare exactly.
 Go/Python are effectively never tracked as purls (2 each) — Go modules are assessed at the
 containing image or RPM level, not directly.
 
@@ -356,6 +368,19 @@ Operationally: for a version-stream product, an installed version **older** than
 stream is assumed vulnerable; **equal or newer** than the newest fix is not a "previous version"
 → not vulnerable.
 
+**The sentence scopes itself to products *listed here*.** An unlisted product/component gets no
+assumption in either direction — it is simply absent from Red Hat's per-CVE enumeration.
+Triage semantics: absence cannot confirm a scanner finding, so a component/image/product with
+**no statement naming it is FALSE POSITIVE ("not listed as affected")** — the only exceptions
+are a component *named* in related products (§8 rung 8, conservative) and a VEX file that does
+not exist at all (no enumeration to be absent from → the scanner finding stands).
+
+**Per-build corollary (images):** a `fixed` PID whose digest is not ours names another build,
+and digests cannot be ordered — compare **Brew build stamps** (the purl `tag=` timestamp/epoch
+vs this build's `version`-`release` labels): ours ≥ newest fix → the rebuild carries the fix
+(not a "previous version") → FALSE POSITIVE; ours older → POSITIVE. A digest-less generic
+`fixed` PID clears the stream outright.
+
 ---
 
 ## 6. Stream & Version Semantics (RPM)
@@ -437,6 +462,14 @@ to the non-RPM image path (§8) and is used for identity, never RPM version comp
 `name=openshift/ose-network-metrics-daemon-rhel9`, `cpe=cpe:/a:redhat:openshift:4.20::el9`,
 `fullName=quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:29a8…`.
 
+- **`version`/`release` = this build's coordinates** — the scanner-side half of the §5g
+  build-stamp comparison. Two observed shapes: Brew NVR-style (`version=v4.12.0`,
+  `release=202509030106.p2.g…` — YYYYMMDDHHMM timestamp) and Konflux-era
+  (`version` may be junk, literally `"."`; `release` is **epoch seconds**, `1781806438`).
+- **OCP minor derivation ladder** (digest pulls carry no tag): image-ref tag `v4.x` →
+  CPE label version token → `version` label `v?(4.N)`. Without it, versioned stream parents
+  ("Red Hat OpenShift Container Platform 4.15") cannot be scoped.
+
 ### 7d. Label-namespace ≠ registry-path-namespace (measured)
 Namespace = first path segment after host (registry side) vs first segment of the `name` label
 (label side); denominator = distinct images having both.
@@ -508,13 +541,15 @@ A PID is in scope for the workload iff:
 | 2 | **Our-digest override** | any PID contains the scanned image's exact `@sha256:` digest | authoritative per-build: KA/UI→**POSITIVE**, KNA/fixed→**FALSE POSITIVE** (applies to RPM *and* non-RPM) |
 | 3a | **Image identity via OCI purl** | image candidates {ref-repo (authoritative), `name`-label repo (secondary)} match a VEX OCI purl by exact `repository_url`, else by `pkg:oci/<name>` equality | matched generic image PID → POSITIVE/FALSE POSITIVE |
 | 3b | **Image identity via path/generic** | image-path PID normalized (`ose-etcd-rhel9`→`etcd`) == OCP component; or generic `pkg:generic/redhat/<c>` (rhcos↔rhel-coreos) | same |
-| 4 | **Same-image other-build evidence** | matched image PIDs for *other* builds, scored by RHEL-variant quality (exact `-rhelN`=2, version-neutral=1, other RHEL=0); SHA-exact (spec=2) overrides generic (spec=1); at equal quality, affected wins | POSITIVE / FALSE POSITIVE / POSITIVE (other-RHEL evidence, flagged) |
+| 4 | **Same-image other-build evidence** | matched image PIDs for *other* builds, scored by RHEL-variant quality (exact `-rhelN`=2, version-neutral=1, other RHEL=0); SHA-exact (spec=2) overrides generic (spec=1); at equal quality, affected wins; other-build **fixed** digests decide by **build-stamp comparison** (§5g corollary: purl `tag=` vs this build's version-release) | POSITIVE / FALSE POSITIVE / POSITIVE (other-RHEL evidence, flagged) |
 | 5 | **Component NEVRA/name in-scope** (RPM path) | package name ∈ names-to-match; dist-tag + minor-stream + module-stream + CPE scoping; then §6 version compare | KNA→FP; fixed→compare; KA→POSITIVE; UI→POSITIVE |
-| 5s | **src-alias expansion** | binary comp aliased to source name when a `.src` PID's VR == installed VR **or** a version-less `.src` exists; also Maven `group:artifact`→`artifact`, SBOM binary→source | expands names-to-match for rung 5 |
-| 6 | **Product-family clear** (non-RPM fallthrough) | all in-scope PIDs for this CVE are `known_not_affected`/`fixed`, none affected/UI | **FALSE POSITIVE** "no affected entry" (scoped-clear) |
+| 5s | **src-alias expansion** | binary comp aliased to source name when a `.src` PID's VR == installed VR **or** a version-less `.src` exists; also Maven `group:artifact`→`artifact`, SBOM binary→source. Within a status, a PID naming the component **exactly** outranks alias matches — a package with its own SRPM/statement is decisive over its alias source (`openssl-fips-provider` vs `openssl`) | expands names-to-match for rung 5 |
+| 6 | **Product-family clear** (non-RPM fallthrough) | all in-scope PIDs for this CVE are `known_not_affected`/`fixed`, none affected/UI (in-scope UI alone → POSITIVE "under_investigation") | **FALSE POSITIVE** "no affected entry" (scoped-clear) |
 | 7 | **Errata policy** (version-streams) | no direct match, but versioned OCP/RHOSE `fixed` streams exist: installed **older** than newest fix → assumed vulnerable; **equal/newer** → not | POSITIVE / FALSE POSITIVE |
-| 8 | **Related-products evidence** | same package in out-of-scope products marked with the workload's RHEL major **or** version-neutral PIDs (no el/rhel marker) | only-clear→FALSE POSITIVE; any affected→POSITIVE (conservative) |
-| 9 | **Truly absent** | component not tracked in any in-scope VEX entry | **⚠️ NOT ASSESSED** "not tracked in VEX" |
+| 8 | **Related-products evidence** | same package **named** in out-of-scope products marked with the workload's RHEL major **or** version-neutral PIDs (no el/rhel marker) | only-clear→FALSE POSITIVE; any affected→POSITIVE (conservative) |
+| 9 | **Not listed** | no statement names this component/image/product anywhere relevant — in-scope affected rows (if any) name *other* components only (§5g: the errata assumption covers only *listed* products) | **FALSE POSITIVE** "not listed as affected" |
+| 9r | **Truly absent** (RPM path) | RPM component name absent from the entire file, no related-product mention either | **⚠️ NOT ASSESSED** "not tracked in VEX" |
+| 10 | **No VEX file** | Red Hat has not published a VEX for the CVE — no enumeration exists to be absent from | **POSITIVE** "VEX file missing" (severity/state Unknown) |
 
 **RPM vs non-RPM split** happens after rungs 1-2: a `/` in the component
 name (RHACS image-identity pseudo-component) **or** absence of an `.elN` marker routes to the
@@ -530,11 +565,12 @@ non-RPM path (rungs 3,4,6,7,8,9); an `.elN` marker or `SOURCE=OS` routes to the 
 | RPM binary name + `.elN_M` version (`SOURCE=OS`) | `parent:name-E:ver-rel.elN_M.arch` in scope | 5 |
 | RPM binary subpackage (`perl-libs`, `ceph-mon`) | source `.src` PID (`perl`,`ceph`) via alias | 5s |
 | Maven `group:artifact` (`SOURCE=JAVA`) | bare `artifact` PID (`pkg:maven`) | 5s |
-| Go module path (`SOURCE=GO`) | *(never tracked directly)* → containing image/RPM | 3/6 |
+| Go module path (`SOURCE=GO`) | *(never tracked directly)* → containing image, else not listed | 3/6/9 |
 | any component, family assessed clear | in-scope KNA/fixed only | 6 |
 | OCP version vs RHOSE-`4.x` fixed streams | version comparison per errata policy | 7 |
 | component in related RHEL-N / version-neutral product | out-of-scope KA/fixed/KNA | 8 |
-| component absent everywhere in scope | — | 9 |
+| component/image unlisted (statements name others only) | — | 9 |
+| RPM name absent from the entire file | — | 9r |
 
 ### 8d. Severity, state, and fix version come from the DECISIVE PID
 Once a rung fires, severity/state/fix are read from **that** PID's `threats`/`remediations`, not the
@@ -545,7 +581,10 @@ document header:
   (5) `aggregate_severity`; (6) any impact threat; (7) CVSS `baseSeverity`; (8) RHACS scan severity.
 - **State/justification**: from the decisive PID's remediation
   `details` — `no_fix_planned`→"Will not fix"/"Out of support scope"; `none_available`→"Fix
-  deferred"/"Affected".
+  deferred"/"Affected". **Never borrow another package's remediation**: "Will not fix"/"Fix
+  deferred" are package-specific plans — a component with its own statement reads its own
+  (`openssl-fips-provider` = Affected even though `openssl` = Will not fix in the same file).
+  Not-listed FALSE POSITIVES carry "Not affected"; a missing VEX file → "Unknown".
 - **Fix version:** the matched `fixed` NEVRA, preferring RHEL **base-repo** references over add-on
   builds.
 
