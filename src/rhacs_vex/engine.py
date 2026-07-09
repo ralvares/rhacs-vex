@@ -735,6 +735,8 @@ def _sbom_note(comp: str, version: str, ctx: WorkloadContext) -> str:
         sbom_vers = ctx.sbom_packages.get(name)
         if sbom_vers is None:
             continue
+        if not version or str(version) in ('nan', 'None'):
+            return f"{comp} (in SBOM, version not reported)"
         sbom_list = sorted(sbom_vers)
         best_sbom = sbom_list[0]
         for sv in sbom_list[1:]:
@@ -1057,6 +1059,12 @@ def _state_from_decisive(verdict, dec, data, ctx, pid_name, rhel_base_pids,
     # POSITIVE
     if dec.get('status') == 'under_investigation' or kind.endswith('_ui'):
         return 'Under investigation'
+
+    # No VEX statement names this component/image — nothing to read a state
+    # from; borrowing another package's remediation would assert something the
+    # VEX does not state.
+    if kind in ('ft_novex_scoped', 'ft_operator_novex', 'ft_other'):
+        return 'Not assessed'
 
     rem_map = _rem_map(data)
 
@@ -1550,18 +1558,26 @@ def _audit_nonrpm_image_sha(comp, found_v, data, ctx, maps, our_sha, row, dec):
 
 def _audit_nonrpm_fallthrough(comp, ctx, maps, affected, fixed, not_affected,
                               investigating, data, dec):
-    """Non-RPM fallthrough — product-family clear (rung 6), UBI, else POSITIVE."""
+    """Non-RPM fallthrough — product-family clear (rung 6), UBI, else POSITIVE.
+
+    Strict-VEX: every statement naming this component or this image was consumed
+    by the earlier rungs, so any in-scope known_affected PID reaching this point
+    describes a *different* component (e.g. RHEL base RPMs vendoring the same
+    library).  Those statements are never decisive for this component — the row
+    falls to the no-assessment outcome instead of borrowing another package's
+    verdict/state.  The clearing direction (rung 6) stays: it requires NO
+    in-scope affected/under_investigation PID at all.
+    """
     pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = maps
 
     if ctx.workload_type != "ubi":
         scoped_affected, scoped_investigating, scoped_clear = [], [], []
-        aff_pids, inv_pids, clear_pids = [], [], []
+        inv_pids, clear_pids = [], []
         for vuln in data.get('vulnerabilities', []):
             ps = vuln.get('product_status', {})
             for pid in ps.get('known_affected', []):
                 if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map, pid_cpe=pid_cpe):
                     scoped_affected.append(_pid_label(pid, pid_name, rel_parent))
-                    aff_pids.append(pid)
             for pid in ps.get('under_investigation', []):
                 if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map, pid_cpe=pid_cpe):
                     scoped_investigating.append(_pid_label(pid, pid_name, rel_parent))
@@ -1571,19 +1587,20 @@ def _audit_nonrpm_fallthrough(comp, ctx, maps, affected, fixed, not_affected,
                     if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map, pid_cpe=pid_cpe):
                         scoped_clear.append(_pid_label(pid, pid_name, rel_parent))
                         clear_pids.append(pid)
-        if scoped_affected:
-            dec.update(kind='ft_affected', status='known_affected', pids=aff_pids)
-            return ("❌ POSITIVE", "N/A",
-                    f"known_affected in {', '.join(sorted(set(scoped_affected))[:3])}.")
-        if scoped_investigating:
+        if scoped_investigating and not scoped_affected:
             dec.update(kind='ft_ui', status='under_investigation', pids=inv_pids)
             return ("❌ POSITIVE", "N/A",
                     f"under_investigation in {', '.join(sorted(set(scoped_investigating))[:3])}.")
-        if scoped_clear:
+        if scoped_clear and not scoped_affected and not scoped_investigating:
             dec.update(kind='ft_clear', pids=clear_pids)
             return ("✅ FALSE POSITIVE", "N/A",
                     f"No affected entry in {', '.join(sorted(set(scoped_clear))[:3])} "
                     f"(known_not_affected/fixed only).")
+        if scoped_affected:
+            dec['kind'] = 'ft_novex_scoped'
+            return ("❌ POSITIVE", "N/A",
+                    f"No VEX statement for this component; known_affected in "
+                    f"{', '.join(sorted(set(scoped_affected))[:3])} covers other components.")
 
     if ctx.workload_type == "operator" and (affected or investigating or fixed):
         dec['kind'] = 'ft_operator_novex'
@@ -1811,6 +1828,15 @@ def _evaluate(row, ctx, data, maps):
 
     if not rpm_rhel:
         verdict, fix, note = _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec)
+        # SBOM verification (VEX-MODEL §7f): confirm the scanner-reported
+        # component against the image's own SPDX inventory.  Image-identity
+        # pseudo-components (SOURCE=OS, '/' in name) are image refs, not
+        # packages — never in the SBOM.
+        comp_source = str(row.get('SOURCE', '')) if 'SOURCE' in row.index else ''
+        if not ('/' in comp and comp_source == 'OS'):
+            sn = _sbom_note(comp, found_v, ctx)
+            if sn:
+                note = f"{note} {sn}." if note.endswith('.') else f"{note}; {sn}."
     else:
         verdict, fix, note = _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec)
     return verdict, fix, note, dec
