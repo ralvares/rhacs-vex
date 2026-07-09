@@ -1060,12 +1060,6 @@ def _state_from_decisive(verdict, dec, data, ctx, pid_name, rhel_base_pids,
     if dec.get('status') == 'under_investigation' or kind.endswith('_ui'):
         return 'Under investigation'
 
-    # No VEX statement names this component/image — nothing to read a state
-    # from; borrowing another package's remediation would assert something the
-    # VEX does not state.
-    if kind in ('ft_novex_scoped', 'ft_operator_novex', 'ft_other'):
-        return 'Not assessed'
-
     rem_map = _rem_map(data)
 
     def _scan(pids):
@@ -1558,15 +1552,16 @@ def _audit_nonrpm_image_sha(comp, found_v, data, ctx, maps, our_sha, row, dec):
 
 def _audit_nonrpm_fallthrough(comp, ctx, maps, affected, fixed, not_affected,
                               investigating, data, dec):
-    """Non-RPM fallthrough — product-family clear (rung 6), UBI, else POSITIVE.
+    """Non-RPM fallthrough — product-family clear (rung 6), else not-listed.
 
     Strict-VEX: every statement naming this component or this image was consumed
     by the earlier rungs, so any in-scope known_affected PID reaching this point
     describes a *different* component (e.g. RHEL base RPMs vendoring the same
-    library).  Those statements are never decisive for this component — the row
-    falls to the no-assessment outcome instead of borrowing another package's
-    verdict/state.  The clearing direction (rung 6) stays: it requires NO
-    in-scope affected/under_investigation PID at all.
+    library).  Red Hat enumerates the affected products per CVE; a product/
+    component absent from that enumeration is not listed as affected → FALSE
+    POSITIVE (the errata-policy assumption covers only products *listed* on the
+    CVE).  Only an in-scope under_investigation statement keeps a row POSITIVE
+    here — that is a real VEX statement that the scope is being assessed.
     """
     pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = maps
 
@@ -1598,13 +1593,14 @@ def _audit_nonrpm_fallthrough(comp, ctx, maps, affected, fixed, not_affected,
                     f"(known_not_affected/fixed only).")
         if scoped_affected:
             dec['kind'] = 'ft_novex_scoped'
-            return ("❌ POSITIVE", "N/A",
-                    f"No VEX statement for this component; known_affected in "
-                    f"{', '.join(sorted(set(scoped_affected))[:3])} covers other components.")
+            return ("✅ FALSE POSITIVE", "N/A",
+                    f"Not listed as affected; known_affected in "
+                    f"{', '.join(sorted(set(scoped_affected))[:3])} names other components only.")
 
     if ctx.workload_type == "operator" and (affected or investigating or fixed):
         dec['kind'] = 'ft_operator_novex'
-        return ("❌ POSITIVE", "N/A", f"No VEX assessment for {ctx.display_name}.")
+        return ("✅ FALSE POSITIVE", "N/A",
+                f"Not listed as affected; no VEX statement for {ctx.display_name}.")
 
     if investigating:
         dec.update(kind='ft_investigating_ui', status='under_investigation')
@@ -1629,8 +1625,9 @@ def _audit_nonrpm_fallthrough(comp, ctx, maps, affected, fixed, not_affected,
     if fixed:        parts.append(f"fixed: {', '.join(fixed[:3])}")
     if not_affected: parts.append(f"not affected: {', '.join(not_affected[:3])}")
     dec['kind'] = 'ft_other'
-    return ("❌ POSITIVE", "N/A",
-            f"No VEX entry for {ctx.display_name}. Other products: {'; '.join(parts)}.")
+    return ("✅ FALSE POSITIVE", "N/A",
+            f"Not listed as affected; no VEX entry for {ctx.display_name}. "
+            f"Other products: {'; '.join(parts)}.")
 
 
 def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
