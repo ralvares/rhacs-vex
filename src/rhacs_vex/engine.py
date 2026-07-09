@@ -194,6 +194,7 @@ class WorkloadContext:
     sbom_packages : dict            = field(default_factory=dict)
     ocp_component : Optional[str]   = None
     cpe           : Optional[str]   = None
+    image_build   : Optional[str]   = None   # version-release of THIS build (labels/tag)
 
 
 _NS_VEX_MAP_PATH = os.path.join(BASE_DIR, "ns_vex_prefixes.json")
@@ -336,6 +337,24 @@ def parse_context_from_labels(labels: dict, image_ref: str = "") -> WorkloadCont
             ctx.extra_prefixes = []
             if version_tok:
                 ctx.ocp_ver = version_tok
+
+    # Digest pulls carry no tag and older images no CPE label — the `version`
+    # label (present on 99% of images, §7c) is the remaining structural source
+    # for the OCP minor.  CPE, when present, already won above.
+    if ctx.workload_type == "ocp" and not ctx.ocp_ver:
+        ver_m = re.match(r'v?(4\.\d+)', str(labels.get("version", "")))
+        if ver_m:
+            ctx.ocp_ver = ver_m.group(1)
+            ctx.display_name = f"OpenShift {ctx.ocp_ver}"
+
+    # This build's coordinates (version-release), for comparing against the
+    # build tags of VEX `fixed` image PIDs (§7c: both carry Brew timestamps).
+    if labels.get("version") and labels.get("release"):
+        ctx.image_build = f"{labels['version']}-{labels['release']}"
+    elif image_ref and not ctx.image_build:
+        tag_m = re.search(r':(v?[\w.][^@/]*)$', image_ref)
+        if tag_m:
+            ctx.image_build = tag_m.group(1)
 
     if ctx.workload_type == "ocp" and name and not ctx.ocp_component:
         ctx.ocp_component = _normalize_vex_image_core(name)
@@ -638,12 +657,21 @@ def _purl_matched_leaf_pids(pid_purl: dict, candidates: list) -> set:
     for pid, purl in pid_purl.items():
         if not purl.startswith('pkg:oci/'):
             continue
-        r = re.search(r'repository_url=([^&]+)', purl)
-        if r and r.group(1) in repos:
-            by_repo.add(pid)
-            continue
         m = re.match(r'pkg:oci/([^?@]+)', purl)
-        if m and m.group(1) in names:
+        pname = m.group(1) if m else ''
+        last = pname.split('/')[-1]
+        r = re.search(r'repository_url=([^&]+)', purl)
+        if r:
+            # Two purl eras coexist: repository_url may be the full repo path
+            # or the namespace only (image name lives in the purl name) —
+            # compose the effective repo so both compare exactly.
+            repo = r.group(1)
+            if last and not repo.endswith('/' + last):
+                repo = f"{repo}/{last}"
+            if repo in repos:
+                by_repo.add(pid)
+                continue
+        if pname in names or (last and last in names):
             by_name.add(pid)
     return by_repo if by_repo else by_name
 
@@ -1099,14 +1127,17 @@ def _state_from_decisive(verdict, dec, data, ctx, pid_name, rhel_base_pids,
 # §6  RPM path — component in scope (rung 5), related (8), absent (9)
 # ══════════════════════════════════════════════════════════════════════════════
 
-def _rpm_candidates(vuln, ctx, maps, names, found_v):
+def _rpm_candidates(vuln, ctx, maps, names, found_v, comp=None):
     """One walk over a vuln's product_status + not-affected flags.
 
     Yields [(status, pid, pkg_ver)] for PIDs that are in scope, module-stream
     compatible and name-matching, in status priority order KNA > fixed > KA > UI
     (VEX-MODEL §8b rung 5); flag PIDs are folded into known_not_affected (§5b).
     JSON list order is preserved within each status so the first candidate is the
-    same representative the legacy first-match loop selected.
+    same representative the legacy first-match loop selected — except that a PID
+    naming the component exactly ranks before src-alias matches within its
+    status: a package with its own statement (own SRPM, own remediation) must be
+    decisive over its alias source (openssl-fips-provider vs openssl).
     """
     pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = maps
     ps = vuln.get('product_status', {})
@@ -1120,7 +1151,7 @@ def _rpm_candidates(vuln, ctx, maps, names, found_v):
             return
         name, ver = _parse_pkg_from_product_id(pid)
         if name in names:
-            out.append((status, pid, ver))
+            out.append((status, pid, ver, name))
 
     for pid in ps.get('known_not_affected', []):
         _emit('known_not_affected', pid)
@@ -1134,7 +1165,11 @@ def _rpm_candidates(vuln, ctx, maps, names, found_v):
         _emit('known_affected', pid)
     for pid in ps.get('under_investigation', []):
         _emit('under_investigation', pid)
-    return out
+    if comp:
+        rank = {'known_not_affected': 0, 'fixed': 1, 'known_affected': 2,
+                'under_investigation': 3}
+        out.sort(key=lambda t: (rank[t[0]], 0 if t[3] == comp else 1))
+    return [(s, p, v) for s, p, v, _n in out]
 
 
 def _compare_fixed(found_v, unique_fixed, comp, ctx, rpm_rhel, dec, fix_pid_by_ver):
@@ -1208,7 +1243,7 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec):
 
     for vuln in vulns:
         ps = vuln.get('product_status', {})
-        cands = _rpm_candidates(vuln, ctx, maps, names, found_v)
+        cands = _rpm_candidates(vuln, ctx, maps, names, found_v, comp=comp)
 
         # rung 5 — status priority KNA > fixed > KA > UI ---------------------
         # KNA (stream-aware: a KNA from another minor stream doesn't apply)
@@ -1310,6 +1345,39 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec):
 # ══════════════════════════════════════════════════════════════════════════════
 # §8 3/4/7  Non-RPM path — image identity, same-image builds, errata, family
 # ══════════════════════════════════════════════════════════════════════════════
+
+def _build_stamp(s: Optional[str]) -> Optional[int]:
+    """Normalize a build identifier to a comparable YYYYMMDDHHMM integer.
+
+    Red Hat image builds carry either a Brew timestamp (`v4.15.0-202404030309…`,
+    release label `202509030106.p2…`) or an epoch-seconds tag (`1781813947`).
+    """
+    if not s:
+        return None
+    m = re.search(r'\b(20\d{10})\b', s)                 # YYYYMMDDHHMM
+    if m:
+        return int(m.group(1))
+    m = re.search(r'\b(1[5-9]\d{8})\b', s)              # epoch seconds (2017+)
+    if m:
+        import time
+        return int(time.strftime('%Y%m%d%H%M', time.gmtime(int(m.group(1)))))
+    return None
+
+
+def _purl_build_stamp(pid: str, pid_purl: dict) -> Optional[int]:
+    """Build stamp of a VEX image PID, read from its purl's `tag=` qparam."""
+    leaf = pid.split(':', 1)[1] if ':' in pid else pid
+    purl = pid_purl.get(pid) or pid_purl.get(leaf)
+    if not purl:
+        for k, v in pid_purl.items():
+            if leaf.endswith(k) or k.endswith(leaf):
+                purl = v
+                break
+    if not purl:
+        return None
+    m = re.search(r'[?&]tag=([^&]+)', purl)
+    return _build_stamp(m.group(1)) if m else None
+
 
 def _image_identity_lookup(ctx, data, maps, dec):
     """Image-identity evidence for OCP/operator workloads (rungs 3a/3b, 4, 7).
@@ -1486,11 +1554,31 @@ def _image_identity_lookup(ctx, data, maps, dec):
 
         return ('POSITIVE', pid_match, status, family_assessed)
 
-    has_clear = any(s in ('known_not_affected', 'fixed') for s, _, _ in candidates)
-    if has_clear:
-        pid_match = next(p for s, p, _ in candidates if s in ('known_not_affected', 'fixed'))
-        flag_lbl = next((fl for s, _, fl in candidates if s in ('known_not_affected', 'fixed') and fl), '')
+    has_kna = any(s == 'known_not_affected' for s, _, _ in candidates)
+    if has_kna:
+        pid_match = next(p for s, p, _ in candidates if s == 'known_not_affected')
+        flag_lbl = next((fl for s, _, fl in candidates if s == 'known_not_affected' and fl), '')
         return ('FALSE_POSITIVE', pid_match, flag_lbl, family_assessed)
+
+    # fixed only: a fixed PID carrying a digest that is NOT ours names another
+    # build.  Digests cannot be ordered — compare Brew build stamps (purl `tag=`
+    # vs this build's version-release): ours ≥ newest fix → rebuild carries the
+    # fix (not a "previous version", §5g) → FALSE POSITIVE; ours older →
+    # POSITIVE.  A generic (digest-less) fixed PID clears the stream outright;
+    # with no comparable stamps, the stream's fix predates a modern rebuild in
+    # the corpus norm — treated as cleared.
+    fixed_generic = [p for s, p, _ in candidates if s == 'fixed' and not _extract_sha256(p)]
+    if fixed_generic:
+        return ('FALSE_POSITIVE', fixed_generic[0], '', family_assessed)
+    fixed_other = [p for s, p, _ in candidates if s == 'fixed']
+    if fixed_other:
+        ours = _build_stamp(ctx.image_build)
+        stamps = [t for t in (_purl_build_stamp(p, pid_purl) for p in fixed_other) if t]
+        if ours and stamps:
+            if ours >= max(stamps):
+                return ('FALSE_POSITIVE', fixed_other[0], '', family_assessed)
+            return ('POSITIVE', fixed_other[0], 'fixed', family_assessed)
+        return ('FALSE_POSITIVE', fixed_other[0], '', family_assessed)
 
     return ('NOT_LISTED', '', '', True) if family_assessed else None
 
@@ -1667,6 +1755,11 @@ def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
                     if vex_status == 'under_investigation':
                         dec.update(kind='img_pos_ui', status='under_investigation', pids=_pids)
                         return ("❌ POSITIVE", "N/A", f"under_investigation. {img_lbl}.")
+                    if vex_status == 'fixed':
+                        dec.update(kind='img_pos_fixed_older', status='known_affected',
+                                   pids=_pids, fix_set=False)
+                        return ("❌ POSITIVE", "N/A",
+                                f"Fixed build exists ({img_lbl}); this build predates it.")
                     dec.update(kind='img_pos', status='known_affected', pids=_pids)
                     return ("❌ POSITIVE", "N/A", f"{vex_status}. {img_lbl}.")
                 if verdict == 'POSITIVE_OTHER_RHEL':
