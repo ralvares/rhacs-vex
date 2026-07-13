@@ -1,9 +1,11 @@
 """context.py — WorkloadContext for images scanned outside RHACS.
 
-RHACS scans carry image labels in their metadata; grype/trivy flows don't, so
-the labels come from `skopeo inspect` (same authenticated registry access the
-pipeline already relies on).  Falls back to pure image-ref parsing when the
-registry is unreachable — same degradation the offline retriage path uses.
+Labels come from the scanner's own artifacts when possible — the syft-json
+SBOM (source.metadata.labels) or the trivy report (Metadata.ImageConfig) —
+via the callers' `labels=` argument.  `skopeo inspect` is only the fallback
+when no artifact carries them (e.g. scratch images).  Falls back further to
+pure image-ref parsing when the registry is unreachable — same degradation
+the offline retriage path uses.
 """
 from __future__ import annotations
 

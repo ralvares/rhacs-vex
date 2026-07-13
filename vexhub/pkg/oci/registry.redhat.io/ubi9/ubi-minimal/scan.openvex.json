@@ -1,0 +1,91 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/ubi-minimal",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T11:44:45Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-14087"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ubi-minimal@sha256:907b68736aa798b2d38255b7aa070b2a70acb90803864a40f05d0ec47556ddd0",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-18.el9_7.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-18.el9_7.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-14512"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ubi-minimal@sha256:907b68736aa798b2d38255b7aa070b2a70acb90803864a40f05d0ec47556ddd0",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-18.el9_7.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-18.el9_7.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-29111"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ubi-minimal@sha256:907b68736aa798b2d38255b7aa070b2a70acb90803864a40f05d0ec47556ddd0",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/systemd-libs@252-55.el9_7.9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd@252-55.el9_7.9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@252-55.el9_7.9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@252-55.el9_7.9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4878"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ubi-minimal@sha256:907b68736aa798b2d38255b7aa070b2a70acb90803864a40f05d0ec47556ddd0",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+        }
+      ],
+      "status": "fixed"
+    }
+  ]
+}

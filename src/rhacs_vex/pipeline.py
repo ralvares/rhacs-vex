@@ -2,7 +2,8 @@
 """
 pipeline.py — Download OCP + operator catalogs and run the full VEX triage.
 
-The one-command end-to-end pipeline (console script ``rhacs-vex-pipeline``).
+The one-command end-to-end pipeline (``vextriage pipeline``; the historical
+``rhacs-vex-pipeline`` console script is a compatibility alias).
 Stages (all enabled by default; each has a --skip-* flag):
   0. podman login to the Red Hat registries.
   1. Render OLM operator index catalogs via opm (one per unique minor version).
@@ -10,6 +11,9 @@ Stages (all enabled by default; each has a --skip-* flag):
   3. Fetch OCP release pullspecs via `oc adm release info` for each full version.
   4. Triage each OCP release                 (python -m rhacs_vex.triage --ocp).
   5. Triage all operators                     (python -m rhacs_vex.operators).
+  6. (--refresh-operator-verdicts) offline operator verdict refresh.
+  7. Generate the OpenVEX hub from syft+grype scans (vextriage generate) for
+     every OCP release and all channel-head operators — independent of RHACS.
 
 Requires:
   ROX_ENDPOINT   — RHACS Central hostname:port
@@ -17,16 +21,16 @@ Requires:
 
 Usage examples:
   # Full run with embedded version list
-  rhacs-vex-pipeline --pull-secret ~/pullsecret.txt
+  vextriage pipeline --pull-secret ~/pullsecret.txt
 
   # Only download catalogs, skip scanning
-  rhacs-vex-pipeline --pull-secret ~/pullsecret.txt --skip-ocp --skip-operators
+  vextriage pipeline --pull-secret ~/pullsecret.txt --skip-ocp --skip-operators
 
   # Resume after an interruption, skip already-done items
-  rhacs-vex-pipeline --pull-secret ~/pullsecret.txt --skip-existing
+  vextriage pipeline --pull-secret ~/pullsecret.txt --skip-existing
 
   # Supply a custom versions CSV
-  rhacs-vex-pipeline --pull-secret ~/pullsecret.txt --versions my_versions.csv
+  vextriage pipeline --pull-secret ~/pullsecret.txt --versions my_versions.csv
 
 Run from the repository root — all tool paths are relative to ./data.
 """
@@ -112,7 +116,7 @@ OPERATOR_TRIAGE_MODULE = "rhacs_vex.operators"
 
 
 def log(msg: str):
-    print(f"[rhacs-vex-pipeline] {msg}", flush=True)
+    print(f"[vextriage pipeline] {msg}", flush=True)
 
 
 def run(cmd: list[str], *, env: dict | None = None, capture_stdout: bool = False,
@@ -388,6 +392,33 @@ def stage_operator_triage(minor_versions: list[str], workers: int,
 
 
 # ---------------------------------------------------------------------------
+# Stage 7 — OpenVEX hub generation
+# ---------------------------------------------------------------------------
+
+def stage_openvex(pullspec_files: list[str], workers: int):
+    """Populate the OpenVEX hub via ``vextriage generate`` (syft+grype).
+
+    Deliberately decoupled from the RHACS triage stages above: hub statements
+    are minted from the consumer-side scanner's own artifacts, never from the
+    triage CSVs.  One run per release so hub writes checkpoint after each
+    version (a crash loses at most one version); the digest-pinned SBOM cache
+    makes overlapping patch releases nearly free after the first of a minor.
+    """
+    log("=== STAGE 7: OpenVEX hub generation (syft+grype) ===")
+    for txt in pullspec_files:
+        ver = os.path.splitext(os.path.basename(txt))[0]
+        rc = run([sys.executable, "-m", "rhacs_vex.cli", "generate",
+                  "--ocp", ver, "--workers", str(workers), "--resume"])
+        if rc != 0:
+            log(f"  WARNING: openvex generate exited non-zero for {ver} (rc={rc})")
+
+    rc = run([sys.executable, "-m", "rhacs_vex.cli", "generate",
+              "--operators", "--workers", str(workers), "--resume"])
+    if rc != 0:
+        log("  WARNING: openvex generate --operators exited non-zero")
+
+
+# ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 
@@ -465,6 +496,9 @@ def parse_args() -> argparse.Namespace:
                       help="Skip Stages 3+4: do not fetch pullspecs or triage OCP releases.")
     skip.add_argument("--skip-operators", action="store_true", default=False,
                       help="Skip Stage 5: do not triage operators.")
+    skip.add_argument("--skip-openvex",   action="store_true", default=False,
+                      help="Skip Stage 7: do not generate the OpenVEX hub "
+                           "(vextriage generate).")
 
     return parser.parse_args()
 
@@ -519,14 +553,18 @@ def main():
         log("=== STAGE 2: SKIPPED (--skip-ns-map) ===")
 
     # ── Stages 3+4: OCP release pullspecs + triage ──────────────────────────
-    if not args.skip_ocp:
+    # Stage 3 also feeds the OpenVEX stage, so it runs unless BOTH consumers
+    # are skipped — that keeps --skip-ocp usable for RHACS-free OpenVEX runs.
+    pullspec_files: list[str] = []
+    if not args.skip_ocp or not args.skip_openvex:
         pullspec_files = stage_ocp_pullspecs(
             versions, pull_secret, args.oc, args.arch, args.skip_existing
         )
+    if not args.skip_ocp:
         stage_ocp_triage(pullspec_files, args.workers, args.skip_existing,
                          args.false_only, max_report_age=args.max_report_age)
     else:
-        log("=== STAGES 3+4: SKIPPED (--skip-ocp) ===")
+        log("=== STAGE 4: SKIPPED (--skip-ocp) ===")
 
     # ── Stage 5: operator triage ─────────────────────────────────────────────
     if not args.skip_operators:
@@ -550,6 +588,12 @@ def main():
     elif not args.skip_operators:
         log("HINT: operator verdicts age as VEX updates — refresh offline anytime with:")
         log(f"      python3 -m rhacs_vex.retriage --operators-only --version {','.join(minor_versions_ordered)}")
+
+    # ── Stage 7: OpenVEX hub generation ─────────────────────────────────────
+    if not args.skip_openvex:
+        stage_openvex(pullspec_files, args.workers)
+    else:
+        log("=== STAGE 7: SKIPPED (--skip-openvex) ===")
 
     log("All stages complete.")
 

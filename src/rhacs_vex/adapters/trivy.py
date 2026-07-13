@@ -40,6 +40,16 @@ def trivy_scan(target: str, *, platform: str = 'linux/amd64') -> dict:
     return json.loads(proc.stdout)
 
 
+def labels(trivy_doc: dict) -> dict:
+    """Image labels from the report's OCI config (Metadata.ImageConfig).
+
+    Saves a skopeo inspect per image; {} when absent so callers can fall back.
+    """
+    cfg = ((trivy_doc.get('Metadata') or {}).get('ImageConfig') or {}) \
+        .get('config') or {}
+    return cfg.get('Labels') or {}
+
+
 def _source_for(purl: str) -> str:
     for prefix, src in _PURL_TO_SOURCE.items():
         if str(purl).startswith(prefix):

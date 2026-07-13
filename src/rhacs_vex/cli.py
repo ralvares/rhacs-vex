@@ -3,7 +3,7 @@
 One tool, scanner as subcommand; the engine judges every scanner the same way
 (scanner = discovery, engine = verdict, OpenVEX = output):
 
-    vextriage rhacs    ...             today's rhacs-vex CLI, unchanged
+    vextriage rhacs    ...             RHACS-backed triage, unchanged
     vextriage grype    <image|sbom>    syft SBOM + grype scan → engine triage
     vextriage trivy    <image|report>  trivy scan → engine triage
     vextriage generate --images FILE   batch: scan → triage → OpenVEX hub
@@ -60,12 +60,14 @@ def _scanner_cmd(scanner: str, args) -> int:
         doc = adapter.grype_scan(target)
         df = adapter.to_df(doc)
         hint = adapter.os_hint(doc)
+        labels = adapter.sbom_labels(target)
     else:
         from .adapters import trivy as adapter
         console.print("🔍 trivy scan...")
         doc = adapter.trivy_scan(args.target, platform=args.platform)
         df = adapter.to_df(doc)
         hint = adapter.os_hint(doc)
+        labels = adapter.labels(doc)
 
     image_ref = args.image or (args.target if not os.path.exists(args.target) else '')
     if not image_ref:
@@ -74,7 +76,7 @@ def _scanner_cmd(scanner: str, args) -> int:
         return 2
 
     console.print(f"🧭 Image context via labels: [bold cyan]{image_ref}[/bold cyan]")
-    ctx = context_for_image(image_ref, os_hint=hint)
+    ctx = context_for_image(image_ref, os_hint=hint, labels=labels or None)
 
     result_df = triage._audit_and_display(
         df, ctx, console, output_path=args.output, output_fmt=args.format,
@@ -150,6 +152,47 @@ def _generate_cmd(args) -> int:
         console.print('[red]No digest-pinned refs — use --image, --images, '
                       '--ocp or --operators.[/red]')
         return 2
+
+    if args.resume:
+        # A digest already present in its hub doc's product ids was fully
+        # scanned+written — skip it.  0-statement images leave no trace, so
+        # they re-scan (cheap: SBOM cached).
+        import json as _json
+        by_doc: dict = {}
+        for ref in refs:
+            by_doc.setdefault(hub.doc_path(args.hub, ref), []).append(ref)
+        skip = set()
+        for path, group in by_doc.items():
+            if not os.path.exists(path):
+                continue
+            try:
+                with open(path) as fh:
+                    doc = _json.load(fh)
+            except Exception:
+                continue
+            done_digests = set()
+            for s in doc.get('statements', []):
+                for p in s.get('products', []) or []:
+                    m = _re.search(r'(sha256:[a-f0-9]{64})', str(p.get('@id', '')))
+                    if m:
+                        done_digests.add(m.group(1))
+            skip.update(r for r in group if r.split('@')[-1] in done_digests)
+        if skip:
+            refs = [r for r in refs if r not in skip]
+            console.print(f'--resume: [bold]{len(skip)}[/bold] image(s) already '
+                          f'in hub, {len(refs)} left')
+        if not refs:
+            console.print('Nothing to do.')
+            return 0
+
+    # One grype DB update up front, then freeze the per-call network checks —
+    # they otherwise run once per image.
+    import subprocess as _sp
+    _sp.run(['grype', 'db', 'update'], capture_output=True)
+    os.environ.setdefault('GRYPE_DB_AUTO_UPDATE', 'false')
+    os.environ.setdefault('GRYPE_CHECK_FOR_APP_UPDATE', 'false')
+    os.environ.setdefault('SYFT_CHECK_FOR_APP_UPDATE', 'false')
+
     console.print(f'Generating OpenVEX for [bold]{len(refs)}[/bold] image(s), '
                   f'{args.workers} workers')
 
@@ -171,10 +214,20 @@ def _generate_cmd(args) -> int:
             continue
 
     def _one(ref: str):
-        sbom = adapter.syft_sbom(ref, platform=args.platform, force=args.force)
+        try:
+            sbom = adapter.syft_sbom(ref, platform=args.platform,
+                                     force=args.force)
+        except Exception:
+            # Transient registry/CDN hiccups (e.g. quay CDN TLS errors) — one
+            # retry; force=True so a partially-written SBOM can't be reused.
+            import time as _time
+            _time.sleep(5)
+            sbom = adapter.syft_sbom(ref, platform=args.platform, force=True)
         doc = adapter.grype_scan(sbom)
         df = adapter.to_df(doc)
-        ctx = context_for_image(ref, os_hint=adapter.os_hint(doc))
+        # Labels from the SBOM itself — skopeo only as fallback (scratch images)
+        ctx = context_for_image(ref, os_hint=adapter.os_hint(doc),
+                                labels=adapter.sbom_labels(sbom) or None)
         digest = ref.split('@')[-1]
         if digest in ocp_by_digest:
             ver, minor = ocp_by_digest[digest]
@@ -185,7 +238,13 @@ def _generate_cmd(args) -> int:
         result = triage._audit_silent(df, ctx)
         return openvex.statements_from_df(result, ref)
 
-    per_image, errors = {}, 0
+    # Checkpointed hub writes: flush every FLUSH_EVERY completions so an
+    # interrupted run keeps (almost) everything on disk.  Batching per flush —
+    # not per image — matters because refs sharing a doc (every digest of
+    # ocp-v4.0-art-dev) would otherwise re-read+rewrite the same growing file
+    # once per digest.
+    FLUSH_EVERY = 25
+    per_image, pending, errors, doc_updates = {}, {}, 0, 0
     with ThreadPoolExecutor(max_workers=args.workers) as ex:
         futures = {ex.submit(_one, ref): ref for ref in refs}
         for done, future in enumerate(as_completed(futures), 1):
@@ -194,19 +253,25 @@ def _generate_cmd(args) -> int:
                 statements = future.result()
                 if statements:
                     per_image[ref] = statements
+                    pending[ref] = statements
                 console.print(f'  [{done}/{len(refs)}] {ref.split("@")[0]}: '
                               f'{len(statements)} statements')
             except Exception as e:
                 errors += 1
                 console.print(f'  [{done}/{len(refs)}] [red]{ref}: {e}[/red]')
+            if len(pending) >= FLUSH_EVERY:
+                doc_updates += hub.write_image_docs(args.hub, pending,
+                                                    author=args.author)
+                pending.clear()
 
-    docs = hub.write_image_docs(args.hub, per_image, author=args.author)
+    if pending:
+        doc_updates += hub.write_image_docs(args.hub, pending, author=args.author)
     stats = hub.build_index(args.hub, name=args.author,
                             description='Red Hat VEX triage verdicts (OpenVEX)',
                             base_url=args.base_url, archive=args.archive)
     console.print(f"Hub: [bold]{stats['documents']}[/bold] documents "
-                  f"({docs} updated), {stats['packages']} index entries, "
-                  f"{errors} errors → {args.hub}")
+                  f"({doc_updates} doc updates), {stats['packages']} index "
+                  f"entries, {errors} errors → {args.hub}")
 
     if args.verify:
         return _verify_hub(per_image, args.hub, console)
@@ -252,6 +317,100 @@ def _verify_hub(per_image: dict, hub_dir: str, console: Console) -> int:
     return 1 if leaks_total else 0
 
 
+def _doctor_cmd() -> int:
+    """System check: external tools, auth env, discovery/cache artifacts."""
+    import glob as _glob
+    import shutil as _shutil
+    import subprocess as _sp
+
+    from rich.table import Table
+    console = Console()
+
+    def _version(binary: str, vargs: list) -> str:
+        try:
+            out = _sp.run([binary, *vargs], capture_output=True, text=True,
+                          timeout=10)
+            line = (out.stdout or out.stderr).strip().splitlines()
+            return line[0][:60] if line else ''
+        except Exception:
+            return ''
+
+    # (binary, version args, used by)
+    tools = [
+        ('syft',   ['--version'],           'OpenVEX generation — SBOM + image pull'),
+        ('grype',  ['--version'],           'OpenVEX generation — CVE discovery'),
+        ('trivy',  ['--version'],           'trivy scanner / generate --verify gate'),
+        ('skopeo', ['--version'],           'label fallback (images without labels)'),
+        ('oc',     ['version', '--client'], 'discovery — OCP release pullspecs'),
+        ('opm',    ['version'],             'discovery — operator index catalogs'),
+        ('podman', ['--version'],           'optional — registry login helper'),
+    ]
+    t = Table(title='External tools')
+    for col in ('tool', 'found', 'version', 'used by'):
+        t.add_column(col)
+    missing = []
+    for binary, vargs, purpose in tools:
+        path = _shutil.which(binary)
+        if path:
+            t.add_row(binary, '[green]✓[/green]', _version(binary, vargs), purpose)
+        else:
+            missing.append(binary)
+            t.add_row(binary, '[red]✗ not found[/red]', '', purpose)
+    console.print(t)
+
+    e = Table(title='Environment')
+    for col in ('variable', 'state', 'needed for'):
+        e.add_column(col)
+    for var, needed in (('ROX_ENDPOINT', 'RHACS triage'),
+                        ('ROX_API_TOKEN', 'RHACS triage')):
+        e.add_row(var, '[green]set[/green]' if os.environ.get(var)
+                  else '[yellow]unset[/yellow]', needed)
+    raf = os.environ.get('REGISTRY_AUTH_FILE', '')
+    e.add_row('REGISTRY_AUTH_FILE',
+              '[green]set, file exists[/green]' if raf and os.path.isfile(raf)
+              else '[red]set, file MISSING[/red]' if raf
+              else '[yellow]unset[/yellow]', 'oc / opm / skopeo auth')
+    dc = os.environ.get('DOCKER_CONFIG', '')
+    dc_cfg = os.path.join(dc, 'config.json') if dc \
+        else os.path.expanduser('~/.docker/config.json')
+    e.add_row('DOCKER_CONFIG',
+              f'[green]{"set" if dc else "default"}, config.json exists[/green]'
+              if os.path.isfile(dc_cfg)
+              else f'[yellow]{"set" if dc else "unset"}, no config.json '
+                   f'({dc_cfg})[/yellow]', 'syft image pulls')
+    console.print(e)
+
+    d = Table(title='Data artifacts (relative to cwd — run from the repo root)')
+    for col in ('artifact', 'state'):
+        d.add_column(col)
+    counts = [
+        ('data/pullspecs/*.txt   (OCP releases)',
+         len(_glob.glob('data/pullspecs/*.txt'))),
+        ('data/catalogs/catalog-*.json  (operator indexes)',
+         len(_glob.glob('data/catalogs/catalog-*.json'))),
+        ('data/syft/*.json       (SBOM cache)',
+         len(_glob.glob('data/syft/*.json'))),
+        ('vexhub documents',
+         len(_glob.glob('vexhub/pkg/**/scan.openvex.json', recursive=True))),
+    ]
+    for label, n in counts:
+        d.add_row(label, f'[green]{n}[/green]' if n else '[yellow]0[/yellow]')
+    if not os.path.isdir('data'):
+        d.add_row('[red]data/ not found[/red]',
+                  '[red]not the repo root?[/red]')
+    console.print(d)
+
+    if _shutil.which('grype'):
+        st = _sp.run(['grype', 'db', 'status'], capture_output=True, text=True)
+        console.print('grype DB: ' +
+                      ('; '.join(st.stdout.strip().splitlines()[:3])
+                       if st.returncode == 0 else '[red]status failed[/red]'))
+    if missing:
+        console.print(f"[yellow]missing: {', '.join(missing)} — only the "
+                      f"workflows above that need them are affected[/yellow]")
+    return 1 if missing else 0
+
+
 def _hub_cmd(args) -> int:
     from . import hub
     console = Console()
@@ -278,7 +437,7 @@ def _add_scanner_args(p: argparse.ArgumentParser) -> None:
     p.add_argument('--platform', default='linux/amd64')
     p.add_argument('--openvex-dir', default=None, metavar='DIR',
                    help='export FALSE POSITIVE verdicts as OpenVEX into this hub dir')
-    p.add_argument('--author', default='rhacs-vex')
+    p.add_argument('--author', default='vextriage')
     p.add_argument('--output', default=None)
     p.add_argument('--format', default='csv', choices=['table', 'csv', 'json'])
     p.add_argument('--false-only', action='store_true', default=False)
@@ -294,9 +453,9 @@ def main() -> int:
     sub = parser.add_subparsers(dest='command')
 
     sub.add_parser('rhacs', add_help=False,
-                   help="RHACS-backed triage (today's rhacs-vex CLI)")
+                   help="RHACS-backed triage")
     for name in ('pipeline', 'operators', 'retriage', 'parquet'):
-        sub.add_parser(name, add_help=False, help=f'alias for rhacs-vex-{name}')
+        sub.add_parser(name, add_help=False, help=f'passthrough to rhacs_vex.{name}')
 
     for scanner in ('grype', 'trivy'):
         _add_scanner_args(sub.add_parser(
@@ -317,17 +476,22 @@ def main() -> int:
     pg.add_argument('--hub', default='vexhub', metavar='DIR')
     pg.add_argument('--workers', type=int, default=4)
     pg.add_argument('--platform', default='linux/amd64')
-    pg.add_argument('--author', default='rhacs-vex')
+    pg.add_argument('--author', default='vextriage')
     pg.add_argument('--base-url', default='')
     pg.add_argument('--archive', action='store_true', default=False)
     pg.add_argument('--force', action='store_true', default=False,
                     help='regenerate cached syft SBOMs')
+    pg.add_argument('--resume', action='store_true', default=False,
+                    help='skip images whose digest is already in its hub doc')
     pg.add_argument('--verify', action='store_true', default=False,
                     help='re-scan each image with trivy against its doc; fail on leaks')
 
+    sub.add_parser('doctor', help='check external tools, auth env and data '
+                                  'artifacts')
+
     ph = sub.add_parser('hub', help='rebuild hub index.json + vex-repository.json')
     ph.add_argument('--hub', default='vexhub', metavar='DIR')
-    ph.add_argument('--author', default='rhacs-vex')
+    ph.add_argument('--author', default='vextriage')
     ph.add_argument('--base-url', default='')
     ph.add_argument('--archive', action='store_true', default=False)
 
@@ -341,6 +505,8 @@ def main() -> int:
         return _scanner_cmd(args.command, args)
     if args.command == 'generate':
         return _generate_cmd(args)
+    if args.command == 'doctor':
+        return _doctor_cmd()
     if args.command == 'hub':
         return _hub_cmd(args)
     parser.print_help()

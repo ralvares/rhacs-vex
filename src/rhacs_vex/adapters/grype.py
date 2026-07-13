@@ -58,6 +58,20 @@ def grype_scan(target: str) -> dict:
     return json.loads(proc.stdout)
 
 
+def sbom_labels(sbom_path: str) -> dict:
+    """Image labels recorded in the syft-json SBOM (source.metadata.labels).
+
+    Saves a skopeo inspect per image — the SBOM already carries the OCI config.
+    {} when absent (e.g. scratch images), letting callers fall back.
+    """
+    try:
+        with open(sbom_path) as fh:
+            doc = json.load(fh)
+        return (doc.get('source', {}).get('metadata') or {}).get('labels') or {}
+    except Exception:
+        return {}
+
+
 def to_df(grype_doc: dict) -> pd.DataFrame:
     """Flatten grype matches into the triage DataFrame shape (rhacs_to_df)."""
     rows, seen = [], set()

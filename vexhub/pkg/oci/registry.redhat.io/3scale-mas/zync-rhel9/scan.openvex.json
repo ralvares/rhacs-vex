@@ -1,0 +1,632 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/zync-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T11:17:32Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2022-25883"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/semver@7.3.7"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-42282"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/ip@2.0.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-52356"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libtiff-devel@4.4.0-10.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-10.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff-devel@4.4.0-10.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-10.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-52425"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.5.0-1.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.5.0-1.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-28863"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/tar@6.1.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat 3scale API Management Platform 2 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-29415"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/ip@2.0.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat 3scale API Management Platform 2, Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-49761"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/ruby-bundled-gems@3.1.2-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ruby-default-gems@3.1.2-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ruby-devel@3.1.2-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ruby-libs@3.1.2-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ruby@0.5.11-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ruby@1.4.1-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ruby@13.0.6-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ruby@2.3.7-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ruby@2.6.1-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ruby@3.1.1-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ruby@3.1.2-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ruby@3.3.7-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ruby@4.0.3-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ruby@6.4.0-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rubygem-bigdecimal@3.1.1-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rubygem-bundler@2.3.7-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rubygem-io-console@0.5.11-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rubygem-irb@1.4.1-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rubygem-json@2.6.1-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rubygem-psych@4.0.3-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rubygem-rake@13.0.6-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rubygem-rdoc@6.4.0-141.module+el9.1.0+15737+76195479"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rubygems@3.3.7-141.module+el9.1.0+15737+76195479"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/ruby-bundled-gems@3.1.2-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ruby-default-gems@3.1.2-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ruby-devel@3.1.2-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ruby-libs@3.1.2-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ruby@0.5.11-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ruby@1.4.1-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ruby@13.0.6-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ruby@2.3.7-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ruby@2.6.1-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ruby@3.1.1-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ruby@3.1.2-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ruby@3.3.7-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ruby@4.0.3-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ruby@6.4.0-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rubygem-bigdecimal@3.1.1-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rubygem-bundler@2.3.7-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rubygem-io-console@0.5.11-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rubygem-irb@1.4.1-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rubygem-json@2.6.1-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rubygem-psych@4.0.3-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rubygem-rake@13.0.6-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rubygem-rdoc@6.4.0-141.module+el9.1.0+15737+76195479"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rubygems@3.3.7-141.module+el9.1.0+15737+76195479"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-8176"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.5.0-1.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.5.0-1.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-5889"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/brace-expansion@1.1.11"
+            },
+            {
+              "@id": "pkg:npm/brace-expansion@2.0.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-59375"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.5.0-1.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.5.0-1.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9086"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-26.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/curl@7.76.1-26.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libcurl-devel@7.76.1-26.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-26.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/curl@7.76.1-26.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcurl-devel@7.76.1-26.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-23745"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/tar@6.1.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-23950"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/tar@6.1.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24001"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/diff@5.1.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX statement for 3scale-mas/zync-rhel9 (RHEL 9)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24842"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/tar@6.1.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-26960"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/tar@6.1.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-26996"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/minimatch@3.1.2"
+            },
+            {
+              "@id": "pkg:npm/minimatch@5.1.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27903"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/minimatch@3.1.2"
+            },
+            {
+              "@id": "pkg:npm/minimatch@5.1.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27904"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/minimatch@3.1.2"
+            },
+            {
+              "@id": "pkg:npm/minimatch@5.1.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-29786"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/tar@6.1.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-31802"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/tar@6.1.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33750"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/brace-expansion@1.1.11"
+            },
+            {
+              "@id": "pkg:npm/brace-expansion@2.0.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-3449"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/@tootallnate/once@2.0.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44172"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-devel@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-devel@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-53655"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
+          "subcomponents": [
+            {
+              "@id": "pkg:npm/tar@6.1.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9) not listed as affected."
+    }
+  ]
+}

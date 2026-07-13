@@ -1,0 +1,101 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/system-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T11:17:32Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-28417"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/system-rhel9@sha256:7fe04b79b0eb5105377bc896c2e9eff7fa0ac5c951f852a32221f2ad9efab64f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/system-rhel9 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44172"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/system-rhel9@sha256:7fe04b79b0eb5105377bc896c2e9eff7fa0ac5c951f852a32221f2ad9efab64f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/system-rhel9 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-59873"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/system-rhel9@sha256:7fe04b79b0eb5105377bc896c2e9eff7fa0ac5c951f852a32221f2ad9efab64f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/tar@1.34-9.el9_7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/tar@1.34-9.el9_7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/system-rhel9 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-59874"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/system-rhel9@sha256:7fe04b79b0eb5105377bc896c2e9eff7fa0ac5c951f852a32221f2ad9efab64f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/tar@1.34-9.el9_7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/tar@1.34-9.el9_7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/system-rhel9 9: known_not_affected."
+    }
+  ]
+}

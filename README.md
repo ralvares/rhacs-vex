@@ -31,6 +31,10 @@ A finding is marked **FALSE POSITIVE** only when all of the following hold: the 
 
 The RHACS path needs no image pull and no container runtime, and works fully offline once the VEX and SBOM caches are populated. The grype/trivy paths pull the image once (syft) and cache the SBOM.
 
+> [!TIP]
+> In a hurry? See [docs/HOWTO.md](docs/HOWTO.md) — RHACS triage, parquet build, and
+> OpenVEX generation for images / OCP releases / operators, all in one page.
+
 ---
 
 ## Install
@@ -57,6 +61,7 @@ vextriage trivy    <image|report>  trivy scan → engine triage
 vextriage generate --ocp V | --operators | --images FILE
                                    batch scan → triage → OpenVEX hub
 vextriage hub      ...             rebuild hub index + repository manifest
+vextriage doctor                   check tools, auth env and data artifacts
 vextriage pipeline|operators|retriage|parquet     passthrough aliases
 ```
 
@@ -79,7 +84,7 @@ and save it (e.g. `~/pullsecret.txt`). It is needed by the full pipeline (`opm`,
 | **syft** | `vextriage grype`, `generate` | SBOM generation (syft-json, cached) |
 | **grype** | `vextriage grype`, `generate` | CVE discovery for the OpenVEX path |
 | **trivy** | `vextriage trivy`, `generate --verify` | alternative scanner / suppression gate |
-| **skopeo** | grype/trivy/generate paths | image labels → workload context |
+| **skopeo** | grype/trivy/generate paths | label fallback only — labels normally come from the SBOM / trivy report |
 
 RHACS single-image triage needs none of these — only a reachable RHACS Central (or a warm cache).
 
@@ -93,7 +98,7 @@ Point at your RHACS Central, then triage a single image:
 export ROX_ENDPOINT=central-stackrox.apps.mycluster.example.com:443
 export ROX_API_TOKEN=<your-api-token>
 
-rhacs-vex --image registry.redhat.io/openshift4/ose-cli@sha256:4f2e216ad46aa75f84e27aa2e6303327b99a4331c7ed8ef65850102898f3a9b0
+vextriage rhacs --image registry.redhat.io/openshift4/ose-cli@sha256:4f2e216ad46aa75f84e27aa2e6303327b99a4331c7ed8ef65850102898f3a9b0
 ```
 
 (equivalently `python3 -m rhacs_vex.triage --image …`). Output is a compact, colour-coded table with the scanner severity and Red Hat's product-specific severity side by side, followed by a one-line summary and an SBOM cross-check:
@@ -114,10 +119,10 @@ RHACS reports 182 findings → VEX triage: 122 false positives (67%), 60 real.
 
 If the image is not already indexed in RHACS, the tool triggers an on-demand scan (`POST /v1/images/scan`) and waits for the result.
 
-### `rhacs-vex` (triage) options
+### `vextriage rhacs` (triage) options
 
 ```
-rhacs-vex [--image REF | --namespace NS | --ocp FILE | --scan CSV]
+vextriage rhacs [--image REF | --namespace NS | --ocp FILE | --scan CSV]
           [--format {table,csv,json}] [--output FILE]
           [--false-only] [--sbom] [--workers N]
 ```
@@ -227,7 +232,7 @@ mode can); golang — the dominant false-positive class — is unaffected.
 
 ## The full pipeline
 
-`rhacs-vex-pipeline` is the one-command, end-to-end run: it renders operator catalogs,
+`vextriage pipeline` is the one-command, end-to-end run: it renders operator catalogs,
 builds the namespace map, resolves OCP release pullspecs, and triages every OCP-release
 and operator image against VEX. It shells out to the other modules (`python -m
 rhacs_vex.ns_map`, `… .triage`, `… .operators`, `… .retriage`) for process isolation.
@@ -240,7 +245,7 @@ the two pipelines.
 ```bash
 export ROX_ENDPOINT=central-stackrox.apps.mycluster.example.com:443
 export ROX_API_TOKEN=<your-api-token>
-rhacs-vex-pipeline --pull-secret ~/pullsecret.txt
+vextriage pipeline --pull-secret ~/pullsecret.txt
 ```
 
 ### Stages
@@ -250,10 +255,11 @@ rhacs-vex-pipeline --pull-secret ~/pullsecret.txt
 | 0 | `podman login` to the Red Hat registries | `--skip-login` |
 | 1 | Render OLM operator index catalogs via `opm` → `data/catalogs/` | `--skip-catalogs` |
 | 2 | Build the namespace → VEX-prefix map → `data/ns_vex_prefixes.json` | `--skip-ns-map` |
-| 3 | Fetch OCP release pullspecs via `oc adm release info` → `data/pullspecs/` | `--skip-ocp` |
+| 3 | Fetch OCP release pullspecs via `oc adm release info` → `data/pullspecs/` | `--skip-ocp` *and* `--skip-openvex` |
 | 4 | Triage each OCP release → `data/reports/ocp-<ver>.csv` | `--skip-ocp` |
 | 5 | Triage all operators → `data/reports/operators/*.csv` | `--skip-operators` |
 | 6 | *(optional)* offline verdict refresh for operators (`--refresh-operator-verdicts`) | — |
+| 7 | Generate the OpenVEX hub (`vextriage generate`, syft+grype — no RHACS) for every OCP release + all channel-head operators → `vexhub/` | `--skip-openvex` |
 
 ### Freshness / skip flags
 
@@ -266,7 +272,13 @@ rhacs-vex-pipeline --pull-secret ~/pullsecret.txt
 | `--versions CSV` | Custom OCP version list (CSV with a `Version` column). Defaults to the list embedded in the module |
 | `--workers N` | Parallel image workers per stage (default: 10) |
 
-Run the non-scanning stages (catalogs + namespace map) without Central by passing `--skip-ocp --skip-operators`.
+Run the non-scanning stages (catalogs + namespace map) without Central by passing `--skip-ocp --skip-operators --skip-openvex`.
+
+OpenVEX-only run (no RHACS Central needed — stage 3 discovery still runs, then syft+grype → `vexhub/`):
+
+```bash
+vextriage pipeline --pull-secret ~/pullsecret.txt --skip-ocp --skip-operators
+```
 
 ---
 
@@ -277,11 +289,11 @@ The CSV reports under `data/reports/` are the source of truth. Two follow-up ste
 ```bash
 # 1. (optional) Re-audit ALL cached reports against fresh VEX — zero network, CPU only.
 #    Bounds each worker's VEX cache via VEX_CACHE_SIZE; uses a fork ProcessPool.
-python3 -m rhacs_vex.retriage                 # or: rhacs-vex-retriage
+python3 -m rhacs_vex.retriage                 # or: vextriage retriage
 python3 -m rhacs_vex.retriage --operators-only --version 4.21,4.22
 
 # 2. Build per-version parquet + manifest + CVE index from the CSV reports.
-python3 -m rhacs_vex.parquet                  # or: rhacs-vex-parquet
+python3 -m rhacs_vex.parquet                  # or: vextriage parquet
 
 # 3. Serve the static explorer (reads data/parquet + data/manifest.json by relative path).
 python3 -m http.server 8080
@@ -303,7 +315,7 @@ Ad-hoc queries over the built OCP parquet are available via `python3 -m rhacs_ve
 |----------|---------|---------|
 | `ROX_ENDPOINT` | triage, operators, pipeline | RHACS Central `host:port` (scanning stages only) |
 | `ROX_API_TOKEN` | triage, operators, pipeline | RHACS API bearer token (scanning stages only) |
-| `VEX_CACHE_SIZE` | engine | Max parsed-VEX documents kept in each process's LRU cache (default `512`). `rhacs-vex-retriage` sets it to `96` per worker to bound memory across a fork ProcessPool — override to trade memory for hit rate |
+| `VEX_CACHE_SIZE` | engine | Max parsed-VEX documents kept in each process's LRU cache (default `512`). `vextriage retriage` sets it to `96` per worker to bound memory across a fork ProcessPool — override to trade memory for hit rate |
 
 ---
 
@@ -364,17 +376,17 @@ docs/OPENVEX-PLAN.md        ← OpenVEX/vexhub architecture + decisions
 docs/OPENVEX-SPIKE-RESULTS.md ← empirical purl/suppression rules (grype+trivy proofs)
 src/rhacs_vex/
   engine.py                 ← clean-room VEX matching engine
-  triage.py                 ← RHACS ↔ VEX triage CLI / IO layer   (rhacs-vex)
+  triage.py                 ← RHACS ↔ VEX triage CLI / IO layer   (vextriage rhacs)
   cli.py                    ← umbrella CLI                        (vextriage)
   openvex.py                ← triage verdicts → OpenVEX statements
   hub.py                    ← vexhub builder (layout, index, manifest, merge)
   context.py                ← workload context via skopeo labels (non-RHACS paths)
   adapters/grype.py         ← syft SBOM + grype scan → triage rows
   adapters/trivy.py         ← trivy scan → triage rows
-  operators.py              ← operator triage                     (rhacs-vex-operators)
-  retriage.py               ← offline re-audit from cache         (rhacs-vex-retriage)
-  parquet.py                ← build parquet + manifest + CVE index (rhacs-vex-parquet)
-  pipeline.py               ← end-to-end orchestrator             (rhacs-vex-pipeline)
+  operators.py              ← operator triage                     (vextriage operators)
+  retriage.py               ← offline re-audit from cache         (vextriage retriage)
+  parquet.py                ← build parquet + manifest + CVE index (vextriage parquet)
+  pipeline.py               ← end-to-end orchestrator             (vextriage pipeline)
   ns_map.py                 ← namespace → VEX-prefix map builder
   query.py                  ← ad-hoc queries over OCP parquet
 tests/check_baseline.py     ← 189-case regression check (run from repo root)
