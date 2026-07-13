@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/flightctl-periodic-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:44:45Z",
-  "version": 2,
+  "timestamp": "2026-07-13T13:33:41Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -669,7 +669,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhem/flightctl-periodic-rhel9 9 not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -689,7 +689,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhem/flightctl-periodic-rhel9 (RHEL 9) not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -769,7 +769,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhem/flightctl-periodic-rhel9 9 not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -789,47 +789,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhem/flightctl-periodic-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/flightctl-periodic-rhel9@sha256:e1bc46429dc2da167e27400cce84af2082be150f577b37f98912371b6d684bbc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/flightctl-periodic-rhel9@sha256:ee59f307e468e2b7b38f7c040898d587d441f8fb3d59cb022ae23e4717739e3f",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.33.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.33.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -1109,7 +1069,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhem/flightctl-periodic-rhel9 9 not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -1129,7 +1089,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhem/flightctl-periodic-rhel9 (RHEL 9) not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -1349,7 +1309,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhem/flightctl-periodic-rhel9 9 not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -1369,7 +1329,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhem/flightctl-periodic-rhel9 (RHEL 9) not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -1641,7 +1601,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhem/flightctl-periodic-rhel9 9 not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -1661,7 +1621,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhem/flightctl-periodic-rhel9 (RHEL 9) not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -1865,66 +1825,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/flightctl-periodic-rhel9@sha256:e1bc46429dc2da167e27400cce84af2082be150f577b37f98912371b6d684bbc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/flightctl-periodic-rhel9@sha256:e1bc46429dc2da167e27400cce84af2082be150f577b37f98912371b6d684bbc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/flightctl-periodic-rhel9@sha256:e1bc46429dc2da167e27400cce84af2082be150f577b37f98912371b6d684bbc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39836"
       },
       "products": [
@@ -1981,7 +1881,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "Not listed as affected; no VEX statement for rhem/flightctl-periodic-rhel9 9."
     },
     {
       "vulnerability": {
@@ -2076,46 +1976,6 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/flightctl-periodic-rhel9@sha256:e1bc46429dc2da167e27400cce84af2082be150f577b37f98912371b6d684bbc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/flightctl-periodic-rhel9@sha256:ee59f307e468e2b7b38f7c040898d587d441f8fb3d59cb022ae23e4717739e3f",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.33.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.33.0"
             }
           ]
         }
@@ -2401,7 +2261,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "Not listed as affected; no VEX statement for rhem/flightctl-periodic-rhel9 9."
     },
     {
       "vulnerability": {
@@ -2421,7 +2281,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "Not listed as affected; no VEX statement for rhem/flightctl-periodic-rhel9 (RHEL 9)."
     },
     {
       "vulnerability": {
@@ -2441,27 +2301,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhem/flightctl-periodic-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/flightctl-periodic-rhel9@sha256:e1bc46429dc2da167e27400cce84af2082be150f577b37f98912371b6d684bbc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "justification": "vulnerable_code_not_present"
     }
   ]
 }

@@ -1,9 +1,9 @@
 {
   "@context": "https://openvex.dev/ns/v0.2.0",
-  "@id": "https://openvex.dev/docs/rhacs-vex/3scale-rhel9-operator",
-  "author": "rhacs-vex",
-  "timestamp": "2026-07-13T10:26:10Z",
-  "version": 1,
+  "@id": "https://openvex.dev/docs/vextriage/3scale-rhel9-operator",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T13:30:01Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -529,7 +529,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -895,7 +895,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "3scale-amp2/3scale-rhel9-operator 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -975,7 +975,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "3scale-amp2/3scale-rhel9-operator 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -995,7 +995,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -1015,7 +1015,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "3scale-amp2/3scale-rhel9-operator 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1090,26 +1090,6 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/3scale-rhel9-operator@sha256:14505d47adc9fe3abce6570348cb339b9019afaaefc0803efc06cbcfd5b877cf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.33.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.33.0"
             }
           ]
         }
@@ -1195,7 +1175,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "3scale-amp2/3scale-rhel9-operator 9 not listed as affected."
     },
     {
       "vulnerability": {

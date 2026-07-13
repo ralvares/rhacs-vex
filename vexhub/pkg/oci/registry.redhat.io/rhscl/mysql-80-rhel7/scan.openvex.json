@@ -1,0 +1,29 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/mysql-80-rhel7",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T14:05:20Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2022-40897"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mysql-80-rhel7@sha256:e4f535c78bc2fdb58914c52fb805185035ff31515452b4df714f9ab623ba383a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-setuptools@0.9.8-7.el7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-setuptools@0.9.8-7.el7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhscl/mysql-80-rhel7 (RHEL 7): known_not_affected."
+    }
+  ]
+}

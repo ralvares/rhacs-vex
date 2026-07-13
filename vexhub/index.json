@@ -1,30 +1,2326 @@
 {
   "version": 1,
-  "updated_at": "2026-07-13T10:35:04Z",
+  "updated_at": "2026-07-13T14:57:33Z",
   "packages": [
+    {
+      "id": "pkg:oci/3scale-rhel7-operator?repository_url=registry.redhat.io%2F3scale-mas%2F3scale-rhel7-operator",
+      "location": "pkg/oci/registry.redhat.io/3scale-mas/3scale-rhel7-operator/scan.openvex.json"
+    },
     {
       "id": "pkg:oci/3scale-rhel9-operator?repository_url=registry.redhat.io%2F3scale-amp2%2F3scale-rhel9-operator",
       "location": "pkg/oci/registry.redhat.io/3scale-amp2/3scale-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aap-cloud-billing-operator-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Faap-cloud-billing-operator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/aap-cloud-billing-operator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aap-cloud-billing-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Faap-cloud-billing-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/aap-cloud-billing-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aap-cloud-billing-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Faap-cloud-billing-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/aap-cloud-billing-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aap-cloud-billing-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Faap-cloud-billing-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/aap-cloud-billing-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aap-cloud-ui-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Faap-cloud-ui-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/aap-cloud-ui-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aap-cloud-ui-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Faap-cloud-ui-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/aap-cloud-ui-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aap-cloud-ui-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Faap-cloud-ui-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/aap-cloud-ui-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aap-cloud-ui-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Faap-cloud-ui-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/aap-cloud-ui-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aaq-controller-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Faaq-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/aaq-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aaq-operator-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Faaq-operator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/aaq-operator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aaq-server-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Faaq-server-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/aaq-server-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/acm-cli-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Facm-cli-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/acm-cli-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/acm-cluster-permission-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Facm-cluster-permission-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/acm-cluster-permission-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/acm-governance-policy-addon-controller-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Facm-governance-policy-addon-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/acm-governance-policy-addon-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/acm-governance-policy-framework-addon-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Facm-governance-policy-framework-addon-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/acm-governance-policy-framework-addon-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/acm-grafana-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Facm-grafana-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/acm-grafana-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/acm-multicluster-observability-addon-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Facm-multicluster-observability-addon-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/acm-multicluster-observability-addon-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/acm-must-gather-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Facm-must-gather-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/acm-must-gather-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/acm-prometheus-config-reloader-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Facm-prometheus-config-reloader-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/acm-prometheus-config-reloader-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/acm-prometheus-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Facm-prometheus-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/acm-prometheus-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/acm-search-indexer-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Facm-search-indexer-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/acm-search-indexer-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/acm-search-v2-api-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Facm-search-v2-api-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/acm-search-v2-api-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/acm-search-v2-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Facm-search-v2-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/acm-search-v2-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/acm-siteconfig-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Facm-siteconfig-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/acm-siteconfig-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/acm-volsync-addon-controller-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Facm-volsync-addon-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/acm-volsync-addon-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/addon-manager-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Faddon-manager-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/addon-manager-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/agent-client-rhel9?repository_url=registry.redhat.io%2Fexploit-intelligence-tech-preview%2Fagent-client-rhel9",
+      "location": "pkg/oci/registry.redhat.io/exploit-intelligence-tech-preview/agent-client-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/agent-sandbox-rhel9-operator?repository_url=registry.redhat.io%2Fagent-sandbox%2Fagent-sandbox-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/agent-sandbox/agent-sandbox-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/agent-sandbox-router?repository_url=registry.redhat.io%2Fagent-sandbox%2Fagent-sandbox-router",
+      "location": "pkg/oci/registry.redhat.io/agent-sandbox/agent-sandbox-router/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/alertmanager-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Falertmanager-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/alertmanager-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-broker-init-openj9-11-rhel8?repository_url=registry.redhat.io%2Famq7%2Famq-broker-init-openj9-11-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-broker-init-openj9-11-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-broker-init-openjdk-11-rhel8?repository_url=registry.redhat.io%2Famq7%2Famq-broker-init-openjdk-11-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-broker-init-openjdk-11-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-broker-init-rhel8?repository_url=registry.redhat.io%2Famq7%2Famq-broker-init-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-broker-init-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-broker-init-rhel9?repository_url=registry.redhat.io%2Famq7%2Famq-broker-init-rhel9",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-broker-init-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-broker-openj9-11-rhel8?repository_url=registry.redhat.io%2Famq7%2Famq-broker-openj9-11-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-broker-openj9-11-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-broker-openjdk-11-rhel8?repository_url=registry.redhat.io%2Famq7%2Famq-broker-openjdk-11-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-broker-openjdk-11-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-broker-rhel8-operator?repository_url=registry.redhat.io%2Famq7%2Famq-broker-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-broker-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-broker-rhel8?repository_url=registry.redhat.io%2Famq7%2Famq-broker-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-broker-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-broker-rhel9-operator?repository_url=registry.redhat.io%2Famq7%2Famq-broker-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-broker-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-broker-rhel9?repository_url=registry.redhat.io%2Famq7%2Famq-broker-rhel9",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-broker-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-streams-bridge-rhel8?repository_url=registry.redhat.io%2Famq7%2Famq-streams-bridge-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-streams-bridge-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-streams-kafka-31-rhel8?repository_url=registry.redhat.io%2Famq7%2Famq-streams-kafka-31-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-streams-kafka-31-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-streams-kafka-32-rhel8?repository_url=registry.redhat.io%2Famq7%2Famq-streams-kafka-32-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-streams-kafka-32-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-streams-kafka-33-rhel8?repository_url=registry.redhat.io%2Famq7%2Famq-streams-kafka-33-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-streams-kafka-33-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/amq-streams-rhel8-operator?repository_url=registry.redhat.io%2Famq7%2Famq-streams-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/amq7/amq-streams-rhel8-operator/scan.openvex.json"
     },
     {
       "id": "pkg:oci/apicast-gateway-rhel8?repository_url=registry.redhat.io%2F3scale-amp2%2Fapicast-gateway-rhel8",
       "location": "pkg/oci/registry.redhat.io/3scale-amp2/apicast-gateway-rhel8/scan.openvex.json"
     },
     {
+      "id": "pkg:oci/apicast-gateway-rhel8?repository_url=registry.redhat.io%2F3scale-mas%2Fapicast-gateway-rhel8",
+      "location": "pkg/oci/registry.redhat.io/3scale-mas/apicast-gateway-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/apicast-rhel7-operator?repository_url=registry.redhat.io%2F3scale-amp2%2Fapicast-rhel7-operator",
+      "location": "pkg/oci/registry.redhat.io/3scale-amp2/apicast-rhel7-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/apicast-rhel7-operator?repository_url=registry.redhat.io%2F3scale-mas%2Fapicast-rhel7-operator",
+      "location": "pkg/oci/registry.redhat.io/3scale-mas/apicast-rhel7-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/apicast-rhel9-operator?repository_url=registry.redhat.io%2F3scale-amp2%2Fapicast-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/3scale-amp2/apicast-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/apicurio-registry-ui-rhel9?repository_url=registry.redhat.io%2Fapicurio%2Fapicurio-registry-ui-rhel9",
+      "location": "pkg/oci/registry.redhat.io/apicurio/apicurio-registry-ui-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/assisted-image-service-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fassisted-image-service-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/assisted-image-service-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/assisted-installer-agent-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fassisted-installer-agent-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/assisted-installer-agent-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/assisted-installer-controller-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fassisted-installer-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/assisted-installer-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/assisted-installer-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fassisted-installer-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/assisted-installer-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/assisted-service-9-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fassisted-service-9-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/assisted-service-9-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/authorino-rhel9-operator?repository_url=registry.redhat.io%2F3scale-tech-preview%2Fauthorino-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/3scale-tech-preview/authorino-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/authorino-rhel9-operator?repository_url=registry.redhat.io%2Frhcl-1%2Fauthorino-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/rhcl-1/authorino-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/authorino-rhel9?repository_url=registry.redhat.io%2F3scale-tech-preview%2Fauthorino-rhel9",
+      "location": "pkg/oci/registry.redhat.io/3scale-tech-preview/authorino-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/authorino-rhel9?repository_url=registry.redhat.io%2Frhcl-1%2Fauthorino-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhcl-1/authorino-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aws-load-balancer-controller-rhel8?repository_url=registry.redhat.io%2Falbo%2Faws-load-balancer-controller-rhel8",
+      "location": "pkg/oci/registry.redhat.io/albo/aws-load-balancer-controller-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aws-load-balancer-controller-rhel9?repository_url=registry.redhat.io%2Falbo%2Faws-load-balancer-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/albo/aws-load-balancer-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aws-load-balancer-rhel8-operator?repository_url=registry.redhat.io%2Falbo%2Faws-load-balancer-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/albo/aws-load-balancer-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/aws-load-balancer-rhel9-operator?repository_url=registry.redhat.io%2Falbo%2Faws-load-balancer-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/albo/aws-load-balancer-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/azure-service-operator-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fazure-service-operator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/azure-service-operator-rhel9/scan.openvex.json"
+    },
+    {
       "id": "pkg:oci/backend-rhel8?repository_url=registry.redhat.io%2F3scale-amp2%2Fbackend-rhel8",
       "location": "pkg/oci/registry.redhat.io/3scale-amp2/backend-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/backend-rhel8?repository_url=registry.redhat.io%2F3scale-mas%2Fbackend-rhel8",
+      "location": "pkg/oci/registry.redhat.io/3scale-mas/backend-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/backplane-rhel9-operator?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fbackplane-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/backplane-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/bamoe-businesscentral-monitoring-rhel8?repository_url=registry.redhat.io%2Fibm-bamoe%2Fbamoe-businesscentral-monitoring-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ibm-bamoe/bamoe-businesscentral-monitoring-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/bamoe-businesscentral-rhel8?repository_url=registry.redhat.io%2Fibm-bamoe%2Fbamoe-businesscentral-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ibm-bamoe/bamoe-businesscentral-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/bamoe-controller-rhel8?repository_url=registry.redhat.io%2Fibm-bamoe%2Fbamoe-controller-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ibm-bamoe/bamoe-controller-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/bamoe-dashbuilder-rhel8?repository_url=registry.redhat.io%2Fibm-bamoe%2Fbamoe-dashbuilder-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ibm-bamoe/bamoe-dashbuilder-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/bamoe-kieserver-rhel8?repository_url=registry.redhat.io%2Fibm-bamoe%2Fbamoe-kieserver-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ibm-bamoe/bamoe-kieserver-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/bamoe-kogito-rhel8-operator?repository_url=registry.redhat.io%2Fibm-bamoe%2Fbamoe-kogito-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ibm-bamoe/bamoe-kogito-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/bamoe-process-migration-rhel8?repository_url=registry.redhat.io%2Fibm-bamoe%2Fbamoe-process-migration-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ibm-bamoe/bamoe-process-migration-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/bamoe-rhel9-operator?repository_url=registry.redhat.io%2Fibm-bamoe%2Fbamoe-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ibm-bamoe/bamoe-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/bamoe-smartrouter-rhel8?repository_url=registry.redhat.io%2Fibm-bamoe%2Fbamoe-smartrouter-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ibm-bamoe/bamoe-smartrouter-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/bpfman-rhel9-operator?repository_url=registry.redhat.io%2Fbpfman%2Fbpfman-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/bpfman/bpfman-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/bridge-marker-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fbridge-marker-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/bridge-marker-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/bridge-rhel8?repository_url=registry.redhat.io%2Famq-streams%2Fbridge-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/bridge-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/bridge-rhel9?repository_url=registry.redhat.io%2Famq-streams%2Fbridge-rhel9",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/bridge-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/capoa-bootstrap-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fcapoa-bootstrap-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/capoa-bootstrap-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/capoa-control-plane-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fcapoa-control-plane-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/capoa-control-plane-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cephcsi-rhel9-operator?repository_url=registry.redhat.io%2Fodf4%2Fcephcsi-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/odf4/cephcsi-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cert-policy-controller-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fcert-policy-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/cert-policy-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cli-manager-rhel9-operator?repository_url=registry.redhat.io%2Fcli-manager%2Fcli-manager-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/cli-manager/cli-manager-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cli-manager-rhel9?repository_url=registry.redhat.io%2Fcli-manager%2Fcli-manager-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cli-manager/cli-manager-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cloudevents-conductor-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fcloudevents-conductor-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/cloudevents-conductor-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cluster-api-provider-agent-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fcluster-api-provider-agent-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/cluster-api-provider-agent-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cluster-api-provider-aws-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fcluster-api-provider-aws-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/cluster-api-provider-aws-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cluster-api-provider-azure-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fcluster-api-provider-azure-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/cluster-api-provider-azure-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cluster-api-provider-kubevirt-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fcluster-api-provider-kubevirt-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/cluster-api-provider-kubevirt-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cluster-backup-rhel9-operator?repository_url=registry.redhat.io%2Frhacm2%2Fcluster-backup-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/cluster-backup-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cluster-curator-controller-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fcluster-curator-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/cluster-curator-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cluster-health-analyzer-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fcluster-health-analyzer-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/cluster-health-analyzer-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cluster-image-set-controller-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fcluster-image-set-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/cluster-image-set-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cluster-logging-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift-logging%2Fcluster-logging-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift-logging/cluster-logging-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cluster-network-addons-operator-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fcluster-network-addons-operator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/cluster-network-addons-operator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cluster-observability-rhel9-operator?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fcluster-observability-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/cluster-observability-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cluster-permission-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fcluster-permission-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/cluster-permission-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cluster-proxy-addon-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fcluster-proxy-addon-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/cluster-proxy-addon-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cluster-proxy-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fcluster-proxy-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/cluster-proxy-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/clusterclaims-controller-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fclusterclaims-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/clusterclaims-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/clusterlifecycle-state-metrics-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fclusterlifecycle-state-metrics-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/clusterlifecycle-state-metrics-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cnv-containernetworking-plugins-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fcnv-containernetworking-plugins-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/cnv-containernetworking-plugins-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cnv-must-gather-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fcnv-must-gather-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/code-rhel9?repository_url=registry.redhat.io%2Fdevspaces%2Fcode-rhel9",
+      "location": "pkg/oci/registry.redhat.io/devspaces/code-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/code-sshd-rhel9?repository_url=registry.redhat.io%2Fdevspaces%2Fcode-sshd-rhel9",
+      "location": "pkg/oci/registry.redhat.io/devspaces/code-sshd-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/compliance-content-rhel8?repository_url=registry.redhat.io%2Fopenshift4%2Fcompliance-content-rhel8",
+      "location": "pkg/oci/registry.redhat.io/openshift4/compliance-content-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/compliance-openscap-rhel8?repository_url=registry.redhat.io%2Fopenshift4%2Fcompliance-openscap-rhel8",
+      "location": "pkg/oci/registry.redhat.io/openshift4/compliance-openscap-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/compliance-rhel8-operator?repository_url=registry.redhat.io%2Fopenshift4%2Fcompliance-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift4/compliance-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/config-policy-controller-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fconfig-policy-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/config-policy-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/configbump-rhel9?repository_url=registry.redhat.io%2Fdevspaces%2Fconfigbump-rhel9",
+      "location": "pkg/oci/registry.redhat.io/devspaces/configbump-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/console-api-rhel9?repository_url=registry.redhat.io%2Famq-streams%2Fconsole-api-rhel9",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/console-api-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/console-mce-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fconsole-mce-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/console-mce-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/console-rhel9-operator?repository_url=registry.redhat.io%2Famq-streams%2Fconsole-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/console-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/console-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fconsole-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/console-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/console-ui-rhel9?repository_url=registry.redhat.io%2Famq-streams%2Fconsole-ui-rhel9",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/console-ui-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/controller-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Fcontroller-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/controller-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/controller-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Fcontroller-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/controller-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/controller-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Fcontroller-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/controller-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/controller-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Fcontroller-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/controller-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/controller-rhel9-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Fcontroller-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/controller-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/controller-rhel9-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fcontroller-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/controller-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/controller-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Fcontroller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/controller-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fcontroller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/costmanagement-metrics-rhel9-operator?repository_url=registry.redhat.io%2Fcostmanagement%2Fcostmanagement-metrics-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/costmanagement/costmanagement-metrics-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cryostat-db-rhel9?repository_url=registry.redhat.io%2Fcryostat%2Fcryostat-db-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cryostat/cryostat-db-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cryostat-grafana-dashboard-rhel9?repository_url=registry.redhat.io%2Fcryostat%2Fcryostat-grafana-dashboard-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cryostat/cryostat-grafana-dashboard-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cryostat-openshift-console-plugin-rhel9?repository_url=registry.redhat.io%2Fcryostat%2Fcryostat-openshift-console-plugin-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cryostat/cryostat-openshift-console-plugin-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cryostat-reports-rhel9?repository_url=registry.redhat.io%2Fcryostat%2Fcryostat-reports-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cryostat/cryostat-reports-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cryostat-rhel9-operator?repository_url=registry.redhat.io%2Fcryostat%2Fcryostat-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/cryostat/cryostat-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cryostat-rhel9?repository_url=registry.redhat.io%2Fcryostat%2Fcryostat-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cryostat/cryostat-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/cryostat-storage-rhel9?repository_url=registry.redhat.io%2Fcryostat%2Fcryostat-storage-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cryostat/cryostat-storage-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/dashboard-rhel9?repository_url=registry.redhat.io%2Fdevspaces%2Fdashboard-rhel9",
+      "location": "pkg/oci/registry.redhat.io/devspaces/dashboard-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/dashboards-console-plugin-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fdashboards-console-plugin-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/dashboards-console-plugin-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/datagrid-8-openj9-11-rhel8?repository_url=registry.redhat.io%2Fdatagrid%2Fdatagrid-8-openj9-11-rhel8",
+      "location": "pkg/oci/registry.redhat.io/datagrid/datagrid-8-openj9-11-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/datagrid-8-rhel8-operator?repository_url=registry.redhat.io%2Fdatagrid%2Fdatagrid-8-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/datagrid/datagrid-8-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/datagrid-8-rhel8?repository_url=registry.redhat.io%2Fdatagrid%2Fdatagrid-8-rhel8",
+      "location": "pkg/oci/registry.redhat.io/datagrid/datagrid-8-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/datagrid-8-rhel9-operator?repository_url=registry.redhat.io%2Fdatagrid%2Fdatagrid-8-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/datagrid/datagrid-8-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/datagrid-8-rhel9?repository_url=registry.redhat.io%2Fdatagrid%2Fdatagrid-8-rhel9",
+      "location": "pkg/oci/registry.redhat.io/datagrid/datagrid-8-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/datagrid73-openshift?repository_url=registry.redhat.io%2Fjboss-datagrid-7%2Fdatagrid73-openshift",
+      "location": "pkg/oci/registry.redhat.io/jboss-datagrid-7/datagrid73-openshift/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/deployment-validation-rhel8-operator?repository_url=registry.redhat.io%2Fdvo%2Fdeployment-validation-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/dvo/deployment-validation-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/descheduler-rhel9?repository_url=registry.redhat.io%2Fkube-descheduler-operator%2Fdescheduler-rhel9",
+      "location": "pkg/oci/registry.redhat.io/kube-descheduler-operator/descheduler-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/devspaces-rhel9-operator?repository_url=registry.redhat.io%2Fdevspaces%2Fdevspaces-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/devspaces/devspaces-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/devworkspace-project-backup-rhel9?repository_url=registry.redhat.io%2Fdevworkspace%2Fdevworkspace-project-backup-rhel9",
+      "location": "pkg/oci/registry.redhat.io/devworkspace/devworkspace-project-backup-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/devworkspace-project-clone-rhel9?repository_url=registry.redhat.io%2Fdevworkspace%2Fdevworkspace-project-clone-rhel9",
+      "location": "pkg/oci/registry.redhat.io/devworkspace/devworkspace-project-clone-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/devworkspace-rhel9-operator?repository_url=registry.redhat.io%2Fdevworkspace%2Fdevworkspace-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/devworkspace/devworkspace-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/discovery-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fdiscovery-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/discovery-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fdistributed-tracing-console-plugin-pf4-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/distributed-tracing-console-plugin-pf5-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fdistributed-tracing-console-plugin-pf5-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/distributed-tracing-console-plugin-pf5-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/distributed-tracing-console-plugin-pf6-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fdistributed-tracing-console-plugin-pf6-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/distributed-tracing-console-plugin-pf6-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/distributed-tracing-console-plugin-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fdistributed-tracing-console-plugin-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/distributed-tracing-console-plugin-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/dns-rhel9-operator?repository_url=registry.redhat.io%2Frhcl-1%2Fdns-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/rhcl-1/dns-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/dpu-network-rhel8-operator?repository_url=registry.redhat.io%2Fopenshift4%2Fdpu-network-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift4/dpu-network-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/eap-rhel9-operator?repository_url=registry.redhat.io%2Fjboss-eap%2Feap-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/jboss-eap/eap-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/eda-controller-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Feda-controller-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/eda-controller-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/eda-controller-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Feda-controller-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/eda-controller-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/eda-controller-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Feda-controller-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/eda-controller-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/eda-controller-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Feda-controller-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/eda-controller-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/eda-controller-rhel9-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Feda-controller-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/eda-controller-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/eda-controller-rhel9-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Feda-controller-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/eda-controller-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/eda-controller-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Feda-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/eda-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/eda-controller-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Feda-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/eda-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/eda-controller-ui-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Feda-controller-ui-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/eda-controller-ui-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/eda-controller-ui-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Feda-controller-ui-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/eda-controller-ui-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/eda-controller-ui-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Feda-controller-ui-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/eda-controller-ui-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ee-minimal-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Fee-minimal-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/ee-minimal-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ee-minimal-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Fee-minimal-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/ee-minimal-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ee-minimal-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Fee-minimal-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/ee-minimal-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ee-minimal-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fee-minimal-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/ee-minimal-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ee-supported-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Fee-supported-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ee-supported-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Fee-supported-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/ee-supported-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ee-supported-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Fee-supported-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/ee-supported-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ee-supported-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fee-supported-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/ee-supported-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/endpoint-monitoring-rhel9-operator?repository_url=registry.redhat.io%2Frhacm2%2Fendpoint-monitoring-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/endpoint-monitoring-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/exploit-intelligence-operator-controller-rhel9?repository_url=registry.redhat.io%2Fexploit-intelligence-tech-preview%2Fexploit-intelligence-operator-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/exploit-intelligence-tech-preview/exploit-intelligence-operator-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/external-dns-rhel8-operator?repository_url=registry.redhat.io%2Fedo%2Fexternal-dns-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/edo/external-dns-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/external-dns-rhel8?repository_url=registry.redhat.io%2Fedo%2Fexternal-dns-rhel8",
+      "location": "pkg/oci/registry.redhat.io/edo/external-dns-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/external-dns-rhel9-operator?repository_url=registry.redhat.io%2Fedo%2Fexternal-dns-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/edo/external-dns-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/external-dns-rhel9?repository_url=registry.redhat.io%2Fedo%2Fexternal-dns-rhel9",
+      "location": "pkg/oci/registry.redhat.io/edo/external-dns-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/fence-agents-remediation-rhel9-operator?repository_url=registry.redhat.io%2Fworkload-availability%2Ffence-agents-remediation-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/workload-availability/fence-agents-remediation-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/file-integrity-rhel8-operator?repository_url=registry.redhat.io%2Fopenshift4%2Ffile-integrity-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift4/file-integrity-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/flightctl-alert-exporter-rhel9?repository_url=registry.redhat.io%2Frhem%2Fflightctl-alert-exporter-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhem/flightctl-alert-exporter-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/flightctl-alertmanager-proxy-rhel9?repository_url=registry.redhat.io%2Frhem%2Fflightctl-alertmanager-proxy-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhem/flightctl-alertmanager-proxy-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/flightctl-api-rhel9?repository_url=registry.redhat.io%2Frhem%2Fflightctl-api-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhem/flightctl-api-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/flightctl-cli-artifacts-rhel9?repository_url=registry.redhat.io%2Frhem%2Fflightctl-cli-artifacts-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhem/flightctl-cli-artifacts-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/flightctl-db-setup-rhel9?repository_url=registry.redhat.io%2Frhem%2Fflightctl-db-setup-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhem/flightctl-db-setup-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/flightctl-periodic-rhel9?repository_url=registry.redhat.io%2Frhem%2Fflightctl-periodic-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhem/flightctl-periodic-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/flightctl-ui-ocp-rhel9?repository_url=registry.redhat.io%2Frhem%2Fflightctl-ui-ocp-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhem/flightctl-ui-ocp-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/flightctl-ui-rhel9?repository_url=registry.redhat.io%2Frhem%2Fflightctl-ui-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhem/flightctl-ui-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/flightctl-userinfo-proxy-rhel9?repository_url=registry.redhat.io%2Frhem%2Fflightctl-userinfo-proxy-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhem/flightctl-userinfo-proxy-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/flightctl-worker-rhel9?repository_url=registry.redhat.io%2Frhem%2Fflightctl-worker-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhem/flightctl-worker-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/frr-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Ffrr-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/frr-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/fuse-apicurito-generator-rhel8?repository_url=registry.redhat.io%2Ffuse7%2Ffuse-apicurito-generator-rhel8",
+      "location": "pkg/oci/registry.redhat.io/fuse7/fuse-apicurito-generator-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/fuse-apicurito-rhel8-operator?repository_url=registry.redhat.io%2Ffuse7%2Ffuse-apicurito-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/fuse7/fuse-apicurito-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/fuse-apicurito-rhel8?repository_url=registry.redhat.io%2Ffuse7%2Ffuse-apicurito-rhel8",
+      "location": "pkg/oci/registry.redhat.io/fuse7/fuse-apicurito-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/fuse-console-rhel8-operator?repository_url=registry.redhat.io%2Ffuse7%2Ffuse-console-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/fuse7/fuse-console-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/fuse-online-builder-rhel8?repository_url=registry.redhat.io%2Ffuse7%2Ffuse-online-builder-rhel8",
+      "location": "pkg/oci/registry.redhat.io/fuse7/fuse-online-builder-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/fuse-online-meta-rhel8?repository_url=registry.redhat.io%2Ffuse7%2Ffuse-online-meta-rhel8",
+      "location": "pkg/oci/registry.redhat.io/fuse7/fuse-online-meta-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/fuse-online-rhel8-operator?repository_url=registry.redhat.io%2Ffuse7%2Ffuse-online-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/fuse7/fuse-online-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/fuse-online-server-rhel8?repository_url=registry.redhat.io%2Ffuse7%2Ffuse-online-server-rhel8",
+      "location": "pkg/oci/registry.redhat.io/fuse7/fuse-online-server-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/fuse-online-ui-rhel8?repository_url=registry.redhat.io%2Ffuse7%2Ffuse-online-ui-rhel8",
+      "location": "pkg/oci/registry.redhat.io/fuse7/fuse-online-ui-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/fuse-online-upgrade-rhel8?repository_url=registry.redhat.io%2Ffuse7%2Ffuse-online-upgrade-rhel8",
+      "location": "pkg/oci/registry.redhat.io/fuse7/fuse-online-upgrade-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/fuse-postgres-exporter-rhel8?repository_url=registry.redhat.io%2Ffuse7%2Ffuse-postgres-exporter-rhel8",
+      "location": "pkg/oci/registry.redhat.io/fuse7/fuse-postgres-exporter-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/gatekeeper-rhel9-operator?repository_url=registry.redhat.io%2Fgatekeeper%2Fgatekeeper-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/gatekeeper/gatekeeper-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/gatekeeper-rhel9?repository_url=registry.redhat.io%2Fgatekeeper%2Fgatekeeper-rhel9",
+      "location": "pkg/oci/registry.redhat.io/gatekeeper/gatekeeper-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/gateway-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Fgateway-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/gateway-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/gateway-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Fgateway-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/gateway-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/gateway-rhel9-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Fgateway-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/gateway-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/gateway-rhel9-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fgateway-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/gateway-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/gateway-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Fgateway-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/gateway-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/gateway-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fgateway-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/gateway-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/governance-policy-propagator-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fgovernance-policy-propagator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/governance-policy-propagator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/grafana-dashboard-loader-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fgrafana-dashboard-loader-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/grafana-dashboard-loader-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hive-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fhive-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/hive-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hostpath-csi-driver-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fhostpath-csi-driver-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/hostpath-csi-driver-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hostpath-provisioner-operator-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fhostpath-provisioner-operator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/hostpath-provisioner-operator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hostpath-provisioner-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fhostpath-provisioner-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/hostpath-provisioner-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hub-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Fhub-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/hub-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hub-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Fhub-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/hub-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hub-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Fhub-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/hub-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hub-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Fhub-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/hub-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hub-rhel9-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Fhub-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/hub-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hub-rhel9-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fhub-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/hub-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hub-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Fhub-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/hub-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hub-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fhub-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/hub-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hub-web-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Fhub-web-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/hub-web-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hub-web-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Fhub-web-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/hub-web-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hub-web-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Fhub-web-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/hub-web-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hub-web-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fhub-web-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/hub-web-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hyperconverged-cluster-operator-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fhyperconverged-cluster-operator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/hyperconverged-cluster-operator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hyperconverged-cluster-webhook-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fhyperconverged-cluster-webhook-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/hyperconverged-cluster-webhook-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hypershift-addon-rhel9-operator?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fhypershift-addon-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/hypershift-addon-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hypershift-cli-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fhypershift-cli-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/hypershift-cli-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/hypershift-rhel9-operator?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fhypershift-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/hypershift-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/image-based-install-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fimage-based-install-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/image-based-install-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ingress-node-firewall-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift4%2Fingress-node-firewall-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ingress-node-firewall-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ingress-node-firewall-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fingress-node-firewall-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ingress-node-firewall-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/insights-client-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Finsights-client-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/insights-client-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/insights-metrics-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Finsights-metrics-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/insights-metrics-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/jetbrains-ide-rhel9?repository_url=registry.redhat.io%2Fdevspaces%2Fjetbrains-ide-rhel9",
+      "location": "pkg/oci/registry.redhat.io/devspaces/jetbrains-ide-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/jfr-datasource-rhel9?repository_url=registry.redhat.io%2Fcryostat%2Fjfr-datasource-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cryostat/jfr-datasource-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/jobset-rhel9-operator?repository_url=registry.redhat.io%2Fjob-set%2Fjobset-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/job-set/jobset-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/jobset-rhel9?repository_url=registry.redhat.io%2Fjob-set%2Fjobset-rhel9",
+      "location": "pkg/oci/registry.redhat.io/job-set/jobset-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/jws-rhel9-operator?repository_url=registry.redhat.io%2Fjboss-webserver%2Fjws-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/jboss-webserver/jws-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kafka-33-rhel8?repository_url=registry.redhat.io%2Famq-streams%2Fkafka-33-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/kafka-33-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kafka-34-rhel8?repository_url=registry.redhat.io%2Famq-streams%2Fkafka-34-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/kafka-34-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kafka-35-rhel8?repository_url=registry.redhat.io%2Famq-streams%2Fkafka-35-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/kafka-35-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kafka-36-rhel8?repository_url=registry.redhat.io%2Famq-streams%2Fkafka-36-rhel8",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/kafka-36-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kafka-36-rhel9?repository_url=registry.redhat.io%2Famq-streams%2Fkafka-36-rhel9",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/kafka-36-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kafka-37-rhel9?repository_url=registry.redhat.io%2Famq-streams%2Fkafka-37-rhel9",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/kafka-37-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kafka-38-rhel9?repository_url=registry.redhat.io%2Famq-streams%2Fkafka-38-rhel9",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/kafka-38-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kafka-39-rhel9?repository_url=registry.redhat.io%2Famq-streams%2Fkafka-39-rhel9",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/kafka-39-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kafka-40-rhel9?repository_url=registry.redhat.io%2Famq-streams%2Fkafka-40-rhel9",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/kafka-40-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kafka-41-rhel9?repository_url=registry.redhat.io%2Famq-streams%2Fkafka-41-rhel9",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/kafka-41-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kafka-42-rhel9?repository_url=registry.redhat.io%2Famq-streams%2Fkafka-42-rhel9",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/kafka-42-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kernel-module-management-hub-rhel9-operator?repository_url=registry.redhat.io%2Fkmm%2Fkernel-module-management-hub-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/kmm/kernel-module-management-hub-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kernel-module-management-must-gather-rhel9?repository_url=registry.redhat.io%2Fkmm%2Fkernel-module-management-must-gather-rhel9",
+      "location": "pkg/oci/registry.redhat.io/kmm/kernel-module-management-must-gather-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kernel-module-management-rhel9-operator?repository_url=registry.redhat.io%2Fkmm%2Fkernel-module-management-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/kmm/kernel-module-management-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kernel-module-management-webhook-server-rhel9?repository_url=registry.redhat.io%2Fkmm%2Fkernel-module-management-webhook-server-rhel9",
+      "location": "pkg/oci/registry.redhat.io/kmm/kernel-module-management-webhook-server-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kernel-module-management-worker-rhel9?repository_url=registry.redhat.io%2Fkmm%2Fkernel-module-management-worker-rhel9",
+      "location": "pkg/oci/registry.redhat.io/kmm/kernel-module-management-worker-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kiali-ossmc-rhel8?repository_url=registry.redhat.io%2Fopenshift-service-mesh%2Fkiali-ossmc-rhel8",
+      "location": "pkg/oci/registry.redhat.io/openshift-service-mesh/kiali-ossmc-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kiali-ossmc-rhel9?repository_url=registry.redhat.io%2Fopenshift-service-mesh%2Fkiali-ossmc-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-service-mesh/kiali-ossmc-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kiali-ossmc-rhel9?repository_url=registry.redhat.io%2Fopenshift-service-mesh-tech-preview%2Fkiali-ossmc-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-service-mesh-tech-preview/kiali-ossmc-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kiali-rhel8?repository_url=registry.redhat.io%2Fopenshift-service-mesh%2Fkiali-rhel8",
+      "location": "pkg/oci/registry.redhat.io/openshift-service-mesh/kiali-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kiali-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift-service-mesh%2Fkiali-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift-service-mesh/kiali-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kiali-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift-service-mesh-tech-preview%2Fkiali-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift-service-mesh-tech-preview/kiali-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kiali-rhel9?repository_url=registry.redhat.io%2Fopenshift-service-mesh%2Fkiali-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-service-mesh/kiali-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kiali-rhel9?repository_url=registry.redhat.io%2Fopenshift-service-mesh-tech-preview%2Fkiali-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-service-mesh-tech-preview/kiali-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/klusterlet-addon-controller-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fklusterlet-addon-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/klusterlet-addon-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/korrel8r-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fkorrel8r-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/korrel8r-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kube-descheduler-rhel9-operator?repository_url=registry.redhat.io%2Fkube-descheduler-operator%2Fkube-descheduler-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/kube-descheduler-operator/kube-descheduler-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kube-rbac-proxy-mce-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fkube-rbac-proxy-mce-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/kube-rbac-proxy-mce-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kube-rbac-proxy-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fkube-rbac-proxy-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/kube-rbac-proxy-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kube-state-metrics-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fkube-state-metrics-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/kube-state-metrics-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kubemacpool-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fkubemacpool-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/kubemacpool-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kubernetes-nmstate-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift4%2Fkubernetes-nmstate-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift4/kubernetes-nmstate-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kubesecondarydns-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fkubesecondarydns-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/kubesecondarydns-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kubevirt-api-lifecycle-automation-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fkubevirt-api-lifecycle-automation-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/kubevirt-api-lifecycle-automation-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kubevirt-apiserver-proxy-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fkubevirt-apiserver-proxy-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/kubevirt-apiserver-proxy-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kubevirt-common-instancetypes-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fkubevirt-common-instancetypes-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/kubevirt-common-instancetypes-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kubevirt-console-plugin-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fkubevirt-console-plugin-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/kubevirt-console-plugin-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kubevirt-ipam-controller-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fkubevirt-ipam-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/kubevirt-ipam-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kubevirt-ssp-operator-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fkubevirt-ssp-operator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/kubevirt-ssp-operator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kubevirt-storage-checkup-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fkubevirt-storage-checkup-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/kubevirt-storage-checkup-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fkubevirt-tekton-tasks-create-datavolume-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fkubevirt-tekton-tasks-disk-virt-customize-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kubevirt-template-validator-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fkubevirt-template-validator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/kubevirt-template-validator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kueue-must-gather-rhel9?repository_url=registry.redhat.io%2Fkueue%2Fkueue-must-gather-rhel9",
+      "location": "pkg/oci/registry.redhat.io/kueue/kueue-must-gather-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kueue-rhel9-operator?repository_url=registry.redhat.io%2Fkueue%2Fkueue-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/kueue/kueue-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/kueue-rhel9?repository_url=registry.redhat.io%2Fkueue%2Fkueue-rhel9",
+      "location": "pkg/oci/registry.redhat.io/kueue/kueue-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/libguestfs-tools-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Flibguestfs-tools-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/libguestfs-tools-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lifecycle-agent-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift4%2Flifecycle-agent-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift4/lifecycle-agent-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lightspeed-chatbot-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Flightspeed-chatbot-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/lightspeed-chatbot-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lightspeed-chatbot-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Flightspeed-chatbot-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/lightspeed-chatbot-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lightspeed-chatbot-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Flightspeed-chatbot-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/lightspeed-chatbot-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lightspeed-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Flightspeed-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/lightspeed-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lightspeed-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Flightspeed-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/lightspeed-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lightspeed-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Flightspeed-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/lightspeed-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lightspeed-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Flightspeed-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/lightspeed-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lightspeed-rhel9-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Flightspeed-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/lightspeed-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lightspeed-rhel9-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Flightspeed-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/lightspeed-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lightspeed-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift-lightspeed%2Flightspeed-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift-lightspeed/lightspeed-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lightspeed-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Flightspeed-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/lightspeed-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lightspeed-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Flightspeed-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/lightspeed-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lightspeed-service-api-rhel9?repository_url=registry.redhat.io%2Fopenshift-lightspeed%2Flightspeed-service-api-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-lightspeed/lightspeed-service-api-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lightspeed-stack-rhel9?repository_url=registry.redhat.io%2Flightspeed-core%2Flightspeed-stack-rhel9",
+      "location": "pkg/oci/registry.redhat.io/lightspeed-core/lightspeed-stack-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/limitador-rhel9-operator?repository_url=registry.redhat.io%2Frhcl-1%2Flimitador-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/rhcl-1/limitador-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/limitador-rhel9?repository_url=registry.redhat.io%2Frhcl-1%2Flimitador-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhcl-1/limitador-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/log-file-metric-exporter-rhel9?repository_url=registry.redhat.io%2Fopenshift-logging%2Flog-file-metric-exporter-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-logging/log-file-metric-exporter-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/logging-console-plugin-pf4-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Flogging-console-plugin-pf4-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/logging-console-plugin-pf4-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/logging-console-plugin-pf5-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Flogging-console-plugin-pf5-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/logging-console-plugin-pf5-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/logging-console-plugin-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Flogging-console-plugin-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/logging-console-plugin-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/logging-loki-rhel9?repository_url=registry.redhat.io%2Fopenshift-logging%2Flogging-loki-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-logging/logging-loki-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/logic-data-index-ephemeral-rhel9?repository_url=registry.redhat.io%2Fopenshift-serverless-1%2Flogic-data-index-ephemeral-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-serverless-1/logic-data-index-ephemeral-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/logic-data-index-postgresql-rhel9?repository_url=registry.redhat.io%2Fopenshift-serverless-1%2Flogic-data-index-postgresql-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-serverless-1/logic-data-index-postgresql-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/logic-db-migrator-tool-rhel9?repository_url=registry.redhat.io%2Fopenshift-serverless-1%2Flogic-db-migrator-tool-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-serverless-1/logic-db-migrator-tool-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/logic-jobs-service-ephemeral-rhel9?repository_url=registry.redhat.io%2Fopenshift-serverless-1%2Flogic-jobs-service-ephemeral-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-serverless-1/logic-jobs-service-ephemeral-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/logic-jobs-service-postgresql-rhel9?repository_url=registry.redhat.io%2Fopenshift-serverless-1%2Flogic-jobs-service-postgresql-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-serverless-1/logic-jobs-service-postgresql-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/logic-rhel8-operator?repository_url=registry.redhat.io%2Fopenshift-serverless-1%2Flogic-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift-serverless-1/logic-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/logic-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift-serverless-1%2Flogic-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift-serverless-1/logic-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/logic-swf-builder-rhel9?repository_url=registry.redhat.io%2Fopenshift-serverless-1%2Flogic-swf-builder-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-serverless-1/logic-swf-builder-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/logic-swf-devmode-rhel9?repository_url=registry.redhat.io%2Fopenshift-serverless-1%2Flogic-swf-devmode-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-serverless-1/logic-swf-devmode-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/loki-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift-logging%2Floki-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift-logging/loki-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lokistack-gateway-rhel9?repository_url=registry.redhat.io%2Fopenshift-logging%2Flokistack-gateway-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-logging/lokistack-gateway-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lvms-must-gather-rhel9?repository_url=registry.redhat.io%2Flvms4%2Flvms-must-gather-rhel9",
+      "location": "pkg/oci/registry.redhat.io/lvms4/lvms-must-gather-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lvms-rhel9-operator?repository_url=registry.redhat.io%2Flvms4%2Flvms-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/lvms4/lvms-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lws-rhel9-operator?repository_url=registry.redhat.io%2Fleader-worker-set%2Flws-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/leader-worker-set/lws-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/lws-rhel9?repository_url=registry.redhat.io%2Fleader-worker-set%2Flws-rhel9",
+      "location": "pkg/oci/registry.redhat.io/leader-worker-set/lws-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/machine-deletion-remediation-rhel9-operator?repository_url=registry.redhat.io%2Fworkload-availability%2Fmachine-deletion-remediation-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/workload-availability/machine-deletion-remediation-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/maestro-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fmaestro-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/maestro-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/managed-serviceaccount-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fmanaged-serviceaccount-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/managed-serviceaccount-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/managedcluster-import-controller-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fmanagedcluster-import-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/managedcluster-import-controller-rhel9/scan.openvex.json"
     },
     {
       "id": "pkg:oci/manticore-rhel9?repository_url=registry.redhat.io%2F3scale-amp2%2Fmanticore-rhel9",
       "location": "pkg/oci/registry.redhat.io/3scale-amp2/manticore-rhel9/scan.openvex.json"
     },
     {
+      "id": "pkg:oci/maven-builder-rhel9?repository_url=registry.redhat.io%2Famq-streams%2Fmaven-builder-rhel9",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/maven-builder-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mce-capi-webhook-config-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fmce-capi-webhook-config-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/mce-capi-webhook-config-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mcg-core-rhel9?repository_url=registry.redhat.io%2Fodf4%2Fmcg-core-rhel9",
+      "location": "pkg/oci/registry.redhat.io/odf4/mcg-core-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mcg-rhel9-operator?repository_url=registry.redhat.io%2Fodf4%2Fmcg-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/odf4/mcg-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mcp-gateway-rhel9-operator?repository_url=registry.redhat.io%2Frhcl-tech-preview%2Fmcp-gateway-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/rhcl-tech-preview/mcp-gateway-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mcp-gateway-rhel9?repository_url=registry.redhat.io%2Frhcl-tech-preview%2Fmcp-gateway-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhcl-tech-preview/mcp-gateway-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mcp-server-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fmcp-server-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/mcp-server-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mcp-server-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-tech-preview%2Fmcp-server-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-tech-preview/mcp-server-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mcp-tools-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fmcp-tools-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/mcp-tools-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/memcached-exporter-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fmemcached-exporter-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/memcached-exporter-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/memcached?repository_url=registry.redhat.io%2Frhel9%2Fmemcached",
+      "location": "pkg/oci/registry.redhat.io/rhel9/memcached/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/metallb-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift4%2Fmetallb-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift4/metallb-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/metallb-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fmetallb-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/metallb-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/metrics-collector-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fmetrics-collector-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/metrics-collector-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/metrics-service-rhel9-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fmetrics-service-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/metrics-service-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/metrics-service-rhel9-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-tech-preview%2Fmetrics-service-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-tech-preview/metrics-service-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/metrics-service-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fmetrics-service-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/metrics-service-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/metrics-service-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-tech-preview%2Fmetrics-service-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-tech-preview/metrics-service-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/model-validation-rhel9-operator?repository_url=registry.redhat.io%2Frhtas%2Fmodel-validation-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/rhtas/model-validation-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mongodb-community-server?repository_url=docker.io%2Fmongodb%2Fmongodb-community-server",
+      "location": "pkg/oci/docker.io/mongodb/mongodb-community-server/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/monitoring-console-plugin-pf5-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fmonitoring-console-plugin-pf5-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/monitoring-console-plugin-pf5-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/monitoring-console-plugin-pf6-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fmonitoring-console-plugin-pf6-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/monitoring-console-plugin-pf6-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/monitoring-console-plugin-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fmonitoring-console-plugin-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/monitoring-console-plugin-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-admin-addon-rhel8?repository_url=registry.redhat.io%2Fmta%2Fmta-admin-addon-rhel8",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-admin-addon-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-analyzer-addon-rhel9?repository_url=registry.redhat.io%2Fmta%2Fmta-analyzer-addon-rhel9",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-analyzer-addon-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-analyzer-lsp-rhel9?repository_url=registry.redhat.io%2Fmta%2Fmta-analyzer-lsp-rhel9",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-analyzer-lsp-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-cli-rhel9?repository_url=registry.redhat.io%2Fmta%2Fmta-cli-rhel9",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-cli-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-discovery-addon-rhel9?repository_url=registry.redhat.io%2Fmta%2Fmta-discovery-addon-rhel9",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-discovery-addon-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-dotnet-external-provider-rhel8?repository_url=registry.redhat.io%2Fmta%2Fmta-dotnet-external-provider-rhel8",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-dotnet-external-provider-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-dotnet-external-provider-rhel9?repository_url=registry.redhat.io%2Fmta%2Fmta-dotnet-external-provider-rhel9",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-dotnet-external-provider-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-generic-external-provider-rhel9?repository_url=registry.redhat.io%2Fmta%2Fmta-generic-external-provider-rhel9",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-generic-external-provider-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-hub-rhel8?repository_url=registry.redhat.io%2Fmta%2Fmta-hub-rhel8",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-hub-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-hub-rhel9?repository_url=registry.redhat.io%2Fmta%2Fmta-hub-rhel9",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-hub-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-java-external-provider-rhel9?repository_url=registry.redhat.io%2Fmta%2Fmta-java-external-provider-rhel9",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-java-external-provider-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-pathfinder-rhel8?repository_url=registry.redhat.io%2Fmta%2Fmta-pathfinder-rhel8",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-pathfinder-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-platform-addon-rhel9?repository_url=registry.redhat.io%2Fmta%2Fmta-platform-addon-rhel9",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-platform-addon-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-rhel8-operator?repository_url=registry.redhat.io%2Fmta%2Fmta-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-rhel9-operator?repository_url=registry.redhat.io%2Fmta%2Fmta-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-solution-server-rhel9?repository_url=registry.redhat.io%2Fmta%2Fmta-solution-server-rhel9",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-solution-server-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-ui-rhel8?repository_url=registry.redhat.io%2Fmta%2Fmta-ui-rhel8",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-ui-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-ui-rhel9?repository_url=registry.redhat.io%2Fmta%2Fmta-ui-rhel9",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-ui-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-windup-addon-rhel8?repository_url=registry.redhat.io%2Fmta%2Fmta-windup-addon-rhel8",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-windup-addon-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-windup-addon-rhel9?repository_url=registry.redhat.io%2Fmta%2Fmta-windup-addon-rhel9",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-windup-addon-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mta-windup-shim-rhel9?repository_url=registry.redhat.io%2Fmta%2Fmta-windup-shim-rhel9",
+      "location": "pkg/oci/registry.redhat.io/mta/mta-windup-shim-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtr-web-container-rhel8?repository_url=registry.redhat.io%2Fmtr%2Fmtr-web-container-rhel8",
+      "location": "pkg/oci/registry.redhat.io/mtr/mtr-web-container-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtr-web-executor-container-rhel8?repository_url=registry.redhat.io%2Fmtr%2Fmtr-web-executor-container-rhel8",
+      "location": "pkg/oci/registry.redhat.io/mtr/mtr-web-executor-container-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-api-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-api-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-api-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-cli-download-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-cli-download-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-cli-download-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-console-plugin-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-console-plugin-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-console-plugin-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-controller-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-deep-inspection-rhel10?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-deep-inspection-rhel10",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-deep-inspection-rhel10/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-deep-inspection-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-deep-inspection-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-deep-inspection-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-hyperv-provider-server-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-hyperv-provider-server-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-hyperv-provider-server-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-integrations-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fmtv-integrations-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/mtv-integrations-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-must-gather-rhel8?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-must-gather-rhel8",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-must-gather-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-must-gather-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-must-gather-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-must-gather-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-openstack-populator-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-openstack-populator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-openstack-populator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-ova-provider-server-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-ova-provider-server-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-ova-provider-server-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-ova-proxy-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-ova-proxy-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-ova-proxy-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-populator-controller-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-populator-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-populator-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-rhel9-operator?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-rhv-populator-rhel8?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-rhv-populator-rhel8",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-rhv-populator-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-validation-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-validation-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-validation-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-virt-v2v-rhel10?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-virt-v2v-rhel10",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-virt-v2v-rhel10/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-virt-v2v-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-virt-v2v-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-virt-v2v-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-vsphere-copy-offload-populator-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-vsphere-copy-offload-populator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-vsphere-copy-offload-populator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mtv-vsphere-xcopy-volume-populator-rhel9?repository_url=registry.redhat.io%2Fmigration-toolkit-virtualization%2Fmtv-vsphere-xcopy-volume-populator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/migration-toolkit-virtualization/mtv-vsphere-xcopy-volume-populator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/multiarch-tuning-rhel9-operator?repository_url=registry.redhat.io%2Fmultiarch-tuning%2Fmultiarch-tuning-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/multiarch-tuning/multiarch-tuning-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/multicloud-integrations-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fmulticloud-integrations-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/multicloud-integrations-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/multicloud-manager-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fmulticloud-manager-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/multicloud-manager-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/multicluster-observability-rhel9-operator?repository_url=registry.redhat.io%2Frhacm2%2Fmulticluster-observability-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/multicluster-observability-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/multicluster-operators-application-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fmulticluster-operators-application-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/multicluster-operators-application-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/multicluster-operators-channel-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fmulticluster-operators-channel-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/multicluster-operators-channel-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/multicluster-operators-subscription-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fmulticluster-operators-subscription-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/multicluster-role-assignment-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fmulticluster-role-assignment-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/multicluster-role-assignment-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/multiclusterhub-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fmulticlusterhub-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/multiclusterhub-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/multus-dynamic-networks-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fmultus-dynamic-networks-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/multus-dynamic-networks-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/must-gather-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fmust-gather-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/must-gather-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mysql-80-rhel7?repository_url=registry.redhat.io%2Frhscl%2Fmysql-80-rhel7",
+      "location": "pkg/oci/registry.redhat.io/rhscl/mysql-80-rhel7/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/mysql-80?repository_url=registry.redhat.io%2Frhel8%2Fmysql-80",
+      "location": "pkg/oci/registry.redhat.io/rhel8/mysql-80/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/nginx-124?repository_url=registry.redhat.io%2Fubi9%2Fnginx-124",
+      "location": "pkg/oci/registry.redhat.io/ubi9/nginx-124/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/nmstate-console-plugin-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fnmstate-console-plugin-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/nmstate-console-plugin-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/node-exporter-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fnode-exporter-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/node-exporter-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/oauth2-proxy?repository_url=quay.io%2Foauth2-proxy%2Foauth2-proxy",
+      "location": "pkg/oci/quay.io/oauth2-proxy/oauth2-proxy/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/obo-prometheus-operator-admission-webhook-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fobo-prometheus-operator-admission-webhook-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/obo-prometheus-operator-admission-webhook-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/obo-prometheus-operator-prometheus-config-reloader-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fobo-prometheus-operator-prometheus-config-reloader-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/obo-prometheus-operator-prometheus-config-reloader-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/obo-prometheus-rhel9-operator?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fobo-prometheus-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/obo-prometheus-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/obo-prometheus-rhel9-operator?repository_url=registry.redhat.io%2Frhacm2%2Fobo-prometheus-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/obo-prometheus-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/observatorium-rhel9-operator?repository_url=registry.redhat.io%2Frhacm2%2Fobservatorium-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/observatorium-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/observatorium-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fobservatorium-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/observatorium-rhel9/scan.openvex.json"
+    },
+    {
       "id": "pkg:oci/ocp-v4.0-art-dev?repository_url=quay.io%2Fopenshift-release-dev%2Focp-v4.0-art-dev",
       "location": "pkg/oci/quay.io/openshift-release-dev/ocp-v4.0-art-dev/scan.openvex.json"
     },
     {
+      "id": "pkg:oci/ocp-virt-validation-checkup-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Focp-virt-validation-checkup-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/ocp-virt-validation-checkup-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/odf-cloudnative-pg-rhel9-operator?repository_url=registry.redhat.io%2Fodf4%2Fodf-cloudnative-pg-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/odf4/odf-cloudnative-pg-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/odf-cosi-sidecar-rhel9?repository_url=registry.redhat.io%2Fodf4%2Fodf-cosi-sidecar-rhel9",
+      "location": "pkg/oci/registry.redhat.io/odf4/odf-cosi-sidecar-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/opa-openshift-rhel9?repository_url=registry.redhat.io%2Fopenshift-logging%2Fopa-openshift-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-logging/opa-openshift-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openjdk-11?repository_url=registry.access.redhat.com%2Fubi8%2Fopenjdk-11",
+      "location": "pkg/oci/registry.access.redhat.com/ubi8/openjdk-11/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openjdk-17?repository_url=registry.redhat.io%2Fubi8%2Fopenjdk-17",
+      "location": "pkg/oci/registry.redhat.io/ubi8/openjdk-17/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-compliance-content-rhel8?repository_url=registry.redhat.io%2Fcompliance%2Fopenshift-compliance-content-rhel8",
+      "location": "pkg/oci/registry.redhat.io/compliance/openshift-compliance-content-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-compliance-must-gather-rhel8?repository_url=registry.redhat.io%2Fcompliance%2Fopenshift-compliance-must-gather-rhel8",
+      "location": "pkg/oci/registry.redhat.io/compliance/openshift-compliance-must-gather-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-compliance-openscap-rhel8?repository_url=registry.redhat.io%2Fcompliance%2Fopenshift-compliance-openscap-rhel8",
+      "location": "pkg/oci/registry.redhat.io/compliance/openshift-compliance-openscap-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-compliance-rhel8-operator?repository_url=registry.redhat.io%2Fcompliance%2Fopenshift-compliance-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/compliance/openshift-compliance-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-file-integrity-rhel8-operator?repository_url=registry.redhat.io%2Fcompliance%2Fopenshift-file-integrity-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/compliance/openshift-file-integrity-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-mcp-server-rhel9?repository_url=registry.redhat.io%2Fopenshift-lightspeed%2Fopenshift-mcp-server-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-lightspeed/openshift-mcp-server-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-migration-controller-rhel8?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-migration-controller-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-migration-controller-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-migration-hook-runner-rhel8?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-migration-hook-runner-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-migration-hook-runner-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-migration-log-reader-rhel8?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-migration-log-reader-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-migration-log-reader-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-migration-must-gather-rhel8?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-migration-must-gather-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-migration-must-gather-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-migration-registry-rhel8?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-migration-registry-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-migration-registry-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-migration-rhel8-operator?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-migration-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-migration-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-migration-rsync-transfer-rhel8?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-migration-rsync-transfer-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-migration-rsync-transfer-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-migration-ui-rhel8?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-migration-ui-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-migration-ui-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-migration-velero-plugin-for-aws-rhel8?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-migration-velero-plugin-for-aws-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-migration-velero-plugin-for-aws-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-migration-velero-plugin-for-gcp-rhel8?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-migration-velero-plugin-for-gcp-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-migration-velero-plugin-for-gcp-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-migration-velero-plugin-for-microsoft-azure-rhel8?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-migration-velero-plugin-for-microsoft-azure-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-migration-velero-plugin-for-microsoft-azure-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-migration-velero-plugin-for-mtc-rhel8?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-migration-velero-plugin-for-mtc-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-migration-velero-plugin-for-mtc-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-migration-velero-restic-restore-helper-rhel8?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-migration-velero-restic-restore-helper-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-migration-velero-restic-restore-helper-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-migration-velero-rhel8?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-migration-velero-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-migration-velero-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-update-service-rhel8-operator?repository_url=registry.redhat.io%2Fopenshift-update-service%2Fopenshift-update-service-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift-update-service/openshift-update-service-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/openshift-velero-plugin-rhel8?repository_url=registry.redhat.io%2Frhmtc%2Fopenshift-velero-plugin-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhmtc/openshift-velero-plugin-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-aws-efs-csi-driver-container-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-aws-efs-csi-driver-container-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-aws-efs-csi-driver-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift4%2Fose-aws-efs-csi-driver-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-aws-efs-csi-driver-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-baremetal-cluster-api-controllers-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-baremetal-cluster-api-controllers-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-baremetal-cluster-api-controllers-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-cli-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-cli-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-cli-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-cli?repository_url=registry.redhat.io%2Fopenshift4%2Fose-cli",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-cli/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-cluster-api-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-cluster-api-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-cluster-api-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-cluster-kube-descheduler-operator?repository_url=registry.redhat.io%2Fopenshift4%2Fose-cluster-kube-descheduler-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-cluster-kube-descheduler-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-clusterresourceoverride-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift4%2Fose-clusterresourceoverride-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-clusterresourceoverride-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-clusterresourceoverride-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-clusterresourceoverride-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-clusterresourceoverride-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-configmap-reloader-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-configmap-reloader-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-configmap-reloader-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-coredns-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-coredns-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-coredns-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-csi-external-provisioner-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-csi-external-provisioner-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-csi-external-provisioner-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-csi-external-resizer-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-csi-external-resizer-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-csi-external-resizer-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-csi-external-snapshotter-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-csi-external-snapshotter-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-csi-external-snapshotter-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-csi-livenessprobe-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-csi-livenessprobe-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-csi-livenessprobe-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-csi-node-driver-registrar-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-csi-node-driver-registrar-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-csi-node-driver-registrar-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-descheduler?repository_url=registry.redhat.io%2Fopenshift4%2Fose-descheduler",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-descheduler/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-dpu-daemon-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-dpu-daemon-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-dpu-daemon-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-dpu-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift4%2Fose-dpu-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-dpu-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-gcp-filestore-csi-driver-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift4%2Fose-gcp-filestore-csi-driver-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-gcp-filestore-csi-driver-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-gcp-filestore-csi-driver-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-gcp-filestore-csi-driver-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-gcp-filestore-csi-driver-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-kube-rbac-proxy-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-kube-rbac-proxy-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-kube-rbac-proxy?repository_url=registry.redhat.io%2Fopenshift4%2Fose-kube-rbac-proxy",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-kube-rbac-proxy/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-kubernetes-nmstate-handler-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-kubernetes-nmstate-handler-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-kubernetes-nmstate-handler-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-local-storage-diskmaker-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-local-storage-diskmaker-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-local-storage-diskmaker-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-local-storage-mustgather-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-local-storage-mustgather-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-local-storage-mustgather-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-local-storage-rhel9-operator?repository_url=registry.redhat.io%2Fopenshift4%2Fose-local-storage-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-local-storage-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-oauth-proxy-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-oauth-proxy-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-oauth-proxy-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-oauth-proxy?repository_url=registry.redhat.io%2Fopenshift4%2Fose-oauth-proxy",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-oauth-proxy/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-prometheus?repository_url=registry.redhat.io%2Fopenshift4%2Fose-prometheus",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-prometheus/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ose-tools-rhel9?repository_url=registry.redhat.io%2Fopenshift4%2Fose-tools-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift4/ose-tools-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ovs-cni-plugin-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fovs-cni-plugin-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/ovs-cni-plugin-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/passt-network-binding-plugin-cni-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fpasst-network-binding-plugin-cni-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/passt-network-binding-plugin-cni-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/passt-network-binding-plugin-sidecar-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fpasst-network-binding-plugin-sidecar-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/passt-network-binding-plugin-sidecar-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/perses-rhel9-operator?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fperses-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/perses-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/perses-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fperses-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/perses-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/php-72?repository_url=registry.redhat.io%2Frhel8%2Fphp-72",
+      "location": "pkg/oci/registry.redhat.io/rhel8/php-72/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/placement-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fplacement-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/placement-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/platform-resource-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Fplatform-resource-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/platform-resource-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/platform-resource-rhel8-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Fplatform-resource-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/platform-resource-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/platform-resource-rhel9-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Fplatform-resource-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/platform-resource-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/platform-resource-rhel9-operator?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fplatform-resource-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/platform-resource-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/platform-resource-runner-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-24%2Fplatform-resource-runner-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-24/platform-resource-runner-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/platform-resource-runner-rhel8?repository_url=registry.redhat.io%2Fansible-automation-platform-25%2Fplatform-resource-runner-rhel8",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-25/platform-resource-runner-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/platform-resource-runner-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-26%2Fplatform-resource-runner-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-26/platform-resource-runner-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/platform-resource-runner-rhel9?repository_url=registry.redhat.io%2Fansible-automation-platform-27%2Fplatform-resource-runner-rhel9",
+      "location": "pkg/oci/registry.redhat.io/ansible-automation-platform-27/platform-resource-runner-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/pluginregistry-rhel9?repository_url=registry.redhat.io%2Fdevspaces%2Fpluginregistry-rhel9",
+      "location": "pkg/oci/registry.redhat.io/devspaces/pluginregistry-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/postgresql-10-rhel7?repository_url=registry.redhat.io%2Frhscl%2Fpostgresql-10-rhel7",
+      "location": "pkg/oci/registry.redhat.io/rhscl/postgresql-10-rhel7/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/postgresql-10?repository_url=registry.redhat.io%2Frhel8%2Fpostgresql-10",
+      "location": "pkg/oci/registry.redhat.io/rhel8/postgresql-10/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/postgresql-12-rhel7?repository_url=registry.redhat.io%2Frhscl%2Fpostgresql-12-rhel7",
+      "location": "pkg/oci/registry.redhat.io/rhscl/postgresql-12-rhel7/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/postgresql-12?repository_url=registry.redhat.io%2Frhel8%2Fpostgresql-12",
+      "location": "pkg/oci/registry.redhat.io/rhel8/postgresql-12/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/postgresql-13-rhel7?repository_url=registry.redhat.io%2Frhscl%2Fpostgresql-13-rhel7",
+      "location": "pkg/oci/registry.redhat.io/rhscl/postgresql-13-rhel7/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/postgresql-13?repository_url=registry.redhat.io%2Frhel9%2Fpostgresql-13",
+      "location": "pkg/oci/registry.redhat.io/rhel9/postgresql-13/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/postgresql-15?repository_url=registry.redhat.io%2Frhel8%2Fpostgresql-15",
+      "location": "pkg/oci/registry.redhat.io/rhel8/postgresql-15/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/postgresql-15?repository_url=registry.redhat.io%2Frhel9%2Fpostgresql-15",
+      "location": "pkg/oci/registry.redhat.io/rhel9/postgresql-15/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/postgresql-16?repository_url=registry.redhat.io%2Frhel8%2Fpostgresql-16",
+      "location": "pkg/oci/registry.redhat.io/rhel8/postgresql-16/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/postgresql-16?repository_url=registry.redhat.io%2Frhel9%2Fpostgresql-16",
+      "location": "pkg/oci/registry.redhat.io/rhel9/postgresql-16/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/pr-helper-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fpr-helper-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/pr-helper-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/prometheus-alertmanager-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fprometheus-alertmanager-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/prometheus-alertmanager-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/prometheus-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fprometheus-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/prometheus-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/prometheus-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fprometheus-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/prometheus-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/provider-credential-controller-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fprovider-credential-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/provider-credential-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/proxy-rhel9-operator?repository_url=registry.redhat.io%2Famq-streams%2Fproxy-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/proxy-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/proxy-rhel9?repository_url=registry.redhat.io%2Famq-streams%2Fproxy-rhel9",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/proxy-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/quay-container-security-operator-rhel8?repository_url=registry.redhat.io%2Fquay%2Fquay-container-security-operator-rhel8",
+      "location": "pkg/oci/registry.redhat.io/quay/quay-container-security-operator-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/quay-container-security-operator-rhel9?repository_url=registry.redhat.io%2Fquay%2Fquay-container-security-operator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/quay/quay-container-security-operator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/rbac-query-proxy-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Frbac-query-proxy-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/rbac-query-proxy-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/redis-6?repository_url=registry.redhat.io%2Frhel8%2Fredis-6",
+      "location": "pkg/oci/registry.redhat.io/rhel8/redis-6/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/redis-7?repository_url=registry.redhat.io%2Frhel9%2Fredis-7",
+      "location": "pkg/oci/registry.redhat.io/rhel9/redis-7/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/registration-operator-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fregistration-operator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/registration-operator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/registration-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fregistration-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/registration-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/rhpam-businesscentral-monitoring-rhel8?repository_url=registry.redhat.io%2Frhpam-7%2Frhpam-businesscentral-monitoring-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhpam-7/rhpam-businesscentral-monitoring-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/rhpam-businesscentral-rhel8?repository_url=registry.redhat.io%2Frhpam-7%2Frhpam-businesscentral-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhpam-7/rhpam-businesscentral-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/rhpam-controller-rhel8?repository_url=registry.redhat.io%2Frhpam-7%2Frhpam-controller-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhpam-7/rhpam-controller-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/rhpam-dashbuilder-rhel8?repository_url=registry.redhat.io%2Frhpam-7%2Frhpam-dashbuilder-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhpam-7/rhpam-dashbuilder-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/rhpam-kieserver-rhel8?repository_url=registry.redhat.io%2Frhpam-7%2Frhpam-kieserver-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhpam-7/rhpam-kieserver-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/rhpam-process-migration-rhel8?repository_url=registry.redhat.io%2Frhpam-7%2Frhpam-process-migration-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhpam-7/rhpam-process-migration-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/rhpam-rhel8-operator?repository_url=registry.redhat.io%2Frhpam-7%2Frhpam-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/rhpam-7/rhpam-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/rhpam-smartrouter-rhel8?repository_url=registry.redhat.io%2Frhpam-7%2Frhpam-smartrouter-rhel8",
+      "location": "pkg/oci/registry.redhat.io/rhpam-7/rhpam-smartrouter-rhel8/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/runtimes-inventory-rhel9-operator?repository_url=registry.redhat.io%2Frh-lightspeed-runtimes%2Fruntimes-inventory-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/rh-lightspeed-runtimes/runtimes-inventory-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/search-collector-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fsearch-collector-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/search-collector-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/sidecar-shim-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fsidecar-shim-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/sidecar-shim-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/strimzi-rhel8-operator?repository_url=registry.redhat.io%2Famq-streams%2Fstrimzi-rhel8-operator",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/strimzi-rhel8-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/strimzi-rhel9-operator?repository_url=registry.redhat.io%2Famq-streams%2Fstrimzi-rhel9-operator",
+      "location": "pkg/oci/registry.redhat.io/amq-streams/strimzi-rhel9-operator/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/submariner-addon-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fsubmariner-addon-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/submariner-addon-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/system-rhel7?repository_url=registry.redhat.io%2F3scale-mas%2Fsystem-rhel7",
+      "location": "pkg/oci/registry.redhat.io/3scale-mas/system-rhel7/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/system-rhel9?repository_url=registry.redhat.io%2F3scale-amp2%2Fsystem-rhel9",
+      "location": "pkg/oci/registry.redhat.io/3scale-amp2/system-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/thanos-receive-controller-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fthanos-receive-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/thanos-receive-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/thanos-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Fthanos-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/thanos-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/thanos-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fthanos-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/thanos-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/traefik-rhel9?repository_url=registry.redhat.io%2Fdevspaces%2Ftraefik-rhel9",
+      "location": "pkg/oci/registry.redhat.io/devspaces/traefik-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/troubleshooting-panel-console-plugin-pf6-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Ftroubleshooting-panel-console-plugin-pf6-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/troubleshooting-panel-console-plugin-pf6-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9?repository_url=registry.redhat.io%2Fcluster-observability-operator%2Ftroubleshooting-panel-console-plugin-rhel9",
+      "location": "pkg/oci/registry.redhat.io/cluster-observability-operator/troubleshooting-panel-console-plugin-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/ubi-minimal?repository_url=registry.redhat.io%2Fubi9%2Fubi-minimal",
+      "location": "pkg/oci/registry.redhat.io/ubi9/ubi-minimal/scan.openvex.json"
+    },
+    {
       "id": "pkg:oci/ubi?repository_url=registry.access.redhat.com%2Fubi8%2Fubi",
       "location": "pkg/oci/registry.access.redhat.com/ubi8/ubi/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/udi-rhel9?repository_url=registry.redhat.io%2Fdevspaces%2Fudi-rhel9",
+      "location": "pkg/oci/registry.redhat.io/devspaces/udi-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/vector-rhel9?repository_url=registry.redhat.io%2Fopenshift-logging%2Fvector-rhel9",
+      "location": "pkg/oci/registry.redhat.io/openshift-logging/vector-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-api-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-api-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-api-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-artifacts-server-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-artifacts-server-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-artifacts-server-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-cdi-apiserver-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-cdi-apiserver-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-cdi-apiserver-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-cdi-cloner-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-cdi-cloner-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-cdi-cloner-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-cdi-controller-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-cdi-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-cdi-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-cdi-importer-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-cdi-importer-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-cdi-importer-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-cdi-operator-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-cdi-operator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-cdi-operator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-cdi-uploadproxy-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-cdi-uploadproxy-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-cdi-uploadproxy-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-cdi-uploadserver-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-cdi-uploadserver-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-cdi-uploadserver-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-controller-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-exportproxy-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-exportproxy-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-exportproxy-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-exportserver-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-exportserver-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-exportserver-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-handler-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-handler-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-handler-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-launcher-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-launcher-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-launcher-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-migration-controller-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-migration-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-migration-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-migration-operator-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-migration-operator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-migration-operator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-operator-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-operator-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-operator-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virt-synchronization-controller-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirt-synchronization-controller-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virt-synchronization-controller-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/virtio-win-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvirtio-win-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/virtio-win-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/vm-console-proxy-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvm-console-proxy-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/vm-console-proxy-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/vm-network-latency-checkup-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fvm-network-latency-checkup-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/vm-network-latency-checkup-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/volsync-rhel9?repository_url=registry.redhat.io%2Frhacm2%2Fvolsync-rhel9",
+      "location": "pkg/oci/registry.redhat.io/rhacm2/volsync-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/vulnerability-analysis-rhel9?repository_url=registry.redhat.io%2Fexploit-intelligence-tech-preview%2Fvulnerability-analysis-rhel9",
+      "location": "pkg/oci/registry.redhat.io/exploit-intelligence-tech-preview/vulnerability-analysis-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/wasp-agent-rhel9?repository_url=registry.redhat.io%2Fcontainer-native-virtualization%2Fwasp-agent-rhel9",
+      "location": "pkg/oci/registry.redhat.io/container-native-virtualization/wasp-agent-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/work-rhel9?repository_url=registry.redhat.io%2Fmulticluster-engine%2Fwork-rhel9",
+      "location": "pkg/oci/registry.redhat.io/multicluster-engine/work-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/zync-rhel9?repository_url=registry.redhat.io%2F3scale-amp2%2Fzync-rhel9",
+      "location": "pkg/oci/registry.redhat.io/3scale-amp2/zync-rhel9/scan.openvex.json"
+    },
+    {
+      "id": "pkg:oci/zync-rhel9?repository_url=registry.redhat.io%2F3scale-mas%2Fzync-rhel9",
+      "location": "pkg/oci/registry.redhat.io/3scale-mas/zync-rhel9/scan.openvex.json"
     }
   ]
 }

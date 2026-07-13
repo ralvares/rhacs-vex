@@ -46,12 +46,18 @@ def _statement_key(stmt: dict):
 
 
 def write_image_doc(hub_dir: str, image_ref: str, statements: list, *,
-                    author: str) -> tuple:
+                    author: str, replace_digests: list = None) -> tuple:
     """Merge statements into the image's hub document.
 
     Returns (path, changed).  Statements are keyed by (CVE, product @id,
     status): same key → replaced (idempotent re-runs), new key → appended
     (new digest / new CVE).  The doc version bumps only on real change.
+
+    Retraction: a re-scan of a digest is the complete truth for that digest —
+    existing statements about it that the new set no longer carries are
+    removed (verdicts age as Red Hat VEX updates; without this a stale
+    suppression would live in the doc forever).  replace_digests widens the
+    retraction set for batch callers merging several refs into one doc.
     """
     path = doc_path(hub_dir, image_ref)
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -70,6 +76,14 @@ def write_image_doc(hub_dir: str, image_ref: str, statements: list, *,
     if existing:
         merged = {_statement_key(s): s for s in existing.get('statements', [])}
         before = _canon(merged.values())
+        digs = {d for d in (replace_digests or [image_ref.split('@')[-1]])
+                if str(d).startswith('sha256:')}
+        new_keys = {_statement_key(s) for s in statements}
+        def _about_rescanned(s):
+            return any(d in p.get('@id', '') for p in s.get('products', [])
+                       for d in digs)
+        merged = {k: s for k, s in merged.items()
+                  if k in new_keys or not _about_rescanned(s)}
         for s in statements:
             merged[_statement_key(s)] = s
         new_statements = [merged[k] for k in sorted(merged.keys())]
@@ -108,9 +122,69 @@ def write_image_docs(hub_dir: str, per_image: dict, *, author: str) -> int:
         merged: list = []
         for _ref, statements in group:
             merged.extend(statements)
-        _p, changed = write_image_doc(hub_dir, first_ref, merged, author=author)
+        digs = [ref.split('@')[-1] for ref, _ in group]
+        _p, changed = write_image_doc(hub_dir, first_ref, merged, author=author,
+                                      replace_digests=digs)
         changed_docs += bool(changed)
     return changed_docs
+
+
+def prune(hub_dir: str, live_by_doc: dict) -> dict:
+    """Drop statements about digests that rotated out of the discovery set.
+
+    live_by_doc maps doc paths → the set of 'sha256:…' digests currently
+    referenced by data/pullspecs/ + catalog channel heads.  Only documents in
+    that map are touched: an image absent from discovery entirely (manually
+    generated, unknown provenance) is preserved as-is.  A statement is dropped
+    when every product digest it carries is dead; a document losing all
+    statements is deleted.  Returns {'statements': n, 'docs_removed': n,
+    'docs_updated': n}.
+    """
+    import re as _re
+    from datetime import datetime, timezone
+
+    stats = {'statements': 0, 'docs_removed': 0, 'docs_updated': 0}
+    for path, live in live_by_doc.items():
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path) as fh:
+                doc = json.load(fh)
+        except Exception:
+            continue
+
+        def _digests(stmt):
+            return {m.group(1)
+                    for p in stmt.get('products', [])
+                    for m in [_re.search(r'@(sha256:[a-f0-9]{64})',
+                                         str(p.get('@id', '')))] if m}
+
+        keep = []
+        for s in doc.get('statements', []):
+            digs = _digests(s)
+            if digs and not (digs & live):
+                stats['statements'] += 1
+            else:
+                keep.append(s)
+        if len(keep) == len(doc.get('statements', [])):
+            continue
+        if keep:
+            doc['statements'] = keep
+            doc['version'] = int(doc.get('version', 1)) + 1
+            doc['timestamp'] = datetime.now(timezone.utc).strftime(
+                '%Y-%m-%dT%H:%M:%SZ')
+            with open(path, 'w') as fh:
+                json.dump(doc, fh, indent=2)
+                fh.write('\n')
+            stats['docs_updated'] += 1
+        else:
+            os.remove(path)
+            stats['docs_removed'] += 1
+            try:                       # clean now-empty directories
+                os.removedirs(os.path.dirname(path))
+            except OSError:
+                pass
+    return stats
 
 
 def _index_entry(hub_dir: str, path: str) -> dict:
@@ -150,7 +224,22 @@ def build_index(hub_dir: str, *, name: str, description: str,
         json.dump(index, fh, indent=2)
         fh.write('\n')
 
-    location = f"{base_url.rstrip('/')}/archive.zip" if base_url else 'archive.zip'
+    manifest_path = os.path.join(hub_dir, 'vex-repository.json')
+    if base_url:
+        location = f"{base_url.rstrip('/')}/archive.zip"
+    else:
+        # Sticky: a previously published absolute location survives runs that
+        # don't pass --base-url (generate's default) — otherwise every batch
+        # run would clobber the manifest back to a relative path and break
+        # trivy repo-mode consumers.
+        location = 'archive.zip'
+        try:
+            with open(manifest_path) as fh:
+                prev = json.load(fh)['versions'][0]['locations'][0]['url']
+            if prev.startswith(('http://', 'https://')):
+                location = prev
+        except Exception:
+            pass
     manifest = {
         'name': name,
         'description': description,
@@ -168,8 +257,10 @@ def build_index(hub_dir: str, *, name: str, description: str,
         json.dump(manifest, fh, indent=2)
         fh.write('\n')
 
-    if archive:
-        zpath = os.path.join(hub_dir, 'archive.zip')
+    # Sticky like the location: once an archive exists, keep it current on
+    # every reindex — a stale archive silently serves old verdicts to trivy.
+    zpath = os.path.join(hub_dir, 'archive.zip')
+    if archive or os.path.exists(zpath):
         with zipfile.ZipFile(zpath, 'w', zipfile.ZIP_DEFLATED) as z:
             z.write(os.path.join(hub_dir, 'index.json'), 'index.json')
             for p in docs:

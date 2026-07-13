@@ -1,0 +1,86 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/proxy-rhel9-operator",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T13:48:40Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58436"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/proxy-rhel9-operator@sha256:f0d6caee97e254df9e153aa29c3195b18a3d96160894c738136d5cf7eb436a73",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "amq-streams/proxy-rhel9-operator 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61915"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/proxy-rhel9-operator@sha256:f0d6caee97e254df9e153aa29c3195b18a3d96160894c738136d5cf7eb436a73",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "amq-streams/proxy-rhel9-operator 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/proxy-rhel9-operator@sha256:f0d6caee97e254df9e153aa29c3195b18a3d96160894c738136d5cf7eb436a73",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    }
+  ]
+}

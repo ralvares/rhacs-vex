@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/thanos-receive-controller-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:41:22Z",
-  "version": 3,
+  "timestamp": "2026-07-13T13:34:37Z",
+  "version": 8,
   "statements": [
     {
       "vulnerability": {
@@ -47,35 +47,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-15281"
+        "name": "CVE-2024-35255"
       },
       "products": [
         {
-          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:6463adffa83c1cede692af13e0da1e4646d361fa749ecef5072985bcbf7c0a57",
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
           "subcomponents": [
             {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
+              "@id": "pkg:golang/github.com/Azure/azure-sdk-for-go/sdk/azidentity@1.4.0"
             },
             {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
+              "@id": "pkg:golang/github.com/Azure/azure-sdk-for-go/sdk/azidentity@v1.4.0"
             }
           ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14: known_not_affected."
+      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/thanos-receive-controller-rhel9 2.16."
     },
     {
       "vulnerability": {
@@ -319,96 +307,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-9086"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:6463adffa83c1cede692af13e0da1e4646d361fa749ecef5072985bcbf7c0a57",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-34.el9"
-            },
-            {
-              "@id": "pkg:rpm/redhat/curl@7.76.1-34.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-34.el9"
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl@7.76.1-34.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0861"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:6463adffa83c1cede692af13e0da1e4646d361fa749ecef5072985bcbf7c0a57",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:6463adffa83c1cede692af13e0da1e4646d361fa749ecef5072985bcbf7c0a57",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-2303"
       },
       "products": [
@@ -454,6 +352,26 @@
       "products": [
         {
           "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:6463adffa83c1cede692af13e0da1e4646d361fa749ecef5072985bcbf7c0a57",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@1.12.0"
+            },
+            {
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@v1.12.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-2303"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.mongodb.org/mongo-driver@1.12.0"
@@ -529,7 +447,87 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-25680"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:4b207b6dcdea3d809d1f5503f41d24be0ae1b554ced62d00ecbd4148d4dfaf2a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:6463adffa83c1cede692af13e0da1e4646d361fa749ecef5072985bcbf7c0a57",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27136"
       },
       "products": [
         {
@@ -549,7 +547,7 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25681"
+        "name": "CVE-2026-27136"
       },
       "products": [
         {
@@ -573,7 +571,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:4b207b6dcdea3d809d1f5503f41d24be0ae1b554ced62d00ecbd4148d4dfaf2a",
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.52.0"
@@ -585,27 +583,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:6463adffa83c1cede692af13e0da1e4646d361fa749ecef5072985bcbf7c0a57",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -766,6 +744,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -949,6 +947,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-33814"
       },
       "products": [
@@ -965,7 +983,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -991,7 +1009,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1017,7 +1035,33 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1072,6 +1116,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1141,6 +1205,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
       },
       "products": [
@@ -1198,6 +1282,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1261,6 +1365,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39823"
       },
       "products": [
@@ -1318,6 +1442,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1361,6 +1505,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.42.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39825"
       },
       "products": [
@@ -1421,6 +1585,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39826"
       },
       "products": [
@@ -1481,6 +1665,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39827"
       },
       "products": [
@@ -1497,7 +1701,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1517,7 +1721,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39827"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1561,6 +1785,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39828"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39829"
       },
       "products": [
@@ -1598,6 +1842,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39829"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1641,6 +1905,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39830"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39831"
       },
       "products": [
@@ -1657,7 +1941,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1677,7 +1961,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39831"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1721,6 +2025,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39832"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39834"
       },
       "products": [
@@ -1737,7 +2061,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1757,7 +2081,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39834"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1798,6 +2142,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39835"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1852,6 +2216,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1877,7 +2261,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/thanos-receive-controller-rhel9 2.14."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1941,6 +2325,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-40179"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/prometheus/prometheus@0.48.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/prometheus/prometheus@v0.48.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42154"
       },
       "products": [
@@ -2001,6 +2405,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42154"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/prometheus/prometheus@0.48.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/prometheus/prometheus@v0.48.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42499"
       },
       "products": [
@@ -2061,6 +2485,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42501"
       },
       "products": [
@@ -2112,6 +2556,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -2137,7 +2601,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2157,7 +2621,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2221,6 +2705,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42505"
       },
       "products": [
@@ -2278,6 +2782,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2321,6 +2845,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42507"
       },
       "products": [
@@ -2378,6 +2922,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42507"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2421,6 +2985,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42508"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-44903"
       },
       "products": [
@@ -2466,6 +3050,26 @@
       "products": [
         {
           "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:6463adffa83c1cede692af13e0da1e4646d361fa749ecef5072985bcbf7c0a57",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/prometheus/prometheus@0.48.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/prometheus/prometheus@v0.48.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44903"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/prometheus/prometheus@0.48.1"
@@ -2521,6 +3125,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-46595"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-46597"
       },
       "products": [
@@ -2537,7 +3161,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2557,7 +3181,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46597"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2598,6 +3242,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.14 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/thanos-receive-controller-rhel9@sha256:9d98034237514a3a0b02cab098e15e2aff3f0c5726c7fe60b78583191f061edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/thanos-receive-controller-rhel9 2.16 not listed as affected."
     }
   ]
 }

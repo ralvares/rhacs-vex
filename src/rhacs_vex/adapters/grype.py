@@ -51,11 +51,94 @@ def syft_sbom(image_ref: str, *, platform: str = 'linux/amd64',
     return path
 
 
+_GRYPE_DIR = os.path.join('data', 'scans', 'grype')
+_DB_STAMP: list = []          # memo — one `grype db status` per process
+
+
+def _grype_db_stamp() -> str:
+    """Identity of the current grype DB (built timestamp), '' if unknown.
+
+    Cache-key component: an SBOM is immutable (digest-pinned image), so a
+    grype result is valid exactly as long as the DB it was produced with.
+    """
+    if not _DB_STAMP:
+        stamp = ''
+        try:
+            proc = subprocess.run(['grype', 'db', 'status', '-o', 'json'],
+                                  capture_output=True, text=True, timeout=15)
+            built = str(json.loads(proc.stdout).get('built', ''))
+            stamp = re.sub(r'[^0-9TZ]', '', built)
+        except Exception:
+            pass
+        _DB_STAMP.append(stamp)
+    return _DB_STAMP[0]
+
+
 def grype_scan(target: str) -> dict:
-    """Run grype (CVE-normalized ids) on an SBOM path or image ref."""
+    """Run grype (CVE-normalized ids) on an SBOM path or image ref.
+
+    SBOM scans are cached per (SBOM, DB build): the SBOM never changes, so a
+    re-run against the same vulnerability DB returns the identical report —
+    cache-hot batch re-runs skip grype entirely.  A new DB build invalidates
+    naturally (new stamp in the filename); stale stamps are cleaned as they
+    are superseded.
+    """
     src = f'sbom:{target}' if os.path.exists(target) else f'registry:{target}'
+    cpath = None
+    if src.startswith('sbom:'):
+        stamp = _grype_db_stamp()
+        if stamp:
+            base = os.path.basename(target)
+            cpath = os.path.join(_GRYPE_DIR, f'{base}.{stamp}.grype.json')
+            if os.path.exists(cpath) and os.path.getsize(cpath) > 0:
+                try:
+                    with open(cpath) as fh:
+                        return json.load(fh)
+                except Exception:
+                    pass
     proc = _run(['grype', src, '--by-cve', '-o', 'json'], 'grype')
-    return json.loads(proc.stdout)
+    doc = json.loads(proc.stdout)
+    if cpath:
+        os.makedirs(_GRYPE_DIR, exist_ok=True)
+        import glob as _glob
+        import tempfile as _tempfile
+        for old in _glob.glob(os.path.join(
+                _GRYPE_DIR, os.path.basename(target) + '.*.grype.json')):
+            try:
+                os.remove(old)
+            except OSError:
+                pass
+        fd, tmp = _tempfile.mkstemp(dir=_GRYPE_DIR, suffix='.tmp')
+        try:
+            with os.fdopen(fd, 'w') as fh:
+                json.dump(doc, fh)
+            os.replace(tmp, cpath)
+        except Exception:
+            try:
+                os.unlink(tmp)
+            except OSError:
+                pass
+    return doc
+
+
+def fallback_platform(image_ref: str) -> str:
+    """First linux platform in the image's manifest index, '' if none.
+
+    For single-arch-family images (e.g. OpenJ9 builds ship only ppc64le and
+    s390x) the requested platform may not exist at all — the digest-pinned
+    statements are equally valid for whichever build the index does carry.
+    """
+    try:
+        out = subprocess.run(
+            ['skopeo', 'inspect', '--raw', f'docker://{image_ref}'],
+            capture_output=True, text=True, timeout=60)
+        for m in json.loads(out.stdout).get('manifests', []):
+            p = m.get('platform', {})
+            if p.get('os') == 'linux' and p.get('architecture'):
+                return f"linux/{p['architecture']}"
+    except Exception:
+        pass
+    return ''
 
 
 def sbom_labels(sbom_path: str) -> dict:
@@ -70,6 +153,23 @@ def sbom_labels(sbom_path: str) -> dict:
         return (doc.get('source', {}).get('metadata') or {}).get('labels') or {}
     except Exception:
         return {}
+
+
+def sbom_digests(sbom_path: str) -> list:
+    """sha256 identities of the scanned build from the syft-json SBOM.
+
+    manifestDigest is the PLATFORM manifest digest — the identity Red Hat VEX
+    product ids carry (per-arch), unlike the multi-arch list digest in the
+    pull ref.  repoDigests included for completeness.
+    """
+    try:
+        with open(sbom_path) as fh:
+            md = json.load(fh).get('source', {}).get('metadata') or {}
+        out = [md.get('manifestDigest') or '']
+        out += list(md.get('repoDigests') or [])
+        return [d for d in out if d]
+    except Exception:
+        return []
 
 
 def to_df(grype_doc: dict) -> pd.DataFrame:

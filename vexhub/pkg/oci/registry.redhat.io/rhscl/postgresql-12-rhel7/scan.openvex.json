@@ -1,0 +1,75 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/postgresql-12-rhel7",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T14:27:54Z",
+  "version": 2,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2022-40897"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-12-rhel7@sha256:191237ccffc476e764714a69e35d9421dcee5ddd7184442d7a8306a06b97e6bb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-setuptools@0.9.8-7.el7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-setuptools@0.9.8-7.el7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhscl/postgresql-12-rhel7 (RHEL 7): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-40897"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-12-rhel7@sha256:c3e95e808eecba8ac57632452d3553509131ca783f62c68754a582cf5c55efab",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-setuptools@0.9.8-7.el7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-setuptools@0.9.8-7.el7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhscl/postgresql-12-rhel7 (RHEL 7): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-41974"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-12-rhel7@sha256:c3e95e808eecba8ac57632452d3553509131ca783f62c68754a582cf5c55efab",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/device-mapper-multipath@0.4.9-135.el7_9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/kpartx@0.4.9-135.el7_9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/device-mapper-multipath@0.4.9-135.el7_9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/kpartx@0.4.9-135.el7_9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhscl/postgresql-12-rhel7 (RHEL 7): known_not_affected."
+    }
+  ]
+}

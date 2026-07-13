@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/backend-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:17:32Z",
-  "version": 1,
+  "timestamp": "2026-07-13T13:30:02Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -222,32 +222,6 @@
         },
         {
           "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "3scale-mas/backend-rhel8 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-35414"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/backend-rhel8@sha256:7d07caf7b6c5a195ba4706e82f3d28c3793afab99b1a6d5a7020547c48534cdc",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/openssh-clients@8.0p1-19.el8_8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/openssh@8.0p1-19.el8_8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/openssh-clients@8.0p1-19.el8_8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/openssh@8.0p1-19.el8_8"
         }
       ],
       "status": "not_affected",

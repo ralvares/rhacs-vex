@@ -134,11 +134,36 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
     if df is None or df.empty:
         return []
     prod = product_id(image_ref)
+
+    # (CVE, srpm) pairs where sibling binary rpms of one source diverge — some
+    # cleared, some still open (e.g. bind-utils not_affected while bind-libs
+    # awaits its fix).  trivy normalizes rpm findings to the SOURCE package
+    # when matching VEX, so ANY statement about one sibling suppresses them
+    # all — including the genuinely affected ones.  Emitting nothing for the
+    # divergent group is the only safe option: the cleared siblings stay
+    # visible (a false positive shown), the affected ones stay visible (a real
+    # vulnerability NOT hidden).
+    def _row_srpm(row):
+        srpm = str(row.get('SRPM', '') or '').strip()
+        if srpm and srpm.lower() != 'nan' and \
+                str(row.get('SOURCE', '')).strip().upper() == 'OS':
+            return srpm
+        return ''
+
+    divergent = set()
+    for _, row in df.iterrows():
+        srpm = _row_srpm(row)
+        if srpm and 'FALSE POSITIVE' not in str(row.get('AUDIT_RESULT', '')):
+            divergent.add((str(row.get('CVE', '')).strip().upper(), srpm))
+
     fp = df[df['AUDIT_RESULT'].astype(str).str.contains('FALSE POSITIVE', na=False)]
     groups: dict = {}
     for _, row in fp.iterrows():
         status = _STATE_TO_STATUS.get(str(row.get('VEX_STATE', '')).strip())
         if not status:
+            continue
+        srpm = _row_srpm(row)
+        if srpm and (str(row.get('CVE', '')).strip().upper(), srpm) in divergent:
             continue
         subs = subcomponent_ids(row.get('COMPONENT', ''), row.get('VERSION', ''),
                                 row.get('SOURCE', ''))
@@ -147,10 +172,9 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
         # Red Hat assesses rpms per SOURCE package: extend the statement to the
         # source-rpm name so a sibling binary subpackage flagged only by the
         # other scanner (e.g. trivy's net-snmp vs grype's net-snmp-libs) is
-        # covered by the same verdict.
-        srpm = str(row.get('SRPM', '') or '').strip()
-        if srpm and srpm.lower() != 'nan' and \
-                str(row.get('SOURCE', '')).strip().upper() == 'OS':
+        # covered by the same verdict.  Safe here: divergent groups were
+        # dropped above, so every sibling of this source shares the verdict.
+        if srpm:
             subs += subcomponent_ids(srpm, row.get('VERSION', ''), 'OS')
         key = (str(row['CVE']).strip().upper(), status)
         g = groups.setdefault(key, {'subs': set(), 'just': None, 'impacts': set()})

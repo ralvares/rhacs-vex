@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/console-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:47:17Z",
-  "version": 4,
+  "timestamp": "2026-07-13T13:31:44Z",
+  "version": 5,
   "statements": [
     {
       "vulnerability": {
@@ -89,38 +89,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected. Red Hat Advanced Cluster Management for Kubernetes 2.10 for RHEL 9 \u2014 rhacm2/console-rhel9@sha256:4ee3bbdcc190cd6c3e1eff8bfabe8ca3cd9e61ab5d824983a955e6d509238041_arm64."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-15281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-rhel9@sha256:374ae0489bcb6d9e3926adc6c83dd1e4e2757cce3187c89e577c6abc0a598a7d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/console-rhel9 2.14: known_not_affected."
     },
     {
       "vulnerability": {
@@ -267,96 +235,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-9086"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-rhel9@sha256:374ae0489bcb6d9e3926adc6c83dd1e4e2757cce3187c89e577c6abc0a598a7d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-34.el9"
-            },
-            {
-              "@id": "pkg:rpm/redhat/curl@7.76.1-34.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-34.el9"
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl@7.76.1-34.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/console-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0861"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-rhel9@sha256:374ae0489bcb6d9e3926adc6c83dd1e4e2757cce3187c89e577c6abc0a598a7d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/console-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-rhel9@sha256:374ae0489bcb6d9e3926adc6c83dd1e4e2757cce3187c89e577c6abc0a598a7d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/console-rhel9 2.14: known_not_affected."
     },
     {
       "vulnerability": {

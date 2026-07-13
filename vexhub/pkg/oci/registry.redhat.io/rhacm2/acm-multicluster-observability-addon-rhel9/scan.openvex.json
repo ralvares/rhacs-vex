@@ -2,41 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/acm-multicluster-observability-addon-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:44:45Z",
-  "version": 4,
+  "timestamp": "2026-07-13T13:33:43Z",
+  "version": 8,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2025-15281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-multicluster-observability-addon-rhel9@sha256:1a06af9b1079744056984ba4296a1bd241978ca640d695ad30fc99db15b5a197",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/multicluster-observability-addon-rhel9 2.14: known_not_affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2025-2843"
@@ -259,96 +227,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-9086"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-multicluster-observability-addon-rhel9@sha256:1a06af9b1079744056984ba4296a1bd241978ca640d695ad30fc99db15b5a197",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-34.el9"
-            },
-            {
-              "@id": "pkg:rpm/redhat/curl@7.76.1-34.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-34.el9"
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl@7.76.1-34.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/multicluster-observability-addon-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0861"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-multicluster-observability-addon-rhel9@sha256:1a06af9b1079744056984ba4296a1bd241978ca640d695ad30fc99db15b5a197",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/multicluster-observability-addon-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-multicluster-observability-addon-rhel9@sha256:1a06af9b1079744056984ba4296a1bd241978ca640d695ad30fc99db15b5a197",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/multicluster-observability-addon-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-24051"
       },
       "products": [
@@ -505,7 +383,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhacm2/multicluster-observability-addon-rhel9 2.14 not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -525,7 +403,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.15 not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -545,7 +423,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.16 not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -565,7 +443,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-observability-addon-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -585,7 +463,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -605,7 +483,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1451,7 +1329,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/multicluster-observability-addon-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1471,7 +1349,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1497,7 +1375,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1523,7 +1401,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2303,7 +2181,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-observability-addon-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2323,7 +2201,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2343,7 +2221,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2543,7 +2421,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-observability-addon-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2563,7 +2441,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2583,7 +2461,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2663,7 +2541,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-observability-addon-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2683,7 +2561,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2703,7 +2581,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2875,7 +2753,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/multicluster-observability-addon-rhel9 2.14."
     },
     {
       "vulnerability": {
@@ -2907,7 +2785,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-multicluster-observability-addon-rhel9 2.15."
     },
     {
       "vulnerability": {
@@ -2939,7 +2817,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-multicluster-observability-addon-rhel9 2.16."
     },
     {
       "vulnerability": {
@@ -2959,7 +2837,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/multicluster-observability-addon-rhel9 2.14."
+      "impact_statement": "rhacm2/multicluster-observability-addon-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3279,7 +3157,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-observability-addon-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3299,7 +3177,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3319,7 +3197,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3839,7 +3717,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-observability-addon-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3859,7 +3737,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3879,7 +3757,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-multicluster-observability-addon-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {

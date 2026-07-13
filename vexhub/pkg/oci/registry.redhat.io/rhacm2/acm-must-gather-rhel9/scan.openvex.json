@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/acm-must-gather-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:44:45Z",
-  "version": 4,
+  "timestamp": "2026-07-13T13:33:54Z",
+  "version": 8,
   "statements": [
     {
       "vulnerability": {
@@ -124,38 +124,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/acm-must-gather-rhel9 2.14 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-15281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:4fa6b3eec159eee836bb1383dac640d869c5d381f38b72b714881909b554e28a",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.14: known_not_affected."
     },
     {
       "vulnerability": {
@@ -320,6 +288,32 @@
     {
       "vulnerability": {
         "name": "CVE-2025-61726"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:4fa6b3eec159eee836bb1383dac640d869c5d381f38b72b714881909b554e28a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.11"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.11"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61728"
       },
       "products": [
         {
@@ -549,70 +543,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-0861"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:4fa6b3eec159eee836bb1383dac640d869c5d381f38b72b714881909b554e28a",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:4fa6b3eec159eee836bb1383dac640d869c5d381f38b72b714881909b554e28a",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-2303"
       },
       "products": [
@@ -793,7 +723,7 @@
         }
       ],
       "status": "not_affected",
-      "justification": "vulnerable_code_not_in_execute_path"
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -813,7 +743,7 @@
         }
       ],
       "status": "not_affected",
-      "justification": "vulnerable_code_not_in_execute_path"
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -839,7 +769,7 @@
         }
       ],
       "status": "not_affected",
-      "justification": "vulnerable_code_not_in_execute_path"
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -865,7 +795,7 @@
         }
       ],
       "status": "not_affected",
-      "justification": "vulnerable_code_not_in_execute_path"
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -891,7 +821,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "justification": "vulnerable_code_not_in_execute_path"
     },
     {
       "vulnerability": {
@@ -911,7 +841,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "justification": "vulnerable_code_not_in_execute_path"
     },
     {
       "vulnerability": {
@@ -937,7 +867,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "justification": "vulnerable_code_not_in_execute_path"
     },
     {
       "vulnerability": {
@@ -963,7 +893,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "justification": "vulnerable_code_not_in_execute_path"
     },
     {
       "vulnerability": {
@@ -1899,7 +1829,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-must-gather-rhel9 2.17."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1919,7 +1849,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-must-gather-rhel9 2.16."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1939,7 +1869,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-must-gather-rhel9 2.15."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1959,7 +1889,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-must-gather-rhel9 2.14."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2249,7 +2179,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2281,7 +2211,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2319,7 +2249,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2357,7 +2287,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2629,7 +2559,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-must-gather-rhel9 2.17."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2649,7 +2579,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-must-gather-rhel9 2.16."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2669,7 +2599,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-must-gather-rhel9 2.15."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2689,7 +2619,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-must-gather-rhel9 2.14."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3569,104 +3499,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:1a4f21543e04c163a27ffba289dcab16464b014c20a625189c8e878c8534467d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:1ab4d5d8ca0026fde9daab17db6a95919e16996907a67667a4bc5cacc11b9bba",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:286345fdecfc2bd56d0a66e602ace2543d89b825e5fe174d44b7fe6788c2da26",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:4fa6b3eec159eee836bb1383dac640d869c5d381f38b72b714881909b554e28a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39828"
       },
       "products": [
@@ -3860,104 +3692,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_in_execute_path"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:1a4f21543e04c163a27ffba289dcab16464b014c20a625189c8e878c8534467d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:1ab4d5d8ca0026fde9daab17db6a95919e16996907a67667a4bc5cacc11b9bba",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:286345fdecfc2bd56d0a66e602ace2543d89b825e5fe174d44b7fe6788c2da26",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:4fa6b3eec159eee836bb1383dac640d869c5d381f38b72b714881909b554e28a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -4059,7 +3793,7 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39834"
+        "name": "CVE-2026-39835"
       },
       "products": [
         {
@@ -4081,11 +3815,11 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "justification": "vulnerable_code_not_in_execute_path"
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39834"
+        "name": "CVE-2026-39835"
       },
       "products": [
         {
@@ -4101,11 +3835,11 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "justification": "vulnerable_code_not_in_execute_path"
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39834"
+        "name": "CVE-2026-39835"
       },
       "products": [
         {
@@ -4127,11 +3861,11 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "justification": "vulnerable_code_not_in_execute_path"
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39834"
+        "name": "CVE-2026-39835"
       },
       "products": [
         {
@@ -4153,7 +3887,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "justification": "vulnerable_code_not_in_execute_path"
     },
     {
       "vulnerability": {
@@ -4611,104 +4345,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:1a4f21543e04c163a27ffba289dcab16464b014c20a625189c8e878c8534467d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.51.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.51.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:1ab4d5d8ca0026fde9daab17db6a95919e16996907a67667a4bc5cacc11b9bba",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:286345fdecfc2bd56d0a66e602ace2543d89b825e5fe174d44b7fe6788c2da26",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.42.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:4fa6b3eec159eee836bb1383dac640d869c5d381f38b72b714881909b554e28a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-42504"
       },
       "products": [
@@ -5375,7 +5011,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -5395,7 +5031,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -5415,7 +5051,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -5435,7 +5071,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-must-gather-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -5534,104 +5170,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:1a4f21543e04c163a27ffba289dcab16464b014c20a625189c8e878c8534467d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:1ab4d5d8ca0026fde9daab17db6a95919e16996907a67667a4bc5cacc11b9bba",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:286345fdecfc2bd56d0a66e602ace2543d89b825e5fe174d44b7fe6788c2da26",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-must-gather-rhel9@sha256:4fa6b3eec159eee836bb1383dac640d869c5d381f38b72b714881909b554e28a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {

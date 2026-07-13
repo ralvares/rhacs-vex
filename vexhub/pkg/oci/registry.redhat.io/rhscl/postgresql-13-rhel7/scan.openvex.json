@@ -1,0 +1,29 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/postgresql-13-rhel7",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T14:05:20Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2022-40897"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-13-rhel7@sha256:338dd09681dcf860e6a976a3bc48a1474c2376d698815e4eb611ae9c5aa68966",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-setuptools@0.9.8-7.el7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-setuptools@0.9.8-7.el7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhscl/postgresql-13-rhel7 (RHEL 7): known_not_affected."
+    }
+  ]
+}

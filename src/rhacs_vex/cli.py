@@ -61,6 +61,7 @@ def _scanner_cmd(scanner: str, args) -> int:
         df = adapter.to_df(doc)
         hint = adapter.os_hint(doc)
         labels = adapter.sbom_labels(target)
+        digests = adapter.sbom_digests(target)
     else:
         from .adapters import trivy as adapter
         console.print("🔍 trivy scan...")
@@ -68,6 +69,7 @@ def _scanner_cmd(scanner: str, args) -> int:
         df = adapter.to_df(doc)
         hint = adapter.os_hint(doc)
         labels = adapter.labels(doc)
+        digests = adapter.digests(doc)
 
     image_ref = args.image or (args.target if not os.path.exists(args.target) else '')
     if not image_ref:
@@ -76,7 +78,8 @@ def _scanner_cmd(scanner: str, args) -> int:
         return 2
 
     console.print(f"🧭 Image context via labels: [bold cyan]{image_ref}[/bold cyan]")
-    ctx = context_for_image(image_ref, os_hint=hint, labels=labels or None)
+    ctx = context_for_image(image_ref, os_hint=hint, labels=labels or None,
+                            digests=digests)
 
     result_df = triage._audit_and_display(
         df, ctx, console, output_path=args.output, output_fmt=args.format,
@@ -89,6 +92,18 @@ def _scanner_cmd(scanner: str, args) -> int:
             console.print(f'[red]OpenVEX export skipped: {e}[/red]')
             return 1
     return 0
+
+
+def _audit_worker(df, ctx, ref: str) -> list:
+    """CPU stage of generate, run in a forked worker process.
+
+    The audit is pandas-heavy pure Python — in the thread pool it serializes
+    on the GIL, so scanner threads beyond ~2 buy nothing.  Same pattern as
+    retriage's fork ProcessPool.
+    """
+    from . import openvex, triage
+    result = triage._audit_silent(df, ctx)
+    return openvex.statements_from_df(result, ref)
 
 
 def _generate_cmd(args) -> int:
@@ -217,17 +232,31 @@ def _generate_cmd(args) -> int:
         try:
             sbom = adapter.syft_sbom(ref, platform=args.platform,
                                      force=args.force)
-        except Exception:
-            # Transient registry/CDN hiccups (e.g. quay CDN TLS errors) — one
-            # retry; force=True so a partially-written SBOM can't be reused.
-            import time as _time
-            _time.sleep(5)
-            sbom = adapter.syft_sbom(ref, platform=args.platform, force=True)
+        except Exception as e:
+            if 'no child with platform' in str(e):
+                # Image doesn't ship the requested arch at all (e.g. OpenJ9 =
+                # ppc64le/s390x only) — scan whatever the index does carry;
+                # statements are per-digest and valid for that build.
+                alt = adapter.fallback_platform(ref)
+                if not alt:
+                    raise
+                sbom = adapter.syft_sbom(ref, platform=alt, force=True)
+            else:
+                # Transient registry/CDN hiccups (e.g. quay CDN TLS errors) —
+                # one retry; force=True so a partially-written SBOM can't be
+                # reused.
+                import time as _time
+                _time.sleep(5)
+                sbom = adapter.syft_sbom(ref, platform=args.platform,
+                                         force=True)
         doc = adapter.grype_scan(sbom)
         df = adapter.to_df(doc)
-        # Labels from the SBOM itself — skopeo only as fallback (scratch images)
+        # Labels + build digests from the SBOM itself — skopeo only as
+        # fallback (scratch images); the platform manifest digest enables
+        # exact-build VEX matching (per-arch product ids).
         ctx = context_for_image(ref, os_hint=adapter.os_hint(doc),
-                                labels=adapter.sbom_labels(sbom) or None)
+                                labels=adapter.sbom_labels(sbom) or None,
+                                digests=adapter.sbom_digests(sbom))
         digest = ref.split('@')[-1]
         if digest in ocp_by_digest:
             ver, minor = ocp_by_digest[digest]
@@ -235,8 +264,25 @@ def _generate_cmd(args) -> int:
             ctx.ocp_ver = minor
             ctx.display_name = f'OpenShift {ver}'
             ctx.extra_prefixes = []
-        result = triage._audit_silent(df, ctx)
-        return openvex.statements_from_df(result, ref)
+        # CPU stage in the fork pool — the scanner thread just waits here.
+        return cpu_pool.submit(_audit_worker, df, ctx, ref).result()
+
+    # Scanner threads handle syft/grype subprocesses and registry I/O (GIL
+    # released); the pandas audit runs in worker PROCESSES or it would
+    # serialize every thread on the GIL.  spawn, not fork: forked children
+    # abort on macOS (Objective-C runtime) and inherit thread locks; the
+    # one-time import cost is amortized by pre-spawning all workers here,
+    # before any scanner thread starts.
+    import multiprocessing as _mp
+    from concurrent.futures import ProcessPoolExecutor
+    cpu_workers = max(2, min(args.workers, (os.cpu_count() or 8) - 2))
+    cpu_pool = ProcessPoolExecutor(max_workers=cpu_workers,
+                                   mp_context=_mp.get_context('spawn'))
+    import time as _time
+    # N concurrent sleeps can't share a worker → all N spawn now.
+    for w in [cpu_pool.submit(_time.sleep, 0.2) for _ in range(cpu_workers)]:
+        w.result()
+    console.print(f'CPU audit pool: {cpu_workers} worker processes')
 
     # Checkpointed hub writes: flush every FLUSH_EVERY completions so an
     # interrupted run keeps (almost) everything on disk.  Batching per flush —
@@ -251,9 +297,11 @@ def _generate_cmd(args) -> int:
             ref = futures[future]
             try:
                 statements = future.result()
-                if statements:
-                    per_image[ref] = statements
-                    pending[ref] = statements
+                # 0-statement results still flow to the writer: a re-scan is
+                # the complete truth for its digest, and the doc merge must be
+                # able to RETRACT statements that no longer hold.
+                per_image[ref] = statements
+                pending[ref] = statements
                 console.print(f'  [{done}/{len(refs)}] {ref.split("@")[0]}: '
                               f'{len(statements)} statements')
             except Exception as e:
@@ -264,6 +312,7 @@ def _generate_cmd(args) -> int:
                                                     author=args.author)
                 pending.clear()
 
+    cpu_pool.shutdown()
     if pending:
         doc_updates += hub.write_image_docs(args.hub, pending, author=args.author)
     stats = hub.build_index(args.hub, name=args.author,
@@ -411,9 +460,55 @@ def _doctor_cmd() -> int:
     return 1 if missing else 0
 
 
+def _live_digests_by_doc(hub_dir: str) -> dict:
+    """doc path → set of 'sha256:…' digests still referenced by discovery.
+
+    Union of every data/pullspecs/*.txt ref and every catalog channel-head
+    workload image — the same sources `generate --ocp/--operators` scans from.
+    """
+    import glob as _glob
+    import re as _re
+
+    from . import hub, operators as ops
+    refs = []
+    for txt in _glob.glob(os.path.join('data', 'pullspecs', '*.txt')):
+        try:
+            with open(txt) as fh:
+                for line in fh:
+                    m = _re.search(r'(\S+@sha256:[a-f0-9]{64})', line)
+                    if m:
+                        refs.append(m.group(1))
+        except OSError:
+            continue
+    for cat in _glob.glob(os.path.join('data', 'catalogs', 'catalog-*.json')):
+        for _pkg, entries in ops.build_operator_index(cat).items():
+            for entry in entries:
+                for _role, img in ops._get_unique_workload_images(
+                        entry['head_bundle']):
+                    if _re.search(r'@sha256:[a-f0-9]{64}$', img):
+                        refs.append(img)
+    live: dict = {}
+    for ref in set(refs):
+        live.setdefault(hub.doc_path(hub_dir, ref), set()).add(
+            ref.split('@')[-1])
+    return live
+
+
 def _hub_cmd(args) -> int:
     from . import hub
     console = Console()
+    if getattr(args, 'prune', False):
+        live = _live_digests_by_doc(args.hub)
+        if not live:
+            console.print('[red]--prune: no discovery artifacts found '
+                          '(data/pullspecs, data/catalogs) — refusing to '
+                          'prune against an empty live set.[/red]')
+            return 2
+        pstats = hub.prune(args.hub, live)
+        console.print(f"Pruned: {pstats['statements']} statements for "
+                      f"rotated-out digests ({pstats['docs_updated']} docs "
+                      f"updated, {pstats['docs_removed']} removed); images "
+                      f"outside discovery untouched")
     stats = hub.build_index(args.hub, name=args.author,
                             description='Red Hat VEX triage verdicts (OpenVEX)',
                             base_url=args.base_url, archive=args.archive)
@@ -491,6 +586,10 @@ def main() -> int:
 
     ph = sub.add_parser('hub', help='rebuild hub index.json + vex-repository.json')
     ph.add_argument('--hub', default='vexhub', metavar='DIR')
+    ph.add_argument('--prune', action='store_true', default=False,
+                    help='drop statements for digests no longer in '
+                         'data/pullspecs or catalog channel heads '
+                         '(images outside discovery untouched)')
     ph.add_argument('--author', default='vextriage')
     ph.add_argument('--base-url', default='')
     ph.add_argument('--archive', action='store_true', default=False)

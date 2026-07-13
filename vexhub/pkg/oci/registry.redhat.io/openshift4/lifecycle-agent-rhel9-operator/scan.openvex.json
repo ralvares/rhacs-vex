@@ -1,0 +1,1490 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/lifecycle-agent-rhel9-operator",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T14:35:23Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2022-1706"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/coreos/ignition@0.35.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/coreos/ignition@v0.35.0"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-25621"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/containerd/containerd@1.7.11"
+            },
+            {
+              "@id": "pkg:golang/github.com/containerd/containerd@v1.7.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-40635"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/containerd/containerd@1.7.11"
+            },
+            {
+              "@id": "pkg:golang/github.com/containerd/containerd@v1.7.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-45310"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/opencontainers/runc@1.1.13"
+            },
+            {
+              "@id": "pkg:golang/github.com/opencontainers/runc@v1.1.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-31133"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/opencontainers/runc@1.1.13"
+            },
+            {
+              "@id": "pkg:golang/github.com/opencontainers/runc@v1.1.13"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47911"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47913"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-52565"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/opencontainers/runc@1.1.13"
+            },
+            {
+              "@id": "pkg:golang/github.com/opencontainers/runc@v1.1.13"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-52881"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/opencontainers/runc@1.1.13"
+            },
+            {
+              "@id": "pkg:golang/github.com/opencontainers/runc@v1.1.13"
+            },
+            {
+              "@id": "pkg:golang/github.com/opencontainers/selinux@1.12.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/opencontainers/selinux@v1.12.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-54410"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
+            },
+            {
+              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58190"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-66506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/fulcio@1.4.5"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/fulcio@v1.4.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-2303"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@1.14.0"
+            },
+            {
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@v1.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.39.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25679"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25680"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27139"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27140"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27142"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27143"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27144"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-29181"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: affected: Multicluster Engine for Kubernetes; fixed: multicluster engine for Kubernetes 2.11; not affected: multicluster engine for Kubernetes 2.11."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32280"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32281"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32282"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32283"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32288"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32289"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33540"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
+            },
+            {
+              "@id": "pkg:golang/github.com/distribution/distribution/v3@v3.0.0-20230519140516-983358f8e250"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33747"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/moby/buildkit@0.12.5"
+            },
+            {
+              "@id": "pkg:golang/github.com/moby/buildkit@v0.12.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33748"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/moby/buildkit@0.12.5"
+            },
+            {
+              "@id": "pkg:golang/github.com/moby/buildkit@v0.12.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33997"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
+            },
+            {
+              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-34040"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
+            },
+            {
+              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-34986"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@4.0.5"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@v4.0.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "component_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-35172"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
+            },
+            {
+              "@id": "pkg:golang/github.com/distribution/distribution/v3@v3.0.0-20230519140516-983358f8e250"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-35469"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/moby/spdystream@0.5.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/moby/spdystream@v0.5.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.39.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39832"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39883"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.39.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-41567"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
+            },
+            {
+              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-41888"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
+            },
+            {
+              "@id": "pkg:golang/github.com/distribution/distribution/v3@v3.0.0-20230519140516-983358f8e250"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42507"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42508"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44973"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@5.6.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@v5.6.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45022"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.13.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45570"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.13.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45571"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.13.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: fixed: Red Hat Openshift Data Foundation 4.22; not affected: Red Hat Openshift Data Foundation 4.22."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46595"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "lifecycle-agent-operator not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-47262"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lifecycle-agent-rhel9-operator@sha256:566ee643d8191a5eee77acee79ea0041bdb78fe0e6488edcfd5d54395b11a718",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/containerd/containerd@1.7.11"
+            },
+            {
+              "@id": "pkg:golang/github.com/containerd/containerd@v1.7.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/eda-controller-ui-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T13:52:58Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-23419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/eda-controller-ui-rhel9@sha256:f979ef33c921b140e68d28d3da6762be3e4828519749bdb290a70dfe0f7ad4a4",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-core@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-core@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "ansible-automation-platform-26/eda-controller-ui-rhel9 2.6: known_not_affected."
+    }
+  ]
+}

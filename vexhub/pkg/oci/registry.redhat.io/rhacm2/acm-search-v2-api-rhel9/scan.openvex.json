@@ -2,41 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/acm-search-v2-api-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:47:17Z",
-  "version": 4,
+  "timestamp": "2026-07-13T13:33:54Z",
+  "version": 8,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2025-15281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-search-v2-api-rhel9@sha256:60e60931dfade83d64105b8981b06759007a2ec47cb66a6c785e0068a7ee3398",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.14: known_not_affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2025-61728"
@@ -56,6 +24,26 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61729"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/acm-search-v2-api-rhel9@sha256:60e60931dfade83d64105b8981b06759007a2ec47cb66a6c785e0068a7ee3398",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.3"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat Advanced Cluster Management for Kubernetes 2.14)."
     },
     {
       "vulnerability": {
@@ -156,70 +144,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.14 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0861"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-search-v2-api-rhel9@sha256:60e60931dfade83d64105b8981b06759007a2ec47cb66a6c785e0068a7ee3398",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-search-v2-api-rhel9@sha256:60e60931dfade83d64105b8981b06759007a2ec47cb66a6c785e0068a7ee3398",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.14: known_not_affected."
     },
     {
       "vulnerability": {
@@ -339,7 +263,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.14 not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -359,7 +283,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.16 not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -379,7 +303,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.17 not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -399,7 +323,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.15 not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -419,7 +343,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -439,7 +363,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -459,7 +383,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -479,7 +403,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -885,7 +809,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -911,7 +835,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -937,7 +861,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -963,7 +887,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1623,7 +1547,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1643,7 +1567,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1663,7 +1587,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1683,7 +1607,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1943,7 +1867,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1963,7 +1887,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1983,7 +1907,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2003,7 +1927,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2103,7 +2027,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2123,7 +2047,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2143,7 +2067,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2163,7 +2087,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2503,7 +2427,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2523,7 +2447,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2543,7 +2467,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2563,7 +2487,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3063,7 +2987,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3083,7 +3007,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3103,7 +3027,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3123,7 +3047,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-search-v2-api-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {

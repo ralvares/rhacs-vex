@@ -2,41 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/multicluster-operators-channel-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:47:17Z",
-  "version": 4,
+  "timestamp": "2026-07-13T13:34:37Z",
+  "version": 8,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2025-15281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/multicluster-operators-channel-rhel9@sha256:1e33bdcc53b313e8f70ae44592f897128ef519f890e8b606a9feec8899fc1c0d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.14: known_not_affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2025-47914"
@@ -96,6 +64,26 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61729"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/multicluster-operators-channel-rhel9@sha256:1e33bdcc53b313e8f70ae44592f897128ef519f890e8b606a9feec8899fc1c0d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.3"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat Advanced Cluster Management for Kubernetes 2.14)."
     },
     {
       "vulnerability": {
@@ -199,96 +187,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-9086"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/multicluster-operators-channel-rhel9@sha256:1e33bdcc53b313e8f70ae44592f897128ef519f890e8b606a9feec8899fc1c0d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-34.el9"
-            },
-            {
-              "@id": "pkg:rpm/redhat/curl@7.76.1-34.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-34.el9"
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl@7.76.1-34.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0861"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/multicluster-operators-channel-rhel9@sha256:1e33bdcc53b313e8f70ae44592f897128ef519f890e8b606a9feec8899fc1c0d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/multicluster-operators-channel-rhel9@sha256:1e33bdcc53b313e8f70ae44592f897128ef519f890e8b606a9feec8899fc1c0d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-25679"
       },
       "products": [
@@ -306,86 +204,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.14 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/multicluster-operators-channel-rhel9@sha256:1e33bdcc53b313e8f70ae44592f897128ef519f890e8b606a9feec8899fc1c0d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/multicluster-operators-channel-rhel9@sha256:1f587c2ff447b1b89739772ddfda6e78c164f2e768e3e401056f89c109bdea7f",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/multicluster-operators-channel-rhel9@sha256:a07eab0641ff7baf4eb1c6c41bbaba954c2b24c138f4b45678404ffc3587a56d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/multicluster-operators-channel-rhel9@sha256:aa572aa3508481dccb7687f427b4357a28c38eaf4e7f647fc0999eb74cfdff5a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -791,7 +609,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -817,7 +635,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -843,7 +661,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -869,7 +687,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1589,7 +1407,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1609,7 +1427,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1629,7 +1447,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1649,7 +1467,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1909,7 +1727,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1929,7 +1747,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1949,7 +1767,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1969,7 +1787,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2069,7 +1887,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2089,7 +1907,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2109,7 +1927,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2129,7 +1947,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2444,86 +2262,6 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/multicluster-operators-channel-rhel9@sha256:1e33bdcc53b313e8f70ae44592f897128ef519f890e8b606a9feec8899fc1c0d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/multicluster-operators-channel-rhel9@sha256:1f587c2ff447b1b89739772ddfda6e78c164f2e768e3e401056f89c109bdea7f",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/multicluster-operators-channel-rhel9@sha256:a07eab0641ff7baf4eb1c6c41bbaba954c2b24c138f4b45678404ffc3587a56d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/multicluster-operators-channel-rhel9@sha256:aa572aa3508481dccb7687f427b4357a28c38eaf4e7f647fc0999eb74cfdff5a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
             }
           ]
         }
@@ -2869,7 +2607,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2889,7 +2627,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2909,7 +2647,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2929,7 +2667,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/multicluster-operators-channel-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {

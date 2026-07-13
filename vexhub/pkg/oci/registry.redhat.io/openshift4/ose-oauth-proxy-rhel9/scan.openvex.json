@@ -1,0 +1,695 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/ose-oauth-proxy-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T14:12:03Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47913"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.33.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.33.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33186"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@1.68.1"
+            },
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@v1.68.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.31.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.31.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39828"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39829"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39830"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39831"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39832"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39835"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39883"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.33.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.33.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.22.1. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42507"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42508"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46595"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46597"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-oauth-proxy-rhel9@sha256:a9a278e454457b4abeea815170fe81274d018770175d57adc2bb358856fd7c51",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oauth-proxy not listed as affected."
+    }
+  ]
+}

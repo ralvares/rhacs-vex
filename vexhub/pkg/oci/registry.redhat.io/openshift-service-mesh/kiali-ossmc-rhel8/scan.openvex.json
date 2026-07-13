@@ -1,0 +1,73 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/kiali-ossmc-rhel8",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T14:29:51Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kiali-ossmc-rhel8@sha256:bf61edad2b05be0c97e39ca0b3d489670c0a2a374bed35926810651181e6234c",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/systemd-libs@239-82.el8_10.17"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-pam@239-82.el8_10.17"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd@239-82.el8_10.17"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@239-82.el8_10.17"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-pam@239-82.el8_10.17"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@239-82.el8_10.17"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-service-mesh/kiali-ossmc-rhel8 2.6: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kiali-ossmc-rhel8@sha256:e37d76dd7c7a2db79ff1e96afef19b07c3beaa8ebf0c7bd85b808908b8f0ce77",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/systemd-libs@239-82.el8_10.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-pam@239-82.el8_10.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd@239-82.el8_10.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@239-82.el8_10.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-pam@239-82.el8_10.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@239-82.el8_10.2"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-service-mesh/kiali-ossmc-rhel8 (RHEL 8): known_not_affected."
+    }
+  ]
+}

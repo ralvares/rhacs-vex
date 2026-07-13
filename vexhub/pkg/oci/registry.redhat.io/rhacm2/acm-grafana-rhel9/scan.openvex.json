@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/acm-grafana-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:44:45Z",
-  "version": 4,
+  "timestamp": "2026-07-13T13:33:54Z",
+  "version": 8,
   "statements": [
     {
       "vulnerability": {
@@ -44,38 +44,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-15281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:298114b4808813fc658f8e91b31d70ca370ff71ee11d8f64a8542e9893178eda",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/acm-grafana-rhel9 2.14: known_not_affected."
     },
     {
       "vulnerability": {
@@ -236,70 +204,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/acm-grafana-rhel9 2.14 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0861"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:298114b4808813fc658f8e91b31d70ca370ff71ee11d8f64a8542e9893178eda",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/acm-grafana-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:298114b4808813fc658f8e91b31d70ca370ff71ee11d8f64a8542e9893178eda",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/acm-grafana-rhel9 2.14: known_not_affected."
     },
     {
       "vulnerability": {
@@ -580,66 +484,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/acm-grafana-rhel9 2.14 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:298114b4808813fc658f8e91b31d70ca370ff71ee11d8f64a8542e9893178eda",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:6f8ecac0e9c481d19146a4c9c0e817eb28503e109df3dfa766f978db889620a9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:861fbc905f1e428dda0ddd922596c81a7c87869d88f97e74bc8f8c3d3cfa65dd",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1079,7 +923,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat Advanced Cluster Management for Kubernetes 2.15 \u2014 registry.redhat.io/rhacm2/acm-grafana-rhel9@sha256:08670904b912776ccbe1b62d7e9e0bbbf376e54c33b34763f2b78f88e395ad5d_amd64."
+      "impact_statement": "known_not_affected. Red Hat Advanced Cluster Management for Kubernetes 2.14 \u2014 registry.redhat.io/rhacm2/acm-grafana-rhel9@sha256:2a6b24698fc9507613d57ba8cf0053dc29fe2c0cb6ab7c2eddd2efaf5e8b6a81_s390x."
     },
     {
       "vulnerability": {
@@ -1265,7 +1109,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-grafana-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1291,7 +1135,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-grafana-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1317,7 +1161,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-grafana-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1337,7 +1181,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/acm-grafana-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2101,66 +1945,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:298114b4808813fc658f8e91b31d70ca370ff71ee11d8f64a8542e9893178eda",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:6f8ecac0e9c481d19146a4c9c0e817eb28503e109df3dfa766f978db889620a9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:861fbc905f1e428dda0ddd922596c81a7c87869d88f97e74bc8f8c3d3cfa65dd",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39828"
       },
       "products": [
@@ -2357,7 +2141,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-grafana-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2377,7 +2161,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-grafana-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2397,7 +2181,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-grafana-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2458,66 +2242,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/acm-grafana-rhel9 2.16 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:298114b4808813fc658f8e91b31d70ca370ff71ee11d8f64a8542e9893178eda",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:6f8ecac0e9c481d19146a4c9c0e817eb28503e109df3dfa766f978db889620a9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:861fbc905f1e428dda0ddd922596c81a7c87869d88f97e74bc8f8c3d3cfa65dd",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -2677,7 +2401,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-grafana-rhel9 2.14."
     },
     {
       "vulnerability": {
@@ -2709,7 +2433,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-grafana-rhel9 2.15."
     },
     {
       "vulnerability": {
@@ -2741,7 +2465,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-grafana-rhel9 2.16."
     },
     {
       "vulnerability": {
@@ -2773,7 +2497,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-grafana-rhel9 2.17."
     },
     {
       "vulnerability": {
@@ -2793,7 +2517,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhacm2/acm-grafana-rhel9 2.14."
+      "impact_statement": "rhacm2/acm-grafana-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2913,7 +2637,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat Advanced Cluster Management for Kubernetes 2.15 \u2014 registry.redhat.io/rhacm2/acm-grafana-rhel9@sha256:847feb43a65e505fe51ca5ef85dea599506b4eba9aa26a35f1a1eb8f1f5f2f64_s390x."
+      "impact_statement": "known_not_affected. Red Hat Advanced Cluster Management for Kubernetes 2.14 \u2014 registry.redhat.io/rhacm2/acm-grafana-rhel9@sha256:2a6b24698fc9507613d57ba8cf0053dc29fe2c0cb6ab7c2eddd2efaf5e8b6a81_s390x."
     },
     {
       "vulnerability": {
@@ -3148,66 +2872,6 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:298114b4808813fc658f8e91b31d70ca370ff71ee11d8f64a8542e9893178eda",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:6f8ecac0e9c481d19146a4c9c0e817eb28503e109df3dfa766f978db889620a9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/acm-grafana-rhel9@sha256:861fbc905f1e428dda0ddd922596c81a7c87869d88f97e74bc8f8c3d3cfa65dd",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
             }
           ]
         }
@@ -3673,7 +3337,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-grafana-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3693,7 +3357,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-grafana-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3713,7 +3377,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/acm-grafana-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {

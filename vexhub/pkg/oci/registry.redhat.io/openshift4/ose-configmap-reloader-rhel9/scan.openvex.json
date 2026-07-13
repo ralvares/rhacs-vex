@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-configmap-reloader-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:44:45Z",
-  "version": 4,
+  "timestamp": "2026-07-13T13:33:42Z",
+  "version": 8,
   "statements": [
     {
       "vulnerability": {
@@ -1225,7 +1225,7 @@
         }
       ],
       "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift Container Platform 4.17)."
     },
     {
       "vulnerability": {
@@ -1246,6 +1246,25 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61728"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-configmap-reloader-rhel9@sha256:30f752325a783ed8ca2c5d5cc21b490fd5f56e5fa23818f2368b94aecc6403c8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -1329,6 +1348,44 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-61731"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-configmap-reloader-rhel9@sha256:30f752325a783ed8ca2c5d5cc21b490fd5f56e5fa23818f2368b94aecc6403c8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61732"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-configmap-reloader-rhel9@sha256:30f752325a783ed8ca2c5d5cc21b490fd5f56e5fa23818f2368b94aecc6403c8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-68121"
       },
       "products": [
@@ -1344,8 +1401,7 @@
           ]
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.17 \u2014 registry.redhat.io/openshift4/ose-configmap-reloader-rhel9@sha256:1d9d3b4b90eefd1714e4814e4c340d11a88f1208852b7c624fac4096ec3bae65_amd64."
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -1708,134 +1764,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1519"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-configmap-reloader-rhel9@sha256:2c9f2dec9eb873d1a0a4d5edf98bb8d147f5cbb8c70333385066e0254525308f",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.x 4.20: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1519"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-configmap-reloader-rhel9@sha256:30f752325a783ed8ca2c5d5cc21b490fd5f56e5fa23818f2368b94aecc6403c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/bind-license@9.16.23-18.el9_4.10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/bind-utils@9.16.23-18.el9_4.10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/bind@9.16.23-18.el9_4.10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/bind-license@9.16.23-18.el9_4.10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/bind-utils@9.16.23-18.el9_4.10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/bind@9.16.23-18.el9_4.10"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.x 4.17: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1519"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-configmap-reloader-rhel9@sha256:540b039b0b0ac8c5a58c416c5445b2a875dd6b072197e349199ec81571227cab",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.x 4.21: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1519"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-configmap-reloader-rhel9@sha256:f1d0aba642fc4e0776dc28d617966cd053262d102ee8ad91fbd930da138d89eb",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/bind-license@9.16.23-18.el9_4.10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/bind-utils@9.16.23-18.el9_4.10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/bind@9.16.23-18.el9_4.10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/bind-license@9.16.23-18.el9_4.10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/bind-utils@9.16.23-18.el9_4.10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/bind@9.16.23-18.el9_4.10"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.x 4.19: known_not_affected."
     },
     {
       "vulnerability": {
@@ -1856,6 +1784,25 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.20 \u2014 registry.redhat.io/openshift4/ose-configmap-reloader-rhel9@sha256:1b02005d2c484acd9dc60e983031b1a3f1e65c6cf9b4bf39526a4804fa486ae0_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25679"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-configmap-reloader-rhel9@sha256:30f752325a783ed8ca2c5d5cc21b490fd5f56e5fa23818f2368b94aecc6403c8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -2173,26 +2120,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-configmap-reloader-rhel9@sha256:30f752325a783ed8ca2c5d5cc21b490fd5f56e5fa23818f2368b94aecc6403c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.12"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.12"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/ose-configmap-reloader-rhel9@sha256:540b039b0b0ac8c5a58c416c5445b2a875dd6b072197e349199ec81571227cab",
           "subcomponents": [
             {
@@ -2220,26 +2147,6 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-configmap-reloader-rhel9@sha256:30f752325a783ed8ca2c5d5cc21b490fd5f56e5fa23818f2368b94aecc6403c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.12"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.12"
             }
           ]
         }

@@ -182,6 +182,11 @@ vextriage generate --operators --catalog 4.20             # one catalog only
   only on real change. SBOMs cache under `data/syft/`, so overlapping patch
   releases are nearly free.
 - `--workers N` to parallelize; `--force` to regenerate cached SBOMs.
+- Scope: statements come from the **linux/amd64** build (images without an
+  amd64 child fall back to whatever the index carries). Product identity is
+  the multi-arch list digest and subcomponent purls are arch-less, so
+  suppression works for consumers on any platform pulling the pinned ref —
+  packages exclusive to non-amd64 children are simply not covered.
 
 All OCP versions on disk, checkpointed per release:
 
@@ -251,6 +256,13 @@ vexhub/
 
 Rebuild the index without scanning: `vextriage hub`.
 
+Housekeeping — drop statements for digests that rotated out of the current
+pullspecs/catalogs (images generated outside discovery are never touched):
+
+```bash
+vextriage hub --prune
+```
+
 ### Consuming
 
 ```bash
@@ -282,4 +294,5 @@ vextriage parquet                                    # CSVs → parquet + manife
 vextriage generate --ocp <ver> | --operators | --images FILE   # OpenVEX hub
 vextriage generate --image <ref> --verify            # publish gate
 vextriage hub                                        # reindex only
+vextriage hub --prune                                # drop rotated-out digests
 ```

@@ -50,6 +50,12 @@ def labels(trivy_doc: dict) -> dict:
     return cfg.get('Labels') or {}
 
 
+def digests(trivy_doc: dict) -> list:
+    """sha256 identities of the scanned build (Metadata.RepoDigests)."""
+    md = trivy_doc.get('Metadata') or {}
+    return list(md.get('RepoDigests') or [])
+
+
 def _source_for(purl: str) -> str:
     for prefix, src in _PURL_TO_SOURCE.items():
         if str(purl).startswith(prefix):

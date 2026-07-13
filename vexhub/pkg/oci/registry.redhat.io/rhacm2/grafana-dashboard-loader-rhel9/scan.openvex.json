@@ -2,41 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/grafana-dashboard-loader-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:47:17Z",
-  "version": 4,
+  "timestamp": "2026-07-13T13:33:56Z",
+  "version": 8,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2025-15281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/grafana-dashboard-loader-rhel9@sha256:a2218971e7c7f19a182134733434f2c4594c1952a26625ec348026c16ad11109",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/grafana-dashboard-loader-rhel9 2.14: known_not_affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2025-61728"
@@ -139,96 +107,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-9086"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/grafana-dashboard-loader-rhel9@sha256:a2218971e7c7f19a182134733434f2c4594c1952a26625ec348026c16ad11109",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-34.el9"
-            },
-            {
-              "@id": "pkg:rpm/redhat/curl@7.76.1-34.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-34.el9"
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl@7.76.1-34.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/grafana-dashboard-loader-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0861"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/grafana-dashboard-loader-rhel9@sha256:a2218971e7c7f19a182134733434f2c4594c1952a26625ec348026c16ad11109",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/grafana-dashboard-loader-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/grafana-dashboard-loader-rhel9@sha256:a2218971e7c7f19a182134733434f2c4594c1952a26625ec348026c16ad11109",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/grafana-dashboard-loader-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-25679"
       },
       "products": [
@@ -246,66 +124,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/grafana-dashboard-loader-rhel9 2.14 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/grafana-dashboard-loader-rhel9@sha256:681c4506c877d6871736fae11ca74a81f521a6bddf9c3ad9663a7d905d2062fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.49.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.49.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/grafana-dashboard-loader-rhel9@sha256:a2218971e7c7f19a182134733434f2c4594c1952a26625ec348026c16ad11109",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/grafana-dashboard-loader-rhel9@sha256:bb40549b61003b1e3650d5afd392a96fd7138a99396b0c277182b44c071b0d96",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -711,7 +529,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/grafana-dashboard-loader-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -737,7 +555,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/grafana-dashboard-loader-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -763,7 +581,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/grafana-dashboard-loader-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -783,7 +601,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/grafana-dashboard-loader-rhel9 2.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1698,66 +1516,6 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/grafana-dashboard-loader-rhel9@sha256:681c4506c877d6871736fae11ca74a81f521a6bddf9c3ad9663a7d905d2062fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.49.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.49.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/grafana-dashboard-loader-rhel9@sha256:a2218971e7c7f19a182134733434f2c4594c1952a26625ec348026c16ad11109",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/grafana-dashboard-loader-rhel9@sha256:bb40549b61003b1e3650d5afd392a96fd7138a99396b0c277182b44c071b0d96",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             }
           ]
         }

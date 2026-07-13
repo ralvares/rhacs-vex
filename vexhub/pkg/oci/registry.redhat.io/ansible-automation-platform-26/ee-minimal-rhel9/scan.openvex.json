@@ -1,0 +1,26 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/ee-minimal-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T13:54:34Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2024-47081"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ee-minimal-rhel9@sha256:112bfdd3d0df6bb023cb951be8cdc5ed634fddd0be7e8ec017e56b6961e67f19",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/requests@2.32.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux 9 names other components only."
+    }
+  ]
+}

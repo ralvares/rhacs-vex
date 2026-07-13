@@ -15,6 +15,7 @@ import argparse
 import os
 import re
 import json
+import threading
 import time
 import tempfile
 import requests
@@ -53,24 +54,45 @@ MAX_WORKERS     = 20
 # Create the folder structure
 os.makedirs(VEX_DIR, exist_ok=True)
 
-# ETag-aware HTTP session for Red Hat VEX downloads.
-_VEX_SESSION = requests_cache.CachedSession(
-    cache_name=os.path.join(VEX_DIR, '.http_cache'),
-    cache_control=True,   # honour ETag / Last-Modified from the Red Hat CDN
-    stale_if_error=True,  # fall back to stale cache on network failure
-    backend='sqlite',
-    wal=True,
-)
+# --- 3. SYNC ENGINE: plain-file mirror with ETag revalidation ---
+#
+# The engine reads plain data/vex/CVE-*.json files; freshness is a file mtime
+# TTL plus a conditional GET (If-None-Match → 304) once the TTL lapses.  The
+# ETags live in one small sidecar — no blob store duplicating every response
+# (the previous requests-cache sqlite grew to GBs and its entries, lacking
+# server Cache-Control, never expired: verdicts froze at first fetch).
 
-# --- 3. SYNC ENGINE: Dual-Format Mirror ---
+_VEX_TTL       = 4 * 3600            # revalidate at most every 4h — VEX updates daily
+_VEX_META_PATH = os.path.join(VEX_DIR, '.etags.json')
+_VEX_META_LOCK = threading.Lock()
+try:
+    with open(_VEX_META_PATH) as _fh:
+        _VEX_META = json.load(_fh)
+except Exception:
+    _VEX_META = {}
+
+
+def _vex_meta_set(cve_id: str, etag: str) -> None:
+    with _VEX_META_LOCK:
+        _VEX_META[cve_id] = etag
+        fd, tmp = tempfile.mkstemp(dir=VEX_DIR, suffix='.tmp')
+        try:
+            with os.fdopen(fd, 'w') as f:
+                json.dump(_VEX_META, f)
+            os.replace(tmp, _VEX_META_PATH)
+        except Exception:
+            try:
+                os.unlink(tmp)
+            except OSError:
+                pass
 
 
 def download_and_convert_with_lib(cve_id: str) -> tuple:
-    """Download a Red Hat VEX JSON file with automatic ETag-based caching.
+    """Mirror one Red Hat VEX JSON file, revalidating by ETag after the TTL.
 
-    requests-cache sends If-None-Match on every request and handles 304
-    responses transparently.  The plain JSON is written to VEX_DIR so the
-    engine's _load_vex() can read it directly.
+    Within _VEX_TTL of the last check: no network at all.  After it: one
+    conditional GET — 304 refreshes the TTL window, 200 rewrites the file.
+    Network failure falls back to whatever is on disk (stale-if-error).
     """
     cve_id = cve_id.upper().strip()
     m = re.search(r'CVE-(\d{4})-', cve_id)
@@ -80,9 +102,25 @@ def download_and_convert_with_lib(cve_id: str) -> tuple:
     year      = m.group(1)
     url       = f"https://security.access.redhat.com/data/csaf/v2/vex/{year}/{cve_id.lower()}.json"
     json_path = os.path.join(VEX_DIR, f"{cve_id}.json")
+
     try:
-        res = _VEX_SESSION.get(url, timeout=10)
-        if res.status_code == 200 and (not res.from_cache or not os.path.exists(json_path)):
+        if time.time() - os.path.getmtime(json_path) < _VEX_TTL:
+            return cve_id, True
+    except OSError:
+        pass
+
+    headers = {}
+    if os.path.exists(json_path):
+        with _VEX_META_LOCK:
+            etag = _VEX_META.get(cve_id, '')
+        if etag:
+            headers['If-None-Match'] = etag
+    try:
+        res = requests.get(url, timeout=10, headers=headers)
+        if res.status_code == 304:
+            os.utime(json_path, None)          # content unchanged — reset TTL
+            return cve_id, True
+        if res.status_code == 200:
             fd, tmp = tempfile.mkstemp(dir=VEX_DIR, suffix='.tmp')
             try:
                 with os.fdopen(fd, 'w') as f:
@@ -94,7 +132,10 @@ def download_and_convert_with_lib(cve_id: str) -> tuple:
                 except OSError:
                     pass
                 raise
-        return cve_id, res.status_code == 200
+            if res.headers.get('ETag'):
+                _vex_meta_set(cve_id, res.headers['ETag'])
+            return cve_id, True
+        return cve_id, os.path.exists(json_path)
     except requests.RequestException:
         return cve_id, os.path.exists(json_path)
 

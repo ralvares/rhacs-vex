@@ -33,12 +33,15 @@ def _skopeo_labels(image_ref: str) -> dict:
 
 
 def context_for_image(image_ref: str, *, os_hint: Optional[str] = None,
-                      labels: Optional[dict] = None) -> WorkloadContext:
+                      labels: Optional[dict] = None,
+                      digests: Optional[list] = None) -> WorkloadContext:
     """Build the triage WorkloadContext for a digest-pinned image ref.
 
     os_hint is the scanner's OS/distro string (grype `distro`, trivy
     `Metadata.OS`) and refines rhel_ver the same way the RHACS path uses the
-    scan's operatingSystem field.
+    scan's operatingSystem field.  digests are extra sha256 identities of the
+    same build (platform manifest digest, repo digests) — VEX PIDs carry
+    per-arch digests, the pull ref usually the multi-arch list digest.
     """
     if labels is None:
         labels = _skopeo_labels(image_ref)
@@ -48,4 +51,6 @@ def context_for_image(image_ref: str, *, os_hint: Optional[str] = None,
         m = re.search(r'(?:rhel|coreos|redhat)[^0-9]{0,3}(\d+)', str(os_hint).lower())
         if m:
             ctx.rhel_ver = m.group(1)
+    if digests:
+        ctx.extra_digests = list(digests)
     return ctx

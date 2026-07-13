@@ -24,6 +24,8 @@ build
 *.whl
 *.tar.gz
 *.zip
+# hub archive is served to trivy repo-mode consumers — must be committed
+!vexhub/archive.zip
 *.env
 .env.*
 venv

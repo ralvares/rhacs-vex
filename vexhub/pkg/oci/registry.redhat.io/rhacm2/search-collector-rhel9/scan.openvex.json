@@ -2,41 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/search-collector-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:35:02Z",
-  "version": 2,
+  "timestamp": "2026-07-13T13:34:37Z",
+  "version": 8,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2025-15281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/search-collector-rhel9@sha256:4b804df99a7f5f2faaac416869a37981da9ee0f871c03339ba2dbea58ec4502d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/search-collector-rhel9 2.14: known_not_affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2025-61728"
@@ -56,6 +24,26 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61729"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:4b804df99a7f5f2faaac416869a37981da9ee0f871c03339ba2dbea58ec4502d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.3"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat Advanced Cluster Management for Kubernetes 2.14)."
     },
     {
       "vulnerability": {
@@ -159,70 +147,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-0861"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/search-collector-rhel9@sha256:4b804df99a7f5f2faaac416869a37981da9ee0f871c03339ba2dbea58ec4502d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/search-collector-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/search-collector-rhel9@sha256:4b804df99a7f5f2faaac416869a37981da9ee0f871c03339ba2dbea58ec4502d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/search-collector-rhel9 2.14: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-25679"
       },
       "products": [
@@ -247,6 +171,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/search-collector-rhel9@sha256:4b804df99a7f5f2faaac416869a37981da9ee0f871c03339ba2dbea58ec4502d",
           "subcomponents": [
             {
@@ -259,7 +203,7 @@
         }
       ],
       "status": "not_affected",
-      "justification": "inline_mitigations_already_exist"
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -279,15 +223,15 @@
         }
       ],
       "status": "not_affected",
-      "justification": "inline_mitigations_already_exist"
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27136"
+        "name": "CVE-2026-25681"
       },
       "products": [
         {
-          "@id": "pkg:oci/search-collector-rhel9@sha256:4b804df99a7f5f2faaac416869a37981da9ee0f871c03339ba2dbea58ec4502d",
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.40.0"
@@ -299,27 +243,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/search-collector-rhel9@sha256:7459dfbcf6bc035402ba0cd9d5478a9217d6748309f4278a4efc689fe10ceaf5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -427,6 +351,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/search-collector-rhel9@sha256:4b804df99a7f5f2faaac416869a37981da9ee0f871c03339ba2dbea58ec4502d",
           "subcomponents": [
             {
@@ -460,6 +404,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/search-collector-rhel9 2.17 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.15 not listed as affected."
     },
     {
       "vulnerability": {
@@ -587,6 +551,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/search-collector-rhel9@sha256:4b804df99a7f5f2faaac416869a37981da9ee0f871c03339ba2dbea58ec4502d",
           "subcomponents": [
             {
@@ -623,6 +607,52 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.15 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.40.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-33814"
       },
       "products": [
@@ -645,7 +675,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/search-collector-rhel9 2.14 not listed as affected."
     },
     {
       "vulnerability": {
@@ -671,7 +701,53 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "rhacm2/search-collector-rhel9 2.17 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.40.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.15 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -700,6 +776,46 @@
       "products": [
         {
           "@id": "pkg:oci/search-collector-rhel9@sha256:7459dfbcf6bc035402ba0cd9d5478a9217d6748309f4278a4efc689fe10ceaf5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -755,6 +871,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
       },
       "products": [
@@ -792,6 +948,46 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/search-collector-rhel9 2.17 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.15 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -835,6 +1031,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.15 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39823"
       },
       "products": [
@@ -872,6 +1108,46 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/search-collector-rhel9 2.17 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.15 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.33.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.33.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -915,6 +1191,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.33.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.33.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39825"
       },
       "products": [
@@ -952,6 +1268,46 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/search-collector-rhel9 2.17 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.15 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -995,6 +1351,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.15 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39836"
       },
       "products": [
@@ -1032,6 +1428,46 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1075,6 +1511,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.15 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42501"
       },
       "products": [
@@ -1115,17 +1591,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/search-collector-rhel9@sha256:4b804df99a7f5f2faaac416869a37981da9ee0f871c03339ba2dbea58ec4502d",
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.40.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.40.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1135,23 +1611,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42504"
       },
       "products": [
         {
-          "@id": "pkg:oci/search-collector-rhel9@sha256:7459dfbcf6bc035402ba0cd9d5478a9217d6748309f4278a4efc689fe10ceaf5",
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No supported Red Hat product affected."
+      "impact_statement": "rhacm2/search-collector-rhel9 2.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1195,6 +1671,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.15 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42505"
       },
       "products": [
@@ -1235,6 +1751,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.15 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42507"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:1b094cbc7530bba2dbed2f70d6e362142c95c57d2f46a7f3386fc2a96d548843",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.16 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42507"
       },
       "products": [
@@ -1272,6 +1828,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/search-collector-rhel9 2.17 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42507"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/search-collector-rhel9@sha256:c60d873412109679e09bf862c4e2766726679f8da30ba1cbe6300e42eb7c1b07",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhacm2/search-collector-rhel9 2.15 not listed as affected."
     }
   ]
 }

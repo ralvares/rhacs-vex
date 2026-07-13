@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/zync-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:17:32Z",
-  "version": 1,
+  "timestamp": "2026-07-13T13:30:58Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -38,32 +38,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-52356"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/libtiff-devel@4.4.0-10.el9"
-            },
-            {
-              "@id": "pkg:rpm/redhat/libtiff@4.4.0-10.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/libtiff-devel@4.4.0-10.el9"
-        },
-        {
-          "@id": "pkg:rpm/redhat/libtiff@4.4.0-10.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9): known_not_affected."
     },
     {
       "vulnerability": {
@@ -326,38 +300,6 @@
         },
         {
           "@id": "pkg:rpm/redhat/expat@2.5.0-1.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "3scale-mas/zync-rhel9 (RHEL 9): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-9086"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/zync-rhel9@sha256:419eb09d1b165363d5b90df01c1fa10f1f91f03649a8758620ffa49276685feb",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-26.el9"
-            },
-            {
-              "@id": "pkg:rpm/redhat/curl@7.76.1-26.el9"
-            },
-            {
-              "@id": "pkg:rpm/redhat/libcurl-devel@7.76.1-26.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-26.el9"
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl@7.76.1-26.el9"
-        },
-        {
-          "@id": "pkg:rpm/redhat/libcurl-devel@7.76.1-26.el9"
         }
       ],
       "status": "not_affected",

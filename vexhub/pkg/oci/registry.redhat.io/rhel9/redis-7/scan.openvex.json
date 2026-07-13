@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/redis-7",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:41:22Z",
-  "version": 2,
+  "timestamp": "2026-07-13T13:32:51Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -45,50 +45,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-15281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/redis-7@sha256:9cc4b887d14a64233ad4abf7c8382295218fee33e7e0a8d45990844a0e31dc71",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-locale-source@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-locale-source@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel9/redis-7 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-29479"
       },
       "products": [
@@ -122,76 +78,6 @@
         },
         {
           "@id": "pkg:rpm/redhat/redis@7.2.11-1.module+el9.7.0+23559+d075163a"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel9/redis-7 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-9086"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/redis-7@sha256:9cc4b887d14a64233ad4abf7c8382295218fee33e7e0a8d45990844a0e31dc71",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-34.el9"
-            },
-            {
-              "@id": "pkg:rpm/redhat/curl@7.76.1-34.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-34.el9"
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl@7.76.1-34.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel9/redis-7 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0861"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/redis-7@sha256:9cc4b887d14a64233ad4abf7c8382295218fee33e7e0a8d45990844a0e31dc71",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-locale-source@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-locale-source@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
         }
       ],
       "status": "not_affected",
@@ -230,50 +116,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-0915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/redis-7@sha256:9cc4b887d14a64233ad4abf7c8382295218fee33e7e0a8d45990844a0e31dc71",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-locale-source@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-locale-source@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.34-231.el9_7.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel9/redis-7 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-23479"
       },
       "products": [
@@ -314,32 +156,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25749"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/redis-7@sha256:9cc4b887d14a64233ad4abf7c8382295218fee33e7e0a8d45990844a0e31dc71",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel9/redis-7 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-28417"
       },
       "products": [
@@ -362,32 +178,6 @@
         },
         {
           "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel9/redis-7 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-28421"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/redis-7@sha256:9cc4b887d14a64233ad4abf7c8382295218fee33e7e0a8d45990844a0e31dc71",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7"
         },
         {
           "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
@@ -432,32 +222,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33412"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/redis-7@sha256:9cc4b887d14a64233ad4abf7c8382295218fee33e7e0a8d45990844a0e31dc71",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel9/redis-7 9: known_not_affected."
     },
     {
       "vulnerability": {

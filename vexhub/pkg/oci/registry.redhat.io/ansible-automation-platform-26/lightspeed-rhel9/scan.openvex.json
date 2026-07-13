@@ -1,0 +1,160 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/lightspeed-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T13:54:34Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-23419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lightspeed-rhel9@sha256:98210fa42e641315b1057fd9a66a9f1411fb4285319a06a0bd382d25c71739dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/nginx-core@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-core@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "ansible-automation-platform-26/lightspeed-rhel9 2.6: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-23949"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lightspeed-rhel9@sha256:98210fa42e641315b1057fd9a66a9f1411fb4285319a06a0bd382d25c71739dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/jaraco-context@5.3.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24049"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lightspeed-rhel9@sha256:98210fa42e641315b1057fd9a66a9f1411fb4285319a06a0bd382d25c71739dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/wheel@0.45.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32274"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lightspeed-rhel9@sha256:98210fa42e641315b1057fd9a66a9f1411fb4285319a06a0bd382d25c71739dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/black@25.1.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat Ansible Automation Platform 2.6 \u2014 registry.redhat.io/ansible-automation-platform-26/lightspeed-rhel9@sha256:23c21f847c7fe2e3651a5d1152e46ac91ddf16bb6c6a367c3b9e437da0503ad7_arm64."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33154"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lightspeed-rhel9@sha256:98210fa42e641315b1057fd9a66a9f1411fb4285319a06a0bd382d25c71739dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/dynaconf@3.2.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat Ansible Automation Platform 2.6)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42304"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lightspeed-rhel9@sha256:98210fa42e641315b1057fd9a66a9f1411fb4285319a06a0bd382d25c71739dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/twisted@24.11.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54277"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lightspeed-rhel9@sha256:98210fa42e641315b1057fd9a66a9f1411fb4285319a06a0bd382d25c71739dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54279"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lightspeed-rhel9@sha256:98210fa42e641315b1057fd9a66a9f1411fb4285319a06a0bd382d25c71739dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    }
+  ]
+}

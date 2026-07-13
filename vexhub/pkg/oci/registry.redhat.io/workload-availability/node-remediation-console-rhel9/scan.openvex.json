@@ -1,0 +1,41 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/node-remediation-console-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T15:02:46Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-28417"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/node-remediation-console-rhel9@sha256:d2a408cf5f76a5af7bdf165f01ec4f03783ca923c509680e232f07a3e484772b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "workload-availability/node-remediation-console-rhel9 0.10: known_not_affected."
+    }
+  ]
+}

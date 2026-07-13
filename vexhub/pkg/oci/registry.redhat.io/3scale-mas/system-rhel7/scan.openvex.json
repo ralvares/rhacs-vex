@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/system-rhel7",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:17:32Z",
-  "version": 1,
+  "timestamp": "2026-07-13T13:32:36Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -441,26 +441,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No affected entry in Red Hat Enterprise Linux 7 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-4039"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/system-rhel7@sha256:b0fd85a4994502a3a2ae9ba6a7610c38af64b6cc897efac12feb4b115a484f77",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/gcc@4.8.5-44.el7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/gcc@4.8.5-44.el7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "3scale-mas/system-rhel7 (RHEL 7): known_not_affected."
     },
     {
       "vulnerability": {

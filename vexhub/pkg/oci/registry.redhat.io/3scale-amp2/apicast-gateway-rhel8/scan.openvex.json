@@ -1,10 +1,50 @@
 {
   "@context": "https://openvex.dev/ns/v0.2.0",
-  "@id": "https://openvex.dev/docs/rhacs-vex/apicast-gateway-rhel8",
-  "author": "rhacs-vex",
-  "timestamp": "2026-07-13T10:35:04Z",
-  "version": 2,
+  "@id": "https://openvex.dev/docs/vextriage/apicast-gateway-rhel8",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T13:58:40Z",
+  "version": 5,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2013-0340"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:12f7a8e69a1369a51bbcd2b34d4ec8c66dd1fc9fb515349a04e7b202953423e3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2013-0340"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:68b310ed3cfd65db893ba015ef1d5442365201c0ced006c1915e90edb99933ea",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
     {
       "vulnerability": {
         "name": "CVE-2013-0340"
@@ -20,6 +60,46 @@
         },
         {
           "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2020-16156"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:12f7a8e69a1369a51bbcd2b34d4ec8c66dd1fc9fb515349a04e7b202953423e3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/perl-CPAN@2.18-397.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/perl-CPAN@2.18-397.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2020-16156"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:68b310ed3cfd65db893ba015ef1d5442365201c0ced006c1915e90edb99933ea",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/perl-CPAN@2.18-397.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/perl-CPAN@2.18-397.el8"
         }
       ],
       "status": "not_affected",
@@ -47,6 +127,66 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2020-16156"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:f0e9f64c353fdbee3bf7ec0eaf070c3b75330ef659a881ec4ebc874ba584d085",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/perl-CPAN@2.18-397.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/perl-CPAN@2.18-397.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-23990"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:12f7a8e69a1369a51bbcd2b34d4ec8c66dd1fc9fb515349a04e7b202953423e3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-23990"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:68b310ed3cfd65db893ba015ef1d5442365201c0ced006c1915e90edb99933ea",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2022-23990"
       },
       "products": [
@@ -60,6 +200,57 @@
         },
         {
           "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-42898"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:12f7a8e69a1369a51bbcd2b34d4ec8c66dd1fc9fb515349a04e7b202953423e3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-22.el8_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/krb5@1.18.2-22.el8_7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-22.el8_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/krb5@1.18.2-22.el8_7"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-3817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:12f7a8e69a1369a51bbcd2b34d4ec8c66dd1fc9fb515349a04e7b202953423e3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@1.1.1k-9.el8_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@1.1.1k-9.el8_7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@1.1.1k-9.el8_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@1.1.1k-9.el8_7"
         }
       ],
       "status": "not_affected",
@@ -93,6 +284,72 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2023-3817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:f0e9f64c353fdbee3bf7ec0eaf070c3b75330ef659a881ec4ebc874ba584d085",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@1.1.1k-6.el8_5"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@1.1.1k-6.el8_5"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@1.1.1k-6.el8_5"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@1.1.1k-6.el8_5"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-52425"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:12f7a8e69a1369a51bbcd2b34d4ec8c66dd1fc9fb515349a04e7b202953423e3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-52425"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:68b310ed3cfd65db893ba015ef1d5442365201c0ced006c1915e90edb99933ea",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2023-52425"
       },
       "products": [
@@ -106,6 +363,32 @@
         },
         {
           "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-5678"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:12f7a8e69a1369a51bbcd2b34d4ec8c66dd1fc9fb515349a04e7b202953423e3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@1.1.1k-9.el8_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@1.1.1k-9.el8_7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@1.1.1k-9.el8_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@1.1.1k-9.el8_7"
         }
       ],
       "status": "not_affected",
@@ -139,19 +422,75 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2023-7008"
+        "name": "CVE-2023-5678"
       },
       "products": [
         {
-          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:88dc7a289c803248efbe151999707325b1bc0aac2d26827ea1707e46e5c71652",
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:f0e9f64c353fdbee3bf7ec0eaf070c3b75330ef659a881ec4ebc874ba584d085",
           "subcomponents": [
             {
-              "@id": "pkg:rpm/redhat/systemd@239-74.el8_8.3"
+              "@id": "pkg:rpm/redhat/openssl-libs@1.1.1k-6.el8_5"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@1.1.1k-6.el8_5"
             }
           ]
         },
         {
-          "@id": "pkg:rpm/redhat/systemd@239-74.el8_8.3"
+          "@id": "pkg:rpm/redhat/openssl-libs@1.1.1k-6.el8_5"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@1.1.1k-6.el8_5"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33599"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:68b310ed3cfd65db893ba015ef1d5442365201c0ced006c1915e90edb99933ea",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-devel@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-headers@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-devel@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-headers@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
         }
       ],
       "status": "not_affected",
@@ -209,6 +548,112 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2024-33599"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:f0e9f64c353fdbee3bf7ec0eaf070c3b75330ef659a881ec4ebc874ba584d085",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-devel@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-headers@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.1.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-devel@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-headers@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.1.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33600"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:68b310ed3cfd65db893ba015ef1d5442365201c0ced006c1915e90edb99933ea",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-devel@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-headers@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-devel@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-headers@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2024-33600"
       },
       "products": [
@@ -252,6 +697,112 @@
         },
         {
           "@id": "pkg:rpm/redhat/glibc@2.28-225.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33600"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:f0e9f64c353fdbee3bf7ec0eaf070c3b75330ef659a881ec4ebc874ba584d085",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-devel@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-headers@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.1.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-devel@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-headers@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.1.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33601"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:68b310ed3cfd65db893ba015ef1d5442365201c0ced006c1915e90edb99933ea",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-devel@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-headers@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-devel@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-headers@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
         }
       ],
       "status": "not_affected",
@@ -309,6 +860,112 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2024-33601"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:f0e9f64c353fdbee3bf7ec0eaf070c3b75330ef659a881ec4ebc874ba584d085",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-devel@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-headers@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.1.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-devel@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-headers@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.1.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33602"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:68b310ed3cfd65db893ba015ef1d5442365201c0ced006c1915e90edb99933ea",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-devel@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-headers@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-devel@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-headers@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2024-33602"
       },
       "products": [
@@ -359,11 +1016,199 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2024-33602"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:f0e9f64c353fdbee3bf7ec0eaf070c3b75330ef659a881ec4ebc874ba584d085",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-devel@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-headers@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.1.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.1.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-devel@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-gconv-extra@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-headers@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.1.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.1.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-37370"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:f0e9f64c353fdbee3bf7ec0eaf070c3b75330ef659a881ec4ebc874ba584d085",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-14.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/krb5@1.18.2-14.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-14.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/krb5@1.18.2-14.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-37371"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:f0e9f64c353fdbee3bf7ec0eaf070c3b75330ef659a881ec4ebc874ba584d085",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-14.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/krb5@1.18.2-14.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-14.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/krb5@1.18.2-14.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-8176"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:12f7a8e69a1369a51bbcd2b34d4ec8c66dd1fc9fb515349a04e7b202953423e3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-8176"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:68b310ed3cfd65db893ba015ef1d5442365201c0ced006c1915e90edb99933ea",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2024-8176"
       },
       "products": [
         {
           "@id": "pkg:oci/apicast-gateway-rhel8@sha256:88dc7a289c803248efbe151999707325b1bc0aac2d26827ea1707e46e5c71652",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-59375"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:12f7a8e69a1369a51bbcd2b34d4ec8c66dd1fc9fb515349a04e7b202953423e3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-59375"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:68b310ed3cfd65db893ba015ef1d5442365201c0ced006c1915e90edb99933ea",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
@@ -500,58 +1345,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "3scale-amp2/apicast-gateway-rhel8 8: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-44431"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:105d290f55d45c7bff85e5cf7589114845f78cfb009e43285d59968939bfd56d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/python-urllib3@1.24.2-9.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/python3-urllib3@1.24.2-9.el8_10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/python-urllib3@1.24.2-9.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/python3-urllib3@1.24.2-9.el8_10"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 8: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-44431"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/apicast-gateway-rhel8@sha256:88dc7a289c803248efbe151999707325b1bc0aac2d26827ea1707e46e5c71652",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/python-urllib3@1.24.2-5.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/python3-urllib3@1.24.2-5.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/python-urllib3@1.24.2-5.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/python3-urllib3@1.24.2-5.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "3scale-amp2/apicast-gateway-rhel8 (RHEL 8): known_not_affected."
     }
   ]
 }

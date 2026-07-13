@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/postgresql-16",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:28:27Z",
-  "version": 1,
+  "timestamp": "2026-07-13T15:03:49Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -45,6 +45,71 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-45582"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-16@sha256:42f385ac3c9b8913426da7c57e70bc6617cd237aaf697c667f6385a8c0b0118b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel9/postgresql-16 (RHEL 9): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-45582"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-16@sha256:4f46bed6bce211be83c110a3452bd3f151a1e8ab150c58f2a02c56e9cc83db98",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel9/postgresql-16 (RHEL 9): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-16@sha256:42f385ac3c9b8913426da7c57e70bc6617cd237aaf697c667f6385a8c0b0118b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-0865"
       },
       "products": [
@@ -73,6 +138,38 @@
         }
       ],
       "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-28417"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-16@sha256:4f46bed6bce211be83c110a3452bd3f151a1e8ab150c58f2a02c56e9cc83db98",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-21.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-21.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-21.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-21.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-21.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-21.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel9/postgresql-16 (RHEL 9): known_not_affected."
     },
     {
       "vulnerability": {
@@ -141,6 +238,102 @@
         }
       ],
       "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-35177"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-16@sha256:160578ef9e4c872f8f06d407aceb65c5d874049bb56a14b62a09b52ecc1ca0a0",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-26.el9_8.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-26.el9_8.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-26.el9_8.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-26.el9_8.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-26.el9_8.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-26.el9_8.4"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel9/postgresql-16 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-35177"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-16@sha256:4f46bed6bce211be83c110a3452bd3f151a1e8ab150c58f2a02c56e9cc83db98",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-21.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-21.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-21.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-21.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-21.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-21.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel9/postgresql-16 (RHEL 9): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-35177"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-16@sha256:c2ac59c92d6629864210164d6899ddc021be8933d4a5ec262c659a38a20b670d",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-26.el9_8.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-26.el9_8.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-26.el9_8.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-26.el9_8.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-26.el9_8.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-26.el9_8.4"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel9/postgresql-16 9: known_not_affected."
     },
     {
       "vulnerability": {

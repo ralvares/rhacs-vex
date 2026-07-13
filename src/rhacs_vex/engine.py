@@ -131,6 +131,24 @@ def _extract_sha256(ref: str):
     return m.group(1) if m else None
 
 
+def _own_shas(ctx) -> set:
+    """Every sha256 hex identifying THIS build (VEX-MODEL §3c/§4c 'our digest').
+
+    Pull-ref digest plus ctx.extra_digests (platform manifest digest, repo
+    digests).  VEX PIDs list per-arch manifest digests, so matching only the
+    multi-arch list digest from the pull ref misses exact-build assessments.
+    """
+    shas = set()
+    m = re.search(r'@sha256:([a-f0-9]+)', ctx.image_ref or '', re.IGNORECASE)
+    if m:
+        shas.add(m.group(1).lower())
+    for d in getattr(ctx, 'extra_digests', None) or []:
+        m = re.search(r'([a-f0-9]{64})', str(d).lower())
+        if m:
+            shas.add(m.group(1))
+    return shas
+
+
 def _pid_module_stream(pid: str):
     """The '::module:stream' token of a PID (VEX-MODEL §3d), or None."""
     if '::' in pid:
@@ -195,6 +213,11 @@ class WorkloadContext:
     ocp_component : Optional[str]   = None
     cpe           : Optional[str]   = None
     image_build   : Optional[str]   = None   # version-release of THIS build (labels/tag)
+    extra_digests : List[str]       = field(default_factory=list)
+    # Additional sha256 identities of THIS build (platform manifest digest,
+    # repo digests) from SBOM/scanner metadata.  VEX PIDs carry per-arch
+    # manifest digests, while a pull ref usually carries the multi-arch list
+    # digest — without these the our-digest override never fires.
 
 
 _NS_VEX_MAP_PATH = os.path.join(BASE_DIR, "ns_vex_prefixes.json")
@@ -932,6 +955,7 @@ def _severity_fallback(data, comp, ctx, pid_name, rhel_base_pids, vex_ns_map,
     if pid_purl and ctx.workload_type in ("ocp", "operator"):
         _label_name = f"{ctx.image_ns}/{ctx.image_name}" if (ctx.image_ns and ctx.image_name) else None
         _candidates, _img_sha = _build_image_purl(ctx.image_ref, _label_name)
+        _own_sha_set = _own_shas(ctx)
 
         def _leaf_severity(_pid):
             if _pid in pid_severity:
@@ -942,7 +966,7 @@ def _severity_fallback(data, comp, ctx, pid_name, rhel_base_pids, vex_ns_map,
             return None
 
         _matched = _purl_matched_leaf_pids(pid_purl, _candidates)
-        _own = [p for p in _matched if _img_sha and _img_sha in p]
+        _own = [p for p in _matched if any(sh in p for sh in _own_sha_set)]
         _generic = [p for p in _matched if '@sha256:' not in p]
         for _pid in _own + _generic:
             _sev = _leaf_severity(_pid)
@@ -1042,8 +1066,8 @@ def _severity_from_decisive(data, dec, ctx, comp, row, pid_severity, pid_name,
     """
     pids = dec.get('pids') or []
     if pids:
-        our_sha = _extract_sha256(ctx.image_ref or '')
-        own     = [p for p in pids if our_sha and our_sha in p]
+        our_shas = _own_shas(ctx)
+        own      = [p for p in pids if any(sh in p for sh in our_shas)]
         generic = [p for p in pids if '@sha256:' not in p]
         for p in own + generic:
             s = _pid_threat_severity(p, pid_severity)
@@ -1398,14 +1422,15 @@ def _image_identity_lookup(ctx, data, maps, dec):
     _label_name = f"{ctx.image_ns}/{ctx.image_name}" if (ctx.image_ns and ctx.image_name) else None
     _candidates, _image_sha = _build_image_purl(ctx.image_ref, _label_name)
     _purl_matched_pids = _purl_matched_leaf_pids(pid_purl, _candidates)
+    _own_sha_set = _own_shas(ctx)
 
     # PIDs carrying our exact digest → their parsed leaf is a purl-equivalent match
-    if _image_sha:
+    if _own_sha_set:
         for vuln in data.get('vulnerabilities', []):
             ps = vuln.get('product_status', {})
             for status in ('known_not_affected', 'known_affected', 'fixed', 'under_investigation'):
                 for pid in ps.get(status, []):
-                    if _extract_sha256(pid) == _image_sha:
+                    if _extract_sha256(pid) in _own_sha_set:
                         _leaf, _ = _parse_pkg_from_product_id(pid)
                         if _leaf:
                             _purl_matched_pids.add(_leaf)
@@ -1439,7 +1464,7 @@ def _image_identity_lookup(ctx, data, maps, dec):
 
     def _spec(pid):
         sha = _extract_sha256(pid)
-        return 2 if (sha and _image_sha and sha == _image_sha) else 1
+        return 2 if (sha and sha in _own_sha_set) else 1
 
     matches = []          # (status, pid, rhel_quality, flag_label, specificity)
     family_assessed = False
@@ -1583,7 +1608,7 @@ def _image_identity_lookup(ctx, data, maps, dec):
     return ('NOT_LISTED', '', '', True) if family_assessed else None
 
 
-def _audit_nonrpm_image_sha(comp, found_v, data, ctx, maps, our_sha, row, dec):
+def _audit_nonrpm_image_sha(comp, found_v, data, ctx, maps, our_shas, row, dec):
     """Image-level VEX PIDs carrying an @sha256 digest (rung 4).  Returns
     (verdict, fix, note) or None."""
     pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = maps
@@ -1608,24 +1633,24 @@ def _audit_nonrpm_image_sha(comp, found_v, data, ctx, maps, our_sha, row, dec):
                     continue
                 lbl = _pid_label(pid, pid_name, rel_parent)
                 if status == 'known_not_affected':
-                    if our_sha and pid_sha == our_sha:
+                    if pid_sha in our_shas:
                         dec.update(kind='img_sha_kna', status='known_not_affected', pids=[pid])
                         return ("✅ FALSE POSITIVE", "N/A", f"Image build not affected ({lbl}).")
                     img_not_affected = True
                 elif status == 'fixed':
-                    if our_sha and pid_sha == our_sha:
+                    if pid_sha in our_shas:
                         dec.update(kind='img_sha_fixed', status='fixed', pids=[pid])
                         return ("✅ FALSE POSITIVE", "N/A", f"Image build is the fixed version ({lbl}).")
                     img_fixed_label = lbl
                     img_fixed_pid = pid
                 elif status == 'known_affected':
-                    if our_sha and pid_sha == our_sha:
+                    if pid_sha in our_shas:
                         dec.update(kind='img_sha_ka', status='known_affected', pids=[pid],
                                    fix_set=bool(img_fixed_ver))
                         fix_note = f"; fix: {img_fixed_ver}" if img_fixed_ver else ""
                         return ("❌ POSITIVE", img_fixed_ver or "N/A", f"Image build affected ({lbl}){fix_note}.")
                 elif status == 'under_investigation':
-                    if our_sha and pid_sha == our_sha:
+                    if pid_sha in our_shas:
                         dec.update(kind='img_sha_ui', status='under_investigation', pids=[pid])
                         return ("❌ POSITIVE", "N/A", f"under_investigation for {ctx.display_name}.")
 
@@ -1781,8 +1806,7 @@ def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
                         continue
                     pid_sha = _extract_sha256(pid)
                     if pid_sha:
-                        our_sha = _extract_sha256(ctx.image_ref or "")
-                        if not our_sha or pid_sha != our_sha:
+                        if pid_sha not in _own_shas(ctx):
                             continue
                     elif is_image_comp and _is_rhel_base_product(pid, ctx.rhel_ver, rhel_base_pids):
                         continue
@@ -1796,11 +1820,11 @@ def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
                             f"Not affected in {ctx.display_name} ({lbl}): "
                             f"{flag.get('label', 'flag').replace('_', ' ')}.")
 
-        our_sha = _extract_sha256(ctx.image_ref or "")
+        our_shas = _own_shas(ctx)
         is_image_component = '/' in comp
 
         if is_image_component:
-            result = _audit_nonrpm_image_sha(comp, found_v, data, ctx, maps, our_sha, row, dec)
+            result = _audit_nonrpm_image_sha(comp, found_v, data, ctx, maps, our_shas, row, dec)
             if result is not None:
                 return result
 
@@ -1813,7 +1837,7 @@ def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
                         continue
                     pid_sha = _extract_sha256(pid)
                     if pid_sha:
-                        if not our_sha or pid_sha != our_sha:
+                        if pid_sha not in our_shas:
                             continue
                     else:
                         pid_pkg, _ = _parse_pkg_from_product_id(pid)
@@ -1874,14 +1898,14 @@ def _evaluate(row, ctx, data, maps):
         return ("✅ FALSE POSITIVE", "N/A", "No supported Red Hat product affected.", dec)
 
     # rung 2 — our-digest override (pre-scope, pre-name; whole build)
-    img_sha = _extract_sha256(ctx.image_ref or '')
-    if img_sha:
+    img_shas = _own_shas(ctx)
+    if img_shas:
         sha_hits = {}
         for vuln in data.get('vulnerabilities', []):
             ps_ = vuln.get('product_status', {})
             for status in ('known_affected', 'under_investigation', 'fixed', 'known_not_affected'):
                 for pid in ps_.get(status, []):
-                    if img_sha in pid:
+                    if any(sh in pid for sh in img_shas):
                         sha_hits.setdefault(status, pid)
         if sha_hits:
             if 'known_affected' in sha_hits or 'under_investigation' in sha_hits:

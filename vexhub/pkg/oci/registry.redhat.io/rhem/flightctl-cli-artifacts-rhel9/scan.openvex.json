@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/flightctl-cli-artifacts-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:44:45Z",
-  "version": 2,
+  "timestamp": "2026-07-13T13:32:37Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -119,32 +119,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-9086"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/flightctl-cli-artifacts-rhel9@sha256:3491ec932d90112e89f3a4cebe5bdd9ed6a7811f116df43bab8bb5f827129361",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-31.el9"
-            },
-            {
-              "@id": "pkg:rpm/redhat/curl@7.76.1-31.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-31.el9"
-        },
-        {
-          "@id": "pkg:rpm/redhat/curl@7.76.1-31.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhem/flightctl-cli-artifacts-rhel9 (RHEL 9): known_not_affected."
     }
   ]
 }

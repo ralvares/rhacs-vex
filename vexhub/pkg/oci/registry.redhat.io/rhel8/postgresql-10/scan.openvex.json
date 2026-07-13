@@ -1,0 +1,124 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/postgresql-10",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T14:46:42Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2020-21469"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:eec360a32519d45c885efbfc6539dc5ff74447e1aceeb5115d1aa30b40c52aeb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/postgresql-contrib@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql-server@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-contrib@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-server@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/postgresql-10 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-48624"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:eec360a32519d45c885efbfc6539dc5ff74447e1aceeb5115d1aa30b40c52aeb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/less@530-2.el8_9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/less@530-2.el8_9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-5868"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:eec360a32519d45c885efbfc6539dc5ff74447e1aceeb5115d1aa30b40c52aeb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/postgresql-contrib@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql-server@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-contrib@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-server@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/postgresql-10 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-5870"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:eec360a32519d45c885efbfc6539dc5ff74447e1aceeb5115d1aa30b40c52aeb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/postgresql-contrib@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql-server@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-contrib@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-server@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/postgresql-10 (RHEL 8): known_not_affected."
+    }
+  ]
+}

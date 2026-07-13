@@ -1,0 +1,80 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/mtr-web-container-rhel8",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T14:51:32Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2022-36033"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mtr-web-container-rhel8@sha256:cb88a5453b506ca70563537ec6db2f44ff8cb4050c9652ec86eb5128aa313003",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/jsoup@1.12.1-3.module+el8.8.0+18043+17ecf8f0"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/jsoup@1.12.1-3.module+el8.8.0+18043+17ecf8f0"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61915"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mtr-web-container-rhel8@sha256:cb88a5453b506ca70563537ec6db2f44ff8cb4050c9652ec86eb5128aa313003",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-60.el8_10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/cups@2.2.6-60.el8_10"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-60.el8_10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/cups@2.2.6-60.el8_10"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/mtr-web (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-34980"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mtr-web-container-rhel8@sha256:cb88a5453b506ca70563537ec6db2f44ff8cb4050c9652ec86eb5128aa313003",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-60.el8_10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/cups@2.2.6-60.el8_10"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-60.el8_10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/cups@2.2.6-60.el8_10"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/mtr-web (RHEL 8): known_not_affected."
+    }
+  ]
+}
