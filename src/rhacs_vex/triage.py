@@ -562,7 +562,7 @@ def _sort_and_filter_df(df: pd.DataFrame, false_only: bool = False) -> pd.DataFr
     cols = ['COMPONENT', 'VEX_PRODUCT', 'VERSION', 'CVE', 'SEVERITY',
             'AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'VEX_STATE',
             'RHACS_SEVERITY', 'SEVERITY_MISMATCH']
-    for extra in ('SOURCE', 'LOCATION', 'FIXED_VERSION', 'OCP_COMPONENT', 'IMAGE', 'IMAGE_ROLE'):
+    for extra in ('SOURCE', 'LOCATION', 'FIXED_VERSION', 'OCP_COMPONENT', 'IMAGE', 'IMAGE_ROLE', 'SRPM'):
         if extra in df.columns:
             cols.append(extra)
     for col in cols:

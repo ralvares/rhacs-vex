@@ -3,13 +3,13 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "rhacs-vex"
-description = "RHACS ↔ Red Hat CSAF-VEX triage engine and tooling — filters false-positive CVEs out of RHACS scans using authoritative Red Hat VEX data."
+name = "vextriage"
+description = "Scan images with RHACS, grype or trivy; triage against authoritative Red Hat CSAF-VEX data; export the verdicts as OpenVEX / a VEX repository (vexhub)."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
 authors = [{ name = "Rodrigo Alvares" }]
-keywords = ["rhacs", "stackrox", "vex", "csaf", "openshift", "vulnerability", "triage", "cve"]
+keywords = ["rhacs", "stackrox", "vex", "csaf", "openvex", "grype", "trivy", "syft", "openshift", "vulnerability", "triage", "cve"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
@@ -32,6 +32,8 @@ dependencies = [
 Homepage = "https://triage-explorer.ralvares.com"
 
 [project.scripts]
+vextriage           = "rhacs_vex.cli:main"
+# Compatibility aliases — the historical rhacs-vex entry points keep working.
 rhacs-vex           = "rhacs_vex.triage:main"
 rhacs-vex-pipeline  = "rhacs_vex.pipeline:main"
 rhacs-vex-operators = "rhacs_vex.operators:main"

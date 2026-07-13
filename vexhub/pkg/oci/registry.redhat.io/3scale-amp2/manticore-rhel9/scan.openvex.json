@@ -1,0 +1,35 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/rhacs-vex/manticore-rhel9",
+  "author": "rhacs-vex",
+  "timestamp": "2026-07-13T10:26:10Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44172"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/manticore-rhel9@sha256:40303009f8e300a3912d73becefc36355786eb6083dac9079f54f03755f4992f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/manticore-rhel9 9: known_not_affected."
+    }
+  ]
+}
