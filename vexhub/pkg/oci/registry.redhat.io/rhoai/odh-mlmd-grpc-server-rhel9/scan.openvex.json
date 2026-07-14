@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-mlmd-grpc-server-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T23:33:19Z",
-  "version": 7,
+  "timestamp": "2026-07-14T06:33:28Z",
+  "version": 8,
   "statements": [
     {
       "vulnerability": {
@@ -140,6 +140,25 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-4878"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-mlmd-grpc-server-rhel9@sha256:902e95fef1625538fde4a35b8426d58cd1096b2a673f7e4fe833c4e2ca583338",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-48864"
       },
       "products": [
@@ -221,6 +240,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-mlmd-grpc-server-rhel9@sha256:8ad51f0a75489e9396bb7794cbbd4352e598a030e56faebd25863e4cb8688ebf",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-mlmd-grpc-server-rhel9@sha256:902e95fef1625538fde4a35b8426d58cd1096b2a673f7e4fe833c4e2ca583338",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"

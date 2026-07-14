@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/developer-portal-controller-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T19:07:48Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:54:49Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -27,11 +27,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:79eee32ab3412ba38e0fe0923f6b0f1eb78fd0d2ed27ac7089ebc2a19755f4dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.39.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-25681"
       },
       "products": [
         {
-          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:5fe421d8686b7d1adf5fe210eec62bc2d07ab831bfbf3e0e0f4688ec81deda77",
+          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:79eee32ab3412ba38e0fe0923f6b0f1eb78fd0d2ed27ac7089ebc2a19755f4dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -51,7 +71,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:5fe421d8686b7d1adf5fe210eec62bc2d07ab831bfbf3e0e0f4688ec81deda77",
+          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:79eee32ab3412ba38e0fe0923f6b0f1eb78fd0d2ed27ac7089ebc2a19755f4dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.3"
@@ -71,7 +91,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:5fe421d8686b7d1adf5fe210eec62bc2d07ab831bfbf3e0e0f4688ec81deda77",
+          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:79eee32ab3412ba38e0fe0923f6b0f1eb78fd0d2ed27ac7089ebc2a19755f4dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
@@ -91,7 +111,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:5fe421d8686b7d1adf5fe210eec62bc2d07ab831bfbf3e0e0f4688ec81deda77",
+          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:79eee32ab3412ba38e0fe0923f6b0f1eb78fd0d2ed27ac7089ebc2a19755f4dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -111,7 +131,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:5fe421d8686b7d1adf5fe210eec62bc2d07ab831bfbf3e0e0f4688ec81deda77",
+          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:79eee32ab3412ba38e0fe0923f6b0f1eb78fd0d2ed27ac7089ebc2a19755f4dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -131,7 +151,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:5fe421d8686b7d1adf5fe210eec62bc2d07ab831bfbf3e0e0f4688ec81deda77",
+          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:79eee32ab3412ba38e0fe0923f6b0f1eb78fd0d2ed27ac7089ebc2a19755f4dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.3"
@@ -167,11 +187,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:79eee32ab3412ba38e0fe0923f6b0f1eb78fd0d2ed27ac7089ebc2a19755f4dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.39.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39883"
       },
       "products": [
         {
-          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:5fe421d8686b7d1adf5fe210eec62bc2d07ab831bfbf3e0e0f4688ec81deda77",
+          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:79eee32ab3412ba38e0fe0923f6b0f1eb78fd0d2ed27ac7089ebc2a19755f4dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.39.0"
@@ -191,7 +231,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:5fe421d8686b7d1adf5fe210eec62bc2d07ab831bfbf3e0e0f4688ec81deda77",
+          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:79eee32ab3412ba38e0fe0923f6b0f1eb78fd0d2ed27ac7089ebc2a19755f4dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.3"
@@ -211,7 +251,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:5fe421d8686b7d1adf5fe210eec62bc2d07ab831bfbf3e0e0f4688ec81deda77",
+          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:79eee32ab3412ba38e0fe0923f6b0f1eb78fd0d2ed27ac7089ebc2a19755f4dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.3"
@@ -231,7 +271,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:5fe421d8686b7d1adf5fe210eec62bc2d07ab831bfbf3e0e0f4688ec81deda77",
+          "@id": "pkg:oci/developer-portal-controller-rhel9@sha256:79eee32ab3412ba38e0fe0923f6b0f1eb78fd0d2ed27ac7089ebc2a19755f4dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.3"

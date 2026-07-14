@@ -2,29 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/cryostat-storage-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:12:03Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:30:04Z",
+  "version": 2,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-storage-rhel9@sha256:062fe5e6e2ebf0c1cc3431e7f65d21f4560934708399457e5fc75ef03167d693",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "cryostat/cryostat-storage-rhel9 9 not listed as affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2026-27145"
@@ -44,46 +24,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33813"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-storage-rhel9@sha256:062fe5e6e2ebf0c1cc3431e7f65d21f4560934708399457e5fc75ef03167d693",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/image@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/image@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Cryostat 4 on RHEL 9 \u2014 cryostat/cryostat-storage-rhel9@sha256:6efb1b537d52c12b59a02929c57b31ae3ee04cfb1f6c091d0e6967212c71f1fb_arm64."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-storage-rhel9@sha256:062fe5e6e2ebf0c1cc3431e7f65d21f4560934708399457e5fc75ef03167d693",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -147,66 +87,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-storage-rhel9@sha256:062fe5e6e2ebf0c1cc3431e7f65d21f4560934708399457e5fc75ef03167d693",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-storage-rhel9@sha256:062fe5e6e2ebf0c1cc3431e7f65d21f4560934708399457e5fc75ef03167d693",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.42.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.42.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for cryostat/cryostat-storage-rhel9 9."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-41602"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-storage-rhel9@sha256:062fe5e6e2ebf0c1cc3431e7f65d21f4560934708399457e5fc75ef03167d693",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/apache/thrift@0.22.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/apache/thrift@v0.22.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for cryostat/cryostat-storage-rhel9 9."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-42500"
       },
       "products": [
@@ -224,66 +104,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-storage-rhel9@sha256:062fe5e6e2ebf0c1cc3431e7f65d21f4560934708399457e5fc75ef03167d693",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "cryostat/cryostat-storage-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-storage-rhel9@sha256:062fe5e6e2ebf0c1cc3431e7f65d21f4560934708399457e5fc75ef03167d693",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-storage-rhel9@sha256:062fe5e6e2ebf0c1cc3431e7f65d21f4560934708399457e5fc75ef03167d693",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {

@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/distributed-tracing-console-plugin-pf4-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:07:52Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:29:41Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -27,17 +27,157 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27145"
+        "name": "CVE-2025-22868"
       },
       "products": [
         {
-          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:55e2d68c6d825cc8678006d64f31fdc2b5d0a59fd3333cae2db698b6a6ba209d",
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/golang.org/x/oauth2@0.25.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/golang.org/x/oauth2@v0.25.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22870"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Cluster Observability Operator 1.5.0 \u2014 registry.redhat.io/cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9@sha256:2458650c46b90645dc9c0f271598baca1cf7aed76a63be523805eb654ddaab54_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22872"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Cluster Observability Operator 1.5.0 \u2014 registry.redhat.io/cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9@sha256:2458650c46b90645dc9c0f271598baca1cf7aed76a63be523805eb654ddaab54_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47911"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Cluster Observability Operator 1.5.0 \u2014 registry.redhat.io/cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9@sha256:2458650c46b90645dc9c0f271598baca1cf7aed76a63be523805eb654ddaab54_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58190"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Cluster Observability Operator 1.5.0 \u2014 registry.redhat.io/cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9@sha256:2458650c46b90645dc9c0f271598baca1cf7aed76a63be523805eb654ddaab54_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25680"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Cluster Observability Operator 1.5.0 \u2014 registry.redhat.io/cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9@sha256:2458650c46b90645dc9c0f271598baca1cf7aed76a63be523805eb654ddaab54_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Cluster Observability Operator 1.5.0 \u2014 registry.redhat.io/cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9@sha256:2458650c46b90645dc9c0f271598baca1cf7aed76a63be523805eb654ddaab54_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
             }
           ]
         }
@@ -47,17 +187,323 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Cluster Observability Operator 1.5.0 \u2014 registry.redhat.io/cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9@sha256:2458650c46b90645dc9c0f271598baca1cf7aed76a63be523805eb654ddaab54_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Cluster Observability Operator 1.5.0 \u2014 registry.redhat.io/cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9@sha256:2458650c46b90645dc9c0f271598baca1cf7aed76a63be523805eb654ddaab54_s390x."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39822"
       },
       "products": [
         {
-          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:55e2d68c6d825cc8678006d64f31fdc2b5d0a59fd3333cae2db698b6a6ba209d",
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.29.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.29.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
             }
           ]
         }
@@ -71,13 +517,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:55e2d68c6d825cc8678006d64f31fdc2b5d0a59fd3333cae2db698b6a6ba209d",
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -91,13 +537,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:55e2d68c6d825cc8678006d64f31fdc2b5d0a59fd3333cae2db698b6a6ba209d",
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -107,17 +553,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Cluster Observability Operator 1.5.0 \u2014 registry.redhat.io/cluster-observability-operator/distributed-tracing-console-plugin-pf4-rhel9@sha256:2458650c46b90645dc9c0f271598baca1cf7aed76a63be523805eb654ddaab54_s390x."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42507"
       },
       "products": [
         {
-          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:55e2d68c6d825cc8678006d64f31fdc2b5d0a59fd3333cae2db698b6a6ba209d",
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -132,6 +598,25 @@
       "products": [
         {
           "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:55e2d68c6d825cc8678006d64f31fdc2b5d0a59fd3333cae2db698b6a6ba209d",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/distributed-tracing-console-plugin-pf4-rhel9@sha256:8cd3ee1804ed1973cea0c5c51fad53639649b854dbfa0f295f41161c295d1001",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"

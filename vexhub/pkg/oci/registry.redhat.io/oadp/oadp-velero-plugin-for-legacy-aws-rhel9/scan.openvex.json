@@ -2,9 +2,34 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/oadp-velero-plugin-for-legacy-aws-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:38:05Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:49:29Z",
+  "version": 3,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
     {
       "vulnerability": {
         "name": "CVE-2025-6965"
@@ -36,19 +61,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -56,19 +81,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -76,19 +101,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -96,7 +121,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -108,7 +133,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -135,7 +160,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -147,7 +172,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -155,14 +180,8 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
@@ -181,7 +200,47 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -221,7 +280,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -233,7 +292,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -241,19 +300,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -261,7 +320,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -273,7 +332,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -281,7 +340,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -293,7 +352,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.43.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -321,7 +400,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -333,7 +412,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -341,7 +420,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -353,7 +432,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -381,7 +480,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -393,7 +492,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -421,19 +540,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -441,7 +560,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -453,7 +572,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -461,7 +580,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -473,7 +592,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -481,19 +600,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -501,7 +620,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:a323a0d1830d7b4806ab41a3aa873556d1a12296c5e7d57e8c7fa9ebf2827b75",
+          "@id": "pkg:oci/oadp-velero-plugin-for-legacy-aws-rhel9@sha256:8c4797b34dab47bae299663c1753ffb7a71ec2ac7a2251acfb1189ff759dddeb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -513,7 +632,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-velero-plugin-for-legacy-aws-rhel9 1.6 not listed as affected."
     }
   ]
 }

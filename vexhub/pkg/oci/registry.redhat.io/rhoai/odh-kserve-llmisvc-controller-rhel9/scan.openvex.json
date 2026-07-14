@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-kserve-llmisvc-controller-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T21:45:08Z",
-  "version": 2,
+  "timestamp": "2026-07-14T10:59:24Z",
+  "version": 5,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -27,31 +27,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-29181"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel@1.40.0"
@@ -67,31 +47,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-29181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@1.40.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-33186"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/google.golang.org/grpc@1.78.0"
@@ -107,31 +67,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.78.0"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.78.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-34986"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-jose/go-jose/v4@4.1.3"
@@ -144,26 +84,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34986"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@4.1.3"
-            },
-            {
-              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -172,6 +92,26 @@
       "products": [
         {
           "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -231,6 +171,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
           "subcomponents": [
             {
@@ -251,7 +211,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -267,23 +227,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39822"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/golang.org/x/sys@0.40.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/golang.org/x/sys@v0.40.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -291,7 +251,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/sys@0.40.0"
@@ -331,47 +291,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
@@ -391,27 +311,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
@@ -431,27 +331,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
@@ -471,27 +351,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
@@ -511,27 +371,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
@@ -551,7 +391,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
@@ -563,7 +403,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
+      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 3.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -572,6 +412,26 @@
       "products": [
         {
           "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39833"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
@@ -611,47 +471,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
@@ -671,7 +491,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
@@ -683,7 +503,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
+      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 3.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -692,6 +512,26 @@
       "products": [
         {
           "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -731,7 +571,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.40.0"
@@ -747,23 +587,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39883"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.40.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.40.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9)."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -771,7 +611,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -811,47 +651,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -871,27 +671,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -911,7 +691,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -923,26 +703,6 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
       "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 3.4 not listed as affected."
     },
     {
@@ -951,27 +711,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
@@ -991,27 +731,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
@@ -1031,27 +751,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:0495227047148ed687f646b660d3b872fce966d01579b3527cc92cdb6ba7bdd7",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
@@ -1071,7 +771,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:7d3cc2a6f839315975db89bcf861d3cb332a6b23b6878fea1ad1dc4f62a52840",
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
@@ -1083,7 +783,45 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 (RHEL 9) not listed as affected."
+      "impact_statement": "rhoai/odh-kserve-llmisvc-controller-rhel9 3.4 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4878"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-kserve-llmisvc-controller-rhel9@sha256:6ffd45f9ca4e4f1d3bca71aa94c183ef80f937983aab95926aa0bc368f613b67",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {

@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/eda-controller-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:54:34Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:27:36Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pip@23.2.1"
@@ -21,6 +21,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-0913"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -48,7 +68,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/oauth2@0.21.0"
@@ -68,7 +88,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -94,7 +114,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -114,7 +134,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -134,7 +154,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -173,7 +193,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -193,7 +213,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -213,7 +233,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -233,7 +253,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -253,7 +273,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -273,7 +293,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -293,7 +313,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -313,7 +333,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -333,7 +353,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -353,7 +373,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -373,7 +393,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -393,7 +413,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -413,7 +433,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -433,7 +453,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -453,7 +473,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -473,7 +493,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -493,7 +513,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -513,7 +533,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -533,7 +553,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -553,7 +573,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -573,7 +593,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -593,7 +613,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -613,7 +633,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -633,7 +653,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -653,7 +673,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pip@23.2.1"
@@ -727,6 +747,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.23.1"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.23.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
           "subcomponents": [
             {
@@ -747,7 +787,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -767,7 +807,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -787,7 +827,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -807,7 +847,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -827,7 +867,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -847,7 +887,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -867,7 +907,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -887,7 +927,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -907,7 +947,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -927,7 +967,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -947,7 +987,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -967,7 +1007,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -987,7 +1027,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1007,7 +1047,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1027,7 +1067,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1047,7 +1087,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1067,7 +1107,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1087,7 +1127,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -1113,7 +1153,47 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1153,7 +1233,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1173,7 +1253,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -1193,7 +1273,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1213,7 +1293,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1226,6 +1306,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "ansible-automation-platform-26/eda-controller-rhel9-operator 2.6 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1253,7 +1353,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1273,7 +1373,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1286,6 +1386,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "ansible-automation-platform-26/eda-controller-rhel9-operator 2.6 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1313,7 +1433,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.23.1"
@@ -1358,7 +1478,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1371,6 +1491,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "ansible-automation-platform-26/eda-controller-rhel9-operator 2.6 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1398,7 +1538,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -1418,7 +1558,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1438,7 +1578,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1458,7 +1598,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -1478,7 +1618,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:5432ad0f29dad86e2813df5a2afb1620de213e1b9c2c6af90767ffc0b8e9f3c6",
+          "@id": "pkg:oci/eda-controller-rhel9-operator@sha256:2c62c3a1059059b11033699647356ba7c92a55b0d3e80a7aea7bee9696053876",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"

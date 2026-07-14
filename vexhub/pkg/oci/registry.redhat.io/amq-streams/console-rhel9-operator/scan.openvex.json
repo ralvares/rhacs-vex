@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/console-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T17:48:22Z",
-  "version": 2,
+  "timestamp": "2026-07-14T06:04:36Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -150,6 +150,149 @@
         },
         {
           "@id": "pkg:rpm/redhat/glibc@2.34-60.el9_2.14"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-0865"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/console-rhel9-operator@sha256:6e95d612a8b49bbbe93a095bab6cd8869acebb5f359e3347119ec04ab1822173",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4519"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/console-rhel9-operator@sha256:6e95d612a8b49bbbe93a095bab6cd8869acebb5f359e3347119ec04ab1822173",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4786"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/console-rhel9-operator@sha256:6e95d612a8b49bbbe93a095bab6cd8869acebb5f359e3347119ec04ab1822173",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4878"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/console-rhel9-operator@sha256:6e95d612a8b49bbbe93a095bab6cd8869acebb5f359e3347119ec04ab1822173",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-6100"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/console-rhel9-operator@sha256:6e95d612a8b49bbbe93a095bab6cd8869acebb5f359e3347119ec04ab1822173",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
         }
       ],
       "status": "fixed"

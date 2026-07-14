@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ingress-node-firewall-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:27:54Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:34:17Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -261,7 +261,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/oauth2@0.25.0"
@@ -401,7 +401,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
@@ -421,7 +421,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
@@ -441,7 +441,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
@@ -714,26 +714,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ingress-node-firewall not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27135"
       },
       "products": [
@@ -759,237 +739,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ingress-node-firewall not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ingress-node-firewall not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ingress-node-firewall not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ingress-node-firewall not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ingress-node-firewall not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ingress-node-firewall not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1003,13 +763,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1023,7 +783,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.37.0"
@@ -1032,10 +792,10 @@
               "@id": "pkg:golang/golang.org/x/net@v0.37.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1065,6 +825,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39819"
       },
       "products": [
@@ -1085,17 +865,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1109,7 +909,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.37.0"
@@ -1129,13 +929,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1149,13 +949,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1185,17 +985,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.32.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.32.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39825"
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1209,13 +1029,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1229,7 +1049,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
@@ -1249,7 +1069,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
@@ -1269,7 +1089,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
@@ -1289,7 +1109,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
@@ -1309,7 +1129,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
@@ -1329,7 +1149,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
@@ -1349,7 +1169,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
@@ -1369,7 +1189,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
@@ -1396,6 +1216,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1472,13 +1312,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1508,17 +1348,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42504"
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1532,13 +1392,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1552,13 +1412,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1572,7 +1432,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
@@ -1648,7 +1508,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
@@ -1668,7 +1528,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
@@ -1688,7 +1548,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:519a7fc371f1416fa5fa54dea3f107d07aaac23be7a480fa5e056d93d21c9b24",
+          "@id": "pkg:oci/ingress-node-firewall-rhel9@sha256:b4b6d754f540f5d4795686c8a0a2e8bd06e405a849d1cb109257e8fe1e49eab2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.36.0"

@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/logging-console-plugin-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:07:52Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:29:41Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -27,6 +27,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-25680"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-25681"
       },
       "products": [
@@ -47,11 +67,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-27136"
       },
       "products": [
         {
-          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:141b0d6f2b4928446419a23500d9864253f6e6de0f78a0f7774ec34a252d148d",
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.47.0"
@@ -71,13 +111,33 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:141b0d6f2b4928446419a23500d9864253f6e6de0f78a0f7774ec34a252d148d",
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/logging-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -107,6 +167,92 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/logging-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39821"
       },
       "products": [
@@ -127,17 +273,57 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39822"
       },
       "products": [
         {
-          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:141b0d6f2b4928446419a23500d9864253f6e6de0f78a0f7774ec34a252d148d",
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/logging-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -167,11 +353,131 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/logging-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/logging-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/logging-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42502"
       },
       "products": [
         {
-          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:141b0d6f2b4928446419a23500d9864253f6e6de0f78a0f7774ec34a252d148d",
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.47.0"
@@ -191,13 +497,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:141b0d6f2b4928446419a23500d9864253f6e6de0f78a0f7774ec34a252d148d",
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -211,13 +517,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:141b0d6f2b4928446419a23500d9864253f6e6de0f78a0f7774ec34a252d148d",
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -247,17 +553,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42507"
       },
       "products": [
         {
-          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:141b0d6f2b4928446419a23500d9864253f6e6de0f78a0f7774ec34a252d148d",
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -272,6 +598,25 @@
       "products": [
         {
           "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:141b0d6f2b4928446419a23500d9864253f6e6de0f78a0f7774ec34a252d148d",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/logging-console-plugin-rhel9@sha256:cd348abc3811663375befefa550b18ae94eb8537ed8d1da79911bc5618dec963",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"

@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/oadp-non-admin-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:36:26Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:49:29Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -32,23 +32,48 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-25680"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -56,19 +81,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -76,19 +101,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -96,7 +121,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -108,7 +133,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -116,7 +141,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -128,7 +153,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -136,14 +161,8 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
@@ -163,6 +182,26 @@
       "products": [
         {
           "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -198,11 +237,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
+        "name": "CVE-2026-39819"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -214,7 +253,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -222,19 +281,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -242,7 +301,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -254,7 +313,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -262,7 +321,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -274,7 +333,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -298,11 +357,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.43.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39825"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -314,7 +393,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -322,7 +401,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -334,7 +413,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -358,11 +437,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -374,7 +453,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -398,23 +497,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -422,7 +541,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -434,7 +553,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -442,7 +561,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -454,7 +573,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -462,19 +581,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -482,7 +601,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:20bd0c18ac6291440334547b699ffd9156dfa7b67d5388dc3c234eb1ef0a9491",
+          "@id": "pkg:oci/oadp-non-admin-rhel9@sha256:51173bb9bfde19ceb776d02e8f438c057a1c836af67125b65a70fbd843eb1428",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -494,7 +613,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-non-admin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-non-admin-rhel9 1.6 not listed as affected."
     }
   ]
 }

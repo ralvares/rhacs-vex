@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/maven-builder-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T17:48:22Z",
-  "version": 6,
+  "timestamp": "2026-07-14T06:03:14Z",
+  "version": 8,
   "statements": [
     {
       "vulnerability": {
@@ -309,6 +309,70 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/maven-builder-rhel9@sha256:45aff75434cfbdc719c7d60e5b4d4e6375052d6ff5baa0f9822c6e2fabceced2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/maven-resolver@1.6.1-14.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-10.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sisu@0.3.4-14.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/maven-resolver@1.6.1-14.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-10.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sisu@0.3.4-14.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "amq-streams/maven-builder-rhel9 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-67030"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/maven-builder-rhel9@sha256:71d895278c9678705e955fdb3c02ebc83865dba60ccdebf67261e8d09e669997",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/maven-resolver@1.6.1-14.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-10.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sisu@0.3.4-14.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/maven-resolver@1.6.1-14.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-10.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sisu@0.3.4-14.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "amq-streams/maven-builder-rhel9 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-67030"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/maven-builder-rhel9@sha256:74d66ef55ccab09f9e5c70fc870b2f7a72d950526d2f23f701f8d8fb665266ea",
           "subcomponents": [
             {
@@ -494,6 +558,149 @@
       ],
       "status": "not_affected",
       "impact_statement": "amq-streams/maven-builder-rhel9 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-0865"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/maven-builder-rhel9@sha256:45aff75434cfbdc719c7d60e5b4d4e6375052d6ff5baa0f9822c6e2fabceced2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4519"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/maven-builder-rhel9@sha256:45aff75434cfbdc719c7d60e5b4d4e6375052d6ff5baa0f9822c6e2fabceced2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4786"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/maven-builder-rhel9@sha256:45aff75434cfbdc719c7d60e5b4d4e6375052d6ff5baa0f9822c6e2fabceced2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4878"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/maven-builder-rhel9@sha256:45aff75434cfbdc719c7d60e5b4d4e6375052d6ff5baa0f9822c6e2fabceced2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-6100"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/maven-builder-rhel9@sha256:45aff75434cfbdc719c7d60e5b4d4e6375052d6ff5baa0f9822c6e2fabceced2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
     }
   ]
 }

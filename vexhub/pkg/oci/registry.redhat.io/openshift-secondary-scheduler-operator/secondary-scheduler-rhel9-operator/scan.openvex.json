@@ -2,22 +2,477 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/secondary-scheduler-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:21:29Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:47:44Z",
+  "version": 3,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2023-38545"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-23.el9_2.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/curl@7.76.1-23.el9_2.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libcurl-minimal@7.76.1-23.el9_2.7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-23.el9_2.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/curl@7.76.1-23.el9_2.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcurl-minimal@7.76.1-23.el9_2.7"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-38546"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-23.el9_2.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/curl@7.76.1-23.el9_2.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libcurl-minimal@7.76.1-23.el9_2.7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-23.el9_2.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/curl@7.76.1-23.el9_2.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcurl-minimal@7.76.1-23.el9_2.7"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-44487"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libnghttp2@1.43.0-5.el9_2.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nghttp2@1.43.0-5.el9_2.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libnghttp2@1.43.0-5.el9_2.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nghttp2@1.43.0-5.el9_2.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-4806"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.34-60.el9_2.14"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-60.el9_2.14"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.34-60.el9_2.14"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.34-60.el9_2.14"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-60.el9_2.14"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.34-60.el9_2.14"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-4813"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.34-60.el9_2.14"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-60.el9_2.14"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.34-60.el9_2.14"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.34-60.el9_2.14"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-60.el9_2.14"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.34-60.el9_2.14"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-34155"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. OSSO 1.2 for RHEL 9 \u2014 openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator@sha256:9f36ed2175b1d8be33dec3ab50169242b56c2eafa5e23619669be4a233889c73_amd64."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-34156"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-34158"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. OSSO 1.2 for RHEL 9 \u2014 openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator@sha256:9f36ed2175b1d8be33dec3ab50169242b56c2eafa5e23619669be4a233889c73_amd64."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-45336"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-45337"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.21.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.21.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-45338"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-45341"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-0913"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22866"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22868"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/oauth2@0.11.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/oauth2@v0.11.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22869"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.21.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.21.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22870"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22871"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22872"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22873"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
     {
       "vulnerability": {
         "name": "CVE-2025-4674"
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
@@ -31,13 +486,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@0.23.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
             }
           ]
         }
@@ -51,13 +506,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.21.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.21.0"
             }
           ]
         }
@@ -71,13 +526,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.21.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.21.0"
             }
           ]
         }
@@ -91,13 +546,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.21.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.21.0"
             }
           ]
         }
@@ -111,13 +566,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
@@ -131,19 +586,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -151,19 +606,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -171,19 +626,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -191,19 +646,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -211,13 +666,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@0.23.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
             }
           ]
         }
@@ -231,19 +686,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -251,19 +706,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -271,19 +726,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -291,19 +746,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61729"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -331,19 +806,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -351,13 +826,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
@@ -371,13 +846,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
@@ -391,19 +866,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.28.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -431,19 +926,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -451,13 +946,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@0.23.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
             }
           ]
         }
@@ -471,13 +966,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@0.23.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
             }
           ]
         }
@@ -491,13 +986,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@0.23.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
             }
           ]
         }
@@ -511,13 +1006,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
@@ -531,13 +1026,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
@@ -551,13 +1046,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
@@ -571,13 +1066,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
@@ -591,13 +1086,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
@@ -611,19 +1106,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -631,19 +1126,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -651,19 +1146,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -671,19 +1166,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -691,19 +1186,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -711,19 +1206,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -731,19 +1226,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -751,19 +1246,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -771,25 +1266,45 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@0.23.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -804,6 +1319,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
@@ -837,19 +1372,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -857,19 +1392,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@0.23.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -877,19 +1412,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -897,19 +1432,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.21.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.21.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -937,19 +1492,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -957,19 +1512,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -977,13 +1532,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.21.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.21.0"
             }
           ]
         }
@@ -997,13 +1552,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.21.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.21.0"
             }
           ]
         }
@@ -1017,13 +1572,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.21.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.21.0"
             }
           ]
         }
@@ -1037,13 +1592,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.21.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.21.0"
             }
           ]
         }
@@ -1057,19 +1612,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.21.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.21.0"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1097,19 +1672,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.33.0"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.28.0"
             },
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.33.0"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.28.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5."
+      "impact_statement": "Not listed as affected; no VEX statement for openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9)."
     },
     {
       "vulnerability": {
@@ -1117,19 +1692,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.5"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1157,13 +1752,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@0.23.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
             }
           ]
         }
@@ -1177,19 +1772,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -1197,19 +1792,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -1217,13 +1812,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@0.23.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
             }
           ]
         }
@@ -1237,19 +1832,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.22.5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.22.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator 1.5 not listed as affected."
+      "impact_statement": "openshift-secondary-scheduler-operator/secondary-scheduler-rhel9-operator (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {
@@ -1257,13 +1852,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.21.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.21.0"
             }
           ]
         }
@@ -1277,13 +1872,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.21.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.21.0"
             }
           ]
         }
@@ -1297,13 +1892,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.21.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.21.0"
             }
           ]
         }
@@ -1317,13 +1912,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:65253da24ed65e7da75d3b523c459617ce5fc71259673569b05970d2c6e9e65e",
+          "@id": "pkg:oci/secondary-scheduler-rhel9-operator@sha256:210cc51760c8d3a9e1e5ba2b41f575b667e0d541b995362426e5a28f3f666600",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.21.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.21.0"
             }
           ]
         }

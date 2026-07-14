@@ -14,7 +14,6 @@ import pyarrow.parquet as pq
 PARQUET = "data/ocp.parquet"
 POSITIVE = "❌ POSITIVE"
 FALSE_POSITIVE = "✅ FALSE POSITIVE"
-NOT_ASSESSED = "⚠️ NOT ASSESSED"
 SEVERITY_ORDER = ["Critical", "Important", "Moderate", "Low", "Unknown"]
 
 
@@ -103,7 +102,8 @@ def audit_breakdown(subset):
     print(f"\n  Audit Result Breakdown (all findings):")
     print(f"  {'Status':<20} {'Count':>8} {'%':>7}")
     print(f"  {'-' * 37}")
-    for status in [POSITIVE, FALSE_POSITIVE, NOT_ASSESSED]:
+    # legacy parquet rows may carry statuses beyond the current two
+    for status in [POSITIVE, FALSE_POSITIVE] + sorted(set(audits) - {POSITIVE, FALSE_POSITIVE}):
         c = audits.get(status, 0)
         pct = (c / total * 100) if total else 0
         print(f"  {status:<20} {c:>8} {pct:>6.1f}%")

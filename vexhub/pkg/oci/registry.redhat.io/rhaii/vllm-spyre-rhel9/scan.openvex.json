@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/vllm-spyre-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T19:16:46Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:55:19Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,41 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.7.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-2999"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/vllm-spyre-rhel9@sha256:67443bfcb75942db728bc5317321efb658dc262017e00c4f7b770715648a991b",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.7.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3000"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
           "subcomponents": [
             {
               "@id": "pkg:pypi/torch@2.7.1"
@@ -45,7 +79,41 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.7.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3001"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/vllm-spyre-rhel9@sha256:67443bfcb75942db728bc5317321efb658dc262017e00c4f7b770715648a991b",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.7.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3730"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
           "subcomponents": [
             {
               "@id": "pkg:pypi/torch@2.7.1"
@@ -72,6 +140,44 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/systemd-libs@252-51.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-pam@252-51.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-51.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-pam@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhaii/vllm-spyre-rhel9 3.4: known_not_affected."
     },
     {
       "vulnerability": {
@@ -117,6 +223,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libssh-config@0.10.4-15.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh-config@0.10.4-15.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-5318"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/vllm-spyre-rhel9@sha256:67443bfcb75942db728bc5317321efb658dc262017e00c4f7b770715648a991b",
           "subcomponents": [
             {
@@ -142,7 +273,69 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-53905"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/vllm-spyre-rhel9@sha256:67443bfcb75942db728bc5317321efb658dc262017e00c4f7b770715648a991b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-53906"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.2"
@@ -204,6 +397,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/vllm-spyre-rhel9@sha256:67443bfcb75942db728bc5317321efb658dc262017e00c4f7b770715648a991b",
           "subcomponents": [
             {
@@ -219,6 +437,25 @@
         },
         {
           "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-8176"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.3"
         }
       ],
       "status": "fixed"
@@ -248,6 +485,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9900"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/vllm-spyre-rhel9@sha256:67443bfcb75942db728bc5317321efb658dc262017e00c4f7b770715648a991b",
           "subcomponents": [
             {
@@ -267,7 +523,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:67443bfcb75942db728bc5317321efb658dc262017e00c4f7b770715648a991b",
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
           "subcomponents": [
             {
               "@id": "pkg:pypi/transformers@4.57.3"
@@ -277,6 +533,31 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhaii/vllm-spyre-rhel9 3.4 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-28390"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -305,20 +586,20 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-40192"
+        "name": "CVE-2026-4372"
       },
       "products": [
         {
-          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:67443bfcb75942db728bc5317321efb658dc262017e00c4f7b770715648a991b",
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/pillow@12.1.1"
+              "@id": "pkg:pypi/transformers@4.57.3"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat AI Inference Server 3.3 \u2014 registry.redhat.io/rhaiis/vllm-spyre-rhel9@sha256:b74a5cc403d0a07b0ef29808cef709121169582b69f2b9ff54a02d35b0cc0908_amd64."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -336,6 +617,32 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44172"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhaii/vllm-spyre-rhel9 3.4: known_not_affected."
     },
     {
       "vulnerability": {
@@ -419,6 +726,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45447"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/vllm-spyre-rhel9@sha256:67443bfcb75942db728bc5317321efb658dc262017e00c4f7b770715648a991b",
           "subcomponents": [
             {
@@ -444,6 +776,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pyjwt@2.12.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48523"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/vllm-spyre-rhel9@sha256:67443bfcb75942db728bc5317321efb658dc262017e00c4f7b770715648a991b",
           "subcomponents": [
             {
@@ -454,6 +803,25 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -480,6 +848,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/vllm@0.18.0+rhaiv.7"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-53923"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/vllm-spyre-rhel9@sha256:67443bfcb75942db728bc5317321efb658dc262017e00c4f7b770715648a991b",
           "subcomponents": [
             {
@@ -497,10 +882,44 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54279"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/vllm-spyre-rhel9@sha256:67443bfcb75942db728bc5317321efb658dc262017e00c4f7b770715648a991b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54282"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vllm-spyre-rhel9@sha256:61ee874175b314a4d5425e68b4320ef53af2318c58ef7e74e77d8bbf5183fc33",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/starlette@0.52.1"
             }
           ]
         }

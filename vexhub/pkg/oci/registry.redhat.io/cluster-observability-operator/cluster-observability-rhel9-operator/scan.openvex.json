@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/cluster-observability-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:07:52Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:29:44Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/sigstore/fulcio@1.6.6"
@@ -31,7 +31,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/sigstore/fulcio@1.6.6"
@@ -51,7 +51,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/sigstore/sigstore@1.9.5"
@@ -64,6 +64,32 @@
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/cluster-observability-rhel9-operator 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25680"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -91,6 +117,32 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
           "subcomponents": [
             {
@@ -111,7 +163,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
@@ -131,13 +183,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.52.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -151,19 +209,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
-            },
-            {
               "@id": "pkg:golang/stdlib@v1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.3"
             }
           ]
         }
@@ -177,7 +229,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel@1.36.0"
@@ -197,7 +249,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/Azure/go-ntlmssp@0.0.0-20221128193559-754e69321358"
@@ -217,7 +269,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
@@ -237,7 +289,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/moby/buildkit@0.12.5"
@@ -257,7 +309,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/moby/buildkit@0.12.5"
@@ -277,7 +329,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
@@ -297,7 +349,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -310,6 +362,32 @@
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/cluster-observability-rhel9-operator 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -343,7 +421,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/docker/docker@28.5.2+incompatible"
@@ -363,7 +441,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/docker/docker@28.5.2+incompatible"
@@ -383,7 +461,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
@@ -403,7 +481,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-jose/go-jose/v4@4.1.3"
@@ -423,7 +501,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
@@ -443,7 +521,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/moby/spdystream@0.5.0"
@@ -463,7 +541,47 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -503,7 +621,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -516,6 +634,32 @@
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/cluster-observability-rhel9-operator 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -543,19 +687,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
-            },
-            {
               "@id": "pkg:golang/stdlib@v1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.3"
             }
           ]
         }
@@ -569,7 +707,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -582,6 +720,32 @@
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/cluster-observability-rhel9-operator 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.43.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -609,7 +773,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -629,7 +793,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -649,13 +813,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -669,13 +839,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -689,13 +865,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -709,13 +891,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -729,13 +917,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -749,13 +943,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -769,13 +969,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -789,13 +995,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -809,19 +1021,45 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/cluster-observability-rhel9-operator 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -849,7 +1087,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
@@ -869,7 +1107,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/docker/docker@28.5.2+incompatible"
@@ -889,7 +1127,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/docker/docker@28.5.2+incompatible"
@@ -909,7 +1147,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
@@ -929,7 +1167,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -942,6 +1180,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/cluster-observability-rhel9-operator 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -969,13 +1227,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.52.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -989,19 +1253,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
-            },
-            {
               "@id": "pkg:golang/stdlib@v1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.3"
             }
           ]
         }
@@ -1015,25 +1273,45 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
-            },
-            {
               "@id": "pkg:golang/stdlib@v1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.3"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/cluster-observability-rhel9-operator 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -1061,19 +1339,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
-            },
-            {
               "@id": "pkg:golang/stdlib@v1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.3"
             }
           ]
         }
@@ -1087,13 +1359,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -1107,7 +1385,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-billy/v5@5.6.1"
@@ -1120,6 +1398,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/cluster-observability-rhel9-operator 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44973"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@5.6.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@v5.6.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1147,7 +1445,47 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.13.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45022"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.13.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45570"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
@@ -1187,7 +1525,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
@@ -1207,13 +1545,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -1227,13 +1571,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -1247,19 +1597,44 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:c49b0a720409f40af385dace0a9a50715019a9450f35cb8849c88be012c879d1",
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/cluster-observability-rhel9-operator 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-observability-rhel9-operator@sha256:3b9e3f364d028ed04abea079b0ec3c1d577dfbd726d974bfe16fb10e914bcd8a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {

@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/aaq-controller-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:32:17Z",
-  "version": 2,
+  "timestamp": "2026-07-14T10:39:09Z",
+  "version": 6,
   "statements": [
     {
       "vulnerability": {
@@ -157,43 +157,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
+        "name": "CVE-2026-25680"
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -201,7 +181,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -213,27 +193,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -241,19 +201,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -261,7 +221,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -273,7 +233,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -281,19 +241,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -301,7 +261,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -313,207 +273,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -521,19 +281,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -541,19 +301,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -561,7 +321,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
@@ -573,267 +333,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for container-native-virtualization/aaq-controller-rhel9 9.6."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-29181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for container-native-virtualization/aaq-controller-rhel9 9.6."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "Not listed as affected; no VEX statement for container-native-virtualization/aaq-controller-rhel9 9."
     },
     {
       "vulnerability": {
@@ -841,19 +341,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -861,19 +361,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -881,19 +381,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -907,7 +407,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -916,10 +416,10 @@
               "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -969,6 +469,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39819"
       },
       "products": [
@@ -1009,23 +549,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
+        "name": "CVE-2026-39819"
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1033,19 +593,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1053,7 +633,27 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1065,27 +665,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1093,19 +673,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1113,19 +693,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1133,19 +713,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1153,19 +733,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1209,23 +789,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39825"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/golang.org/x/sys@0.38.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/golang.org/x/sys@v0.38.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.39.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1233,19 +833,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1253,19 +873,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1273,19 +893,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1329,23 +949,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1353,19 +993,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1409,23 +1069,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1433,7 +1113,27 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1445,7 +1145,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1453,19 +1153,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1473,19 +1173,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1493,19 +1193,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1513,19 +1213,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1533,7 +1233,27 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1545,27 +1265,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1573,19 +1273,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:4fb6fab6361be7ddfbe09e6c5f56ed0403ae8ee3f0ca427522f57dbd9b902131",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:a63307d0fe590f3bcc09cb2d9f9dda8c02146ad8d350097787ef22d92d3a05bc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1593,19 +1293,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aaq-controller-rhel9@sha256:509d3372f4aa54b362ce77d236017deeca8c526d57b2794f87f76efefd7c7742",
+          "@id": "pkg:oci/aaq-controller-rhel9@sha256:ce83ae33861c3260d2ac22b161caeaabc6a81a42e51f2a3f4d6c5268e1dff1dc",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/aaq-controller-rhel9 9 not listed as affected."
     }
   ]
 }

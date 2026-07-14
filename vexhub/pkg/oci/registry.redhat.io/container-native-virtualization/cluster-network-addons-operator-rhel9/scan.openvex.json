@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/cluster-network-addons-operator-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:32:17Z",
-  "version": 2,
+  "timestamp": "2026-07-14T10:39:14Z",
+  "version": 6,
   "statements": [
     {
       "vulnerability": {
@@ -157,43 +157,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
+        "name": "CVE-2026-25680"
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -201,7 +181,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -213,27 +193,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -241,7 +201,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -253,7 +213,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -261,7 +221,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -273,7 +233,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -281,7 +241,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -293,7 +253,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -301,7 +261,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -313,207 +273,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -521,19 +281,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -541,259 +301,59 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-32280"
+        "name": "CVE-2026-29181"
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@1.40.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.40.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "Not listed as affected; no VEX statement for container-native-virtualization/cluster-network-addons-operator-rhel9 9."
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-32280"
+        "name": "CVE-2026-29181"
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@1.40.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.40.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "Not listed as affected; no VEX statement for container-native-virtualization/cluster-network-addons-operator-rhel9 9."
     },
     {
       "vulnerability": {
@@ -801,19 +361,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -821,19 +381,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -841,7 +401,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -850,10 +410,10 @@
               "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -867,7 +427,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -876,16 +436,36 @@
               "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -920,6 +500,46 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -969,23 +589,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
+        "name": "CVE-2026-39819"
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -993,19 +613,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1013,7 +653,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1025,7 +665,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1033,7 +673,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1045,7 +685,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1053,19 +693,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1073,19 +713,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1093,19 +733,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1113,19 +753,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1169,23 +829,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39825"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/golang.org/x/sys@0.40.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/golang.org/x/sys@v0.40.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1193,19 +853,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1213,19 +893,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1233,19 +913,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1253,7 +933,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1265,7 +945,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1273,7 +953,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1285,7 +965,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1293,7 +973,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1305,7 +985,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1313,7 +993,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1325,7 +1005,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1333,7 +1013,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1345,7 +1025,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1353,7 +1033,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1365,7 +1045,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1373,7 +1053,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1385,7 +1065,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1393,7 +1073,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1405,7 +1085,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1413,7 +1093,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1433,7 +1113,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1453,7 +1133,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1473,7 +1153,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1486,6 +1166,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1529,23 +1229,63 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39883"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.40.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX statement for container-native-virtualization/cluster-network-addons-operator-rhel9 9."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39883"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.40.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX statement for container-native-virtualization/cluster-network-addons-operator-rhel9 9."
     },
     {
       "vulnerability": {
@@ -1553,19 +1293,59 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1609,23 +1389,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1633,7 +1413,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1645,7 +1425,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1653,19 +1453,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1673,19 +1473,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1693,19 +1493,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1713,19 +1513,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1733,7 +1533,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1745,7 +1545,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1753,7 +1553,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1765,7 +1565,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1773,19 +1573,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1793,19 +1593,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1813,7 +1613,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1833,7 +1633,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1853,7 +1653,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1873,7 +1673,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1893,7 +1693,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1905,7 +1705,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1913,7 +1713,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1925,7 +1725,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/cluster-network-addons-operator-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1933,7 +1733,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:2d01956e7b048ded52824fe10801f68d432349556919c93ed83a4d6a51bd3623",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:0dfb82e1bfe246966df894a20c281d058574ec8496ec8f5b80d22aecb737218c",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -1953,7 +1753,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:6f5b2f2c27b19d90925397d63c032e1244d856b6504d31c7b1c6926787b6bb76",
+          "@id": "pkg:oci/cluster-network-addons-operator-rhel9@sha256:c0080a5f578454729d8c38a53f99eac8a8cc5415942ba210ea0960cbb5253390",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"

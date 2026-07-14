@@ -2,9 +2,35 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/frr-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T17:56:46Z",
-  "version": 2,
+  "timestamp": "2026-07-14T10:39:56Z",
+  "version": 4,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2022-1962"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/podman-catatonit@4.2.0-11.el9_1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/podman@4.2.0-11.el9_1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/podman-catatonit@4.2.0-11.el9_1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/podman@4.2.0-11.el9_1"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.22: known_not_affected."
+    },
     {
       "vulnerability": {
         "name": "CVE-2022-1962"
@@ -31,6 +57,32 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/podman-catatonit@4.2.0-11.el9_1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/podman@4.2.0-11.el9_1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/podman-catatonit@4.2.0-11.el9_1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/podman@4.2.0-11.el9_1"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.22: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-32148"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
           "subcomponents": [
             {
@@ -44,6 +96,185 @@
       ],
       "status": "not_affected",
       "impact_statement": "OpenShift 4.x 4.20: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-41722"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-24531"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-24532"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-29402"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-29403"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-29404"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-29405"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-29406"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in OpenShift 4.x 4.22 (Red Hat OpenShift Container Platform 4): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-39322"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/conmon@2.2.1-1.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/conmon@2.2.1-1.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.22: known_not_affected."
     },
     {
       "vulnerability": {
@@ -67,6 +298,145 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2023-39323"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-39325"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in OpenShift 4.x 4.22 (Red Hat Enterprise Linux 9): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-44487"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in OpenShift 4.x 4.22 (Red Hat Enterprise Linux 9): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-45285"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-45288"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-45289"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-54365"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected in Red Hat OpenShift AI (RHOAI), Red Hat OpenShift Dev Spaces."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2024-12086"
       },
       "products": [
@@ -83,6 +453,106 @@
         }
       ],
       "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-24784"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in OpenShift 4.x 4.22 (Red Hat Enterprise Linux 9): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-24785"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in OpenShift 4.x 4.22 (Red Hat Enterprise Linux 9): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-24787"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-24790"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in OpenShift 4.x 4.22 (Red Hat Enterprise Linux 9): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-8676"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/conmon@2.2.1-1.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/conmon@2.2.1-1.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.22: known_not_affected."
     },
     {
       "vulnerability": {
@@ -103,6 +573,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "OpenShift 4.x 4.20: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-0913"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -337,6 +827,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-22866"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-40778"
       },
       "products": [
@@ -469,22 +979,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-47907"
+        "name": "CVE-2025-4674"
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
-              "@id": "pkg:rpm/redhat/podman@5.4.0-20.el9_6.3"
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
             }
           ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/podman@5.4.0-20.el9_6.3"
         }
       ],
-      "status": "fixed"
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.2), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -492,7 +1003,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.39.0"
@@ -569,7 +1080,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.39.0"
@@ -601,6 +1112,26 @@
         }
       ],
       "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61726"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -658,6 +1189,46 @@
         }
       ],
       "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61731"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61732"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -973,14 +1544,27 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.18.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            },
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25679"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/podman@5.4.0-20.el9_6.3"
             }
@@ -998,7 +1582,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.39.0"
@@ -1018,7 +1602,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.39.0"
@@ -1026,6 +1610,32 @@
             {
               "@id": "pkg:golang/golang.org/x/net@v0.39.0"
             },
+            {
+              "@id": "pkg:rpm/redhat/podman-catatonit@4.2.0-11.el9_1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/podman@4.2.0-11.el9_1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/podman-catatonit@4.2.0-11.el9_1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/podman@4.2.0-11.el9_1"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.22: known_not_affected. | frr not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/podman@5.4.0-20.el9_6.3"
             }
@@ -1036,7 +1646,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "OpenShift 4.x 4.20: known_not_affected. | frr not listed as affected."
+      "impact_statement": "OpenShift 4.x 4.20: known_not_affected."
     },
     {
       "vulnerability": {
@@ -1069,7 +1679,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.39.0"
@@ -1077,6 +1687,32 @@
             {
               "@id": "pkg:golang/golang.org/x/net@v0.39.0"
             },
+            {
+              "@id": "pkg:rpm/redhat/podman-catatonit@4.2.0-11.el9_1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/podman@4.2.0-11.el9_1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/podman-catatonit@4.2.0-11.el9_1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/podman@4.2.0-11.el9_1"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.22: known_not_affected. | frr not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/podman@5.4.0-20.el9_6.3"
             }
@@ -1087,7 +1723,33 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "OpenShift 4.x 4.20: known_not_affected. | frr not listed as affected."
+      "impact_statement": "OpenShift 4.x 4.20: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27137"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/podman-catatonit@4.2.0-11.el9_1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/podman@4.2.0-11.el9_1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/podman-catatonit@4.2.0-11.el9_1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/podman@4.2.0-11.el9_1"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.22: known_not_affected."
     },
     {
       "vulnerability": {
@@ -1115,13 +1777,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.18.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.18.9"
             }
           ]
         }
@@ -1135,13 +1797,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.18.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.18.9"
             }
           ]
         }
@@ -1155,13 +1817,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.18.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.18.9"
             }
           ]
         }
@@ -1175,13 +1837,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.18.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.18.9"
             }
           ]
         }
@@ -1195,19 +1857,45 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.18.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.18.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -1260,14 +1948,27 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.18.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            },
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32280"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/podman@5.4.0-20.el9_6.3"
             }
@@ -1304,6 +2005,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/conmon@2.2.1-1.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/conmon@2.2.1-1.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.22: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33810"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
           "subcomponents": [
             {
@@ -1324,7 +2045,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.39.0"
@@ -1333,13 +2054,13 @@
               "@id": "pkg:golang/golang.org/x/net@v0.39.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.18.9"
             },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.18.9"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -1375,6 +2096,32 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
           "subcomponents": [
             {
@@ -1385,6 +2132,32 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -1427,6 +2200,38 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/conmon@2.2.1-1.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/conmon@2.2.1-1.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in OpenShift 4.x 4.22 (Red Hat OpenShift Container Platform 4): vulnerable code not present. | OpenShift 4.x 4.22: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
           "subcomponents": [
             {
@@ -1452,6 +2257,51 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not affected in OpenShift 4.x 4.20 (Red Hat OpenShift Container Platform 4): vulnerable code not present. | OpenShift 4.x 4.20: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -1485,6 +2335,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.32.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.32.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
           "subcomponents": [
             {
@@ -1492,6 +2362,32 @@
             },
             {
               "@id": "pkg:golang/golang.org/x/sys@v0.32.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1594,6 +2490,38 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/conmon@2.2.1-1.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/conmon@2.2.1-1.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in OpenShift 4.x 4.22 (Red Hat OpenShift Container Platform 4): vulnerable code not present. | OpenShift 4.x 4.22: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
           "subcomponents": [
             {
@@ -1619,6 +2547,32 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not affected in OpenShift 4.x 4.20 (Red Hat OpenShift Container Platform 4): vulnerable code not present. | OpenShift 4.x 4.20: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.18.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1652,7 +2606,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.39.0"
@@ -1672,7 +2626,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.39.0"
@@ -1680,6 +2634,32 @@
             {
               "@id": "pkg:golang/golang.org/x/net@v0.39.0"
             },
+            {
+              "@id": "pkg:rpm/redhat/podman-catatonit@4.2.0-11.el9_1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/podman@4.2.0-11.el9_1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/podman-catatonit@4.2.0-11.el9_1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/podman@4.2.0-11.el9_1"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.22: known_not_affected. | frr not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
+          "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/podman@5.4.0-20.el9_6.3"
             }
@@ -1690,7 +2670,33 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "OpenShift 4.x 4.20: known_not_affected. | frr not listed as affected."
+      "impact_statement": "OpenShift 4.x 4.20: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44172"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/frr-rhel9@sha256:0051830250314af41190f70030c1150b3b09f0244016e92b067f4f0e51cc4eb8",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.22: known_not_affected."
     },
     {
       "vulnerability": {

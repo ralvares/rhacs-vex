@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/rhceph-8-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:00:41Z",
-  "version": 2,
+  "timestamp": "2026-07-14T10:43:09Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -476,57 +476,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhceph/rhceph-8-rhel9 8.1: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-37920"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/rhceph-8-rhel9@sha256:cbf125159b223ee445cb29709fb8b88491cbce1c6a075a75f8e8ed32629c4ba8",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/certifi@2023.5.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Openshift Container Storage 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-39689"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/rhceph-8-rhel9@sha256:cbf125159b223ee445cb29709fb8b88491cbce1c6a075a75f8e8ed32629c4ba8",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/certifi@2023.5.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Openshift Container Storage 4 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-41205"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/rhceph-8-rhel9@sha256:cbf125159b223ee445cb29709fb8b88491cbce1c6a075a75f8e8ed32629c4ba8",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/mako@1.1.4.dev0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhceph/rhceph-8-rhel9 8.1."
     },
     {
       "vulnerability": {

@@ -1,0 +1,515 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/rhceph-9-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T06:16:45Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2022-21680"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/rhceph-9-rhel9@sha256:f4b62376735ee7698c087717ee69450050eab3cec9700995f75b1be57b1cde58",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/ceph-base@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-common@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-exporter@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-grafana-dashboards@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-immutable-object-cache@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mds@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mgr-cephadm@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mgr-dashboard@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mgr-diskprediction-local@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mgr-k8sevents@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mgr-modules-core@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mgr-rook@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mgr@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mon@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-node-proxy@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-osd@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-prometheus-alerts@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-radosgw@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-selinux@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-volume@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/cephadm@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/cephfs-mirror@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/cephfs-top@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libcephfs2@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libcephsqlite@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/librados2@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libradosstriper1@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/librbd1@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/librgw2@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-ceph-argparse@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-ceph-common@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-cephfs@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-rados@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-rbd@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-rgw@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rbd-mirror@20.1.0-185.el9cp"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-base@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-common@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-exporter@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-grafana-dashboards@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-immutable-object-cache@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mds@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mgr-cephadm@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mgr-dashboard@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mgr-diskprediction-local@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mgr-k8sevents@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mgr-modules-core@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mgr-rook@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mgr@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mon@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-node-proxy@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-osd@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-prometheus-alerts@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-radosgw@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-selinux@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-volume@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/cephadm@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/cephfs-mirror@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/cephfs-top@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcephfs2@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcephsqlite@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/librados2@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libradosstriper1@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/librbd1@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/librgw2@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-ceph-argparse@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-ceph-common@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-cephfs@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-rados@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-rbd@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-rgw@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rbd-mirror@20.1.0-185.el9cp"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhceph/rhceph-9-rhel9 9.0: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-21681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/rhceph-9-rhel9@sha256:f4b62376735ee7698c087717ee69450050eab3cec9700995f75b1be57b1cde58",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/ceph-base@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-common@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-exporter@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-grafana-dashboards@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-immutable-object-cache@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mds@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mgr-cephadm@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mgr-dashboard@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mgr-diskprediction-local@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mgr-k8sevents@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mgr-modules-core@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mgr-rook@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mgr@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-mon@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-node-proxy@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-osd@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-prometheus-alerts@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-radosgw@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-selinux@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph-volume@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/ceph@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/cephadm@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/cephfs-mirror@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/cephfs-top@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libcephfs2@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libcephsqlite@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/librados2@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libradosstriper1@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/librbd1@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/librgw2@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-ceph-argparse@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-ceph-common@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-cephfs@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-rados@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-rbd@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-rgw@20.1.0-185.el9cp"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rbd-mirror@20.1.0-185.el9cp"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-base@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-common@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-exporter@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-grafana-dashboards@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-immutable-object-cache@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mds@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mgr-cephadm@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mgr-dashboard@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mgr-diskprediction-local@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mgr-k8sevents@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mgr-modules-core@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mgr-rook@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mgr@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-mon@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-node-proxy@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-osd@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-prometheus-alerts@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-radosgw@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-selinux@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph-volume@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/ceph@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/cephadm@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/cephfs-mirror@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/cephfs-top@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcephfs2@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcephsqlite@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/librados2@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libradosstriper1@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/librbd1@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/librgw2@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-ceph-argparse@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-ceph-common@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-cephfs@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-rados@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-rbd@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-rgw@20.1.0-185.el9cp"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rbd-mirror@20.1.0-185.el9cp"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhceph/rhceph-9-rhel9 9.0: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-37920"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/rhceph-9-rhel9@sha256:f4b62376735ee7698c087717ee69450050eab3cec9700995f75b1be57b1cde58",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/certifi@2023.5.7"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Openshift Container Storage 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-39689"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/rhceph-9-rhel9@sha256:f4b62376735ee7698c087717ee69450050eab3cec9700995f75b1be57b1cde58",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/certifi@2023.5.7"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Openshift Container Storage 4 (known_not_affected/fixed only)."
+    }
+  ]
+}

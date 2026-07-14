@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ee-minimal-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:54:34Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:27:36Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ee-minimal-rhel9@sha256:112bfdd3d0df6bb023cb951be8cdc5ed634fddd0be7e8ec017e56b6961e67f19",
+          "@id": "pkg:oci/ee-minimal-rhel9@sha256:b056ef0fefbdd491ca573ac38fa2007d41a1d2e8f78bf3c88a2ff4b1d06a3954",
           "subcomponents": [
             {
               "@id": "pkg:pypi/requests@2.32.3"
@@ -21,6 +21,66 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-28390"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ee-minimal-rhel9@sha256:b056ef0fefbdd491ca573ac38fa2007d41a1d2e8f78bf3c88a2ff4b1d06a3954",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.5.5-2.el9_8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.5.5-2.el9_8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.5.5-2.el9_8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.5.5-2.el9_8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat Ansible Automation Platform 2.6)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54277"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ee-minimal-rhel9@sha256:b056ef0fefbdd491ca573ac38fa2007d41a1d2e8f78bf3c88a2ff4b1d06a3954",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54279"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ee-minimal-rhel9@sha256:b056ef0fefbdd491ca573ac38fa2007d41a1d2e8f78bf3c88a2ff4b1d06a3954",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     }
   ]
 }

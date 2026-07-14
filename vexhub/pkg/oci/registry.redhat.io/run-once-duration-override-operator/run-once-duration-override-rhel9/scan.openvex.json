@@ -2,288 +2,46 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/run-once-duration-override-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:25:02Z",
-  "version": 1,
+  "timestamp": "2026-07-14T12:59:12Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
-        "name": "CVE-2025-47911"
+        "name": "CVE-2025-14087"
       },
       "products": [
         {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
+          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:0414d6f30c4cab6216505401cbe6a6778251860040312f4726d1247c3bc4cf53",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-18.el9_7.2"
             }
           ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-18.el9_7.2"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "status": "fixed"
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-47913"
+        "name": "CVE-2025-14512"
       },
       "products": [
         {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
+          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:0414d6f30c4cab6216505401cbe6a6778251860040312f4726d1247c3bc4cf53",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-18.el9_7.2"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-18.el9_7.2"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58183"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58185"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58188"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58189"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61723"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61725"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61726"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -307,83 +65,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-61730"
+        "name": "CVE-2026-24051"
       },
       "products": [
         {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
+          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:0414d6f30c4cab6216505401cbe6a6778251860040312f4726d1247c3bc4cf53",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.6"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.36.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.6"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.36.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68121"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -407,369 +105,48 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
+        "name": "CVE-2026-29111"
       },
       "products": [
         {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
+          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:0414d6f30c4cab6216505401cbe6a6778251860040312f4726d1247c3bc4cf53",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.6"
+              "@id": "pkg:rpm/redhat/systemd-libs@252-55.el9_7.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.6"
+              "@id": "pkg:rpm/redhat/systemd@252-55.el9_7.9"
             }
           ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@252-55.el9_7.9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@252-55.el9_7.9"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25680"
+        "name": "CVE-2026-39817"
       },
       "products": [
         {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
+          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:0414d6f30c4cab6216505401cbe6a6778251860040312f4726d1247c3bc4cf53",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -784,6 +161,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.6"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:0414d6f30c4cab6216505401cbe6a6778251860040312f4726d1247c3bc4cf53",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -813,83 +210,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
+          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:0414d6f30c4cab6216505401cbe6a6778251860040312f4726d1247c3bc4cf53",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.6"
+              "@id": "pkg:golang/golang.org/x/sys@0.38.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.6"
+              "@id": "pkg:golang/golang.org/x/sys@v0.38.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -913,143 +250,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39825"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
+          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:0414d6f30c4cab6216505401cbe6a6778251860040312f4726d1247c3bc4cf53",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.6"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.6"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1073,43 +290,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39883"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
+          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:0414d6f30c4cab6216505401cbe6a6778251860040312f4726d1247c3bc4cf53",
           "subcomponents": [
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.33.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.33.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for run-once-duration-override-operator/run-once-duration-override-rhel9 1.3."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1133,183 +330,22 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-4878"
       },
       "products": [
         {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
+          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:0414d6f30c4cab6216505401cbe6a6778251860040312f4726d1247c3bc4cf53",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "run-once-duration-override-operator/run-once-duration-override-rhel9 1.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/run-once-duration-override-rhel9@sha256:c3b17e2ff30eab6e64e8fec59da37f05ec65d91d8d76086a9510372b20eb78d6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "status": "fixed"
     }
   ]
 }

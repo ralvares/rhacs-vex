@@ -1,10 +1,74 @@
 {
   "@context": "https://openvex.dev/ns/v0.2.0",
-  "@id": "https://openvex.dev/docs/rhacs-vex/backend-rhel8",
-  "author": "rhacs-vex",
-  "timestamp": "2026-07-13T10:26:10Z",
-  "version": 1,
+  "@id": "https://openvex.dev/docs/vextriage/backend-rhel8",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T06:02:08Z",
+  "version": 2,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2023-3817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/backend-rhel8@sha256:3d5f1ef4e67f97cc9cf3accf25033e176fc59714236a5ee0f022c9eb8be7a4b1",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-devel@1.1.1k-9.el8_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@1.1.1k-9.el8_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@1.1.1k-9.el8_7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-devel@1.1.1k-9.el8_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@1.1.1k-9.el8_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@1.1.1k-9.el8_7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/backend-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-5678"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/backend-rhel8@sha256:3d5f1ef4e67f97cc9cf3accf25033e176fc59714236a5ee0f022c9eb8be7a4b1",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-devel@1.1.1k-9.el8_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@1.1.1k-9.el8_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@1.1.1k-9.el8_7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-devel@1.1.1k-9.el8_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@1.1.1k-9.el8_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@1.1.1k-9.el8_7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/backend-rhel8 (RHEL 8): known_not_affected."
+    },
     {
       "vulnerability": {
         "name": "CVE-2024-35176"

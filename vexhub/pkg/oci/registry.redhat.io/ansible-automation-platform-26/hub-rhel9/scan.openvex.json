@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/hub-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T17:49:27Z",
-  "version": 2,
+  "timestamp": "2026-07-14T07:27:36Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:pypi/requests@2.31.0"
@@ -28,7 +28,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:pypi/requests@2.31.0"
@@ -45,7 +45,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pulpcore@3.49.60"
@@ -78,6 +78,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-66506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/fulcio@1.7.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/fulcio@v1.7.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-23949"
       },
       "products": [
@@ -95,11 +115,28 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-23949"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/jaraco-context@5.3.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-24049"
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:pypi/wheel@0.45.1"
@@ -116,7 +153,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/sigstore/sigstore@1.9.5"
@@ -136,7 +173,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -156,7 +193,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -176,7 +213,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -192,11 +229,97 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-27140"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27143"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27144"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-28390"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.5.5-2.el9_8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.5.5-2.el9_8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.5.5-2.el9_8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.5.5-2.el9_8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat Ansible Automation Platform 2.6)."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-29181"
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
@@ -209,6 +332,66 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; no VEX statement for ansible-automation-platform-26/hub-rhel9 2.6."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32280"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32282"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in ansible-automation-platform-26/hub-rhel9 2.6 (Red Hat Enterprise Linux 9): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33810"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -232,11 +415,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in ansible-automation-platform-26/hub-rhel9 2.6 (Red Hat Enterprise Linux 9): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-33814"
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -245,10 +448,10 @@
               "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.26.2"
+              "@id": "pkg:golang/stdlib@1.26.1"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.2"
+              "@id": "pkg:golang/stdlib@v1.26.1"
             }
           ]
         }
@@ -262,7 +465,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/docker/docker@28.5.1+incompatible"
@@ -282,7 +485,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/docker/docker@28.5.1+incompatible"
@@ -315,6 +518,23 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-34515"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39817"
       },
       "products": [
@@ -326,6 +546,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
             }
           ]
         }
@@ -355,11 +595,51 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39821"
       },
       "products": [
         {
           "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected (Red Hat Enterprise Linux 9)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -395,6 +675,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in ansible-automation-platform-26/hub-rhel9 2.6 (Red Hat Enterprise Linux 9): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39824"
       },
       "products": [
@@ -415,11 +715,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.39.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39828"
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -439,7 +759,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -459,7 +779,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -479,7 +799,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -499,7 +819,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -519,7 +839,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -555,11 +875,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-41568"
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/docker/docker@28.5.1+incompatible"
@@ -592,11 +932,45 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42215"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/gitpython@3.1.46"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42284"
       },
       "products": [
         {
           "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/gitpython@3.1.46"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42284"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:pypi/gitpython@3.1.46"
@@ -629,11 +1003,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42502"
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -653,7 +1047,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -673,7 +1067,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -706,11 +1100,62 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-44244"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/gitpython@3.1.46"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44431"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/urllib3@2.6.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44432"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/urllib3@2.6.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-46595"
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -730,7 +1175,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -750,7 +1195,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -763,6 +1208,23 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48526"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pyjwt@2.12.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -783,11 +1245,45 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-54277"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-54279"
       },
       "products": [
         {
           "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54279"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/hub-rhel9@sha256:fd046f8334ac323be4f72aa6c8bdde33bafed5450495850724fa61508ba1788a",
           "subcomponents": [
             {
               "@id": "pkg:pypi/aiohttp@3.13.3"

@@ -2,29 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/kn-eventing-integrations-transform-jsonata-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:26:40Z",
-  "version": 1,
+  "timestamp": "2026-07-14T11:32:06Z",
+  "version": 2,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5889"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kn-eventing-integrations-transform-jsonata-rhel9@sha256:18bfe66ba4fbc75cc213d8bb6bd23bef80ed0968a98ee2ebf36ae7e6675aaf90",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/brace-expansion@1.1.11"
-            },
-            {
-              "@id": "pkg:npm/brace-expansion@2.0.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
     {
       "vulnerability": {
         "name": "CVE-2025-59464"
@@ -71,57 +51,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-69873"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kn-eventing-integrations-transform-jsonata-rhel9@sha256:18bfe66ba4fbc75cc213d8bb6bd23bef80ed0968a98ee2ebf36ae7e6675aaf90",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ajv@8.17.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-serverless-1/kn-eventing-integrations-transform-jsonata-rhel9 1.37 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-2391"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kn-eventing-integrations-transform-jsonata-rhel9@sha256:18bfe66ba4fbc75cc213d8bb6bd23bef80ed0968a98ee2ebf36ae7e6675aaf90",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/qs@6.13.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-serverless-1/kn-eventing-integrations-transform-jsonata-rhel9 1.37 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24001"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kn-eventing-integrations-transform-jsonata-rhel9@sha256:18bfe66ba4fbc75cc213d8bb6bd23bef80ed0968a98ee2ebf36ae7e6675aaf90",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/diff@5.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for openshift-serverless-1/kn-eventing-integrations-transform-jsonata-rhel9 1.37."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-24842"
       },
       "products": [
@@ -153,66 +82,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not affected in openshift-serverless-1/kn-eventing-integrations-transform-jsonata-rhel9 1.37 (Red Hat Enterprise Linux 9): component not present."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26996"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kn-eventing-integrations-transform-jsonata-rhel9@sha256:18bfe66ba4fbc75cc213d8bb6bd23bef80ed0968a98ee2ebf36ae7e6675aaf90",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            },
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-serverless-1/kn-eventing-integrations-transform-jsonata-rhel9 1.37 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27903"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kn-eventing-integrations-transform-jsonata-rhel9@sha256:18bfe66ba4fbc75cc213d8bb6bd23bef80ed0968a98ee2ebf36ae7e6675aaf90",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            },
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-serverless-1/kn-eventing-integrations-transform-jsonata-rhel9 1.37 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27904"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kn-eventing-integrations-transform-jsonata-rhel9@sha256:18bfe66ba4fbc75cc213d8bb6bd23bef80ed0968a98ee2ebf36ae7e6675aaf90",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            },
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-serverless-1/kn-eventing-integrations-transform-jsonata-rhel9 1.37 not listed as affected."
     },
     {
       "vulnerability": {
@@ -250,23 +119,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-4867"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kn-eventing-integrations-transform-jsonata-rhel9@sha256:18bfe66ba4fbc75cc213d8bb6bd23bef80ed0968a98ee2ebf36ae7e6675aaf90",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/path-to-regexp@0.1.12"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-serverless-1/kn-eventing-integrations-transform-jsonata-rhel9 1.37 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-54285"
       },
       "products": [
@@ -281,23 +133,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-6321"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kn-eventing-integrations-transform-jsonata-rhel9@sha256:18bfe66ba4fbc75cc213d8bb6bd23bef80ed0968a98ee2ebf36ae7e6675aaf90",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/fast-uri@3.0.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-serverless-1/kn-eventing-integrations-transform-jsonata-rhel9 1.37 not listed as affected."
     },
     {
       "vulnerability": {

@@ -2,77 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/gateway-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:48:40Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:27:04Z",
+  "version": 2,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2023-5752"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/gateway-rhel9@sha256:d5bf94116e9eb1f83bf48d46248e6157f70b2e54970afe25a6179953b293aeea",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@23.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-47081"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/gateway-rhel9@sha256:d5bf94116e9eb1f83bf48d46248e6157f70b2e54970afe25a6179953b293aeea",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/requests@2.32.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-13473"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/gateway-rhel9@sha256:d5bf94116e9eb1f83bf48d46248e6157f70b2e54970afe25a6179953b293aeea",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/django@5.2.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/gateway-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-14550"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/gateway-rhel9@sha256:d5bf94116e9eb1f83bf48d46248e6157f70b2e54970afe25a6179953b293aeea",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/django@5.2.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/gateway-rhel9 2.7 not listed as affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2025-23419"
@@ -104,108 +36,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "ansible-automation-platform-27/gateway-rhel9 2.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61783"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/gateway-rhel9@sha256:d5bf94116e9eb1f83bf48d46248e6157f70b2e54970afe25a6179953b293aeea",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/social-auth-app-django@5.4.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ansible Automation Platform 2 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/gateway-rhel9@sha256:d5bf94116e9eb1f83bf48d46248e6157f70b2e54970afe25a6179953b293aeea",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@23.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/gateway-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1207"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/gateway-rhel9@sha256:d5bf94116e9eb1f83bf48d46248e6157f70b2e54970afe25a6179953b293aeea",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/django@5.2.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/gateway-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1285"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/gateway-rhel9@sha256:d5bf94116e9eb1f83bf48d46248e6157f70b2e54970afe25a6179953b293aeea",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/django@5.2.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/gateway-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1287"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/gateway-rhel9@sha256:d5bf94116e9eb1f83bf48d46248e6157f70b2e54970afe25a6179953b293aeea",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/django@5.2.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/gateway-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1312"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/gateway-rhel9@sha256:d5bf94116e9eb1f83bf48d46248e6157f70b2e54970afe25a6179953b293aeea",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/django@5.2.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/gateway-rhel9 2.7 not listed as affected."
     },
     {
       "vulnerability": {
@@ -243,23 +73,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33154"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/gateway-rhel9@sha256:d5bf94116e9eb1f83bf48d46248e6157f70b2e54970afe25a6179953b293aeea",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/dynaconf@3.2.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/gateway-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-48526"
       },
       "products": [
@@ -274,23 +87,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Red Hat Ansible Automation Platform 2.7)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-8643"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/gateway-rhel9@sha256:d5bf94116e9eb1f83bf48d46248e6157f70b2e54970afe25a6179953b293aeea",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@23.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/gateway-rhel9 2.7 not listed as affected."
     }
   ]
 }

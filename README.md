@@ -57,7 +57,7 @@ python3 -m venv .venv && source .venv/bin/activate && pip install -e .
 ```
 
 ```
-vextriage rhacs    ...             RHACS-backed triage (same as `rhacs-vex`)
+vextriage rhacs    <image|csv>     RHACS-backed triage (same as `rhacs-vex`)
 vextriage grype    <image|sbom>    syft SBOM + grype scan → engine triage
 vextriage trivy    <image|report>  trivy scan → engine triage
 vextriage generate --ocp V | --operators | --images FILE
@@ -100,10 +100,10 @@ Point at your RHACS Central, then triage a single image:
 export ROX_ENDPOINT=central-stackrox.apps.mycluster.example.com:443
 export ROX_API_TOKEN=<your-api-token>
 
-vextriage rhacs --image registry.redhat.io/openshift4/ose-cli@sha256:4f2e216ad46aa75f84e27aa2e6303327b99a4331c7ed8ef65850102898f3a9b0
+vextriage rhacs registry.redhat.io/openshift4/ose-cli@sha256:4f2e216ad46aa75f84e27aa2e6303327b99a4331c7ed8ef65850102898f3a9b0
 ```
 
-(equivalently `python3 -m rhacs_vex.triage --image …`). Output is a compact, colour-coded table with the scanner severity and Red Hat's product-specific severity side by side, followed by a one-line summary and an SBOM cross-check:
+(equivalently `python3 -m rhacs_vex.triage …`). Output is a compact, colour-coded table with the scanner severity and Red Hat's product-specific severity side by side, followed by a one-line summary and an SBOM cross-check:
 
 ```
 ┌────────────────┬───────────┬───────────┬───────────┬────────────────┬───────────────┬─────────────────┬──────────────────────────────────┐
@@ -124,13 +124,14 @@ If the image is not already indexed in RHACS, the tool triggers an on-demand sca
 ### `vextriage rhacs` (triage) options
 
 ```
-vextriage rhacs [--image REF | --namespace NS | --ocp FILE | --scan CSV]
+vextriage rhacs [TARGET] [--image REF | --namespace NS | --ocp FILE | --scan CSV]
           [--format {table,csv,json}] [--output FILE]
           [--false-only] [--sbom] [--workers N]
 ```
 
 | Flag | Description |
 |------|-------------|
+| `TARGET` | Image ref or RHACS scan CSV — same positional as `grype`/`trivy`. An existing path is treated as `--scan`, anything else as `--image` |
 | `--image REF` | Triage a single image by digest or tag |
 | `--namespace NS` | Triage all images deployed in a Kubernetes namespace |
 | `--ocp FILE` | Triage every component in an OCP release manifest (`oc adm release info --pullspecs`) |

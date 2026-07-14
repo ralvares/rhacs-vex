@@ -2,9 +2,169 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/pipelines-scheduler-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T15:22:20Z",
-  "version": 1,
+  "timestamp": "2026-07-14T06:19:28Z",
+  "version": 2,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25542"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/tektoncd/pipeline@1.6.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/tektoncd/pipeline@v1.6.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-scheduler-rhel9 1.22 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25680"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-scheduler-rhel9 1.22 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-scheduler-rhel9 1.22 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-scheduler-rhel9 1.22 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33022"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/tektoncd/pipeline@1.6.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/tektoncd/pipeline@v1.6.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-scheduler-rhel9 1.22 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33211"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/tektoncd/pipeline@1.6.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/tektoncd/pipeline@v1.6.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-scheduler-rhel9 1.22 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-scheduler-rhel9 1.22 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.3"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
     {
       "vulnerability": {
         "name": "CVE-2026-39822"
@@ -24,6 +184,146 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.42.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-40161"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/tektoncd/pipeline@1.6.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/tektoncd/pipeline@v1.6.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-scheduler-rhel9 1.22 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-40923"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/tektoncd/pipeline@1.6.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/tektoncd/pipeline@v1.6.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-scheduler-rhel9 1.22 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-40924"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/tektoncd/pipeline@1.6.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/tektoncd/pipeline@v1.6.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-scheduler-rhel9 1.22 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-40938"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/tektoncd/pipeline@1.6.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/tektoncd/pipeline@v1.6.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-scheduler-rhel9 1.22 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-scheduler-rhel9 1.22 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:b87d119b3c54fd6bc4fdbaa85a0e0b8de1faff903739365697bf9fb12e0f9bdd",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-scheduler-rhel9 1.22 not listed as affected."
     }
   ]
 }

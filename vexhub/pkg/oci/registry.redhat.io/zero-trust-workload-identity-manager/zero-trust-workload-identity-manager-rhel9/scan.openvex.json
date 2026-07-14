@@ -2,9 +2,29 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/zero-trust-workload-identity-manager-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:21:29Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:47:29Z",
+  "version": 3,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.39.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
     {
       "vulnerability": {
         "name": "CVE-2026-24051"
@@ -31,7 +51,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -43,7 +63,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -76,7 +96,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
@@ -88,7 +108,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.0."
+      "impact_statement": "Not listed as affected; no VEX statement for zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.1."
     },
     {
       "vulnerability": {
@@ -96,7 +116,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -108,7 +128,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -116,7 +136,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.49.0"
@@ -142,7 +162,47 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -182,7 +242,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -194,7 +254,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -202,7 +262,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.49.0"
@@ -214,7 +274,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -222,7 +282,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -234,7 +294,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -242,7 +302,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -254,7 +314,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -282,7 +362,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -294,7 +374,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -302,7 +382,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -314,7 +394,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -342,7 +442,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.39.0"
@@ -354,7 +454,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.0."
+      "impact_statement": "Not listed as affected; no VEX statement for zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.1."
     },
     {
       "vulnerability": {
@@ -362,7 +462,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -374,7 +474,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -402,7 +522,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -414,7 +534,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -422,7 +542,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -434,7 +554,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -442,7 +562,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:d91be0579f6f450e6087821f50fed5daaa11695f0012ac4811f7de233a899125",
+          "@id": "pkg:oci/zero-trust-workload-identity-manager-rhel9@sha256:ca4fe806712a0a5761544b8044d02b189eebe56c3a532a1d8423a53a39ed5c78",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -454,7 +574,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/zero-trust-workload-identity-manager-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {

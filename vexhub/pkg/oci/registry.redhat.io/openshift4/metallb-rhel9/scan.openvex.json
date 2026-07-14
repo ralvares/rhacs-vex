@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/metallb-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:38:24Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:39:56Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -381,13 +381,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
             }
           ]
         }
@@ -401,13 +401,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
             }
           ]
         }
@@ -674,37 +674,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "metallb not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-25681"
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
             }
           ]
         }
@@ -739,237 +719,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "metallb not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "metallb not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "metallb not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "metallb not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "metallb not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "metallb not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -983,13 +743,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1003,19 +763,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1045,6 +805,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39819"
       },
       "products": [
@@ -1065,17 +845,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1089,13 +889,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
             }
           ]
         }
@@ -1109,13 +909,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1129,13 +929,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1165,17 +965,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.35.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.35.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39825"
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1189,13 +1009,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1216,6 +1036,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1292,13 +1132,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1328,17 +1168,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42504"
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1352,13 +1212,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1372,13 +1232,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/metallb-rhel9@sha256:479c50b647eb28a0fc887409208e62b354abf5859b8196e251b5eafe005cac65",
+          "@id": "pkg:oci/metallb-rhel9@sha256:5dc3ee6560571e67ee4f1afa087b4153fca6b9e38eab77552100a7b55bf2393f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }

@@ -1,0 +1,101 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/memcached-rhel7",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T06:01:16Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2023-3817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/memcached-rhel7@sha256:6195aec4725b71f46a3bc2982300acecafc9c4aabb4ed1bbec06de9775d49694",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@1.0.2k-26.el7_9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@1.0.2k-26.el7_9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@1.0.2k-26.el7_9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@1.0.2k-26.el7_9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/memcached-rhel7 (RHEL 7): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-5678"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/memcached-rhel7@sha256:6195aec4725b71f46a3bc2982300acecafc9c4aabb4ed1bbec06de9775d49694",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@1.0.2k-26.el7_9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@1.0.2k-26.el7_9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@1.0.2k-26.el7_9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@1.0.2k-26.el7_9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/memcached-rhel7 (RHEL 7): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-59873"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/memcached-rhel7@sha256:6195aec4725b71f46a3bc2982300acecafc9c4aabb4ed1bbec06de9775d49694",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/tar@1.26-35.el7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/tar@1.26-35.el7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/memcached-rhel7 (RHEL 7): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-59874"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/memcached-rhel7@sha256:6195aec4725b71f46a3bc2982300acecafc9c4aabb4ed1bbec06de9775d49694",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/tar@1.26-35.el7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/tar@1.26-35.el7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "3scale-amp2/memcached-rhel7 (RHEL 7): known_not_affected."
+    }
+  ]
+}

@@ -137,7 +137,7 @@ def _audit_worker(df, ctx, ref: str) -> list:
     retriage's fork ProcessPool.
     """
     from . import openvex, triage
-    result = triage._audit_silent(df, ctx)
+    result = triage._audit_silent(df, ctx, vex_product=False)
     return openvex.statements_from_df(result, ref)
 
 
@@ -236,9 +236,12 @@ def _generate_cmd(args) -> int:
             return 0
 
     # One grype DB update up front, then freeze the per-call network checks —
-    # they otherwise run once per image.
+    # they otherwise run once per image.  --no-db-update keeps the current DB
+    # so cached grype results (keyed on the DB build stamp) stay valid — a
+    # re-audit-only regeneration after engine changes never touches grype.
     import subprocess as _sp
-    _sp.run(['grype', 'db', 'update'], capture_output=True)
+    if not args.no_db_update:
+        _sp.run(['grype', 'db', 'update'], capture_output=True)
     os.environ.setdefault('GRYPE_DB_AUTO_UPDATE', 'false')
     os.environ.setdefault('GRYPE_CHECK_FOR_APP_UPDATE', 'false')
     os.environ.setdefault('SYFT_CHECK_FOR_APP_UPDATE', 'false')
@@ -710,6 +713,9 @@ def main() -> int:
                     help='regenerate cached syft SBOMs')
     pg.add_argument('--resume', action='store_true', default=False,
                     help='skip images whose digest is already in its hub doc')
+    pg.add_argument('--no-db-update', action='store_true', default=False,
+                    help='keep the current grype DB so cached grype results stay '
+                         'valid — re-audit from cache without rescanning')
     pg.add_argument('--crosscheck', action='store_true', default=False,
                     help='after generating, re-check every statement against '
                          'the raw Red Hat VEX with independent rules '

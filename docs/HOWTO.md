@@ -59,7 +59,7 @@ skip it with `--skip-login` when the env vars are set.
 ### One image
 
 ```bash
-vextriage rhacs --image registry.redhat.io/openshift4/ose-cli@sha256:4f2e216ad46aa75f84e27aa2e6303327b99a4331c7ed8ef65850102898f3a9b0
+vextriage rhacs registry.redhat.io/openshift4/ose-cli@sha256:4f2e216ad46aa75f84e27aa2e6303327b99a4331c7ed8ef65850102898f3a9b0
 ```
 
 Colour table: scanner severity vs Red Hat severity, verdict (`POSITIVE` /
@@ -71,9 +71,13 @@ Variants:
 ```bash
 vextriage rhacs --namespace my-app                  # every image in a k8s namespace
 vextriage rhacs --ocp data/pullspecs/4.20.0.txt     # every component of an OCP release
-vextriage rhacs --image <ref> --format csv --output report.csv
-vextriage rhacs --image <ref> --false-only          # only the suppressible noise
+vextriage rhacs <ref> --format csv --output report.csv
+vextriage rhacs <ref> --false-only                  # only the suppressible noise
+vextriage rhacs scan-export.csv                     # RHACS CSV export instead of live API
 ```
+
+The positional target works like `grype`/`trivy`: an existing file is treated as
+`--scan`, anything else as `--image` (both flags still accepted).
 
 ### Everything at once — the pipeline
 
@@ -301,7 +305,7 @@ unaffected. Details: [OPENVEX-SPIKE-RESULTS.md](OPENVEX-SPIKE-RESULTS.md).
 
 ```bash
 vextriage doctor                                     # system check
-vextriage rhacs --image <ref>                        # RHACS triage, one image
+vextriage rhacs <ref>                                # RHACS triage, one image
 vextriage pipeline --pull-secret ~/ps.txt            # everything: reports + hub
 vextriage retriage                                   # refresh verdicts offline
 vextriage parquet                                    # CSVs → parquet + manifest

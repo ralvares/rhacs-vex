@@ -2,9 +2,77 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/virt-artifacts-server-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:33:35Z",
-  "version": 2,
+  "timestamp": "2026-07-14T06:14:14Z",
+  "version": 4,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-23419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/virt-artifacts-server-rhel9@sha256:203e37b744e7f7d2932f14ec2bd1d7ece8cbc1ddd37d3dbac38f7c30f13899d1",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-core@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-core@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/virt-artifacts-server-rhel9 9: known_not_affected."
+    },
     {
       "vulnerability": {
         "name": "CVE-2025-23419"
@@ -136,6 +204,74 @@
         },
         {
           "@id": "pkg:rpm/redhat/nginx@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/virt-artifacts-server-rhel9 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-23419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/virt-artifacts-server-rhel9@sha256:cd740ccd3e74a28f8a023ecfa9a11286b9654006df011883481ae482c1a9518d",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-core@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-core@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
         }
       ],
       "status": "not_affected",

@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/skopeo",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:21:29Z",
-  "version": 5,
+  "timestamp": "2026-07-14T10:47:29Z",
+  "version": 10,
   "statements": [
     {
       "vulnerability": {
@@ -126,266 +126,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22868"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@v0.25.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4674"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:993f799d58c48151ecae7a84e63860f6c0039e8e18efed5ad67e7752f4b7e408",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.2), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4674"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.2), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4674"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:d077e35100d6d7b3795f8e3594293dbf8b65c6bc18b909aa555fe56f048b356a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.2), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47907"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:993f799d58c48151ecae7a84e63860f6c0039e8e18efed5ad67e7752f4b7e408",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47907"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47907"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:d077e35100d6d7b3795f8e3594293dbf8b65c6bc18b909aa555fe56f048b356a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47912"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:993f799d58c48151ecae7a84e63860f6c0039e8e18efed5ad67e7752f4b7e408",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 7 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47912"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 7 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47912"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:d077e35100d6d7b3795f8e3594293dbf8b65c6bc18b909aa555fe56f048b356a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 7 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-47913"
       },
       "products": [
@@ -403,26 +143,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected (Red Hat Enterprise Linux AppStream E4S (v.9.0))."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 7 names other components only."
     },
     {
       "vulnerability": {
@@ -486,303 +206,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-54410"
+        "name": "CVE-2025-52881"
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/docker/docker@27.5.1+incompatible"
+              "@id": "pkg:golang/github.com/opencontainers/selinux@1.12.0"
             },
             {
-              "@id": "pkg:golang/github.com/docker/docker@v27.5.1+incompatible"
+              "@id": "pkg:golang/github.com/opencontainers/selinux@v1.12.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 7 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:993f799d58c48151ecae7a84e63860f6c0039e8e18efed5ad67e7752f4b7e408",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 7 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 7 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:d077e35100d6d7b3795f8e3594293dbf8b65c6bc18b909aa555fe56f048b356a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 7 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:993f799d58c48151ecae7a84e63860f6c0039e8e18efed5ad67e7752f4b7e408",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 7 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 7 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:d077e35100d6d7b3795f8e3594293dbf8b65c6bc18b909aa555fe56f048b356a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 5, Red Hat Ceph Storage 6, Red Hat Ceph Storage 7 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:993f799d58c48151ecae7a84e63860f6c0039e8e18efed5ad67e7752f4b7e408",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:d077e35100d6d7b3795f8e3594293dbf8b65c6bc18b909aa555fe56f048b356a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:993f799d58c48151ecae7a84e63860f6c0039e8e18efed5ad67e7752f4b7e408",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:d077e35100d6d7b3795f8e3594293dbf8b65c6bc18b909aa555fe56f048b356a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "Not affected in rhel9/skopeo 9 (Red Hat Enterprise Linux 10): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -886,6 +326,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-65637"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/skopeo@1.22.2-1.el9_8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/skopeo@1.22.2-1.el9_8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel9/skopeo 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-6965"
       },
       "products": [
@@ -935,47 +395,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -995,47 +415,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1055,7 +435,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1071,171 +451,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:993f799d58c48151ecae7a84e63860f6c0039e8e18efed5ad67e7752f4b7e408",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:d077e35100d6d7b3795f8e3594293dbf8b65c6bc18b909aa555fe56f048b356a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27140"
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:993f799d58c48151ecae7a84e63860f6c0039e8e18efed5ad67e7752f4b7e408",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:d077e35100d6d7b3795f8e3594293dbf8b65c6bc18b909aa555fe56f048b356a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.1"
@@ -1251,131 +471,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:993f799d58c48151ecae7a84e63860f6c0039e8e18efed5ad67e7752f4b7e408",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:d077e35100d6d7b3795f8e3594293dbf8b65c6bc18b909aa555fe56f048b356a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27143"
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:993f799d58c48151ecae7a84e63860f6c0039e8e18efed5ad67e7752f4b7e408",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:d077e35100d6d7b3795f8e3594293dbf8b65c6bc18b909aa555fe56f048b356a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.1"
@@ -1395,67 +495,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:993f799d58c48151ecae7a84e63860f6c0039e8e18efed5ad67e7752f4b7e408",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:d077e35100d6d7b3795f8e3594293dbf8b65c6bc18b909aa555fe56f048b356a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.1"
@@ -1589,23 +629,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-29181"
+        "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
+              "@id": "pkg:golang/stdlib@1.26.1"
             },
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.39.0"
+              "@id": "pkg:golang/stdlib@v1.26.1"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhel9/skopeo 9."
+      "impact_statement": "Not affected in rhel9/skopeo 9 (Red Hat Enterprise Linux 10): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1613,7 +653,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
@@ -1694,6 +734,26 @@
       "products": [
         {
           "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in rhel9/skopeo 9 (Red Hat Enterprise Linux 10): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32282"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.1"
@@ -1749,6 +809,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33810"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in rhel9/skopeo 9 (Red Hat Enterprise Linux 10): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-33811"
       },
       "products": [
@@ -1849,29 +929,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33814"
+        "name": "CVE-2026-33811"
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+              "@id": "pkg:golang/stdlib@1.26.1"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
+              "@id": "pkg:golang/stdlib@v1.26.1"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "Not affected in rhel9/skopeo 9 (Red Hat Enterprise Linux 10): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1879,73 +953,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:993f799d58c48151ecae7a84e63860f6c0039e8e18efed5ad67e7752f4b7e408",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:d077e35100d6d7b3795f8e3594293dbf8b65c6bc18b909aa555fe56f048b356a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1971,47 +979,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@28.5.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v28.5.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhel9/skopeo 9."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33997"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@27.5.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v27.5.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhel9/skopeo (RHEL 9)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33997"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/docker/docker@28.5.1+incompatible"
@@ -2031,47 +999,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@28.5.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v28.5.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhel9/skopeo 9."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34040"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@27.5.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v27.5.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhel9/skopeo (RHEL 9)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34040"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/docker/docker@28.5.1+incompatible"
@@ -2187,6 +1115,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39819"
       },
       "products": [
@@ -2272,6 +1220,26 @@
       "products": [
         {
           "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.1"
@@ -2347,6 +1315,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in rhel9/skopeo 9 (Red Hat Enterprise Linux 10): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39822"
       },
       "products": [
@@ -2432,6 +1420,26 @@
       "products": [
         {
           "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in rhel9/skopeo 9 (Red Hat Enterprise Linux 10): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.1"
@@ -2507,23 +1515,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39828"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
+              "@id": "pkg:golang/golang.org/x/sys@0.39.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
+              "@id": "pkg:golang/golang.org/x/sys@v0.39.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -2531,27 +1539,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -2571,47 +1559,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -2631,47 +1579,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -2691,47 +1599,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat OpenStack Platform 17.1 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat OpenStack Platform 17.1 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -2807,11 +1675,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39835"
+        "name": "CVE-2026-39833"
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -2823,7 +1691,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "Not affected in rhel9/skopeo 9 (Red Hat Enterprise Linux 10): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -2831,27 +1699,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -2967,6 +1815,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.1"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42501"
       },
       "products": [
@@ -3067,23 +1935,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+              "@id": "pkg:golang/stdlib@1.26.1"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+              "@id": "pkg:golang/stdlib@v1.26.1"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -3091,27 +1959,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -3131,47 +1979,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -3191,47 +1999,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -3251,47 +2019,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -3311,47 +2039,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -3371,7 +2059,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/skopeo@sha256:51bbf898541d2f41775074028c365edaeb840fb14e88f4dcef96174d5d0864c5",
+          "@id": "pkg:oci/skopeo@sha256:ecc4e3b3aeaadac17f9c0922ea2d7251303761a2695f7e9e08b6d89c7f057388",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
@@ -3384,66 +2072,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:e4498151b0b2381401832e410d8386a3d2e55fde47178a0b1da42709c9475d39",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenStack Platform 17.1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-48702"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/skopeo@sha256:a65a413f8a2864389a09dc750690d97afbcdc5c70821e0f85e99e8adba7954e0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/sigstore/rekor@1.3.8"
-            },
-            {
-              "@id": "pkg:golang/github.com/sigstore/rekor@v1.3.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
     }
   ]
 }

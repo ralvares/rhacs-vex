@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-must-gather-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:54:00Z",
-  "version": 1,
+  "timestamp": "2026-07-14T13:01:33Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -43,46 +43,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-40635"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/containerd/containerd@1.7.11"
-            },
-            {
-              "@id": "pkg:golang/github.com/containerd/containerd@v1.7.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-45310"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@1.1.13"
-            },
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@v1.1.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
     },
     {
       "vulnerability": {
@@ -317,25 +277,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-31133"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@1.1.13"
-            },
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@v1.1.13"
-            }
-          ]
-        }
-      ],
-      "status": "fixed"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-40778"
       },
       "products": [
@@ -456,85 +397,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.42.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-52565"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@1.1.13"
-            },
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@v1.1.13"
-            }
-          ]
-        }
-      ],
-      "status": "fixed"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-52881"
       },
       "products": [
@@ -558,66 +420,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_in_execute_path"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-54410"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.42.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
     },
     {
       "vulnerability": {
@@ -898,66 +700,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.20 \u2014 registry.redhat.io/openshift4/ose-must-gather-rhel9@sha256:0d18dcfcb4ae9983fbe33ac8e6cbffd7d23f6a9c495e1398e28190d40e38e719_amd64."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.42.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.42.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27135"
       },
       "products": [
@@ -983,283 +725,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27136"
+        "name": "CVE-2026-33747"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
+          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:765845321663c5fa696ea049cbbd4a4f1328bae2de268b5273408fd284ca7169",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.42.0"
+              "@id": "pkg:golang/github.com/moby/buildkit@0.12.5"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
+              "@id": "pkg:golang/github.com/moby/buildkit@v0.12.5"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33540"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
-            },
-            {
-              "@id": "pkg:golang/github.com/distribution/distribution/v3@v3.0.0-20230519140516-983358f8e250"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
+      "justification": "vulnerable_code_not_in_execute_path"
     },
     {
       "vulnerability": {
@@ -1287,6 +769,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:765845321663c5fa696ea049cbbd4a4f1328bae2de268b5273408fd284ca7169",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/moby/buildkit@0.12.5"
+            },
+            {
+              "@id": "pkg:golang/github.com/moby/buildkit@v0.12.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "component_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33748"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
           "subcomponents": [
             {
@@ -1303,129 +805,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33811"
+        "name": "CVE-2026-39817"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
+          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:765845321663c5fa696ea049cbbd4a4f1328bae2de268b5273408fd284ca7169",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.42.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33997"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34040"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-35172"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
-            },
-            {
-              "@id": "pkg:golang/github.com/distribution/distribution/v3@v3.0.0-20230519140516-983358f8e250"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-35469"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/moby/spdystream@0.5.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/moby/spdystream@v0.5.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1440,6 +836,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:765845321663c5fa696ea049cbbd4a4f1328bae2de268b5273408fd284ca7169",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1469,83 +885,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
+          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:765845321663c5fa696ea049cbbd4a4f1328bae2de268b5273408fd284ca7169",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/golang.org/x/sys@0.42.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/golang.org/x/sys@v0.42.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.42.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1569,203 +925,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39825"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
+          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:765845321663c5fa696ea049cbbd4a4f1328bae2de268b5273408fd284ca7169",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1890,63 +1066,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-41567"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
+          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:765845321663c5fa696ea049cbbd4a4f1328bae2de268b5273408fd284ca7169",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-41888"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
-            },
-            {
-              "@id": "pkg:golang/github.com/distribution/distribution/v3@v3.0.0-20230519140516-983358f8e250"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1970,126 +1106,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.42.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.42.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-4424"
       },
       "products": [
@@ -2106,6 +1122,26 @@
         }
       ],
       "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44740"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:765845321663c5fa696ea049cbbd4a4f1328bae2de268b5273408fd284ca7169",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@5.6.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@v5.6.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "component_not_present"
     },
     {
       "vulnerability": {
@@ -2133,6 +1169,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:765845321663c5fa696ea049cbbd4a4f1328bae2de268b5273408fd284ca7169",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@5.6.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@v5.6.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44973"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
           "subcomponents": [
             {
@@ -2140,6 +1196,26 @@
             },
             {
               "@id": "pkg:golang/github.com/go-git/go-billy/v5@v5.6.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45022"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:765845321663c5fa696ea049cbbd4a4f1328bae2de268b5273408fd284ca7169",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.13.1"
             }
           ]
         }
@@ -2210,7 +1286,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
+          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:765845321663c5fa696ea049cbbd4a4f1328bae2de268b5273408fd284ca7169",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
@@ -2226,7 +1302,7 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-45571"
+        "name": "CVE-2026-45570"
       },
       "products": [
         {
@@ -2242,67 +1318,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: fixed: Red Hat Openshift Data Foundation 4.22; not affected: Red Hat Openshift Data Foundation 4.22."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-must-gather-rhel9@sha256:98d316b628c5bcb3bc5f11bea6e3c7a9874647304d0c5abed35738d838b6197e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "must-gather not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {

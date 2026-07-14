@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/quay-container-security-operator-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:09:50Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:30:04Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -27,31 +27,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2023-45288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-24786"
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/google.golang.org/protobuf@1.30.0"
@@ -67,51 +47,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-24786"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/protobuf@1.30.0"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/protobuf@v1.30.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-45338"
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-45338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -169,7 +109,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/oauth2@0.8.0"
@@ -185,31 +125,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22868"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@0.8.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@v0.8.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-22870"
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -225,51 +145,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22870"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-22872"
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -289,27 +169,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -329,27 +189,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -369,47 +209,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -429,27 +229,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -469,7 +249,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -481,7 +261,67 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
+      "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27140"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.8"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.8"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27143"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.8"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.8"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27144"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.8"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.8"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -489,39 +329,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
     },
     {
       "vulnerability": {
@@ -550,17 +370,117 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33811"
+        "name": "CVE-2026-32280"
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.25.8"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32281"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.8"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.8"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32282"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.8"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.8"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32283"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.8"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.8"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32288"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.8"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.8"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32289"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.8"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
@@ -574,19 +494,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
+      "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -594,7 +514,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -603,36 +523,10 @@
               "@id": "pkg:golang/golang.org/x/net@v0.17.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
@@ -682,6 +576,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.8"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.8"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39819"
       },
       "products": [
@@ -722,17 +636,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.8"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.8"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
@@ -742,31 +676,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39821"
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -782,77 +696,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39822"
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
@@ -866,19 +720,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
+      "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -922,23 +776,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39825"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/golang.org/x/sys@0.13.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/golang.org/x/sys@v0.13.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -946,33 +800,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
@@ -986,19 +820,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
+      "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1042,23 +876,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1066,19 +900,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
+      "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1122,23 +956,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1146,33 +980,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1186,33 +1000,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
@@ -1226,19 +1020,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
+      "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1246,7 +1040,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -1262,63 +1056,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-42507"
       },
       "products": [
         {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:a75c39db810a16bbcf65bbc3377d513e60573fb76f6aacebc37b959e1653a29a",
+          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:c0d1c329b39946c5c17f8d8671e7f72124e2fb38e08deb998ff3d99590f77bc9",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "quay/quay-container-security-operator-rhel9 3.17 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/quay-container-security-operator-rhel9@sha256:b7f3c11758af7668d865fc2ea5047cc85a1d2af78c4a8a062d029c5ab6cb4126",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "quay/quay-container-security-operator-rhel9 3.16 not listed as affected."
     },
     {
       "vulnerability": {

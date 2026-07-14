@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-vllm-cuda-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T21:33:34Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:58:56Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -200,23 +200,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-61620"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.10.1.1+rhai19"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-6965"
       },
       "products": [
@@ -294,23 +277,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-22778"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.10.1.1+rhai19"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat OpenShift AI 2.25 \u2014 registry.redhat.io/rhoai/odh-vllm-cuda-rhel9@sha256:2070413c4e3fc4ba1a92be46968b7ccf5092f082c2d10ef8f8dda7d125e79b03_arm64."
     },
     {
       "vulnerability": {
@@ -458,40 +424,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-41523"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.10.1.1+rhai19"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42311"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pillow@12.1.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-42561"
       },
       "products": [
@@ -526,26 +458,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-45409"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/idna@3.10"
-            },
-            {
-              "@id": "pkg:pypi/idna@3.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-45447"
       },
       "products": [
@@ -568,40 +480,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-47155"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.10.1.1+rhai19"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-48746"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.10.1.1+rhai19"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
     },
     {
       "vulnerability": {
@@ -655,295 +533,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-50269"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53537"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/python-multipart@0.0.22"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53538"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/python-multipart@0.0.22"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53540"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/python-multipart@0.0.22"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53923"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.10.1.1+rhai19"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-54233"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.10.1.1+rhai19"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-54235"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.10.1.1+rhai19"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-54236"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.10.1.1+rhai19"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-54273"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-54274"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-54275"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-54276"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-54277"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-54278"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-54279"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-54282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/starlette@0.49.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-54283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-vllm-cuda-rhel9@sha256:00ecb72d83019274410077c4bdf00138d3dce02be697c883745f4f8d970a5c9b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/starlette@0.49.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-vllm-cuda-rhel9 2.25 not listed as affected."
     },
     {
       "vulnerability": {

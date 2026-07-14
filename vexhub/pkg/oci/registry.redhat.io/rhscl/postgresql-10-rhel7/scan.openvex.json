@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/postgresql-10-rhel7",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:30:58Z",
-  "version": 2,
+  "timestamp": "2026-07-14T06:01:16Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -12,6 +12,26 @@
       "products": [
         {
           "@id": "pkg:oci/postgresql-10-rhel7@sha256:4f807ee6e885e966853f70e1c40bbc179dc1f994b401ac868b7f2b921f9d17a0",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-setuptools@0.9.8-7.el7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-setuptools@0.9.8-7.el7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhscl/postgresql-10-rhel7 (RHEL 7): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-40897"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10-rhel7@sha256:6c53e72c31d1a3e13aa3ea835039f30869e465903262545463f790cb36ef5241",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python-setuptools@0.9.8-7.el7"

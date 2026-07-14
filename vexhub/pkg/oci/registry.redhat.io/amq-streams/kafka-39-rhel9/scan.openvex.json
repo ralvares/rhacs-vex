@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/kafka-39-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T17:48:22Z",
-  "version": 2,
+  "timestamp": "2026-07-14T07:26:47Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -31,7 +31,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -51,7 +51,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.28.0"
@@ -71,7 +71,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -98,6 +98,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.23.6"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-0913"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.7"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.7"
             }
           ]
         }
@@ -131,7 +151,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -151,27 +171,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -191,33 +191,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22870"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.28.0"
@@ -243,27 +217,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22871"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -283,27 +237,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.28.0"
@@ -323,27 +257,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, streams for Apache Kafka 3 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22873"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -363,27 +277,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4673"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -403,27 +297,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.2), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4674"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -443,27 +317,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47906"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -483,27 +337,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47907"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -523,27 +357,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.28.0"
@@ -563,27 +377,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47912"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -603,27 +397,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -643,27 +417,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -683,27 +437,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -723,27 +457,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58183"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -763,27 +477,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58185"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -803,27 +497,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -843,27 +517,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -883,27 +537,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58188"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -923,27 +557,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58189"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -963,27 +577,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.28.0"
@@ -1003,27 +597,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61723"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1043,27 +617,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61724"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1083,27 +637,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61725"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1123,27 +657,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61726"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1163,27 +677,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61727"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1203,27 +697,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1243,27 +717,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61729"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1283,27 +737,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1323,27 +757,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1363,27 +777,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1403,27 +797,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68121"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1443,27 +817,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1483,27 +837,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.28.0"
@@ -1523,27 +857,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.28.0"
@@ -1563,27 +877,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.28.0"
@@ -1603,27 +897,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1643,27 +917,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1683,27 +937,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1723,27 +957,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1763,27 +977,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1803,27 +997,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1843,27 +1017,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1883,27 +1037,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1923,27 +1057,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -1963,27 +1077,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -2003,27 +1097,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -2043,27 +1117,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -2083,27 +1137,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -2123,33 +1157,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.28.0"
@@ -2182,6 +1190,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.23.6"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.7"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.7"
             }
           ]
         }
@@ -2235,6 +1263,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.7"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.7"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
           "subcomponents": [
             {
@@ -2255,27 +1303,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -2295,27 +1323,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.28.0"
@@ -2335,27 +1343,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -2375,27 +1363,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -2435,6 +1403,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.24.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.24.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
           "subcomponents": [
             {
@@ -2455,27 +1443,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -2495,27 +1463,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -2535,27 +1483,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -2575,27 +1503,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -2615,27 +1523,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -2655,27 +1543,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -2695,27 +1563,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39833"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -2735,27 +1583,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -2795,6 +1623,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.7"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.7"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
           "subcomponents": [
             {
@@ -2815,27 +1663,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -2875,6 +1703,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.7"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.7"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
           "subcomponents": [
             {
@@ -2895,27 +1743,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.28.0"
@@ -2935,27 +1763,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -2975,27 +1783,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -3015,27 +1803,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.28.0"
@@ -3055,27 +1823,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/kafka-39-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.7"
@@ -3095,27 +1843,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -3135,27 +1863,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -3175,27 +1883,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -3215,27 +1903,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:9ed77907cbed09eb66172b0d18855d723add80b18a82fcee424148bef81e1886",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kafka-39-rhel9@sha256:c4e291c65c59c26d9dc61b2c55fc6517b1c3afaec19ecc2728dcaf2adbbdf522",
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.26.0"
@@ -3248,6 +1916,25 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4878"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kafka-39-rhel9@sha256:a0abe54b8e482bb4737c325571dc53328a568a962f2354b0338d567a460da80b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+        }
+      ],
+      "status": "fixed"
     }
   ]
 }

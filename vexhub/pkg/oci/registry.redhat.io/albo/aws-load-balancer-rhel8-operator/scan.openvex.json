@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/aws-load-balancer-rhel8-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T17:50:53Z",
-  "version": 4,
+  "timestamp": "2026-07-14T07:29:18Z",
+  "version": 7,
   "statements": [
     {
       "vulnerability": {
@@ -916,6 +916,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2023-24531"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.19.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.19.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2023-2602"
       },
       "products": [
@@ -1343,7 +1363,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -1363,7 +1383,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -1383,7 +1403,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -1403,7 +1423,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -1423,7 +1443,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -1564,11 +1584,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2023-44487"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.19.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.19.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. AWS-LB-OPTR 1.1 for RHEL 8 \u2014 albo/aws-load-balancer-rhel8-operator@sha256:e3780dc698436ec7fd624ab0060c505743eca4d9b900aa9794b8888a2660f287_amd64."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2023-45285"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -1588,7 +1628,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -1608,7 +1648,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -1634,7 +1674,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -1654,7 +1694,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -1826,6 +1866,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2023-48795"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2023-4911"
       },
       "products": [
@@ -1880,7 +1940,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -2025,7 +2085,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -2045,7 +2105,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -2065,7 +2125,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -2085,13 +2145,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/google.golang.org/protobuf@1.30.0"
+              "@id": "pkg:golang/google.golang.org/protobuf@1.28.0"
             },
             {
-              "@id": "pkg:golang/google.golang.org/protobuf@v1.30.0"
+              "@id": "pkg:golang/google.golang.org/protobuf@v1.28.0"
             }
           ]
         }
@@ -2121,11 +2181,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2024-24787"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.19.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.19.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2024-24789"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -2145,7 +2225,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -2165,7 +2245,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -2413,7 +2493,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -2433,7 +2513,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -2453,7 +2533,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -2631,7 +2711,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -2647,23 +2727,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-45336"
+        "name": "CVE-2024-45337"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -2671,7 +2751,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -2687,31 +2767,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-45338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-45341"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -2727,17 +2787,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-45341"
+        "name": "CVE-2024-51744"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@4.2.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@v4.2.0"
             }
           ]
         }
@@ -2818,11 +2878,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-0913"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.19.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.19.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-22866"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -2838,17 +2918,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22866"
+        "name": "CVE-2025-22868"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/golang.org/x/oauth2@0.0.0-20220411215720-9780585627b5"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/golang.org/x/oauth2@v0.0.0-20220411215720-9780585627b5"
             }
           ]
         }
@@ -2858,43 +2938,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22868"
+        "name": "CVE-2025-22869"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/oauth2@0.5.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/oauth2@v0.5.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22868"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@0.12.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@v0.12.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream AUS (v.8.4), Red Hat Enterprise Linux AppStream AUS (v.8.6) (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -2902,7 +2962,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -2924,37 +2984,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22870"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-22871"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -2970,31 +3004,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22871"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream AUS (v. 8.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-22872"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -3010,31 +3024,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-22873"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3050,23 +3044,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22873"
+        "name": "CVE-2025-30204"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@4.2.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@v4.2.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream EUS (v.8.8) (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -3074,33 +3068,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.19.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4673"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
             }
           ]
         }
@@ -3114,7 +3088,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3130,71 +3104,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-4674"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream E4S (v.8.8), Red Hat Enterprise Linux AppStream TUS (v.8.8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-47906"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.19.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.19.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47906"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47907"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3214,13 +3128,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/stdlib@1.19.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/stdlib@v1.19.13"
             }
           ]
         }
@@ -3234,7 +3148,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -3250,31 +3164,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-47912"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3290,17 +3184,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-47912"
+        "name": "CVE-2025-47913"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
             }
           ]
         }
@@ -3314,47 +3208,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.19.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.19.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58183"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58185"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3374,27 +3228,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58189"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3414,67 +3248,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61723"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3490,17 +3264,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-61723"
+        "name": "CVE-2025-58190"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/golang.org/x/net@0.17.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
             }
           ]
         }
@@ -3510,11 +3284,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-61724"
+        "name": "CVE-2025-61723"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3534,27 +3308,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61725"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3574,27 +3328,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61726"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3614,27 +3348,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61727"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3654,27 +3368,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3694,27 +3388,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61729"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3734,13 +3408,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/stdlib@1.19.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/stdlib@v1.19.13"
             }
           ]
         }
@@ -3754,7 +3428,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3770,31 +3444,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for albo/aws-load-balancer-rhel8-operator (RHEL 8)."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-61731"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3810,31 +3464,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-61732"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3850,71 +3484,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream AUS (v. 8.2), Red Hat Enterprise Linux AppStream AUS (v.8.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-68121"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.19.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.19.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68121"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -3934,13 +3508,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/stdlib@1.19.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/stdlib@v1.19.13"
             }
           ]
         }
@@ -3954,7 +3528,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -3970,71 +3544,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-25681"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -4054,13 +3568,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@0.17.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
             }
           ]
         }
@@ -4074,47 +3588,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.19.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.19.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -4134,27 +3608,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -4174,13 +3628,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/stdlib@1.19.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/stdlib@v1.19.13"
             }
           ]
         }
@@ -4194,47 +3648,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.19.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.19.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -4254,13 +3668,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/stdlib@1.19.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/stdlib@v1.19.13"
             }
           ]
         }
@@ -4274,47 +3688,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.19.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.19.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -4334,27 +3708,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -4374,27 +3728,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -4414,27 +3748,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -4454,27 +3768,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -4494,27 +3788,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -4534,27 +3808,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -4574,13 +3828,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/stdlib@1.19.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/stdlib@v1.19.13"
             }
           ]
         }
@@ -4594,7 +3848,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -4607,32 +3861,6 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.19.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
             }
           ]
         }
@@ -4682,6 +3910,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.19.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.19.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39819"
       },
       "products": [
@@ -4722,11 +3970,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
+        "name": "CVE-2026-39819"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -4738,7 +3986,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -4746,13 +3994,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/stdlib@1.19.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/stdlib@v1.19.13"
             }
           ]
         }
@@ -4766,7 +4014,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -4782,31 +4030,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39822"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -4822,57 +4050,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39823"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.19.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
             }
           ]
         }
@@ -4922,23 +4110,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39825"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.19.13"
+              "@id": "pkg:golang/golang.org/x/sys@0.13.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.19.13"
+              "@id": "pkg:golang/golang.org/x/sys@v0.13.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -4946,27 +4134,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.22.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.22.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -4986,19 +4154,139 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/stdlib@1.19.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/stdlib@v1.19.13"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39828"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39829"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39830"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39832"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39833"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39835"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -5042,11 +4330,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -5058,7 +4346,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -5066,13 +4354,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/stdlib@1.19.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/stdlib@v1.19.13"
             }
           ]
         }
@@ -5122,23 +4410,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
+              "@id": "pkg:golang/stdlib@1.19.13"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
+              "@id": "pkg:golang/stdlib@v1.19.13"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -5146,27 +4434,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.17.0"
@@ -5186,13 +4454,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@0.17.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
             }
           ]
         }
@@ -5206,7 +4474,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.19.13"
@@ -5222,17 +4490,57 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42507"
+        "name": "CVE-2026-42508"
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.22.9"
+              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.22.9"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46595"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:6e15df39a3d25755a79888f739e1af8b052c3fba57bf8f6b3434ef58fd4288cf",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
             }
           ]
         }

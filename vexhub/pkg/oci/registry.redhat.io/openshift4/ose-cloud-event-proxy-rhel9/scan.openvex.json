@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-cloud-event-proxy-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:22:55Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:47:44Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -634,26 +634,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "cloud-event-proxy not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27135"
       },
       "products": [
@@ -683,6 +663,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.39.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
           "subcomponents": [
             {
@@ -699,237 +699,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "cloud-event-proxy not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "cloud-event-proxy not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "cloud-event-proxy not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "cloud-event-proxy not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "cloud-event-proxy not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "cloud-event-proxy not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -943,13 +723,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -963,7 +743,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.39.0"
@@ -972,16 +752,36 @@
               "@id": "pkg:golang/golang.org/x/net@v0.39.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -996,6 +796,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1029,13 +849,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1049,7 +869,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.39.0"
@@ -1069,13 +889,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1089,19 +909,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "cloud-event-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.32.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.32.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1129,13 +969,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1149,19 +989,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "cloud-event-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1252,19 +1112,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "cloud-event-proxy not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1292,13 +1172,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1312,13 +1192,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1332,13 +1212,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:6e53a968f358968323ed736189d8511b2b586245e4c69544e21f7ed56228b19b",
+          "@id": "pkg:oci/ose-cloud-event-proxy-rhel9@sha256:0f54e437c621de11d5d88c995a7cf3dc47471c342285c861a5ca19fce8290a6f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }

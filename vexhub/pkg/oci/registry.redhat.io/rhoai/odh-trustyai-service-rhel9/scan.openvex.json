@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-trustyai-service-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:16:08Z",
-  "version": 4,
+  "timestamp": "2026-07-14T12:38:00Z",
+  "version": 5,
   "statements": [
     {
       "vulnerability": {
@@ -12,6 +12,37 @@
       "products": [
         {
           "@id": "pkg:oci/odh-trustyai-service-rhel9@sha256:b8d43194390a496e4b95533292a3ab94fadb848f33c95ed22fb9038825531d7f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-0865"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-service-rhel9@sha256:f5454c3a61515bd18c212095631c3d541ca1b43c65689ab1725b1eb382218b85",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
@@ -94,11 +125,73 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-4519"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-service-rhel9@sha256:f5454c3a61515bd18c212095631c3d541ca1b43c65689ab1725b1eb382218b85",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-4786"
       },
       "products": [
         {
           "@id": "pkg:oci/odh-trustyai-service-rhel9@sha256:b8d43194390a496e4b95533292a3ab94fadb848f33c95ed22fb9038825531d7f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4786"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-service-rhel9@sha256:f5454c3a61515bd18c212095631c3d541ca1b43c65689ab1725b1eb382218b85",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
@@ -220,11 +313,61 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-service-rhel9@sha256:f5454c3a61515bd18c212095631c3d541ca1b43c65689ab1725b1eb382218b85",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-6100"
       },
       "products": [
         {
           "@id": "pkg:oci/odh-trustyai-service-rhel9@sha256:b8d43194390a496e4b95533292a3ab94fadb848f33c95ed22fb9038825531d7f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-6100"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-service-rhel9@sha256:f5454c3a61515bd18c212095631c3d541ca1b43c65689ab1725b1eb382218b85",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"

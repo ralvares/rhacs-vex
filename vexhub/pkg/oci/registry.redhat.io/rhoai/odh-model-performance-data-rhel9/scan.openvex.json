@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-model-performance-data-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T23:33:19Z",
-  "version": 3,
+  "timestamp": "2026-07-14T06:33:28Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -138,6 +138,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-model-performance-data-rhel9@sha256:09ce0562a17553d96f53446d53c085ca5dbd703864039f0d619031250a12d360",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-model-performance-data-rhel9@sha256:2bad16097dc7a538b366a6e00ba17f95c51059e3d7b9c32c48bf3796bd5bd9f7",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"

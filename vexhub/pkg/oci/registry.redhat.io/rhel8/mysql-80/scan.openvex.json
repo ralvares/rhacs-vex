@@ -2,9 +2,35 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/mysql-80",
   "author": "vextriage",
-  "timestamp": "2026-07-14T03:11:02Z",
-  "version": 4,
+  "timestamp": "2026-07-14T06:02:08Z",
+  "version": 5,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44172"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mysql-80@sha256:158198936a7f7896e0f94133cd64c8e8902e4f86e670b56b64ff02acfd9c2855",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.1.11-2.el8_3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.1.11-2.el8_3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.1.11-2.el8_3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.1.11-2.el8_3"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/mysql-80 (RHEL 8): known_not_affected."
+    },
     {
       "vulnerability": {
         "name": "CVE-2026-44172"

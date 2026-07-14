@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-automl-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T21:45:08Z",
-  "version": 2,
+  "timestamp": "2026-07-14T10:59:17Z",
+  "version": 5,
   "statements": [
     {
       "vulnerability": {
@@ -30,6 +30,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-52356"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -74,6 +93,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/binutils-gold@2.35.2-63.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/binutils@2.35.2-63.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/binutils-gold@2.35.2-63.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/binutils@2.35.2-63.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-11083"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -148,6 +192,55 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.4"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-12084"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -216,6 +309,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libpq@13.23-1.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libpq@13.23-1.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-12818"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -254,6 +366,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.4"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-13601"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -274,6 +405,37 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-13836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.6"
@@ -336,6 +498,55 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.4"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-15366"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.4"
@@ -482,6 +693,55 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.4"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-15367"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -556,6 +816,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-15467"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -598,6 +883,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.10.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3000"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -634,6 +936,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/poppler@21.01.0-22.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/poppler@21.01.0-22.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-32365"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -673,6 +994,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/tar@1.34-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/tar@1.34-7.el9_6.2"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-automl-rhel9 3.4: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-45582"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -731,6 +1072,44 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/systemd-libs@252-51.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-pam@252-51.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-51.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-pam@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-automl-rhel9 3.4: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4598"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -794,6 +1173,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libssh-config@0.10.4-15.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh-config@0.10.4-15.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-5318"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -820,6 +1224,37 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-53905"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
@@ -882,6 +1317,37 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-53906"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
@@ -944,6 +1410,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.5.0-5.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.5.0-5.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-59375"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/expat@2.5.0-5.el9_6.1"
@@ -1007,6 +1492,32 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libssh-config@0.10.4-15.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh-config@0.10.4-15.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6.1"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-automl-rhel9 3.4: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-5987"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -1034,6 +1545,31 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/brotli@1.0.9-7.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libbrotli@1.0.9-7.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/brotli@1.0.9-7.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libbrotli@1.0.9-7.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6176"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/brotli@1.0.9-7.el9_6.1"
@@ -1084,6 +1620,31 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssh-clients@8.7p1-45.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssh@8.7p1-45.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssh-clients@8.7p1-45.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssh@8.7p1-45.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61984"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/openssh-clients@8.7p1-45.el9_6.1"
@@ -1134,6 +1695,31 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssh-clients@8.7p1-45.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssh@8.7p1-45.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssh-clients@8.7p1-45.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssh@8.7p1-45.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61985"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/openssh-clients@8.7p1-45.el9_6.1"
@@ -1184,6 +1770,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-64720"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
@@ -1222,6 +1827,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-65018"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
@@ -1260,6 +1884,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-66293"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
@@ -1298,6 +1941,31 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-urllib3@1.26.5-6.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-urllib3@1.26.5-6.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-66418"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
@@ -1348,6 +2016,31 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-urllib3@1.26.5-6.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-urllib3@1.26.5-6.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-66471"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
@@ -1398,6 +2091,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/gnupg2@2.3.3-4.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/gnupg2@2.3.3-4.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-68973"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/gnupg2@2.3.3-4.el9_6.1"
@@ -1436,6 +2148,31 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-69419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
@@ -1486,6 +2223,31 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
@@ -1536,6 +2298,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-8176"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.3"
@@ -1574,6 +2355,37 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-8291"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.6"
@@ -1636,6 +2448,37 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-31.el9_6.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/curl@7.76.1-31.el9_6.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libcurl-minimal@7.76.1-31.el9_6.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-31.el9_6.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/curl@7.76.1-31.el9_6.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcurl-minimal@7.76.1-31.el9_6.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9086"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-31.el9_6.3"
@@ -1698,6 +2541,31 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9230"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
@@ -1748,6 +2616,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libxml2@2.9.13-12.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libxml2@2.9.13-12.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9714"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libxml2@2.9.13-12.el9_6.1"
@@ -1786,6 +2673,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9900"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.3"
@@ -1824,6 +2730,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/protobuf@3.14.0-16.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/protobuf@3.14.0-16.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-0994"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/protobuf@3.14.0-16.el9_6.1"
@@ -1862,6 +2787,55 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.4"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-1299"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.4"
@@ -1959,24 +2933,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-automl-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1703"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pip@25.3"
@@ -1993,24 +2950,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.57.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-automl-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1839"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/transformers@4.57.6"
@@ -2028,6 +2968,31 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-urllib3@1.26.5-6.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-urllib3@1.26.5-6.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-21441"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
@@ -2096,6 +3061,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-22695"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -2116,6 +3100,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-22801"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
@@ -2172,6 +3175,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libvpx@1.9.0-9.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libvpx@1.9.0-9.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-2447"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -2191,24 +3213,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyarrow@20.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-automl-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25087"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pyarrow@20.0.0"
@@ -2250,6 +3255,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/munge-libs@0.5.13-13.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/munge@0.5.13-13.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/munge-libs@0.5.13-13.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/munge@0.5.13-13.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25506"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -2275,24 +3305,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/requests@2.32.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-automl-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25645"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/requests@2.32.5"
@@ -2310,6 +3323,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25646"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
@@ -2372,6 +3404,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-28390"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -2397,24 +3454,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-automl-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-3219"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pip@25.3"
@@ -2448,7 +3488,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pillow@12.1.1"
@@ -2465,24 +3505,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/python-multipart@0.0.22"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-automl-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-40347"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/python-multipart@0.0.22"
@@ -2499,24 +3522,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/mako@1.3.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-automl-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-41205"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/mako@1.3.10"
@@ -2533,7 +3539,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pillow@12.1.1"
@@ -2550,7 +3556,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pillow@12.1.1"
@@ -2567,7 +3573,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pillow@12.1.1"
@@ -2584,24 +3590,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/python-multipart@0.0.22"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-automl-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42561"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/python-multipart@0.0.22"
@@ -2619,6 +3608,23 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/transformers@4.57.6"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4372"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/transformers@4.57.6"
@@ -2678,6 +3684,32 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-automl-rhel9 3.4: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44172"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -2721,6 +3753,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/mako@1.3.10"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44307"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -2738,24 +3787,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/urllib3@2.6.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-automl-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-44431"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/urllib3@2.6.3"
@@ -2772,24 +3804,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/urllib3@2.6.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-automl-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-44432"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/urllib3@2.6.3"
@@ -2806,24 +3821,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pygments@2.19.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-automl-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-4539"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pygments@2.19.2"
@@ -2841,6 +3839,31 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45447"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
@@ -2924,6 +3947,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/starlette@1.0.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48818"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -2942,6 +3982,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
@@ -2996,6 +4055,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54279"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -3030,6 +4106,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/starlette@1.0.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54282"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
           "subcomponents": [
             {
@@ -3047,24 +4140,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:46492e27bf0005a8061c8e0887d5ce7eb5954c304137a38f130ca8c56d2c12e9",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-automl-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-6357"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-automl-rhel9@sha256:7c6d8346d1ca0ce905ce2d0021706cd90570a7c00b587f6187385151896b283a",
+          "@id": "pkg:oci/odh-automl-rhel9@sha256:6c403fbc973feacb9920d01a77836058a276f903ba4583fb2e1c143e52c3141b",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pip@25.3"

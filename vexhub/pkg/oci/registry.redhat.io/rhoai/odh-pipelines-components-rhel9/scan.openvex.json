@@ -2,178 +2,70 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-pipelines-components-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T22:05:32Z",
-  "version": 2,
+  "timestamp": "2026-07-14T12:14:10Z",
+  "version": 5,
   "statements": [
     {
       "vulnerability": {
-        "name": "CVE-2024-6345"
+        "name": "CVE-2026-0865"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:49b3135b121f074fca1034634465233c1c6e26660566b40158a843e8a31e4949",
+          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:9f0b9a67a92d6ceaf9dca9aa24503797d05d3b3dd6a029b898307011ff993e9f",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/setuptools@65.5.1"
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
             }
           ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 (RHEL 9) not listed as affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-6345"
+        "name": "CVE-2026-34982"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:5689efaeebc7356d586cb51e99b5b0efbcf359942a5230f16498dcdcf7ab5faa",
+          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:9f0b9a67a92d6ceaf9dca9aa24503797d05d3b3dd6a029b898307011ff993e9f",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/setuptools@65.5.1"
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7.3"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47273"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:49b3135b121f074fca1034634465233c1c6e26660566b40158a843e8a31e4949",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/setuptools@65.5.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47273"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7.3"
+        },
         {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:5689efaeebc7356d586cb51e99b5b0efbcf359942a5230f16498dcdcf7ab5faa",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/setuptools@65.5.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7.3"
+        },
         {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:49b3135b121f074fca1034634465233c1c6e26660566b40158a843e8a31e4949",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7.3"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:5689efaeebc7356d586cb51e99b5b0efbcf359942a5230f16498dcdcf7ab5faa",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1703"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:49b3135b121f074fca1034634465233c1c6e26660566b40158a843e8a31e4949",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1703"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:5689efaeebc7356d586cb51e99b5b0efbcf359942a5230f16498dcdcf7ab5faa",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-3219"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:49b3135b121f074fca1034634465233c1c6e26660566b40158a843e8a31e4949",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-3219"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:5689efaeebc7356d586cb51e99b5b0efbcf359942a5230f16498dcdcf7ab5faa",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 3.4 not listed as affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -241,71 +133,177 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-44431"
+        "name": "CVE-2026-44172"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:49b3135b121f074fca1034634465233c1c6e26660566b40158a843e8a31e4949",
+          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:9f0b9a67a92d6ceaf9dca9aa24503797d05d3b3dd6a029b898307011ff993e9f",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/urllib3@2.6.3"
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-devel@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
             }
           ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-devel@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 (RHEL 9) not listed as affected."
+      "impact_statement": "rhoai/odh-pipelines-components-rhel9 3.4: known_not_affected."
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-44431"
+        "name": "CVE-2026-4519"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:5689efaeebc7356d586cb51e99b5b0efbcf359942a5230f16498dcdcf7ab5faa",
+          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:9f0b9a67a92d6ceaf9dca9aa24503797d05d3b3dd6a029b898307011ff993e9f",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/urllib3@2.6.3"
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
             }
           ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 3.4 not listed as affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-44432"
+        "name": "CVE-2026-4775"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:49b3135b121f074fca1034634465233c1c6e26660566b40158a843e8a31e4949",
+          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:9f0b9a67a92d6ceaf9dca9aa24503797d05d3b3dd6a029b898307011ff993e9f",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/urllib3@2.6.3"
+              "@id": "pkg:rpm/redhat/libtiff-devel@4.4.0-15.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-15.el9_7.3"
             }
           ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff-devel@4.4.0-15.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-15.el9_7.3"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 (RHEL 9) not listed as affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-44432"
+        "name": "CVE-2026-4786"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:5689efaeebc7356d586cb51e99b5b0efbcf359942a5230f16498dcdcf7ab5faa",
+          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:9f0b9a67a92d6ceaf9dca9aa24503797d05d3b3dd6a029b898307011ff993e9f",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/urllib3@2.6.3"
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
             }
           ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 3.4 not listed as affected."
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4878"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:9f0b9a67a92d6ceaf9dca9aa24503797d05d3b3dd6a029b898307011ff993e9f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -347,37 +345,71 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-6357"
+        "name": "CVE-2026-48864"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:49b3135b121f074fca1034634465233c1c6e26660566b40158a843e8a31e4949",
+          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:9f0b9a67a92d6ceaf9dca9aa24503797d05d3b3dd6a029b898307011ff993e9f",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/pip@24.2"
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
             }
           ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 (RHEL 9) not listed as affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-6357"
+        "name": "CVE-2026-6100"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:5689efaeebc7356d586cb51e99b5b0efbcf359942a5230f16498dcdcf7ab5faa",
+          "@id": "pkg:oci/odh-pipelines-components-rhel9@sha256:9f0b9a67a92d6ceaf9dca9aa24503797d05d3b3dd6a029b898307011ff993e9f",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/pip@24.2"
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
             }
           ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-pipelines-components-rhel9 3.4 not listed as affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {

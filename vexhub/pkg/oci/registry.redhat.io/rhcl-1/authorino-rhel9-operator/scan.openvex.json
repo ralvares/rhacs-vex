@@ -2,22 +2,208 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/authorino-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:58:40Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:28:19Z",
+  "version": 3,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25680"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhcl-1/authorino-rhel9-operator 1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhcl-1/authorino-rhel9-operator 1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhcl-1/authorino-rhel9-operator 1 not listed as affected."
+    },
     {
       "vulnerability": {
         "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/authorino-rhel9-operator@sha256:b2cc2c0f0729dad98f970830816e300c0b961ba42491f362295512d886384687",
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhcl-1/authorino-rhel9-operator 1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhcl-1/authorino-rhel9-operator 1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhcl-1/authorino-rhel9-operator 1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
             }
           ]
         }
@@ -31,13 +217,173 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/authorino-rhel9-operator@sha256:b2cc2c0f0729dad98f970830816e300c0b961ba42491f362295512d886384687",
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhcl-1/authorino-rhel9-operator 1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhcl-1/authorino-rhel9-operator 1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.42.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhcl-1/authorino-rhel9-operator 1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhcl-1/authorino-rhel9-operator 1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhcl-1/authorino-rhel9-operator 1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
             }
           ]
         }
@@ -51,13 +397,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/authorino-rhel9-operator@sha256:b2cc2c0f0729dad98f970830816e300c0b961ba42491f362295512d886384687",
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
             }
           ]
         }
@@ -71,13 +417,33 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/authorino-rhel9-operator@sha256:b2cc2c0f0729dad98f970830816e300c0b961ba42491f362295512d886384687",
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhcl-1/authorino-rhel9-operator 1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
             }
           ]
         }
@@ -91,13 +457,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/authorino-rhel9-operator@sha256:b2cc2c0f0729dad98f970830816e300c0b961ba42491f362295512d886384687",
+          "@id": "pkg:oci/authorino-rhel9-operator@sha256:1ebc76aad15cbaed4e24838005a68e3bd83353aaf341518d9846d419d6b65524",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
             }
           ]
         }

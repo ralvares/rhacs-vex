@@ -2,9 +2,29 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/external-dns-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:19:24Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:31:16Z",
+  "version": 3,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2023-49559"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/vektah/gqlparser/v2@2.5.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/vektah/gqlparser/v2@v2.5.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
     {
       "vulnerability": {
         "name": "CVE-2023-49559"
@@ -31,7 +51,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/Azure/azure-sdk-for-go/sdk/azidentity@1.5.2"
@@ -51,7 +71,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/hashicorp/go-retryablehttp@0.7.5"
@@ -71,7 +91,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/golang-jwt/jwt/v5@5.2.1"
@@ -84,6 +104,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream EUS (v.9.2) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-2303"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@1.14.0"
+            },
+            {
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@v1.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -111,7 +151,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.53.0"
@@ -131,7 +171,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.53.0"
@@ -151,7 +191,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.53.0"
@@ -171,7 +211,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -191,7 +231,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -211,7 +251,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -231,7 +271,47 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -271,7 +351,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -291,7 +371,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.53.0"
@@ -311,7 +391,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -331,7 +411,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -344,6 +424,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "edo/external-dns-rhel9 1.3 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.43.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -371,7 +471,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -391,7 +491,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -411,7 +511,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -431,7 +531,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -451,7 +551,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -471,7 +571,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -491,7 +591,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -504,6 +604,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -531,6 +651,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/projectcontour/contour@1.29.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/projectcontour/contour@v1.29.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-41246"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
           "subcomponents": [
             {
@@ -551,7 +691,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -564,6 +704,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "edo/external-dns-rhel9 1.3 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -591,7 +751,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.53.0"
@@ -611,7 +771,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -631,7 +791,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -651,7 +811,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.53.0"
@@ -671,7 +831,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -691,7 +851,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -711,7 +871,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -731,7 +891,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -751,7 +911,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel9@sha256:d2924893dfdae6ae72376511ac5be192611539637276712dbe182b60953616d5",
+          "@id": "pkg:oci/external-dns-rhel9@sha256:0ef6dd5185013064c391eacd0f508d65829ffa512a7806660d353c113a7a069b",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"

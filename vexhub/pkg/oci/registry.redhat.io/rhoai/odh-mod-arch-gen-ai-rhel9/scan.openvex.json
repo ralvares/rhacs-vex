@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-mod-arch-gen-ai-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T23:33:19Z",
-  "version": 5,
+  "timestamp": "2026-07-14T11:29:54Z",
+  "version": 11,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-jose/go-jose/v4@4.0.4"
@@ -27,151 +27,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@4.0.4"
-            },
-            {
-              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@v4.0.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-47912"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47912"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47912"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47912"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58183"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58183"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58183"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -191,67 +51,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58185"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58185"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58185"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -271,87 +71,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -371,67 +91,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58188"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58188"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58188"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -451,67 +111,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58189"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58189"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58189"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -531,67 +131,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61723"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61723"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61723"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -611,67 +151,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61724"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61724"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61724"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -691,67 +171,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61725"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61725"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61725"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -771,7 +191,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -783,27 +203,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61726"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
+      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -844,66 +244,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift AI 3.3)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61727"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61729"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -951,127 +291,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -1091,67 +311,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -1171,67 +331,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68121"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68121"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68121"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -1251,7 +351,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -1263,7 +363,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
+      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1331,6 +431,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.36.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.36.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
           "subcomponents": [
             {
@@ -1371,47 +491,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -1427,171 +507,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-25680"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.47.0"
@@ -1611,87 +531,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.47.0"
@@ -1711,7 +551,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.47.0"
@@ -1723,27 +563,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
+      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1751,67 +571,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in OpenShift Service Mesh 2, OpenShift Service Mesh 3, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in OpenShift Service Mesh 2, OpenShift Service Mesh 3, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -1831,47 +591,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -1887,91 +607,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27142"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in OpenShift Service Mesh 2, OpenShift Service Mesh 3, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in OpenShift Service Mesh 2, OpenShift Service Mesh 3, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -1991,127 +631,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -2131,67 +651,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -2211,7 +671,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -2223,47 +683,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27896"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/modelcontextprotocol/go-sdk@0.3.1"
-            },
-            {
-              "@id": "pkg:golang/github.com/modelcontextprotocol/go-sdk@v0.3.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9."
+      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2296,7 +716,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel@1.36.0"
@@ -2312,171 +732,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-29181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@1.36.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-32281"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -2496,87 +756,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -2596,67 +776,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -2676,7 +796,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -2688,27 +808,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.71.0"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.71.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
+      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2736,7 +836,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/google.golang.org/grpc@1.72.1"
@@ -2749,132 +849,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.71.0"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.71.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.72.1"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.72.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33252"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/modelcontextprotocol/go-sdk@0.3.1"
-            },
-            {
-              "@id": "pkg:golang/github.com/modelcontextprotocol/go-sdk@v0.3.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34742"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/modelcontextprotocol/go-sdk@0.3.1"
-            },
-            {
-              "@id": "pkg:golang/github.com/modelcontextprotocol/go-sdk@v0.3.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9."
     },
     {
       "vulnerability": {
@@ -2922,6 +896,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/modelcontextprotocol/go-sdk@0.3.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/modelcontextprotocol/go-sdk@v0.3.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-34742"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
           "subcomponents": [
             {
@@ -2962,27 +956,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@4.0.4"
-            },
-            {
-              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@v4.0.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34986"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-jose/go-jose/v4@4.0.4"
@@ -3062,6 +1036,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.6"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.6"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
           "subcomponents": [
             {
@@ -3162,6 +1156,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.6"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.6"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
           "subcomponents": [
             {
@@ -3198,91 +1212,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39822"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -3298,66 +1232,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39824"
       },
       "products": [
@@ -3422,6 +1296,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
           "subcomponents": [
             {
@@ -3458,171 +1352,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39827"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -3642,87 +1376,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -3742,7 +1396,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -3754,27 +1408,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
+      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3782,87 +1416,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -3882,127 +1436,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -4022,7 +1456,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -4034,47 +1468,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39833"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
+      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -4103,6 +1497,26 @@
       "products": [
         {
           "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39833"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -4162,127 +1576,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -4302,7 +1596,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -4314,27 +1608,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
+      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -4383,6 +1657,26 @@
       "products": [
         {
           "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.6"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.6"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -4442,47 +1736,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.35.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.35.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.35.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.35.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhoai/odh-mod-arch-gen-ai-rhel9 3.3."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.36.0"
@@ -4498,66 +1752,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.35.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.35.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhoai/odh-mod-arch-gen-ai-rhel9 3.3."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.36.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-42501"
       },
       "products": [
@@ -4603,6 +1797,26 @@
       "products": [
         {
           "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.6"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.6"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -4662,47 +1876,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.47.0"
@@ -4718,191 +1892,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-42504"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -4922,187 +1916,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "managed-open-data-hub/odh-mod-arch-gen-ai-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -5118,11 +1932,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42507"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.6"
@@ -5134,27 +1968,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
+      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -5162,47 +1976,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -5218,131 +1992,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-46595"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -5362,147 +2016,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:082b78079293ba65cbda3f5e383b66847788d5ec7a5b1c37142c21eedb486224",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:2a54bcce301d118295177469204eed8849cc6ecd9642d638e9c72058165736a6",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -5522,7 +2036,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:b78ffcb12710e123bb11f264ac115829ed8e6d0bb191352beae0da377340103c",
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -5534,27 +2048,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:e2b843739bda8778ed04c6b28a9b38fe9494881ac0363527990c1f624926d0c5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 (RHEL 9) not listed as affected."
+      "impact_statement": "rhoai/odh-mod-arch-gen-ai-rhel9 3.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -5582,6 +2076,25 @@
       "products": [
         {
           "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:08692d5858df641300debdba704caaab5bf0b9168c7e1db8bd44131558a04136",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-mod-arch-gen-ai-rhel9@sha256:9c20847f0aa52081ba061bf80b4c4fd03f3d0a7a5752b5ad8881b20e94172311",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"

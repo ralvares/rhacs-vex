@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-aws-efs-csi-driver-container-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T17:50:25Z",
-  "version": 2,
+  "timestamp": "2026-07-14T07:28:19Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -282,26 +282,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-1767"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@1.29.14"
-            },
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@v1.29.14"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "aws-efs-csi-driver-container not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-40778"
       },
       "products": [
@@ -438,13 +418,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
           "subcomponents": [
             {
-              "@id": "pkg:golang/k8s.io/kubernetes@1.29.14"
+              "@id": "pkg:golang/k8s.io/kubernetes@1.33.2"
             },
             {
-              "@id": "pkg:golang/k8s.io/kubernetes@v1.29.14"
+              "@id": "pkg:golang/k8s.io/kubernetes@v1.33.2"
             }
           ]
         }
@@ -786,26 +766,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "aws-efs-csi-driver-container not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-25681"
       },
       "products": [
@@ -817,6 +777,26 @@
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
             }
           ]
         }
@@ -851,237 +831,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "aws-efs-csi-driver-container not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "aws-efs-csi-driver-container not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "aws-efs-csi-driver-container not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "aws-efs-csi-driver-container not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "aws-efs-csi-driver-container not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "aws-efs-csi-driver-container not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1095,13 +855,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1115,19 +875,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1157,6 +917,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39819"
       },
       "products": [
@@ -1177,17 +957,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1201,13 +1001,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
             }
           ]
         }
@@ -1221,13 +1021,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1241,13 +1041,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1277,17 +1077,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.42.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39825"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1301,13 +1121,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1328,6 +1148,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1404,13 +1244,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1440,17 +1280,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42504"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1464,13 +1324,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1484,13 +1344,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:daf0b8864d99639986bf0e6ec9323ba377c9f72b9ded74f07d9c087a9abe6536",
+          "@id": "pkg:oci/ose-aws-efs-csi-driver-container-rhel9@sha256:dd6ca3d1a452ccdf1427d40a28f35916023edd59a72b81572dfa599d058eff65",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }

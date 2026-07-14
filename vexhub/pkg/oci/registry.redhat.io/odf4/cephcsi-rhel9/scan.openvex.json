@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/cephcsi-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:00:41Z",
-  "version": 4,
+  "timestamp": "2026-07-14T10:43:09Z",
+  "version": 7,
   "statements": [
     {
       "vulnerability": {
@@ -11,24 +11,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/certifi@2023.5.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Openshift Container Storage 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-37920"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
           "subcomponents": [
             {
               "@id": "pkg:pypi/certifi@2023.5.7"
@@ -45,7 +28,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
           "subcomponents": [
             {
               "@id": "pkg:pypi/certifi@2023.5.7"
@@ -55,263 +38,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No affected entry in Red Hat Openshift Container Storage 4 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-39689"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/certifi@2023.5.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Openshift Container Storage 4 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-1767"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@1.32.3"
-            },
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@v1.32.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4563"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@1.32.3"
-            },
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@v1.32.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for odf4/cephcsi-rhel9 4.19."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4674"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 10), Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47907"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat Openshift Data Foundation 4.17 \u2014 registry.redhat.io/odf4/cephcsi-rhel9@sha256:0f428fbc2f749cb0a303b67b60282cf4908954fda072c8174fa7d798c1b0920c_s390x."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat Openshift Data Foundation 4.2 \u2014 registry.redhat.io/odf4/cephcsi-rhel9@sha256:147e1ff243a190e7db6af5a450ab9ee45a6c138beb1428605296c5a39d8c2cd9_ppc64le."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat Openshift Data Foundation 4.2 \u2014 registry.redhat.io/odf4/cephcsi-rhel9@sha256:147e1ff243a190e7db6af5a450ab9ee45a6c138beb1428605296c5a39d8c2cd9_ppc64le."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat Openshift Data Foundation 4.2 \u2014 registry.redhat.io/odf4/cephcsi-rhel9@sha256:147e1ff243a190e7db6af5a450ab9ee45a6c138beb1428605296c5a39d8c2cd9_ppc64le."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat Openshift Data Foundation 4.2 \u2014 registry.redhat.io/odf4/cephcsi-rhel9@sha256:147e1ff243a190e7db6af5a450ab9ee45a6c138beb1428605296c5a39d8c2cd9_ppc64le."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@1.33.2"
-            },
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@v1.33.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/cephcsi-rhel9 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@1.32.3"
-            },
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@v1.32.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/cephcsi-rhel9 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat Openshift Data Foundation 4.2 \u2014 registry.redhat.io/odf4/cephcsi-rhel9@sha256:147e1ff243a190e7db6af5a450ab9ee45a6c138beb1428605296c5a39d8c2cd9_ppc64le."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat Openshift Data Foundation 4.2 \u2014 registry.redhat.io/odf4/cephcsi-rhel9@sha256:147e1ff243a190e7db6af5a450ab9ee45a6c138beb1428605296c5a39d8c2cd9_ppc64le."
     },
     {
       "vulnerability": {
@@ -334,77 +60,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/cephcsi-rhel9 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/cephcsi-rhel9 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27139"
       },
       "products": [
         {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 10, Red Hat Enterprise Linux 8, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
             }
           ]
         }
@@ -418,7 +84,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -430,27 +96,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/cephcsi-rhel9 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/cephcsi-rhel9 4.19 not listed as affected."
+      "impact_statement": "odf4/cephcsi-rhel9 4.21 not listed as affected."
     },
     {
       "vulnerability": {
@@ -458,7 +104,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -474,31 +120,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 10, Red Hat Enterprise Linux 8, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27143"
       },
       "products": [
         {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -510,27 +136,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/cephcsi-rhel9 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/cephcsi-rhel9 4.19 not listed as affected."
+      "impact_statement": "odf4/cephcsi-rhel9 4.21 not listed as affected."
     },
     {
       "vulnerability": {
@@ -538,7 +144,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -550,27 +156,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/cephcsi-rhel9 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/cephcsi-rhel9 4.19 not listed as affected."
+      "impact_statement": "odf4/cephcsi-rhel9 4.21 not listed as affected."
     },
     {
       "vulnerability": {
@@ -579,6 +165,26 @@
       "products": [
         {
           "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -618,19 +224,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
           "subcomponents": [
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@1.36.0"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@1.38.0"
             },
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.36.0"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.38.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for odf4/cephcsi-rhel9 4.20."
+      "impact_statement": "Not listed as affected; no VEX statement for odf4/cephcsi-rhel9 4.21."
     },
     {
       "vulnerability": {
@@ -696,6 +302,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
           "subcomponents": [
             {
@@ -736,6 +362,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
           "subcomponents": [
             {
@@ -776,6 +422,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
           "subcomponents": [
             {
@@ -797,6 +463,26 @@
       "products": [
         {
           "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -837,6 +523,26 @@
       "products": [
         {
           "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -896,6 +602,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.39.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
           "subcomponents": [
             {
@@ -936,6 +662,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
           "subcomponents": [
             {
@@ -952,37 +698,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-41205"
+        "name": "CVE-2026-42499"
       },
       "products": [
         {
           "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/mako@1.1.4.dev0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for odf4/cephcsi-rhel9 4.20."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-41205"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:e43a7004b39a26f8469d160de3872463dc2ec7a3b0eba8d8b15177f5bbc36b46",
-          "subcomponents": [
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
             {
-              "@id": "pkg:pypi/mako@1.1.4.dev0"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for odf4/cephcsi-rhel9 4.19."
+      "justification": "vulnerable_code_not_in_execute_path"
     },
     {
       "vulnerability": {
@@ -990,7 +722,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -1031,6 +763,26 @@
       "products": [
         {
           "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -1071,6 +823,26 @@
       "products": [
         {
           "@id": "pkg:oci/cephcsi-rhel9@sha256:c55ce5d370d1967a9bbc5a5e1dada566b69062242444cef8e3c51a67b913ca34",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cephcsi-rhel9@sha256:e3a78ba3b231485461aabd78d8fd44cf04c4af6fb448163b4745976367030909",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"

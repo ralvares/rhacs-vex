@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/lightspeed-chatbot-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:56:55Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:27:51Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,41 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/lightspeed-chatbot-rhel9@sha256:1a6284c49dcc7e159ab224d181e6b592d7ded789b1feb7c277ece59c3f88d9cb",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.9.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3000"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/lightspeed-chatbot-rhel9@sha256:787703bfb84120bd54821588cef9657d01bbab5a5c7bd16e52c6b33d3565db72",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.9.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3001"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lightspeed-chatbot-rhel9@sha256:1a6284c49dcc7e159ab224d181e6b592d7ded789b1feb7c277ece59c3f88d9cb",
           "subcomponents": [
             {
               "@id": "pkg:pypi/torch@2.9.1"
@@ -45,7 +79,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/lightspeed-chatbot-rhel9@sha256:787703bfb84120bd54821588cef9657d01bbab5a5c7bd16e52c6b33d3565db72",
+          "@id": "pkg:oci/lightspeed-chatbot-rhel9@sha256:1a6284c49dcc7e159ab224d181e6b592d7ded789b1feb7c277ece59c3f88d9cb",
           "subcomponents": [
             {
               "@id": "pkg:pypi/llama-stack@0.4.3"
@@ -55,6 +89,48 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected in Red Hat OpenShift AI (RHOAI)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-28390"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lightspeed-chatbot-rhel9@sha256:1a6284c49dcc7e159ab224d181e6b592d7ded789b1feb7c277ece59c3f88d9cb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.5.5-2.el9_8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.5.5-2.el9_8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.5.5-2.el9_8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.5.5-2.el9_8"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54277"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lightspeed-chatbot-rhel9@sha256:1a6284c49dcc7e159ab224d181e6b592d7ded789b1feb7c277ece59c3f88d9cb",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -79,10 +155,44 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/lightspeed-chatbot-rhel9@sha256:1a6284c49dcc7e159ab224d181e6b592d7ded789b1feb7c277ece59c3f88d9cb",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54279"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/lightspeed-chatbot-rhel9@sha256:787703bfb84120bd54821588cef9657d01bbab5a5c7bd16e52c6b33d3565db72",
           "subcomponents": [
             {
               "@id": "pkg:pypi/aiohttp@3.13.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54282"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lightspeed-chatbot-rhel9@sha256:1a6284c49dcc7e159ab224d181e6b592d7ded789b1feb7c277ece59c3f88d9cb",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/starlette@1.2.0"
             }
           ]
         }

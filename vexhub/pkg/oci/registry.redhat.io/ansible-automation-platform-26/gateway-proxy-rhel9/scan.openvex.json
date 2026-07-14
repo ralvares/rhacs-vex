@@ -1,0 +1,35 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/gateway-proxy-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T06:04:36Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-28390"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/gateway-proxy-rhel9@sha256:2ae5f31acdf6466480e28fa61e57045ff351311c742486fb800f44e9e1bca3fa",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.5.5-2.el9_8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.5.5-2.el9_8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.5.5-2.el9_8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.5.5-2.el9_8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat Ansible Automation Platform 2.6)."
+    }
+  ]
+}

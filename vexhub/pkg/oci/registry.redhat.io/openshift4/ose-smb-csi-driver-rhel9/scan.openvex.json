@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-smb-csi-driver-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:53:09Z",
-  "version": 1,
+  "timestamp": "2026-07-14T13:01:33Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -257,46 +257,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-1767"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@1.29.14"
-            },
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@v1.29.14"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22868"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@0.20.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@v0.20.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-40778"
       },
       "products": [
@@ -426,26 +386,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "OpenShift 4.x 4.20: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@1.29.14"
-            },
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@v1.29.14"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
     },
     {
       "vulnerability": {
@@ -824,26 +764,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27135"
       },
       "products": [
@@ -866,126 +786,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
     },
     {
       "vulnerability": {
@@ -1038,192 +838,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.65.0"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.65.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39817"
       },
       "products": [
@@ -1235,6 +849,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:ce9597887020daa87956d20119c6936bca12032aefbf559ab1db673b993c780e",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1264,83 +898,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
+        "name": "CVE-2026-39819"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
+          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:ce9597887020daa87956d20119c6936bca12032aefbf559ab1db673b993c780e",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1364,43 +938,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39825"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
+          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:ce9597887020daa87956d20119c6936bca12032aefbf559ab1db673b993c780e",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/golang.org/x/sys@0.38.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/golang.org/x/sys@v0.38.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1415,6 +969,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:ce9597887020daa87956d20119c6936bca12032aefbf559ab1db673b993c780e",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1487,26 +1061,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-42501"
       },
       "products": [
@@ -1527,63 +1081,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42504"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
+          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:ce9597887020daa87956d20119c6936bca12032aefbf559ab1db673b993c780e",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-smb-csi-driver-rhel9@sha256:84406b4a37350c196297c0a7993753ae6d840c669dc6a27d33ba6e9af6be3a6b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "smb-csi-driver not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {

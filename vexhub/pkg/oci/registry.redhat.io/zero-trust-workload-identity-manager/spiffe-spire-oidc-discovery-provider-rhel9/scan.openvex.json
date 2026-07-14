@@ -2,88 +2,28 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/spiffe-spire-oidc-discovery-provider-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:21:29Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:47:29Z",
+  "version": 3,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
+          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:3e2ab122b73886dbd007412d4ebfda860713d0a52171664cc34f56a4dc30194a",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.26.3"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.26.3"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -109,52 +49,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.46.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -198,83 +92,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39822"
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
+          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:3e2ab122b73886dbd007412d4ebfda860713d0a52171664cc34f56a4dc30194a",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.26.3"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.26.3"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -298,66 +132,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39836"
       },
       "products": [
@@ -375,26 +149,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
     },
     {
       "vulnerability": {
@@ -418,43 +172,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-42504"
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
+          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:3e2ab122b73886dbd007412d4ebfda860713d0a52171664cc34f56a4dc30194a",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.26.3"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.26.3"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -462,39 +196,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
+          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:3e2ab122b73886dbd007412d4ebfda860713d0a52171664cc34f56a4dc30194a",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.26.3"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.26.3"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -502,79 +216,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
+          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:3e2ab122b73886dbd007412d4ebfda860713d0a52171664cc34f56a4dc30194a",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.26.3"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/stdlib@v1.26.3"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.0 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/spiffe-spire-oidc-discovery-provider-rhel9@sha256:03a54fe0917ddb04af1a5feb38097e89e5517a1851f589127b747efa2395faa2",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "zero-trust-workload-identity-manager/spiffe-spire-oidc-discovery-provider-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {

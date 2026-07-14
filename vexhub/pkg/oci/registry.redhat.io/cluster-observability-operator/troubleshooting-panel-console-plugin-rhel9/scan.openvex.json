@@ -2,9 +2,29 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/troubleshooting-panel-console-plugin-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:09:50Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:29:44Z",
+  "version": 3,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22868"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/oauth2@0.25.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/oauth2@v0.25.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
     {
       "vulnerability": {
         "name": "CVE-2025-22868"
@@ -24,6 +44,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Cluster Observability Operator 1.5.0)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22870"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -51,6 +91,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22872"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:ac799147bf15a7af20b617799e78cbf9ce2067a9204cabee4358db23c51a950a",
           "subcomponents": [
             {
@@ -64,6 +124,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Cluster Observability Operator 1.5.0)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47911"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -91,6 +171,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58190"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:ac799147bf15a7af20b617799e78cbf9ce2067a9204cabee4358db23c51a950a",
           "subcomponents": [
             {
@@ -104,6 +204,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Cluster Observability Operator 1.5.0)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25680"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -131,6 +251,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:ac799147bf15a7af20b617799e78cbf9ce2067a9204cabee4358db23c51a950a",
           "subcomponents": [
             {
@@ -151,7 +291,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:ac799147bf15a7af20b617799e78cbf9ce2067a9204cabee4358db23c51a950a",
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.34.0"
@@ -171,19 +311,65 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:ac799147bf15a7af20b617799e78cbf9ce2067a9204cabee4358db23c51a950a",
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/troubleshooting-panel-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/troubleshooting-panel-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -204,6 +390,86 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Cluster Observability Operator 1.5.0)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/troubleshooting-panel-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -231,19 +497,59 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:ac799147bf15a7af20b617799e78cbf9ce2067a9204cabee4358db23c51a950a",
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/troubleshooting-panel-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/troubleshooting-panel-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.29.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.29.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -267,11 +573,111 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/troubleshooting-panel-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/troubleshooting-panel-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/troubleshooting-panel-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42502"
       },
       "products": [
         {
-          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:ac799147bf15a7af20b617799e78cbf9ce2067a9204cabee4358db23c51a950a",
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.34.0"
@@ -291,13 +697,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:ac799147bf15a7af20b617799e78cbf9ce2067a9204cabee4358db23c51a950a",
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -311,19 +717,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:ac799147bf15a7af20b617799e78cbf9ce2067a9204cabee4358db23c51a950a",
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/troubleshooting-panel-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -351,19 +777,38 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:ac799147bf15a7af20b617799e78cbf9ce2067a9204cabee4358db23c51a950a",
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/troubleshooting-panel-console-plugin-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/troubleshooting-panel-console-plugin-rhel9@sha256:1740d0f2b000dd709c467e6e5c11f1e294ca4d5f40b86c512e1525d7505d5322",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {

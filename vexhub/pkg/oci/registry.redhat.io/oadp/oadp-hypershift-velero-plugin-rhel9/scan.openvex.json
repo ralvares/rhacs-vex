@@ -2,9 +2,34 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/oadp-hypershift-velero-plugin-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:36:26Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:49:29Z",
+  "version": 3,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
     {
       "vulnerability": {
         "name": "CVE-2025-6965"
@@ -36,19 +61,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.54.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.54.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -56,19 +81,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.54.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.54.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -76,19 +101,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.54.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.54.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -96,7 +121,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -108,7 +133,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -135,7 +160,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -147,7 +172,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -155,14 +180,8 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
-            },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
@@ -181,7 +200,47 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -221,7 +280,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -233,7 +292,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -241,19 +300,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.54.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.54.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -261,7 +320,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -273,7 +332,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -281,7 +340,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -293,7 +352,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -321,7 +380,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -333,7 +392,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -341,7 +400,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -353,7 +412,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -381,7 +460,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -393,7 +472,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -421,19 +520,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.54.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.54.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -441,7 +540,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -453,7 +552,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -461,7 +560,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -473,7 +572,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -481,19 +580,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.54.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.54.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -501,7 +600,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:ef2909b992bd92f4383849a4679661f826307f09aeb72ffb8c736b62af7ced78",
+          "@id": "pkg:oci/oadp-hypershift-velero-plugin-rhel9@sha256:2969b02311a20792fb89193e3e4e8f0eef930cc0b38731681dfeaf84155eb4be",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -513,7 +612,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-hypershift-velero-plugin-rhel9 1.6 not listed as affected."
     }
   ]
 }

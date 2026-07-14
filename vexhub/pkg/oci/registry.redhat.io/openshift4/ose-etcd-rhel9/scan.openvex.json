@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-etcd-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T23:31:11Z",
-  "version": 6,
+  "timestamp": "2026-07-14T11:29:24Z",
+  "version": 13,
   "statements": [
     {
       "vulnerability": {
@@ -681,86 +681,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22870"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-30204"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@4.5.1"
-            },
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@v4.5.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-40778"
       },
       "products": [
@@ -1062,6 +982,44 @@
         },
         {
           "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.20: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/systemd-libs@252-32.el9_4.10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-pam@252-32.el9_4.10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-32.el9_4.10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd@252-32.el9_4.10"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@252-32.el9_4.10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-pam@252-32.el9_4.10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-32.el9_4.10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@252-32.el9_4.10"
         }
       ],
       "status": "not_affected",
@@ -1235,546 +1193,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-4674"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.2), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47907"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.18 \u2014 registry.redhat.io/openshift4/ose-etcd-rhel9@sha256:73803927ea0bbd200d4163c464636503b41c7fd616b90121d92ec9f3341bcc64_ppc64le."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58183"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58183"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.18 \u2014 registry.redhat.io/openshift4/ose-etcd-rhel9@sha256:0340ee718db89ded2464c6a3a82612d0db4ce5e852cf7c2f56420e6cfca84b81_arm64."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58185"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58185"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58188"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58188"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58189"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58189"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-59375"
       },
       "products": [
@@ -1832,126 +1250,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-61723"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61723"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61725"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61725"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61726"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61726"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-61726"
       },
       "products": [
@@ -1969,226 +1267,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift Container Platform 4.18)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61729"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61729"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.18 \u2014 registry.redhat.io/openshift4/ose-etcd-rhel9@sha256:0340ee718db89ded2464c6a3a82612d0db4ce5e852cf7c2f56420e6cfca84b81_arm64."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.18 \u2014 registry.redhat.io/openshift4/ose-etcd-rhel9@sha256:5444db88c81a5c83f932a4c62a80a0a2ff6ee6bacdb30c1ceb3f7f8a971105e2_s390x."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68121"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -2816,6 +1894,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.34.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
           "subcomponents": [
             {
@@ -2896,7 +1994,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2931,151 +2029,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.20 \u2014 registry.redhat.io/openshift4/ose-etcd-rhel9@sha256:36f54e6e0e2de4dac21ac38a3a6604977f43aa2fab99f2fcabf147213b8536ae_arm64."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.20 \u2014 registry.redhat.io/openshift4/ose-etcd-rhel9@sha256:36f54e6e0e2de4dac21ac38a3a6604977f43aa2fab99f2fcabf147213b8536ae_arm64."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-25680"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.47.0"
@@ -3095,107 +2053,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.47.0"
@@ -3290,107 +2148,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.47.0"
@@ -3410,107 +2168,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -3530,107 +2188,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -3650,107 +2208,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -3770,53 +2228,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
             }
           ]
         }
@@ -3845,97 +2263,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27143"
+        "name": "CVE-2026-27144"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
             }
           ]
         }
@@ -3964,151 +2302,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -4128,107 +2326,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -4248,107 +2346,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -4368,107 +2366,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -4488,107 +2386,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -4608,107 +2406,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -4728,107 +2426,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -4848,45 +2446,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.71.1"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.71.1"
-            }
-          ]
-        }
-      ],
-      "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.71.1"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.71.1"
-            }
-          ]
-        }
-      ],
-      "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/google.golang.org/grpc@1.71.1"
@@ -4925,25 +2485,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.71.1"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.71.1"
-            }
-          ]
-        }
-      ],
-      "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
           "subcomponents": [
             {
@@ -4964,107 +2505,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -5084,137 +2525,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.47.0"
@@ -5241,6 +2552,26 @@
       "products": [
         {
           "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -5380,6 +2711,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
           "subcomponents": [
             {
@@ -5480,107 +2831,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -5600,107 +2851,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.47.0"
@@ -5720,107 +2871,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -5840,107 +2891,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -5961,6 +2912,26 @@
       "products": [
         {
           "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/sys@0.38.0"
@@ -6080,107 +3051,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -6200,107 +3071,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -6320,107 +3091,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -6440,107 +3111,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -6560,107 +3131,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -6680,107 +3151,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -6800,107 +3171,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -6920,107 +3191,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -7040,107 +3211,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -7161,6 +3232,26 @@
       "products": [
         {
           "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -7280,107 +3371,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.34.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.34.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.34.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.20.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.20.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.18. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.34.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.34.0"
@@ -7596,107 +3587,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -7717,6 +3608,26 @@
       "products": [
         {
           "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -7836,107 +3747,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.47.0"
@@ -7956,107 +3767,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -8076,107 +3787,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -8196,107 +3807,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.47.0"
@@ -8316,107 +3827,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.11"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -8436,107 +3847,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -8724,107 +4035,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -8844,107 +4055,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
@@ -8964,107 +4075,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:237af94a549e05a914c69bea69c8aad826174a9b9e8e760ad246bcacfaff1fd9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:4e75321a047a82ea1873a9518cc33a9700e2d18fbc23a4f77a67b39a066fa776",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:6207d9d668589cda1dc06dda0152577d29592871f0eb9c824e7739a1d395f7c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b4217e081d245a069b9256981f44da42e9d0d4d73ce8e007246f8d4dab513e97",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:b621e3660fe4773741d7ce2a46de3534ad553f143cfba630c8042862bf51cddf",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "etcd not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-etcd-rhel9@sha256:da7e6796ae05320246c493707f17ff38b5fff147232937aabe125ee53e4f9419",
+          "@id": "pkg:oci/ose-etcd-rhel9@sha256:43b0af1b6cee7fd84776a28ef68cf075fba86211b592058f4eda7f8962e5e8f5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.45.0"

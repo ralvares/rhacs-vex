@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/sso75-openshift-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:19:04Z",
-  "version": 3,
+  "timestamp": "2026-07-14T10:45:23Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -64,32 +64,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2022-3787"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sso75-openshift-rhel8@sha256:d5829e880db4b82a50a4962d61ea148522a93644174931b256d7ad866eadcf40",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/device-mapper-multipath@0.8.4-17.el8_5.1"
-            },
-            {
-              "@id": "pkg:rpm/redhat/kpartx@0.8.4-17.el8_5.1"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/device-mapper-multipath@0.8.4-17.el8_5.1"
-        },
-        {
-          "@id": "pkg:rpm/redhat/kpartx@0.8.4-17.el8_5.1"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "'kpartx' not affected in related products (Red Hat CodeReady Linux Builder (v. 8))."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2022-41974"
       },
       "products": [
@@ -113,32 +87,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "rh-sso-7/sso75-openshift-rhel8 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-41974"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sso75-openshift-rhel8@sha256:d5829e880db4b82a50a4962d61ea148522a93644174931b256d7ad866eadcf40",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/device-mapper-multipath@0.8.4-17.el8_5.1"
-            },
-            {
-              "@id": "pkg:rpm/redhat/kpartx@0.8.4-17.el8_5.1"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/device-mapper-multipath@0.8.4-17.el8_5.1"
-        },
-        {
-          "@id": "pkg:rpm/redhat/kpartx@0.8.4-17.el8_5.1"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "'kpartx' not affected in related products (Red Hat CodeReady Linux Builder EUS (v. 8.2))."
     },
     {
       "vulnerability": {

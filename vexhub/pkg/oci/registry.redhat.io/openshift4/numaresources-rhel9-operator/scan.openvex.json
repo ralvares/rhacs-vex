@@ -2,82 +2,22 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/numaresources-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T15:02:46Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:42:50Z",
+  "version": 3,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "numaresources-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "numaresources-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "numaresources-operator not listed as affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2026-25680"
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -91,13 +31,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -111,119 +51,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "numaresources-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -231,13 +71,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -247,142 +87,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-32280"
+        "name": "CVE-2026-29181"
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.39.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "numaresources-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "numaresources-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "numaresources-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "numaresources-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "numaresources-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "numaresources-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.68.1"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.68.1"
-            }
-          ]
-        }
-      ],
-      "status": "fixed"
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.22. Other products: affected: Multicluster Engine for Kubernetes; fixed: multicluster engine for Kubernetes 2.11; not affected: multicluster engine for Kubernetes 2.11."
     },
     {
       "vulnerability": {
@@ -390,13 +111,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -410,19 +131,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -452,6 +167,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39819"
       },
       "products": [
@@ -472,17 +207,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -496,13 +251,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -516,13 +271,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -536,13 +291,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -572,17 +327,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.43.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39825"
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -596,13 +371,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -632,17 +407,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42499"
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -672,17 +467,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42502"
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -696,13 +511,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -716,13 +531,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -736,13 +551,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -756,13 +571,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:84e402d53c481cc19a7f24afddb96cb0f9d888b63a378845f8de5bdc72da064e",
+          "@id": "pkg:oci/numaresources-rhel9-operator@sha256:c1bde3efbb9ae2dd78aaedebb7094456fa2f978cb5d844c054f2b43156246976",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }

@@ -2,94 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/pluginregistry-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T17:52:44Z",
-  "version": 2,
+  "timestamp": "2026-07-14T07:31:16Z",
+  "version": 3,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2016-3956"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/npm@1.95.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for devspaces/pluginregistry-rhel9 3.28."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2019-16775"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/npm@1.95.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for devspaces/pluginregistry-rhel9 3.28."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2019-16776"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/npm@1.95.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for devspaces/pluginregistry-rhel9 3.28."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2019-16777"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/npm@1.95.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for devspaces/pluginregistry-rhel9 3.28."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2020-15095"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/npm@1.95.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for devspaces/pluginregistry-rhel9 3.28."
-    },
     {
       "vulnerability": {
         "name": "CVE-2023-0835"
@@ -106,60 +21,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5889"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/brace-expansion@1.1.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26996"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27903"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@10.2.2"
-            },
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "devspaces/pluginregistry-rhel9 3.28 not listed as affected."
     },
     {
       "vulnerability": {
@@ -206,26 +67,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27904"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@10.2.2"
-            },
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-29786"
       },
       "products": [
@@ -240,100 +81,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not affected in devspaces/pluginregistry-rhel9 3.28 (Red Hat Enterprise Linux 9): vulnerable code not present."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-31802"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@7.5.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33671"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@2.3.1"
-            },
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "devspaces/pluginregistry-rhel9 3.28 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33672"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@2.3.1"
-            },
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "devspaces/pluginregistry-rhel9 3.28 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33750"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/brace-expansion@1.1.11"
-            },
-            {
-              "@id": "pkg:npm/brace-expansion@5.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "devspaces/pluginregistry-rhel9 3.28 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@10.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {

@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-local-storage-diskmaker-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:35:23Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:39:28Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -389,26 +389,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-5187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@1.33.3"
-            },
-            {
-              "@id": "pkg:golang/k8s.io/kubernetes@v1.33.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-diskmaker not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-59375"
       },
       "products": [
@@ -666,26 +646,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-diskmaker not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27135"
       },
       "products": [
@@ -711,257 +671,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-diskmaker not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-29181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: affected: Multicluster Engine for Kubernetes; fixed: multicluster engine for Kubernetes 2.11; not affected: multicluster engine for Kubernetes 2.11."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-diskmaker not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-diskmaker not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-diskmaker not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-diskmaker not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-diskmaker not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -975,13 +695,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -995,25 +715,45 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1028,6 +768,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1061,13 +821,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1081,13 +841,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
             }
           ]
         }
@@ -1101,13 +861,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1121,19 +881,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "local-storage-diskmaker not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.42.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1161,13 +941,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1181,19 +961,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "local-storage-diskmaker not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1284,19 +1084,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "local-storage-diskmaker not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1324,13 +1144,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1344,13 +1164,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1364,13 +1184,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:cb94457cfddc7b19700c85e025b7ec0c3dc379126a5e09f7d1638c4597338ea6",
+          "@id": "pkg:oci/ose-local-storage-diskmaker-rhel9@sha256:87be23c192a92e1b10d352c345c4c8f1d56f0e36af729b4186fddb407f2373ee",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }

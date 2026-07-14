@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/apicurio-registry-ui-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T17:50:01Z",
-  "version": 2,
+  "timestamp": "2026-07-14T07:28:19Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -75,23 +75,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-24001"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/apicurio-registry-ui-rhel9@sha256:c678c969504df1edf6868575958af75bf377cb19f909a94990050967b5714501",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/diff@5.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for apicurio/apicurio-registry-ui-rhel9 9."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-24842"
       },
       "products": [
@@ -157,40 +140,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not affected in apicurio/apicurio-registry-ui-rhel9 9 (Red Hat Enterprise Linux 9): component not present."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-3449"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/apicurio-registry-ui-rhel9@sha256:c678c969504df1edf6868575958af75bf377cb19f909a94990050967b5714501",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/@tootallnate/once@2.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat build of Apicurio Registry 2 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/apicurio-registry-ui-rhel9@sha256:c678c969504df1edf6868575958af75bf377cb19f909a94990050967b5714501",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@10.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
     }
   ]
 }

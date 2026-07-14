@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-dpu-daemon-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:19:24Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:31:16Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -638,7 +638,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.39.0"
@@ -654,23 +654,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
+        "name": "CVE-2026-24051"
       },
       "products": [
         {
           "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.39.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "dpu-daemon not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -699,117 +699,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -823,7 +723,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
@@ -835,127 +735,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: affected: Multicluster Engine for Kubernetes; fixed: multicluster engine for Kubernetes 2.11; not affected: multicluster engine for Kubernetes 2.11."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "dpu-daemon not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "dpu-daemon not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "dpu-daemon not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "dpu-daemon not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "dpu-daemon not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "dpu-daemon not listed as affected."
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.22. Other products: affected: Multicluster Engine for Kubernetes; fixed: multicluster engine for Kubernetes 2.11; not affected: multicluster engine for Kubernetes 2.11."
     },
     {
       "vulnerability": {
@@ -963,13 +743,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -983,7 +763,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -992,16 +772,36 @@
               "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1016,6 +816,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1049,13 +869,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1069,7 +889,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1089,13 +909,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1109,19 +929,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "dpu-daemon not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.39.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1149,13 +989,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1169,19 +1009,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "dpu-daemon not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1209,7 +1069,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.39.0"
@@ -1221,7 +1081,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.22. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
     },
     {
       "vulnerability": {
@@ -1292,19 +1152,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "dpu-daemon not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1332,13 +1212,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1352,13 +1232,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1372,13 +1252,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:b81322ecfc1c59642dc50a6e483e1bec589e14178fde9e418430d95096e75d8c",
+          "@id": "pkg:oci/ose-dpu-daemon-rhel9@sha256:6eb04a9005708f85b65b9df6e6f14080e112f154872d76bde24b6481a122afb7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }

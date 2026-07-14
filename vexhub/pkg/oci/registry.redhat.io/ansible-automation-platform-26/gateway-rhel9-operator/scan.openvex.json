@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/gateway-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:54:34Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:27:52Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pip@23.2.1"
@@ -44,11 +44,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-0913"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-22868"
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/oauth2@0.21.0"
@@ -68,7 +88,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -94,7 +114,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -114,7 +134,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -134,7 +154,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -173,7 +193,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -193,7 +213,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -213,7 +233,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -233,7 +253,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -253,7 +273,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -273,7 +293,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -293,7 +313,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -313,7 +333,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -333,7 +353,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -353,7 +373,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -373,7 +393,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -393,7 +413,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -413,7 +433,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -433,7 +453,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -453,7 +473,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -473,7 +493,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -493,7 +513,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -513,7 +533,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -533,7 +553,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -553,7 +573,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -573,7 +593,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -593,7 +613,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -613,7 +633,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -633,7 +653,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -653,7 +673,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pip@23.2.1"
@@ -743,11 +763,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.23.1"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.23.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-25679"
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -767,7 +807,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -787,7 +827,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -807,7 +847,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -827,7 +867,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -847,7 +887,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -867,7 +907,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -887,7 +927,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -907,7 +947,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -927,7 +967,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -943,11 +983,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-28390"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.0.7-29.el9_4.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.0.7-29.el9_4.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.0.7-29.el9_4.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.0.7-29.el9_4.2"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat Ansible Automation Platform 2.6)."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-32280"
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -967,7 +1033,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -987,7 +1053,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1007,7 +1073,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1027,7 +1093,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1047,7 +1113,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1067,7 +1133,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1087,7 +1153,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -1129,6 +1195,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39819"
       },
       "products": [
@@ -1149,11 +1235,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1173,7 +1279,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -1193,7 +1299,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1213,7 +1319,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1249,11 +1355,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39825"
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1273,7 +1399,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1309,11 +1435,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39883"
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.23.1"
@@ -1358,7 +1504,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1394,11 +1540,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42502"
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -1418,7 +1584,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1438,7 +1604,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"
@@ -1458,7 +1624,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.33.0"
@@ -1478,7 +1644,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/gateway-rhel9-operator@sha256:1a2b8d24d3e97b6449344c04b663798285007809066fcfb83905d1458e48b0f2",
+          "@id": "pkg:oci/gateway-rhel9-operator@sha256:eaea72be3f774982ef5bd5cff102969e2b8736a8777e5b088a3bdac214ffc414",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.22.12"

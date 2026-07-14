@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/argocd-agent-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T15:19:39Z",
-  "version": 2,
+  "timestamp": "2026-07-14T10:45:22Z",
+  "version": 6,
   "statements": [
     {
       "vulnerability": {
@@ -47,11 +47,51 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "component_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "component_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-25934"
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
@@ -71,7 +111,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
@@ -127,11 +167,51 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-27141"
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.50.0"
@@ -151,7 +231,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -167,11 +247,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.3"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-gitops-1/argocd-agent-rhel9 1.21 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-29181"
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel@1.40.0"
@@ -191,7 +291,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
@@ -211,7 +311,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
@@ -247,11 +347,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-33814"
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.50.0"
@@ -277,7 +397,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
@@ -297,7 +417,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
@@ -333,6 +453,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39819"
       },
       "products": [
@@ -353,11 +493,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -397,7 +557,27 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.53.0"
@@ -417,7 +597,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -437,13 +617,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.4"
+              "@id": "pkg:golang/stdlib@1.26.3"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.4"
+              "@id": "pkg:golang/stdlib@v1.26.3"
             }
           ]
         }
@@ -457,7 +637,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -493,11 +673,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.42.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39825"
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -517,7 +717,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -573,6 +773,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39828"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39828"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39829"
       },
       "products": [
@@ -598,6 +838,46 @@
       "products": [
         {
           "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39829"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39829"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -653,6 +933,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39830"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39830"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39831"
       },
       "products": [
@@ -678,6 +998,46 @@
       "products": [
         {
           "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39831"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39831"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -718,6 +1078,46 @@
       "products": [
         {
           "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39835"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39835"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -753,11 +1153,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39883"
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.40.0"
@@ -777,7 +1197,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -813,11 +1233,71 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42504"
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-gitops-1/argocd-agent-rhel9 1.20 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.3"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-gitops-1/argocd-agent-rhel9 1.21 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -837,33 +1317,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/stdlib@1.26.3"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-gitops-1/argocd-agent-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.4"
+              "@id": "pkg:golang/stdlib@v1.26.3"
             }
           ]
         }
@@ -877,7 +1337,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -893,11 +1353,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42507"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.3"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-gitops-1/argocd-agent-rhel9 1.21 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42508"
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
@@ -917,7 +1397,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -973,6 +1453,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-44740"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@5.6.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@v5.6.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "component_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44740"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@5.6.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@v5.6.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "component_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-44973"
       },
       "products": [
@@ -998,6 +1518,46 @@
       "products": [
         {
           "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@5.6.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@v5.6.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44973"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@5.6.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@v5.6.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44973"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-billy/v5@5.6.2"
@@ -1053,6 +1613,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-45022"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45022"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-45570"
       },
       "products": [
@@ -1078,6 +1678,46 @@
       "products": [
         {
           "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45570"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45570"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
@@ -1097,7 +1737,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
@@ -1117,7 +1757,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
@@ -1137,7 +1777,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:1c1ea50c1955400f99a1bb7135df72e4e100fb04fd9888ef0bc53f9b2790594c",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
@@ -1157,7 +1797,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -1198,6 +1838,46 @@
       "products": [
         {
           "@id": "pkg:oci/argocd-agent-rhel9@sha256:5941ffaae09528c84cfeea02dd1679c6e94f35f80d0ec4196ea8d849e8551561",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46597"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:878b54e31e8de894f42ff2d303a1f61d0b3c28f8653be3de17c8aca737a354a1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46597"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/argocd-agent-rhel9@sha256:aa21554e99267be91fb17f093afc277615098060cd4cab6fd5d473a4ee46ef39",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"

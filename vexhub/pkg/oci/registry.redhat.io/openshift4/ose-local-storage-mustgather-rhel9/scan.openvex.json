@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-local-storage-mustgather-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T17:56:13Z",
-  "version": 2,
+  "timestamp": "2026-07-14T10:39:28Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -43,46 +43,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-40635"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/containerd/containerd@1.7.11"
-            },
-            {
-              "@id": "pkg:golang/github.com/containerd/containerd@v1.7.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-mustgather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-45310"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@1.1.13"
-            },
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@v1.1.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
     },
     {
       "vulnerability": {
@@ -317,25 +277,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-31133"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@1.1.13"
-            },
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@v1.1.13"
-            }
-          ]
-        }
-      ],
-      "status": "fixed"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-40778"
       },
       "products": [
@@ -456,65 +397,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-mustgather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-mustgather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-52565"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@1.1.13"
-            },
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@v1.1.13"
-            }
-          ]
-        }
-      ],
-      "status": "fixed"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-52881"
       },
       "products": [
@@ -538,46 +420,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_in_execute_path"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-54410"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-mustgather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-mustgather not listed as affected."
     },
     {
       "vulnerability": {
@@ -858,26 +700,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-mustgather not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27135"
       },
       "products": [
@@ -903,117 +725,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1023,123 +745,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-32280"
+        "name": "CVE-2026-29181"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@1.36.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.36.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "local-storage-mustgather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-mustgather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-mustgather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-mustgather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-mustgather not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "local-storage-mustgather not listed as affected."
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.22. Other products: affected: Multicluster Engine for Kubernetes; fixed: multicluster engine for Kubernetes 2.11; not affected: multicluster engine for Kubernetes 2.11."
     },
     {
       "vulnerability": {
@@ -1147,7 +769,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
@@ -1183,17 +805,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33748"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/moby/buildkit@0.12.5"
+            },
+            {
+              "@id": "pkg:golang/github.com/moby/buildkit@v0.12.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "component_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-33811"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1207,19 +849,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.42.0"
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1233,13 +875,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
+              "@id": "pkg:golang/github.com/docker/docker@28.5.2+incompatible"
             },
             {
-              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
+              "@id": "pkg:golang/github.com/docker/docker@v28.5.2+incompatible"
             }
           ]
         }
@@ -1253,13 +895,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
+              "@id": "pkg:golang/github.com/docker/docker@28.5.2+incompatible"
             },
             {
-              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
+              "@id": "pkg:golang/github.com/docker/docker@v28.5.2+incompatible"
             }
           ]
         }
@@ -1269,11 +911,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-34986"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@4.1.3"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@v4.1.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "component_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-35172"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
@@ -1309,6 +971,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-35469"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/moby/spdystream@0.5.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/moby/spdystream@v0.5.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift Container Platform 4.22)."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39817"
       },
       "products": [
@@ -1320,6 +1002,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1349,17 +1051,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1373,13 +1095,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.42.0"
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.42.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
             }
           ]
         }
@@ -1393,13 +1115,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1413,13 +1135,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1449,17 +1171,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.42.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39825"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1473,13 +1215,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1493,13 +1235,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
             }
           ]
         }
@@ -1513,13 +1255,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
             }
           ]
         }
@@ -1533,13 +1275,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
             }
           ]
         }
@@ -1553,13 +1295,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
             }
           ]
         }
@@ -1573,13 +1315,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
             }
           ]
         }
@@ -1593,13 +1335,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
             }
           ]
         }
@@ -1613,13 +1355,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
             }
           ]
         }
@@ -1633,13 +1375,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
             }
           ]
         }
@@ -1660,6 +1402,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1774,13 +1536,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
+              "@id": "pkg:golang/github.com/docker/docker@28.5.2+incompatible"
             },
             {
-              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
+              "@id": "pkg:golang/github.com/docker/docker@v28.5.2+incompatible"
             }
           ]
         }
@@ -1794,7 +1556,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
@@ -1814,13 +1576,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1850,17 +1612,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42504"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1874,13 +1656,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1894,13 +1676,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1914,13 +1696,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
             }
           ]
         }
@@ -1969,11 +1751,51 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-44973"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@5.6.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@v5.6.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-45022"
       },
       "products": [
         {
           "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.13.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45022"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
@@ -2046,11 +1868,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-45571"
+        "name": "CVE-2026-45570"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
@@ -2062,7 +1884,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: fixed: Red Hat Openshift Data Foundation 4.22; not affected: Red Hat Openshift Data Foundation 4.22."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45571"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.13.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.22. Other products: fixed: Red Hat Openshift Data Foundation 4.22; not affected: Red Hat Openshift Data Foundation 4.22."
     },
     {
       "vulnerability": {
@@ -2070,13 +1912,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
             }
           ]
         }
@@ -2090,13 +1932,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
             }
           ]
         }
@@ -2110,13 +1952,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:1cd15071a538d3dae11f515cc1df56ad5e623e502a1ae581f4fb99f8a2436d1c",
+          "@id": "pkg:oci/ose-local-storage-mustgather-rhel9@sha256:39231f6e55806dfe1089d42713622cbb0de5834435bb8c9a54f4296c3bc676b1",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
             }
           ]
         }

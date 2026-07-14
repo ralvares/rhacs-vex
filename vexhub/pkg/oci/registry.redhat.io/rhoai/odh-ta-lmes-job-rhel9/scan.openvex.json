@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-ta-lmes-job-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T23:50:41Z",
-  "version": 6,
+  "timestamp": "2026-07-14T12:38:00Z",
+  "version": 13,
   "statements": [
     {
       "vulnerability": {
@@ -11,6 +11,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/skopeo@1.20.0-3.el9_7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/skopeo@1.20.0-3.el9_7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-1962"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
           "subcomponents": [
             {
@@ -111,6 +131,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/skopeo@1.20.0-3.el9_7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/skopeo@1.20.0-3.el9_7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-32148"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
           "subcomponents": [
             {
@@ -207,139 +247,20 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-35515"
+        "name": "CVE-2025-1194"
       },
       "products": [
         {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/sqlitedict@2.1.0"
+              "@id": "pkg:pypi/transformers@4.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-35515"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/sqlitedict@2.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-35515"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/sqlitedict@2.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-35515"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/sqlitedict@2.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-35515"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/sqlitedict@2.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-35515"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/sqlitedict@2.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-52303"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.10.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-52304"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.10.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 9 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -347,7 +268,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
           "subcomponents": [
             {
               "@id": "pkg:pypi/transformers@4.48.0"
@@ -442,125 +363,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-14009"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/nltk@3.9.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat OpenShift AI 2.25 \u2014 registry.redhat.io/rhoai/odh-ta-lmes-job-rhel9@sha256:017d014c78d061d75ce7919c889e4082fdc226782856bdb303f62ac70753d28f_arm64."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2099"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2099"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2099"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2099"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2099"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2099"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
     },
     {
       "vulnerability": {
@@ -569,6 +371,23 @@
       "products": [
         {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.6.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-2148"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
           "subcomponents": [
             {
               "@id": "pkg:pypi/torch@2.6.0"
@@ -687,6 +506,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.6.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-2149"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
           "subcomponents": [
             {
@@ -768,7 +604,7 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-2953"
+        "name": "CVE-2025-2998"
       },
       "products": [
         {
@@ -781,92 +617,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2953"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/torch@2.6.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2953"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/torch@2.6.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2953"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/torch@2.6.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2953"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/torch@2.6.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2953"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/torch@2.6.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -874,7 +625,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
           "subcomponents": [
             {
               "@id": "pkg:pypi/torch@2.6.0"
@@ -993,6 +744,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.6.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-2999"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
           "subcomponents": [
             {
@@ -1095,6 +863,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.6.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3000"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
           "subcomponents": [
             {
@@ -1197,6 +982,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.6.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3001"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
           "subcomponents": [
             {
@@ -1278,207 +1080,20 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-3263"
+        "name": "CVE-2025-3730"
       },
       "products": [
         {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/transformers@4.48.0"
+              "@id": "pkg:pypi/torch@2.6.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3263"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3263"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3263"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3263"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3263"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3264"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3264"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3264"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3264"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3264"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3264"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1486,7 +1101,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
           "subcomponents": [
             {
               "@id": "pkg:pypi/torch@2.6.0"
@@ -1581,512 +1196,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3777"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3777"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3777"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3777"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3777"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3777"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3933"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3933"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3933"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3933"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3933"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3933"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5197"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5197"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5197"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5197"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5197"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5197"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-52881"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/opencontainers/selinux@1.12.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/opencontainers/selinux@v1.12.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-52881"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/opencontainers/selinux@1.12.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/opencontainers/selinux@v1.12.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-52881"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/opencontainers/selinux@1.12.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/opencontainers/selinux@v1.12.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-52881"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/opencontainers/selinux@1.12.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/opencontainers/selinux@v1.12.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -2107,205 +1216,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift AI 3.3)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-53643"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.10.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6051"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6051"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6051"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6051"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6051"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6051"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61726"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -2347,66 +1257,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61729"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-61729"
       },
       "products": [
@@ -2430,143 +1280,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift AI 3.3)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-64756"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/glob@10.4.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -2703,86 +1416,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/sigstore/fulcio@1.6.6"
-            },
-            {
-              "@id": "pkg:golang/github.com/sigstore/fulcio@v1.6.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-66506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/sigstore/fulcio@1.6.6"
-            },
-            {
-              "@id": "pkg:golang/github.com/sigstore/fulcio@v1.6.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-66506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/sigstore/fulcio@1.7.1"
-            },
-            {
-              "@id": "pkg:golang/github.com/sigstore/fulcio@v1.7.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-66506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/sigstore/fulcio@1.7.1"
-            },
-            {
-              "@id": "pkg:golang/github.com/sigstore/fulcio@v1.7.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-66506"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
           "subcomponents": [
             {
@@ -2796,239 +1429,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift AI 3.3)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68119"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68119"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68121"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68121"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6921"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6921"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6921"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6921"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6921"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6921"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69223"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.10.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69227"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.10.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69228"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.10.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -3070,6 +1470,37 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-0865"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
           "subcomponents": [
             {
@@ -3097,46 +1528,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-23745"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-23745"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-23949"
       },
       "products": [
@@ -3245,40 +1636,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-24001"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/diff@5.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhoai/odh-ta-lmes-job-rhel9 9."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24001"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/diff@5.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhoai/odh-ta-lmes-job-rhel9 3.3."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-24049"
       },
       "products": [
@@ -3310,106 +1667,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift AI 3.3)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24137"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/sigstore/sigstore@1.9.5"
-            },
-            {
-              "@id": "pkg:golang/github.com/sigstore/sigstore@v1.9.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Migration Toolkit for Containers names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24137"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/sigstore/sigstore@1.9.5"
-            },
-            {
-              "@id": "pkg:golang/github.com/sigstore/sigstore@v1.9.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Migration Toolkit for Containers names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24137"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/sigstore/sigstore@1.9.5"
-            },
-            {
-              "@id": "pkg:golang/github.com/sigstore/sigstore@v1.9.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Migration Toolkit for Containers names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24137"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/sigstore/sigstore@1.9.5"
-            },
-            {
-              "@id": "pkg:golang/github.com/sigstore/sigstore@v1.9.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Migration Toolkit for Containers names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24137"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/sigstore/sigstore@1.9.5"
-            },
-            {
-              "@id": "pkg:golang/github.com/sigstore/sigstore@v1.9.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Migration Toolkit for Containers names other components only."
     },
     {
       "vulnerability": {
@@ -3450,368 +1707,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not affected in rhoai/odh-ta-lmes-job-rhel9 3.3 (Red Hat Enterprise Linux 9): vulnerable code not present."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25087"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyarrow@20.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25087"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyarrow@20.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25087"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyarrow@20.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25087"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyarrow@23.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25087"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyarrow@23.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25087"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyarrow@20.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
     },
     {
       "vulnerability": {
@@ -3855,137 +1750,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-26996"
+        "name": "CVE-2026-27137"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
           "subcomponents": [
             {
-              "@id": "pkg:npm/minimatch@9.0.5"
+              "@id": "pkg:rpm/redhat/skopeo@1.20.0-3.el9_7"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26996"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/skopeo@1.20.0-3.el9_7"
         }
       ],
       "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
+      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4: known_not_affected."
     },
     {
       "vulnerability": {
@@ -4089,423 +1870,29 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27139"
+        "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in OpenShift Service Mesh 2, OpenShift Service Mesh 3, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.7"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in OpenShift Service Mesh 2, OpenShift Service Mesh 3, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.3"
+              "@id": "pkg:rpm/redhat/skopeo@1.20.0-3.el9_7"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in OpenShift Service Mesh 2, OpenShift Service Mesh 3, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/skopeo@1.20.0-3.el9_7"
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.1"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.1"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in OpenShift Service Mesh 2, OpenShift Service Mesh 3, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in OpenShift Service Mesh 2, OpenShift Service Mesh 3, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in OpenShift Service Mesh 2, OpenShift Service Mesh 3, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.1"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.1"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.1"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.1"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift Virtualization 4 names other components only."
+      "impact_statement": "Not affected in rhoai/odh-ta-lmes-job-rhel9 3.4 (Red Hat Enterprise Linux 8): vulnerable code not present. | rhoai/odh-ta-lmes-job-rhel9 3.4: known_not_affected."
     },
     {
       "vulnerability": {
@@ -4627,74 +2014,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27904"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27904"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-28684"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/python-dotenv@1.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-28684"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/python-dotenv@1.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-29111"
       },
       "products": [
@@ -4729,46 +2048,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-29181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in multicluster engine for Kubernetes 2.11 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-29181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in multicluster engine for Kubernetes 2.11 (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -4809,6 +2088,25 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not affected in rhoai/odh-ta-lmes-job-rhel9 3.3 (Red Hat Enterprise Linux 9): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-30892"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/crun@1.27-1.el9_7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/crun@1.27-1.el9_7"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -4871,31 +2169,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-32280"
+        "name": "CVE-2026-32282"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.7"
@@ -4907,67 +2185,7 @@
         }
       ],
       "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.1"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.1"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
+      "impact_statement": "Not affected in rhoai/odh-ta-lmes-job-rhel9 3.4 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -5075,26 +2293,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.72.2"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.72.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
           "subcomponents": [
             {
@@ -5108,26 +2306,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift AI 3.3)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.72.2"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.72.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -5186,6 +2364,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.7"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.7"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in rhoai/odh-ta-lmes-job-rhel9 3.4 (Red Hat Enterprise Linux 9): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
           "subcomponents": [
             {
@@ -5282,233 +2480,20 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33814"
+        "name": "CVE-2026-34515"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
+              "@id": "pkg:pypi/aiohttp@3.13.3"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift AI (RHOAI) names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift AI (RHOAI) names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.26.1"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift AI (RHOAI) names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.26.1"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift AI (RHOAI) names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AI (RHEL AI) 3, Red Hat OpenShift AI (RHOAI) names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34040"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@28.3.3+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v28.3.3+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34040"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@28.3.3+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v28.3.3+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34040"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@28.5.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v28.5.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34040"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@28.5.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v28.5.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34040"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@28.3.3+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v28.3.3+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -5516,7 +2501,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
           "subcomponents": [
             {
               "@id": "pkg:pypi/aiohttp@3.13.3"
@@ -5649,26 +2634,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@4.0.5"
-            },
-            {
-              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@v4.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34986"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
           "subcomponents": [
             {
@@ -5688,26 +2653,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift AI 3.3)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34986"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@4.0.5"
-            },
-            {
-              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@v4.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -5749,6 +2694,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.7"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.7"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
           "subcomponents": [
             {
@@ -5849,6 +2814,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.7"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.7"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
           "subcomponents": [
             {
@@ -5942,6 +2927,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.7"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.7"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in rhoai/odh-ta-lmes-job-rhel9 3.4 (Red Hat OpenShift Container Platform 4): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -6042,6 +3047,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not affected in rhoai/odh-ta-lmes-job-rhel9 3.3 (Red Hat OpenShift Container Platform 4): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in rhoai/odh-ta-lmes-job-rhel9 3.4 (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -6149,6 +3174,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.7"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.7"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in rhoai/odh-ta-lmes-job-rhel9 3.4 (Red Hat Enterprise Linux 8): vulnerable code not present."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
           "subcomponents": [
             {
@@ -6249,6 +3294,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
           "subcomponents": [
             {
@@ -6345,403 +3410,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39828"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
+              "@id": "pkg:golang/stdlib@1.25.7"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
+              "@id": "pkg:golang/stdlib@v1.25.7"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Red Hat Advanced Cluster Security 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Red Hat Advanced Cluster Security 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Red Hat Advanced Cluster Security 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Red Hat Advanced Cluster Security 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Red Hat Advanced Cluster Security 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39833"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Migration Toolkit for Containers names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39833"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Migration Toolkit for Containers names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39833"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Migration Toolkit for Containers names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39833"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Migration Toolkit for Containers names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39833"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Migration Toolkit for Containers names other components only."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -6845,103 +3530,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-41568"
+        "name": "CVE-2026-42499"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/docker/docker@28.3.3+incompatible"
+              "@id": "pkg:golang/stdlib@1.25.7"
             },
             {
-              "@id": "pkg:golang/github.com/docker/docker@v28.3.3+incompatible"
+              "@id": "pkg:golang/stdlib@v1.25.7"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 6, Red Hat Ceph Storage 7, Red Hat Ceph Storage 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-41568"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@28.3.3+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v28.3.3+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 6, Red Hat Ceph Storage 7, Red Hat Ceph Storage 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-41568"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@28.5.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v28.5.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 6, Red Hat Ceph Storage 7, Red Hat Ceph Storage 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-41568"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@28.5.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v28.5.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 6, Red Hat Ceph Storage 7, Red Hat Ceph Storage 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-41568"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@28.3.3+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v28.3.3+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ceph Storage 6, Red Hat Ceph Storage 7, Red Hat Ceph Storage 8 names other components only."
+      "impact_statement": "Not affected in rhoai/odh-ta-lmes-job-rhel9 3.4 (Red Hat OpenShift Container Platform 4): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -7049,6 +3654,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.7"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.7"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
           "subcomponents": [
             {
@@ -7145,103 +3770,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42504"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
+              "@id": "pkg:golang/stdlib@1.25.7"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
+              "@id": "pkg:golang/stdlib@v1.25.7"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
+      "impact_statement": "Not affected in rhoai/odh-ta-lmes-job-rhel9 3.4 (Red Hat OpenShift Container Platform 4): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -7342,106 +3887,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not affected in rhoai/odh-ta-lmes-job-rhel9 3.3 (Red Hat OpenShift Container Platform 4): vulnerable code not present."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
     },
     {
       "vulnerability": {
@@ -7450,6 +3895,23 @@
       "products": [
         {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:282488d52c9732dafa16ec35d1d84cab00c089e5df7e884077bc5b6859faefd4",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/transformers@4.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4372"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
           "subcomponents": [
             {
               "@id": "pkg:pypi/transformers@4.48.0"
@@ -7576,6 +4038,38 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 2.25: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44172"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-devel@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-devel@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ta-lmes-job-rhel9 3.4: known_not_affected."
     },
     {
       "vulnerability": {
@@ -7743,6 +4237,55 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4519"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
           "subcomponents": [
             {
@@ -7788,306 +4331,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Confidential Compute Attestation names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Red Hat AI Inference Server names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:60c5f080975de1bb8fc6be6ee1f413da4e200ee55fc57174184fcdc7d9352ab7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Red Hat AI Inference Server names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:918c3ae2fa10f948f9e51bcc63f2a89fd87b2af666d046876b07e3838d62468d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Red Hat AI Inference Server names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:bd9ee3270ea6cf5874848f0f3ca9616dd1c4a30692e0d16349c2d78290a05990",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Red Hat AI Inference Server names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:fcc88c138da152f741288f9da65d4afca4b626e0eb6516fa9832e7281a0cfce0",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.40.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.40.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Assisted Installer for Red Hat OpenShift Container Platform 2, Builds for Red Hat OpenShift, Red Hat AI Inference Server names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-4775"
       },
       "products": [
@@ -8107,6 +4350,55 @@
         },
         {
           "@id": "pkg:rpm/redhat/libtiff@4.4.0-15.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4786"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
         }
       ],
       "status": "fixed"
@@ -8204,6 +4496,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
           "subcomponents": [
             {
@@ -8316,6 +4627,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54279"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:4abb6eb2e7f0543f15a1265f531f4ac86770b89cd89aaf8e0ea7e6250ddc8c4b",
           "subcomponents": [
             {
@@ -8394,6 +4722,55 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-6100"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ta-lmes-job-rhel9@sha256:3c208c31b41160f6c78f2e3a4dd95103947d0a98cae7742e57aab103d677961c",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {

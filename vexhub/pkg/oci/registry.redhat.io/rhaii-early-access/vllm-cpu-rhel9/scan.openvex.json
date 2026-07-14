@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/vllm-cpu-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T21:43:13Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:59:17Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -171,23 +171,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-cpu-rhel9@sha256:139e070c2e4e2bc0254aa852b436c35ec2659e8424e228cc4c77a3bc2ddf50b6",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/diskcache@5.6.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii-early-access/vllm-cpu-rhel9 3.5 not listed as affected."
     },
     {
       "vulnerability": {

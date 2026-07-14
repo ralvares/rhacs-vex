@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/cluster-health-analyzer-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:07:52Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:29:41Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -27,6 +27,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-25680"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.54.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.54.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-25681"
       },
       "products": [
@@ -47,11 +67,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.54.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.54.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-27136"
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.54.0"
@@ -71,13 +111,113 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/cluster-health-analyzer-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/cluster-health-analyzer-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -107,17 +247,97 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.54.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.54.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39822"
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/cluster-health-analyzer-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/cluster-health-analyzer-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/cluster-health-analyzer-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -131,7 +351,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.51.0"
@@ -151,7 +371,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.51.0"
@@ -171,7 +391,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.51.0"
@@ -191,7 +411,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.51.0"
@@ -211,7 +431,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.51.0"
@@ -231,7 +451,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.51.0"
@@ -251,7 +471,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.51.0"
@@ -271,7 +491,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.51.0"
@@ -291,7 +511,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.51.0"
@@ -307,11 +527,71 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/cluster-health-analyzer-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42502"
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.54.0"
@@ -331,13 +611,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -351,13 +631,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -387,17 +667,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.54.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.54.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42507"
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -411,7 +711,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.51.0"
@@ -431,7 +731,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.51.0"
@@ -451,7 +751,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.51.0"
@@ -471,7 +771,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.51.0"
@@ -492,6 +792,25 @@
       "products": [
         {
           "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:61cd0d70e96333edef6de1d4be77a657a05417345dd9ac1645604b85e91538cc",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cluster-health-analyzer-rhel9@sha256:94aac3b4102cc62c8250f13815b282a65fe5fdfd5ed5032c14dd1f05df6771ef",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"

@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/kubevirt-ipam-controller-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:32:17Z",
-  "version": 2,
+  "timestamp": "2026-07-14T10:39:14Z",
+  "version": 6,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/oauth2@0.25.0"
@@ -23,7 +23,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -31,7 +31,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/oauth2@0.25.0"
@@ -43,7 +43,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -51,7 +51,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -63,7 +63,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -71,7 +71,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -83,7 +83,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -191,7 +191,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -211,7 +211,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -277,43 +277,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
+        "name": "CVE-2026-25680"
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/golang.org/x/net@0.38.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -321,7 +301,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -333,27 +313,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -361,7 +321,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -373,7 +333,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -381,7 +341,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -393,7 +353,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -401,7 +361,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -413,7 +373,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -421,7 +381,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -433,207 +393,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -641,19 +401,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -661,259 +421,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -921,19 +441,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -941,19 +461,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -961,7 +481,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -970,10 +490,10 @@
               "@id": "pkg:golang/golang.org/x/net@v0.38.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -987,7 +507,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -996,10 +516,10 @@
               "@id": "pkg:golang/golang.org/x/net@v0.38.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1049,6 +569,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39819"
       },
       "products": [
@@ -1089,23 +649,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
+        "name": "CVE-2026-39819"
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1113,19 +693,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1133,7 +733,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -1145,7 +745,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1153,7 +753,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -1165,7 +765,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1173,19 +773,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1193,19 +793,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1213,19 +813,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1233,19 +833,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1289,23 +889,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39825"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/golang.org/x/sys@0.31.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/golang.org/x/sys@v0.31.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.31.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.31.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1313,19 +933,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1333,19 +973,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1353,19 +993,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1409,23 +1049,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1433,19 +1093,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1489,23 +1169,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1513,7 +1213,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -1525,7 +1225,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1533,19 +1253,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1553,19 +1273,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1573,19 +1293,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1593,19 +1313,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1613,7 +1333,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -1625,7 +1345,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1633,7 +1353,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.38.0"
@@ -1645,7 +1365,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1653,19 +1373,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:38339df6f9f7ab8db1c1fab2167ccf2a8fd7881bf1cda417f192957af63ae5f5",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:b9cfe0fa86ae170bb6df72345572877cf2333d7658972f37e0d6cc4b94fe63a4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1673,19 +1393,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:a9925aa5bf235b1739c9e9048b532ce01577829dd9dee3e92abeeeb081796e8b",
+          "@id": "pkg:oci/kubevirt-ipam-controller-rhel9@sha256:c049bdc63a2932837bf7dd11483ddd431dc509cb6a59ebdb3fa8999ea1e12528",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-ipam-controller-rhel9 9 not listed as affected."
     }
   ]
 }

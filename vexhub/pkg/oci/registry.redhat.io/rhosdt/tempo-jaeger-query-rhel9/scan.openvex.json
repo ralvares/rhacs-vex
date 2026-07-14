@@ -2,28 +2,28 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/tempo-jaeger-query-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:54:00Z",
-  "version": 1,
+  "timestamp": "2026-07-14T13:01:33Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
-        "name": "CVE-2025-11065"
+        "name": "CVE-2026-24051"
       },
       "products": [
         {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
+          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:c5037fff4982f01ff32e384440b7100095c327e138ebb4920eaff8ab5f9df3ef",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/go-viper/mapstructure/v2@2.2.1"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.39.0"
             },
             {
-              "@id": "pkg:golang/github.com/go-viper/mapstructure/v2@v2.2.1"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhosdt/tempo-jaeger-query-rhel9 3.10 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -47,83 +47,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-29181"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
+          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:c5037fff4982f01ff32e384440b7100095c327e138ebb4920eaff8ab5f9df3ef",
           "subcomponents": [
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
+              "@id": "pkg:golang/golang.org/x/sys@0.39.0"
             },
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.39.0"
+              "@id": "pkg:golang/golang.org/x/sys@v0.39.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhosdt/tempo-jaeger-query-rhel9 3.10."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhosdt/tempo-jaeger-query-rhel9 3.10 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhosdt/tempo-jaeger-query-rhel9 3.10 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -144,258 +84,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39882"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp@0.11.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp@v0.11.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp@1.35.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp@v1.35.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp@1.35.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp@v1.35.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhosdt/tempo-jaeger-query-rhel9 3.10."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.39.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhosdt/tempo-jaeger-query-rhel9 3.10."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhosdt/tempo-jaeger-query-rhel9 3.10 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/tempo-jaeger-query-rhel9@sha256:d30ed53401b2c8a3ed49ea49f0408c3e80fa212647f9cd9dccb74c502d713617",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     }
   ]
 }

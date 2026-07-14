@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/python-312",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:16:08Z",
-  "version": 5,
+  "timestamp": "2026-07-14T12:53:24Z",
+  "version": 11,
   "statements": [
     {
       "vulnerability": {
@@ -57,122 +57,34 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-64756"
+        "name": "CVE-2026-0865"
       },
       "products": [
         {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
+          "@id": "pkg:oci/python-312@sha256:21739f35258f21e23a7e02e79c763f2a69e605416fedd54b6ec9c5ef68fd1f43",
           "subcomponents": [
             {
-              "@id": "pkg:npm/glob@10.4.5"
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Logging Subsystem for Red Hat OpenShift, OpenShift Pipelines, OpenShift Serverless; fixed: Red Hat Ceph Storage 8.1, Red Hat Ceph Storage 9.0, Red Hat Developer Hub 1.7; not affected: Cryostat 4, Gatekeeper 3, Logging Subsystem for Red Hat OpenShift."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-64756"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/glob@10.4.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Logging Subsystem for Red Hat OpenShift, OpenShift Pipelines, OpenShift Serverless; fixed: Red Hat Ceph Storage 8.1, Red Hat Ceph Storage 9.0, Red Hat Developer Hub 1.7; not affected: Cryostat 4, Gatekeeper 3, Logging Subsystem for Red Hat OpenShift."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
         {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Migration Toolkit for Virtualization, OpenShift Lightspeed, OpenShift Service Mesh 3."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
         {
-          "@id": "pkg:oci/python-312@sha256:3ce9ead98e3b7c2d3ea72e7b30a3197ec6b848b1a7e72421e272b9753f2e4d48",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Migration Toolkit for Virtualization, OpenShift Lightspeed, OpenShift Service Mesh 3."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:7adc9bee533e01ff0b98220b67d17aca1280344bf7ad0b663bfc84cee7e1adb5",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Migration Toolkit for Virtualization, OpenShift Lightspeed, OpenShift Service Mesh 3."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Migration Toolkit for Virtualization, OpenShift Lightspeed, OpenShift Service Mesh 3."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:ff373f4b42b662e99954adea770ca87b4ea963186cc752174ccb94aa08fa702d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Migration Toolkit for Virtualization, OpenShift Lightspeed, OpenShift Service Mesh 3."
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -204,387 +116,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1703"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Lightspeed Core, Logging Subsystem for Red Hat OpenShift, Migration Toolkit for Virtualization; fixed: Red Hat Hardened Images."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1703"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:3ce9ead98e3b7c2d3ea72e7b30a3197ec6b848b1a7e72421e272b9753f2e4d48",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Lightspeed Core, Logging Subsystem for Red Hat OpenShift, Migration Toolkit for Virtualization; fixed: Red Hat Hardened Images."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1703"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:7adc9bee533e01ff0b98220b67d17aca1280344bf7ad0b663bfc84cee7e1adb5",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Lightspeed Core, Logging Subsystem for Red Hat OpenShift, Migration Toolkit for Virtualization; fixed: Red Hat Hardened Images."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1703"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Lightspeed Core, Logging Subsystem for Red Hat OpenShift, Migration Toolkit for Virtualization; fixed: Red Hat Hardened Images."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1703"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:ff373f4b42b662e99954adea770ca87b4ea963186cc752174ccb94aa08fa702d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Lightspeed Core, Logging Subsystem for Red Hat OpenShift, Migration Toolkit for Virtualization; fixed: Red Hat Hardened Images."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-23745"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Confidential Compute Attestation, Logging Subsystem for Red Hat OpenShift."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-23745"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Confidential Compute Attestation, Logging Subsystem for Red Hat OpenShift."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-23950"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Confidential Compute Attestation, Logging Subsystem for Red Hat OpenShift."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-23950"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Confidential Compute Attestation, Logging Subsystem for Red Hat OpenShift."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24001"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/diff@5.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Red Hat Satellite 6."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24001"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/diff@5.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Red Hat Satellite 6."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24842"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Logging Subsystem for Red Hat OpenShift, Red Hat 3scale API Management Platform 2."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24842"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Logging Subsystem for Red Hat OpenShift, Red Hat 3scale API Management Platform 2."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26960"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Logging Subsystem for Red Hat OpenShift, Red Hat 3scale API Management Platform 2."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26960"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Logging Subsystem for Red Hat OpenShift, Red Hat 3scale API Management Platform 2."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26996"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Logging Subsystem for Red Hat OpenShift, Migration Toolkit for Applications 8."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26996"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Logging Subsystem for Red Hat OpenShift, Migration Toolkit for Applications 8."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27903"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Gatekeeper 3, Logging Subsystem for Red Hat OpenShift; fixed: Red Hat Openshift Data Foundation 4.22; not affected: Red Hat Openshift Data Foundation 4.22."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27903"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Gatekeeper 3, Logging Subsystem for Red Hat OpenShift; fixed: Red Hat Openshift Data Foundation 4.22; not affected: Red Hat Openshift Data Foundation 4.22."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27904"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Logging Subsystem for Red Hat OpenShift, Migration Toolkit for Applications 8, OpenShift Pipelines; fixed: Red Hat Ansible Automation Platform 2.5 for RHEL 8, Red Hat Ansible Automation Platform 2.5 for RHEL 9, Red Hat Ansible Automation Platform 2.6 for RHEL 9; not affected: Cryostat 4, Gatekeeper 3, Node HealthCheck Operator."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27904"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Logging Subsystem for Red Hat OpenShift, Migration Toolkit for Applications 8, OpenShift Pipelines; fixed: Red Hat Ansible Automation Platform 2.5 for RHEL 8, Red Hat Ansible Automation Platform 2.5 for RHEL 9, Red Hat Ansible Automation Platform 2.6 for RHEL 9; not affected: Cryostat 4, Gatekeeper 3, Node HealthCheck Operator."
     },
     {
       "vulnerability": {
@@ -625,171 +156,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-29786"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected in Cryostat 4, Logging Subsystem for Red Hat OpenShift, Network Observability Operator."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-29786"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected in Cryostat 4, Logging Subsystem for Red Hat OpenShift, Network Observability Operator."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-31802"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Logging Subsystem for Red Hat OpenShift, Red Hat 3scale API Management Platform 2."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-31802"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Logging Subsystem for Red Hat OpenShift, Red Hat 3scale API Management Platform 2."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-3219"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Lightspeed Core, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; fixed: Red Hat Hardened Images."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-3219"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:3ce9ead98e3b7c2d3ea72e7b30a3197ec6b848b1a7e72421e272b9753f2e4d48",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Lightspeed Core, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; fixed: Red Hat Hardened Images."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-3219"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:7adc9bee533e01ff0b98220b67d17aca1280344bf7ad0b663bfc84cee7e1adb5",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Lightspeed Core, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; fixed: Red Hat Hardened Images."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-3219"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Lightspeed Core, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; fixed: Red Hat Hardened Images."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-3219"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:ff373f4b42b662e99954adea770ca87b4ea963186cc752174ccb94aa08fa702d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Lightspeed Core, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; fixed: Red Hat Hardened Images."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-33636"
       },
       "products": [
@@ -815,258 +181,34 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33671"
+        "name": "CVE-2026-34982"
       },
       "products": [
         {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
+          "@id": "pkg:oci/python-312@sha256:21739f35258f21e23a7e02e79c763f2a69e605416fedd54b6ec9c5ef68fd1f43",
           "subcomponents": [
             {
-              "@id": "pkg:npm/picomatch@4.0.2"
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7.3"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Migration Toolkit for Applications 8, Node HealthCheck Operator; fixed: Cluster Observability Operator 1.5.0; not affected: Cluster Observability Operator 1.5.0."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33671"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/python-312@sha256:3ce9ead98e3b7c2d3ea72e7b30a3197ec6b848b1a7e72421e272b9753f2e4d48",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Migration Toolkit for Applications 8, Node HealthCheck Operator; fixed: Cluster Observability Operator 1.5.0; not affected: Cluster Observability Operator 1.5.0."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33671"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7.3"
+        },
         {
-          "@id": "pkg:oci/python-312@sha256:7adc9bee533e01ff0b98220b67d17aca1280344bf7ad0b663bfc84cee7e1adb5",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Migration Toolkit for Applications 8, Node HealthCheck Operator; fixed: Cluster Observability Operator 1.5.0; not affected: Cluster Observability Operator 1.5.0."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33671"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7.3"
+        },
         {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@4.0.2"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7.3"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Migration Toolkit for Applications 8, Node HealthCheck Operator; fixed: Cluster Observability Operator 1.5.0; not affected: Cluster Observability Operator 1.5.0."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33671"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:ff373f4b42b662e99954adea770ca87b4ea963186cc752174ccb94aa08fa702d",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Migration Toolkit for Applications 8, Node HealthCheck Operator; fixed: Cluster Observability Operator 1.5.0; not affected: Cluster Observability Operator 1.5.0."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33672"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@4.0.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Migration Toolkit for Applications 8, Node HealthCheck Operator."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33672"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:3ce9ead98e3b7c2d3ea72e7b30a3197ec6b848b1a7e72421e272b9753f2e4d48",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Migration Toolkit for Applications 8, Node HealthCheck Operator."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33672"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:7adc9bee533e01ff0b98220b67d17aca1280344bf7ad0b663bfc84cee7e1adb5",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Migration Toolkit for Applications 8, Node HealthCheck Operator."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33672"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@4.0.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Migration Toolkit for Applications 8, Node HealthCheck Operator."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33672"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:ff373f4b42b662e99954adea770ca87b4ea963186cc752174ccb94aa08fa702d",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Migration Toolkit for Applications 8, Node HealthCheck Operator."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33750"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/brace-expansion@2.0.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Gatekeeper 3, Logging Subsystem for Red Hat OpenShift; not affected: Migration Toolkit for Virtualization, Red Hat Trusted Profile Analyzer."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33750"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:3ce9ead98e3b7c2d3ea72e7b30a3197ec6b848b1a7e72421e272b9753f2e4d48",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/brace-expansion@2.0.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Gatekeeper 3, Logging Subsystem for Red Hat OpenShift; not affected: Migration Toolkit for Virtualization, Red Hat Trusted Profile Analyzer."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33750"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:7adc9bee533e01ff0b98220b67d17aca1280344bf7ad0b663bfc84cee7e1adb5",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/brace-expansion@2.0.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Gatekeeper 3, Logging Subsystem for Red Hat OpenShift; not affected: Migration Toolkit for Virtualization, Red Hat Trusted Profile Analyzer."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33750"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/brace-expansion@2.0.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Gatekeeper 3, Logging Subsystem for Red Hat OpenShift; not affected: Migration Toolkit for Virtualization, Red Hat Trusted Profile Analyzer."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33750"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:ff373f4b42b662e99954adea770ca87b4ea963186cc752174ccb94aa08fa702d",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/brace-expansion@2.0.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Cryostat 4, Gatekeeper 3, Logging Subsystem for Red Hat OpenShift; not affected: Migration Toolkit for Virtualization, Red Hat Trusted Profile Analyzer."
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -1101,88 +243,35 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42338"
+        "name": "CVE-2026-44172"
       },
       "products": [
         {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
+          "@id": "pkg:oci/python-312@sha256:21739f35258f21e23a7e02e79c763f2a69e605416fedd54b6ec9c5ef68fd1f43",
           "subcomponents": [
             {
-              "@id": "pkg:npm/ip-address@9.0.5"
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-devel@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Confidential Compute Attestation, Exploit Intelligence."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/python-312@sha256:3ce9ead98e3b7c2d3ea72e7b30a3197ec6b848b1a7e72421e272b9753f2e4d48",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@10.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Confidential Compute Attestation, Exploit Intelligence."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+        },
         {
-          "@id": "pkg:oci/python-312@sha256:7adc9bee533e01ff0b98220b67d17aca1280344bf7ad0b663bfc84cee7e1adb5",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@10.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Confidential Compute Attestation, Exploit Intelligence."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-devel@3.2.6-1.el9_0"
+        },
         {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@9.0.5"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
         }
       ],
       "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Confidential Compute Attestation, Exploit Intelligence."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:ff373f4b42b662e99954adea770ca87b4ea963186cc752174ccb94aa08fa702d",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@10.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "RHEL 9 not affected. Only affects: Confidential Compute Attestation, Exploit Intelligence."
+      "impact_statement": "UBI9 9: known_not_affected."
     },
     {
       "vulnerability": {
@@ -1350,6 +439,37 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/python-312@sha256:21739f35258f21e23a7e02e79c763f2a69e605416fedd54b6ec9c5ef68fd1f43",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4519"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/python-312@sha256:ff373f4b42b662e99954adea770ca87b4ea963186cc752174ccb94aa08fa702d",
           "subcomponents": [
             {
@@ -1381,6 +501,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/python-312@sha256:21739f35258f21e23a7e02e79c763f2a69e605416fedd54b6ec9c5ef68fd1f43",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libtiff-devel@4.4.0-15.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-15.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff-devel@4.4.0-15.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-15.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4775"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/python-312@sha256:ff373f4b42b662e99954adea770ca87b4ea963186cc752174ccb94aa08fa702d",
           "subcomponents": [
             {
@@ -1396,6 +541,37 @@
         },
         {
           "@id": "pkg:rpm/redhat/libtiff@4.4.0-15.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4786"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/python-312@sha256:21739f35258f21e23a7e02e79c763f2a69e605416fedd54b6ec9c5ef68fd1f43",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
         }
       ],
       "status": "fixed"
@@ -1437,6 +613,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/python-312@sha256:21739f35258f21e23a7e02e79c763f2a69e605416fedd54b6ec9c5ef68fd1f43",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4878"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/python-312@sha256:ff373f4b42b662e99954adea770ca87b4ea963186cc752174ccb94aa08fa702d",
           "subcomponents": [
             {
@@ -1452,94 +647,34 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-53655"
+        "name": "CVE-2026-6100"
       },
       "products": [
         {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
+          "@id": "pkg:oci/python-312@sha256:21739f35258f21e23a7e02e79c763f2a69e605416fedd54b6ec9c5ef68fd1f43",
           "subcomponents": [
             {
-              "@id": "pkg:npm/tar@6.2.1"
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
             },
             {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Confidential Compute Attestation, Cryostat 4, Exploit Intelligence."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:3ce9ead98e3b7c2d3ea72e7b30a3197ec6b848b1a7e72421e272b9753f2e4d48",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@7.5.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Confidential Compute Attestation, Cryostat 4, Exploit Intelligence."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:7adc9bee533e01ff0b98220b67d17aca1280344bf7ad0b663bfc84cee7e1adb5",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@7.5.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Confidential Compute Attestation, Cryostat 4, Exploit Intelligence."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
             },
             {
-              "@id": "pkg:npm/tar@7.4.3"
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Confidential Compute Attestation, Cryostat 4, Exploit Intelligence."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/python-312@sha256:ff373f4b42b662e99954adea770ca87b4ea963186cc752174ccb94aa08fa702d",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@7.5.11"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Confidential Compute Attestation, Cryostat 4, Exploit Intelligence."
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -1571,176 +706,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-6357"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Exploit Intelligence, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; not affected: Red Hat AI Inference Server, Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux AI (RHEL AI) 3."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-6357"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:3ce9ead98e3b7c2d3ea72e7b30a3197ec6b848b1a7e72421e272b9753f2e4d48",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Exploit Intelligence, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; not affected: Red Hat AI Inference Server, Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux AI (RHEL AI) 3."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-6357"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:7adc9bee533e01ff0b98220b67d17aca1280344bf7ad0b663bfc84cee7e1adb5",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Exploit Intelligence, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; not affected: Red Hat AI Inference Server, Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux AI (RHEL AI) 3."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-6357"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Exploit Intelligence, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; not affected: Red Hat AI Inference Server, Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux AI (RHEL AI) 3."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-6357"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:ff373f4b42b662e99954adea770ca87b4ea963186cc752174ccb94aa08fa702d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Exploit Intelligence, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; not affected: Red Hat AI Inference Server, Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux AI (RHEL AI) 3."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-8643"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:34263471b5e86b0704054e817d7703d0063b0909a64bd95360f4a8b0c730d970",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Exploit Intelligence, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; fixed: Red Hat Ansible Automation Platform 2.6, Red Hat Discovery 2, Red Hat Enterprise Linux AppStream (v. 10); not affected: OpenShift Lightspeed, OpenShift Service Mesh 3, Red Hat Ansible Automation Platform 2.6."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-8643"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:3ce9ead98e3b7c2d3ea72e7b30a3197ec6b848b1a7e72421e272b9753f2e4d48",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Exploit Intelligence, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; fixed: Red Hat Ansible Automation Platform 2.6, Red Hat Discovery 2, Red Hat Enterprise Linux AppStream (v. 10); not affected: OpenShift Lightspeed, OpenShift Service Mesh 3, Red Hat Ansible Automation Platform 2.6."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-8643"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:7adc9bee533e01ff0b98220b67d17aca1280344bf7ad0b663bfc84cee7e1adb5",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Exploit Intelligence, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; fixed: Red Hat Ansible Automation Platform 2.6, Red Hat Discovery 2, Red Hat Enterprise Linux AppStream (v. 10); not affected: OpenShift Lightspeed, OpenShift Service Mesh 3, Red Hat Ansible Automation Platform 2.6."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-8643"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:a0a5885769d5a8c5123d3b15d5135b254541d4da8e7bc445d95e1c90595de470",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Exploit Intelligence, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; fixed: Red Hat Ansible Automation Platform 2.6, Red Hat Discovery 2, Red Hat Enterprise Linux AppStream (v. 10); not affected: OpenShift Lightspeed, OpenShift Service Mesh 3, Red Hat Ansible Automation Platform 2.6."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-8643"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/python-312@sha256:ff373f4b42b662e99954adea770ca87b4ea963186cc752174ccb94aa08fa702d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for UBI9 9. Other products: affected: Exploit Intelligence, Migration Toolkit for Applications 8, Migration Toolkit for Virtualization; fixed: Red Hat Ansible Automation Platform 2.6, Red Hat Discovery 2, Red Hat Enterprise Linux AppStream (v. 10); not affected: OpenShift Lightspeed, OpenShift Service Mesh 3, Red Hat Ansible Automation Platform 2.6."
     }
   ]
 }

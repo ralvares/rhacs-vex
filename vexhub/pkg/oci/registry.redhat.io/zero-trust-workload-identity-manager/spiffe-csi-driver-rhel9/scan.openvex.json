@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/spiffe-csi-driver-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:21:29Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:47:29Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:8bb983e675402a68533c4af609bc3859c46dc5c4736563a0779ae4ced2899f74",
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.40.0"
@@ -23,7 +23,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -31,7 +31,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:8bb983e675402a68533c4af609bc3859c46dc5c4736563a0779ae4ced2899f74",
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.40.0"
@@ -43,7 +43,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -51,7 +51,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:8bb983e675402a68533c4af609bc3859c46dc5c4736563a0779ae4ced2899f74",
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.40.0"
@@ -63,7 +63,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -71,7 +71,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:8bb983e675402a68533c4af609bc3859c46dc5c4736563a0779ae4ced2899f74",
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.40.0"
@@ -83,7 +83,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -91,7 +91,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:8bb983e675402a68533c4af609bc3859c46dc5c4736563a0779ae4ced2899f74",
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.40.0"
@@ -103,7 +103,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -152,11 +152,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33186"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@1.74.2"
+            },
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@v1.74.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-33814"
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:8bb983e675402a68533c4af609bc3859c46dc5c4736563a0779ae4ced2899f74",
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.40.0"
@@ -198,6 +218,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39819"
       },
       "products": [
@@ -218,7 +258,47 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
       },
       "products": [
         {
@@ -234,7 +314,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.0 not listed as affected."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -242,7 +322,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:8bb983e675402a68533c4af609bc3859c46dc5c4736563a0779ae4ced2899f74",
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -278,6 +358,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.35.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.35.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39836"
       },
       "products": [
@@ -298,11 +398,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:8bb983e675402a68533c4af609bc3859c46dc5c4736563a0779ae4ced2899f74",
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -314,7 +414,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.0 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -338,11 +458,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42502"
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:8bb983e675402a68533c4af609bc3859c46dc5c4736563a0779ae4ced2899f74",
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.40.0"
@@ -354,7 +494,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {
@@ -362,7 +502,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:8bb983e675402a68533c4af609bc3859c46dc5c4736563a0779ae4ced2899f74",
+          "@id": "pkg:oci/spiffe-csi-driver-rhel9@sha256:bd7cdc6d529f4b4861ebc97cb3d90edff02a1ac2c140f13e76f43c8f3f701828",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.40.0"
@@ -374,7 +514,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.0 not listed as affected."
+      "impact_statement": "zero-trust-workload-identity-manager/spiffe-csi-driver-rhel9 1.1 not listed as affected."
     },
     {
       "vulnerability": {

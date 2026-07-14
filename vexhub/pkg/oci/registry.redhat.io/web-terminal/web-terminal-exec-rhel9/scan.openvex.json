@@ -2,128 +2,28 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/web-terminal-exec-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:55:07Z",
-  "version": 1,
+  "timestamp": "2026-07-14T13:10:50Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
-        "name": "CVE-2025-47911"
+        "name": "CVE-2026-39822"
       },
       "products": [
         {
-          "@id": "pkg:oci/web-terminal-exec-rhel9@sha256:0c0e3d354553885533a42a1c675ade673de8affbf24277cf44c9335a4c909a06",
+          "@id": "pkg:oci/web-terminal-exec-rhel9@sha256:027e8485bf62d74dda72809cf70616aaae9bbf582a7c4bc9558d505ebbff6bdb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/stdlib@1.26.3"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/stdlib@v1.26.3"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/web-terminal-exec-rhel9@sha256:0c0e3d354553885533a42a1c675ade673de8affbf24277cf44c9335a4c909a06",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/web-terminal-exec-rhel9@sha256:0c0e3d354553885533a42a1c675ade673de8affbf24277cf44c9335a4c909a06",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/web-terminal-exec-rhel9@sha256:0c0e3d354553885533a42a1c675ade673de8affbf24277cf44c9335a4c909a06",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/web-terminal-exec-rhel9@sha256:0c0e3d354553885533a42a1c675ade673de8affbf24277cf44c9335a4c909a06",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/web-terminal-exec-rhel9@sha256:0c0e3d354553885533a42a1c675ade673de8affbf24277cf44c9335a4c909a06",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -151,7 +51,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/web-terminal-exec-rhel9@sha256:0c0e3d354553885533a42a1c675ade673de8affbf24277cf44c9335a4c909a06",
+          "@id": "pkg:oci/web-terminal-exec-rhel9@sha256:027e8485bf62d74dda72809cf70616aaae9bbf582a7c4bc9558d505ebbff6bdb",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/sys@0.31.0"
@@ -167,43 +67,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
           "@id": "pkg:oci/web-terminal-exec-rhel9@sha256:0c0e3d354553885533a42a1c675ade673de8affbf24277cf44c9335a4c909a06",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/sys@0.31.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/sys@v0.31.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/web-terminal-exec-rhel9@sha256:0c0e3d354553885533a42a1c675ade673de8affbf24277cf44c9335a4c909a06",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "No supported Red Hat product affected."
     }
   ]
 }

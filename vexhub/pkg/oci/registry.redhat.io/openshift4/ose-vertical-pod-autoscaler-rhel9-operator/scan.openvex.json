@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-vertical-pod-autoscaler-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:55:07Z",
-  "version": 1,
+  "timestamp": "2026-07-14T13:10:50Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -257,66 +257,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22868"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@v0.25.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22870"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-40778"
       },
       "products": [
@@ -434,46 +374,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "OpenShift 4.x 4.20: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
     },
     {
       "vulnerability": {
@@ -754,63 +654,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
+        "name": "CVE-2026-24051"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
+          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:31e75296dbcf745f41e7a56dc16b215023dc41505589c2d2da5074ba549f2e1f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.36.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.36.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -839,332 +699,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.65.0"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.65.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39817"
       },
       "products": [
@@ -1176,6 +710,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:31e75296dbcf745f41e7a56dc16b215023dc41505589c2d2da5074ba549f2e1f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1205,83 +759,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
+        "name": "CVE-2026-39819"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
+          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:31e75296dbcf745f41e7a56dc16b215023dc41505589c2d2da5074ba549f2e1f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1305,43 +799,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39825"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
+          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:31e75296dbcf745f41e7a56dc16b215023dc41505589c2d2da5074ba549f2e1f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/golang.org/x/sys@0.40.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/golang.org/x/sys@v0.40.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1365,23 +839,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39883"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
+          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:31e75296dbcf745f41e7a56dc16b215023dc41505589c2d2da5074ba549f2e1f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.28.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.28.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1448,26 +922,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-42501"
       },
       "products": [
@@ -1488,103 +942,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
+          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:31e75296dbcf745f41e7a56dc16b215023dc41505589c2d2da5074ba549f2e1f",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-vertical-pod-autoscaler-rhel9-operator@sha256:12d2a7d9fbc7d468dc43ab7d486a6cbf014e8f94700d967c85fb1b7c4f681c6e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "vertical-pod-autoscaler-operator not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {

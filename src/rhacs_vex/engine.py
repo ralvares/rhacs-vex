@@ -26,13 +26,14 @@ Decision ladder (VEX-MODEL §8b), first decisive rung wins:
     5  component in scope    name+dist-tag+minor+module+CPE scoped, status
                              priority KNA>fixed>KA>UI; fixed → §6 version compare
     8  related products      same package in out-of-scope RHEL-N / neutral PIDs
-    9  truly absent          not tracked in any in-scope VEX entry              → NOT ASSESSED
+    9  not listed            no VEX statement names the component (§5g: the
+                             errata assumption covers only listed products)     → FALSE POSITIVE
     non-RPM (rungs 3,4,6,7,8,9):
     3  image identity        OCI-purl / image-path / generic component match
     4  same-image other build RHEL-variant-quality + SHA-specificity ranking
     7  errata policy         OCP version vs RHOSE-4.x fixed streams (§5g)
     6  product-family clear   all in-scope PIDs clear, none affected            → FALSE POSITIVE
-    9  truly absent                                                             → NOT ASSESSED
+    9  not listed                                                               → FALSE POSITIVE
 
 Scoping is structural (CPE + dist-tag decoder + product-tree names), never a
 hardcoded product/host list.  Per-CVE lookup maps are memoized inside the
@@ -121,6 +122,33 @@ def _detect_rhel_minor(version_str: str):
     return None
 
 
+def _rpm_stream_family(version_str: str):
+    """Build lineage of an rpm version-release string.
+
+    OCP-built rpms carry a `rhaosX.Y` disttag ('5.4.0-14.rhaos4.21.el9');
+    RHEL-built rpms don't ('4.2.0-6.el9_0.6').  The two lineages version
+    independently (RHEL podman 4.x vs OCP podman 5.x), so their NEVRAs are
+    never comparable.  Returns ('rhaos', 'X.Y') or ('el', None).
+    """
+    m = re.search(r'(?:^|[.+])rhaos(\d+\.\d+)(?:[.+]|$)', str(version_str or ''))
+    return ('rhaos', m.group(1)) if m else ('el', None)
+
+
+def _stream_comparable(installed_v, candidate_v) -> bool:
+    """May a VEX NEVRA be version-compared against the installed rpm?
+
+    Same lineage only: an el-family fix must not clear (or fail) a rhaos
+    build and vice versa; two rhaos builds must share the OCP minor.
+    """
+    fam_i, ver_i = _rpm_stream_family(installed_v)
+    fam_c, ver_c = _rpm_stream_family(candidate_v)
+    if fam_i != fam_c:
+        return False
+    if fam_i == 'rhaos':
+        return ver_i == ver_c
+    return True
+
+
 def _extract_sha256(ref: str):
     """sha256 hex from an image reference or VEX PID (VEX-MODEL §3c/§4c).
 
@@ -159,6 +187,35 @@ def _pid_module_stream(pid: str):
 def _version_is_module_stream(ver: str) -> bool:
     """True when an RPM release marks a module build ('.module+') (§6d)."""
     return '.module+' in ver or '+module+' in ver
+
+
+def _module_stream_compatible(pid: str, found_v: str) -> bool:
+    """Does a '::module:stream' PID apply to the installed version? (§6d, §9.1a)
+
+    An installed release carrying '.module+' is a module build — compatible;
+    the version compare decides from there.  Without the marker (scanners can
+    normalize the release string — the §9.1a fragility), fall back to the
+    stream structure itself: a numeric stream ('perl:5.32', 'nodejs:18') must
+    version-prefix the installed version and the RHEL major must agree.  A
+    non-numeric stream ('container-tools:rhel8') stays incompatible — nothing
+    in the installed version can verify it.  Non-module PIDs always apply.
+    """
+    stream = _pid_module_stream(pid)
+    if stream is None:
+        return True
+    if _version_is_module_stream(found_v):
+        return True
+    tok = stream.rsplit(':', 1)[-1]
+    if not re.fullmatch(r'\d+(\.\d+)*', tok):
+        return False
+    inst = found_v.split(':', 1)[-1] if ':' in found_v else found_v
+    if not (inst == tok or inst.startswith(tok + '.') or inst.startswith(tok + '-')):
+        return False
+    pid_el = re.search(r'\.module\+el(\d+)', pid) or re.search(r'\.el(\d+)[._]', pid.split('::')[0])
+    inst_el = re.search(r'\.el(\d+)', inst)
+    if pid_el and inst_el and pid_el.group(1) != inst_el.group(1):
+        return False
+    return True
 
 
 def _parse_pkg_from_product_id(pid: str):
@@ -1085,12 +1142,24 @@ def _severity_from_decisive(data, dec, ctx, comp, row, pid_severity, pid_name,
 # (state → "Fixed"); every other clear verdict means "Not affected".
 _FP_FIXED_KINDS = {'digest_fixed', 'rpm_fixed_pass', 'errata_fixed', 'img_sha_fixed'}
 
+# Decision kinds whose verdict rests on the ABSENCE of a statement (or on
+# statements about other products only) — nothing in the VEX names the scanned
+# product/image/component.  Their FALSE POSITIVEs are triage-display verdicts;
+# openvex.py must not publish a not_affected/fixed claim Red Hat never stated.
+_UNSTATED_KINDS = {
+    'rpm_not_listed', 'nonrpm_not_listed', 'img_not_listed',
+    'ft_other', 'ft_novex_scoped', 'ft_operator_novex', 'ft_not_affected',
+    'ft_clear', 'ft_rhel_clear',   # family/platform clear: statements exist
+    # but name other packages — the ft_* fallthrough fires only after every
+    # component/image identity rung failed, so nothing names what we scanned
+    'errata_newer',                # §5g newer-than-newest-fix inference
+}
+
 
 def _state_from_decisive(verdict, dec, data, ctx, pid_name, rhel_base_pids,
                          vex_ns_map, pid_cpe) -> str:
     """Red Hat page State, read from the decisive match (VEX-MODEL §8d).
 
-    NOT ASSESSED → "Not assessed".
     FALSE POSITIVE → "Fixed" (build carries the fix) / "Not affected".
     POSITIVE → the decisive PID's own remediation: `no_fix_planned` details
     verbatim ("Will not fix"/"Out of support scope"); `none_available` →
@@ -1101,8 +1170,6 @@ def _state_from_decisive(verdict, dec, data, ctx, pid_name, rhel_base_pids,
     kind = dec.get('kind', '')
     if data is None or kind == 'vex_missing':
         return 'Unknown'
-    if '⚠️' in verdict or 'NOT ASSESSED' in verdict:
-        return 'Not assessed'
     if '✅' in verdict:
         if kind in _FP_FIXED_KINDS or dec.get('status') == 'fixed':
             return 'Fixed'
@@ -1171,7 +1238,7 @@ def _rpm_candidates(vuln, ctx, maps, names, found_v, comp=None):
     def _emit(status, pid):
         if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map, pid_cpe=pid_cpe):
             return
-        if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
+        if not _module_stream_compatible(pid, found_v):
             return
         name, ver = _parse_pkg_from_product_id(pid)
         if name in names:
@@ -1268,6 +1335,14 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec):
     for vuln in vulns:
         ps = vuln.get('product_status', {})
         cands = _rpm_candidates(vuln, ctx, maps, names, found_v, comp=comp)
+        # Lineage guard (§6b): a versioned clear-side candidate (fixed / KNA
+        # NEVRA) from another build lineage must not be version-compared —
+        # a RHEL erratum can neither clear nor fail an OCP rhaos build.
+        # Version-less product-level pids and affected-side statuses stay:
+        # they assert state, they don't enter a version comparison.
+        cands = [(s, p, v) for s, p, v in cands
+                 if not v or s in ('known_affected', 'under_investigation')
+                 or _stream_comparable(found_v, v)]
 
         # rung 5 — status priority KNA > fixed > KA > UI ---------------------
         # A not-affected claim cannot clear an installed build with a PENDING
@@ -1360,7 +1435,7 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec):
                 if ((_is_any_rhel_ver_product(pid, rhel_ver) or _is_version_neutral_product(pid))
                         and not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids,
                                               vex_ns_map, pid_cpe=pid_cpe)):
-                    if _pid_module_stream(pid) and not _version_is_module_stream(found_v):
+                    if not _module_stream_compatible(pid, found_v):
                         continue
                     pkg_name, _ = _parse_pkg_from_product_id(pid)
                     if pkg_name in names:
@@ -1372,18 +1447,19 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec):
                             other_safe.add(label)
                             other_safe_pids.append(pid)
 
-        if other_safe and not other_vuln:
-            dec.update(kind='rpm_related_safe', pids=other_safe_pids)
-            return ("✅ FALSE POSITIVE", "N/A",
-                    f"'{comp}' not affected in related products ({', '.join(sorted(other_safe))}).")
+        # clear-only related products carry no claim about OUR product — fall
+        # through to rung 9 (not listed); only affected-elsewhere stays decisive
+        # (conservative POSITIVE, never a borrowed clear).
         if other_vuln:
             dec.update(kind='rpm_related_vuln', pids=other_vuln_pids)
             return ("❌ POSITIVE", "N/A",
                     f"'{comp}' affected in related products ({', '.join(sorted(other_vuln))}).")
 
-        # rung 9 — truly absent --------------------------------------------
-        dec['kind'] = 'rpm_absent'
-        return ("⚠️ NOT ASSESSED", "N/A", f"'{comp}' not tracked in VEX.")
+        # rung 9 — not listed: Red Hat enumerates affected products per CVE;
+        # a component absent from that enumeration is not affected (§5g — the
+        # errata assumption covers only listed products, never silence).
+        dec['kind'] = 'rpm_not_listed'
+        return ("✅ FALSE POSITIVE", "N/A", f"'{comp}' not listed as affected in VEX.")
 
     dec['kind'] = 'no_vulns'
     return ("❌ POSITIVE", "N/A", "No vulnerability entries in VEX.")
@@ -1772,8 +1848,9 @@ def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
     affected, fixed, not_affected, investigating = _summarise_vex_products(data, pid_name, rel_parent)
 
     if not affected and not fixed and not not_affected and not investigating:
-        dec['kind'] = 'nonrpm_none'
-        return ("⚠️ NOT ASSESSED", "N/A", "Non-RPM component not tracked in VEX.")
+        dec['kind'] = 'nonrpm_not_listed'
+        return ("✅ FALSE POSITIVE", "N/A",
+                "Not listed as affected; VEX names no products for this CVE.")
 
     if ctx.workload_type != "ubi":
         # rungs 3/4/7 — image identity
@@ -1792,9 +1869,26 @@ def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
                 if verdict == 'FALSE_POSITIVE':
                     if extra and extra.startswith('errata_'):
                         _tag, fixed_in_ver = extra.split(':', 1)
-                        dec.update(kind='errata_fixed', status='fixed', pids=_pids)
-                        return ("✅ FALSE POSITIVE", "N/A", f"Fixed in OCP {fixed_in_ver}.")
+                        if _tag == 'errata_fixed':
+                            dec.update(kind='errata_fixed', status='fixed', pids=_pids)
+                            return ("✅ FALSE POSITIVE", "N/A", f"Fixed in OCP {fixed_in_ver}.")
+                        # errata_not_previous: no statement names our stream —
+                        # §5g inference only, never published
+                        dec.update(kind='errata_newer', pids=_pids)
+                        return ("✅ FALSE POSITIVE", "N/A",
+                                f"Build newer than newest fixed stream (OCP {fixed_in_ver}).")
                     flag_desc = f" ({extra.replace('_', ' ')})" if extra else ""
+                    sha = _extract_sha256(pid_match) if pid_match else None
+                    parent = pid_match.split(':', 1)[0].strip() if pid_match else ''
+                    if sha and sha not in _own_shas(ctx):
+                        # digest-pinned statement about ANOTHER build of this
+                        # image — build-exact claim, display-only for ours
+                        dec['unstated'] = True
+                    elif not sha and re.search(r'\d+\.\d+$', parent):
+                        # versionless image PID under a minor-versioned product
+                        # (e.g. "Web Terminal 1.11") — claim is scoped to that
+                        # product release, our build's membership is unproven
+                        dec['unstated'] = True
                     dec.update(kind='img_fp_kna', pids=_pids)
                     return ("✅ FALSE POSITIVE", "N/A", f"known_not_affected{flag_desc}. {img_lbl}.")
                 if verdict == 'POSITIVE':
@@ -1989,14 +2083,17 @@ def _evaluate(row, ctx, data, maps):
 def audit_row_detailed(row, ctx: WorkloadContext):
     """Triage one CVE finding against the Red Hat VEX corpus.
 
-    Returns pd.Series([verdict, fix_version, justification, severity, state]).
-    Severity, state and fix are all read from the single decisive match.
+    Returns pd.Series([verdict, fix_version, justification, severity, state,
+    stated]).  Severity, state and fix are all read from the single decisive
+    match.  `stated` is True only when a VEX statement names the scanned
+    product/image/component — verdicts derived from silence carry False and
+    must never be published as OpenVEX claims.
     """
     import pandas as pd
     cve = str(row['CVE']).strip().upper()
     data = _load_vex(cve)
     if data is None:
-        return pd.Series(["❌ POSITIVE", "N/A", "VEX file missing.", "Unknown", "Unknown"])
+        return pd.Series(["❌ POSITIVE", "N/A", "VEX file missing.", "Unknown", "Unknown", False])
 
     maps = _build_pid_name(data)
     pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = maps
@@ -2009,7 +2106,9 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         rhel_base_pids, vex_ns_map, pid_cpe, pid_purl)
     state = _state_from_decisive(
         verdict, dec, data, ctx, pid_name, rhel_base_pids, vex_ns_map, pid_cpe)
-    return pd.Series([verdict, fix, note, severity, state])
+    stated = (dec.get('kind', '') not in _UNSTATED_KINDS
+              and not dec.get('unstated', False))
+    return pd.Series([verdict, fix, note, severity, state, stated])
 
 
 # ══════════════════════════════════════════════════════════════════════════════

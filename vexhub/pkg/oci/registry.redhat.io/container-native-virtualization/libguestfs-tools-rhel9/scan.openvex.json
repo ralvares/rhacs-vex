@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/libguestfs-tools-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:34:13Z",
-  "version": 1,
+  "timestamp": "2026-07-14T06:14:14Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -1491,6 +1491,56 @@
         },
         {
           "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-5372"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/libguestfs-tools-rhel9@sha256:1ca904bb319e6877e3850cd02aa21d7fe1c49dd8d493a388042b7ce6b0fab657",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libssh-config@0.10.4-18.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libssh@0.10.4-18.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh-config@0.10.4-18.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh@0.10.4-18.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-5372"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/libguestfs-tools-rhel9@sha256:cfd01f6d8af4234ae5308240a6171e790b1ed24aecaa8eaf8f0c61bdd4987954",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libssh-config@0.10.4-18.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libssh@0.10.4-18.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh-config@0.10.4-18.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh@0.10.4-18.el9"
         }
       ],
       "status": "fixed"

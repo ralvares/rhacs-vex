@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/vm-console-proxy-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:33:35Z",
-  "version": 2,
+  "timestamp": "2026-07-14T10:39:17Z",
+  "version": 6,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/oauth2@0.26.0"
@@ -23,27 +23,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22868"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@0.26.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@v0.26.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -151,13 +131,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.35.0"
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
             }
           ]
         }
@@ -171,7 +151,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.35.0"
@@ -237,43 +217,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
+        "name": "CVE-2026-25680"
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -281,7 +241,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.35.0"
@@ -293,27 +253,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.35.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.35.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -321,19 +261,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.35.0"
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -341,7 +281,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.35.0"
@@ -353,7 +293,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -361,19 +301,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.35.0"
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -381,7 +321,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.35.0"
@@ -393,207 +333,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -601,19 +341,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -621,259 +361,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -881,19 +381,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -901,19 +401,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -921,19 +421,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.35.0"
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -947,7 +447,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.35.0"
@@ -956,16 +456,56 @@
               "@id": "pkg:golang/golang.org/x/net@v0.35.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1000,6 +540,46 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1053,19 +633,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1073,19 +653,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1093,7 +673,27 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.35.0"
@@ -1105,27 +705,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.35.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.35.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1133,19 +713,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1153,19 +733,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1173,19 +753,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1193,19 +773,59 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.35.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.35.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.30.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.30.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1253,19 +873,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1273,19 +893,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1293,19 +913,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1313,19 +933,59 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1373,19 +1033,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1393,19 +1053,59 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1453,19 +1153,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.35.0"
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1473,7 +1173,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.35.0"
@@ -1485,7 +1185,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1493,19 +1193,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1513,19 +1213,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1533,19 +1233,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1553,19 +1253,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1573,7 +1273,27 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.35.0"
@@ -1585,27 +1305,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.35.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.35.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1613,19 +1313,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:c4e7d6e779a127bf0653b3fc01e46e502746f412974554a19ce390d902c1fbc9",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:17c486e5a64110c33ac1f4ffd89a17935bd53dd0558707e0bced21ad715df389",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1633,19 +1333,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:f3ec7dd285b9746b8721d43a85253e8c477f6e2b524002ace216f287fcd0525c",
+          "@id": "pkg:oci/vm-console-proxy-rhel9@sha256:38c42aad2ca43b6fa60ac5a1d7572a8689e31064f72a727a48c0feac0a7d7bfa",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/vm-console-proxy-rhel9 9 not listed as affected."
     }
   ]
 }

@@ -2,26 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/aap-cloud-billing-operator-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:56:54Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:27:53Z",
+  "version": 2,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2023-5752"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@23.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
     {
       "vulnerability": {
         "name": "CVE-2025-11083"
@@ -402,46 +385,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-59375"
       },
       "products": [
@@ -558,23 +501,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@23.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
     },
     {
       "vulnerability": {
@@ -708,23 +634,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-1703"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@23.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-24051"
       },
       "products": [
@@ -742,83 +651,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25645"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/requests@2.32.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
     },
     {
       "vulnerability": {
@@ -844,349 +676,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-3219"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@23.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.70.0"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.70.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1230,86 +719,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39824"
       },
       "products": [
@@ -1327,46 +736,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1390,26 +759,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.32.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.32.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-4111"
       },
       "products": [
@@ -1426,26 +775,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1469,106 +798,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-4424"
       },
       "products": [
@@ -1585,40 +814,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-44431"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/urllib3@2.6.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-44432"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/urllib3@2.6.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1755,23 +950,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-6357"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aap-cloud-billing-operator-rhel9@sha256:3b89d2135f93b60b24d4416824bbd189cc140fcfa88df13bc35ec903c1b8b2aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@23.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/aap-cloud-billing-operator-rhel9 2.7 not listed as affected."
     }
   ]
 }

@@ -15,9 +15,10 @@ The purl rules are empirical, proven against both scanners
   * golang versions diverge between scanners (grype `stdlib@1.20.12` vs trivy
     `stdlib@v1.20.12`) → both variants are emitted for every golang component.
 
-Scope is suppression-only: FALSE POSITIVE rows become `not_affected` or
-`fixed` statements; POSITIVE / NOT ASSESSED rows are never emitted (VEX-MODEL:
-state only what the VEX supports).
+Scope is suppression-only: statement-backed FALSE POSITIVE rows (VEX_STATED)
+become `not_affected` or `fixed` statements; POSITIVE rows and FALSE
+POSITIVEs derived from the component's absence in the VEX are never emitted
+(VEX-MODEL: state only what the VEX itself states).
 """
 from __future__ import annotations
 
@@ -168,6 +169,13 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
             divergent.add((cve, owner))
 
     fp = df[df['AUDIT_RESULT'].astype(str).str.contains('FALSE POSITIVE', na=False)]
+    # Publish only statement-backed verdicts: a FALSE POSITIVE derived from
+    # the component's ABSENCE in the VEX (engine VEX_STATED=False) is a triage
+    # display verdict, not a Red Hat claim — emitting not_affected for it
+    # would suppress the finding on the vendor's behalf.  (Bool survives CSV
+    # round-trips as the string "True"/"False".)
+    if 'VEX_STATED' in fp.columns:
+        fp = fp[fp['VEX_STATED'].astype(str).str.strip().str.lower().isin(('true', '1'))]
     groups: dict = {}
     for _, row in fp.iterrows():
         status = _STATE_TO_STATUS.get(str(row.get('VEX_STATE', '')).strip())

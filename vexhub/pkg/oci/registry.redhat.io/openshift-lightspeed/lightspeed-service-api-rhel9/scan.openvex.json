@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/lightspeed-service-api-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:40:49Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:39:28Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -153,23 +153,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-71176"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/lightspeed-service-api-rhel9@sha256:26f9e07ff6a54d3930a5693b4638995ff7e2f4e8b526e32b4e949b6bb422f2b4",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pytest@9.0.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-lightspeed/lightspeed-service-api-rhel9 1 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-8176"
       },
       "products": [
@@ -208,23 +191,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-1703"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/lightspeed-service-api-rhel9@sha256:26f9e07ff6a54d3930a5693b4638995ff7e2f4e8b526e32b4e949b6bb422f2b4",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-lightspeed/lightspeed-service-api-rhel9 1 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-23949"
       },
       "products": [
@@ -239,23 +205,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25087"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/lightspeed-service-api-rhel9@sha256:26f9e07ff6a54d3930a5693b4638995ff7e2f4e8b526e32b4e949b6bb422f2b4",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyarrow@22.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for openshift-lightspeed/lightspeed-service-api-rhel9 1."
     },
     {
       "vulnerability": {
@@ -404,6 +353,23 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-53539"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/lightspeed-service-api-rhel9@sha256:26f9e07ff6a54d3930a5693b4638995ff7e2f4e8b526e32b4e949b6bb422f2b4",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/python-multipart@0.0.24"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in openshift-lightspeed/lightspeed-service-api-rhel9 1 (Lightspeed Core): vulnerable code not present."
     },
     {
       "vulnerability": {

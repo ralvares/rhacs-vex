@@ -2,9 +2,29 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/tempo-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:55:07Z",
-  "version": 1,
+  "timestamp": "2026-07-14T13:10:50Z",
+  "version": 2,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/tempo-rhel9@sha256:bf7cbea569210216ec50c4f1fc08e276fd0de8f437a036919519c8f57151b228",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.3"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
     {
       "vulnerability": {
         "name": "CVE-2026-39822"
@@ -18,6 +38,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.26.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/tempo-rhel9@sha256:bf7cbea569210216ec50c4f1fc08e276fd0de8f437a036919519c8f57151b228",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.3"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.3"
             }
           ]
         }

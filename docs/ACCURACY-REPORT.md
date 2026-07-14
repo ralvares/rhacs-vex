@@ -1,46 +1,88 @@
-# Accuracy Report — suppression audit & scanner comparison
+# Accuracy Report — how good are the suppressions, and which scanner should you trust?
 
-**Date:** 2026-07-13/14 · **Tools:** grype 0.111.0, trivy 0.69.3, syft 1.42.4,
-RHACS Central (Scanner) · **Judge:** the vextriage engine, verdicts verified by
-hand against live Red Hat CSAF-VEX (`security.access.redhat.com/data/csaf/v2/vex/`).
+**Date:** July 13–14, 2026
+**Tools:** grype 0.111.0, trivy 0.69.3, syft 1.42.4, RHACS Central (Scanner)
+**Ground truth:** Red Hat's live CSAF-VEX feed (`security.access.redhat.com/data/csaf/v2/vex/`).
+The vextriage engine produced the verdicts; I verified samples by hand against the raw Red Hat files.
 
-Everything below was measured on this repository's data, not estimated.
+Everything below was measured on this repository's data. Nothing is an estimate.
 
 ---
 
-## 1. What was audited
+## Why this audit exists
 
-- **Structural pass:** all 681 hub documents, 81,413 statements — zero schema,
-  product-id, justification or duplicate defects.
-- **Accuracy sample:** 32 statements, stratified over rpm/golang × fixed/not_affected,
-  each compared by hand against Red Hat's live VEX.
-- **Exhaustive two-sided check** on one full image (buildah): every suppressed
-  finding must be a confirmed false positive, every visible finding must be real.
-- **Per-class reruns:** oc-cli (OpenShift-scoped), OCP release payload image,
-  operator image, ubi8/ubi9 bases.
-- In total, **~320 suppression decisions were verified individually. Zero were
-  wrong in either direction** (after the fixes below).
+The hub suppresses findings. A wrong suppression hides a real vulnerability, which is
+the worst failure a tool like this can have. So before trusting the hub, I wanted two
+questions answered:
 
-## 2. Bugs the audit found (all fixed, all regression-tested)
+1. Are the suppression statements correct — in both directions?
+2. Given a trustworthy hub, which scanner actually gives the best picture?
 
-| # | Bug | Impact before fix | Proof of fix |
-|---|-----|-------------------|--------------|
-| 1 | VEX cache never expired (requests-cache sqlite; Red Hat CDN sends no Cache-Control) | Verdicts froze at first download — a July-7 cache hid a July-8 fix; the blob store grew to 385 GB | Replaced with plain files + ETag sidecar + 4 h revalidation; stale statement retracted |
-| 2 | not_affected could override a **pending fix** for the installed build | **3,398 of 4,014 rpm not_affected statements (85%) were suspect**; confirmed cases: `tar`, `dotnet-host` hid real fixable findings | Precedence rule: a pending applicable fix now beats a broader not_affected; worst doc went 353 wrong statements → 1 correct one |
-| 3 | Go modules inside rpms were invisible to matching | Red Hat assesses the **vendoring rpm** (`rhel9:buildah`), the scanner reports the module (`x/net`) — 47 factually wrong statements in one doc | SBOM file-ownership now links module → rpm; verdicts agree with Red Hat |
-| 4 | Stale statements lived in docs forever | A flipped verdict never disappeared | Re-scan of a digest retracts statements it no longer emits |
-| 5 | Sibling rpm divergence (trivy matches by *source* package) | A not_affected sibling (`bind-utils`) silently suppressed an affected one (`bind-libs`) | No statement emitted when siblings diverge; `bind-libs` visible again |
+## How I checked the hub
 
-Independent safety net added: `vextriage generate --crosscheck` re-checks every
-emitted statement against the raw Red Hat files with separate rules and prints
-disagreements. Negative-tested: injected lies are caught.
+Rather than lean on one big sample, I came at the question from several angles:
 
-## 3. Scanner comparison (bake-off)
+- **A structural pass** over everything: all 681 hub documents, 81,413 statements.
+  No schema, product-id, justification, or duplicate defects.
+- **A stratified sample** of 32 statements, spread across rpm/golang ×
+  fixed/not_affected, each one compared by hand against Red Hat's live VEX.
+- **One image checked exhaustively, in both directions.** For buildah, every
+  suppressed finding had to be a confirmed false positive, and every finding left
+  visible had to be real.
+- **Per-class reruns** to make sure no image family was getting special treatment:
+  oc-cli (OpenShift-scoped), an OCP release payload image, an operator image, and
+  the ubi8/ubi9 bases.
 
-Four images, three scanners, same judge. "Real" = the engine confirmed the finding
-against Red Hat's current VEX. "Missed" = real CVEs (union of all three scanners)
-that this scanner never reported — i.e. **false negatives**. "Noise" = findings
-the engine proved are false positives.
+All told, about **320 individual suppression decisions were verified one by one.
+After the fixes described below, none was wrong in either direction.**
+
+## The bugs the audit caught
+
+The audit paid for itself: it turned up five real bugs, a couple of them serious.
+All are fixed, and all have regression tests.
+
+1. **The VEX cache never expired.** Red Hat's CDN sends no Cache-Control header, so
+   the requests-cache sqlite layer kept the first download forever. Verdicts froze in
+   time — a cache from July 7 was hiding a fix Red Hat published on July 8 — and the
+   blob store had quietly grown to 385 GB. The cache is now plain files with an ETag
+   sidecar and a four-hour revalidation window, and the stale statement was retracted.
+
+2. **`not_affected` could override a pending fix.** Red Hat sometimes marks a package
+   not_affected at a broad scope while a fix for the specific installed build is still
+   pending. The old precedence let the broad not_affected win. That made 3,398 of
+   4,014 rpm not_affected statements (85%) suspect; in the cases I confirmed, `tar`
+   and `dotnet-host` were hiding real, fixable findings. The rule now is that a
+   pending applicable fix beats a broader not_affected. The worst document went from
+   353 wrong statements to a single correct one.
+
+3. **Go modules inside rpms were invisible to matching.** Red Hat assesses the rpm
+   that vendors the module (`rhel9:buildah`); scanners report the module itself
+   (`x/net`). Matching missed the connection entirely — 47 statements in one document
+   were factually wrong. The SBOM's file-ownership data now links each module to its
+   owning rpm, and the verdicts agree with Red Hat again.
+
+4. **Statements never died.** Once a statement entered a document, it stayed there —
+   even after a re-scan flipped the verdict. Re-scanning a digest now retracts any
+   statement it no longer emits.
+
+5. **Sibling rpms could hide each other.** trivy matches by *source* package, so a
+   not_affected verdict on `bind-utils` was silently suppressing a genuinely affected
+   `bind-libs`. When sibling rpms diverge, no statement is emitted at all —
+   `bind-libs` is visible again.
+
+As a safety net going forward, `vextriage generate --crosscheck` re-checks every
+emitted statement against the raw Red Hat files using an independent set of rules and
+prints any disagreement. I negative-tested it by injecting deliberate lies into the
+output; it caught them.
+
+## The scanner bake-off
+
+Four images, three scanners, one judge. Reading the columns:
+
+- **Real** — the engine confirmed the finding against Red Hat's current VEX.
+- **Noise** — the engine proved the finding is a false positive.
+- **Missed** — real CVEs (from the union of all three scanners) that this scanner
+  never reported. These are its false negatives, and they matter most.
 
 | Image | Scanner | Findings | Noise (FP) | Real | **Real missed (FN)** |
 |-------|---------|---------:|-----------:|-----:|---------------------:|
@@ -57,53 +99,63 @@ the engine proved are false positives.
 | | trivy | 520 | 0 | 377 | **6** |
 | | RHACS | 488 | 0 | 340 | 43 |
 
-### What drives the numbers
+### What's actually driving these numbers
 
-- **grype sees the most.** Its "extra" findings were traced: mostly packages Red Hat
-  itself marks *known_affected* (including the never-will-fix backlog: vim, openssl,
-  python3) plus fix-exists-build-older cases. Real, per Red Hat.
-- **grype's noise lives on Go-heavy images** — exactly the class the vexhub suppresses.
-- **trivy is the cleanest raw output** and strong on rpm images, but skips Go
-  standard-library CVEs by default and surfaces less of the unfixed backlog →
-  the 413 misses on ose-cli.
-- **RHACS surfaces the least by policy** (its scan of ose-cli lists vim-minimal with
-  4 vulns where Red Hat's own data acknowledges 128) plus its permanent scan cache
-  ages (the snapshot used was two weeks old). It is, however, the **only scanner
-  that sees inside stripped Go binaries** — on the collector image it alone caught a
-  real go-git finding (and 28 false positives) invisible to both others, because it
-  reads Red Hat's build records instead of inspecting the binary.
-- Shared limitation: grype and trivy are blind inside stripped Go binaries.
+**grype sees the most.** I traced its "extra" findings rather than assuming they were
+noise: most are packages Red Hat itself marks *known_affected* — including the
+never-will-fix backlog (vim, openssl, python3) — plus cases where a fix exists but
+the installed build predates it. Real findings, according to Red Hat's own data. And
+grype's false positives cluster on Go-heavy images, which is exactly the class of
+noise the vexhub statements suppress.
 
-### Ranking (criteria: false negatives first, false positives second)
+**trivy has the cleanest raw output** and is strong on rpm images. But it skips Go
+standard-library CVEs by default and surfaces less of the unfixed backlog — that's
+where the 413 misses on ose-cli come from.
+
+**RHACS surfaces the least, largely by policy.** Its scan of ose-cli lists
+vim-minimal with 4 vulnerabilities where Red Hat's own data acknowledges 128, and its
+permanent scan cache ages (the snapshot used here was two weeks old). But it is the
+only scanner that can see inside stripped Go binaries: on the collector image it
+alone caught a real go-git finding (along with 28 false positives) that the other two
+physically cannot see, because it reads Red Hat's build records instead of inspecting
+the binary.
+
+One limitation grype and trivy share: both are blind inside stripped Go binaries.
+
+### Ranking
+
+Ranked by false negatives first, false positives second — a missed vulnerability is
+worse than noise:
 
 | Rank | Scanner | Verdict |
 |------|---------|---------|
-| 1 | **grype** | Fewest misses everywhere except one image where trivy edged it by 1. Its noise is curable (this hub); blindness is not. |
-| 2 | **trivy** | Excellent on rpm-centric images, cleanest raw output; weak discovery on Go-heavy images; repo-mode quirks (base-layer rpm gap, source-package over-suppression). |
-| 3 | **RHACS** | Most false negatives by count (data policy + cache age); unique strengths: stripped-binary visibility and product-scoped context. |
+| 1 | **grype** | Fewest misses on every image except one, where trivy edged it by a single CVE. Its noise is curable — that's what this hub is for. Its blind spots are not. |
+| 2 | **trivy** | Excellent on rpm-centric images and the cleanest raw output, but weak at discovery on Go-heavy images, with some repo-mode quirks (base-layer rpm gap, source-package over-suppression). |
+| 3 | **RHACS** | The most false negatives by count, from data policy plus cache age. Unique strengths nothing else has: stripped-binary visibility and product-scoped context. |
 
-### The practical conclusion
+### What I'd actually run
 
-No scanner wins alone. The measured best configuration is the one this project
+No single scanner wins. The best configuration I measured is the one this project
 implements:
 
-- **grype + syft generate the hub** (widest Red Hat-confirmed coverage; its noise
-  is exactly what the hub's statements suppress).
-- **trivy or grype + the hub** for consumers: near-zero false positives, smallest
-  false-negative surface their tools allow.
-- **RHACS + triage** for fleet visibility: the only view inside stripped Go
-  binaries, with product-scoped verdicts. RHACS output is never converted into
-  hub documents — statements must match what consumer scanners can actually see.
+- **grype + syft generate the hub.** Widest Red Hat-confirmed coverage, and grype's
+  noise is precisely what the hub's statements suppress.
+- **trivy or grype + the hub** for consumers: near-zero false positives, and the
+  smallest false-negative surface those tools allow.
+- **RHACS + triage** for fleet visibility: the only view inside stripped Go binaries,
+  with product-scoped verdicts. RHACS output is never converted into hub documents —
+  statements have to match what consumer scanners can actually see.
 
-## 4. Caveats
+## Honest limitations
 
-- "Missed" is measured against the union of what the three scanners found; a CVE
-  none of them can see is invisible to this method.
-- The RHACS column partly reflects a two-week-old cached scan; re-scanning
-  shrinks (but does not close) its gap — the vim-class policy difference remains.
-- The engine that judged all findings is the same engine that generates hub
-  statements; its verdicts were independently spot-verified against live Red Hat
-  data throughout (32-statement sample + every anomaly adjudicated by hand).
-- Statements cover the **linux/amd64** build (multi-arch list digest as product
-  identity, arch-less package purls); packages exclusive to other architectures
-  are not covered.
+- "Missed" is measured against the union of what three scanners found. A CVE none of
+  them can see is invisible to this method too.
+- The RHACS column partly reflects a two-week-old cached scan. Re-scanning shrinks
+  the gap but doesn't close it — the vim-class policy difference remains.
+- The engine that judged the findings is the same engine that generates the hub
+  statements. That circularity is worth naming, and it's why verdicts were
+  independently spot-checked against live Red Hat data throughout: the 32-statement
+  sample, plus every anomaly adjudicated by hand.
+- Statements cover the **linux/amd64** build only (the multi-arch list digest is the
+  product identity, and package purls carry no arch). Packages exclusive to other
+  architectures are not covered.

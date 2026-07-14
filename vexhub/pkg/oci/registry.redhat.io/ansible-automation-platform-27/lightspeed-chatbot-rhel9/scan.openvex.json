@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/lightspeed-chatbot-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:52:58Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:27:04Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -38,23 +38,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25211"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/lightspeed-chatbot-rhel9@sha256:5038d20dcee718ad4dc6dc15b51c9ff1ba5cdf953cd8e8cca7132ecbd0aa84e4",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/llama-stack@0.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected in Red Hat OpenShift AI (RHOAI)."
     },
     {
       "vulnerability": {

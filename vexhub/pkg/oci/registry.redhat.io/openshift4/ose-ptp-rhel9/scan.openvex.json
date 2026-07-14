@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-ptp-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:22:55Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:47:44Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -395,66 +395,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ptp not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ptp not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ptp not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-59375"
       },
       "products": [
@@ -712,37 +652,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ptp not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-25680"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             }
           ]
         }
@@ -756,13 +676,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             }
           ]
         }
@@ -801,119 +721,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "ptp not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -921,158 +741,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "ptp not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ptp not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ptp not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ptp not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ptp not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ptp not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ptp not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.56.3"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.56.3"
-            }
-          ]
-        }
-      ],
-      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -1080,13 +761,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1100,25 +781,45 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1133,6 +834,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1166,13 +887,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1186,13 +907,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             }
           ]
         }
@@ -1206,13 +927,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1226,19 +947,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "ptp not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.39.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1266,13 +1007,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1286,13 +1027,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1306,19 +1047,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "ptp not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1409,19 +1170,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "ptp not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1449,13 +1230,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             }
           ]
         }
@@ -1469,13 +1250,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1489,13 +1270,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1509,13 +1290,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             }
           ]
         }
@@ -1529,13 +1310,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1549,13 +1330,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
             }
           ]
         }
@@ -1625,6 +1406,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46595"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
           "subcomponents": [
             {
@@ -1645,13 +1446,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-ptp-rhel9@sha256:9d10cae2f90b0bb57ce391c6ecbac4ca9ded6c5a99bdfe398606803b9c6dce32",
+          "@id": "pkg:oci/ose-ptp-rhel9@sha256:657efd029a09e94c6af00d9d9f1d5b9b9ac7f1c3fc10a30498dc98cf8c68fe69",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
             }
           ]
         }

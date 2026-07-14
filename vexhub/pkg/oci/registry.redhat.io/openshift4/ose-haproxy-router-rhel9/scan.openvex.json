@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-haproxy-router-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T15:17:36Z",
-  "version": 2,
+  "timestamp": "2026-07-14T10:45:23Z",
+  "version": 5,
   "statements": [
     {
       "vulnerability": {
@@ -11,6 +11,32 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/haproxy28@2.8.10-2.rhaos4.19.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/haproxy@2.8.10-2.rhaos4.19.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/haproxy28@2.8.10-2.rhaos4.19.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/haproxy@2.8.10-2.rhaos4.19.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.19: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-25950"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
           "subcomponents": [
             {
@@ -63,7 +89,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc@0.42.0"
@@ -78,142 +104,22 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2023-47108"
+        "name": "CVE-2025-25724"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc@0.42.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc@v0.42.0"
+              "@id": "pkg:rpm/redhat/libarchive@3.5.3-5.el9_4.1"
             }
           ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libarchive@3.5.3-5.el9_4.1"
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-45337"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-45338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.25.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22868"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@0.10.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@v0.10.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22870"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.25.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.25.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
     },
     {
       "vulnerability": {
@@ -240,6 +146,44 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/systemd-libs@252-32.el9_4.10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-pam@252-32.el9_4.10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-32.el9_4.10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd@252-32.el9_4.10"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@252-32.el9_4.10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-pam@252-32.el9_4.10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-32.el9_4.10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@252-32.el9_4.10"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.19: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4598"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
           "subcomponents": [
             {
@@ -316,27 +260,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.2), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4674"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -356,27 +280,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47907"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -396,27 +300,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.25.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.41.0"
@@ -436,27 +320,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
@@ -476,27 +340,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
@@ -516,27 +360,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
@@ -556,27 +380,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58183"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -596,27 +400,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58185"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -636,27 +420,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -676,27 +440,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58188"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -716,27 +460,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58189"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -756,27 +480,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.25.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.41.0"
@@ -789,6 +493,32 @@
       ],
       "status": "not_affected",
       "impact_statement": "haproxy-router not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-59303"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/haproxy28@2.8.10-2.rhaos4.19.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/haproxy@2.8.10-2.rhaos4.19.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/haproxy28@2.8.10-2.rhaos4.19.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/haproxy@2.8.10-2.rhaos4.19.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.19: known_not_affected."
     },
     {
       "vulnerability": {
@@ -848,27 +578,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61723"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -888,27 +598,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61725"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -928,27 +618,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61726"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -968,27 +638,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1008,27 +658,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61729"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1048,27 +678,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1088,27 +698,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1128,67 +718,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-65637"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/sirupsen/logrus@1.9.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/sirupsen/logrus@v1.9.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68121"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1208,7 +738,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1285,6 +815,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.37.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.37.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
           "subcomponents": [
             {
@@ -1305,27 +855,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1345,27 +875,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.25.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.41.0"
@@ -1385,27 +895,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.25.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.41.0"
@@ -1425,27 +915,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.25.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.41.0"
@@ -1465,27 +935,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1505,27 +955,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1545,27 +975,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1585,27 +995,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1625,27 +1015,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1665,27 +1035,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1705,7 +1055,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel@1.37.0"
@@ -1725,27 +1075,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1765,27 +1095,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1805,27 +1115,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1845,27 +1135,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1885,27 +1155,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1925,27 +1175,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -1985,27 +1215,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -2025,33 +1235,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.25.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.41.0"
@@ -2070,6 +1254,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.10"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.10"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -2098,6 +1302,26 @@
       "products": [
         {
           "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.10"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.10"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -2157,27 +1381,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -2197,27 +1401,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.25.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.41.0"
@@ -2237,27 +1421,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -2277,7 +1441,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -2293,23 +1457,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39823"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/golang.org/x/sys@0.33.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/golang.org/x/sys@v0.33.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -2357,27 +1521,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -2397,27 +1541,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -2437,27 +1561,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
@@ -2477,27 +1581,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
@@ -2517,27 +1601,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
@@ -2557,27 +1621,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
@@ -2597,27 +1641,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
@@ -2637,27 +1661,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
@@ -2677,27 +1681,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
@@ -2717,27 +1701,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
@@ -2750,6 +1714,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "haproxy-router not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.10"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.10"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -2797,27 +1781,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.19.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.19.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.19. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.37.0"
@@ -2830,6 +1794,31 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.19. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-40356"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/krb5-libs@1.21.1-2.el9_4.5"
+            },
+            {
+              "@id": "pkg:rpm/redhat/krb5@1.21.1-2.el9_4.5"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/krb5-libs@1.21.1-2.el9_4.5"
+        },
+        {
+          "@id": "pkg:rpm/redhat/krb5@1.21.1-2.el9_4.5"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -2862,7 +1851,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -2878,11 +1867,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -2894,7 +1883,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -2942,27 +1931,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.25.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.41.0"
@@ -2982,27 +1951,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -3022,27 +1971,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -3062,27 +1991,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.25.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.41.0"
@@ -3102,27 +2011,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.23.10"
@@ -3142,27 +2031,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
@@ -3182,27 +2051,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
@@ -3222,27 +2071,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
@@ -3262,27 +2091,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:e65c2e85e9aeba1984744498c0fe6e495a63f0cd5a641b57cca427095b5721fc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "haproxy-router not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:f446cc5e14043c426638ddd1afdd9d5ace5d1512bb924a594a76f210f39f21b7",
+          "@id": "pkg:oci/ose-haproxy-router-rhel9@sha256:37d7152baebc92d886e1ffb48f86561a96e94e8f4bb0a2a7546bd0aee90f447d",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.39.0"

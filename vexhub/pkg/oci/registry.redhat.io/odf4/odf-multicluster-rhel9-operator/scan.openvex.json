@@ -2,108 +2,28 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odf-multicluster-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T15:05:57Z",
-  "version": 2,
+  "timestamp": "2026-07-14T10:43:09Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
-        "name": "CVE-2025-22872"
+        "name": "CVE-2026-1229"
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.37.0"
+              "@id": "pkg:golang/github.com/cloudflare/circl@1.6.1"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.37.0"
+              "@id": "pkg:golang/github.com/cloudflare/circl@v1.6.1"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat Openshift Data Foundation 4.2 \u2014 registry.redhat.io/odf4/odf-multicluster-rhel9-operator@sha256:13594f6f57bdd87477505288fee4a62c504daacdb6fc930e0c64c582edab4dbb_s390x."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat Openshift Data Foundation 4.2 \u2014 registry.redhat.io/odf4/odf-multicluster-rhel9-operator@sha256:13594f6f57bdd87477505288fee4a62c504daacdb6fc930e0c64c582edab4dbb_s390x."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat Openshift Data Foundation 4.2 \u2014 registry.redhat.io/odf4/odf-multicluster-rhel9-operator@sha256:13594f6f57bdd87477505288fee4a62c504daacdb6fc930e0c64c582edab4dbb_s390x."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -147,523 +67,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 10, Red Hat Enterprise Linux 8, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 10, Red Hat Enterprise Linux 8, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 10, Red Hat Enterprise Linux 8, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 10, Red Hat Enterprise Linux 8, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
+      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.21 not listed as affected."
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27145"
+        "name": "CVE-2026-29181"
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@1.40.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.40.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
+      "impact_statement": "Not listed as affected; no VEX statement for odf4/odf-multicluster-rhel9-operator 4.21."
     },
     {
       "vulnerability": {
@@ -705,23 +145,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33811"
+        "name": "CVE-2026-33762"
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.14.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
+      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.21 not listed as affected."
     },
     {
       "vulnerability": {
@@ -729,19 +169,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
+      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.21 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-34165"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.21 not listed as affected."
     },
     {
       "vulnerability": {
@@ -756,6 +216,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -809,6 +289,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
           "subcomponents": [
             {
@@ -829,39 +329,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
+      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.21 not listed as affected."
     },
     {
       "vulnerability": {
@@ -869,39 +349,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
+      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.21 not listed as affected."
     },
     {
       "vulnerability": {
@@ -909,39 +369,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
+      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.21 not listed as affected."
     },
     {
       "vulnerability": {
@@ -956,6 +396,26 @@
             },
             {
               "@id": "pkg:golang/golang.org/x/sys@v0.32.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.40.0"
             }
           ]
         }
@@ -989,39 +449,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
+      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.21 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1029,39 +469,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
+      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.21 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1076,6 +496,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1109,39 +549,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
+      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.21 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1156,6 +576,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1189,39 +629,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
+      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.21 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1229,39 +649,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
+      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.21 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1269,39 +669,79 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:4dcf7e981177eb69d14c91ffdb0f991c3b71f5f827d74bfd428bb202bf5a0375",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.19 not listed as affected."
+      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.21 not listed as affected."
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42507"
+        "name": "CVE-2026-44973"
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:f375313ba422f950061e34c3f2f6c2f66645f229b491d6b265cf30ca949d341b",
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@5.6.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@v5.6.2"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-multicluster-rhel9-operator 4.20 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45022"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45570"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-multicluster-rhel9-operator@sha256:5355eb6147828b99931b54d135c2cb331e080a4aa58cf23b395cce4218b3cd6d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.14.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     }
   ]
 }

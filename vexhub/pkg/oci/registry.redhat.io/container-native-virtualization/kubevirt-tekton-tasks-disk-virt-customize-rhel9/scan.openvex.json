@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/kubevirt-tekton-tasks-disk-virt-customize-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:34:13Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:42:02Z",
+  "version": 5,
   "statements": [
     {
       "vulnerability": {
@@ -1497,6 +1497,56 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-5372"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libssh-config@0.10.4-18.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libssh@0.10.4-18.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh-config@0.10.4-18.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh@0.10.4-18.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-5372"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libssh-config@0.10.4-18.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libssh@0.10.4-18.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh-config@0.10.4-18.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh@0.10.4-18.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-53905"
       },
       "products": [
@@ -1647,23 +1697,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
+        "name": "CVE-2026-25680"
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1671,7 +1721,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1683,27 +1733,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:fd7c84cd596735252f1a70a313518728663f39c21ff303af3a9e36064e47cd3d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1711,7 +1741,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1723,7 +1753,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1731,7 +1761,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:fd7c84cd596735252f1a70a313518728663f39c21ff303af3a9e36064e47cd3d",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1743,7 +1773,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1751,7 +1781,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1763,7 +1793,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1771,7 +1801,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:fd7c84cd596735252f1a70a313518728663f39c21ff303af3a9e36064e47cd3d",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1783,107 +1813,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1891,19 +1821,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1911,139 +1841,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:fd7c84cd596735252f1a70a313518728663f39c21ff303af3a9e36064e47cd3d",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2051,19 +1861,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2071,7 +1901,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -2080,10 +1910,10 @@
               "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -2097,19 +1927,45 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:fd7c84cd596735252f1a70a313518728663f39c21ff303af3a9e36064e47cd3d",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -2124,6 +1980,46 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -2153,23 +2049,63 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2177,7 +2113,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -2189,7 +2125,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2197,7 +2133,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:fd7c84cd596735252f1a70a313518728663f39c21ff303af3a9e36064e47cd3d",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -2209,7 +2145,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2217,19 +2153,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2237,19 +2173,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:fd7c84cd596735252f1a70a313518728663f39c21ff303af3a9e36064e47cd3d",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2257,19 +2193,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2277,19 +2233,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2297,19 +2273,59 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -2333,23 +2349,83 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -2373,23 +2449,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -2397,7 +2473,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:fd7c84cd596735252f1a70a313518728663f39c21ff303af3a9e36064e47cd3d",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -2409,7 +2485,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2417,19 +2513,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2437,19 +2533,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:fd7c84cd596735252f1a70a313518728663f39c21ff303af3a9e36064e47cd3d",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2457,19 +2553,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2477,19 +2573,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:fd7c84cd596735252f1a70a313518728663f39c21ff303af3a9e36064e47cd3d",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2497,7 +2593,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -2509,7 +2605,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2517,7 +2613,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:fd7c84cd596735252f1a70a313518728663f39c21ff303af3a9e36064e47cd3d",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -2529,7 +2625,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2537,19 +2633,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:34c86b536c6adbd7534d8b2daf41882c86092652e1d29cd0fcbdd0cd100750cc",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:346acb842edd601ce4a5cb7fd750b140da4f2d6b069700a85e482fabe6a5f5ae",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2557,19 +2653,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:fd7c84cd596735252f1a70a313518728663f39c21ff303af3a9e36064e47cd3d",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-disk-virt-customize-rhel9@sha256:ee414def9de255364cd69877cf2ccf8129b1db73173479e4085aa3da84821752",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-disk-virt-customize-rhel9 9 not listed as affected."
     }
   ]
 }

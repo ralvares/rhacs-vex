@@ -2,88 +2,28 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/external-dns-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-13T17:53:20Z",
-  "version": 4,
+  "timestamp": "2026-07-14T07:32:07Z",
+  "version": 7,
   "statements": [
     {
       "vulnerability": {
-        "name": "CVE-2022-27664"
+        "name": "CVE-2022-30636"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.17.13"
+              "@id": "pkg:golang/golang.org/x/crypto@0.0.0-20220427172511-eb4f295cb31f"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.17.13"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.0.0-20220427172511-eb4f295cb31f"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-2879"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-2880"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-28948"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/gopkg.in/yaml.v3@3.0.0"
-            },
-            {
-              "@id": "pkg:golang/gopkg.in/yaml.v3@v3.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for edo/external-dns-rhel8 (RHEL 8)."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -104,26 +44,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-41715"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
     },
     {
       "vulnerability": {
@@ -151,27 +71,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-41717"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -184,26 +84,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-41720"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -211,7 +91,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -227,97 +107,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2022-41722"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2022-41723"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-41723"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-41724"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-41725"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
             }
           ]
         }
@@ -347,397 +147,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2023-24532"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-24534"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-24536"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-24537"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-24538"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-24539"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-24540"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-29400"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-29402"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-29403"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-29404"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-29405"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-29406"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-29409"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-39318"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-39319"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-39323"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "edo/external-dns-rhel8 (RHEL 8) not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2023-39325"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-39325"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-39326"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
             }
           ]
         }
@@ -751,7 +171,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -771,27 +191,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. EXT-DNS-OPTR 1.2 for RHEL 8 \u2014 edo/external-dns-rhel8@sha256:de5c2dd03fd5a3fb13390fb304f8746da5368df4764f21702e81594a225cec27_amd64."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-44487"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -807,97 +207,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2023-45285"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-45287"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2023-45288"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream AUS (v.8.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-45288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream AUS (v.8.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-45288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -913,91 +227,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2023-45289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-45290"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2023-48795"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-48795"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-48795"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.0.0-20220427172511-eb4f295cb31f"
@@ -1017,6 +251,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/vektah/gqlparser/v2@2.5.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/vektah/gqlparser/v2@v2.5.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-49559"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
           "subcomponents": [
             {
@@ -1053,131 +307,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2023-54365"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected in Red Hat OpenShift AI (RHOAI), Red Hat OpenShift Dev Spaces."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-24783"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-24784"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-24785"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-24786"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/protobuf@1.27.1"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/protobuf@v1.27.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-24786"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/protobuf@1.30.0"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/protobuf@v1.30.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-24786"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/google.golang.org/protobuf@1.28.1"
@@ -1213,191 +347,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-24789"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-24790"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-24791"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-34155"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-34156"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream AUS (v.8.4), Red Hat Enterprise Linux AppStream AUS (v.8.6) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-34158"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-45336"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-45337"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-45337"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-45337"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.0.0-20220427172511-eb4f295cb31f"
@@ -1417,47 +371,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Connectivity Link 1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-45338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Connectivity Link 1 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-45338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -1473,71 +387,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-45341"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-51744"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@4.0.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@v4.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-51744"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@4.2.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@v4.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-51744"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@4.2.0"
@@ -1557,47 +411,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/hashicorp/go-retryablehttp@0.7.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/hashicorp/go-retryablehttp@v0.7.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-6104"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/hashicorp/go-retryablehttp@0.7.1"
-            },
-            {
-              "@id": "pkg:golang/github.com/hashicorp/go-retryablehttp@v0.7.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-6104"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/hashicorp/go-retryablehttp@0.7.1"
@@ -1633,71 +447,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22866"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-22868"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@0.0.0-20220309155454-6242fa91716a"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@v0.0.0-20220309155454-6242fa91716a"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22868"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@0.7.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@v0.7.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22868"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/oauth2@0.0.0-20220622183110-fd043fe589d2"
@@ -1717,47 +471,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream AUS (v.8.4), Red Hat Enterprise Linux AppStream AUS (v.8.6) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream AUS (v.8.4), Red Hat Enterprise Linux AppStream AUS (v.8.6) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.0.0-20220427172511-eb4f295cb31f"
@@ -1777,53 +491,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22870"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22870"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -1839,71 +507,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22871"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream AUS (v. 8.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-22872"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -1923,27 +531,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@4.0.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@v4.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream EUS (v.8.8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-30204"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@4.2.0"
@@ -1959,151 +547,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-30204"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@4.2.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@v4.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream EUS (v.8.8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4673"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4674"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream E4S (v.8.8), Red Hat Enterprise Linux AppStream TUS (v.8.8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47906"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47907"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-47911"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -2119,71 +567,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-47912"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-47913"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.0.0-20220427172511-eb4f295cb31f"
@@ -2199,71 +587,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-58183"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-58190"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -2279,103 +607,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-61724"
+        "name": "CVE-2026-2303"
       },
       "products": [
         {
           "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.17.13"
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@1.5.1"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.17.13"
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@v1.5.1"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61727"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream AUS (v. 8.2), Red Hat Enterprise Linux AppStream AUS (v.8.4) (known_not_affected/fixed only)."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -2383,7 +631,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.mongodb.org/mongo-driver@1.5.1"
@@ -2443,47 +691,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -2503,47 +711,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -2563,47 +731,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -2619,257 +747,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.8"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.8"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.8"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.8"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.10"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.8"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
@@ -2890,6 +778,26 @@
             },
             {
               "@id": "pkg:golang/google.golang.org/grpc@v1.45.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33186"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@1.48.0"
+            },
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@v1.48.0"
             }
           ]
         }
@@ -2939,103 +847,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.8"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-33814"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.8"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -3131,91 +947,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.8"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39821"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -3235,47 +971,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.8"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.10"
@@ -3291,46 +987,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.8"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39824"
       },
       "products": [
@@ -3342,6 +998,26 @@
             },
             {
               "@id": "pkg:golang/golang.org/x/sys@v0.13.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.1.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.1.0"
             }
           ]
         }
@@ -3391,131 +1067,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.8"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.8"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39828"
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.0.0-20220427172511-eb4f295cb31f"
@@ -3535,47 +1091,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.0.0-20220427172511-eb4f295cb31f"
@@ -3595,47 +1111,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.0.0-20220427172511-eb4f295cb31f"
@@ -3655,47 +1131,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.0.0-20220427172511-eb4f295cb31f"
@@ -3715,47 +1151,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.0.0-20220427172511-eb4f295cb31f"
@@ -3835,6 +1231,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/projectcontour/contour@1.21.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/projectcontour/contour@v1.21.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-41246"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
           "subcomponents": [
             {
@@ -3871,46 +1287,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.8"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-42501"
       },
       "products": [
@@ -3955,47 +1331,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -4015,47 +1351,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.17.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.1.0"
@@ -4075,47 +1371,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.17.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.17.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.8"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.10"
@@ -4135,47 +1391,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.0.0-20220427172511-eb4f295cb31f"
@@ -4195,47 +1411,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.0.0-20220427172511-eb4f295cb31f"
@@ -4255,47 +1431,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:17f4127cbb9a9304769e9655c19cbea2260107c7e9371a99a9aa3e85d759c00b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:83d04f540dce7130faec6c5befcc3b4314c007a7c11eb59c77e5507dc6f7fdd5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.14.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.14.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/external-dns-rhel8@sha256:e3b02db3d5d8862e3aefbcfebf1fab882a93d875699c526804e6e2b0178a2ef4",
+          "@id": "pkg:oci/external-dns-rhel8@sha256:5834a35c9bb3d10e45c1e02b31ba3c949f0bdca56d4845115f4c5ee1f2259fa4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.0.0-20220427172511-eb4f295cb31f"

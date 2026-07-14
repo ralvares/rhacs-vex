@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-trustyai-garak-lls-provider-dsp-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:16:08Z",
-  "version": 5,
+  "timestamp": "2026-07-14T12:38:00Z",
+  "version": 11,
   "statements": [
     {
       "vulnerability": {
@@ -111,6 +111,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/binutils-gold@2.35.2-63.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/binutils@2.35.2-63.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/binutils-gold@2.35.2-63.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/binutils@2.35.2-63.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-11083"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -151,6 +176,55 @@
         },
         {
           "@id": "pkg:rpm/redhat/binutils@2.35.2-63.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-12084"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.5"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.5"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.5"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.5"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.5"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.5"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.3"
         }
       ],
       "status": "fixed"
@@ -259,6 +333,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libpq@13.23-1.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libpq@13.23-1.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-12818"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -297,6 +390,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.4"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-13601"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -325,6 +437,37 @@
         },
         {
           "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.4"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-13836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.5"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.5"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.5"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.5"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.5"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.5"
         }
       ],
       "status": "fixed"
@@ -514,6 +657,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-15467"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -564,6 +732,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.10.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3000"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -598,6 +783,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/poppler@21.01.0-22.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/poppler@21.01.0-22.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-32365"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -636,6 +840,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/tar@1.34-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/tar@1.34-7.el9_6.2"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.4: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-45582"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -676,6 +900,44 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/systemd-libs@252-51.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-pam@252-51.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-51.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-pam@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.4: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4598"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -752,6 +1014,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libssh-config@0.10.4-15.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh-config@0.10.4-15.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-5318"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -802,6 +1089,37 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-53905"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -864,6 +1182,37 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-53906"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -926,6 +1275,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.5.0-5.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.5.0-5.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-59375"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -957,6 +1325,32 @@
         }
       ],
       "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-5987"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libssh-config@0.10.4-15.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh-config@0.10.4-15.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6.1"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.4: known_not_affected."
     },
     {
       "vulnerability": {
@@ -1042,6 +1436,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/brotli@1.0.9-7.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libbrotli@1.0.9-7.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/brotli@1.0.9-7.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libbrotli@1.0.9-7.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6176"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -1092,6 +1511,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssh-clients@8.7p1-45.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssh@8.7p1-45.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssh-clients@8.7p1-45.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssh@8.7p1-45.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61984"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -1142,6 +1586,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssh-clients@8.7p1-45.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssh@8.7p1-45.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssh-clients@8.7p1-45.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssh@8.7p1-45.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61985"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -1192,6 +1661,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-64720"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -1223,23 +1711,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-64756"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/glob@10.4.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -1350,6 +1821,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-65018"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -1388,6 +1878,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-66293"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -1416,6 +1925,31 @@
         },
         {
           "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-66418"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-urllib3@1.26.5-6.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-urllib3@1.26.5-6.el9_6.1"
         }
       ],
       "status": "fixed"
@@ -1528,6 +2062,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-urllib3@1.26.5-6.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-urllib3@1.26.5-6.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-66471"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -1604,6 +2163,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/gnupg2@2.3.3-4.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/gnupg2@2.3.3-4.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-68973"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -1642,23 +2220,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69223"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
           "subcomponents": [
             {
@@ -1689,360 +2250,28 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-69224"
+        "name": "CVE-2025-69419"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69224"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69224"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69225"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69225"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69225"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69226"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69226"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69226"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69227"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69227"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69227"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69228"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69228"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69228"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69229"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69229"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69229"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69230"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69230"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69230"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -2100,6 +2329,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -2140,6 +2394,25 @@
         },
         {
           "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-8176"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.2"
         }
       ],
       "status": "fixed"
@@ -2178,6 +2451,37 @@
         },
         {
           "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-8291"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.5"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.5"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.5"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-devel@3.12.9-1.el9_6.5"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12-libs@3.12.9-1.el9_6.5"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.12@3.12.9-1.el9_6.5"
         }
       ],
       "status": "fixed"
@@ -2246,54 +2550,34 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-8869"
+        "name": "CVE-2025-9086"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/pip@24.2"
+              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-31.el9_6.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/curl@7.76.1-31.el9_6.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libcurl-minimal@7.76.1-31.el9_6.3"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-31.el9_6.3"
+        },
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/curl@7.76.1-31.el9_6.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcurl-minimal@7.76.1-31.el9_6.3"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -2363,6 +2647,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9230"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -2413,6 +2722,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libxml2@2.9.13-12.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libxml2@2.9.13-12.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9714"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -2441,6 +2769,25 @@
         },
         {
           "@id": "pkg:rpm/redhat/libxml2@2.9.13-12.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9900"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.2"
         }
       ],
       "status": "fixed"
@@ -2520,6 +2867,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/protobuf@3.14.0-16.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/protobuf@3.14.0-16.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-0994"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -2539,40 +2905,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/protobuf@6.33.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0994"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/protobuf@6.33.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0994"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:b7539c9131326a3f07b4b40b2c791024b313f26076ae4c29937f1526e2495511",
           "subcomponents": [
             {
@@ -2585,23 +2917,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0994"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/protobuf@6.33.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2750,54 +3065,28 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-1703"
+        "name": "CVE-2026-21441"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/pip@24.2"
+              "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-urllib3@1.26.5-6.el9_6.1"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1703"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1703"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/python-urllib3@1.26.5-6.el9_6.1"
+        },
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/python3-urllib3@1.26.5-6.el9_6.1"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -2823,23 +3112,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-21441"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/urllib3@2.6.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -2918,6 +3190,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-22695"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -2956,6 +3247,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-22801"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -2994,40 +3304,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyasn1@0.6.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-23490"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyasn1@0.6.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-23490"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
           "subcomponents": [
             {
@@ -3038,46 +3314,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift AI 3.3)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-23745"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-23745"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -3191,57 +3427,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-24001"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/diff@5.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 9."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24001"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/diff@5.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24049"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/wheel@0.45.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-24049"
       },
       "products": [
@@ -3292,23 +3477,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24486"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/python-multipart@0.0.21"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -3386,54 +3554,28 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25211"
+        "name": "CVE-2026-25506"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/llama-stack@0.3.5"
+              "@id": "pkg:rpm/redhat/munge-libs@0.5.13-13.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/munge@0.5.13-13.el9_6.1"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25211"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/llama-stack@0.3.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25211"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/munge-libs@0.5.13-13.el9_6.1"
+        },
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/llama-stack@0.3.5"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/munge@0.5.13-13.el9_6.1"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -3481,6 +3623,25 @@
         },
         {
           "@id": "pkg:rpm/redhat/munge@0.5.13-13.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25646"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libpng@1.6.37-12.el9_6.2"
         }
       ],
       "status": "fixed"
@@ -3560,40 +3721,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pillow@12.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25990"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pillow@12.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25990"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
           "subcomponents": [
             {
@@ -3604,57 +3731,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift AI 3.3)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26007"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/cryptography@46.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26007"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/cryptography@46.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26007"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/cryptography@46.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3742,6 +3818,31 @@
         },
         {
           "@id": "pkg:rpm/redhat/openexr@3.1.1-3.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-28390"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
         }
       ],
       "status": "fixed"
@@ -3864,40 +3965,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/python-dotenv@1.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-28684"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/python-dotenv@1.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-28684"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
           "subcomponents": [
             {
@@ -3955,40 +4022,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyasn1@0.6.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-30922"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyasn1@0.6.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-30922"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:cfe033c776d3a0ff66d2e3a43566154f51b239b7efb4a87975ec971c5fd38d7e",
           "subcomponents": [
             {
@@ -4039,40 +4072,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not affected in rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.3 (Red Hat Enterprise Linux 9): component not present."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyjwt@2.10.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyjwt@2.10.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -4189,74 +4188,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33230"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/nltk@3.9.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33230"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:b7539c9131326a3f07b4b40b2c791024b313f26076ae4c29937f1526e2495511",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/nltk@3.9.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33231"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/nltk@3.9.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33231"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:b7539c9131326a3f07b4b40b2c791024b313f26076ae4c29937f1526e2495511",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/nltk@3.9.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-33412"
       },
       "products": [
@@ -4288,31 +4219,14 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-34070"
+        "name": "CVE-2026-34515"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/langchain-core@1.2.20"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34070"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:b7539c9131326a3f07b4b40b2c791024b313f26076ae4c29937f1526e2495511",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/langchain-core@1.2.20"
+              "@id": "pkg:pypi/aiohttp@3.13.3"
             }
           ]
         }
@@ -4415,142 +4329,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-35029"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/litellm@1.75.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-35030"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/litellm@1.75.8"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-40087"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/langchain-core@1.2.20"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-40087"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:b7539c9131326a3f07b4b40b2c791024b313f26076ae4c29937f1526e2495511",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/langchain-core@1.2.20"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-40192"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pillow@12.1.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-40192"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:45a079f8db9c3f5bdc707174da8a450af61578935f436da3492d1bda8edf0a59",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pillow@12.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-40192"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:8594e9940d75f30daa89c58b54950f84e5190209c0c3b4b9b8f6fd58bff21962",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pillow@12.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-40192"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:b7539c9131326a3f07b4b40b2c791024b313f26076ae4c29937f1526e2495511",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pillow@12.1.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-40192"
       },
       "products": [
@@ -4591,6 +4369,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/langsmith@0.7.22"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-41182"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -4618,6 +4413,32 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44172"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-trustyai-garak-lls-provider-dsp-rhel9 3.4: known_not_affected."
     },
     {
       "vulnerability": {
@@ -4792,6 +4613,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/langsmith@0.7.22"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45134"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -4906,6 +4744,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45447"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -4956,7 +4819,41 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/litellm@1.75.8"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-47101"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/litellm@1.75.8"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-47102"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
           "subcomponents": [
             {
               "@id": "pkg:pypi/litellm@1.75.8"
@@ -5030,6 +4927,23 @@
         }
       ],
       "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48818"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/starlette@1.0.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -5115,6 +5029,25 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -5255,6 +5188,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54279"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:3b786260d8d97a64b6f571d0e9608be7c759f5ab5dd56c4127e468a1c9e9f576",
           "subcomponents": [
             {
@@ -5327,6 +5277,23 @@
           "subcomponents": [
             {
               "@id": "pkg:pypi/aiohttp@3.13.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54282"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-garak-lls-provider-dsp-rhel9@sha256:24f57986fef552d92d5af65c757ed2466c19b2c7caf3b797bed2d9dde6e19a19",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/starlette@1.0.0"
             }
           ]
         }

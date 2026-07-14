@@ -586,7 +586,6 @@ _SEVERITY_ORDER = {"Critical": 0, "Important": 1, "Moderate": 2, "Low": 3, "Unkn
 RESULT_STYLES = {
     "✅ FALSE POSITIVE": "bold green",
     "❌ POSITIVE":       "bold red",
-    "⚠️ NOT ASSESSED":  "bold yellow",
 }
 
 SEVERITY_STYLES = {
@@ -603,7 +602,7 @@ def _sort_and_filter_df(df: pd.DataFrame, false_only: bool = False) -> pd.DataFr
     cols = ['COMPONENT', 'VEX_PRODUCT', 'VERSION', 'CVE', 'SEVERITY',
             'AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'VEX_STATE',
             'RHACS_SEVERITY', 'SEVERITY_MISMATCH']
-    for extra in ('SOURCE', 'LOCATION', 'FIXED_VERSION', 'OCP_COMPONENT', 'IMAGE', 'IMAGE_ROLE', 'SRPM'):
+    for extra in ('SOURCE', 'LOCATION', 'FIXED_VERSION', 'OCP_COMPONENT', 'IMAGE', 'IMAGE_ROLE', 'SRPM', 'VEX_STATED'):
         if extra in df.columns:
             cols.append(extra)
     for col in cols:
@@ -638,36 +637,19 @@ def _sort_and_filter_df(df: pd.DataFrame, false_only: bool = False) -> pd.DataFr
     return result_df
 
 
-def _short_component(comp: str) -> str:
-    """Shorten module paths for display using structural rules only."""
-    if '/' not in comp:
-        return comp
-    parts = comp.split('/')
-    if '.' in parts[0]:
-        parts = parts[1:]
-    if not parts:
-        return comp
-    if len(parts) >= 2 and re.fullmatch(r'v\d+', parts[-1]):
-        return '/'.join(parts[-2:])
-    return parts[-1]
-
-
 def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None:
     """Render a compact box table: POSITIVE first, RHACS vs VEX severity, footer."""
-    _vstyle = {'POSITIVE': 'bold red', 'FALSE POSITIVE': 'bold green',
-               'NOT ASSESSED': 'bold yellow'}
+    _vstyle = {'POSITIVE': 'bold red', 'FALSE POSITIVE': 'bold green'}
     _sev_rank = {'Critical': 0, 'Important': 1, 'Moderate': 2, 'Low': 3, 'Unknown': 4}
 
     rows = []
     for _, row in result_df.iterrows():
         verdict = str(row['AUDIT_RESULT'])
-        verdict_plain = ('FALSE POSITIVE' if 'FALSE' in verdict
-                         else 'NOT ASSESSED' if 'NOT ASSESSED' in verdict
-                         else 'POSITIVE')
+        verdict_plain = 'FALSE POSITIVE' if 'FALSE' in verdict else 'POSITIVE'
         fix = str(row.get('VEX_FIX_VER', '') or '')
         rows.append({
             'cve': str(row['CVE']),
-            'comp': _short_component(str(row['COMPONENT'])),
+            'comp': str(row['COMPONENT']),
             'rhacs': str(row.get('RHACS_SEVERITY', 'Unknown')),
             'vex': str(row.get('SEVERITY', 'Unknown')),
             'verdict': verdict_plain,
@@ -676,7 +658,7 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
             'just': str(row['JUSTIFICATION']),
         })
     rows.sort(key=lambda r: (
-        0 if r['verdict'] == 'POSITIVE' else 1 if r['verdict'] == 'NOT ASSESSED' else 2,
+        0 if r['verdict'] == 'POSITIVE' else 1,
         _sev_rank.get(r['vex'], 9),
         _sev_rank.get(r['rhacs'], 9),
         r['cve'],
@@ -684,7 +666,7 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
 
     columns = [
         ('CVE',           'cve',     18),
-        ('Component',     'comp',    26),
+        ('Component',     'comp',    None),   # never truncate identities
         ('RHACS Sev',     'rhacs',   10),
         ('VEX Sev',       'vex',     10),
         ('Verdict',       'verdict', 14),
@@ -692,7 +674,8 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
         ('Fix',           'fix',     18),
         ('Justification', 'just',    46),
     ]
-    widths = [max(len(h), min(max((len(r[k]) for r in rows), default=0), cap))
+    widths = [max(len(h), min(max((len(r[k]) for r in rows), default=0), cap)
+                  if cap else max((len(r[k]) for r in rows), default=0))
               for h, k, cap in columns]
 
     def cell(text, w):
@@ -731,7 +714,6 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
         return
     fp  = sum(1 for r in rows if r['verdict'] == 'FALSE POSITIVE')
     pos = sum(1 for r in rows if r['verdict'] == 'POSITIVE')
-    na  = sum(1 for r in rows if r['verdict'] == 'NOT ASSESSED')
 
     rhacs_counts = Counter(r['rhacs'] for r in rows)
     rhacs_str = ", ".join(f"{n} {s}" for s, n in
@@ -743,11 +725,10 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
     if m:
         label = re.sub(r'@sha256:[a-f0-9]+', f" (sha256:{m.group(1)}...)", label)
     console.print(f"\nImage: [bold cyan]{label}[/bold cyan]")
-    na_str = f", {na} not assessed" if na else ""
     console.print(
         f"RHACS reports [bold]{total}[/bold] findings ({rhacs_str}) → VEX triage: "
         f"[bold green]{fp} false positives[/bold green] ({100 * fp // total}%), "
-        f"[bold red]{pos} real[/bold red]{na_str}."
+        f"[bold red]{pos} real[/bold red]."
     )
     if sev_shift:
         console.print(f"[yellow]{sev_shift} finding(s) rated differently by Red Hat VEX than by the scanner.[/yellow]")
@@ -781,10 +762,11 @@ def _audit_and_display(df: pd.DataFrame, ctx, console: Console, *,
     if df.empty:
         console.print("[yellow]⚠  No CVE findings to audit.[/yellow]")
         for col in ['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY', 'VEX_STATE',
-                    'VEX_PRODUCT', 'RHACS_SEVERITY', 'SEVERITY_MISMATCH']:
+                    'VEX_STATED', 'VEX_PRODUCT', 'RHACS_SEVERITY', 'SEVERITY_MISMATCH']:
             df[col] = pd.Series(dtype=str)
     else:
-        df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY', 'VEX_STATE']] = df.apply(
+        df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY', 'VEX_STATE',
+            'VEX_STATED']] = df.apply(
             lambda row: list(audit_row_detailed(row, ctx)), axis=1, result_type='expand')
         df['VEX_PRODUCT'] = df.apply(lambda row: _vex_product_for_row(row, ctx), axis=1)
         df['SEVERITY_MISMATCH'] = (
@@ -799,8 +781,14 @@ def _audit_and_display(df: pd.DataFrame, ctx, console: Console, *,
     return result_df
 
 
-def _audit_silent(df: pd.DataFrame, ctx, false_only: bool = False) -> pd.DataFrame:
-    """Run VEX sync + audit and return a sorted result DataFrame — no console output."""
+def _audit_silent(df: pd.DataFrame, ctx, false_only: bool = False,
+                  vex_product: bool = True) -> pd.DataFrame:
+    """Run VEX sync + audit and return a sorted result DataFrame — no console output.
+
+    vex_product=False skips the VEX_PRODUCT display column — a second
+    full-document scan per row that nearly doubles audit time.  Callers that
+    only feed openvex.statements_from_df (the generate path) never read it.
+    """
     unique_cves = [c.strip().upper() for c in df['CVE'].unique()]
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
         for f in as_completed({ex.submit(download_and_convert_with_lib, c): c for c in unique_cves}):
@@ -809,9 +797,11 @@ def _audit_silent(df: pd.DataFrame, ctx, false_only: bool = False) -> pd.DataFra
     if not df.empty:
         df['RHACS_SEVERITY'] = df['SEVERITY'].apply(
             lambda s: _RHACS_SEVERITY_MAP.get(str(s).strip().upper(), 'Unknown'))
-        df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY', 'VEX_STATE']] = df.apply(
+        df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY', 'VEX_STATE',
+            'VEX_STATED']] = df.apply(
             lambda row: list(audit_row_detailed(row, ctx)), axis=1, result_type='expand')
-        df['VEX_PRODUCT'] = df.apply(lambda row: _vex_product_for_row(row, ctx), axis=1)
+        df['VEX_PRODUCT'] = (df.apply(lambda row: _vex_product_for_row(row, ctx), axis=1)
+                             if vex_product else '')
         df['SEVERITY_MISMATCH'] = (
             (df['RHACS_SEVERITY'] != 'Unknown') & (df['SEVERITY'] != df['RHACS_SEVERITY']))
 
@@ -928,6 +918,10 @@ def main():
                     "                       triages every unique image deployed in that namespace",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
+    parser.add_argument("target",     nargs="?", default=None,
+                        help="Image ref or RHACS scan CSV file — same positional as\n"
+                             "'vextriage grype/trivy'. A path that exists is treated as\n"
+                             "--scan, anything else as --image.")
     parser.add_argument("--scan",      default=None, metavar="CSV_FILE",
                         help="Path to RHACS scan CSV (overrides API mode even if env vars are set)")
     parser.add_argument("--image",     default=None, metavar="IMAGE_REF",
@@ -964,6 +958,16 @@ def main():
     parser.add_argument("--workers", type=int, default=10, metavar="N",
                         help="Parallel image workers for --ocp / --namespace modes (default: 10).")
     args = parser.parse_args()
+
+    if args.target:
+        if os.path.exists(args.target):
+            if args.scan and args.scan != args.target:
+                parser.error("positional target and --scan point to different files")
+            args.scan = args.target
+        else:
+            if args.image and args.image != args.target:
+                parser.error("positional target and --image name different images")
+            args.image = args.target
 
     if args.namespace and args.image:
         parser.error("--namespace and --image are mutually exclusive")

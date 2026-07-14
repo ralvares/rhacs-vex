@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-clusterresourceoverride-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:09:50Z",
-  "version": 1,
+  "timestamp": "2026-07-14T07:29:44Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -377,106 +377,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "clusterresourceoverride not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "clusterresourceoverride not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "clusterresourceoverride not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "clusterresourceoverride not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "clusterresourceoverride not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-59375"
       },
       "products": [
@@ -738,6 +638,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.36.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.36.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
           "subcomponents": [
             {
@@ -754,37 +674,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "clusterresourceoverride not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-25680"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
             }
           ]
         }
@@ -798,13 +698,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
             }
           ]
         }
@@ -843,119 +743,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "clusterresourceoverride not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -963,13 +763,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -979,123 +779,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-32280"
+        "name": "CVE-2026-29181"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@1.36.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.36.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "clusterresourceoverride not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "clusterresourceoverride not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "clusterresourceoverride not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "clusterresourceoverride not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "clusterresourceoverride not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "clusterresourceoverride not listed as affected."
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.22. Other products: affected: Multicluster Engine for Kubernetes; fixed: multicluster engine for Kubernetes 2.11; not affected: multicluster engine for Kubernetes 2.11."
     },
     {
       "vulnerability": {
@@ -1103,13 +803,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/google.golang.org/grpc@1.68.1"
+              "@id": "pkg:golang/google.golang.org/grpc@1.72.2"
             },
             {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.68.1"
+              "@id": "pkg:golang/google.golang.org/grpc@v1.72.2"
             }
           ]
         }
@@ -1123,13 +823,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1143,25 +843,45 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1176,6 +896,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1209,13 +949,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1229,13 +969,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
             }
           ]
         }
@@ -1249,13 +989,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1269,19 +1009,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "clusterresourceoverride not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1309,13 +1069,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1329,13 +1089,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1349,13 +1109,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
             }
           ]
         }
@@ -1369,13 +1129,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
             }
           ]
         }
@@ -1389,13 +1149,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
             }
           ]
         }
@@ -1409,13 +1169,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
             }
           ]
         }
@@ -1429,13 +1189,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
             }
           ]
         }
@@ -1449,13 +1209,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
             }
           ]
         }
@@ -1469,13 +1229,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
             }
           ]
         }
@@ -1489,19 +1249,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "clusterresourceoverride not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1529,19 +1309,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.33.0"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.36.0"
             },
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.33.0"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.36.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.22. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
     },
     {
       "vulnerability": {
@@ -1612,19 +1392,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "clusterresourceoverride not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1652,13 +1452,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
             }
           ]
         }
@@ -1672,13 +1472,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1692,13 +1492,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1712,13 +1512,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.47.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.47.0"
             }
           ]
         }
@@ -1732,13 +1532,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1752,13 +1552,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
             }
           ]
         }
@@ -1828,13 +1628,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
             }
           ]
         }
@@ -1848,13 +1648,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
             }
           ]
         }
@@ -1868,13 +1668,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:f640b8fa32a8a9618243b7df51e2052ec75db5a96a7d1b35b3b79148c82768fe",
+          "@id": "pkg:oci/ose-clusterresourceoverride-rhel9@sha256:169e239cd7b413741c2f83e430d290d46ebf695a4c4aff2732c7cc83fcd9ba74",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.45.0"
             }
           ]
         }

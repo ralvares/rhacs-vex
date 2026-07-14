@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ubi-minimal",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:18:55Z",
-  "version": 2,
+  "timestamp": "2026-07-14T12:53:24Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -89,6 +89,25 @@
         },
         {
           "@id": "pkg:rpm/redhat/systemd@252-55.el9_7.9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4878"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ubi-minimal@sha256:8d0a8fb39ec907e8ca62cdd24b62a63ca49a30fe465798a360741fde58437a23",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
         }
       ],
       "status": "fixed"

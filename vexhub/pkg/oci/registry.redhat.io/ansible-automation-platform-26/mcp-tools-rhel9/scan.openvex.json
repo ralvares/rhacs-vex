@@ -1,0 +1,52 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/mcp-tools-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T06:04:36Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-28390"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mcp-tools-rhel9@sha256:761c3d2fca8e546ba0697c6d9f9ea4d0e9c6a769758a2f30b426b661137c157d",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.5.5-2.el9_8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.5.5-2.el9_8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.5.5-2.el9_8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.5.5-2.el9_8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat Ansible Automation Platform 2.6)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54282"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mcp-tools-rhel9@sha256:761c3d2fca8e546ba0697c6d9f9ea4d0e9c6a769758a2f30b426b661137c157d",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/starlette@1.1.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    }
+  ]
+}

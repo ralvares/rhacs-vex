@@ -2,16 +2,56 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/oadp-mustgather-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:36:26Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:49:53Z",
+  "version": 3,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2023-45288"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.17.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-24786"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/google.golang.org/protobuf@1.28.1"
+            },
+            {
+              "@id": "pkg:golang/google.golang.org/protobuf@v1.28.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
     {
       "vulnerability": {
         "name": "CVE-2024-25621"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/containerd/containerd@1.7.11"
@@ -31,7 +71,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/containerd/containerd@1.7.11"
@@ -43,27 +83,47 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.5."
+      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.6."
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-45310"
+        "name": "CVE-2024-45337"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/opencontainers/runc@1.1.13"
+              "@id": "pkg:golang/golang.org/x/crypto@0.17.0"
             },
             {
-              "@id": "pkg:golang/github.com/opencontainers/runc@v1.1.13"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.17.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "known_not_affected. 9Base-OADP-1.4 \u2014 oadp/oadp-mustgather-rhel9@sha256:41f32fb3b6f3c1ed7be1f2580dd0fcc861c8240c8470b4e0346e0ba5bbb512b5_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-45338"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.17.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. 9Base-OADP-1.3 \u2014 oadp/oadp-mustgather-rhel9@sha256:00fab8e4e280de478aa50dc4882b89fb0a114addb9ae66b4fc6b731fd445dc67_arm64."
     },
     {
       "vulnerability": {
@@ -71,7 +131,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/golang/glog@1.2.2"
@@ -83,7 +143,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.5."
+      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.6."
     },
     {
       "vulnerability": {
@@ -91,13 +151,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/oauth2@0.25.0"
             },
             {
+              "@id": "pkg:golang/golang.org/x/oauth2@0.4.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/oauth2@v0.25.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/oauth2@v0.4.0"
             }
           ]
         }
@@ -111,10 +177,16 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
+              "@id": "pkg:golang/golang.org/x/crypto@0.17.0"
+            },
+            {
               "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.17.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
@@ -131,16 +203,16 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.33.0"
+              "@id": "pkg:golang/golang.org/x/net@0.17.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@0.34.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.33.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.34.0"
@@ -149,7 +221,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -157,25 +229,31 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.33.0"
+              "@id": "pkg:golang/golang.org/x/net@0.17.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@0.34.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.33.0"
+              "@id": "pkg:golang/golang.org/x/net@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.36.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -183,7 +261,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@4.5.1"
@@ -205,92 +283,15 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-31133"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@1.1.13"
-            },
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@v1.1.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4674"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.2), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47907"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47912"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-47913"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.17.0"
+            },
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
             },
@@ -298,42 +299,19 @@
               "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.17.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-52565"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@1.1.13"
-            },
-            {
-              "@id": "pkg:golang/github.com/opencontainers/runc@v1.1.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -341,19 +319,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/opencontainers/runc@1.1.13"
+              "@id": "pkg:golang/github.com/opencontainers/selinux@1.12.0"
             },
             {
-              "@id": "pkg:golang/github.com/opencontainers/runc@v1.1.13"
-            },
-            {
-              "@id": "pkg:golang/github.com/opencontainers/selinux@1.11.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/opencontainers/selinux@v1.11.0"
+              "@id": "pkg:golang/github.com/opencontainers/selinux@v1.12.0"
             }
           ]
         }
@@ -367,319 +339,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/docker/docker@25.0.6+incompatible"
+              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
             },
             {
-              "@id": "pkg:golang/github.com/docker/docker@v25.0.6+incompatible"
+              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.5."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58058"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/ulikunitz/xz@0.5.11"
-            },
-            {
-              "@id": "pkg:golang/github.com/ulikunitz/xz@v0.5.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58183"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. OpenShift API for Data Protection 1.5 \u2014 registry.redhat.io/oadp/oadp-mustgather-rhel9@sha256:77900c0379c2993dfdd4da3ca30461f2c3673d254d17b0b599f98daf16702fe1_arm64."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58185"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58188"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58189"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61723"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61725"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61726"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. OpenShift API for Data Protection 1.4 \u2014 registry.redhat.io/oadp/oadp-mustgather-rhel9@sha256:23a27c4df14f18ee490a8d3cff7e0f15fe8dba28888ec53999dfa1c2d8df8a17_ppc64le."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. OpenShift API for Data Protection 1.4 \u2014 registry.redhat.io/oadp/oadp-mustgather-rhel9@sha256:23a27c4df14f18ee490a8d3cff7e0f15fe8dba28888ec53999dfa1c2d8df8a17_ppc64le."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61729"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. OpenShift API for Data Protection 1.4 \u2014 registry.redhat.io/oadp/oadp-mustgather-rhel9@sha256:11965dab871e30639539bb95fbb3efb4512eef8dd7e035bf4de493d38a7d14ed_arm64."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68121"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.10"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
+      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.6."
     },
     {
       "vulnerability": {
@@ -688,6 +360,31 @@
       "products": [
         {
           "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
@@ -728,11 +425,51 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-2303"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@1.14.0"
+            },
+            {
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@v1.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-24051"
       },
       "products": [
         {
           "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.34.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.34.0"
@@ -768,17 +505,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-25679"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-27139"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             }
           ]
         }
@@ -792,13 +549,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             }
           ]
         }
@@ -812,13 +569,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             }
           ]
         }
@@ -832,13 +589,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             }
           ]
         }
@@ -852,13 +609,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             }
           ]
         }
@@ -872,16 +629,16 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -890,7 +647,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -914,6 +671,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-32280"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-32281"
       },
       "products": [
@@ -931,6 +708,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (OpenShift API for Data Protection 1.5)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32281"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -954,23 +751,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-32283"
+        "name": "CVE-2026-32282"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32283"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -978,19 +795,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -998,19 +815,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1039,11 +856,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33186"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@1.52.0"
+            },
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@1.69.4"
+            },
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@v1.52.0"
+            },
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@v1.69.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. OpenShift API for Data Protection 1.4 \u2014 registry.redhat.io/oadp/oadp-mustgather-rhel9@sha256:4490beeb9fdb719cc93232301a83637a1b0ce702bee0fd910ccd3cd4c11e50d0_amd64."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-33540"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
@@ -1055,7 +898,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.5."
+      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.6."
     },
     {
       "vulnerability": {
@@ -1078,6 +921,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33747"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/moby/buildkit@0.12.5"
+            },
+            {
+              "@id": "pkg:golang/github.com/moby/buildkit@v0.12.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. OpenShift API for Data Protection 1.4 \u2014 registry.redhat.io/oadp/oadp-mustgather-rhel9@sha256:4490beeb9fdb719cc93232301a83637a1b0ce702bee0fd910ccd3cd4c11e50d0_amd64."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-33748"
       },
       "products": [
@@ -1097,20 +960,40 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33748"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/moby/buildkit@0.12.5"
+            },
+            {
+              "@id": "pkg:golang/github.com/moby/buildkit@v0.12.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. OpenShift API for Data Protection 1.4 \u2014 registry.redhat.io/oadp/oadp-mustgather-rhel9@sha256:4490beeb9fdb719cc93232301a83637a1b0ce702bee0fd910ccd3cd4c11e50d0_amd64."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-33811"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -1119,7 +1002,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1127,40 +1010,40 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.33.0"
+              "@id": "pkg:golang/golang.org/x/net@0.17.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@0.34.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.36.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.46.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.33.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.34.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.36.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.46.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -1177,19 +1060,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/docker/docker@25.0.6+incompatible"
+              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
             },
             {
-              "@id": "pkg:golang/github.com/docker/docker@v25.0.6+incompatible"
+              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.5."
+      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.6."
     },
     {
       "vulnerability": {
@@ -1197,19 +1080,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/docker/docker@25.0.6+incompatible"
+              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
             },
             {
-              "@id": "pkg:golang/github.com/docker/docker@v25.0.6+incompatible"
+              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.5."
+      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.6."
     },
     {
       "vulnerability": {
@@ -1232,11 +1115,31 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-34986"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@4.0.5"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@v4.0.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. OpenShift API for Data Protection 1.4 \u2014 registry.redhat.io/oadp/oadp-mustgather-rhel9@sha256:4490beeb9fdb719cc93232301a83637a1b0ce702bee0fd910ccd3cd4c11e50d0_amd64."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-35172"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
@@ -1248,7 +1151,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.5."
+      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.6."
     },
     {
       "vulnerability": {
@@ -1256,7 +1159,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/moby/spdystream@0.4.0"
@@ -1274,7 +1177,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.5."
+      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.6."
     },
     {
       "vulnerability": {
@@ -1292,6 +1195,32 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.23.10"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -1330,20 +1259,20 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
+        "name": "CVE-2026-39819"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -1352,7 +1281,33 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1360,37 +1315,43 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.33.0"
+              "@id": "pkg:golang/golang.org/x/net@0.17.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@0.34.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@0.36.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@0.46.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.33.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.17.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.34.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.36.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.46.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1398,16 +1359,16 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -1416,7 +1377,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1424,16 +1385,16 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -1442,7 +1403,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1484,20 +1445,64 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.15.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.29.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.30.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.37.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.15.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.29.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.30.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.37.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.43.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39825"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -1506,7 +1511,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1514,16 +1519,16 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -1532,7 +1537,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1540,8 +1545,11 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.17.0"
+            },
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
             },
@@ -1549,7 +1557,10 @@
               "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.17.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
@@ -1558,13 +1569,13 @@
               "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1594,11 +1605,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39883"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
               "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.34.0"
@@ -1610,7 +1647,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.5."
+      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.6."
     },
     {
       "vulnerability": {
@@ -1618,13 +1655,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/docker/docker@25.0.6+incompatible"
+              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
             },
             {
-              "@id": "pkg:golang/github.com/docker/docker@v25.0.6+incompatible"
+              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
             }
           ]
         }
@@ -1638,7 +1675,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/distribution/distribution/v3@3.0.0-20230519140516-983358f8e250"
@@ -1650,7 +1687,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.5."
+      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.6."
     },
     {
       "vulnerability": {
@@ -1658,16 +1695,16 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -1676,7 +1713,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1706,20 +1743,20 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42504"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -1728,7 +1765,33 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1736,16 +1799,16 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -1754,7 +1817,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1762,16 +1825,16 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.23.10"
+              "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.23.10"
+              "@id": "pkg:golang/stdlib@v1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
@@ -1780,7 +1843,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1795,6 +1858,26 @@
             },
             {
               "@id": "pkg:golang/github.com/go-git/go-billy/v5@v5.6.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44973"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@5.6.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-billy/v5@v5.6.1"
             }
           ]
         }
@@ -1824,6 +1907,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-45022"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.13.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-45570"
       },
       "products": [
@@ -1844,23 +1947,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-45571"
+        "name": "CVE-2026-45570"
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.0"
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
             },
             {
-              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.13.0"
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.13.1"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.5."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45571"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@5.13.1"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-git/go-git/v5@v5.13.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-mustgather-rhel9 1.6."
     },
     {
       "vulnerability": {
@@ -1868,8 +1991,11 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.17.0"
+            },
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
             },
@@ -1877,7 +2003,10 @@
               "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.17.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
@@ -1886,13 +2015,13 @@
               "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "oadp/oadp-mustgather-rhel9 1.5 not listed as affected."
+      "impact_statement": "oadp/oadp-mustgather-rhel9 1.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1900,8 +2029,11 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:3e2c5e51a7b4952de68d6077bc7d250f3d7250bf6c6491f78c66d345072c156d",
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
           "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.17.0"
+            },
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.32.0"
             },
@@ -1909,7 +2041,10 @@
               "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.17.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/crypto@v0.32.0"
@@ -1918,7 +2053,7 @@
               "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.43.0"
             }
           ]
         }
@@ -1948,6 +2083,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-47262"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/containerd/containerd@1.7.11"
+            },
+            {
+              "@id": "pkg:golang/github.com/containerd/containerd@v1.7.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-48702"
       },
       "products": [
@@ -1959,6 +2114,26 @@
             },
             {
               "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-mustgather-rhel9@sha256:c26ea1b40b6b6814b13ebe6a59301df425d6ff899bb9a7ffc927f37c876885f7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.3.6"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.3.6"
             }
           ]
         }

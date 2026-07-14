@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/vllm-gaudi-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T19:16:46Z",
-  "version": 1,
+  "timestamp": "2026-07-14T10:55:21Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -214,23 +214,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-69872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-gaudi-rhel9@sha256:71008b2151586551ec0969ffc5b175f726ed6f6bebee29cdc289549e216609bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/diskcache@5.6.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-8176"
       },
       "products": [
@@ -269,57 +252,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-1839"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-gaudi-rhel9@sha256:71008b2151586551ec0969ffc5b175f726ed6f6bebee29cdc289549e216609bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.57.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25048"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-gaudi-rhel9@sha256:71008b2151586551ec0969ffc5b175f726ed6f6bebee29cdc289549e216609bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/xgrammar@0.1.29"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27893"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-gaudi-rhel9@sha256:71008b2151586551ec0969ffc5b175f726ed6f6bebee29cdc289549e216609bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.17.1+rhaiv.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-28390"
       },
       "products": [
@@ -348,91 +280,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-3219"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-gaudi-rhel9@sha256:71008b2151586551ec0969ffc5b175f726ed6f6bebee29cdc289549e216609bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@26.0.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34753"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-gaudi-rhel9@sha256:71008b2151586551ec0969ffc5b175f726ed6f6bebee29cdc289549e216609bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.17.1+rhaiv.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34755"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-gaudi-rhel9@sha256:71008b2151586551ec0969ffc5b175f726ed6f6bebee29cdc289549e216609bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.17.1+rhaiv.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34756"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-gaudi-rhel9@sha256:71008b2151586551ec0969ffc5b175f726ed6f6bebee29cdc289549e216609bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.17.1+rhaiv.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42561"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-gaudi-rhel9@sha256:71008b2151586551ec0969ffc5b175f726ed6f6bebee29cdc289549e216609bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/python-multipart@0.0.26"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -476,57 +323,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-44222"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-gaudi-rhel9@sha256:71008b2151586551ec0969ffc5b175f726ed6f6bebee29cdc289549e216609bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.17.1+rhaiv.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-44431"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-gaudi-rhel9@sha256:71008b2151586551ec0969ffc5b175f726ed6f6bebee29cdc289549e216609bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/urllib3@2.6.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-44432"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-gaudi-rhel9@sha256:71008b2151586551ec0969ffc5b175f726ed6f6bebee29cdc289549e216609bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/urllib3@2.6.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -679,40 +475,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-6357"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-gaudi-rhel9@sha256:71008b2151586551ec0969ffc5b175f726ed6f6bebee29cdc289549e216609bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@26.0.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-7141"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/vllm-gaudi-rhel9@sha256:71008b2151586551ec0969ffc5b175f726ed6f6bebee29cdc289549e216609bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/vllm@0.17.1+rhaiv.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhaii/vllm-gaudi-rhel9 3.4 not listed as affected."
     }
   ]
 }

@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/mcp-server-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T17:48:35Z",
-  "version": 2,
+  "timestamp": "2026-07-14T07:27:04Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -36,83 +36,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "ansible-automation-platform-tech-preview/mcp-server-rhel9 2.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5889"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mcp-server-rhel9@sha256:cad5612efd6ee3dd0d67bdf4f79b5cbf1661ed80b61fcecb699daa61df96a0d4",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/brace-expansion@1.1.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-tech-preview/mcp-server-rhel9 2.7 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33671"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mcp-server-rhel9@sha256:cad5612efd6ee3dd0d67bdf4f79b5cbf1661ed80b61fcecb699daa61df96a0d4",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@2.3.1"
-            },
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33672"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mcp-server-rhel9@sha256:cad5612efd6ee3dd0d67bdf4f79b5cbf1661ed80b61fcecb699daa61df96a0d4",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@2.3.1"
-            },
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33750"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mcp-server-rhel9@sha256:cad5612efd6ee3dd0d67bdf4f79b5cbf1661ed80b61fcecb699daa61df96a0d4",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/brace-expansion@1.1.11"
-            },
-            {
-              "@id": "pkg:npm/brace-expansion@2.0.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-tech-preview/mcp-server-rhel9 2.7 not listed as affected."
     },
     {
       "vulnerability": {

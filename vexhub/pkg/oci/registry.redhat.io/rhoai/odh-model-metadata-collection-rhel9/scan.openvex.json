@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-model-metadata-collection-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T23:33:19Z",
-  "version": 4,
+  "timestamp": "2026-07-14T06:33:28Z",
+  "version": 5,
   "statements": [
     {
       "vulnerability": {
@@ -102,6 +102,25 @@
         },
         {
           "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-model-metadata-collection-rhel9@sha256:a0f4716de401e00e982d1da2d877925d5e52313a0d439526c354a85e995f6bda",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
         }
       ],
       "status": "fixed"

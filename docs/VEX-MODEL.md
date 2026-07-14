@@ -546,9 +546,9 @@ A PID is in scope for the workload iff:
 | 5s | **src-alias expansion** | binary comp aliased to source name when a `.src` PID's VR == installed VR **or** a version-less `.src` exists; also Maven `group:artifact`→`artifact`, SBOM binary→source. Within a status, a PID naming the component **exactly** outranks alias matches — a package with its own SRPM/statement is decisive over its alias source (`openssl-fips-provider` vs `openssl`) | expands names-to-match for rung 5 |
 | 6 | **Product-family clear** (non-RPM fallthrough) | all in-scope PIDs for this CVE are `known_not_affected`/`fixed`, none affected/UI (in-scope UI alone → POSITIVE "under_investigation") | **FALSE POSITIVE** "no affected entry" (scoped-clear) |
 | 7 | **Errata policy** (version-streams) | no direct match, but versioned OCP/RHOSE `fixed` streams exist: installed **older** than newest fix → assumed vulnerable; **equal/newer** → not | POSITIVE / FALSE POSITIVE |
-| 8 | **Related-products evidence** | same package **named** in out-of-scope products marked with the workload's RHEL major **or** version-neutral PIDs (no el/rhel marker) | only-clear→FALSE POSITIVE; any affected→POSITIVE (conservative) |
+| 8 | **Related-products evidence** | same package **named** in out-of-scope products marked with the workload's RHEL major **or** version-neutral PIDs (no el/rhel marker) | any affected→POSITIVE (conservative); clear-only carries no claim about our product → falls through to rung 9 |
 | 9 | **Not listed** | no statement names this component/image/product anywhere relevant — in-scope affected rows (if any) name *other* components only (§5g: the errata assumption covers only *listed* products) | **FALSE POSITIVE** "not listed as affected" |
-| 9r | **Truly absent** (RPM path) | RPM component name absent from the entire file, no related-product mention either | **⚠️ NOT ASSESSED** "not tracked in VEX" |
+| 9r | **Truly absent** (RPM path) | RPM component name absent from the entire file, no related-product mention either | **FALSE POSITIVE** "not listed as affected" (same §5g logic as rung 9: the enumeration exists and does not name it) |
 | 10 | **No VEX file** | Red Hat has not published a VEX for the CVE — no enumeration exists to be absent from | **POSITIVE** "VEX file missing" (severity/state Unknown) |
 
 **RPM vs non-RPM split** happens after rungs 1-2: a `/` in the component
@@ -606,14 +606,20 @@ document header:
      are plain `perl-4:5.32.1-481.el9`, no `::`), while **el8 perl is a module** (`.module+el8…` on
      both the RPM release *and* the VEX `::perl:5.XX` PID). Sampled scans: **8,038 plain vs 43 module**
      perl RPMs, and el8 module RPMs always carry `.module+` — so both sides agree.
-   - **Two latent fragilities exist but are masked (not observed firing):** (a) the module-stream
-     guard (§6d) would skip every el8 perl PID if a scanner ever reported an el8 perl RPM *without*
-     `.module+` — reproducible only with a synthetic version (`perl-libs 4:5.32.1-472.el8_10` →
-     ⚠️ NOT ASSESSED), not with real scan data; (b) the src-alias (§8 rung 5s) applies only on VR-equality or
-     a version-less `.src` wildcard (2/19 perl-source files have only a versioned `.src`) — but this
-     path is unreached because binaries are enumerated directly. Both fragilities should be avoided
-     (don't gate the binary→source alias on VR-equality; treat module/non-module by the
-     RHEL major, not by a `.module+` substring).
+   - **Two latent fragilities — both resolved (2026-07-14):** (a) the module-stream guard (§6d)
+     used to skip every module PID when the installed release lacked `.module+` (a scanner
+     normalizing the release away → rung 9 not-listed, a real statement dropped to silence).
+     **Fixed**: `_module_stream_compatible` now falls back to structure — a numeric stream
+     (`perl:5.32`, `nodejs:18`) must version-prefix the installed version and the RHEL major must
+     agree; non-numeric streams (`container-tools:rhel8`) stay incompatible (nothing to verify).
+     Covered by `tests/test_module_streams.py` (marker-stripped `perl-libs 472.el8_10` → POSITIVE
+     via version compare; `474` → FALSE POSITIVE via KNA; equal-release-but-stripped stays
+     conservative POSITIVE — a stripped release cannot *prove* it is the fixed module build).
+     (b) the src-alias VR-equality gate was re-investigated and **retained deliberately**: dropping
+     it misattributes an interpreter's fixed NEVRA to unrelated module packages sharing its dash
+     prefix (`python3-urllib3` vs `python3`, `nodejs-nodemon` vs `nodejs`). The authoritative
+     binary→source map is the SBOM's GENERATED_FROM (applied in `_resolve_comp`); the VR-equality
+     `.src` alias is only the fallback when no SBOM is loaded.
 2. **Dist-tag ≠ product.** `el9`/`el8` appear under RHOSE, RHEL base, and layered products alike
    (§2). Scoping must use the **parent PID**, not the dist-tag alone. `el9fdp`/`el9cp`/`el8ost`
    live under *both* their dedicated product (`9Base-Fast-Datapath`) and OpenShift/OSP streams —

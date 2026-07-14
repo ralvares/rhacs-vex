@@ -2,9 +2,28 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-trustyai-vllm-orchestrator-gateway-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:16:08Z",
-  "version": 5,
+  "timestamp": "2026-07-14T12:38:00Z",
+  "version": 6,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-69419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-vllm-orchestrator-gateway-rhel9@sha256:0b99cdc8e4ee57751cbe2298cd13853fbf79b882353057542250ee29d451f78b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/compat-openssl11@1.1.1k-5.el9_7.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/compat-openssl11@1.1.1k-5.el9_7.1"
+        }
+      ],
+      "status": "fixed"
+    },
     {
       "vulnerability": {
         "name": "CVE-2025-69419"
@@ -64,6 +83,25 @@
         },
         {
           "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-trustyai-vllm-orchestrator-gateway-rhel9@sha256:0b99cdc8e4ee57751cbe2298cd13853fbf79b882353057542250ee29d451f78b",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
         }
       ],
       "status": "fixed"

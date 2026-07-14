@@ -2,29 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/pipelines-sidecarlogresults-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T18:20:10Z",
-  "version": 5,
+  "timestamp": "2026-07-14T10:47:25Z",
+  "version": 11,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2024-40635"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/containerd/containerd@1.7.25"
-            },
-            {
-              "@id": "pkg:golang/github.com/containerd/containerd@v1.7.25"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2025-0913"
@@ -147,1409 +127,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22868"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@0.25.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@v0.25.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22870"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22871"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22873"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in OpenShift Pipelines, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@4.0.4"
-            },
-            {
-              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@v4.0.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4673"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in OpenShift Pipelines, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4673"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in OpenShift Pipelines, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4674"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.2), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4674"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.2), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47906"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47906"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47907"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47907"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47912"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47912"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58183"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58183"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58185"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58185"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58188"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58188"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58189"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58189"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61723"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61723"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61724"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61724"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61725"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61725"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61726"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61726"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61727"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61727"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61729"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61729"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68121"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68121"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-25680"
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+              "@id": "pkg:golang/golang.org/x/net@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.50.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1557,59 +151,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+              "@id": "pkg:golang/golang.org/x/net@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.50.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1617,259 +171,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+              "@id": "pkg:golang/golang.org/x/net@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.50.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27136"
+        "name": "CVE-2026-27141"
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
+              "@id": "pkg:golang/golang.org/x/net@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.50.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -1877,27 +211,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:67538722dc3956790a34feecd158ab7f7cefe23f97c603df5f1429bf99785293",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.3"
@@ -1909,287 +223,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.21 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2213,141 +247,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-33814"
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+              "@id": "pkg:golang/golang.org/x/net@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
+              "@id": "pkg:golang/golang.org/x/net@v0.50.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2491,157 +407,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39821"
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+              "@id": "pkg:golang/golang.org/x/net@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:53134d9d61d083569a41be114544d8d3d9481436f7b314601bdbeaf76aef06e1",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.4"
+              "@id": "pkg:golang/golang.org/x/net@v0.50.0"
             }
           ]
         }
@@ -2655,7 +431,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:67538722dc3956790a34feecd158ab7f7cefe23f97c603df5f1429bf99785293",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.3"
@@ -2667,107 +443,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.21 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2782,6 +458,26 @@
             },
             {
               "@id": "pkg:golang/golang.org/x/sys@v0.30.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.42.0"
             }
           ]
         }
@@ -2831,183 +527,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39827"
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3015,59 +551,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39828"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3075,59 +571,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39829"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3135,59 +591,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39830"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3195,59 +611,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39831"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3255,59 +631,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3315,59 +651,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39834"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3375,59 +671,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39835"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3488,66 +744,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3615,59 +811,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+              "@id": "pkg:golang/golang.org/x/net@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.50.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42502"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3675,113 +831,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:67538722dc3956790a34feecd158ab7f7cefe23f97c603df5f1429bf99785293",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.3"
             },
             {
               "@id": "pkg:golang/stdlib@v1.26.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.21 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:53134d9d61d083569a41be114544d8d3d9481436f7b314601bdbeaf76aef06e1",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.4"
             }
           ]
         }
@@ -3795,7 +851,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:67538722dc3956790a34feecd158ab7f7cefe23f97c603df5f1429bf99785293",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.3"
@@ -3807,47 +863,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.21 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3855,59 +871,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.34.0"
+              "@id": "pkg:golang/golang.org/x/net@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.34.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.50.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3915,27 +891,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.6"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:67538722dc3956790a34feecd158ab7f7cefe23f97c603df5f1429bf99785293",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.26.3"
@@ -3947,47 +903,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.21 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.23.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.23.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -3995,59 +911,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -4055,59 +931,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46595"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -4115,59 +951,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46597"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     },
     {
       "vulnerability": {
@@ -4175,99 +971,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
+          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c101fc290aedceaa4278f2088cd7130c98c1fee558bb3d5afd637182a44683bb",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.35.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:c26980e76e21ce03ed7b93678f204e43400c65271a19595dc8ff3158f9d7c644",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:cb5958fdc6661e23f9957d53877a6f401af5a2f64a1305ae21579048846f1f70",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-47262"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/containerd/containerd@1.7.25"
-            },
-            {
-              "@id": "pkg:golang/github.com/containerd/containerd@v1.7.25"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53488"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pipelines-sidecarlogresults-rhel9@sha256:16d799503674641d4690822edc9c399c61429ccd31621d295eee4a4d1ef1c076",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/containerd/containerd@1.7.25"
-            },
-            {
-              "@id": "pkg:golang/github.com/containerd/containerd@v1.7.25"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 (RHEL 9) not listed as affected."
+      "impact_statement": "openshift-pipelines/pipelines-sidecarlogresults-rhel9 1.22 not listed as affected."
     }
   ]
 }

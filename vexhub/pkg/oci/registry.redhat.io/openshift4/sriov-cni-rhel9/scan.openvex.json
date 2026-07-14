@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/sriov-cni-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:53:09Z",
-  "version": 1,
+  "timestamp": "2026-07-14T13:01:33Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -377,46 +377,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-59375"
       },
       "products": [
@@ -433,26 +393,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-67499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/containernetworking/plugins@1.8.1-0.20251002142623-372953dfb89f"
-            },
-            {
-              "@id": "pkg:golang/github.com/containernetworking/plugins@v1.8.1-0.20251002142623-372953dfb89f"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
     },
     {
       "vulnerability": {
@@ -694,66 +634,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27135"
       },
       "products": [
@@ -779,312 +659,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27136"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39817"
       },
       "products": [
@@ -1096,6 +670,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/sriov-cni-rhel9@sha256:ac9fdc5cb4fe73a2961767c7a4c556c30820a668b1ca5e397f21976ecb35d9c8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1125,83 +719,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
+        "name": "CVE-2026-39819"
       },
       "products": [
         {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
+          "@id": "pkg:oci/sriov-cni-rhel9@sha256:ac9fdc5cb4fe73a2961767c7a4c556c30820a668b1ca5e397f21976ecb35d9c8",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39821"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1225,43 +759,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39825"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
+          "@id": "pkg:oci/sriov-cni-rhel9@sha256:ac9fdc5cb4fe73a2961767c7a4c556c30820a668b1ca5e397f21976ecb35d9c8",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/golang.org/x/sys@0.39.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/golang.org/x/sys@v0.39.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1276,6 +790,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/sriov-cni-rhel9@sha256:ac9fdc5cb4fe73a2961767c7a4c556c30820a668b1ca5e397f21976ecb35d9c8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -1348,26 +882,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-42501"
       },
       "products": [
@@ -1388,103 +902,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
+          "@id": "pkg:oci/sriov-cni-rhel9@sha256:ac9fdc5cb4fe73a2961767c7a4c556c30820a668b1ca5e397f21976ecb35d9c8",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42506"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/sriov-cni-rhel9@sha256:259b7a909b1ff1657fcd247ebb729290aa4c857dd780fa39bddc4898d1cc732c",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "sriov-cni not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {

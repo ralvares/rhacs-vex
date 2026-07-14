@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/kubevirt-tekton-tasks-create-datavolume-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:33:35Z",
-  "version": 2,
+  "timestamp": "2026-07-14T10:39:14Z",
+  "version": 6,
   "statements": [
     {
       "vulnerability": {
@@ -12,6 +12,26 @@
       "products": [
         {
           "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/docker/cli@28.2.2+incompatible"
+            },
+            {
+              "@id": "pkg:golang/github.com/docker/cli@v28.2.2+incompatible"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-15558"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
               "@id": "pkg:golang/github.com/docker/cli@28.2.2+incompatible"
@@ -177,23 +197,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
+        "name": "CVE-2026-25680"
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -201,7 +221,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -213,27 +233,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -241,7 +241,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -253,7 +253,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -261,7 +261,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -273,7 +273,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -281,7 +281,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -293,7 +293,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -301,7 +301,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -313,107 +313,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -421,19 +321,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -441,139 +341,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -581,19 +361,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -601,7 +401,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -610,10 +410,10 @@
               "@id": "pkg:golang/golang.org/x/net@v0.48.0"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -627,19 +427,45 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Virtualization 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -654,6 +480,46 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -683,23 +549,63 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -707,7 +613,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -719,7 +625,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -727,7 +633,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -739,7 +645,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -747,19 +653,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -767,19 +673,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -787,19 +693,59 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.39.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -828,6 +774,26 @@
       "products": [
         {
           "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.39.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/sys@0.39.0"
@@ -847,19 +813,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -867,19 +853,59 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -903,23 +929,83 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -943,23 +1029,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -967,7 +1053,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -979,7 +1065,27 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -987,19 +1093,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1007,19 +1113,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1027,19 +1133,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1047,19 +1153,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1067,7 +1173,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1079,7 +1185,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1087,7 +1193,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.48.0"
@@ -1099,7 +1205,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1107,19 +1213,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1127,19 +1233,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.26.3"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.26.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1147,7 +1253,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
               "@id": "pkg:golang/kubevirt.io/kubevirt@1.7.1"
@@ -1167,7 +1273,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
               "@id": "pkg:golang/kubevirt.io/kubevirt@1.7.1"
@@ -1187,7 +1293,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
               "@id": "pkg:golang/kubevirt.io/kubevirt@1.7.1"
@@ -1199,7 +1305,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1207,7 +1313,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
               "@id": "pkg:golang/kubevirt.io/kubevirt@1.7.1"
@@ -1219,7 +1325,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1227,7 +1333,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:7563ec23fb9f763b5f31cf90ee5176c1c13ef46d295c10e893a786ad78f0a8b9",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:36a53ae8184b49e0f2666d70c1879f860da4e24153f15ad345b6ca481d7091b2",
           "subcomponents": [
             {
               "@id": "pkg:golang/kubevirt.io/kubevirt@1.7.1"
@@ -1239,7 +1345,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1247,7 +1353,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:895cc97d3badc5612cc59a33baec466e3cb92171402ab2880dcde3089eb0413f",
+          "@id": "pkg:oci/kubevirt-tekton-tasks-create-datavolume-rhel9@sha256:aa10d87ad14e56d2b1a7d72ddfe37aaa2df17f7e7cbd4015d21efcaa9cdc7d73",
           "subcomponents": [
             {
               "@id": "pkg:golang/kubevirt.io/kubevirt@1.7.1"
@@ -1259,7 +1365,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9.6 not listed as affected."
+      "impact_statement": "container-native-virtualization/kubevirt-tekton-tasks-create-datavolume-rhel9 9 not listed as affected."
     }
   ]
 }

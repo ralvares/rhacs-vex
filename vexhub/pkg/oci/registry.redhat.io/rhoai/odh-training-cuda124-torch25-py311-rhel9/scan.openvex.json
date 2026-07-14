@@ -2,42 +2,25 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-training-cuda124-torch25-py311-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T23:50:41Z",
-  "version": 6,
+  "timestamp": "2026-07-14T12:38:00Z",
+  "version": 13,
   "statements": [
     {
       "vulnerability": {
-        "name": "CVE-2024-47081"
+        "name": "CVE-2025-2148"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:930a1375fef224ef4e6765b60fe4bef9ee9ef87757d22bb39eb99197e0663219",
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/requests@2.32.3"
+              "@id": "pkg:pypi/torch@2.5.1"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-47081"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/requests@2.32.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 9 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -147,6 +130,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.5.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-2149"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:4cf2fdacb42f088b7ff506e378bfc819dc5f4e0d09974ba784312279ed4d574a",
           "subcomponents": [
             {
@@ -245,11 +245,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-2953"
+        "name": "CVE-2025-2998"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:4cf2fdacb42f088b7ff506e378bfc819dc5f4e0d09974ba784312279ed4d574a",
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
           "subcomponents": [
             {
               "@id": "pkg:pypi/torch@2.5.1"
@@ -258,92 +258,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2953"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:77bb3dcc3318eb5da2f20273e4b9b1127803c356b90234bcc310a72fb00b32f8",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/torch@2.5.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2953"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:8e5a5b25689c3585cec863a933ce2dc9368dd19b0e6422203ffb107b112d0a8d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/torch@2.5.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2953"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:930a1375fef224ef4e6765b60fe4bef9ee9ef87757d22bb39eb99197e0663219",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/torch@2.5.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2953"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/torch@2.5.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-2953"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:cf93902b455a16c4700b5b86b8a17d16e3cb128f541b4de8997298a16ad2ef03",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/torch@2.5.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 3.3 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -437,6 +352,23 @@
       "products": [
         {
           "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:cf93902b455a16c4700b5b86b8a17d16e3cb128f541b4de8997298a16ad2ef03",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.5.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-2999"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
           "subcomponents": [
             {
               "@id": "pkg:pypi/torch@2.5.1"
@@ -555,6 +487,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.5.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3000"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:4cf2fdacb42f088b7ff506e378bfc819dc5f4e0d09974ba784312279ed4d574a",
           "subcomponents": [
             {
@@ -657,6 +606,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.5.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3001"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:4cf2fdacb42f088b7ff506e378bfc819dc5f4e0d09974ba784312279ed4d574a",
           "subcomponents": [
             {
@@ -759,6 +725,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.5.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-32434"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:4cf2fdacb42f088b7ff506e378bfc819dc5f4e0d09974ba784312279ed4d574a",
           "subcomponents": [
             {
@@ -861,6 +844,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.5.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3730"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:4cf2fdacb42f088b7ff506e378bfc819dc5f4e0d09974ba784312279ed4d574a",
           "subcomponents": [
             {
@@ -956,227 +956,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3777"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:930a1375fef224ef4e6765b60fe4bef9ee9ef87757d22bb39eb99197e0663219",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.51.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3777"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.51.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3933"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:930a1375fef224ef4e6765b60fe4bef9ee9ef87757d22bb39eb99197e0663219",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.51.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-3933"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.51.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4565"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:930a1375fef224ef4e6765b60fe4bef9ee9ef87757d22bb39eb99197e0663219",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/protobuf@5.29.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-4565"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/protobuf@5.29.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-50181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/urllib3@2.4.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-50182"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/urllib3@2.4.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5197"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:930a1375fef224ef4e6765b60fe4bef9ee9ef87757d22bb39eb99197e0663219",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.51.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5197"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.51.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-53643"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.11.18"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6051"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:930a1375fef224ef4e6765b60fe4bef9ee9ef87757d22bb39eb99197e0663219",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.51.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6051"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.51.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 9 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1260,23 +1039,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/glob@10.4.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-64756"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:cf93902b455a16c4700b5b86b8a17d16e3cb128f541b4de8997298a16ad2ef03",
           "subcomponents": [
             {
@@ -1325,40 +1087,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-66221"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:930a1375fef224ef4e6765b60fe4bef9ee9ef87757d22bb39eb99197e0663219",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/werkzeug@3.1.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected in Red Hat Quay 3."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-66221"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/werkzeug@3.1.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected in Red Hat Quay 3."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-66418"
       },
       "products": [
@@ -1388,207 +1116,34 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-66471"
+        "name": "CVE-2026-0865"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/urllib3@2.4.0"
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6921"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:930a1375fef224ef4e6765b60fe4bef9ee9ef87757d22bb39eb99197e0663219",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.51.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-6921"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
         {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/transformers@4.51.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69223"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
         {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.11.18"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
         }
       ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69227"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.11.18"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-69228"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.11.18"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:4cf2fdacb42f088b7ff506e378bfc819dc5f4e0d09974ba784312279ed4d574a",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 3.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:77bb3dcc3318eb5da2f20273e4b9b1127803c356b90234bcc310a72fb00b32f8",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 3.5 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:8e5a5b25689c3585cec863a933ce2dc9368dd19b0e6422203ffb107b112d0a8d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:930a1375fef224ef4e6765b60fe4bef9ee9ef87757d22bb39eb99197e0663219",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-8869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:cf93902b455a16c4700b5b86b8a17d16e3cb128f541b4de8997298a16ad2ef03",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pip@24.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 3.3 not listed as affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -1623,108 +1178,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-0994"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:8e5a5b25689c3585cec863a933ce2dc9368dd19b0e6422203ffb107b112d0a8d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/protobuf@5.29.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0994"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:930a1375fef224ef4e6765b60fe4bef9ee9ef87757d22bb39eb99197e0663219",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/protobuf@5.29.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0994"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/protobuf@5.29.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-0994"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:cf93902b455a16c4700b5b86b8a17d16e3cb128f541b4de8997298a16ad2ef03",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/protobuf@5.29.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-1260"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/sentencepiece@0.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-21441"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/urllib3@2.4.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-21860"
       },
       "products": [
@@ -1756,46 +1209,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-23745"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-23745"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:cf93902b455a16c4700b5b86b8a17d16e3cb128f541b4de8997298a16ad2ef03",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -1907,40 +1320,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-24001"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/diff@5.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhoai/odh-training-cuda124-torch25-py311-rhel9 9."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24001"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:cf93902b455a16c4700b5b86b8a17d16e3cb128f541b4de8997298a16ad2ef03",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/diff@5.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhoai/odh-training-cuda124-torch25-py311-rhel9 3.3."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-24049"
       },
       "products": [
@@ -1955,40 +1334,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift AI 3.3)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24049"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:930a1375fef224ef4e6765b60fe4bef9ee9ef87757d22bb39eb99197e0663219",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/wheel@0.45.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-24049"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/wheel@0.45.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -2046,74 +1391,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not affected in rhoai/odh-training-cuda124-torch25-py311-rhel9 3.3 (Red Hat Enterprise Linux 9): vulnerable code not present."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25087"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:8e5a5b25689c3585cec863a933ce2dc9368dd19b0e6422203ffb107b112d0a8d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyarrow@22.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 3.3 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25087"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:930a1375fef224ef4e6765b60fe4bef9ee9ef87757d22bb39eb99197e0663219",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyarrow@20.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 2.25 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25087"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyarrow@20.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25087"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:cf93902b455a16c4700b5b86b8a17d16e3cb128f541b4de8997298a16ad2ef03",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/pyarrow@22.0.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 3.3 not listed as affected."
     },
     {
       "vulnerability": {
@@ -2157,40 +1434,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-26996"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26996"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:cf93902b455a16c4700b5b86b8a17d16e3cb128f541b4de8997298a16ad2ef03",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27199"
       },
       "products": [
@@ -2256,40 +1499,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27904"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27904"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:cf93902b455a16c4700b5b86b8a17d16e3cb128f541b4de8997298a16ad2ef03",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -2374,6 +1583,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/flash-attn@2.7.4.post1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-31253"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:4cf2fdacb42f088b7ff506e378bfc819dc5f4e0d09974ba784312279ed4d574a",
           "subcomponents": [
             {
@@ -2512,31 +1738,14 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-32640"
+        "name": "CVE-2026-34515"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/simpleeval@0.9.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32640"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:cf93902b455a16c4700b5b86b8a17d16e3cb128f541b4de8997298a16ad2ef03",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/simpleeval@0.9.13"
+              "@id": "pkg:pypi/aiohttp@3.13.3"
             }
           ]
         }
@@ -2666,40 +1875,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:77bb3dcc3318eb5da2f20273e4b9b1127803c356b90234bcc310a72fb00b32f8",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34993"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:8e5a5b25689c3585cec863a933ce2dc9368dd19b0e6422203ffb107b112d0a8d",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34993"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:930a1375fef224ef4e6765b60fe4bef9ee9ef87757d22bb39eb99197e0663219",
           "subcomponents": [
             {
@@ -2712,37 +1887,20 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-34993"
+        "name": "CVE-2026-4372"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:b5bb42d3525899b5794ded6ce6ced750665fce8777cc21366892352e616e7386",
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/aiohttp@3.11.18"
+              "@id": "pkg:pypi/transformers@5.2.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34993"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:cf93902b455a16c4700b5b86b8a17d16e3cb128f541b4de8997298a16ad2ef03",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/aiohttp@3.13.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -2828,6 +1986,38 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44172"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-devel@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-devel@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-training-cuda124-torch25-py311-rhel9 3.4: known_not_affected."
     },
     {
       "vulnerability": {
@@ -3027,6 +2217,55 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4519"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:8e5a5b25689c3585cec863a933ce2dc9368dd19b0e6422203ffb107b112d0a8d",
           "subcomponents": [
             {
@@ -3101,6 +2340,55 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4786"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:8e5a5b25689c3585cec863a933ce2dc9368dd19b0e6422203ffb107b112d0a8d",
           "subcomponents": [
             {
@@ -3159,6 +2447,25 @@
         },
         {
           "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
         }
       ],
       "status": "fixed"
@@ -3276,6 +2583,23 @@
         }
       ],
       "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54279"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -3378,6 +2702,55 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-6100"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-cuda124-torch25-py311-rhel9@sha256:09efceb9705d8427b578ab9cd9fd2ca326e3db1370481911a080f5dbc03cb047",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-devel@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11-libs@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.11@3.11.13-5.3.el9_7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {

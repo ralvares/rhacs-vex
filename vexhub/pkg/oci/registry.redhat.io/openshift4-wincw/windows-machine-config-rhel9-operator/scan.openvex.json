@@ -2,49 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/windows-machine-config-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-14T00:55:08Z",
-  "version": 1,
+  "timestamp": "2026-07-14T13:10:50Z",
+  "version": 3,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2023-45142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/contrib/instrumentation/github.com/emicklei/go-restful/otelrestful@0.42.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/contrib/instrumentation/github.com/emicklei/go-restful/otelrestful@v0.42.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift4-wincw/windows-machine-config-rhel9-operator 10.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-24786"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/protobuf@1.29.1"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/protobuf@v1.29.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift4-wincw/windows-machine-config-rhel9-operator 10.20 not listed as affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2024-25621"
@@ -64,164 +24,6 @@
       ],
       "status": "not_affected",
       "justification": "component_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-40635"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/containerd/containerd@1.6.23"
-            },
-            {
-              "@id": "pkg:golang/github.com/containerd/containerd@v1.6.23"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for openshift4-wincw/windows-machine-config-rhel9-operator 10.20."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22868"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@0.11.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@v0.11.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift4-wincw/windows-machine-config-rhel9-operator 10.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.31.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.31.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22870"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.33.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.33.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift4-wincw/windows-machine-config-rhel9-operator 10.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.33.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.33.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift4-wincw/windows-machine-config-rhel9-operator 10.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/go-jose/go-jose/v3@3.0.3"
-            },
-            {
-              "@id": "pkg:golang/github.com/go-jose/go-jose/v3@v3.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.31.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.31.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift4-wincw/windows-machine-config-rhel9-operator 10.20 not listed as affected."
     },
     {
       "vulnerability": {
@@ -309,103 +111,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27139"
+        "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
+          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:2dbc0a66617808c1a232f4fccf1be9933026146a0de9d56458ea481882dfdf2e",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -429,29 +151,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-29181"
+        "name": "CVE-2026-32280"
       },
       "products": [
         {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
+          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:2dbc0a66617808c1a232f4fccf1be9933026146a0de9d56458ea481882dfdf2e",
           "subcomponents": [
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@1.36.0"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@1.37.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.36.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.37.0"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for openshift4-wincw/windows-machine-config-rhel9-operator 10.20."
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -475,46 +191,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift4-wincw/windows-machine-config-rhel9-operator 10.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift4-wincw/windows-machine-config-rhel9-operator 10.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-32285"
       },
       "products": [
@@ -535,43 +211,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-32288"
+        "name": "CVE-2026-33186"
       },
       "products": [
         {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
+          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:2dbc0a66617808c1a232f4fccf1be9933026146a0de9d56458ea481882dfdf2e",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/google.golang.org/grpc@1.79.1"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/google.golang.org/grpc@v1.79.1"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift4-wincw/windows-machine-config-rhel9-operator 10.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift4-wincw/windows-machine-config-rhel9-operator 10.20 not listed as affected."
+      "justification": "vulnerable_code_not_in_execute_path"
     },
     {
       "vulnerability": {
@@ -631,56 +287,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33814"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.33.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.33.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.37.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.41.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-34986"
       },
       "products": [
@@ -705,6 +311,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:2dbc0a66617808c1a232f4fccf1be9933026146a0de9d56458ea481882dfdf2e",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.8"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.8"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
           "subcomponents": [
             {
@@ -712,6 +338,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:2dbc0a66617808c1a232f4fccf1be9933026146a0de9d56458ea481882dfdf2e",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.8"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
@@ -745,6 +391,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:2dbc0a66617808c1a232f4fccf1be9933026146a0de9d56458ea481882dfdf2e",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.8"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.8"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
           "subcomponents": [
             {
@@ -758,6 +424,26 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:2dbc0a66617808c1a232f4fccf1be9933026146a0de9d56458ea481882dfdf2e",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.43.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -811,41 +497,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39832"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
+          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:2dbc0a66617808c1a232f4fccf1be9933026146a0de9d56458ea481882dfdf2e",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.31.0"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.31.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "openshift4-wincw/windows-machine-config-rhel9-operator 10.20 not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -869,61 +537,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39882"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
+          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:2dbc0a66617808c1a232f4fccf1be9933026146a0de9d56458ea481882dfdf2e",
           "subcomponents": [
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp@1.19.0"
+              "@id": "pkg:golang/stdlib@1.25.8"
             },
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp@v1.19.0"
+              "@id": "pkg:golang/stdlib@v1.25.8"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for openshift4-wincw/windows-machine-config-rhel9-operator 10.20."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.21.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.33.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.36.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.37.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.21.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.33.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.36.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.37.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for openshift4-wincw/windows-machine-config-rhel9-operator 10.20."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -944,82 +574,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42508"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.31.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.31.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-46598"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/windows-machine-config-rhel9-operator@sha256:9f7930343361c123d0851af63c5474919c7e37a1e633f72ec5e2ccd28e4976c8",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.31.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.31.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.39.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift4-wincw/windows-machine-config-rhel9-operator 10.20 not listed as affected."
     }
   ]
 }

@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-coredns-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:34:13Z",
-  "version": 2,
+  "timestamp": "2026-07-14T10:39:24Z",
+  "version": 6,
   "statements": [
     {
       "vulnerability": {
@@ -26,118 +26,19 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-45337"
+        "name": "CVE-2024-12086"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-45337"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-45338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-45338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-51744"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@4.5.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@v4.5.0"
-            }
-          ]
-        }
-      ],
-      "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-51744"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@4.5.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@v4.5.0"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
         }
       ],
       "status": "fixed"
@@ -149,6 +50,25 @@
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-10158"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
@@ -205,6 +125,43 @@
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-12084"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
@@ -275,11 +232,49 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-13601"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-14087"
       },
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-14087"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
@@ -313,6 +308,25 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-14512"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-14831"
       },
       "products": [
@@ -337,6 +351,25 @@
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/gnutls@3.8.3-6.el9_6.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/gnutls@3.8.3-6.el9_6.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-14831"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/gnutls@3.8.3-6.el9_6.3"
@@ -393,6 +426,43 @@
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-15366"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
@@ -499,6 +569,43 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-15367"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-15467"
       },
       "products": [
@@ -549,203 +656,28 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-22868"
+        "name": "CVE-2025-15467"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/oauth2@0.18.0"
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
             },
             {
-              "@id": "pkg:golang/golang.org/x/oauth2@v0.18.0"
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22868"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@0.18.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/oauth2@v0.18.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22869"
-      },
-      "products": [
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
         }
       ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22869"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22870"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22870"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-22872"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-30204"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@4.5.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@v4.5.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-30204"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@4.5.0"
-            },
-            {
-              "@id": "pkg:golang/github.com/golang-jwt/jwt/v4@v4.5.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -817,6 +749,43 @@
         },
         {
           "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-40778"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/bind-libs@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-libs@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
         }
       ],
       "status": "fixed"
@@ -897,6 +866,43 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-40780"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/bind-libs@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-libs@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-45582"
       },
       "products": [
@@ -934,6 +940,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "OpenShift 4.20.25: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-45582"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/tar@1.34-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/tar@1.34-7.el9_6.2"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.21.19: known_not_affected."
     },
     {
       "vulnerability": {
@@ -989,43 +1015,29 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-47911"
+        "name": "CVE-2025-4598"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:rpm/redhat/systemd-libs@252-51.el9_6.4"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47911"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/systemd-libs@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
         }
       ],
       "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
+      "impact_statement": "OpenShift 4.21.19: known_not_affected."
     },
     {
       "vulnerability": {
@@ -1033,33 +1045,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47913"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -1073,33 +1065,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47914"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -1113,73 +1085,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58190"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -1213,6 +1125,25 @@
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.5.0-5.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.5.0-5.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-59375"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/expat@2.5.0-5.el9_6.1"
@@ -1271,19 +1202,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/quic-go/quic-go@0.42.0"
+              "@id": "pkg:golang/github.com/quic-go/quic-go@0.55.0"
             },
             {
-              "@id": "pkg:golang/github.com/quic-go/quic-go@v0.42.0"
+              "@id": "pkg:golang/github.com/quic-go/quic-go@v0.55.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: affected: Cryostat 4, OpenShift Service Mesh 2, OpenShift Service Mesh 3."
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.22. Other products: affected: Cryostat 4, OpenShift Service Mesh 2, OpenShift Service Mesh 3."
     },
     {
       "vulnerability": {
@@ -1291,19 +1222,39 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/github.com/quic-go/quic-go@0.42.0"
+              "@id": "pkg:golang/github.com/quic-go/quic-go@0.55.0"
             },
             {
-              "@id": "pkg:golang/github.com/quic-go/quic-go@v0.42.0"
+              "@id": "pkg:golang/github.com/quic-go/quic-go@v0.55.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.20.25. Other products: affected: Cryostat 4, OpenShift Service Mesh 2, OpenShift Service Mesh 3."
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.21.19. Other products: affected: Cryostat 4, OpenShift Service Mesh 2, OpenShift Service Mesh 3."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-68156"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/expr-lang/expr@1.17.6"
+            },
+            {
+              "@id": "pkg:golang/github.com/expr-lang/expr@v1.17.6"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream EUS (v.9.4), Red Hat Enterprise Linux AppStream EUS (v.9.6) (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -1331,6 +1282,25 @@
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/gnupg2@2.3.3-4.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/gnupg2@2.3.3-4.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-68973"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/gnupg2@2.3.3-4.el9_6.1"
@@ -1375,6 +1345,31 @@
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-69419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
@@ -1425,6 +1420,31 @@
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
@@ -1507,6 +1527,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-9086"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-31.el9_6.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/curl@7.76.1-31.el9_6.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libcurl-minimal@7.76.1-31.el9_6.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-31.el9_6.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/curl@7.76.1-31.el9_6.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcurl-minimal@7.76.1-31.el9_6.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-9230"
       },
       "products": [
@@ -1537,6 +1588,31 @@
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9230"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
@@ -1581,6 +1657,25 @@
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libxml2@2.9.13-12.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libxml2@2.9.13-12.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9714"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libxml2@2.9.13-12.el9_6.1"
@@ -1637,6 +1732,43 @@
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-1299"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
@@ -1726,23 +1858,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25679"
+        "name": "CVE-2026-24051"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.39.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.20 \u2014 registry.redhat.io/openshift4/ose-coredns-rhel9@sha256:4871ce20e6d1ebca8d2bd9ad638a53d81122dda7e40f66fb217c57b9fba1ee00_ppc64le."
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.37.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.37.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1750,33 +1902,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.20 \u2014 registry.redhat.io/openshift4/ose-coredns-rhel9@sha256:4871ce20e6d1ebca8d2bd9ad638a53d81122dda7e40f66fb217c57b9fba1ee00_ppc64le."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
             }
           ]
         }
@@ -1790,13 +1922,33 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "coredns not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25680"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.45.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.45.0"
             }
           ]
         }
@@ -1810,13 +1962,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -1830,13 +1982,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.45.0"
             }
           ]
         }
@@ -1896,17 +2048,42 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-27135"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libnghttp2@1.43.0-6.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nghttp2@1.43.0-6.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libnghttp2@1.43.0-6.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nghttp2@1.43.0-6.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-27136"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -1920,13 +2097,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.45.0"
             }
           ]
         }
@@ -1940,27 +2117,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -1980,27 +2137,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2020,27 +2157,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2060,27 +2177,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2100,27 +2197,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2140,13 +2217,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -2160,7 +2237,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2176,23 +2253,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-32280"
+        "name": "CVE-2026-29181"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.39.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.22. Other products: affected: Multicluster Engine for Kubernetes; fixed: multicluster engine for Kubernetes 2.11; not affected: multicluster engine for Kubernetes 2.11."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-29181"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel@1.37.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.37.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.21.19. Other products: affected: Multicluster Engine for Kubernetes; fixed: multicluster engine for Kubernetes 2.11; not affected: multicluster engine for Kubernetes 2.11."
     },
     {
       "vulnerability": {
@@ -2200,7 +2297,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2220,27 +2317,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2260,27 +2337,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2300,27 +2357,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2340,27 +2377,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2380,27 +2397,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2456,17 +2453,37 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33186"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@1.75.1"
+            },
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@v1.75.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift Container Platform 4.21)."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-33811"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -2480,7 +2497,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2500,19 +2517,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -2526,13 +2537,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.45.0"
             },
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2588,6 +2599,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39819"
       },
       "products": [
@@ -2628,17 +2679,57 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
+        "name": "CVE-2026-39819"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -2652,7 +2743,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2672,13 +2763,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -2692,13 +2783,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.45.0"
             }
           ]
         }
@@ -2712,13 +2803,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -2732,7 +2823,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2752,13 +2843,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -2772,7 +2863,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2828,17 +2919,57 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.43.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.36.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39825"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -2852,7 +2983,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2872,13 +3003,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -2892,7 +3023,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -2912,13 +3043,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -2932,13 +3063,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -2952,13 +3083,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -2972,13 +3103,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -2992,13 +3123,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -3012,13 +3143,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -3032,13 +3163,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -3052,13 +3183,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -3072,13 +3203,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -3092,13 +3223,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -3112,13 +3243,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -3132,13 +3263,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -3152,13 +3283,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -3172,13 +3303,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -3192,13 +3323,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -3212,13 +3343,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -3265,6 +3396,86 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39883"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.39.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.22. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39883"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.37.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.37.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.21.19. Other products: fixed: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8; not affected: Red Hat Openshift Data Foundation 4.22, multicluster engine for Kubernetes 2.8."
     },
     {
       "vulnerability": {
@@ -3298,6 +3509,25 @@
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-41035"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
@@ -3350,17 +3580,36 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-4111"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42499"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -3374,7 +3623,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -3430,51 +3679,31 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42502"
+        "name": "CVE-2026-42501"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "coredns not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -3486,6 +3715,46 @@
         }
       ],
       "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "coredns not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.45.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.45.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
       "impact_statement": "coredns not listed as affected."
     },
     {
@@ -3494,7 +3763,27 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "coredns not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -3514,13 +3803,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -3534,7 +3823,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -3554,13 +3843,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -3574,13 +3863,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/net@0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@0.45.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.23.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.45.0"
             }
           ]
         }
@@ -3594,13 +3883,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.13"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.13"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
@@ -3614,7 +3903,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.24.13"
@@ -3634,13 +3923,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -3654,13 +3943,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -3694,6 +3983,25 @@
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4424"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
@@ -3782,17 +4090,54 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-4519"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-46595"
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -3806,13 +4151,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -3826,13 +4171,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -3846,13 +4191,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -3866,13 +4211,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:0f600f6accdf1655b4dba929440032c779d24801f258c04246d36f9e8ed02566",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:79b896e6cf22b2501c3520e9cc33ddf7b32ddbee62251d89fe98dd7f4b1eb2d3",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
             }
           ]
         }
@@ -3886,13 +4231,13 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
-              "@id": "pkg:golang/golang.org/x/crypto@0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@0.42.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.22.0"
+              "@id": "pkg:golang/golang.org/x/crypto@v0.42.0"
             }
           ]
         }
@@ -3939,11 +4284,67 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-4786"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-4878"
       },
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libcap@2.48-9.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcap@2.48-9.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4878"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/libcap@2.48-9.el9_6.1"
@@ -3996,11 +4397,67 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-5121"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-6100"
       },
       "products": [
         {
           "@id": "pkg:oci/ose-coredns-rhel9@sha256:2bf51b12681338aaf12b52202642b2e9f73431c9f62c85949a9599e20221bd80",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-6100"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-coredns-rhel9@sha256:804a183413cd8562ab73cfc9f4b851325bc47220167d78e35aa60d6ae5cdbcb2",
           "subcomponents": [
             {
               "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"

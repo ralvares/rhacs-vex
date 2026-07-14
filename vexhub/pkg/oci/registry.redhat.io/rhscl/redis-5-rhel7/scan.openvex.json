@@ -1,0 +1,55 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/redis-5-rhel7",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T06:01:16Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2022-40897"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-5-rhel7@sha256:91781cf512d695339f5a92da8bfae40b42a5585d3b5627d30e6fea08afc932a4",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-setuptools@0.9.8-7.el7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-setuptools@0.9.8-7.el7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhscl/redis-5-rhel7 (RHEL 7): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-41974"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-5-rhel7@sha256:91781cf512d695339f5a92da8bfae40b42a5585d3b5627d30e6fea08afc932a4",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/device-mapper-multipath@0.4.9-135.el7_9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/kpartx@0.4.9-135.el7_9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/device-mapper-multipath@0.4.9-135.el7_9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/kpartx@0.4.9-135.el7_9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhscl/redis-5-rhel7 (RHEL 7): known_not_affected."
+    }
+  ]
+}

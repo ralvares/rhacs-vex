@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-workload-variant-autoscaler-controller-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T22:28:46Z",
-  "version": 2,
+  "timestamp": "2026-07-14T12:53:24Z",
+  "version": 5,
   "statements": [
     {
       "vulnerability": {
@@ -31,6 +31,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:3ccce211e800fab36a7d3eb57b694b1087eb30dda3627759f64aeeb3a44ccfe0",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.38.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:8dc8a6d106b52f2273d7398d2c327512c13d51b35bf1869e4b4790c70a6e7f5b",
           "subcomponents": [
             {
@@ -47,7 +67,7 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27145"
+        "name": "CVE-2026-39817"
       },
       "products": [
         {
@@ -63,107 +83,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:8dc8a6d106b52f2273d7398d2c327512c13d51b35bf1869e4b4790c70a6e7f5b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-29181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:2fbda5dad116cec55302ab775c209ddfc87289adb653f2fe74bc8f5c02799170",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@1.38.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-29181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:8dc8a6d106b52f2273d7398d2c327512c13d51b35bf1869e4b4790c70a6e7f5b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@1.38.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:2fbda5dad116cec55302ab775c209ddfc87289adb653f2fe74bc8f5c02799170",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.76.0"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.76.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:8dc8a6d106b52f2273d7398d2c327512c13d51b35bf1869e4b4790c70a6e7f5b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@1.76.0"
-            },
-            {
-              "@id": "pkg:golang/google.golang.org/grpc@v1.76.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9) not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -171,7 +91,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:2fbda5dad116cec55302ab775c209ddfc87289adb653f2fe74bc8f5c02799170",
+          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:3ccce211e800fab36a7d3eb57b694b1087eb30dda3627759f64aeeb3a44ccfe0",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -231,6 +151,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:3ccce211e800fab36a7d3eb57b694b1087eb30dda3627759f64aeeb3a44ccfe0",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:8dc8a6d106b52f2273d7398d2c327512c13d51b35bf1869e4b4790c70a6e7f5b",
           "subcomponents": [
             {
@@ -247,43 +187,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39822"
+        "name": "CVE-2026-39824"
       },
       "products": [
         {
           "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:2fbda5dad116cec55302ab775c209ddfc87289adb653f2fe74bc8f5c02799170",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
+              "@id": "pkg:golang/golang.org/x/sys@0.40.0"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:golang/golang.org/x/sys@v0.40.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:8dc8a6d106b52f2273d7398d2c327512c13d51b35bf1869e4b4790c70a6e7f5b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9) not listed as affected."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -291,7 +211,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:2fbda5dad116cec55302ab775c209ddfc87289adb653f2fe74bc8f5c02799170",
+          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:3ccce211e800fab36a7d3eb57b694b1087eb30dda3627759f64aeeb3a44ccfe0",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/sys@0.40.0"
@@ -351,7 +271,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:8dc8a6d106b52f2273d7398d2c327512c13d51b35bf1869e4b4790c70a6e7f5b",
+          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:3ccce211e800fab36a7d3eb57b694b1087eb30dda3627759f64aeeb3a44ccfe0",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -367,43 +287,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39883"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:2fbda5dad116cec55302ab775c209ddfc87289adb653f2fe74bc8f5c02799170",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.38.0"
-            },
-            {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.38.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39883"
+        "name": "CVE-2026-39836"
       },
       "products": [
         {
           "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:8dc8a6d106b52f2273d7398d2c327512c13d51b35bf1869e4b4790c70a6e7f5b",
           "subcomponents": [
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.38.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.38.0"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9)."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -431,6 +331,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:3ccce211e800fab36a7d3eb57b694b1087eb30dda3627759f64aeeb3a44ccfe0",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:8dc8a6d106b52f2273d7398d2c327512c13d51b35bf1869e4b4790c70a6e7f5b",
           "subcomponents": [
             {
@@ -447,123 +367,22 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42504"
+        "name": "CVE-2026-4878"
       },
       "products": [
         {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:2fbda5dad116cec55302ab775c209ddfc87289adb653f2fe74bc8f5c02799170",
+          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:3ccce211e800fab36a7d3eb57b694b1087eb30dda3627759f64aeeb3a44ccfe0",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
+              "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
             }
           ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
+        },
         {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:8dc8a6d106b52f2273d7398d2c327512c13d51b35bf1869e4b4790c70a6e7f5b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:2fbda5dad116cec55302ab775c209ddfc87289adb653f2fe74bc8f5c02799170",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:8dc8a6d106b52f2273d7398d2c327512c13d51b35bf1869e4b4790c70a6e7f5b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:2fbda5dad116cec55302ab775c209ddfc87289adb653f2fe74bc8f5c02799170",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:8dc8a6d106b52f2273d7398d2c327512c13d51b35bf1869e4b4790c70a6e7f5b",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhoai/odh-workload-variant-autoscaler-controller-rhel9 (RHEL 9) not listed as affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -580,6 +399,25 @@
         },
         {
           "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-workload-variant-autoscaler-controller-rhel9@sha256:3ccce211e800fab36a7d3eb57b694b1087eb30dda3627759f64aeeb3a44ccfe0",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
         }
       ],
       "status": "fixed"

@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/fence-agents-remediation-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T17:53:20Z",
-  "version": 2,
+  "timestamp": "2026-07-14T07:32:07Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -11,7 +11,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pyyaml@5.1"
@@ -20,7 +20,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX statement for workload-availability/fence-agents-remediation-rhel9-operator 0.6."
+      "impact_statement": "Not listed as affected; no VEX statement for workload-availability/fence-agents-remediation-rhel9-operator 0.8."
     },
     {
       "vulnerability": {
@@ -28,7 +28,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pyyaml@5.1"
@@ -45,7 +45,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:pypi/pyyaml@5.1"
@@ -55,6 +55,23 @@
       ],
       "status": "not_affected",
       "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-1941"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/protobuf@3.17.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not affected in workload-availability/fence-agents-remediation-rhel9-operator 0.8 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -75,62 +92,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2023-0286"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/cryptography@3.3.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream EUS (v.9.0) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-23931"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/cryptography@3.3.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux BaseOS (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-32681"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/requests@2.26.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux BaseOS (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2023-45288"
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.20.0"
@@ -146,113 +112,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2023-49083"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/cryptography@3.3.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-50782"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/cryptography@3.3.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-0727"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/cryptography@3.3.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-35195"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/requests@2.26.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux BaseOS (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-3651"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/idna@3.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux BaseOS (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-37891"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/urllib3@1.26.18"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-39689"
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:pypi/certifi@2023.7.22"
@@ -269,7 +133,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
@@ -289,7 +153,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.20.0"
@@ -305,28 +169,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-47081"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/requests@2.26.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-22869"
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
@@ -346,7 +193,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.20.0"
@@ -366,7 +213,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.20.0"
@@ -382,83 +229,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-4674"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.2), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47906"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Node HealthCheck Operator names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-47907"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Node Maintenance Operator, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-47911"
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
-            },
-            {
               "@id": "pkg:golang/golang.org/x/net@v0.20.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
             }
           ]
         }
@@ -468,31 +249,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-47912"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Node HealthCheck Operator names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-47913"
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
@@ -512,7 +273,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
@@ -525,23 +286,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-50181"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/urllib3@1.26.18"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "workload-availability/fence-agents-remediation-rhel9-operator 0.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -549,7 +293,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
@@ -565,385 +309,17 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-58183"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58185"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Node HealthCheck Operator names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58186"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58187"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58188"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58189"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Node HealthCheck Operator names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-58190"
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
-            },
-            {
               "@id": "pkg:golang/golang.org/x/net@v0.20.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61723"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Node HealthCheck Operator names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61724"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Node HealthCheck Operator names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61725"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61726"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Node HealthCheck Operator names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61727"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Node HealthCheck Operator names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61728"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Node Maintenance Operator, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61729"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Node Maintenance Operator, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61730"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Node HealthCheck Operator names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61731"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61732"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
             }
           ]
         }
@@ -987,52 +363,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-68119"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-68121"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Node Maintenance Operator names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-6965"
       },
       "products": [
@@ -1055,6 +385,23 @@
         }
       ],
       "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-21226"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/azure-core@1.32.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1126,46 +473,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-25645"
+        "name": "CVE-2026-24051"
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
-              "@id": "pkg:pypi/requests@2.26.0"
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.34.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.34.0"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "workload-availability/fence-agents-remediation-rhel9-operator 0.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1173,19 +497,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -1199,19 +523,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -1225,19 +549,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -1247,153 +571,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-27139"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27140"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27142"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27144"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-27145"
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.25.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
             }
           ]
         }
@@ -1403,159 +597,23 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-32280"
+        "name": "CVE-2026-33186"
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/google.golang.org/grpc@1.72.1"
             },
             {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
+              "@id": "pkg:golang/google.golang.org/grpc@v1.72.1"
             }
           ]
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Node HealthCheck Operator names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32282"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Fence Agents Remediation Operator, Machine Deletion Remediation Operator, Node HealthCheck Operator names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.3"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "workload-availability/fence-agents-remediation-rhel9-operator 0.8 not listed as affected."
     },
     {
       "vulnerability": {
@@ -1563,19 +621,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.25.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
             }
           ]
         }
@@ -1589,37 +647,57 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
-            },
-            {
               "@id": "pkg:golang/golang.org/x/net@v0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@1.25.3"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1640,6 +718,32 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
             }
           ]
         }
@@ -1679,19 +783,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.25.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
             }
           ]
         }
@@ -1705,19 +809,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -1731,19 +835,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.25.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
             }
           ]
         }
@@ -1757,25 +861,51 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.25.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.16.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.16.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.43.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -1809,19 +939,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.25.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
             }
           ]
         }
@@ -1835,19 +965,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.25.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
             }
           ]
         }
@@ -1861,7 +991,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
@@ -1881,7 +1011,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
@@ -1901,7 +1031,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
@@ -1921,7 +1051,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
@@ -1941,7 +1071,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
@@ -1961,7 +1091,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
@@ -1974,6 +1104,32 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -2003,29 +1159,75 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39883"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.34.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX statement for workload-availability/fence-agents-remediation-rhel9-operator 0.8."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42499"
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.25.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
             }
           ]
         }
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.26.2"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -2059,19 +1261,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -2085,19 +1287,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.25.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
             }
           ]
         }
@@ -2111,19 +1313,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/net@0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@0.43.0"
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.20.0"
             },
             {
-              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
             }
           ]
         }
@@ -2137,19 +1339,19 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
-              "@id": "pkg:golang/stdlib@1.24.4"
+              "@id": "pkg:golang/stdlib@1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@1.25.3"
+              "@id": "pkg:golang/stdlib@1.26.2"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.24.4"
+              "@id": "pkg:golang/stdlib@v1.25.9"
             },
             {
-              "@id": "pkg:golang/stdlib@v1.25.3"
+              "@id": "pkg:golang/stdlib@v1.26.2"
             }
           ]
         }
@@ -2163,7 +1365,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
@@ -2179,28 +1381,11 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-44431"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
-          "subcomponents": [
-            {
-              "@id": "pkg:pypi/urllib3@1.26.18"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-46595"
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
@@ -2220,7 +1405,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
@@ -2240,7 +1425,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:36d619bb5bf98b379378fc378975b8796fb144dcaf5c451b95f8e543079f8a41",
+          "@id": "pkg:oci/fence-agents-remediation-rhel9-operator@sha256:194c11c94faadb1391027a9a9cc6efe6452866269ac9292d6e90dedaa8301529",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.18.0"
