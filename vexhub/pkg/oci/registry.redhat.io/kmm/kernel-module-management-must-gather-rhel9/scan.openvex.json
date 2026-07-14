@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/kernel-module-management-must-gather-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:29:08Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:55:29Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -3534,46 +3534,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kernel-module-management-must-gather-rhel9@sha256:15d84c2191be70931b832cde5a7045350badaeef16d811b07291ec2d4acec699",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "kernel-module-management/kernel-module-management-must-gather-rhel9 (RHEL 9): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kernel-module-management-must-gather-rhel9@sha256:f9fde334af68220943017a7491130e6a82f15e63522f5bb3931aa7d9b00ccc40",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "kernel-module-management/kernel-module-management-must-gather-rhel9 (RHEL 9): known_not_affected."
     },
     {
       "vulnerability": {
@@ -15740,6 +15700,86 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kernel-module-management-must-gather-rhel9@sha256:14e100e5853444114029116255ebfb7a54e5ed51503ba969740ad48b5ca80f70",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "kernel-module-management/kernel-module-management-must-gather-rhel9 (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kernel-module-management-must-gather-rhel9@sha256:15d84c2191be70931b832cde5a7045350badaeef16d811b07291ec2d4acec699",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "kernel-module-management/kernel-module-management-must-gather-rhel9 (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kernel-module-management-must-gather-rhel9@sha256:53fddf0b226eb579c71c86112a8d9b6b1d90a1498d6f6985932b16b8be532f35",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "kernel-module-management/kernel-module-management-must-gather-rhel9 (RHEL 9) not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kernel-module-management-must-gather-rhel9@sha256:f9fde334af68220943017a7491130e6a82f15e63522f5bb3931aa7d9b00ccc40",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "kernel-module-management/kernel-module-management-must-gather-rhel9 (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {

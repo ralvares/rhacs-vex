@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/mta-windup-addon-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:43:00Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:57:40Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -1171,32 +1171,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-58436"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-windup-addon-rhel9@sha256:d1f4939b92dd13c15cb7344ec47a571669f6d108dc2e7d795ce29350f2cb3838",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-24.el9"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.3.3op2-24.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-24.el9"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.3.3op2-24.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-windup-addon-rhel9 (RHEL 9): known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-61723"
       },
       "products": [
@@ -1397,32 +1371,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-61915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-windup-addon-rhel9@sha256:d1f4939b92dd13c15cb7344ec47a571669f6d108dc2e7d795ce29350f2cb3838",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-24.el9"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.3.3op2-24.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-24.el9"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.3.3op2-24.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-windup-addon-rhel9 (RHEL 9): known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-65637"
       },
       "products": [
@@ -1454,6 +1402,9 @@
             },
             {
               "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-7.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sisu@0.3.4-10.el9"
             }
           ]
         },
@@ -1462,6 +1413,9 @@
         },
         {
           "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-7.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sisu@0.3.4-10.el9"
         }
       ],
       "status": "not_affected",

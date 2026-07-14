@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odf-csi-addons-sidecar-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T15:03:49Z",
-  "version": 1,
+  "timestamp": "2026-07-13T15:05:03Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -27,6 +27,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "odf4/odf-csi-addons-sidecar-rhel9 4.19 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-29181"
       },
       "products": [
@@ -44,6 +64,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; no VEX statement for odf4/odf-csi-addons-sidecar-rhel9 4.20."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-29181"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX statement for odf4/odf-csi-addons-sidecar-rhel9 4.19."
     },
     {
       "vulnerability": {
@@ -67,11 +107,51 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "odf4/odf-csi-addons-sidecar-rhel9 4.19 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39817"
       },
       "products": [
         {
           "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:a0321e49fdc847a42866bf973afe6be2ef8f5dc8817e6520769d562b17b2462b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -107,6 +187,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
       },
       "products": [
@@ -124,6 +224,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "odf4/odf-csi-addons-sidecar-rhel9 4.20 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "odf4/odf-csi-addons-sidecar-rhel9 4.19 not listed as affected."
     },
     {
       "vulnerability": {
@@ -147,6 +267,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "odf4/odf-csi-addons-sidecar-rhel9 4.19 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39823"
       },
       "products": [
@@ -167,11 +307,51 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "odf4/odf-csi-addons-sidecar-rhel9 4.19 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39824"
       },
       "products": [
         {
           "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:a0321e49fdc847a42866bf973afe6be2ef8f5dc8817e6520769d562b17b2462b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.39.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/sys@0.39.0"
@@ -207,6 +387,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "odf4/odf-csi-addons-sidecar-rhel9 4.19 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39826"
       },
       "products": [
@@ -227,11 +427,51 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "odf4/odf-csi-addons-sidecar-rhel9 4.19 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39836"
       },
       "products": [
         {
           "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:a0321e49fdc847a42866bf973afe6be2ef8f5dc8817e6520769d562b17b2462b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -267,11 +507,51 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "odf4/odf-csi-addons-sidecar-rhel9 4.19 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42501"
       },
       "products": [
         {
           "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:a0321e49fdc847a42866bf973afe6be2ef8f5dc8817e6520769d562b17b2462b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -307,7 +587,67 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "odf4/odf-csi-addons-sidecar-rhel9 4.19 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:a0321e49fdc847a42866bf973afe6be2ef8f5dc8817e6520769d562b17b2462b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "odf4/odf-csi-addons-sidecar-rhel9 4.20 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "odf4/odf-csi-addons-sidecar-rhel9 4.19 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42507"
       },
       "products": [
         {
@@ -331,7 +671,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:a0321e49fdc847a42866bf973afe6be2ef8f5dc8817e6520769d562b17b2462b",
+          "@id": "pkg:oci/odf-csi-addons-sidecar-rhel9@sha256:f595aebd4caecfc9befa38f2b09b03474f01fbcbae1615bdb517bdbcaef93dc4",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -343,7 +683,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "odf4/odf-csi-addons-sidecar-rhel9 4.20 not listed as affected."
+      "impact_statement": "odf4/odf-csi-addons-sidecar-rhel9 4.19 not listed as affected."
     }
   ]
 }

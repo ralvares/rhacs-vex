@@ -1,0 +1,80 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/sso75-openj9-openshift-rhel8",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T00:19:04Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2022-3787"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/sso75-openj9-openshift-rhel8@sha256:2d4ea7226f43e7e8e8d3fcef6d425eb5104a15acf07791355033300b80db2901",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/device-mapper-multipath@0.8.4-17.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/kpartx@0.8.4-17.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/device-mapper-multipath@0.8.4-17.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/kpartx@0.8.4-17.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rh-sso-7/sso75-openj9-openshift-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-41974"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/sso75-openj9-openshift-rhel8@sha256:2d4ea7226f43e7e8e8d3fcef6d425eb5104a15acf07791355033300b80db2901",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/device-mapper-multipath@0.8.4-17.el8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/kpartx@0.8.4-17.el8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/device-mapper-multipath@0.8.4-17.el8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/kpartx@0.8.4-17.el8"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rh-sso-7/sso75-openj9-openshift-rhel8 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-53899"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/sso75-openj9-openshift-rhel8@sha256:2d4ea7226f43e7e8e8d3fcef6d425eb5104a15acf07791355033300b80db2901",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python36@3.6.8-38.module+el8.5.0+12207+5c5719bc"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python36@3.6.8-38.module+el8.5.0+12207+5c5719bc"
+        }
+      ],
+      "status": "fixed"
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/openshift-migration-controller-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:46:42Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:58:24Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -2920,6 +2920,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/openshift-migration-controller-rhel8@sha256:a3e8fce991d3dcd62165e77499700f1ccf50da965e234d229bf4c51ee6f11a5f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     }
   ]
 }

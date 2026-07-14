@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/openshift-migration-ui-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:46:42Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:58:45Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -92,7 +92,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in rhmtc/openshift-migration-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -211,7 +211,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in rhmtc/openshift-migration-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -446,26 +446,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/openshift-migration-ui-rhel8@sha256:1b8008a16a0f53c09ecc5a219964194689a1aeb01acee8313aa49a9c26259429",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/brace-expansion@1.1.11"
-            },
-            {
-              "@id": "pkg:npm/brace-expansion@2.0.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5889"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/openshift-migration-ui-rhel8@sha256:d4bd3998d51443d304d70e083cb4544e5c47b27a45ffc0afdfbd79a1a020539b",
           "subcomponents": [
             {
@@ -654,7 +634,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in rhmtc/openshift-migration-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): component not present."
+      "impact_statement": "Not affected in rhmtc/openshift-migration-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -674,7 +654,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in rhmtc/openshift-migration-ui-rhel8 1.8 (Red Hat Enterprise Linux 8): component not present."
+      "impact_statement": "Not affected in rhmtc/openshift-migration-ui-rhel8 1.8 (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -749,144 +729,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-26996"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openshift-migration-ui-rhel8@sha256:1b8008a16a0f53c09ecc5a219964194689a1aeb01acee8313aa49a9c26259429",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            },
-            {
-              "@id": "pkg:npm/minimatch@5.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26996"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openshift-migration-ui-rhel8@sha256:d4bd3998d51443d304d70e083cb4544e5c47b27a45ffc0afdfbd79a1a020539b",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@10.1.1"
-            },
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            },
-            {
-              "@id": "pkg:npm/minimatch@5.1.6"
-            },
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27903"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openshift-migration-ui-rhel8@sha256:1b8008a16a0f53c09ecc5a219964194689a1aeb01acee8313aa49a9c26259429",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            },
-            {
-              "@id": "pkg:npm/minimatch@5.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27903"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openshift-migration-ui-rhel8@sha256:d4bd3998d51443d304d70e083cb4544e5c47b27a45ffc0afdfbd79a1a020539b",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@10.1.1"
-            },
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            },
-            {
-              "@id": "pkg:npm/minimatch@5.1.6"
-            },
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27904"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openshift-migration-ui-rhel8@sha256:1b8008a16a0f53c09ecc5a219964194689a1aeb01acee8313aa49a9c26259429",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            },
-            {
-              "@id": "pkg:npm/minimatch@5.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27904"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openshift-migration-ui-rhel8@sha256:d4bd3998d51443d304d70e083cb4544e5c47b27a45ffc0afdfbd79a1a020539b",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@10.1.1"
-            },
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            },
-            {
-              "@id": "pkg:npm/minimatch@5.1.6"
-            },
-            {
-              "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-29786"
       },
       "products": [
@@ -900,7 +742,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in rhmtc/openshift-migration-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -920,7 +762,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in rhmtc/openshift-migration-ui-rhel8 1.8 (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -992,86 +834,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33671"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openshift-migration-ui-rhel8@sha256:1b8008a16a0f53c09ecc5a219964194689a1aeb01acee8313aa49a9c26259429",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@2.3.0"
-            },
-            {
-              "@id": "pkg:npm/picomatch@2.3.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33671"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openshift-migration-ui-rhel8@sha256:d4bd3998d51443d304d70e083cb4544e5c47b27a45ffc0afdfbd79a1a020539b",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@2.3.1"
-            },
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33672"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openshift-migration-ui-rhel8@sha256:1b8008a16a0f53c09ecc5a219964194689a1aeb01acee8313aa49a9c26259429",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@2.3.0"
-            },
-            {
-              "@id": "pkg:npm/picomatch@2.3.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33672"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openshift-migration-ui-rhel8@sha256:d4bd3998d51443d304d70e083cb4544e5c47b27a45ffc0afdfbd79a1a020539b",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@2.3.1"
-            },
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
     },
     {
       "vulnerability": {

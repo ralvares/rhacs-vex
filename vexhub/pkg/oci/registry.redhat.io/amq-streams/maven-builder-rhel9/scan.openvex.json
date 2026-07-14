@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/maven-builder-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:46:58Z",
-  "version": 3,
+  "timestamp": "2026-07-13T17:48:22Z",
+  "version": 6,
   "statements": [
     {
       "vulnerability": {
@@ -305,78 +305,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/maven-builder-rhel9@sha256:99e4a789597e567eea920004364a20c71580a2ca58fc68ffa5ec797160d174bf",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/maven-builder-rhel9 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58436"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/maven-builder-rhel9@sha256:99e4a789597e567eea920004364a20c71580a2ca58fc68ffa5ec797160d174bf",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/maven-builder-rhel9 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/maven-builder-rhel9@sha256:99e4a789597e567eea920004364a20c71580a2ca58fc68ffa5ec797160d174bf",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/maven-builder-rhel9 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-67030"
       },
       "products": [
@@ -390,7 +318,7 @@
               "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-10.el9"
             },
             {
-              "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-13.el9"
+              "@id": "pkg:rpm/redhat/sisu@0.3.4-14.el9"
             }
           ]
         },
@@ -401,7 +329,7 @@
           "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-10.el9"
         },
         {
-          "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-13.el9"
+          "@id": "pkg:rpm/redhat/sisu@0.3.4-14.el9"
         }
       ],
       "status": "not_affected",
@@ -422,7 +350,7 @@
               "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-10.el9"
             },
             {
-              "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-13.el9"
+              "@id": "pkg:rpm/redhat/sisu@0.3.4-14.el9"
             }
           ]
         },
@@ -433,7 +361,7 @@
           "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-10.el9"
         },
         {
-          "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-13.el9"
+          "@id": "pkg:rpm/redhat/sisu@0.3.4-14.el9"
         }
       ],
       "status": "not_affected",
@@ -454,7 +382,7 @@
               "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-10.el9"
             },
             {
-              "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-13.el9"
+              "@id": "pkg:rpm/redhat/sisu@0.3.4-14.el9"
             }
           ]
         },
@@ -465,7 +393,7 @@
           "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-10.el9"
         },
         {
-          "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-13.el9"
+          "@id": "pkg:rpm/redhat/sisu@0.3.4-14.el9"
         }
       ],
       "status": "not_affected",
@@ -486,7 +414,7 @@
               "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-7.el9"
             },
             {
-              "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-10.el9"
+              "@id": "pkg:rpm/redhat/sisu@0.3.4-10.el9"
             }
           ]
         },
@@ -497,7 +425,7 @@
           "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-7.el9"
         },
         {
-          "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-10.el9"
+          "@id": "pkg:rpm/redhat/sisu@0.3.4-10.el9"
         }
       ],
       "status": "not_affected",
@@ -518,7 +446,7 @@
               "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-7.el9"
             },
             {
-              "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-10.el9"
+              "@id": "pkg:rpm/redhat/sisu@0.3.4-10.el9"
             }
           ]
         },
@@ -529,7 +457,7 @@
           "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-7.el9"
         },
         {
-          "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-10.el9"
+          "@id": "pkg:rpm/redhat/sisu@0.3.4-10.el9"
         }
       ],
       "status": "not_affected",
@@ -550,7 +478,7 @@
               "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-10.el9"
             },
             {
-              "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-13.el9"
+              "@id": "pkg:rpm/redhat/sisu@0.3.4-14.el9"
             }
           ]
         },
@@ -561,7 +489,7 @@
           "@id": "pkg:rpm/redhat/maven-wagon@3.4.2-10.el9"
         },
         {
-          "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-13.el9"
+          "@id": "pkg:rpm/redhat/sisu@0.3.4-14.el9"
         }
       ],
       "status": "not_affected",

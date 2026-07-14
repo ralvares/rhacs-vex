@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/kueue-must-gather-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:34:13Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:56:08Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -5887,6 +5887,66 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kueue-must-gather-rhel9@sha256:01bc7fe88acb8729cf08551cad62f7ba02de88f6c267189d005250ff6a0f1285",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "kueue/kueue-must-gather-rhel9 1.3 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kueue-must-gather-rhel9@sha256:0d6fe9adb309e62104deb675c5f1b72a4e62821991f2f673182a025cbaa795d0",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "kueue/kueue-must-gather-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/kueue-must-gather-rhel9@sha256:5db9b63e8917bf1f5c32dbdc438d067fd0c6e424b6bbb8dc575ad322d590396e",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "kueue/kueue-must-gather-rhel9 (RHEL 9) not listed as affected."
     },
     {
       "vulnerability": {

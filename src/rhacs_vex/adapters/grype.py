@@ -121,6 +121,34 @@ def grype_scan(target: str) -> dict:
     return doc
 
 
+def rpm_file_owners(sbom_path: str) -> dict:
+    """path → ('rpm name', 'version-release') for every rpm-owned file.
+
+    Bridges the identity gap for go binaries shipped inside rpms: the scanner
+    reports the golang module (pkg:golang/golang.org/x/net@…), while Red Hat
+    assesses the VENDORING rpm (rhel9:buildah).  File ownership from the SBOM
+    is the structural link between the two.
+    """
+    try:
+        with open(sbom_path) as fh:
+            doc = json.load(fh)
+    except Exception:
+        return {}
+    owners = {}
+    for a in doc.get('artifacts', []):
+        if a.get('type') != 'rpm':
+            continue
+        name = a.get('name', '')
+        ver = re.sub(r'^\d+:', '', str(a.get('version', '')))
+        if not name or not ver:
+            continue
+        for f in (a.get('metadata') or {}).get('files') or []:
+            path = f.get('path') if isinstance(f, dict) else str(f)
+            if path:
+                owners[path] = (name, ver)
+    return owners
+
+
 def fallback_platform(image_ref: str) -> str:
     """First linux platform in the image's manifest index, '' if none.
 

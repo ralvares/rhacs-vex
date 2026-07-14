@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/bridge-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:46:58Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:48:16Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -302,78 +302,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/bridge-rhel9@sha256:5d1e188d3e7b12fbb1b94ed1ac58ea059609a53243ded1bee6d1f179c2b48b4a",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/bridge-rhel9 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58436"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/bridge-rhel9@sha256:5d1e188d3e7b12fbb1b94ed1ac58ea059609a53243ded1bee6d1f179c2b48b4a",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/bridge-rhel9 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/bridge-rhel9@sha256:5d1e188d3e7b12fbb1b94ed1ac58ea059609a53243ded1bee6d1f179c2b48b4a",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/bridge-rhel9 9: known_not_affected."
     }
   ]
 }

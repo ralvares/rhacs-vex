@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/openshift-migration-log-reader-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:46:42Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:58:45Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -7382,6 +7382,26 @@
             },
             {
               "@id": "pkg:golang/github.com/containerd/containerd@v1.7.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/openshift-migration-log-reader-rhel8@sha256:f4508d19c6093b561a3a9e476ee2f0e58a2efbfed4038ce1b47dc67164434846",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
             }
           ]
         }

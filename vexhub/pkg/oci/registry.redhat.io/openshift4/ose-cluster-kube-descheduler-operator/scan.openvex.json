@@ -2,49 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-cluster-kube-descheduler-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:07:52Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:51:45Z",
+  "version": 2,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2013-0340"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cluster-kube-descheduler-operator@sha256:ba0b71ff2a30a069b4a8a8f3c1e0898aaadc6db112e4cc12aff7c77ced7a0405",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.3"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.3"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.13: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-23990"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cluster-kube-descheduler-operator@sha256:ba0b71ff2a30a069b4a8a8f3c1e0898aaadc6db112e4cc12aff7c77ced7a0405",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.3"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.3"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.13: known_not_affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2022-41717"
@@ -269,26 +229,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "cluster-kube-descheduler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-4016"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cluster-kube-descheduler-operator@sha256:ba0b71ff2a30a069b4a8a8f3c1e0898aaadc6db112e4cc12aff7c77ced7a0405",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/procps-ng@3.3.15-6.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/procps-ng@3.3.15-6.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.13: known_not_affected."
     },
     {
       "vulnerability": {
@@ -830,58 +770,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-37370"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cluster-kube-descheduler-operator@sha256:ba0b71ff2a30a069b4a8a8f3c1e0898aaadc6db112e4cc12aff7c77ced7a0405",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-15.el8_6"
-            },
-            {
-              "@id": "pkg:rpm/redhat/krb5@1.18.2-15.el8_6"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-15.el8_6"
-        },
-        {
-          "@id": "pkg:rpm/redhat/krb5@1.18.2-15.el8_6"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.13: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-37371"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cluster-kube-descheduler-operator@sha256:ba0b71ff2a30a069b4a8a8f3c1e0898aaadc6db112e4cc12aff7c77ced7a0405",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-15.el8_6"
-            },
-            {
-              "@id": "pkg:rpm/redhat/krb5@1.18.2-15.el8_6"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-15.el8_6"
-        },
-        {
-          "@id": "pkg:rpm/redhat/krb5@1.18.2-15.el8_6"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.13: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-45336"
       },
       "products": [
@@ -958,26 +846,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-8176"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cluster-kube-descheduler-operator@sha256:ba0b71ff2a30a069b4a8a8f3c1e0898aaadc6db112e4cc12aff7c77ced7a0405",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.3"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.3"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.13: known_not_affected."
     },
     {
       "vulnerability": {
@@ -1496,26 +1364,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "cluster-kube-descheduler-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-59375"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ose-cluster-kube-descheduler-operator@sha256:ba0b71ff2a30a069b4a8a8f3c1e0898aaadc6db112e4cc12aff7c77ced7a0405",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.3"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.3"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.13: known_not_affected."
     },
     {
       "vulnerability": {

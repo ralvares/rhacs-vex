@@ -2,258 +2,61 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/openjdk-17",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:45:14Z",
-  "version": 1,
+  "timestamp": "2026-07-14T00:37:31Z",
+  "version": 8,
   "statements": [
     {
       "vulnerability": {
-        "name": "CVE-2013-0340"
+        "name": "CVE-2024-2961"
       },
       "products": [
         {
-          "@id": "pkg:oci/openjdk-17@sha256:8796da64c626c5f63f31a4e3ac0ac3b179333a7c6d5472a195b9b3f61ccd1099",
+          "@id": "pkg:oci/openjdk-17@sha256:e8cc2e476282b75d89c73057bfa713db22d72bdb2808d62d981a84c33beb2575",
           "subcomponents": [
             {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8_9.13"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8_9.13"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-236.el8_9.13"
             }
           ]
         },
         {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8_9.13"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8_9.13"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-236.el8_9.13"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "UBI8: known_not_affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
-        "name": "CVE-2022-23990"
+        "name": "CVE-2025-67030"
       },
       "products": [
         {
-          "@id": "pkg:oci/openjdk-17@sha256:8796da64c626c5f63f31a4e3ac0ac3b179333a7c6d5472a195b9b3f61ccd1099",
+          "@id": "pkg:oci/openjdk-17@sha256:632e78989471859ca4ed1148b951a911f7e3b6e6516482be20967c4171612c55",
           "subcomponents": [
             {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+              "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-11.module+el8.10.0+21301+657f54a3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sisu@0.3.5-3.module+el8.10.0+21301+657f54a3"
             }
           ]
         },
         {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "UBI8: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-52425"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openjdk-17@sha256:8796da64c626c5f63f31a4e3ac0ac3b179333a7c6d5472a195b9b3f61ccd1099",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-            }
-          ]
+          "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-11.module+el8.10.0+21301+657f54a3"
         },
         {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "UBI8: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33599"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openjdk-17@sha256:8796da64c626c5f63f31a4e3ac0ac3b179333a7c6d5472a195b9b3f61ccd1099",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-225.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-225.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-225.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-225.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-225.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-225.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "UBI8: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33600"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openjdk-17@sha256:8796da64c626c5f63f31a4e3ac0ac3b179333a7c6d5472a195b9b3f61ccd1099",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-225.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-225.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-225.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-225.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-225.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-225.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "UBI8: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33601"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openjdk-17@sha256:8796da64c626c5f63f31a4e3ac0ac3b179333a7c6d5472a195b9b3f61ccd1099",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-225.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-225.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-225.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-225.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-225.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-225.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "UBI8: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33602"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openjdk-17@sha256:8796da64c626c5f63f31a4e3ac0ac3b179333a7c6d5472a195b9b3f61ccd1099",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-225.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-225.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-225.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-225.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-225.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-225.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "UBI8: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-8176"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openjdk-17@sha256:8796da64c626c5f63f31a4e3ac0ac3b179333a7c6d5472a195b9b3f61ccd1099",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "UBI8: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-59375"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openjdk-17@sha256:8796da64c626c5f63f31a4e3ac0ac3b179333a7c6d5472a195b9b3f61ccd1099",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "UBI8: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openjdk-17@sha256:8796da64c626c5f63f31a4e3ac0ac3b179333a7c6d5472a195b9b3f61ccd1099",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-51.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-51.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-51.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-51.el8"
+          "@id": "pkg:rpm/redhat/sisu@0.3.5-3.module+el8.10.0+21301+657f54a3"
         }
       ],
       "status": "not_affected",
@@ -268,15 +71,9 @@
           "@id": "pkg:oci/openjdk-17@sha256:8796da64c626c5f63f31a4e3ac0ac3b179333a7c6d5472a195b9b3f61ccd1099",
           "subcomponents": [
             {
-              "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-10.module+el8.8.0+18044+0a924b8f"
-            },
-            {
               "@id": "pkg:rpm/redhat/sisu@0.3.5-2.module+el8.8.0+18044+0a924b8f"
             }
           ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-10.module+el8.8.0+18044+0a924b8f"
         },
         {
           "@id": "pkg:rpm/redhat/sisu@0.3.5-2.module+el8.8.0+18044+0a924b8f"
@@ -287,25 +84,111 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-34980"
+        "name": "CVE-2025-67030"
       },
       "products": [
         {
-          "@id": "pkg:oci/openjdk-17@sha256:8796da64c626c5f63f31a4e3ac0ac3b179333a7c6d5472a195b9b3f61ccd1099",
+          "@id": "pkg:oci/openjdk-17@sha256:a166bd2fedb99cb62ebf4695ab46e19c7e451f887940cdf0b8245c81e403aea2",
           "subcomponents": [
             {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-51.el8"
+              "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-11.module+el8.10.0+21301+657f54a3"
             },
             {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-51.el8"
+              "@id": "pkg:rpm/redhat/sisu@0.3.5-3.module+el8.10.0+21301+657f54a3"
             }
           ]
         },
         {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-51.el8"
+          "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-11.module+el8.10.0+21301+657f54a3"
         },
         {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-51.el8"
+          "@id": "pkg:rpm/redhat/sisu@0.3.5-3.module+el8.10.0+21301+657f54a3"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "UBI8: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-67030"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/openjdk-17@sha256:a8165bc2cd5051a96d6937e25ed03155bbd4b731da6e58cebfe2ea83209c16d8",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sisu@0.3.5-2.module+el8.8.0+18044+0a924b8f"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sisu@0.3.5-2.module+el8.8.0+18044+0a924b8f"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "UBI8: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-67030"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/openjdk-17@sha256:af305e087061cbaa4107ce0b304a1ef987f6b54bae3f75bfd529cfd084cba9b5",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sisu@0.3.5-2.module+el8.8.0+18044+0a924b8f"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sisu@0.3.5-2.module+el8.8.0+18044+0a924b8f"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "UBI8: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-67030"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/openjdk-17@sha256:e5fc9e34382da41b10d4ea566639d31707493abff9e8de81f5accfd66876409e",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-11.module+el8.10.0+21301+657f54a3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sisu@0.3.5-3.module+el8.10.0+21301+657f54a3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-11.module+el8.10.0+21301+657f54a3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sisu@0.3.5-3.module+el8.10.0+21301+657f54a3"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "UBI8: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-67030"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/openjdk-17@sha256:e8cc2e476282b75d89c73057bfa713db22d72bdb2808d62d981a84c33beb2575",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sisu@0.3.5-2.module+el8.8.0+18044+0a924b8f"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sisu@0.3.5-2.module+el8.8.0+18044+0a924b8f"
         }
       ],
       "status": "not_affected",

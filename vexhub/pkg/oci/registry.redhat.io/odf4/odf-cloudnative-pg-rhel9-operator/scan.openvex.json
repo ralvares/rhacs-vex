@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odf-cloudnative-pg-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:38:24Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:56:46Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -2923,6 +2923,46 @@
             },
             {
               "@id": "pkg:golang/github.com/containerd/containerd@v1.7.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-cloudnative-pg-rhel9-operator@sha256:2d067a04d7a15829fe5bd75b468bef8e21a7e5b38350e3341ec70c6537155d3b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odf-cloudnative-pg-rhel9-operator@sha256:cd1f51c44327dc7ade0099b5fce903ae793d8b39c797d5be4118d6e3fa2bfb69",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
             }
           ]
         }

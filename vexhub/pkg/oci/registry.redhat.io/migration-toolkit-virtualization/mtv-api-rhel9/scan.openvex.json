@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/mtv-api-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:51:32Z",
-  "version": 3,
+  "timestamp": "2026-07-13T17:59:18Z",
+  "version": 5,
   "statements": [
     {
       "vulnerability": {
@@ -120,46 +120,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mtv-api-rhel9@sha256:28ba3dac57db758256c7ea489ebe2e34ab206cb643dd8e3450d60349bb9a9882",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "migration-toolkit-virtualization/mtv-api-rhel9 2.11: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mtv-api-rhel9@sha256:724f8108927cc93154a7ba33ea939a3caac4a471a0e6f8e1ddfa351df35f0459",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "migration-toolkit-virtualization/mtv-api-rhel9 2.12: known_not_affected."
     },
     {
       "vulnerability": {

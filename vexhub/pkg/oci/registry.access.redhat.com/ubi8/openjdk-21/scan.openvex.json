@@ -1,0 +1,60 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/openjdk-21",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T00:41:07Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2024-2961"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/openjdk-21@sha256:441897a1f691c7d4b3a67bb3e0fea83e18352214264cb383fd057bbbd5ed863c",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8_9.13"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8_9.13"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-236.el8_9.13"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8_9.13"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8_9.13"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-236.el8_9.13"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-67030"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/openjdk-21@sha256:441897a1f691c7d4b3a67bb3e0fea83e18352214264cb383fd057bbbd5ed863c",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sisu@0.3.5-2.module+el8.8.0+18044+0a924b8f"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sisu@0.3.5-2.module+el8.8.0+18044+0a924b8f"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "UBI8: known_not_affected."
+    }
+  ]
+}

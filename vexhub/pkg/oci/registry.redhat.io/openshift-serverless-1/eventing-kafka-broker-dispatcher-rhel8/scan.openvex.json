@@ -1,0 +1,34 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/eventing-kafka-broker-dispatcher-rhel8",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T00:33:22Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2023-48795"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/eventing-kafka-broker-dispatcher-rhel8@sha256:af5c30fc9f631d9ed110641b815315d8b4aef539f687277a3821d9939ca5dd46",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libssh-config@0.9.6-10.el8_8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libssh@0.9.6-10.el8_8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh-config@0.9.6-10.el8_8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh@0.9.6-10.el8_8"
+        }
+      ],
+      "status": "fixed"
+    }
+  ]
+}

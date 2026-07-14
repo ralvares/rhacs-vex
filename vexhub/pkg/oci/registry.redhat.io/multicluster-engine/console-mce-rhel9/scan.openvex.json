@@ -2,26 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/console-mce-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:59:57Z",
-  "version": 4,
+  "timestamp": "2026-07-13T17:59:57Z",
+  "version": 8,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2024-21538"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-mce-rhel9@sha256:ef2160a862256f4c100adcb3786c4ff742cdd5545c7bcb4d1745be436e709d09",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/cross-spawn@7.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/console-mce-rhel9 2.9 not listed as affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2024-4068"
@@ -701,7 +684,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in multicluster-engine/console-mce-rhel9 2.17 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -718,7 +701,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in multicluster-engine/console-mce-rhel9 2.11 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -735,7 +718,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in multicluster-engine/console-mce-rhel9 2.10 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -752,7 +735,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in multicluster-engine/console-mce-rhel9 2.9 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -884,23 +867,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33671"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-mce-rhel9@sha256:ef2160a862256f4c100adcb3786c4ff742cdd5545c7bcb4d1745be436e709d09",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@2.3.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-33672"
       },
       "products": [
@@ -952,23 +918,6 @@
             },
             {
               "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33672"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-mce-rhel9@sha256:ef2160a862256f4c100adcb3786c4ff742cdd5545c7bcb4d1745be436e709d09",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@2.3.1"
             }
           ]
         }
@@ -1045,74 +994,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-mce-rhel9@sha256:12de32198cdfa37af389289754495c8a7487d3665d621bed5eca923b76a21896",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@7.5.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/console-mce-rhel9 2.17 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-mce-rhel9@sha256:3b31b49387f1d56b1b77bb31e82b571f8480fa970164a4c6b26e7a9fca33cc7f",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@7.5.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/console-mce-rhel9 2.11 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-mce-rhel9@sha256:598f28519689dd0ec3ca38d3666b8037827e8e9126e9ff0b050e2c5c56c33795",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@7.5.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/console-mce-rhel9 2.10 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-mce-rhel9@sha256:ef2160a862256f4c100adcb3786c4ff742cdd5545c7bcb4d1745be436e709d09",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/console-mce-rhel9 2.9 not listed as affected."
     },
     {
       "vulnerability": {

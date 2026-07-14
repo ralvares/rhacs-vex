@@ -1,0 +1,54 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/istio-ztunnel-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T00:49:11Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/istio-ztunnel-rhel9@sha256:7ea9b82e192402566e69063a4787351be9f1ef50719bfd1a8f5d5940362b3f70",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/systemd-libs@252-32.el9_4.7"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd@252-32.el9_4.7"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@252-32.el9_4.7"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@252-32.el9_4.7"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-service-mesh-dev-preview-beta/istio-ztunnel-rhel9 (RHEL 9): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/istio-ztunnel-rhel9@sha256:7ea9b82e192402566e69063a4787351be9f1ef50719bfd1a8f5d5940362b3f70",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-2.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-2.el9"
+        }
+      ],
+      "status": "fixed"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/pipelines-scheduler-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T15:22:20Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-scheduler-rhel9@sha256:f9cba4dc9370d1cbe3b73b448a6d6973fd4b72fe22a7ef4ce7b295448796fe59",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.3"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    }
+  ]
+}

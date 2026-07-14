@@ -1,0 +1,478 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/pipelines-hub-ui-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T18:20:10Z",
+  "version": 5,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-23419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-hub-ui-rhel9@sha256:1fef4759b410625fc797a8ecd166c20ad09312abfccc1cb941e946cfdccd2da4",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-core@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-core@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-hub-ui-rhel9 1.19: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-23419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-hub-ui-rhel9@sha256:5cb33e7321673213b8dd5421c2484dace663a6ae1f23d7e95009c7461b1e3319",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-core@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-core@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx@1.24.0-7.module+el9.8.0+24379+0344c460.2"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-hub-ui-rhel9 1.22: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-23419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-hub-ui-rhel9@sha256:e63d956a0534f2e726301e00e877c4fe2f34ca4559e59d2df7567c04ded311a3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-core@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-core@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-hub-ui-rhel9 (RHEL 9): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-23419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-hub-ui-rhel9@sha256:ef5baf64078585838027981a3ddd1b1efe1e759112bb4547253a7c4d700559c2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-core@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-core@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-hub-ui-rhel9 1.20: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-23419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-hub-ui-rhel9@sha256:f3554e75172cd87bc7017a44a13e7a4f2542b19a34fe2bbb74e2c5477af8c621",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-core@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-core@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-hub-ui-rhel9 1.21: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-0865"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-hub-ui-rhel9@sha256:ef5baf64078585838027981a3ddd1b1efe1e759112bb4547253a7c4d700559c2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42945"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-hub-ui-rhel9@sha256:ef5baf64078585838027981a3ddd1b1efe1e759112bb4547253a7c4d700559c2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-core@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-core@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx@1.24.0-5.module+el9.7.0+24151+c43a3acf.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4519"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-hub-ui-rhel9@sha256:ef5baf64078585838027981a3ddd1b1efe1e759112bb4547253a7c4d700559c2",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.2"
+        }
+      ],
+      "status": "fixed"
+    }
+  ]
+}

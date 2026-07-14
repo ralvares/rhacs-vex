@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/mta-solution-server-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:46:42Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:58:45Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -209,26 +209,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-solution-server-rhel9@sha256:08161faacb63d0842e8dc4abae5922fa84c4c10dede31bbebd2f7485884644fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-solution-server-rhel9 9: known_not_affected."
     },
     {
       "vulnerability": {
@@ -952,6 +932,70 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-13149"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mta-solution-server-rhel9@sha256:08161faacb63d0842e8dc4abae5922fa84c4c10dede31bbebd2f7485884644fe",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/cargo@1.88.0-1.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rust-std-static@1.88.0-1.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rust@1.88.0-1.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/cargo@1.88.0-1.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rust-std-static@1.88.0-1.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rust@1.88.0-1.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "mta/mta-solution-server-rhel9 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-13149"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mta-solution-server-rhel9@sha256:f49a4ccf331250796fdde64a3ce9a6b8fb1ddb65aa5825e03ce87c3476bad162",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/cargo@1.84.1-1.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rust-std-static@1.84.1-1.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rust@1.84.1-1.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/cargo@1.84.1-1.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rust-std-static@1.84.1-1.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rust@1.84.1-1.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "mta/mta-solution-server-rhel9 8.1: known_not_affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-21226"
       },
       "products": [
@@ -1178,38 +1222,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; no VEX statement for mta/mta-solution-server-rhel9 9."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-28417"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-solution-server-rhel9@sha256:08161faacb63d0842e8dc4abae5922fa84c4c10dede31bbebd2f7485884644fe",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-solution-server-rhel9 9: known_not_affected."
     },
     {
       "vulnerability": {

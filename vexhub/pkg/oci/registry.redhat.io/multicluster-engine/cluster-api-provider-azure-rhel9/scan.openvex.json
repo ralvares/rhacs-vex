@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/cluster-api-provider-azure-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:57:08Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:59:43Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -136,58 +136,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-35177"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-api-provider-azure-rhel9@sha256:bb5ff5235871be7a97e615e33a49af75d86751bbb8abae2faf19dac212b68a90",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-26.el9_8.4"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim@8.2.2637-26.el9_8.4"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-26.el9_8.4"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim@8.2.2637-26.el9_8.4"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/cluster-api-provider-azure-rhel9 2.17: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-35177"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cluster-api-provider-azure-rhel9@sha256:c78e5e3594fb95a0d80f1a6898d60a6bee35a6f8419a281cb9dde56b864cc56a",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-26.el9_8.4"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim@8.2.2637-26.el9_8.4"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-26.el9_8.4"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim@8.2.2637-26.el9_8.4"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/cluster-api-provider-azure-rhel9 2.11: known_not_affected."
     },
     {
       "vulnerability": {

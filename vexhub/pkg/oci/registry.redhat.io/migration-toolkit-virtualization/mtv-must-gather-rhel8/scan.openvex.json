@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/mtv-must-gather-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:51:32Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:59:24Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -2551,58 +2551,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-61915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mtv-must-gather-rhel8@sha256:a719305f1027a04c046a87c90e0559c6878518ad5986bc375da31bcd3f6df5b5",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-62.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-62.el8_10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-62.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-62.el8_10"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "migration-toolkit-virtualization/mtv-must-gather-rhel8 2.12: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mtv-must-gather-rhel8@sha256:ddaa67897b9eda9b094ccef11cb65fdb5b6197411cb2aff8fc64e53fc2cf192d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-62.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-62.el8_10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-62.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-62.el8_10"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "migration-toolkit-virtualization/mtv-must-gather-rhel8 2.11: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-68121"
       },
       "products": [
@@ -3532,58 +3480,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "migration-toolkit-virtualization/mtv-must-gather-rhel8 2.11 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34980"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mtv-must-gather-rhel8@sha256:a719305f1027a04c046a87c90e0559c6878518ad5986bc375da31bcd3f6df5b5",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-62.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-62.el8_10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-62.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-62.el8_10"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "migration-toolkit-virtualization/mtv-must-gather-rhel8 2.12: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34980"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mtv-must-gather-rhel8@sha256:ddaa67897b9eda9b094ccef11cb65fdb5b6197411cb2aff8fc64e53fc2cf192d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-62.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-62.el8_10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-62.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-62.el8_10"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "migration-toolkit-virtualization/mtv-must-gather-rhel8 2.11: known_not_affected."
     },
     {
       "vulnerability": {
@@ -5018,6 +4914,46 @@
             },
             {
               "@id": "pkg:golang/github.com/containerd/containerd@v1.7.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mtv-must-gather-rhel8@sha256:a719305f1027a04c046a87c90e0559c6878518ad5986bc375da31bcd3f6df5b5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mtv-must-gather-rhel8@sha256:ddaa67897b9eda9b094ccef11cb65fdb5b6197411cb2aff8fc64e53fc2cf192d",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
             }
           ]
         }

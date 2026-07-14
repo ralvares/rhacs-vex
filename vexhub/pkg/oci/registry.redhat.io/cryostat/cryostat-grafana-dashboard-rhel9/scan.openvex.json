@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/cryostat-grafana-dashboard-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:15:10Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:52:12Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -173,46 +173,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-10452"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-grafana-dashboard-rhel9@sha256:10104ce400e1312c92bc8f209a5adbda45b34d245b05985877a85da1637b18f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/grafana/grafana@10.2.6"
-            },
-            {
-              "@id": "pkg:golang/github.com/grafana/grafana@v10.2.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-11741"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-grafana-dashboard-rhel9@sha256:10104ce400e1312c92bc8f209a5adbda45b34d245b05985877a85da1637b18f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/grafana/grafana@10.2.6"
-            },
-            {
-              "@id": "pkg:golang/github.com/grafana/grafana@v10.2.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-24786"
       },
       "products": [
@@ -261,7 +221,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+      "impact_statement": "known_not_affected (Red Hat Enterprise Linux 9)."
     },
     {
       "vulnerability": {
@@ -351,26 +311,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-6104"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-grafana-dashboard-rhel9@sha256:10104ce400e1312c92bc8f209a5adbda45b34d245b05985877a85da1637b18f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/hashicorp/go-retryablehttp@0.7.2"
-            },
-            {
-              "@id": "pkg:golang/github.com/hashicorp/go-retryablehttp@v0.7.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-8986"
       },
       "products": [
@@ -388,26 +328,6 @@
             },
             {
               "@id": "pkg:golang/github.com/grafana/grafana-plugin-sdk-go@v0.196.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-1088"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-grafana-dashboard-rhel9@sha256:10104ce400e1312c92bc8f209a5adbda45b34d245b05985877a85da1637b18f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/grafana/grafana@10.2.6"
-            },
-            {
-              "@id": "pkg:golang/github.com/grafana/grafana@v10.2.6"
             }
           ]
         }
@@ -523,26 +443,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-47908"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-grafana-dashboard-rhel9@sha256:10104ce400e1312c92bc8f209a5adbda45b34d245b05985877a85da1637b18f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/rs/cors@1.10.1"
-            },
-            {
-              "@id": "pkg:golang/github.com/rs/cors@v1.10.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "cryostat/cryostat-grafana-dashboard-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-47913"
       },
       "products": [
@@ -605,7 +505,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "cryostat/cryostat-grafana-dashboard-rhel9 9 not listed as affected."
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -645,7 +545,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "known_not_affected (Red Hat Enterprise Linux 9)."
     },
     {
       "vulnerability": {
@@ -712,46 +612,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "cryostat/cryostat-grafana-dashboard-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27877"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-grafana-dashboard-rhel9@sha256:10104ce400e1312c92bc8f209a5adbda45b34d245b05985877a85da1637b18f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/grafana/grafana@10.2.6"
-            },
-            {
-              "@id": "pkg:golang/github.com/grafana/grafana@v10.2.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream EUS (v.9.6) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-28377"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/cryostat-grafana-dashboard-rhel9@sha256:10104ce400e1312c92bc8f209a5adbda45b34d245b05985877a85da1637b18f5",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/grafana/tempo@1.5.1-0.20230524121406-1dc1bfe7085b"
-            },
-            {
-              "@id": "pkg:golang/github.com/grafana/tempo@v1.5.1-0.20230524121406-1dc1bfe7085b"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -843,7 +703,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "known_not_affected (Red Hat Enterprise Linux 9)."
     },
     {
       "vulnerability": {
@@ -1157,7 +1017,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "cryostat/cryostat-grafana-dashboard-rhel9 9 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Cryostat 4, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1183,7 +1043,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "cryostat/cryostat-grafana-dashboard-rhel9 9 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Cryostat 4, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1209,7 +1069,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "cryostat/cryostat-grafana-dashboard-rhel9 9 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Cryostat 4, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1235,7 +1095,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "cryostat/cryostat-grafana-dashboard-rhel9 9 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Cryostat 4 names other components only."
     },
     {
       "vulnerability": {
@@ -1287,7 +1147,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "cryostat/cryostat-grafana-dashboard-rhel9 9 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Cryostat 4, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1373,7 +1233,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
+      "impact_statement": "known_not_affected (Red Hat Enterprise Linux 9)."
     },
     {
       "vulnerability": {
@@ -1603,7 +1463,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "cryostat/cryostat-grafana-dashboard-rhel9 9 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Cryostat 4, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1629,7 +1489,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "cryostat/cryostat-grafana-dashboard-rhel9 9 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Cryostat 4, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {

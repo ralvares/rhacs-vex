@@ -2,9 +2,48 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ose-csi-external-snapshotter-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T15:03:49Z",
-  "version": 4,
+  "timestamp": "2026-07-13T15:05:03Z",
+  "version": 5,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2023-45288"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.20.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.20.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-12086"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
     {
       "vulnerability": {
         "name": "CVE-2024-12086"
@@ -45,6 +84,86 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2024-34155"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.16 \u2014 openshift4/ose-csi-external-snapshotter-rhel9@sha256:5b964ef6805643b0144934db9910d16a27b60e35ab2779bab19e3a40704cca78_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-34156"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.16 \u2014 openshift4/ose-csi-external-snapshotter-rhel9@sha256:5b964ef6805643b0144934db9910d16a27b60e35ab2779bab19e3a40704cca78_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-34158"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.16 \u2014 openshift4/ose-csi-external-snapshotter-rhel9@sha256:5b964ef6805643b0144934db9910d16a27b60e35ab2779bab19e3a40704cca78_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-45336"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2024-45338"
       },
       "products": [
@@ -56,6 +175,26 @@
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.25.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-45338"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.20.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.20.0"
             }
           ]
         }
@@ -105,6 +244,45 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-0913"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-10158"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-10158"
       },
       "products": [
@@ -137,6 +315,43 @@
         },
         {
           "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-12084"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
         }
       ],
       "status": "fixed"
@@ -248,6 +463,25 @@
         },
         {
           "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-13601"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
         }
       ],
       "status": "fixed"
@@ -315,6 +549,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-14087"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -353,6 +606,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-14512"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -391,6 +663,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/gnutls@3.8.3-6.el9_6.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/gnutls@3.8.3-6.el9_6.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-14831"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -438,6 +729,43 @@
         },
         {
           "@id": "pkg:rpm/redhat/gnutls@3.8.3-6.el9_6.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-15366"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
         }
       ],
       "status": "fixed"
@@ -559,6 +887,43 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-15367"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -670,6 +1035,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-15467"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -738,6 +1128,26 @@
         }
       ],
       "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22866"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -772,6 +1182,26 @@
             },
             {
               "@id": "pkg:golang/golang.org/x/oauth2@v0.25.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22868"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/oauth2@0.16.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/oauth2@v0.16.0"
             }
           ]
         }
@@ -824,6 +1254,32 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22870"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.20.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.20.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -873,6 +1329,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-22871"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.16 \u2014 openshift4/ose-csi-external-snapshotter-rhel9@sha256:3300b084c85fd3d3b1a60df681f36b4644b5c3a98ac5b17e9eb56663bed6e668_arm64."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-22872"
       },
       "products": [
@@ -913,6 +1389,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-22872"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.20.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.20.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-22873"
       },
       "products": [
@@ -953,6 +1449,63 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-22873"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-40778"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/bind-libs@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-libs@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-40778"
       },
       "products": [
@@ -1068,6 +1621,43 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/bind-libs@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-libs@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-40780"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -1172,6 +1762,26 @@
         }
       ],
       "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-45582"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/tar@1.34-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/tar@1.34-7.el9_6.2"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.20: known_not_affected."
     },
     {
       "vulnerability": {
@@ -1315,6 +1925,32 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/systemd-libs@252-51.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.20: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4598"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -1367,6 +2003,44 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/systemd-libs@252-32.el9_4.10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-pam@252-32.el9_4.10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-32.el9_4.10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd@252-32.el9_4.10"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@252-32.el9_4.10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-pam@252-32.el9_4.10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-32.el9_4.10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@252-32.el9_4.10"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.16: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4598"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:ef81645c793e66422bc749e362368e48323bebfacdea8e6ae669ecbe7aed2a42",
           "subcomponents": [
             {
@@ -1429,6 +2103,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-4673"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-4674"
       },
       "products": [
@@ -1460,6 +2154,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.2), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4674"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -1506,6 +2220,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.18 \u2014 registry.redhat.io/openshift4/ose-csi-external-snapshotter-rhel9@sha256:1296d0ef0e516dac504d47b57618e988ec5fe6b0a2019319adbf99a56efd6428_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47907"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.16 \u2014 registry.redhat.io/openshift4/ose-csi-external-snapshotter-rhel9@sha256:6a8bc63f4acb3a1df10016b68a31c7eec7e617353615943a30eab4e294fd7824_amd64."
     },
     {
       "vulnerability": {
@@ -1569,6 +2303,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-47911"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.20.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.20.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-58183"
       },
       "products": [
@@ -1609,6 +2363,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-58183"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.16 \u2014 registry.redhat.io/openshift4/ose-csi-external-snapshotter-rhel9@sha256:6a8bc63f4acb3a1df10016b68a31c7eec7e617353615943a30eab4e294fd7824_amd64."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-58185"
       },
       "products": [
@@ -1640,6 +2414,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58185"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -1689,6 +2483,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-58187"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-58188"
       },
       "products": [
@@ -1729,6 +2543,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-58188"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-58189"
       },
       "products": [
@@ -1760,6 +2594,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58189"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -1826,6 +2680,45 @@
       ],
       "status": "not_affected",
       "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58190"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.20.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.20.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-59375"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.5.0-5.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.5.0-5.el9_6.1"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -1926,6 +2819,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-61723"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-61725"
       },
       "products": [
@@ -1957,6 +2870,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61725"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -2006,6 +2939,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-61726"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.16 \u2014 registry.redhat.io/openshift4/ose-csi-external-snapshotter-rhel9@sha256:aa48d12b2a33428453bb608516c5167d18da9930542aee46e1cd97d787256d91_arm64."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-61728"
       },
       "products": [
@@ -2042,6 +2995,26 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61728"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.16 \u2014 registry.redhat.io/openshift4/ose-csi-external-snapshotter-rhel9@sha256:aa48d12b2a33428453bb608516c5167d18da9930542aee46e1cd97d787256d91_arm64."
     },
     {
       "vulnerability": {
@@ -2085,6 +3058,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-61729"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-61730"
       },
       "products": [
@@ -2116,6 +3109,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61730"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -2161,6 +3174,25 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61731"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -2203,6 +3235,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-61732"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.16 \u2014 registry.redhat.io/openshift4/ose-csi-external-snapshotter-rhel9@sha256:aa48d12b2a33428453bb608516c5167d18da9930542aee46e1cd97d787256d91_arm64."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-68121"
       },
       "products": [
@@ -2242,6 +3294,45 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2025-68121"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-68973"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/gnupg2@2.3.3-4.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/gnupg2@2.3.3-4.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2025-68973"
       },
       "products": [
@@ -2293,6 +3384,31 @@
         },
         {
           "@id": "pkg:rpm/redhat/gnupg2@2.3.3-4.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-69419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
         }
       ],
       "status": "fixed"
@@ -2378,6 +3494,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -2443,6 +3584,37 @@
         },
         {
           "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9086"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-31.el9_6.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/curl@7.76.1-31.el9_6.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libcurl-minimal@7.76.1-31.el9_6.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-31.el9_6.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/curl@7.76.1-31.el9_6.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcurl-minimal@7.76.1-31.el9_6.3"
         }
       ],
       "status": "fixed"
@@ -2546,6 +3718,31 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9230"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -2621,6 +3818,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libxml2@2.9.13-12.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libxml2@2.9.13-12.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9714"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -2668,6 +3884,43 @@
         },
         {
           "@id": "pkg:rpm/redhat/libxml2@2.9.13-12.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-1299"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
         }
       ],
       "status": "fixed"
@@ -2941,6 +4194,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.20 \u2014 registry.redhat.io/openshift4/ose-csi-external-snapshotter-rhel9@sha256:0ab533cda97a13d03e5f65c064225bbfc75056d6f0050bf92db19cd6cc6ad90c_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25679"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -2981,6 +4254,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25679"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:ef81645c793e66422bc749e362368e48323bebfacdea8e6ae669ecbe7aed2a42",
           "subcomponents": [
             {
@@ -3041,6 +4333,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25680"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -3068,6 +4380,26 @@
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25680"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.20.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.20.0"
             }
           ]
         }
@@ -3141,6 +4473,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -3181,6 +4533,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.20.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.20.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:ef81645c793e66422bc749e362368e48323bebfacdea8e6ae669ecbe7aed2a42",
           "subcomponents": [
             {
@@ -3194,6 +4566,31 @@
       ],
       "status": "not_affected",
       "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27135"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libnghttp2@1.43.0-6.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nghttp2@1.43.0-6.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libnghttp2@1.43.0-6.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nghttp2@1.43.0-6.el9_6.1"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -3316,6 +4713,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -3343,6 +4760,26 @@
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.20.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.20.0"
             }
           ]
         }
@@ -3416,6 +4853,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27139"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -3443,6 +4900,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27139"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -3516,6 +4993,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27140"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -3543,6 +5040,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27140"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -3616,6 +5133,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27142"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -3643,6 +5180,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27142"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -3695,6 +5252,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27143"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -3722,6 +5299,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27143"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -3774,6 +5371,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27144"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -3801,6 +5418,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27144"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -3874,6 +5511,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -3914,6 +5571,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:ef81645c793e66422bc749e362368e48323bebfacdea8e6ae669ecbe7aed2a42",
           "subcomponents": [
             {
@@ -3927,6 +5604,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-29181"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel@1.39.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: affected: Multicluster Engine for Kubernetes; fixed: multicluster engine for Kubernetes 2.11; not affected: multicluster engine for Kubernetes 2.11."
     },
     {
       "vulnerability": {
@@ -4014,6 +5711,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32280"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -4054,6 +5771,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32280"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:ef81645c793e66422bc749e362368e48323bebfacdea8e6ae669ecbe7aed2a42",
           "subcomponents": [
             {
@@ -4114,6 +5851,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32281"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -4141,6 +5898,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32281"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -4214,6 +5991,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32282"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -4241,6 +6038,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32282"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -4314,6 +6131,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32283"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -4341,6 +6178,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32283"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -4414,6 +6271,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32288"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -4441,6 +6318,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32288"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -4514,6 +6411,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32289"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -4541,6 +6458,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32289"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -4610,6 +6547,26 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33186"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@1.61.0"
+            },
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@v1.61.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift Container Platform 4.16)."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-33811"
       },
       "products": [
@@ -4654,6 +6611,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -4681,6 +6658,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -4766,6 +6763,32 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -4818,6 +6841,32 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.20.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.20.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:ef81645c793e66422bc749e362368e48323bebfacdea8e6ae669ecbe7aed2a42",
           "subcomponents": [
             {
@@ -4884,6 +6933,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -4911,6 +6980,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -4984,6 +7073,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -5011,6 +7120,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -5084,6 +7213,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -5111,6 +7260,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -5184,6 +7353,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -5224,6 +7413,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.20.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.20.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:ef81645c793e66422bc749e362368e48323bebfacdea8e6ae669ecbe7aed2a42",
           "subcomponents": [
             {
@@ -5284,6 +7493,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -5311,6 +7540,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -5384,6 +7633,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -5411,6 +7680,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -5484,6 +7773,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.39.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -5524,6 +7833,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.16.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.16.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:ef81645c793e66422bc749e362368e48323bebfacdea8e6ae669ecbe7aed2a42",
           "subcomponents": [
             {
@@ -5584,6 +7913,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -5611,6 +7960,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -5684,6 +8053,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -5711,6 +8100,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -5784,6 +8193,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -5811,6 +8240,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -5894,6 +8343,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-41035"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -5932,6 +8400,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4111"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -6029,6 +8516,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -6056,6 +8563,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -6129,6 +8656,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -6156,6 +8703,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -6229,6 +8796,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -6269,6 +8856,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.20.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.20.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:ef81645c793e66422bc749e362368e48323bebfacdea8e6ae669ecbe7aed2a42",
           "subcomponents": [
             {
@@ -6329,6 +8936,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -6356,6 +8983,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -6429,6 +9076,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -6456,6 +9123,26 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
             }
           ]
         }
@@ -6529,6 +9216,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.48.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.48.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -6556,6 +9263,26 @@
             },
             {
               "@id": "pkg:golang/golang.org/x/net@v0.39.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.20.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.20.0"
             }
           ]
         }
@@ -6629,6 +9356,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42507"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -6669,6 +9416,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:d8563eb82189cf9a030a3ee9a31e6e54a7212409ea006f2c9a05eff38615e5a7",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.21.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.21.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42507"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:ef81645c793e66422bc749e362368e48323bebfacdea8e6ae669ecbe7aed2a42",
           "subcomponents": [
             {
@@ -6682,6 +9449,25 @@
       ],
       "status": "not_affected",
       "impact_statement": "csi-external-snapshotter not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4424"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -6736,6 +9522,43 @@
         },
         {
           "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4519"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
         }
       ],
       "status": "fixed"
@@ -6857,6 +9680,43 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4786"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -6931,6 +9791,25 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libcap@2.48-9.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcap@2.48-9.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4878"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:c902b6cc2dfddc965398a1ab315832ba837bd1dfae3b01f0d5e05272b3df941e",
           "subcomponents": [
             {
@@ -6959,6 +9838,25 @@
         },
         {
           "@id": "pkg:rpm/redhat/libcap@2.48-9.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-5121"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
         }
       ],
       "status": "fixed"
@@ -7016,6 +9914,43 @@
         },
         {
           "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-6100"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-csi-external-snapshotter-rhel9@sha256:83e11326235231359cf98d745a69e5767ace4e94de960e920726c9612e6c7e6f",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
         }
       ],
       "status": "fixed"

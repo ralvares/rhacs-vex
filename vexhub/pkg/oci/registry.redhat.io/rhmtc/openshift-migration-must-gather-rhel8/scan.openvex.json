@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/openshift-migration-must-gather-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:46:42Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:59:01Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -4409,32 +4409,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-61915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openshift-migration-must-gather-rhel8@sha256:b95a14eda5ae107ba3747995f1ea74a6422f9e5c20d685505e954ca7630b810d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-60.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-60.el8_10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-60.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-60.el8_10"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhmtc/openshift-migration-must-gather-rhel8 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-65637"
       },
       "products": [
@@ -5550,58 +5524,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; no VEX statement for rhmtc/openshift-migration-must-gather-rhel8 (RHEL 8)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34980"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openshift-migration-must-gather-rhel8@sha256:a3d7538f02a63e50c7c98faee3dc15be9fcd07fd0c30f7a5d13c5986e7466924",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-67.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-67.el8_10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-67.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-67.el8_10"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhmtc/openshift-migration-must-gather-rhel8 1.8: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34980"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/openshift-migration-must-gather-rhel8@sha256:b95a14eda5ae107ba3747995f1ea74a6422f9e5c20d685505e954ca7630b810d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-60.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-60.el8_10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-60.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-60.el8_10"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhmtc/openshift-migration-must-gather-rhel8 (RHEL 8): known_not_affected."
     },
     {
       "vulnerability": {
@@ -7052,6 +6974,26 @@
             },
             {
               "@id": "pkg:golang/github.com/containerd/containerd@v1.7.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/openshift-migration-must-gather-rhel8@sha256:a3d7538f02a63e50c7c98faee3dc15be9fcd07fd0c30f7a5d13c5986e7466924",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
             }
           ]
         }

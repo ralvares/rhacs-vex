@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/console-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:46:58Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:48:22Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -153,78 +153,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-rhel9-operator@sha256:baa3cfb9a2a708db04a30ca86f105567d4084238ba6a390dbcba3313e68107f6",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/console-rhel9-operator (RHEL 9): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58436"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-rhel9-operator@sha256:baa3cfb9a2a708db04a30ca86f105567d4084238ba6a390dbcba3313e68107f6",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/console-rhel9-operator (RHEL 9): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-rhel9-operator@sha256:baa3cfb9a2a708db04a30ca86f105567d4084238ba6a390dbcba3313e68107f6",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/console-rhel9-operator (RHEL 9): known_not_affected."
     }
   ]
 }

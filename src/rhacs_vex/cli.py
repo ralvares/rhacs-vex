@@ -80,6 +80,8 @@ def _scanner_cmd(scanner: str, args) -> int:
     console.print(f"🧭 Image context via labels: [bold cyan]{image_ref}[/bold cyan]")
     ctx = context_for_image(image_ref, os_hint=hint, labels=labels or None,
                             digests=digests)
+    if scanner == 'grype':
+        _wire_rpm_owners(df, ctx, adapter.rpm_file_owners(target))
 
     result_df = triage._audit_and_display(
         df, ctx, console, output_path=args.output, output_fmt=args.format,
@@ -92,6 +94,39 @@ def _scanner_cmd(scanner: str, args) -> int:
             console.print(f'[red]OpenVEX export skipped: {e}[/red]')
             return 1
     return 0
+
+
+def _wire_rpm_owners(df, ctx, owners: dict) -> None:
+    """Give matching and emission the rpm identity of go-binary components.
+
+    Red Hat assesses golang CVEs against the VENDORING rpm (rhel9:buildah),
+    not the module purl the scanner reports — without this link those
+    verdicts are invisible: an affected rpm looks "not listed" (⇒ false
+    positive) and a not_affected rpm never reaches trivy's rpm-level finding.
+
+    - df['OWNER_RPM'] = 'name@version-release' per non-OS row (emitter bridge)
+    - ctx.sbom_src_map[component] = rpm name (engine _resolve_comp alias);
+      a component seen in binaries of two different rpms stays unmapped —
+      one verdict row can't represent diverging owners.
+    """
+    if df is None or df.empty or not owners:
+        return
+    df['OWNER_RPM'] = df.apply(
+        lambda r: '{}@{}'.format(*owners[str(r.get('LOCATION', ''))])
+        if str(r.get('SOURCE', '')).strip().upper() != 'OS'
+        and str(r.get('LOCATION', '')) in owners else '', axis=1)
+    src_map, conflict = {}, set()
+    for _, r in df.iterrows():
+        owner = str(r.get('OWNER_RPM', '') or '')
+        if not owner:
+            continue
+        comp, name = str(r['COMPONENT']), owner.split('@')[0]
+        if src_map.get(comp, name) != name:
+            conflict.add(comp)
+        src_map.setdefault(comp, name)
+    for c in conflict:
+        src_map.pop(c, None)
+    ctx.sbom_src_map = {**src_map, **(ctx.sbom_src_map or {})}
 
 
 def _audit_worker(df, ctx, ref: str) -> list:
@@ -257,6 +292,7 @@ def _generate_cmd(args) -> int:
         ctx = context_for_image(ref, os_hint=adapter.os_hint(doc),
                                 labels=adapter.sbom_labels(sbom) or None,
                                 digests=adapter.sbom_digests(sbom))
+        _wire_rpm_owners(df, ctx, adapter.rpm_file_owners(sbom))
         digest = ref.split('@')[-1]
         if digest in ocp_by_digest:
             ver, minor = ocp_by_digest[digest]
@@ -322,9 +358,105 @@ def _generate_cmd(args) -> int:
                   f"({doc_updates} doc updates), {stats['packages']} index "
                   f"entries, {errors} errors → {args.hub}")
 
+    rc = 0
+    if args.crosscheck:
+        rc = 1 if _crosscheck_statements(per_image, console) else 0
     if args.verify:
-        return _verify_hub(per_image, args.hub, console)
-    return 1 if errors else 0
+        return _verify_hub(per_image, args.hub, console) or rc
+    return 1 if errors else rc
+
+
+def _crosscheck_statements(per_image: dict, console: Console) -> int:
+    """Does each OpenVEX statement say the SAME thing as Red Hat's VEX?
+
+    For every statement, find what Red Hat says about the same subject —
+    strongest match first: this exact image digest, then the packages the
+    statement names (including image name for OCP/operator images).  Compare:
+
+      ours: not_affected → Red Hat: known_not_affected, or not listed at all
+                           (absence IS Red Hat's answer: no supported product
+                           affected — the engine's not-listed rule)
+      ours: fixed        → Red Hat: fixed
+
+    MISMATCH = the subject appears ONLY in a contradicting bucket
+    (known_affected / under_investigation).  Nothing is auto-dropped —
+    mismatches are printed for a human.  Returns the mismatch count.
+    """
+    import json as _json
+    import re as _re
+
+    from .engine import VEX_DIR
+
+    EXPECT = {'not_affected': 'known_not_affected', 'fixed': 'fixed'}
+    tally = {'match': 0, 'match_by_absence': 0, 'ambiguous': 0, 'mismatch': 0,
+             'no_vex_file': 0}
+    for ref, statements in per_image.items():
+        digest = ref.split('@')[-1]
+        image_name = ref.split('@')[0].rsplit('/', 1)[-1]
+        for s in statements:
+            cve = s['vulnerability']['name']
+            expected = EXPECT.get(s['status'])
+            if not expected:
+                continue
+            vp = os.path.join(VEX_DIR, f'{cve}.json')
+            if not os.path.exists(vp):
+                tally['no_vex_file'] += 1
+                continue
+            try:
+                ps = _json.load(open(vp))['vulnerabilities'][0].get('product_status', {})
+            except Exception:
+                continue
+
+            # subjects Red Hat could name: the exact build, the packages, the image
+            names = {image_name}
+            for pr in s.get('products', []):
+                for sc in (pr.get('subcomponents') or []):
+                    m = _re.match(r'pkg:[^/]+/(?:redhat/)?(.+?)@', sc['@id'])
+                    if m:
+                        names.add(m.group(1).rsplit('/', 1)[-1])
+
+            def _buckets_naming(subject_is_digest=False):
+                found = set()
+                for bucket, ids in ps.items():
+                    for pid in ids:
+                        if subject_is_digest:
+                            if digest in pid:
+                                found.add(bucket)
+                        else:
+                            tail = pid.split(':', 1)[-1]
+                            if any(_re.search(rf'(^|[/:]){_re.escape(n)}(-\d|\.|@|$)', tail)
+                                   for n in names):
+                                found.add(bucket)
+                                break
+                return found
+
+            exact = _buckets_naming(subject_is_digest=True)
+            buckets = exact or _buckets_naming()
+            level = 'exact build' if exact else 'package/image name'
+            bad = buckets & {'known_affected', 'under_investigation'}
+            good = buckets & {'known_not_affected', 'fixed'}
+            if not buckets:
+                tally['match_by_absence'] += 1      # RH lists nothing → not-listed rule
+            elif bad and not good:
+                tally['mismatch'] += 1
+                console.print(f'  [red]MISMATCH {ref.split("@")[0]} {cve}: we say '
+                              f'{s["status"]}, Red Hat ({level}) says only '
+                              f'{sorted(buckets)}[/red]')
+            elif bad and good:
+                # Red Hat says different things for different streams/products;
+                # a name-only comparison cannot adjudicate — count, don't hide.
+                tally['ambiguous'] += 1
+            else:
+                tally['match'] += 1
+
+    total = sum(tally.values())
+    console.print(f"Crosscheck vs Red Hat VEX: {total} statements — "
+                  f"{tally['match']} match, {tally['match_by_absence']} match by "
+                  f"absence (not listed), {tally['ambiguous']} ambiguous "
+                  f"(mixed streams), {tally['mismatch']} MISMATCH, "
+                  f"{tally['no_vex_file']} no local VEX"
+                  + (' [green](clean)[/green]' if not tally['mismatch'] else ''))
+    return tally['mismatch']
 
 
 def _verify_hub(per_image: dict, hub_dir: str, console: Console) -> int:
@@ -578,6 +710,10 @@ def main() -> int:
                     help='regenerate cached syft SBOMs')
     pg.add_argument('--resume', action='store_true', default=False,
                     help='skip images whose digest is already in its hub doc')
+    pg.add_argument('--crosscheck', action='store_true', default=False,
+                    help='after generating, re-check every statement against '
+                         'the raw Red Hat VEX with independent rules '
+                         '(offline, seconds)')
     pg.add_argument('--verify', action='store_true', default=False,
                     help='re-scan each image with trivy against its doc; fail on leaks')
 

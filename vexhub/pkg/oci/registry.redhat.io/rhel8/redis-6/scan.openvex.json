@@ -2,156 +2,401 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/redis-6",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:52:58Z",
-  "version": 4,
+  "timestamp": "2026-07-13T18:33:13Z",
+  "version": 14,
   "statements": [
     {
       "vulnerability": {
-        "name": "CVE-2013-0340"
+        "name": "CVE-2022-48624"
       },
       "products": [
         {
-          "@id": "pkg:oci/redis-6@sha256:22431acc2c991b6ee6b4de0219366dee6ea745122a49a0175d5fb58ed7d9205f",
+          "@id": "pkg:oci/redis-6@sha256:c4a98010f7dd5faec2047bb9803061704233a8efc930be2a02386ac16d062d86",
           "subcomponents": [
             {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+              "@id": "pkg:rpm/redhat/less@530-2.el8_9"
             }
           ]
         },
         {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
+          "@id": "pkg:rpm/redhat/less@530-2.el8_9"
         }
       ],
-      "status": "not_affected",
-      "impact_statement": "rhel8/redis-6 (RHEL 8): known_not_affected."
+      "status": "fixed"
     },
     {
       "vulnerability": {
-        "name": "CVE-2022-23990"
+        "name": "CVE-2024-33599"
       },
       "products": [
         {
-          "@id": "pkg:oci/redis-6@sha256:22431acc2c991b6ee6b4de0219366dee6ea745122a49a0175d5fb58ed7d9205f",
+          "@id": "pkg:oci/redis-6@sha256:b15335d88b240bd6bbedeb7fe26f0a1de2f6c330af9758b0fb2edab7ca69f6df",
           "subcomponents": [
             {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel8/redis-6 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2023-52425"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/redis-6@sha256:22431acc2c991b6ee6b4de0219366dee6ea745122a49a0175d5fb58ed7d9205f",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel8/redis-6 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-8176"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/redis-6@sha256:22431acc2c991b6ee6b4de0219366dee6ea745122a49a0175d5fb58ed7d9205f",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel8/redis-6 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-59375"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/redis-6@sha256:22431acc2c991b6ee6b4de0219366dee6ea745122a49a0175d5fb58ed7d9205f",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel8/redis-6 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-35177"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/redis-6@sha256:19fe09589259d7e681f50660bff4a02877b322a19cbeb8ad1b87479da9d788ae",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/vim-minimal@8.0.1763-22.el8_10.3"
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
             },
             {
-              "@id": "pkg:rpm/redhat/vim@8.0.1763-22.el8_10.3"
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
             }
           ]
         },
         {
-          "@id": "pkg:rpm/redhat/vim-minimal@8.0.1763-22.el8_10.3"
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
         },
         {
-          "@id": "pkg:rpm/redhat/vim@8.0.1763-22.el8_10.3"
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
         }
       ],
       "status": "not_affected",
-      "impact_statement": "rhel8/redis-6 8: known_not_affected."
+      "impact_statement": "rhel8/redis-6 (RHEL 8): known_not_affected."
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-35177"
+        "name": "CVE-2024-33599"
       },
       "products": [
         {
-          "@id": "pkg:oci/redis-6@sha256:f28a7c321695934d6880a36ed82331b32968e9bc1fada522bf53d17fde8981d5",
+          "@id": "pkg:oci/redis-6@sha256:d7c7852338717308cbb59e9303e1ea35cc8e5c01ceb2818569be20c15f3f943d",
           "subcomponents": [
             {
-              "@id": "pkg:rpm/redhat/vim-minimal@8.0.1763-22.el8_10.1"
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
             },
             {
-              "@id": "pkg:rpm/redhat/vim@8.0.1763-22.el8_10.1"
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
             }
           ]
         },
         {
-          "@id": "pkg:rpm/redhat/vim-minimal@8.0.1763-22.el8_10.1"
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
         },
         {
-          "@id": "pkg:rpm/redhat/vim@8.0.1763-22.el8_10.1"
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/redis-6 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33600"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-6@sha256:b15335d88b240bd6bbedeb7fe26f0a1de2f6c330af9758b0fb2edab7ca69f6df",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/redis-6 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33600"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-6@sha256:d7c7852338717308cbb59e9303e1ea35cc8e5c01ceb2818569be20c15f3f943d",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/redis-6 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33601"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-6@sha256:b15335d88b240bd6bbedeb7fe26f0a1de2f6c330af9758b0fb2edab7ca69f6df",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/redis-6 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33601"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-6@sha256:d7c7852338717308cbb59e9303e1ea35cc8e5c01ceb2818569be20c15f3f943d",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/redis-6 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33602"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-6@sha256:b15335d88b240bd6bbedeb7fe26f0a1de2f6c330af9758b0fb2edab7ca69f6df",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/redis-6 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33602"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-6@sha256:d7c7852338717308cbb59e9303e1ea35cc8e5c01ceb2818569be20c15f3f943d",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/redis-6 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33412"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-6@sha256:ad6c53f6e97c583e7402ae505d8f9f27d5fe7d9227fb248c701595f86a5b1b31",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.0.1763-21.el8_10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.0.1763-21.el8_10"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.0.1763-21.el8_10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.0.1763-21.el8_10"
         }
       ],
       "status": "not_affected",

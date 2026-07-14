@@ -1,0 +1,34 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/eventing-kafka-broker-receiver-rhel8",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T00:33:22Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2023-48795"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/eventing-kafka-broker-receiver-rhel8@sha256:eacdad8db61b23634c3f89bffa3f1c30ac5c7bbb5e938c6208003ff00f9595f1",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libssh-config@0.9.6-10.el8_8"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libssh@0.9.6-10.el8_8"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh-config@0.9.6-10.el8_8"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh@0.9.6-10.el8_8"
+        }
+      ],
+      "status": "fixed"
+    }
+  ]
+}

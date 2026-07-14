@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/memcached",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:32:51Z",
-  "version": 6,
+  "timestamp": "2026-07-13T17:45:06Z",
+  "version": 8,
   "statements": [
     {
       "vulnerability": {
@@ -42,26 +42,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/memcached@sha256:14568dc13790fa3d8827e3ae7ef7bae37096ef32b8a158310b3e489bca5a0ab3",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel9/memcached 9: known_not_affected."
     },
     {
       "vulnerability": {
@@ -168,32 +148,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-28417"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/memcached@sha256:1eef33b859b1377b0a386a66617a2589bd5e4d5340680e98fbda46d791bab6aa",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel9/memcached 9: known_not_affected."
     },
     {
       "vulnerability": {

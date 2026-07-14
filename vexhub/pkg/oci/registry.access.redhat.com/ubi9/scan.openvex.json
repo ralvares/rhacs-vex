@@ -1,0 +1,84 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/ubi9",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T18:21:29Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-53905"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ubi9@sha256:f3b9841ea7615b38fd271cf18ae235d8228d3369036eb175ded171c936808255",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-53906"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ubi9@sha256:f3b9841ea7615b38fd271cf18ae235d8228d3369036eb175ded171c936808255",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ubi9@sha256:f3b9841ea7615b38fd271cf18ae235d8228d3369036eb175ded171c936808255",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    }
+  ]
+}

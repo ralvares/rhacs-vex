@@ -1,0 +1,41 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/pipelines-serve-tkn-cli-rhel8",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T18:08:57Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33412"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-serve-tkn-cli-rhel8@sha256:06a6c9d2f12f9446342c407e0ee6caa397d0ed4f6eefdd4c9c58f08fc98f62a5",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.0.1763-21.el8_10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.0.1763-21.el8_10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.0.1763-21.el8_10"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.0.1763-21.el8_10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.0.1763-21.el8_10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.0.1763-21.el8_10"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-serve-tkn-cli-rhel8 1.15: known_not_affected."
+    }
+  ]
+}

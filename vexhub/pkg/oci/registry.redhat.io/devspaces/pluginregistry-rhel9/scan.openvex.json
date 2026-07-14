@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/pluginregistry-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:23:37Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:52:44Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -106,23 +106,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-4068"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/braces@3.0.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "devspaces/pluginregistry-rhel9 3.28 not listed as affected."
     },
     {
       "vulnerability": {
@@ -256,7 +239,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "devspaces/pluginregistry-rhel9 3.28 not listed as affected."
+      "impact_statement": "Not affected in devspaces/pluginregistry-rhel9 3.28 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -337,32 +320,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-41411"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-26.el9_8.5"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim@8.2.2637-26.el9_8.5"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-26.el9_8.5"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim@8.2.2637-26.el9_8.5"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "devspaces/pluginregistry-rhel9 3.28: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-42338"
       },
       "products": [
@@ -377,23 +334,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/pluginregistry-rhel9@sha256:1c2be6a4d12c98e20bb5818b3a7c050003c5ccf4711b81fb65123e441fd0b3e6",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@7.5.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "devspaces/pluginregistry-rhel9 3.28 not listed as affected."
     },
     {
       "vulnerability": {

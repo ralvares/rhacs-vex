@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/ocp-virt-validation-checkup-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:34:13Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:56:02Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -23,7 +23,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -43,7 +43,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -505,7 +505,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -531,7 +531,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -783,7 +783,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -803,7 +803,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -823,7 +823,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -843,7 +843,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -897,6 +897,70 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-13149"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ocp-virt-validation-checkup-rhel9@sha256:d2f53f5a3c81973515d0e120c947fa504b284211523094494cdb04324e98af0e",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/cargo@1.84.1-1.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rust-std-static@1.84.1-1.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rust@1.84.1-1.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/cargo@1.84.1-1.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rust-std-static@1.84.1-1.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rust@1.84.1-1.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 9.6: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-13149"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ocp-virt-validation-checkup-rhel9@sha256:ebdfe48e8068708dd458892511087d8753362add35096c35a3edad2ace111790",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/cargo@1.84.1-1.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rust-std-static@1.84.1-1.el9"
+            },
+            {
+              "@id": "pkg:rpm/redhat/rust@1.84.1-1.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/cargo@1.84.1-1.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rust-std-static@1.84.1-1.el9"
+        },
+        {
+          "@id": "pkg:rpm/redhat/rust@1.84.1-1.el9"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 9.6: known_not_affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-22772"
       },
       "products": [
@@ -913,7 +977,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -933,7 +997,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -993,7 +1057,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1013,7 +1077,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1033,7 +1097,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1053,7 +1117,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1073,7 +1137,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1093,7 +1157,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1113,7 +1177,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1133,7 +1197,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1549,7 +1613,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1569,7 +1633,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1589,7 +1653,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1609,7 +1673,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1629,7 +1693,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1649,7 +1713,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1669,7 +1733,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1689,7 +1753,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1709,7 +1773,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1729,7 +1793,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1749,7 +1813,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1769,7 +1833,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1789,7 +1853,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1809,7 +1873,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -1989,7 +2053,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2009,7 +2073,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2173,7 +2237,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2311,7 +2375,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2331,7 +2395,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2357,7 +2421,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2383,7 +2447,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2403,7 +2467,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -2423,7 +2487,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -2443,7 +2507,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2463,7 +2527,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2535,7 +2599,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2555,7 +2619,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2575,7 +2639,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2595,7 +2659,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2775,7 +2839,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2795,7 +2859,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -2959,46 +3023,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-41568"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ocp-virt-validation-checkup-rhel9@sha256:d2f53f5a3c81973515d0e120c947fa504b284211523094494cdb04324e98af0e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-41568"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ocp-virt-validation-checkup-rhel9@sha256:ebdfe48e8068708dd458892511087d8753362add35096c35a3edad2ace111790",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@27.1.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v27.1.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-41888"
       },
       "products": [
@@ -3055,7 +3079,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -3075,7 +3099,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -3187,7 +3211,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -3207,47 +3231,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ocp-virt-validation-checkup-rhel9@sha256:d2f53f5a3c81973515d0e120c947fa504b284211523094494cdb04324e98af0e",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/ocp-virt-validation-checkup-rhel9@sha256:ebdfe48e8068708dd458892511087d8753362add35096c35a3edad2ace111790",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -3319,7 +3303,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -3339,7 +3323,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ocp-virt-validation-checkup not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -3703,6 +3687,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ocp-virt-validation-checkup-rhel9@sha256:d2f53f5a3c81973515d0e120c947fa504b284211523094494cdb04324e98af0e",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.3.6"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.3.6"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ocp-virt-validation-checkup-rhel9@sha256:ebdfe48e8068708dd458892511087d8753362add35096c35a3edad2ace111790",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.3.6"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.3.6"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-53488"
       },
       "products": [
@@ -3719,7 +3743,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 9.6. Other products: affected: Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Deployment Validation Operator; fixed: Red Hat Advanced Cluster Management for Kubernetes 2.13, Red Hat Advanced Cluster Security for Kubernetes 4.10, Red Hat Advanced Cluster Security for Kubernetes 4.11; not affected: Logging Subsystem for Red Hat OpenShift, Multicluster Global Hub, OpenShift Service Mesh 2."
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 9.6. Other products: affected: Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Deployment Validation Operator; fixed: Red Hat Advanced Cluster Management for Kubernetes 2.13, Red Hat Advanced Cluster Security for Kubernetes 4.10, Red Hat Advanced Cluster Security for Kubernetes 4.11; not affected: Logging Subsystem for Red Hat OpenShift, Multicluster Global Hub, OpenShift Lightspeed."
     },
     {
       "vulnerability": {
@@ -3739,7 +3763,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 9.6. Other products: affected: Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Deployment Validation Operator; fixed: Red Hat Advanced Cluster Management for Kubernetes 2.13, Red Hat Advanced Cluster Security for Kubernetes 4.10, Red Hat Advanced Cluster Security for Kubernetes 4.11; not affected: Logging Subsystem for Red Hat OpenShift, Multicluster Global Hub, OpenShift Service Mesh 2."
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 9.6. Other products: affected: Assisted Installer for Red Hat OpenShift Container Platform 2, Confidential Compute Attestation, Deployment Validation Operator; fixed: Red Hat Advanced Cluster Management for Kubernetes 2.13, Red Hat Advanced Cluster Security for Kubernetes 4.10, Red Hat Advanced Cluster Security for Kubernetes 4.11; not affected: Logging Subsystem for Red Hat OpenShift, Multicluster Global Hub, OpenShift Lightspeed."
     }
   ]
 }

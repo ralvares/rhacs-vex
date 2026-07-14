@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/devworkspace-project-backup-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:16:47Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:52:44Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -686,6 +686,26 @@
         }
       ],
       "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-50162"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/devworkspace-project-backup-rhel9@sha256:b23a92c81b59fce13ef59ac84a62e535525f960c8e11ee5816b2136b885c36cb",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/oras.land/oras-go/v2@2.6.0"
+            },
+            {
+              "@id": "pkg:golang/oras.land/oras-go/v2@v2.6.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX statement for devworkspace/devworkspace-project-backup-rhel9 0.41."
     }
   ]
 }

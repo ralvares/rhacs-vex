@@ -2,43 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/mta-ui-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:44:50Z",
-  "version": 4,
+  "timestamp": "2026-07-13T17:58:24Z",
+  "version": 8,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2024-28863"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:0e1ec99af5666a060176adc52612f20209e3398a9a5a2aa1dcff11ef260b2006",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-28863"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:c35f3ed429a7d351cb8c2d07600b4ad35615a5ba08e5cc9f8b9bd504aea3f7ee",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
     {
       "vulnerability": {
         "name": "CVE-2024-39338"
@@ -106,44 +72,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-23083"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:23c97ac122eb7cd1e953df8da968da420f6db8708baf772759517aca4929748b",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/nodejs-full-i18n@20.16.0-1.module+el9.4.0+22197+9e60f127"
-            },
-            {
-              "@id": "pkg:rpm/redhat/nodejs@10.8.1-1.20.16.0.1.module+el9.4.0+22197+9e60f127"
-            },
-            {
-              "@id": "pkg:rpm/redhat/nodejs@20.16.0-1.module+el9.4.0+22197+9e60f127"
-            },
-            {
-              "@id": "pkg:rpm/redhat/npm@10.8.1-1.20.16.0.1.module+el9.4.0+22197+9e60f127"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/nodejs-full-i18n@20.16.0-1.module+el9.4.0+22197+9e60f127"
-        },
-        {
-          "@id": "pkg:rpm/redhat/nodejs@10.8.1-1.20.16.0.1.module+el9.4.0+22197+9e60f127"
-        },
-        {
-          "@id": "pkg:rpm/redhat/nodejs@20.16.0-1.module+el9.4.0+22197+9e60f127"
-        },
-        {
-          "@id": "pkg:rpm/redhat/npm@10.8.1-1.20.16.0.1.module+el9.4.0+22197+9e60f127"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 (RHEL 9): known_not_affected."
     },
     {
       "vulnerability": {
@@ -178,104 +106,6 @@
         },
         {
           "@id": "pkg:rpm/redhat/npm@10.8.1-1.20.16.0.1.module+el9.4.0+22197+9e60f127"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 (RHEL 9): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-31498"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:23c97ac122eb7cd1e953df8da968da420f6db8708baf772759517aca4929748b",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/nodejs-full-i18n@20.16.0-1.module+el9.4.0+22197+9e60f127"
-            },
-            {
-              "@id": "pkg:rpm/redhat/nodejs@10.8.1-1.20.16.0.1.module+el9.4.0+22197+9e60f127"
-            },
-            {
-              "@id": "pkg:rpm/redhat/nodejs@20.16.0-1.module+el9.4.0+22197+9e60f127"
-            },
-            {
-              "@id": "pkg:rpm/redhat/npm@10.8.1-1.20.16.0.1.module+el9.4.0+22197+9e60f127"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/nodejs-full-i18n@20.16.0-1.module+el9.4.0+22197+9e60f127"
-        },
-        {
-          "@id": "pkg:rpm/redhat/nodejs@10.8.1-1.20.16.0.1.module+el9.4.0+22197+9e60f127"
-        },
-        {
-          "@id": "pkg:rpm/redhat/nodejs@20.16.0-1.module+el9.4.0+22197+9e60f127"
-        },
-        {
-          "@id": "pkg:rpm/redhat/npm@10.8.1-1.20.16.0.1.module+el9.4.0+22197+9e60f127"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 (RHEL 9): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:9d6c02f6463771e747a30126de95fc0728fd95fff4ddfa6c70d828c55e0b6790",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 (RHEL 9): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:acff26b2dc0151443b592c71065c271a2f044c985f32365b093685c5e224f3c7",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:b2ff154a4b4ead22311005b7115c02346928b5ebf77d776ef909ad4af1f350bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
         }
       ],
       "status": "not_affected",
@@ -619,128 +449,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-64756"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:0916a060a5b9900e18613f1ee1d14e42e368258c5e065aac13002c4e402122ab",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/glob@10.4.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 8.1 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-64756"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:0e1ec99af5666a060176adc52612f20209e3398a9a5a2aa1dcff11ef260b2006",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/glob@10.3.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-64756"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:23c97ac122eb7cd1e953df8da968da420f6db8708baf772759517aca4929748b",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/glob@10.4.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-64756"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:9d6c02f6463771e747a30126de95fc0728fd95fff4ddfa6c70d828c55e0b6790",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/glob@10.4.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-64756"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:acff26b2dc0151443b592c71065c271a2f044c985f32365b093685c5e224f3c7",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/glob@10.4.2"
-            },
-            {
-              "@id": "pkg:npm/glob@10.4.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-64756"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:b2ff154a4b4ead22311005b7115c02346928b5ebf77d776ef909ad4af1f350bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/glob@10.4.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-64756"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:c35f3ed429a7d351cb8c2d07600b4ad35615a5ba08e5cc9f8b9bd504aea3f7ee",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/glob@10.3.10"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-6965"
       },
       "products": [
@@ -779,7 +487,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 8.1 (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 8.1 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -796,7 +504,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -813,7 +521,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -830,7 +538,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -847,7 +555,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 9 (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 9 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -864,7 +572,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -881,7 +589,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -898,7 +606,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 8.1 (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 8.1 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -915,7 +623,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -932,7 +640,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -949,7 +657,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -966,7 +674,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 9 (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 9 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -983,7 +691,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1000,7 +708,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1139,7 +847,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 8.1 (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 8.1 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1156,7 +864,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1173,7 +881,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1190,7 +898,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1207,7 +915,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 9 (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 9 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1224,7 +932,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1241,7 +949,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1377,7 +1085,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 8.1 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1394,7 +1102,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1411,7 +1119,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1428,7 +1136,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1445,7 +1153,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 9 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1462,7 +1170,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1479,7 +1187,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in mta/mta-ui-rhel9 (RHEL 9) (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1667,244 +1375,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:0916a060a5b9900e18613f1ee1d14e42e368258c5e065aac13002c4e402122ab",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:0e1ec99af5666a060176adc52612f20209e3398a9a5a2aa1dcff11ef260b2006",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:23c97ac122eb7cd1e953df8da968da420f6db8708baf772759517aca4929748b",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:9d6c02f6463771e747a30126de95fc0728fd95fff4ddfa6c70d828c55e0b6790",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:acff26b2dc0151443b592c71065c271a2f044c985f32365b093685c5e224f3c7",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:b2ff154a4b4ead22311005b7115c02346928b5ebf77d776ef909ad4af1f350bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:c35f3ed429a7d351cb8c2d07600b4ad35615a5ba08e5cc9f8b9bd504aea3f7ee",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:0916a060a5b9900e18613f1ee1d14e42e368258c5e065aac13002c4e402122ab",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 8.1 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:0e1ec99af5666a060176adc52612f20209e3398a9a5a2aa1dcff11ef260b2006",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:23c97ac122eb7cd1e953df8da968da420f6db8708baf772759517aca4929748b",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:9d6c02f6463771e747a30126de95fc0728fd95fff4ddfa6c70d828c55e0b6790",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:acff26b2dc0151443b592c71065c271a2f044c985f32365b093685c5e224f3c7",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:b2ff154a4b4ead22311005b7115c02346928b5ebf77d776ef909ad4af1f350bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 (RHEL 9) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel9@sha256:c35f3ed429a7d351cb8c2d07600b4ad35615a5ba08e5cc9f8b9bd504aea3f7ee",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel9 (RHEL 9) not listed as affected."
     }
   ]
 }

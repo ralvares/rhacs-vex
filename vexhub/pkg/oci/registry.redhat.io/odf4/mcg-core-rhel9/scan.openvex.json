@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/mcg-core-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:38:24Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:56:46Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -1958,74 +1958,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33671"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mcg-core-rhel9@sha256:6541c310a43410f00ae35fa213848d0b17173f0a4d301ee2aa1646aaf4286ed8",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/mcg-core-rhel9 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33671"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mcg-core-rhel9@sha256:ca87e6bb5fc555d71e1da7689eac00fe1bf0b5b9c89e388eb3268787b7e5f571",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/mcg-core-rhel9 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33672"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mcg-core-rhel9@sha256:6541c310a43410f00ae35fa213848d0b17173f0a4d301ee2aa1646aaf4286ed8",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/mcg-core-rhel9 4.20 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33672"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mcg-core-rhel9@sha256:ca87e6bb5fc555d71e1da7689eac00fe1bf0b5b9c89e388eb3268787b7e5f571",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@4.0.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "odf4/mcg-core-rhel9 4.19 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-33811"
       },
       "products": [
@@ -2543,40 +2475,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; no VEX statement for odf4/mcg-core-rhel9 4.19."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mcg-core-rhel9@sha256:6541c310a43410f00ae35fa213848d0b17173f0a4d301ee2aa1646aaf4286ed8",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@10.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 10), Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mcg-core-rhel9@sha256:ca87e6bb5fc555d71e1da7689eac00fe1bf0b5b9c89e388eb3268787b7e5f571",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@10.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 10), Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -2931,6 +2829,46 @@
             },
             {
               "@id": "pkg:golang/github.com/containerd/containerd@v1.7.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mcg-core-rhel9@sha256:6541c310a43410f00ae35fa213848d0b17173f0a4d301ee2aa1646aaf4286ed8",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mcg-core-rhel9@sha256:ca87e6bb5fc555d71e1da7689eac00fe1bf0b5b9c89e388eb3268787b7e5f571",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.2.2"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.2.2"
             }
           ]
         }

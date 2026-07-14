@@ -1270,19 +1270,42 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec):
         cands = _rpm_candidates(vuln, ctx, maps, names, found_v, comp=comp)
 
         # rung 5 — status priority KNA > fixed > KA > UI ---------------------
-        # KNA (stream-aware: a KNA from another minor stream doesn't apply)
-        for status, pid, ver in cands:
-            if status != 'known_not_affected':
-                continue
-            if installed_minor and ver:
-                kna_minor = _detect_rhel_minor(ver)
-                if kna_minor and kna_minor != installed_minor:
+        # A not-affected claim cannot clear an installed build with a PENDING
+        # applicable fix: kna rows often describe the FIXED build (its .src /
+        # sibling arches) or the product line at large, not the older NEVRA
+        # actually installed.  Stream applicability follows §6b: minor-stream
+        # installs consider only their own stream's fixes; GA installs must be
+        # ≥ every stream fix.  A component with NO fixed candidates (a truly
+        # not-affected subpackage like bind-utils) is untouched by this guard.
+        def _fix_pending():
+            for _status, _pid, _ver in cands:
+                if _status != 'fixed' or not _ver:
                     continue
-            dec.update(kind='rpm_kna', status='known_not_affected', pids=[pid])
-            sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
-            prefix = f"{sn}; " if sn else ''
-            return ("✅ FALSE POSITIVE", "N/A",
-                    f"{prefix}{ctx.display_name}: known_not_affected.")
+                fix_minor = _detect_rhel_minor(_ver)
+                if installed_minor and fix_minor and fix_minor != installed_minor:
+                    continue
+                try:
+                    _inst, _fix = _normalize_epoch(found_v, _ver)
+                    if compare_versions(_inst, _fix) < 0:
+                        return True
+                except Exception:
+                    continue
+            return False
+
+        if not _fix_pending():
+            # KNA (stream-aware: a KNA from another minor stream doesn't apply)
+            for status, pid, ver in cands:
+                if status != 'known_not_affected':
+                    continue
+                if installed_minor and ver:
+                    kna_minor = _detect_rhel_minor(ver)
+                    if kna_minor and kna_minor != installed_minor:
+                        continue
+                dec.update(kind='rpm_kna', status='known_not_affected', pids=[pid])
+                sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
+                prefix = f"{sn}; " if sn else ''
+                return ("✅ FALSE POSITIVE", "N/A",
+                        f"{prefix}{ctx.display_name}: known_not_affected.")
 
         # fixed → §6 version compare (RHEL base-repo fixes preferred as ref)
         scoped_fixed = [(ver, pid.split(':')[0] in rhel_base_pids, pid)
@@ -1791,9 +1814,16 @@ def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
                     dec.update(kind='img_pos', status='known_affected', pids=_pids)
                     return ("❌ POSITIVE", "N/A", f"known_affected for different RHEL ({img_lbl}).")
                 if verdict == 'NOT_LISTED':
-                    comp_ref = ctx.ocp_component or ctx.display_name
-                    dec.update(kind='img_not_listed', pids=[])
-                    return ("✅ FALSE POSITIVE", "N/A", f"{comp_ref} not listed as affected.")
+                    if not (ctx.sbom_src_map and ctx.sbom_src_map.get(comp)):
+                        comp_ref = ctx.ocp_component or ctx.display_name
+                        dec.update(kind='img_not_listed', pids=[])
+                        return ("✅ FALSE POSITIVE", "N/A",
+                                f"{comp_ref} not listed as affected.")
+                    # The component has a vendoring-rpm alias (go binary
+                    # shipped inside an rpm): Red Hat may track this CVE on
+                    # the rpm rather than the image — fall through to the
+                    # component rungs, which match the alias via
+                    # _resolve_comp (rhel9:buildah for golang.org/x/net).
 
         # not-affected flags scoped to our component / digest
         is_image_comp = '/' in comp

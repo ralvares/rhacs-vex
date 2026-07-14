@@ -1,0 +1,41 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/pipelines-hub-ui-rhel8",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T18:05:43Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33412"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/pipelines-hub-ui-rhel8@sha256:ef2e09881eca329a671eb84a68b820acbb0ad5b2b190220b2e7b26fc92d3f324",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.0.1763-21.el8_10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.0.1763-21.el8_10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.0.1763-21.el8_10"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.0.1763-21.el8_10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.0.1763-21.el8_10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.0.1763-21.el8_10"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "openshift-pipelines/pipelines-hub-ui-rhel8 1.15: known_not_affected."
+    }
+  ]
+}

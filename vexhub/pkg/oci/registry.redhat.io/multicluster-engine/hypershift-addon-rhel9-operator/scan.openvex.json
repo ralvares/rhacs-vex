@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/hypershift-addon-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:59:57Z",
-  "version": 4,
+  "timestamp": "2026-07-13T17:59:57Z",
+  "version": 8,
   "statements": [
     {
       "vulnerability": {
@@ -1094,86 +1094,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hypershift-addon-rhel9-operator@sha256:0107f9da4bb29e03073d622bf0bbd787eddd7141c587e6e91598ba53f678fafe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.46.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.46.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/hypershift-addon-rhel9-operator 2.9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hypershift-addon-rhel9-operator@sha256:0e02729f61f5a22ed0be10dcd02d042a03eaa163db2664cd413509c7e36bd373",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.47.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.47.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/hypershift-addon-rhel9-operator 2.10 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hypershift-addon-rhel9-operator@sha256:f0552d481fb0527af46aba14c629fe1419f9f0ea340afecfea10b3e1200ad800",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/hypershift-addon-rhel9-operator 2.17 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39832"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hypershift-addon-rhel9-operator@sha256:fe8bf21575305b2afe9e5dda8067292663a63739b2a923a78846b28438f31017",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@0.48.0"
-            },
-            {
-              "@id": "pkg:golang/golang.org/x/crypto@v0.48.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/hypershift-addon-rhel9-operator 2.11 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39836"
       },
       "products": [
@@ -1471,86 +1391,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hypershift-addon-rhel9-operator@sha256:0107f9da4bb29e03073d622bf0bbd787eddd7141c587e6e91598ba53f678fafe",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/hypershift-addon-rhel9-operator 2.9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hypershift-addon-rhel9-operator@sha256:0e02729f61f5a22ed0be10dcd02d042a03eaa163db2664cd413509c7e36bd373",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/hypershift-addon-rhel9-operator 2.10 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hypershift-addon-rhel9-operator@sha256:f0552d481fb0527af46aba14c629fe1419f9f0ea340afecfea10b3e1200ad800",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/hypershift-addon-rhel9-operator 2.17 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hypershift-addon-rhel9-operator@sha256:fe8bf21575305b2afe9e5dda8067292663a63739b2a923a78846b28438f31017",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "multicluster-engine/hypershift-addon-rhel9-operator 2.11 not listed as affected."
     },
     {
       "vulnerability": {

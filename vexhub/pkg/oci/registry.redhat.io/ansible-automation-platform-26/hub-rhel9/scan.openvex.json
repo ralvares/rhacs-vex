@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/hub-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:54:34Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:49:27Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -128,7 +128,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -148,7 +148,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -168,7 +168,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -188,27 +188,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27145"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -248,7 +228,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
+      "impact_statement": "Not affected in ansible-automation-platform-26/hub-rhel9 2.6 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -375,26 +355,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39821"
       },
       "products": [
@@ -411,7 +371,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
+      "impact_statement": "known_not_affected (Red Hat Enterprise Linux 9)."
     },
     {
       "vulnerability": {
@@ -431,27 +391,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
+      "impact_statement": "Not affected in ansible-automation-platform-26/hub-rhel9 2.6 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -472,46 +412,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -611,7 +511,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -655,26 +555,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-41567"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/github.com/docker/docker@28.5.1+incompatible"
-            },
-            {
-              "@id": "pkg:golang/github.com/docker/docker@v28.5.1+incompatible"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-41568"
       },
       "products": [
@@ -691,7 +571,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Ansible Automation Platform 2 names other components only."
     },
     {
       "vulnerability": {
@@ -726,26 +606,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
     },
     {
       "vulnerability": {
@@ -785,47 +645,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {
@@ -845,27 +665,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hub-rhel9@sha256:8c1c37a1387f9583f01c5ea0e3209513e8bfc7b9a37cf835abd47b3e64b27846",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.26.2"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.26.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-26/hub-rhel9 2.6 not listed as affected."
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux 9 names other components only."
     },
     {
       "vulnerability": {

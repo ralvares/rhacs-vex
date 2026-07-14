@@ -2,9 +2,77 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/nginx-124",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:12:03Z",
-  "version": 1,
+  "timestamp": "2026-07-14T00:51:31Z",
+  "version": 2,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-23419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/nginx-124@sha256:f9f80c202baf79daaeb8638a5f7281581c486b665eac1a31f27c19a96936c438",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-core@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nginx@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-all-modules@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-core@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-filesystem@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-image-filter@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-perl@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-http-xslt-filter@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-mail@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx-mod-stream@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nginx@1.24.0-4.module+el9.5.0+22954+e2d70a1c.1"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "UBI9 9: known_not_affected."
+    },
     {
       "vulnerability": {
         "name": "CVE-2025-23419"
@@ -72,6 +140,131 @@
       ],
       "status": "not_affected",
       "impact_statement": "UBI9 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-53905"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/nginx-124@sha256:f9f80c202baf79daaeb8638a5f7281581c486b665eac1a31f27c19a96936c438",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-53906"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/nginx-124@sha256:f9f80c202baf79daaeb8638a5f7281581c486b665eac1a31f27c19a96936c438",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/nginx-124@sha256:f9f80c202baf79daaeb8638a5f7281581c486b665eac1a31f27c19a96936c438",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-8176"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/nginx-124@sha256:f9f80c202baf79daaeb8638a5f7281581c486b665eac1a31f27c19a96936c438",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9900"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/nginx-124@sha256:f9f80c202baf79daaeb8638a5f7281581c486b665eac1a31f27c19a96936c438",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.2"
+        }
+      ],
+      "status": "fixed"
     }
   ]
 }

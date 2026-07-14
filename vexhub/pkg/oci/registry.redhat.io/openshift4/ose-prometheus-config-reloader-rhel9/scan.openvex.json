@@ -1,0 +1,3362 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/ose-prometheus-config-reloader-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T15:05:57Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2024-12086"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-45337"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-45338"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.30.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.30.0"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-0913"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-10158"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-12084"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-13601"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-14087"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-14512"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glib2@2.68.4-16.el9_6.5"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-14831"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/gnutls@3.8.3-6.el9_6.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/gnutls@3.8.3-6.el9_6.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-15366"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-15367"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-15467"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22868"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/oauth2@0.23.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/oauth2@v0.23.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22869"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22870"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.30.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.30.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22871"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.18 \u2014 openshift4/ose-prometheus-config-reloader-rhel9@sha256:7c6088afdbaa81b00b16afcab09f5af3931d0f40d88248b73d15f73320893008_arm64."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22872"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.30.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.30.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22873"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-40778"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/bind-libs@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-libs@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-40780"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/bind-libs@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-libs@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-license@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind-utils@9.16.23-31.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/bind@9.16.23-31.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-45582"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/tar@1.34-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/tar@1.34-7.el9_6.2"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.20: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/systemd-libs@252-51.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.20: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/systemd-libs@252-32.el9_4.10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-pam@252-32.el9_4.10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-32.el9_4.10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd@252-32.el9_4.10"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@252-32.el9_4.10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-pam@252-32.el9_4.10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-32.el9_4.10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@252-32.el9_4.10"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "OpenShift 4.x 4.18: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4673"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Certification Program for Red Hat Enterprise Linux 9, Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4674"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.2), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47907"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.18 \u2014 registry.redhat.io/openshift4/ose-prometheus-config-reloader-rhel9@sha256:6b0d53f39bd713864dda69c3e20156054e398001edfcae385af11d6bba4af67d_arm64."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47913"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47913"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47914"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47914"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58181"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58181"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58183"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.18 \u2014 registry.redhat.io/openshift4/ose-prometheus-config-reloader-rhel9@sha256:191aca68327bcf64f1903c12b5ac704c79c651311b481d3af840e11c61aaf20c_amd64."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58185"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58187"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58188"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58189"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-59375"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.5.0-5.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.5.0-5.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61723"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61725"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61726"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift Container Platform 4.18)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61728"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61729"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.18 \u2014 registry.redhat.io/openshift4/ose-prometheus-config-reloader-rhel9@sha256:191aca68327bcf64f1903c12b5ac704c79c651311b481d3af840e11c61aaf20c_amd64."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61730"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61731"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.18 \u2014 registry.redhat.io/openshift4/ose-prometheus-config-reloader-rhel9@sha256:07f783d85bed66f5b39e08adf67a534334866fdf302a0d6b46a1292e0b0c1297_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61732"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.18 \u2014 registry.redhat.io/openshift4/ose-prometheus-config-reloader-rhel9@sha256:07f783d85bed66f5b39e08adf67a534334866fdf302a0d6b46a1292e0b0c1297_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-68121"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.18 \u2014 registry.redhat.io/openshift4/ose-prometheus-config-reloader-rhel9@sha256:07f783d85bed66f5b39e08adf67a534334866fdf302a0d6b46a1292e0b0c1297_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-68973"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/gnupg2@2.3.3-4.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/gnupg2@2.3.3-4.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-69419"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9086"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-31.el9_6.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/curl@7.76.1-31.el9_6.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libcurl-minimal@7.76.1-31.el9_6.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/curl-minimal@7.76.1-31.el9_6.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/curl@7.76.1-31.el9_6.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcurl-minimal@7.76.1-31.el9_6.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9230"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9714"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libxml2@2.9.13-12.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libxml2@2.9.13-12.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-1299"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-2303"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@1.17.4"
+            },
+            {
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@v1.17.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-2303"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@1.14.0"
+            },
+            {
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@v1.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25679"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected. Red Hat OpenShift Container Platform 4.20 \u2014 registry.redhat.io/openshift4/ose-prometheus-config-reloader-rhel9@sha256:0a2abfc3b04a63244f92f3cf1448bd00f3f9432aa0641e52f8c4c0e451fe1835_s390x."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25679"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27135"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libnghttp2@1.43.0-6.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nghttp2@1.43.0-6.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libnghttp2@1.43.0-6.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nghttp2@1.43.0-6.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "component_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.30.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.30.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "component_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27139"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27139"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27140"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27140"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27142"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27142"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27143"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27143"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27144"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27144"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-29181"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel@1.37.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel@v1.37.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX entry for OpenShift 4.x 4.20. Other products: affected: Multicluster Engine for Kubernetes; fixed: multicluster engine for Kubernetes 2.11; not affected: multicluster engine for Kubernetes 2.11."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32280"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32280"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32281"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32281"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32282"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32282"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32283"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32283"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32288"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32288"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32289"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32289"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.30.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.30.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, Red Hat OpenShift Container Platform 4 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.43.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.30.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.30.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.35.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.35.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.26.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.26.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39827"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39827"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39828"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39828"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39829"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39829"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39830"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39830"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39831"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39831"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39832"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39832"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39834"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39834"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39835"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39835"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-40179"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/prometheus/prometheus@0.305.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/prometheus/prometheus@v0.305.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-40179"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/prometheus/prometheus@0.55.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/prometheus/prometheus@v0.55.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-41035"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/rsync@3.2.5-3.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4111"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42507"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.24.13"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.24.13"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42507"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.22.12"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.22.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42508"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42508"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4424"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44903"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/prometheus/prometheus@0.305.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/prometheus/prometheus@v0.305.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44903"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/prometheus/prometheus@0.55.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/prometheus/prometheus@v0.55.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4519"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46595"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46595"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46597"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46597"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.41.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.41.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:cba86efa63c4599ada86b19a16432915c06c133003d8d313ef9f3d45002d62f9",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.28.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.28.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "prometheus-config-reloader not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4786"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4878"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libcap@2.48-9.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcap@2.48-9.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-5121"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libarchive@3.5.3-7.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-6100"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/ose-prometheus-config-reloader-rhel9@sha256:6adf972a235f6a17c494d8eb0dd2a12a7bac522629e3948c5af7a2648252aa1a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python-unversioned-command@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.21-2.el9_6.6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.21-2.el9_6.6"
+        }
+      ],
+      "status": "fixed"
+    }
+  ]
+}

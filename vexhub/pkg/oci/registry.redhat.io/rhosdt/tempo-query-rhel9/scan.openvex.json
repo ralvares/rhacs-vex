@@ -1,0 +1,49 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/tempo-query-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T00:54:00Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/tempo-query-rhel9@sha256:6cc25552fd5ef77027ef517c785db9d90ed2d7c6648d02141ed81bb8f83dc35e",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.4"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhosdt/tempo-query-rhel9 3.10 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/tempo-query-rhel9@sha256:6cc25552fd5ef77027ef517c785db9d90ed2d7c6648d02141ed81bb8f83dc35e",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.4"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhosdt/tempo-query-rhel9 3.10 not listed as affected."
+    }
+  ]
+}

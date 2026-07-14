@@ -1,0 +1,329 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/oadp-velero-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T18:38:05Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-rhel9@sha256:63260ce95f3c102233e697407bc792f73c7ca4de4dbc43c58963e7155eb5b3da",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-rhel9@sha256:63260ce95f3c102233e697407bc792f73c7ca4de4dbc43c58963e7155eb5b3da",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.34.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33186"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-rhel9@sha256:63260ce95f3c102233e697407bc792f73c7ca4de4dbc43c58963e7155eb5b3da",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@1.56.3"
+            },
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@1.69.4"
+            },
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@v1.56.3"
+            },
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@v1.69.4"
+            }
+          ]
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-rhel9@sha256:63260ce95f3c102233e697407bc792f73c7ca4de4dbc43c58963e7155eb5b3da",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-35469"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-rhel9@sha256:63260ce95f3c102233e697407bc792f73c7ca4de4dbc43c58963e7155eb5b3da",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/moby/spdystream@0.4.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/moby/spdystream@v0.4.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-velero-rhel9 1.5."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-rhel9@sha256:63260ce95f3c102233e697407bc792f73c7ca4de4dbc43c58963e7155eb5b3da",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-rhel9@sha256:63260ce95f3c102233e697407bc792f73c7ca4de4dbc43c58963e7155eb5b3da",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-rhel9@sha256:63260ce95f3c102233e697407bc792f73c7ca4de4dbc43c58963e7155eb5b3da",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-rhel9@sha256:63260ce95f3c102233e697407bc792f73c7ca4de4dbc43c58963e7155eb5b3da",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.31.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.42.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.31.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.42.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-rhel9@sha256:63260ce95f3c102233e697407bc792f73c7ca4de4dbc43c58963e7155eb5b3da",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39883"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-rhel9@sha256:63260ce95f3c102233e697407bc792f73c7ca4de4dbc43c58963e7155eb5b3da",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.34.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.34.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX statement for oadp/oadp-velero-rhel9 1.5."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-rhel9@sha256:63260ce95f3c102233e697407bc792f73c7ca4de4dbc43c58963e7155eb5b3da",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42508"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-rhel9@sha256:63260ce95f3c102233e697407bc792f73c7ca4de4dbc43c58963e7155eb5b3da",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "oadp/oadp-velero-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/oadp-velero-rhel9@sha256:63260ce95f3c102233e697407bc792f73c7ca4de4dbc43c58963e7155eb5b3da",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.49.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.36.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.49.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    }
+  ]
+}

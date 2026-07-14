@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/volsync-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:36:14Z",
-  "version": 8,
+  "timestamp": "2026-07-13T17:45:15Z",
+  "version": 9,
   "statements": [
     {
       "vulnerability": {
@@ -1376,32 +1376,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhacm2/volsync-rhel9 2.15 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-28417"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/volsync-rhel9@sha256:0b94ab87be7cd38760d923b159d08f2025762112ef6336fad91634f9547995e7",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhacm2/volsync-rhel9 2.14: known_not_affected."
     },
     {
       "vulnerability": {

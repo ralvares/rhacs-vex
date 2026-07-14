@@ -1,0 +1,61 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/mariadb-103",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T23:25:59Z",
+  "version": 2,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44172"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mariadb-103@sha256:3d30992e60774f887c4e7959c81b0c41b0d82d042250b3b56f05ab67fd4cdee1",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.1.11-2.el8_3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.1.11-2.el8_3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.1.11-2.el8_3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.1.11-2.el8_3"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/mariadb-103 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44172"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/mariadb-103@sha256:f0ee0d27bb784e289f7d88cc8ee0e085ca70e88a5d126562105542f259a1ac01",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.1.11-2.el8_3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.1.11-2.el8_3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.1.11-2.el8_3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.1.11-2.el8_3"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/mariadb-103 (RHEL 8): known_not_affected."
+    }
+  ]
+}

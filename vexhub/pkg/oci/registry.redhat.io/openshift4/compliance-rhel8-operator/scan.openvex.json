@@ -2,55 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/compliance-rhel8-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:09:51Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:52:12Z",
+  "version": 2,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2013-0340"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2020-13776"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/systemd-libs@239-41.el8_3.2"
-            },
-            {
-              "@id": "pkg:rpm/redhat/systemd@239-41.el8_3.2"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/systemd-libs@239-41.el8_3.2"
-        },
-        {
-          "@id": "pkg:rpm/redhat/systemd@239-41.el8_3.2"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2020-26160"
@@ -465,46 +419,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2021-45960"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2021-46143"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2022-1705"
       },
       "products": [
@@ -562,126 +476,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-22822"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-22823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-22824"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-22825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-22826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-22827"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
     },
     {
       "vulnerability": {
@@ -745,26 +539,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2022-23990"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2022-24675"
       },
       "products": [
@@ -802,46 +576,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "compliance-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-25313"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-25314"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
     },
     {
       "vulnerability": {
@@ -1429,26 +1163,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2022-43680"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2023-24531"
       },
       "products": [
@@ -2027,26 +1741,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2023-52425"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2023-54365"
       },
       "products": [
@@ -2287,58 +1981,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-37370"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-5.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/krb5@1.18.2-5.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-5.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/krb5@1.18.2-5.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-37371"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-5.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/krb5@1.18.2-5.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-5.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/krb5@1.18.2-5.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-45336"
       },
       "products": [
@@ -2416,26 +2058,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "compliance-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-8176"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
     },
     {
       "vulnerability": {
@@ -2948,26 +2570,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "compliance-operator not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-59375"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/compliance-rhel8-operator@sha256:ed68a0574ddeaf7d676403cd843f28cb586894f35dbb3ca5e06a5264bd42f030",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-4.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "OpenShift 4.7: known_not_affected."
     },
     {
       "vulnerability": {

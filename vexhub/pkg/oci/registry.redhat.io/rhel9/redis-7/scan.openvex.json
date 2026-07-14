@@ -2,9 +2,28 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/redis-7",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:32:51Z",
-  "version": 3,
+  "timestamp": "2026-07-13T18:02:59Z",
+  "version": 8,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2024-8176"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-7@sha256:2fca0decc49230122f044afb2e7cd8f64921a00141c8c22c2f1402f3564f87f8",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/expat@2.5.0-3.el9_5.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/expat@2.5.0-3.el9_5.3"
+        }
+      ],
+      "status": "fixed"
+    },
     {
       "vulnerability": {
         "name": "CVE-2025-14087"
@@ -49,6 +68,46 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/redis-7@sha256:2fca0decc49230122f044afb2e7cd8f64921a00141c8c22c2f1402f3564f87f8",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/redis@7.2.7-1.module+el9.5.0+22705+3d861c1c"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/redis@7.2.7-1.module+el9.5.0+22705+3d861c1c"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel9/redis-7 (RHEL 9): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-29479"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-7@sha256:3d31c0cfaf4219f5bd1c52882b603215d1cb4aaef5b8d1a128d0174e090f96f3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/redis@7.2.11-1.module+el9.6.0+23552+a3d3d132"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/redis@7.2.11-1.module+el9.6.0+23552+a3d3d132"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel9/redis-7 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-29479"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/redis-7@sha256:87c097750ffdfe4d014d862351f7b530e5d79f8dc5e7b990f8d63a7ff0d44af3",
           "subcomponents": [
             {
@@ -82,6 +141,169 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhel9/redis-7 9: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-46817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-7@sha256:3d31c0cfaf4219f5bd1c52882b603215d1cb4aaef5b8d1a128d0174e090f96f3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/redis@7.2.11-1.module+el9.6.0+23552+a3d3d132"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/redis@7.2.11-1.module+el9.6.0+23552+a3d3d132"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-46818"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-7@sha256:3d31c0cfaf4219f5bd1c52882b603215d1cb4aaef5b8d1a128d0174e090f96f3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/redis@7.2.11-1.module+el9.6.0+23552+a3d3d132"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/redis@7.2.11-1.module+el9.6.0+23552+a3d3d132"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-46819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-7@sha256:3d31c0cfaf4219f5bd1c52882b603215d1cb4aaef5b8d1a128d0174e090f96f3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/redis@7.2.11-1.module+el9.6.0+23552+a3d3d132"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/redis@7.2.11-1.module+el9.6.0+23552+a3d3d132"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-49844"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-7@sha256:3d31c0cfaf4219f5bd1c52882b603215d1cb4aaef5b8d1a128d0174e090f96f3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/redis@7.2.11-1.module+el9.6.0+23552+a3d3d132"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/redis@7.2.11-1.module+el9.6.0+23552+a3d3d132"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-53905"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-7@sha256:3d31c0cfaf4219f5bd1c52882b603215d1cb4aaef5b8d1a128d0174e090f96f3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-53906"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-7@sha256:3d31c0cfaf4219f5bd1c52882b603215d1cb4aaef5b8d1a128d0174e090f96f3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/redis-7@sha256:3d31c0cfaf4219f5bd1c52882b603215d1cb4aaef5b8d1a128d0174e090f96f3",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {
@@ -120,6 +342,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/redis-7@sha256:2fca0decc49230122f044afb2e7cd8f64921a00141c8c22c2f1402f3564f87f8",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/redis@7.2.7-1.module+el9.5.0+22705+3d861c1c"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/redis@7.2.7-1.module+el9.5.0+22705+3d861c1c"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel9/redis-7 (RHEL 9): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-23479"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/redis-7@sha256:87c097750ffdfe4d014d862351f7b530e5d79f8dc5e7b990f8d63a7ff0d44af3",
           "subcomponents": [
             {
@@ -149,38 +391,6 @@
         },
         {
           "@id": "pkg:rpm/redhat/redis@7.2.11-1.module+el9.7.0+23559+d075163a"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel9/redis-7 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-28417"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/redis-7@sha256:9cc4b887d14a64233ad4abf7c8382295218fee33e7e0a8d45990844a0e31dc71",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
         }
       ],
       "status": "not_affected",

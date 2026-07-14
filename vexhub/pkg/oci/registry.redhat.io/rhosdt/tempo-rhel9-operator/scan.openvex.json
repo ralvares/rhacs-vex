@@ -1,0 +1,89 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/tempo-rhel9-operator",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T00:55:07Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-11769"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/tempo-rhel9-operator@sha256:86704872fd94bc73ec12b55a9d0c96145c1f1e65a46786278dd1a3b034c15afb",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/grafana/grafana-operator/v5@5.19.4"
+            },
+            {
+              "@id": "pkg:golang/github.com/grafana/grafana-operator/v5@v5.19.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-2303"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/tempo-rhel9-operator@sha256:86704872fd94bc73ec12b55a9d0c96145c1f1e65a46786278dd1a3b034c15afb",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@1.14.0"
+            },
+            {
+              "@id": "pkg:golang/go.mongodb.org/mongo-driver@v1.14.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/tempo-rhel9-operator@sha256:86704872fd94bc73ec12b55a9d0c96145c1f1e65a46786278dd1a3b034c15afb",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.4"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhosdt/tempo-rhel9-operator 3.10 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/tempo-rhel9-operator@sha256:86704872fd94bc73ec12b55a9d0c96145c1f1e65a46786278dd1a3b034c15afb",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.4"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhosdt/tempo-rhel9-operator 3.10 not listed as affected."
+    }
+  ]
+}

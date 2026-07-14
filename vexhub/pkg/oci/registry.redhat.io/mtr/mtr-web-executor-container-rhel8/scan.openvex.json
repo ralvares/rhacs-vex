@@ -2,35 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/mtr-web-executor-container-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:48:48Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:58:45Z",
+  "version": 2,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mtr-web-executor-container-rhel8@sha256:2f0622774367f33efc321926196681322ab1535144e6a0785608c8050fc59f2e",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-60.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-60.el8_10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-60.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-60.el8_10"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel8/mtr-web-executor (RHEL 8): known_not_affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2025-67030"
@@ -52,32 +26,6 @@
         },
         {
           "@id": "pkg:rpm/redhat/sisu@0.3.5-3.module+el8.10.0+21301+657f54a3"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "rhel8/mtr-web-executor (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34980"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mtr-web-executor-container-rhel8@sha256:2f0622774367f33efc321926196681322ab1535144e6a0785608c8050fc59f2e",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-60.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-60.el8_10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-60.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-60.el8_10"
         }
       ],
       "status": "not_affected",

@@ -2,31 +2,11 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/mta-windup-addon-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:43:00Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:57:40Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
-        "name": "CVE-2013-0340"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-windup-addon-rhel8@sha256:6bcaf8e8b63e169652d6568d77e91a289084e621a586105a2d429b5726569058",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-windup-addon-rhel8 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2019-11250"
       },
       "products": [
@@ -224,26 +204,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-23990"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-windup-addon-rhel8@sha256:6bcaf8e8b63e169652d6568d77e91a289084e621a586105a2d429b5726569058",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-windup-addon-rhel8 (RHEL 8): known_not_affected."
     },
     {
       "vulnerability": {
@@ -1446,26 +1406,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2023-52425"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-windup-addon-rhel8@sha256:6bcaf8e8b63e169652d6568d77e91a289084e621a586105a2d429b5726569058",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-windup-addon-rhel8 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2023-54365"
       },
       "products": [
@@ -1826,134 +1766,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-33599"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-windup-addon-rhel8@sha256:a4200fc0a39df67eae31c53ee9ae0c05769fb410d0312ebd0bbf8bf1567b2a48",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-windup-addon-rhel8 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33600"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-windup-addon-rhel8@sha256:a4200fc0a39df67eae31c53ee9ae0c05769fb410d0312ebd0bbf8bf1567b2a48",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-windup-addon-rhel8 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33601"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-windup-addon-rhel8@sha256:a4200fc0a39df67eae31c53ee9ae0c05769fb410d0312ebd0bbf8bf1567b2a48",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-windup-addon-rhel8 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33602"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-windup-addon-rhel8@sha256:a4200fc0a39df67eae31c53ee9ae0c05769fb410d0312ebd0bbf8bf1567b2a48",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-windup-addon-rhel8 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-34155"
       },
       "products": [
@@ -2271,26 +2083,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "mta/mta-windup-addon-rhel8 (RHEL 8) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-8176"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-windup-addon-rhel8@sha256:6bcaf8e8b63e169652d6568d77e91a289084e621a586105a2d429b5726569058",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-windup-addon-rhel8 (RHEL 8): known_not_affected."
     },
     {
       "vulnerability": {
@@ -3306,26 +3098,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-59375"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-windup-addon-rhel8@sha256:6bcaf8e8b63e169652d6568d77e91a289084e621a586105a2d429b5726569058",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-11.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-windup-addon-rhel8 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-61723"
       },
       "products": [
@@ -3723,32 +3495,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 8), Red Hat Enterprise Linux AppStream AUS (v. 8.2), Red Hat Enterprise Linux AppStream AUS (v.8.4) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-windup-addon-rhel8@sha256:a4200fc0a39df67eae31c53ee9ae0c05769fb410d0312ebd0bbf8bf1567b2a48",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-50.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-50.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-50.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-50.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-windup-addon-rhel8 (RHEL 8): known_not_affected."
     },
     {
       "vulnerability": {
@@ -4521,32 +4267,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34980"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-windup-addon-rhel8@sha256:a4200fc0a39df67eae31c53ee9ae0c05769fb410d0312ebd0bbf8bf1567b2a48",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-50.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-50.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-50.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-50.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-windup-addon-rhel8 (RHEL 8): known_not_affected."
     },
     {
       "vulnerability": {

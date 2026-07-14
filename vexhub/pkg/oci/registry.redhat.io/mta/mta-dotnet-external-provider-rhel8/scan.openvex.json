@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/mta-dotnet-external-provider-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:44:50Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:58:08Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -2022,44 +2022,6 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26127"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-dotnet-external-provider-rhel8@sha256:c0643c05833dd1b70ed361bf56c46f56ed6536aac3106b92f0d85b83da1b9d15",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/dotnet-host@9.0.6-1.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/dotnet9.0@9.0.107-1.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/dotnet9.0@9.0.6-1.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/netstandard-targeting-pack-2.1@9.0.107-1.el8_10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/dotnet-host@9.0.6-1.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/dotnet9.0@9.0.107-1.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/dotnet9.0@9.0.6-1.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/netstandard-targeting-pack-2.1@9.0.107-1.el8_10"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-dotnet-external-provider-rhel8 (RHEL 8): known_not_affected."
     },
     {
       "vulnerability": {

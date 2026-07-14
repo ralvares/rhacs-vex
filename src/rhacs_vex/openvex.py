@@ -152,9 +152,20 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
 
     divergent = set()
     for _, row in df.iterrows():
+        if 'FALSE POSITIVE' in str(row.get('AUDIT_RESULT', '')):
+            continue
+        cve = str(row.get('CVE', '')).strip().upper()
         srpm = _row_srpm(row)
-        if srpm and 'FALSE POSITIVE' not in str(row.get('AUDIT_RESULT', '')):
-            divergent.add((str(row.get('CVE', '')).strip().upper(), srpm))
+        if srpm:
+            divergent.add((cve, srpm))
+        # rpm identities an open verdict occupies: the rpm row itself, and the
+        # vendoring rpm of a non-OS component (go binary inside an rpm) — a
+        # statement must never re-claim these via an extension.
+        if str(row.get('SOURCE', '')).strip().upper() == 'OS':
+            divergent.add((cve, f"{row.get('COMPONENT', '')}@{row.get('VERSION', '')}"))
+        owner = str(row.get('OWNER_RPM', '') or '').strip()
+        if owner and owner.lower() != 'nan':
+            divergent.add((cve, owner))
 
     fp = df[df['AUDIT_RESULT'].astype(str).str.contains('FALSE POSITIVE', na=False)]
     groups: dict = {}
@@ -176,6 +187,17 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
         # dropped above, so every sibling of this source shares the verdict.
         if srpm:
             subs += subcomponent_ids(srpm, row.get('VERSION', ''), 'OS')
+        # Go binary vendored by an rpm: trivy reports the CVE against the rpm
+        # (Red Hat advisory data), not the module purl — extend the verdict to
+        # the owning rpm so both discovery views suppress.  Blocked when any
+        # open verdict for this CVE occupies that rpm identity (divergent).
+        owner = str(row.get('OWNER_RPM', '') or '').strip()
+        if owner and owner.lower() != 'nan' and '@' in owner and \
+                str(row.get('SOURCE', '')).strip().upper() != 'OS':
+            cve_key = str(row.get('CVE', '')).strip().upper()
+            if (cve_key, owner) not in divergent:
+                oname, over = owner.split('@', 1)
+                subs += subcomponent_ids(oname, over, 'OS')
         key = (str(row['CVE']).strip().upper(), status)
         g = groups.setdefault(key, {'subs': set(), 'just': None, 'impacts': set()})
         g['subs'].update(subs)

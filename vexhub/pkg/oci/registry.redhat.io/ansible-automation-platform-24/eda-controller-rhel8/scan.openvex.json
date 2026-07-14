@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/eda-controller-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:50:52Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:48:55Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -30,26 +30,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-25679"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
     },
     {
       "vulnerability": {
@@ -169,47 +149,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32280"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32281"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
+      "impact_statement": "Not affected in ansible-automation-platform-24/eda-controller-rhel8 2.4 (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -241,87 +181,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected. | ansible-automation-platform-24/eda-controller-rhel8 2.4: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32283"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-32289"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33811"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
+      "impact_statement": "Not affected in ansible-automation-platform-24/eda-controller-rhel8 2.4 (Red Hat Enterprise Linux 8): vulnerable code not present. | ansible-automation-platform-24/eda-controller-rhel8 2.4: known_not_affected."
     },
     {
       "vulnerability": {
@@ -385,26 +245,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-39820"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-39822"
       },
       "products": [
@@ -421,67 +261,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39823"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39826"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
+      "impact_statement": "No affected entry in Red Hat Ansible Automation Platform 2, Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -505,26 +285,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-42499"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-42501"
       },
       "products": [
@@ -542,66 +302,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42504"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42505"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42507"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/eda-controller-rhel8@sha256:b294fced3ee3e0bd3be2cf3ab8cc022fce72813cb1f98a946671ea465ffdfb54",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.25.7"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.7"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-24/eda-controller-rhel8 2.4 not listed as affected."
     }
   ]
 }

@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/mta-ui-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:40:49Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:56:47Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -257,7 +257,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -274,7 +274,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -553,40 +553,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-28863"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:3845d6d246003ebeb49bcf1d95d6be2eb9cd05a280a5bf8320b201e878a41427",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.1.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-28863"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:de6cb95ce3663922ecc725b186876b043a9c7794e95510459ffbcba7d668fc26",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.1.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-29180"
       },
       "products": [
@@ -634,7 +600,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -651,135 +617,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33599"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:de6cb95ce3663922ecc725b186876b043a9c7794e95510459ffbcba7d668fc26",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel8 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33600"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:de6cb95ce3663922ecc725b186876b043a9c7794e95510459ffbcba7d668fc26",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel8 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33601"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:de6cb95ce3663922ecc725b186876b043a9c7794e95510459ffbcba7d668fc26",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel8 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33602"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:de6cb95ce3663922ecc725b186876b043a9c7794e95510459ffbcba7d668fc26",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-211.el8"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-211.el8"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel8 (RHEL 8): known_not_affected."
+      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1599,26 +1437,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:3845d6d246003ebeb49bcf1d95d6be2eb9cd05a280a5bf8320b201e878a41427",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/brace-expansion@1.1.11"
-            },
-            {
-              "@id": "pkg:npm/brace-expansion@2.0.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel8 (RHEL 8) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5889"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/mta-ui-rhel8@sha256:de6cb95ce3663922ecc725b186876b043a9c7794e95510459ffbcba7d668fc26",
           "subcomponents": [
             {
@@ -1966,7 +1784,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1983,7 +1801,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -2034,7 +1852,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -2051,7 +1869,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -2108,7 +1926,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -2125,7 +1943,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): component not present."
+      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -2235,29 +2053,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:3845d6d246003ebeb49bcf1d95d6be2eb9cd05a280a5bf8320b201e878a41427",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            },
-            {
-              "@id": "pkg:npm/minimatch@5.1.0"
-            },
-            {
-              "@id": "pkg:npm/minimatch@5.1.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel8 (RHEL 8) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26996"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/mta-ui-rhel8@sha256:de6cb95ce3663922ecc725b186876b043a9c7794e95510459ffbcba7d668fc26",
           "subcomponents": [
             {
@@ -2281,53 +2076,7 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:3845d6d246003ebeb49bcf1d95d6be2eb9cd05a280a5bf8320b201e878a41427",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            },
-            {
-              "@id": "pkg:npm/minimatch@5.1.0"
-            },
-            {
-              "@id": "pkg:npm/minimatch@5.1.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel8 (RHEL 8) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27903"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/mta-ui-rhel8@sha256:de6cb95ce3663922ecc725b186876b043a9c7794e95510459ffbcba7d668fc26",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            },
-            {
-              "@id": "pkg:npm/minimatch@5.1.0"
-            },
-            {
-              "@id": "pkg:npm/minimatch@5.1.6"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel8 (RHEL 8) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27904"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:3845d6d246003ebeb49bcf1d95d6be2eb9cd05a280a5bf8320b201e878a41427",
           "subcomponents": [
             {
               "@id": "pkg:npm/minimatch@3.1.2"
@@ -2450,7 +2199,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -2467,7 +2216,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in mta/mta-ui-rhel8 (RHEL 8) (Red Hat Enterprise Linux 8): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -2692,23 +2441,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-33671"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:de6cb95ce3663922ecc725b186876b043a9c7794e95510459ffbcba7d668fc26",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@2.3.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel8 (RHEL 8) not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-33672"
       },
       "products": [
@@ -2717,43 +2449,6 @@
           "subcomponents": [
             {
               "@id": "pkg:npm/picomatch@2.3.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel8 (RHEL 8) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33672"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:de6cb95ce3663922ecc725b186876b043a9c7794e95510459ffbcba7d668fc26",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/picomatch@2.3.1"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel8 (RHEL 8) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-33750"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:3845d6d246003ebeb49bcf1d95d6be2eb9cd05a280a5bf8320b201e878a41427",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/brace-expansion@1.1.11"
-            },
-            {
-              "@id": "pkg:npm/brace-expansion@2.0.1"
             }
           ]
         }
@@ -3478,40 +3173,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No affected entry in Red Hat Enterprise Linux 8 (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:3845d6d246003ebeb49bcf1d95d6be2eb9cd05a280a5bf8320b201e878a41427",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.1.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel8 (RHEL 8) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-ui-rhel8@sha256:de6cb95ce3663922ecc725b186876b043a9c7794e95510459ffbcba7d668fc26",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.1.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-ui-rhel8 (RHEL 8) not listed as affected."
     },
     {
       "vulnerability": {

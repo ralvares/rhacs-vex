@@ -1,0 +1,887 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/odh-ogx-core-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T22:05:32Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3000"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.12.0+cpu"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/systemd-libs@252-51.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-pam@252-51.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-51.el9_6.4"
+            },
+            {
+              "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-libs@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-pam@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd-rpm-macros@252-51.el9_6.4"
+        },
+        {
+          "@id": "pkg:rpm/redhat/systemd@252-51.el9_6.4"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-5318"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libssh-config@0.10.4-15.el9_6.1"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh-config@0.10.4-15.el9_6.1"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-53905"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-53906"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-22.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-22.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-22.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-6965"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite-libs@3.34.1-8.el9_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sqlite@3.34.1-8.el9_6"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-8176"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.4"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-9900"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.4"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-13.el9_6.4"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-28390"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-34993"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44172"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45409"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/idna@3.14"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-45447"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+            },
+            {
+              "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl-libs@3.2.2-7.el9_6.2"
+        },
+        {
+          "@id": "pkg:rpm/redhat/openssl@3.2.2-7.el9_6.2"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-47265"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48155"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pypdf@6.11.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48156"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pypdf@6.11.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48522"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pyjwt@2.12.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48523"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pyjwt@2.12.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48524"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pyjwt@2.12.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48525"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pyjwt@2.12.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48526"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pyjwt@2.12.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48710"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/starlette@1.0.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48735"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pypdf@6.11.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/starlette@1.0.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48818"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/starlette@1.0.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-49460"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pypdf@6.11.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-49461"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pypdf@6.11.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-50269"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-53537"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/python-multipart@0.0.28"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-53538"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/python-multipart@0.0.28"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-53540"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/python-multipart@0.0.28"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54273"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54274"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54275"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54276"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54277"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54278"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54279"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54282"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/starlette@1.0.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54283"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/starlette@1.0.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54293"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/nltk@3.9.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54530"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pypdf@6.11.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54531"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pypdf@6.11.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54651"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pypdf@6.11.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-8643"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-ogx-core-rhel9@sha256:3940a6ce94fe250d5d45634a73673bb5aa1a650e164cfecec1ad695fdd279242",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pip@26.1.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-ogx-core-rhel9 3.5 not listed as affected."
+    }
+  ]
+}

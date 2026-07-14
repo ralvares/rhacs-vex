@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/frr-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:38:24Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:56:46Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -1300,26 +1300,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2026-32288"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "frr not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-33810"
       },
       "products": [
@@ -1471,7 +1451,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "OpenShift 4.x 4.20: known_not_affected. | frr not listed as affected."
+      "impact_statement": "Not affected in OpenShift 4.x 4.20 (Red Hat OpenShift Container Platform 4): vulnerable code not present. | OpenShift 4.x 4.20: known_not_affected."
     },
     {
       "vulnerability": {
@@ -1518,32 +1498,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-39825"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/frr-rhel9@sha256:117802a4055754b38dfd5b0309664a77670cfbef2311c034d43f36d3cc7e4f39",
-          "subcomponents": [
-            {
-              "@id": "pkg:golang/stdlib@1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@1.25.9"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.24.13"
-            },
-            {
-              "@id": "pkg:golang/stdlib@v1.25.9"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "frr not listed as affected."
     },
     {
       "vulnerability": {
@@ -1664,7 +1618,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "OpenShift 4.x 4.20: known_not_affected. | frr not listed as affected."
+      "impact_statement": "Not affected in OpenShift 4.x 4.20 (Red Hat OpenShift Container Platform 4): vulnerable code not present. | OpenShift 4.x 4.20: known_not_affected."
     },
     {
       "vulnerability": {

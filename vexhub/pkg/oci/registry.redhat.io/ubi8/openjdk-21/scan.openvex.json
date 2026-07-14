@@ -1,0 +1,61 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/openjdk-21",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T00:38:52Z",
+  "version": 2,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-67030"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/openjdk-21@sha256:095175ef8573de8055e67bd5c8a21098448ac73db4e0d6ccd5269dd36b4d263c",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-11.module+el8.10.0+21301+657f54a3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sisu@0.3.5-3.module+el8.10.0+21301+657f54a3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-11.module+el8.10.0+21301+657f54a3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sisu@0.3.5-3.module+el8.10.0+21301+657f54a3"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "UBI8: known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-67030"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/openjdk-21@sha256:bb95ea866269ac8652f666ee1587d71f4f43da33493c2be7f6a9548bcfd2407c",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-11.module+el8.10.0+21301+657f54a3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/sisu@0.3.5-3.module+el8.10.0+21301+657f54a3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/plexus-utils@3.3.0-11.module+el8.10.0+21301+657f54a3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/sisu@0.3.5-3.module+el8.10.0+21301+657f54a3"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "UBI8: known_not_affected."
+    }
+  ]
+}

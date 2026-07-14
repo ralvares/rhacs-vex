@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/logic-swf-builder-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:36:24Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:56:13Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -38,25 +38,6 @@
         },
         {
           "@id": "pkg:rpm/redhat/sisu@0.9.0~M3-7.module+el9.6.0+22733+e520f63c"
-        }
-      ],
-      "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-67030"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/logic-swf-builder-rhel9@sha256:5fe9ca1cc84ee80f770a8d209978fe03712ecc1bf4a1ccc8c137850a468f8062",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/maven-wagon@3.5.3-17.module+el9.6.0+22733+e520f63c"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/maven-wagon@3.5.3-17.module+el9.6.0+22733+e520f63c"
         }
       ],
       "status": "not_affected",

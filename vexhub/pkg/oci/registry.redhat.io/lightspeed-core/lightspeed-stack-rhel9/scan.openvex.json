@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/lightspeed-stack-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:40:49Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:56:46Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -38,26 +38,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/lightspeed-stack-rhel9@sha256:8a8ae13cfab35da22e100b795ca06944c192b81f45b2f9644ef82cf43797b98c",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "lightspeed-core/lightspeed-stack-rhel9 0.4: known_not_affected."
     },
     {
       "vulnerability": {
@@ -145,32 +125,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-5987"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/lightspeed-stack-rhel9@sha256:8a8ae13cfab35da22e100b795ca06944c192b81f45b2f9644ef82cf43797b98c",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/libssh-config@0.10.4-15.el9_6"
-            },
-            {
-              "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/libssh-config@0.10.4-15.el9_6"
-        },
-        {
-          "@id": "pkg:rpm/redhat/libssh@0.10.4-15.el9_6"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "lightspeed-core/lightspeed-stack-rhel9 0.4: known_not_affected."
     },
     {
       "vulnerability": {

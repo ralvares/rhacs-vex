@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/openshift-mcp-server-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:35:23Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:56:13Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -685,6 +685,26 @@
       ],
       "status": "not_affected",
       "impact_statement": "openshift-lightspeed/openshift-mcp-server-rhel9 1 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/openshift-mcp-server-rhel9@sha256:83f288c04aad9c742cf2cee51f45e1be1982e1fcc388d2112cf5483e381fff62",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.53.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.53.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
     },
     {
       "vulnerability": {
@@ -1627,6 +1647,26 @@
         }
       ],
       "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-53488"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/openshift-mcp-server-rhel9@sha256:83f288c04aad9c742cf2cee51f45e1be1982e1fcc388d2112cf5483e381fff62",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/containerd/containerd@1.7.30"
+            },
+            {
+              "@id": "pkg:golang/github.com/containerd/containerd@v1.7.30"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "component_not_present"
     }
   ]
 }

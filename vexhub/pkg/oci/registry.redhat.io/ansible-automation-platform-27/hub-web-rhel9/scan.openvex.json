@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/hub-web-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:48:40Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:48:35Z",
+  "version": 2,
   "statements": [
     {
       "vulnerability": {
@@ -68,38 +68,6 @@
         },
         {
           "@id": "pkg:rpm/redhat/nginx@1.24.0-7.module+el9.8.0+24289+833e4c02.1"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ansible-automation-platform-27/hub-web-rhel9 2.7: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-35177"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/hub-web-rhel9@sha256:bafc2526ec9768259f302679b431e663ad46f2a99b1e1951b670fd1b1af6636d",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-26.el9_8.4"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-26.el9_8.4"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim@8.2.2637-26.el9_8.4"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-26.el9_8.4"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-26.el9_8.4"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim@8.2.2637-26.el9_8.4"
         }
       ],
       "status": "not_affected",

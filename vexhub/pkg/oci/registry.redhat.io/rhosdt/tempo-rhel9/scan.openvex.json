@@ -1,0 +1,29 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/tempo-rhel9",
+  "author": "vextriage",
+  "timestamp": "2026-07-14T00:55:07Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/tempo-rhel9@sha256:6dcd98ae593c45646d07e7c3b3128ccad4e6df4370fb24617248269c4b36cf3f",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.26.4"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.26.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    }
+  ]
+}

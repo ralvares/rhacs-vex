@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/console-ui-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:48:40Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:48:22Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -213,74 +213,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-4068"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:10bc5b0ea900fbab246be95ce9a5e1b5c154030b54f38a557d419193fea63223",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/braces@3.0.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-4068"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:1518966a444cd562312abcc52169c8bf398236a9cd6adbeb9081156bfe6ab445",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/braces@3.0.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-4068"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:54bdc8ce9619721c990a842ac0457804832bcde1f372732e0c5dac4cb7baa4b0",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/braces@3.0.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-4068"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:c46d792cbb95b26679150c6733251d838b281da28f1925c8270201560cb357bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/braces@3.0.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-51479"
       },
       "products": [
@@ -363,26 +295,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, streams for Apache Kafka 2 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:c46d792cbb95b26679150c6733251d838b281da28f1925c8270201560cb357bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/console-ui-rhel9 9: known_not_affected."
     },
     {
       "vulnerability": {
@@ -573,40 +485,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-64756"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:10bc5b0ea900fbab246be95ce9a5e1b5c154030b54f38a557d419193fea63223",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/glob@10.4.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/console-ui-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-64756"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:c46d792cbb95b26679150c6733251d838b281da28f1925c8270201560cb357bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/glob@10.4.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/console-ui-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2026-23745"
       },
       "products": [
@@ -623,7 +501,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -643,7 +521,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -663,7 +541,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -683,7 +561,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -737,7 +615,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -757,7 +635,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): component not present."
+      "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -825,40 +703,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:1518966a444cd562312abcc52169c8bf398236a9cd6adbeb9081156bfe6ab445",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in streams for Apache Kafka 3 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26996"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:54bdc8ce9619721c990a842ac0457804832bcde1f372732e0c5dac4cb7baa4b0",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in streams for Apache Kafka 3 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-26996"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/console-ui-rhel9@sha256:c46d792cbb95b26679150c6733251d838b281da28f1925c8270201560cb357bc",
           "subcomponents": [
             {
@@ -899,40 +743,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:1518966a444cd562312abcc52169c8bf398236a9cd6adbeb9081156bfe6ab445",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, streams for Apache Kafka 2, streams for Apache Kafka 3 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27903"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:54bdc8ce9619721c990a842ac0457804832bcde1f372732e0c5dac4cb7baa4b0",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, streams for Apache Kafka 2, streams for Apache Kafka 3 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27903"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/console-ui-rhel9@sha256:c46d792cbb95b26679150c6733251d838b281da28f1925c8270201560cb357bc",
           "subcomponents": [
             {
@@ -960,40 +770,6 @@
             },
             {
               "@id": "pkg:npm/minimatch@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, streams for Apache Kafka 3 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27904"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:1518966a444cd562312abcc52169c8bf398236a9cd6adbeb9081156bfe6ab445",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9, streams for Apache Kafka 3 names other components only."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-27904"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:54bdc8ce9619721c990a842ac0457804832bcde1f372732e0c5dac4cb7baa4b0",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/minimatch@3.1.2"
             }
           ]
         }
@@ -1141,7 +917,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1161,7 +937,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9 (known_not_affected/fixed only)."
+      "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): vulnerable code not present."
     },
     {
       "vulnerability": {
@@ -1202,148 +978,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not affected in amq-streams/console-ui-rhel9 9 (Red Hat Enterprise Linux 9): component not present."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:10bc5b0ea900fbab246be95ce9a5e1b5c154030b54f38a557d419193fea63223",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:1518966a444cd562312abcc52169c8bf398236a9cd6adbeb9081156bfe6ab445",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@10.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:54bdc8ce9619721c990a842ac0457804832bcde1f372732e0c5dac4cb7baa4b0",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@10.1.0"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-42338"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:c46d792cbb95b26679150c6733251d838b281da28f1925c8270201560cb357bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/ip-address@9.0.5"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:10bc5b0ea900fbab246be95ce9a5e1b5c154030b54f38a557d419193fea63223",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/console-ui-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:1518966a444cd562312abcc52169c8bf398236a9cd6adbeb9081156bfe6ab445",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@7.5.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/console-ui-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:54bdc8ce9619721c990a842ac0457804832bcde1f372732e0c5dac4cb7baa4b0",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@7.5.11"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/console-ui-rhel9 9 not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-53655"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/console-ui-rhel9@sha256:c46d792cbb95b26679150c6733251d838b281da28f1925c8270201560cb357bc",
-          "subcomponents": [
-            {
-              "@id": "pkg:npm/tar@6.2.1"
-            },
-            {
-              "@id": "pkg:npm/tar@7.4.3"
-            }
-          ]
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/console-ui-rhel9 9 not listed as affected."
     }
   ]
 }

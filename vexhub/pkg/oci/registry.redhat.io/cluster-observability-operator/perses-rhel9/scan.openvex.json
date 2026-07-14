@@ -2,9 +2,669 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/perses-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:09:50Z",
-  "version": 1,
+  "timestamp": "2026-07-13T20:06:51Z",
+  "version": 3,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-0913"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-11579"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/nwaples/rardecode/v2@2.1.0"
+            },
+            {
+              "@id": "pkg:golang/github.com/nwaples/rardecode/v2@v2.1.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX statement for perses/perses 9."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4673"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-4674"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.2), Red Hat Enterprise Linux AppStream EUS (v.9.4) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47906"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47907"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47911"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47912"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47913"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 9, Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-47914"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58058"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/ulikunitz/xz@0.5.12"
+            },
+            {
+              "@id": "pkg:golang/github.com/ulikunitz/xz@v0.5.12"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58181"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58183"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58185"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58186"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58187"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58188"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58189"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-58190"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61723"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61724"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61725"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61726"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61727"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61728"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61729"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61730"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61731"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-61732"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-68121"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24051"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.35.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.35.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25679"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25680"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
     {
       "vulnerability": {
         "name": "CVE-2026-25680"
@@ -24,6 +684,46 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Cluster Observability Operator 1.5.0)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25680"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -47,6 +747,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-25681"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-26958"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/filippo.io/edwards25519@1.1.0"
+            },
+            {
+              "@id": "pkg:golang/filippo.io/edwards25519@v1.1.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-26958"
       },
       "products": [
@@ -58,6 +798,46 @@
             },
             {
               "@id": "pkg:golang/filippo.io/edwards25519@v1.1.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-26958"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/filippo.io/edwards25519@1.1.0"
+            },
+            {
+              "@id": "pkg:golang/filippo.io/edwards25519@v1.1.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX statement for perses/perses 9."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
             }
           ]
         }
@@ -87,6 +867,146 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-27136"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27139"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27140"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9), Red Hat Enterprise Linux AppStream E4S (v.9.0), Red Hat Enterprise Linux AppStream E4S (v.9.2) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27142"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27143"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27144"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-27145"
       },
       "products": [
@@ -98,6 +1018,166 @@
             },
             {
               "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27145"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32280"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32281"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32282"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32283"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32288"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-32289"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33186"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@1.75.0"
+            },
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@v1.75.0"
             }
           ]
         }
@@ -127,6 +1207,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33186"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@1.71.0"
+            },
+            {
+              "@id": "pkg:golang/google.golang.org/grpc@v1.71.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-33811"
       },
       "products": [
@@ -144,6 +1264,52 @@
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33811"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -173,11 +1339,117 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-33814"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.40.0"
+            },
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-34986"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@4.0.5"
+            },
+            {
+              "@id": "pkg:golang/github.com/go-jose/go-jose/v4@v4.0.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39817"
       },
       "products": [
         {
           "@id": "pkg:oci/perses-rhel9@sha256:a811b9345d884ba1c575584bec9be1d2a237902164a99887458a82d07e7c2376",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39817"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -213,6 +1485,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39819"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39820"
       },
       "products": [
@@ -230,6 +1542,46 @@
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39820"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
     },
     {
       "vulnerability": {
@@ -253,11 +1605,91 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39821"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39822"
       },
       "products": [
         {
           "@id": "pkg:oci/perses-rhel9@sha256:a811b9345d884ba1c575584bec9be1d2a237902164a99887458a82d07e7c2376",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39822"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -293,6 +1725,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39823"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.43.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.43.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39824"
       },
       "products": [
@@ -313,11 +1785,91 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39824"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/sys@0.33.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/sys@v0.33.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39825"
       },
       "products": [
         {
           "@id": "pkg:oci/perses-rhel9@sha256:a811b9345d884ba1c575584bec9be1d2a237902164a99887458a82d07e7c2376",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39825"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -353,11 +1905,71 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39826"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39827"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39827"
       },
       "products": [
         {
           "@id": "pkg:oci/perses-rhel9@sha256:a811b9345d884ba1c575584bec9be1d2a237902164a99887458a82d07e7c2376",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39828"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -393,7 +2005,107 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39828"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39829"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39829"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:a811b9345d884ba1c575584bec9be1d2a237902164a99887458a82d07e7c2376",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39829"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39830"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39830"
       },
       "products": [
         {
@@ -417,7 +2129,27 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/perses-rhel9@sha256:a811b9345d884ba1c575584bec9be1d2a237902164a99887458a82d07e7c2376",
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39831"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -457,7 +2189,67 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39832"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/perses-rhel9@sha256:a811b9345d884ba1c575584bec9be1d2a237902164a99887458a82d07e7c2376",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39832"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39833"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -478,6 +2270,46 @@
       "products": [
         {
           "@id": "pkg:oci/perses-rhel9@sha256:a811b9345d884ba1c575584bec9be1d2a237902164a99887458a82d07e7c2376",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39833"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39834"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -517,6 +2349,26 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39835"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/perses-rhel9@sha256:a811b9345d884ba1c575584bec9be1d2a237902164a99887458a82d07e7c2376",
           "subcomponents": [
             {
@@ -530,6 +2382,46 @@
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39835"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -553,6 +2445,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-39836"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39883"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.40.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX statement for cluster-observability-operator/perses-rhel9 1.5."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-39883"
       },
       "products": [
@@ -570,6 +2502,46 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not listed as affected; no VEX statement for cluster-observability-operator/perses-rhel9 1.5."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-39883"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@1.35.0"
+            },
+            {
+              "@id": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.35.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; no VEX statement for perses/perses 9."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
     },
     {
       "vulnerability": {
@@ -593,6 +2565,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42499"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42501"
       },
       "products": [
@@ -610,6 +2622,46 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42501"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
     },
     {
       "vulnerability": {
@@ -633,11 +2685,91 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42502"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42504"
       },
       "products": [
         {
           "@id": "pkg:oci/perses-rhel9@sha256:a811b9345d884ba1c575584bec9be1d2a237902164a99887458a82d07e7c2376",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42504"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
           "subcomponents": [
             {
               "@id": "pkg:golang/stdlib@1.25.9"
@@ -673,6 +2805,46 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42505"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.52.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.52.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42506"
       },
       "products": [
@@ -690,6 +2862,46 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected \u2014 this image build (Cluster Observability Operator 1.5.0)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42506"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/net@0.40.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/net@v0.40.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42507"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.25.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.25.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
     },
     {
       "vulnerability": {
@@ -713,11 +2925,91 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-42507"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/stdlib@1.23.9"
+            },
+            {
+              "@id": "pkg:golang/stdlib@v1.23.9"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "perses/perses 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42508"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-42508"
       },
       "products": [
         {
           "@id": "pkg:oci/perses-rhel9@sha256:a811b9345d884ba1c575584bec9be1d2a237902164a99887458a82d07e7c2376",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42508"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46595"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -753,11 +3045,91 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-46595"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46597"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-46597"
       },
       "products": [
         {
           "@id": "pkg:oci/perses-rhel9@sha256:a811b9345d884ba1c575584bec9be1d2a237902164a99887458a82d07e7c2376",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.50.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46597"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
           "subcomponents": [
             {
               "@id": "pkg:golang/golang.org/x/crypto@0.50.0"
@@ -790,6 +3162,45 @@
       ],
       "status": "not_affected",
       "impact_statement": "cluster-observability-operator/perses-rhel9 1.5 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-46598"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:e797cdb47beef40b04da7b6d645bca3dc32e6247003c45b56b38efd9e13bf01c",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@0.38.0"
+            },
+            {
+              "@id": "pkg:golang/golang.org/x/crypto@v0.38.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 9 names other components only."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/perses-rhel9@sha256:27553fd6d4b4983475a0d9a4ccc7d7fa63b1bd4b48f0e5cb2d18963fe232cfd5",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-4.el9"
+        }
+      ],
+      "status": "fixed"
     },
     {
       "vulnerability": {

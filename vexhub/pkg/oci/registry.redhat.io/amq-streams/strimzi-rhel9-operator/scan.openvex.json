@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/strimzi-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T13:46:58Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:48:16Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -302,78 +302,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/strimzi-rhel9-operator@sha256:231861dd89a01b949e9713dc2b0049530643059b44ad711e3ba17509ab21564b",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/strimzi-rhel9-operator 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-58436"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/strimzi-rhel9-operator@sha256:231861dd89a01b949e9713dc2b0049530643059b44ad711e3ba17509ab21564b",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/strimzi-rhel9-operator 9: known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/strimzi-rhel9-operator@sha256:231861dd89a01b949e9713dc2b0049530643059b44ad711e3ba17509ab21564b",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.3.3op2-34.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.3.3op2-34.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "amq-streams/strimzi-rhel9-operator 9: known_not_affected."
     }
   ]
 }

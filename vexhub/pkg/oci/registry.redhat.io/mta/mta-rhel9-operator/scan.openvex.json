@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/mta-rhel9-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:44:50Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:58:24Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -763,26 +763,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-45582"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/mta-rhel9-operator@sha256:6abd6541a955543207c1ff4b903928debcc89dd6ea3d7aeaa3e47465849f7b37",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/tar@1.34-7.el9"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "mta/mta-rhel9-operator (RHEL 9): known_not_affected."
     },
     {
       "vulnerability": {

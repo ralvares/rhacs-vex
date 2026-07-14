@@ -2,35 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/bamoe-businesscentral-monitoring-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:02:22Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:50:25Z",
+  "version": 2,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2025-61915"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/bamoe-businesscentral-monitoring-rhel8@sha256:ef1d77bb085172f927ee53d1674c85e2acaf1f580d7cad55bae8bf2c33c49c01",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-62.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-62.el8_10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-62.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-62.el8_10"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ibm-bamoe/bamoe-businesscentral-monitoring-rhel8 (RHEL 8): known_not_affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2025-67030"
@@ -52,32 +26,6 @@
         },
         {
           "@id": "pkg:rpm/redhat/sisu@0.3.5-3.module+el8.10.0+21301+657f54a3"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "ibm-bamoe/bamoe-businesscentral-monitoring-rhel8 (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2026-34980"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/bamoe-businesscentral-monitoring-rhel8@sha256:ef1d77bb085172f927ee53d1674c85e2acaf1f580d7cad55bae8bf2c33c49c01",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/cups-libs@2.2.6-62.el8_10"
-            },
-            {
-              "@id": "pkg:rpm/redhat/cups@2.2.6-62.el8_10"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups-libs@2.2.6-62.el8_10"
-        },
-        {
-          "@id": "pkg:rpm/redhat/cups@2.2.6-62.el8_10"
         }
       ],
       "status": "not_affected",

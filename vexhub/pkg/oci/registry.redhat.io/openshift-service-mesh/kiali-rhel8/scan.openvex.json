@@ -2,29 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/kiali-rhel8",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:29:51Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:55:52Z",
+  "version": 3,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2013-0340"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kiali-rhel8@sha256:27a6aebffa3d049ee48050126e6107db2e07c49e9ce9297175facb6368e1e792",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.4"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.4"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-service-mesh/kiali (RHEL 8): known_not_affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2022-1996"
@@ -64,26 +44,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "openshift-service-mesh/kiali (RHEL 8) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-23990"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kiali-rhel8@sha256:27a6aebffa3d049ee48050126e6107db2e07c49e9ce9297175facb6368e1e792",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.4"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.4"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-service-mesh/kiali (RHEL 8): known_not_affected."
     },
     {
       "vulnerability": {
@@ -733,58 +693,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2024-37370"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kiali-rhel8@sha256:27a6aebffa3d049ee48050126e6107db2e07c49e9ce9297175facb6368e1e792",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-16.el8_6"
-            },
-            {
-              "@id": "pkg:rpm/redhat/krb5@1.18.2-16.el8_6"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-16.el8_6"
-        },
-        {
-          "@id": "pkg:rpm/redhat/krb5@1.18.2-16.el8_6"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-service-mesh/kiali (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-37371"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kiali-rhel8@sha256:27a6aebffa3d049ee48050126e6107db2e07c49e9ce9297175facb6368e1e792",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-16.el8_6"
-            },
-            {
-              "@id": "pkg:rpm/redhat/krb5@1.18.2-16.el8_6"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/krb5-libs@1.18.2-16.el8_6"
-        },
-        {
-          "@id": "pkg:rpm/redhat/krb5@1.18.2-16.el8_6"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-service-mesh/kiali (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2024-45336"
       },
       "products": [
@@ -962,26 +870,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "known_not_affected. RHOSSM 2.4 for RHEL 8 \u2014 openshift-service-mesh/kiali-rhel8@sha256:19e5e7cfd27a871e3e90af68d5cfa178aa18c5c81c6058a8f979871c372da02b_s390x."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-8176"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kiali-rhel8@sha256:27a6aebffa3d049ee48050126e6107db2e07c49e9ce9297175facb6368e1e792",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.4"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.4"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-service-mesh/kiali (RHEL 8): known_not_affected."
     },
     {
       "vulnerability": {
@@ -2278,26 +2166,6 @@
       ],
       "status": "not_affected",
       "impact_statement": "openshift-service-mesh/kiali (RHEL 8) not listed as affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2025-59375"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/kiali-rhel8@sha256:27a6aebffa3d049ee48050126e6107db2e07c49e9ce9297175facb6368e1e792",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.4"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.4"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "openshift-service-mesh/kiali (RHEL 8): known_not_affected."
     },
     {
       "vulnerability": {

@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/cnv-must-gather-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:32:17Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:55:57Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -3817,6 +3817,46 @@
             },
             {
               "@id": "pkg:golang/github.com/containerd/containerd@v1.7.11"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cnv-must-gather not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cnv-must-gather-rhel9@sha256:28ae9be3ffa7fcbcaef344dcd2f2ed3e9edca096c5197fe50541c67413ec1728",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.3.6"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.3.6"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "cnv-must-gather not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48702"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/cnv-must-gather-rhel9@sha256:6d43630f522b15d70e0dcb71e84254504c3162c623781ff24e4855c4d9374d5b",
+          "subcomponents": [
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@1.3.6"
+            },
+            {
+              "@id": "pkg:golang/github.com/sigstore/rekor@v1.3.6"
             }
           ]
         }

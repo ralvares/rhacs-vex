@@ -2,35 +2,9 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/zync-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-13T11:17:32Z",
-  "version": 1,
+  "timestamp": "2026-07-13T17:44:39Z",
+  "version": 2,
   "statements": [
-    {
-      "vulnerability": {
-        "name": "CVE-2026-28417"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/zync-rhel9@sha256:f6e66b36fddfe85358fab1c8a3e641f0b4b24134b536457c769f39ad6705f14f",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "3scale-amp2/zync-rhel9 9: known_not_affected."
-    },
     {
       "vulnerability": {
         "name": "CVE-2026-59873"

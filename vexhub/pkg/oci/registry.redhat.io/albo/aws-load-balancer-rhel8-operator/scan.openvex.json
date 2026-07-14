@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/aws-load-balancer-rhel8-operator",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:02:20Z",
-  "version": 2,
+  "timestamp": "2026-07-13T17:50:53Z",
+  "version": 4,
   "statements": [
     {
       "vulnerability": {
@@ -47,26 +47,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2013-0340"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.5"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.5"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "albo/aws-load-balancer-rhel8-operator (RHEL 8): known_not_affected."
     },
     {
       "vulnerability": {
@@ -278,26 +258,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2022-23990"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.5"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.5"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "albo/aws-load-balancer-rhel8-operator (RHEL 8): known_not_affected."
     },
     {
       "vulnerability": {
@@ -2325,38 +2285,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "albo/aws-load-balancer-rhel8-operator (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33599"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
           "subcomponents": [
             {
@@ -2378,38 +2306,6 @@
         },
         {
           "@id": "pkg:rpm/redhat/glibc@2.28-189.10.el8_6"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "albo/aws-load-balancer-rhel8-operator (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33600"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
         }
       ],
       "status": "not_affected",
@@ -2453,38 +2349,6 @@
       },
       "products": [
         {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "albo/aws-load-balancer-rhel8-operator (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33601"
-      },
-      "products": [
-        {
           "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
           "subcomponents": [
             {
@@ -2506,38 +2370,6 @@
         },
         {
           "@id": "pkg:rpm/redhat/glibc@2.28-189.10.el8_6"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "albo/aws-load-balancer-rhel8-operator (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-33602"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:16e9ffed36107527a37713ac5bd34a7bc20f042269a81077429fb5884914c4d0",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
-            },
-            {
-              "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-common@2.28-236.el8.7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-236.el8.7"
-        },
-        {
-          "@id": "pkg:rpm/redhat/glibc@2.28-236.el8.7"
         }
       ],
       "status": "not_affected",
@@ -2943,26 +2775,6 @@
         }
       ],
       "status": "fixed"
-    },
-    {
-      "vulnerability": {
-        "name": "CVE-2024-8176"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.5"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.5"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "albo/aws-load-balancer-rhel8-operator (RHEL 8): known_not_affected."
     },
     {
       "vulnerability": {
@@ -3658,26 +3470,6 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2025-59375"
-      },
-      "products": [
-        {
-          "@id": "pkg:oci/aws-load-balancer-rhel8-operator@sha256:53f14e88f05641545b675ff4edbcff6909d752659c02a1babf7491734f347153",
-          "subcomponents": [
-            {
-              "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.5"
-            }
-          ]
-        },
-        {
-          "@id": "pkg:rpm/redhat/expat@2.2.5-8.el8_6.5"
-        }
-      ],
-      "status": "not_affected",
-      "impact_statement": "albo/aws-load-balancer-rhel8-operator (RHEL 8): known_not_affected."
-    },
-    {
-      "vulnerability": {
         "name": "CVE-2025-61723"
       },
       "products": [
@@ -5026,7 +4818,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {
@@ -5046,7 +4838,7 @@
         }
       ],
       "status": "not_affected",
-      "impact_statement": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux 8, Red Hat Enterprise Linux AppStream (v. 8) (known_not_affected/fixed only)."
     },
     {
       "vulnerability": {

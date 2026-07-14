@@ -1,0 +1,41 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/vextriage/rhacs-scanner-v4-db-rhel8",
+  "author": "vextriage",
+  "timestamp": "2026-07-13T19:02:50Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-33412"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/rhacs-scanner-v4-db-rhel8@sha256:19b84b221ab9ce59fd0c8fbb4a713ee66304fd92822cebbcde0d77496ca82b0a",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.0.1763-21.el8_10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.0.1763-21.el8_10"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.0.1763-21.el8_10"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.0.1763-21.el8_10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.0.1763-21.el8_10"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.0.1763-21.el8_10"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "advanced-cluster-security/rhacs-scanner-v4-db-rhel8 4.7: known_not_affected."
+    }
+  ]
+}

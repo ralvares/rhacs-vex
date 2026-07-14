@@ -2,9 +2,169 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/postgresql-10",
   "author": "vextriage",
-  "timestamp": "2026-07-13T14:46:42Z",
-  "version": 1,
+  "timestamp": "2026-07-13T18:36:25Z",
+  "version": 5,
   "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2020-21469"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:4b912c80085b88a03309aeb7907efcc29dd3342fa3952b6ea067afb1914bfe53",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/postgresql-contrib@10.21-2.module+el8.6.0+15342+53518fac"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql-server@10.21-2.module+el8.6.0+15342+53518fac"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql@10.21-2.module+el8.6.0+15342+53518fac"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-contrib@10.21-2.module+el8.6.0+15342+53518fac"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-server@10.21-2.module+el8.6.0+15342+53518fac"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql@10.21-2.module+el8.6.0+15342+53518fac"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/postgresql-10 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2020-21469"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:a52ad402458ec8ef3f275972c6ebed05ad64398f884404b9bb8e3010c5c95291",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/postgresql-contrib@10.21-2.module+el8.6.0+15342+53518fac"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql-server@10.21-2.module+el8.6.0+15342+53518fac"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql@10.21-2.module+el8.6.0+15342+53518fac"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-contrib@10.21-2.module+el8.6.0+15342+53518fac"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-server@10.21-2.module+el8.6.0+15342+53518fac"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql@10.21-2.module+el8.6.0+15342+53518fac"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/postgresql-10 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2020-21469"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:a723bb3a7a5046527b9a5b628ddfb211c526e3814cc4242262c4f8a016f38edd",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/postgresql-contrib@10.17-1.module+el8.4.0+11249+895597ab"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql-server@10.17-1.module+el8.4.0+11249+895597ab"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql@10.17-1.module+el8.4.0+11249+895597ab"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-contrib@10.17-1.module+el8.4.0+11249+895597ab"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-server@10.17-1.module+el8.4.0+11249+895597ab"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql@10.17-1.module+el8.4.0+11249+895597ab"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/postgresql-10 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2020-21469"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:b2695e9af379624621bef9ec785f0cb618bfdabae98c5f17eea82ff5f8d2d5cb",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/postgresql-contrib@10.17-1.module+el8.4.0+11249+895597ab"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql-server@10.17-1.module+el8.4.0+11249+895597ab"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql@10.17-1.module+el8.4.0+11249+895597ab"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-contrib@10.17-1.module+el8.4.0+11249+895597ab"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-server@10.17-1.module+el8.4.0+11249+895597ab"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql@10.17-1.module+el8.4.0+11249+895597ab"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/postgresql-10 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2020-21469"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:b7fa644277d5e406b642685ff2ace1b1de7aea2e2a1421b3cbcda7d60405f44d",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/postgresql-contrib@10.23-3.module+el8.9.0+20831+78489779"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql-server@10.23-3.module+el8.9.0+20831+78489779"
+            },
+            {
+              "@id": "pkg:rpm/redhat/postgresql@10.23-3.module+el8.9.0+20831+78489779"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-contrib@10.23-3.module+el8.9.0+20831+78489779"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql-server@10.23-3.module+el8.9.0+20831+78489779"
+        },
+        {
+          "@id": "pkg:rpm/redhat/postgresql@10.23-3.module+el8.9.0+20831+78489779"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/postgresql-10 (RHEL 8): known_not_affected."
+    },
     {
       "vulnerability": {
         "name": "CVE-2020-21469"
@@ -58,31 +218,43 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2023-5868"
+        "name": "CVE-2024-33599"
       },
       "products": [
         {
-          "@id": "pkg:oci/postgresql-10@sha256:eec360a32519d45c885efbfc6539dc5ff74447e1aceeb5115d1aa30b40c52aeb",
+          "@id": "pkg:oci/postgresql-10@sha256:4b912c80085b88a03309aeb7907efcc29dd3342fa3952b6ea067afb1914bfe53",
           "subcomponents": [
             {
-              "@id": "pkg:rpm/redhat/postgresql-contrib@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
             },
             {
-              "@id": "pkg:rpm/redhat/postgresql-server@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
             },
             {
-              "@id": "pkg:rpm/redhat/postgresql@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
             }
           ]
         },
         {
-          "@id": "pkg:rpm/redhat/postgresql-contrib@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
         },
         {
-          "@id": "pkg:rpm/redhat/postgresql-server@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
         },
         {
-          "@id": "pkg:rpm/redhat/postgresql@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
         }
       ],
       "status": "not_affected",
@@ -90,31 +262,307 @@
     },
     {
       "vulnerability": {
-        "name": "CVE-2023-5870"
+        "name": "CVE-2024-33599"
       },
       "products": [
         {
-          "@id": "pkg:oci/postgresql-10@sha256:eec360a32519d45c885efbfc6539dc5ff74447e1aceeb5115d1aa30b40c52aeb",
+          "@id": "pkg:oci/postgresql-10@sha256:a52ad402458ec8ef3f275972c6ebed05ad64398f884404b9bb8e3010c5c95291",
           "subcomponents": [
             {
-              "@id": "pkg:rpm/redhat/postgresql-contrib@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
             },
             {
-              "@id": "pkg:rpm/redhat/postgresql-server@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
             },
             {
-              "@id": "pkg:rpm/redhat/postgresql@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
             }
           ]
         },
         {
-          "@id": "pkg:rpm/redhat/postgresql-contrib@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
         },
         {
-          "@id": "pkg:rpm/redhat/postgresql-server@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
         },
         {
-          "@id": "pkg:rpm/redhat/postgresql@10.23-4.module+el8.9.0+21317+d2c6bf8a"
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/postgresql-10 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33600"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:4b912c80085b88a03309aeb7907efcc29dd3342fa3952b6ea067afb1914bfe53",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/postgresql-10 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33600"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:a52ad402458ec8ef3f275972c6ebed05ad64398f884404b9bb8e3010c5c95291",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/postgresql-10 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33601"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:4b912c80085b88a03309aeb7907efcc29dd3342fa3952b6ea067afb1914bfe53",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/postgresql-10 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33601"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:a52ad402458ec8ef3f275972c6ebed05ad64398f884404b9bb8e3010c5c95291",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/postgresql-10 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33602"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:4b912c80085b88a03309aeb7907efcc29dd3342fa3952b6ea067afb1914bfe53",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhel8/postgresql-10 (RHEL 8): known_not_affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-33602"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/postgresql-10@sha256:a52ad402458ec8ef3f275972c6ebed05ad64398f884404b9bb8e3010c5c95291",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+            },
+            {
+              "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-common@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-langpack-en@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-locale-source@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-189.5.el8_6"
+        },
+        {
+          "@id": "pkg:rpm/redhat/glibc@2.28-189.5.el8_6"
         }
       ],
       "status": "not_affected",
