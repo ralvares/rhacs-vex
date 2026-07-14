@@ -34,6 +34,8 @@ The RHACS path needs no image pull and no container runtime, and works fully off
 > [!TIP]
 > In a hurry? See [docs/HOWTO.md](docs/HOWTO.md) — RHACS triage, parquet build, and
 > OpenVEX generation for images / OCP releases / operators, all in one page.
+> Numbers person? [docs/ACCURACY-REPORT.md](docs/ACCURACY-REPORT.md) — the measured
+> false-positive/false-negative audit and the grype vs trivy vs RHACS bake-off.
 
 ---
 
@@ -177,12 +179,27 @@ vextriage generate --images my-images.txt      --hub vexhub/        # explicit l
 vextriage generate --image  <ref@sha256:…>     --hub vexhub/ --verify
 ```
 
+| Flag | Effect |
+|------|--------|
+| `--workers N` | Parallel scanners; the pandas triage runs in a separate CPU process pool |
+| `--resume` | Skip digests already in their hub doc (resume interrupted runs) |
+| `--crosscheck` | Re-check every statement against raw Red Hat VEX with independent rules; prints disagreements |
+| `--verify` | trivy re-scan gate: fail if a statement doesn't actually suppress |
+| `--force` | Regenerate cached SBOMs |
+
 - `--ocp` / `--operators` reuse the pipeline's discovery artifacts
   (`data/pullspecs/*.txt`, `data/catalogs/*.json`) — the image lists, not RHACS data.
 - `--verify` re-scans each image with trivy against its own document and **fails on
   any statement that does not actually suppress** — the trust gate for publishing.
 - Re-runs are idempotent: documents merge per image name, new release digests append,
-  the doc version bumps only on real change. Interrupted runs resume for free.
+  the doc version bumps only on real change, and a re-scan **retracts** statements
+  that no longer hold. Interrupted runs resume for free (`--resume`).
+- Three layers of caching (immutable SBOMs, grype results keyed by DB build,
+  ETag-revalidated Red Hat VEX) make repeat sweeps minutes, not hours.
+- Suppression-safety rules baked into the emitter: a verdict never extends to a
+  source-rpm whose sibling packages diverge, go-binary components are matched to
+  their vendoring rpm via SBOM file ownership, and a not_affected claim never
+  overrides a pending fix for the installed build.
 
 ```
 vexhub/

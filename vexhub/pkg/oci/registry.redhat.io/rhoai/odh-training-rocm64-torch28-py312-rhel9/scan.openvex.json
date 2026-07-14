@@ -2,8 +2,8 @@
   "@context": "https://openvex.dev/ns/v0.2.0",
   "@id": "https://openvex.dev/docs/vextriage/odh-training-rocm64-torch28-py312-rhel9",
   "author": "vextriage",
-  "timestamp": "2026-07-14T04:09:00Z",
-  "version": 2,
+  "timestamp": "2026-07-14T04:42:41Z",
+  "version": 3,
   "statements": [
     {
       "vulnerability": {
@@ -11,6 +11,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/wheel@0.36.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No affected entry in Red Hat Enterprise Linux AppStream (v. 9) (known_not_affected/fixed only)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2022-40898"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:941955c98db48fc4a0fbb409acda4d3931081297e2f80c38a8f626fa719df6a0",
           "subcomponents": [
             {
@@ -45,6 +62,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.8.0+rocm6.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-2999"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:941955c98db48fc4a0fbb409acda4d3931081297e2f80c38a8f626fa719df6a0",
           "subcomponents": [
             {
@@ -79,6 +113,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.8.0+rocm6.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3000"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:941955c98db48fc4a0fbb409acda4d3931081297e2f80c38a8f626fa719df6a0",
           "subcomponents": [
             {
@@ -113,6 +164,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/torch@2.8.0+rocm6.4"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-3001"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:941955c98db48fc4a0fbb409acda4d3931081297e2f80c38a8f626fa719df6a0",
           "subcomponents": [
             {
@@ -140,6 +208,56 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-64756"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/nodejs-docs@22.22.2-1.module+el9.7.0+24157+8ddb2461"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nodejs-full-i18n@22.22.2-1.module+el9.7.0+24157+8ddb2461"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nodejs-libs@22.22.2-1.module+el9.7.0+24157+8ddb2461"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nodejs@10.9.7-1.22.22.2.1.module+el9.7.0+24157+8ddb2461"
+            },
+            {
+              "@id": "pkg:rpm/redhat/nodejs@22.22.2-1.module+el9.7.0+24157+8ddb2461"
+            },
+            {
+              "@id": "pkg:rpm/redhat/npm@10.9.7-1.22.22.2.1.module+el9.7.0+24157+8ddb2461"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/nodejs-docs@22.22.2-1.module+el9.7.0+24157+8ddb2461"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nodejs-full-i18n@22.22.2-1.module+el9.7.0+24157+8ddb2461"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nodejs-libs@22.22.2-1.module+el9.7.0+24157+8ddb2461"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nodejs@10.9.7-1.22.22.2.1.module+el9.7.0+24157+8ddb2461"
+        },
+        {
+          "@id": "pkg:rpm/redhat/nodejs@22.22.2-1.module+el9.7.0+24157+8ddb2461"
+        },
+        {
+          "@id": "pkg:rpm/redhat/npm@10.9.7-1.22.22.2.1.module+el9.7.0+24157+8ddb2461"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift AI 3.3)."
     },
     {
       "vulnerability": {
@@ -244,6 +362,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pip@24.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-training-rocm64-torch28-py312-rhel9 3.3 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2025-8869"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:941955c98db48fc4a0fbb409acda4d3931081297e2f80c38a8f626fa719df6a0",
           "subcomponents": [
             {
@@ -271,6 +406,54 @@
       ],
       "status": "not_affected",
       "impact_statement": "rhoai/odh-training-rocm64-torch28-py312-rhel9 9 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-0865"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-0994"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/protobuf@5.29.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-training-rocm64-torch28-py312-rhel9 3.3 not listed as affected."
     },
     {
       "vulnerability": {
@@ -349,6 +532,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/jaraco-context@5.3.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-23949"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:c1c1832c041b0cdded5001b5ef5a7d1cfbd1e6a75632253bca48cab1bb6bdd62",
           "subcomponents": [
             {
@@ -403,6 +603,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/wheel@0.45.1"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "known_not_affected \u2014 this image build (Red Hat OpenShift AI 3.3)."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-24049"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:c1c1832c041b0cdded5001b5ef5a7d1cfbd1e6a75632253bca48cab1bb6bdd62",
           "subcomponents": [
             {
@@ -440,6 +657,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pyarrow@22.0.0"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-training-rocm64-torch28-py312-rhel9 3.3 not listed as affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-25087"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:c1c1832c041b0cdded5001b5ef5a7d1cfbd1e6a75632253bca48cab1bb6bdd62",
           "subcomponents": [
             {
@@ -470,6 +704,23 @@
       ],
       "status": "not_affected",
       "impact_statement": "Not affected in rhoai/odh-training-rocm64-torch28-py312-rhel9 9 (Red Hat Enterprise Linux 9): component not present."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-27199"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/werkzeug@3.1.5"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
     },
     {
       "vulnerability": {
@@ -531,6 +782,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/flash-attn@2.8.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-31253"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:941955c98db48fc4a0fbb409acda4d3931081297e2f80c38a8f626fa719df6a0",
           "subcomponents": [
             {
@@ -585,6 +853,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-34515"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:941955c98db48fc4a0fbb409acda4d3931081297e2f80c38a8f626fa719df6a0",
           "subcomponents": [
             {
@@ -615,6 +900,54 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-34982"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-filesystem@8.2.2637-23.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim-minimal@8.2.2637-23.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/vim@8.2.2637-23.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-34993"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-34993"
       },
       "products": [
@@ -653,6 +986,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/transformers@4.55.2"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4372"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:941955c98db48fc4a0fbb409acda4d3931081297e2f80c38a8f626fa719df6a0",
           "subcomponents": [
             {
@@ -680,6 +1030,38 @@
       ],
       "status": "not_affected",
       "impact_statement": "No supported Red Hat product affected."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-44172"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c-devel@3.2.6-1.el9_0"
+            },
+            {
+              "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-config@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c-devel@3.2.6-1.el9_0"
+        },
+        {
+          "@id": "pkg:rpm/redhat/mariadb-connector-c@3.2.6-1.el9_0"
+        }
+      ],
+      "status": "not_affected",
+      "impact_statement": "rhoai/odh-training-rocm64-torch28-py312-rhel9 3.3: known_not_affected."
     },
     {
       "vulnerability": {
@@ -747,6 +1129,131 @@
     },
     {
       "vulnerability": {
+        "name": "CVE-2026-4519"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4775"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libtiff-devel@4.4.0-15.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/libtiff@4.4.0-15.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff-devel@4.4.0-15.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/libtiff@4.4.0-15.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4786"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-4878"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libcap@2.48-10.el9_7.1"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-48864"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/libsolv@0.7.24-3.el9"
+        }
+      ],
+      "status": "fixed"
+    },
+    {
+      "vulnerability": {
         "name": "CVE-2026-48864"
       },
       "products": [
@@ -789,6 +1296,23 @@
       },
       "products": [
         {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/aiohttp@3.13.3"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-54279"
+      },
+      "products": [
+        {
           "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:941955c98db48fc4a0fbb409acda4d3931081297e2f80c38a8f626fa719df6a0",
           "subcomponents": [
             {
@@ -816,6 +1340,37 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_present"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-6100"
+      },
+      "products": [
+        {
+          "@id": "pkg:oci/odh-training-rocm64-torch28-py312-rhel9@sha256:079c5d668bd058ff9048d158834485065dfa0a037593c12435c210f7873cf642",
+          "subcomponents": [
+            {
+              "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+            },
+            {
+              "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+            }
+          ]
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3-libs@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3.9@3.9.25-3.el9_7.3"
+        },
+        {
+          "@id": "pkg:rpm/redhat/python3@3.9.25-3.el9_7.3"
+        }
+      ],
+      "status": "fixed"
     }
   ]
 }

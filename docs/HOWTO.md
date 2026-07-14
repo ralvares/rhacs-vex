@@ -179,9 +179,23 @@ vextriage generate --operators --catalog 4.20             # one catalog only
   `data/catalogs/catalog-*.json` — produced by pipeline stages 3 / 1, or by hand
   (next section).
 - Re-runs are idempotent: docs merge per image, new digests append, versions bump
-  only on real change. SBOMs cache under `data/syft/`, so overlapping patch
-  releases are nearly free.
-- `--workers N` to parallelize; `--force` to regenerate cached SBOMs.
+  only on real change. A re-scan of a digest also **retracts** statements that no
+  longer hold (verdicts move as Red Hat updates its VEX).
+- Three caches make re-runs cheap: SBOMs (`data/syft/`, immutable per digest),
+  grype results (`data/scans/grype/`, valid per vulnerability-DB build — same-day
+  re-runs skip grype entirely), and Red Hat VEX files (`data/vex/`, revalidated
+  by ETag after 4 h).
+- `--workers N` parallelizes; scanning threads feed a separate CPU worker pool,
+  so the triage step actually uses your cores. `--force` regenerates cached SBOMs.
+- `--resume` skips digests already present in their hub doc — restarts only pay
+  for the tail. Use it for interrupted runs, NOT for a correctness sweep (a sweep
+  must re-audit everything).
+- `--crosscheck` re-checks every emitted statement against the raw Red Hat VEX
+  files with independent rules (seconds, offline) and prints any statement whose
+  answer differs from Red Hat's. Mismatches naming another RHEL major or an old
+  OpenShift are scope noise; anything else deserves a look.
+- Images without an amd64 build (e.g. OpenJ9 = Power/Z only) automatically fall
+  back to a platform the image's index does carry.
 - Scope: statements come from the **linux/amd64** build (images without an
   amd64 child fall back to whatever the index carries). Product identity is
   the multi-arch list digest and subcomponent purls are arch-less, so
@@ -293,6 +307,8 @@ vextriage retriage                                   # refresh verdicts offline
 vextriage parquet                                    # CSVs → parquet + manifest
 vextriage generate --ocp <ver> | --operators | --images FILE   # OpenVEX hub
 vextriage generate --image <ref> --verify            # publish gate
+vextriage generate ... --crosscheck                  # second opinion vs Red Hat VEX
+vextriage generate ... --resume                      # resume interrupted run
 vextriage hub                                        # reindex only
 vextriage hub --prune                                # drop rotated-out digests
 ```
