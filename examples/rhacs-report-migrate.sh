@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# rhacs-report-migrate.sh - migrate RHACS vulnerability report configurations
+# rhacs-report-migrate.sh - migrate (rp = reports) RHACS vulnerability report configurations
 # from the deprecated "Collection scope" to the new "Custom scope".
 #
 # Source this file from your shell (or from ~/.bashrc / ~/.zshrc):
@@ -18,9 +18,9 @@
 #
 # Commands:
 #
-#   rhacs-report-migrate               list report configs still using a collection scope
-#   rhacs-report-migrate ID [-y]       migrate one config, updating it IN PLACE (same name/ID)
-#   rhacs-report-migrate-all [-y]      migrate every collection-scoped config in place
+#   rhacs-rp-migrate               list report configs still using a collection scope
+#   rhacs-rp-migrate ID [-y]       migrate one config, updating it IN PLACE (same name/ID)
+#   rhacs-rp-migrate-all [-y]      migrate every collection-scoped config in place
 #
 # What the migration does:
 #
@@ -145,7 +145,7 @@ _ROXR_JQ_TRANSFORM='
   }
 '
 
-rhacs-report-migrate() {
+rhacs-rp-migrate() {
     local id="${1:-}" yes=""
     case "${2:-}" in -y|--yes) yes=1 ;; esac
 
@@ -160,7 +160,7 @@ rhacs-report-migrate() {
             (.[] | [.id, .name, .resourceScope.collectionScope.collectionName] | @tsv)
             end' | column -t -s $'\t'
         echo
-        echo 'migrate one with: rhacs-report-migrate <ID>'
+        echo 'migrate one with: rhacs-rp-migrate <ID>'
         return 0
     fi
 
@@ -244,7 +244,7 @@ rhacs-report-migrate() {
     echo "updated in place: $(jq -r '.name' <<<"$cfg") ($id) now uses Custom scope"
 }
 
-rhacs-report-migrate-all() {
+rhacs-rp-migrate-all() {
     local yes=""
     case "${1:-}" in -y|--yes) yes=1 ;; esac
 
@@ -275,7 +275,7 @@ rhacs-report-migrate-all() {
     while IFS=$'\t' read -r id name; do
         [ -z "$id" ] && continue
         echo "--- migrating: $name"
-        if rhacs-report-migrate "$id" -y; then ok=$((ok+1)); else fail=$((fail+1)); fi
+        if rhacs-rp-migrate "$id" -y; then ok=$((ok+1)); else fail=$((fail+1)); fi
         echo
     done <<<"$candidates"
     echo "done: $ok migrated, $fail failed/skipped"

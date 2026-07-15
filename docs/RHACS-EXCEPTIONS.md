@@ -395,31 +395,31 @@ export ROX_APPROVER_TOKEN=<approver token>  # VulnerabilityManagementApprovals (
 
 | Command | What it does |
 |---|---|
-| `rhacs-fp IMAGE CVE... -m "why"` | Request a false positive, scoped to the image |
-| `rhacs-fp ... --auto-approve` | Same, approved immediately (token needs both permissions) |
-| `rhacs-exceptions [pending\|approved\|denied]` | List requests as a table |
-| `rhacs-exceptions-overview` | Counts per status plus pending detail |
-| `rhacs-approve ID -m "why"` | Approve one request |
-| `rhacs-approve-all` | Approve everything pending (asks first; `-y` to skip) |
-| `rhacs-cancel ID` | Revert an approved exception; its CVEs return to Observed |
-| `rhacs-cancel-all` | Revert every approved exception (test cleanup) |
+| `rhacs-fp-request IMAGE CVE... -m "why"` | Request a false positive, scoped to the image |
+| `rhacs-fp-request ... --auto-approve` | Same, approved immediately (token needs both permissions) |
+| `rhacs-fp-list [pending\|approved\|denied]` | List requests as a table |
+| `rhacs-fp-overview` | Counts per status plus pending detail |
+| `rhacs-fp-approve ID -m "why"` | Approve one request |
+| `rhacs-fp-approve-all` | Approve everything pending (asks first; `-y` to skip) |
+| `rhacs-fp-cancel ID` | Revert an approved exception; its CVEs return to Observed |
+| `rhacs-fp-cancel-all` | Revert every approved exception (test cleanup) |
 
 Examples:
 
 ```bash
 # Single CVE: httpd 2.4.50-1.el9 flagged for CVE-2023-25690,
 # already fixed by the RHEL9 backport 2.4.53-7.el9_1.5
-rhacs-fp quay.io/vuln/asset-cache:v1 CVE-2023-25690 \
+rhacs-fp-request quay.io/vuln/asset-cache:v1 CVE-2023-25690 \
     -m "False positive: fixed by RHEL9 backport httpd-2.4.53-7.el9_1.5, version match only"
 
 # Several CVEs in one request, same image
-rhacs-fp quay.io/vuln/asset-cache:v1 \
+rhacs-fp-request quay.io/vuln/asset-cache:v1 \
     CVE-2024-38474 CVE-2024-38475 CVE-2024-38476 CVE-2024-38477 \
     -m "False positives: httpd CVEs fixed by RHEL9 backports"
 
 # Approver
-rhacs-exceptions               # what is pending?
-rhacs-approve-all -m "verified batch against Red Hat VEX"
+rhacs-fp-list               # what is pending?
+rhacs-fp-approve-all -m "verified batch against Red Hat VEX"
 ```
 
 Behavior worth knowing:

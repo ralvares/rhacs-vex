@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# rhacs-exceptions.sh - shell helpers for the RHACS vulnerability exception workflow
+# rhacs-exceptions.sh - shell helpers (fp = false positive workflow) for the RHACS vulnerability exception workflow
 #
 # Source this file from your shell (or from ~/.bashrc / ~/.zshrc):
 #
@@ -20,7 +20,7 @@
 #
 # Requester commands:
 #
-#   rhacs-fp IMAGE CVE [CVE...] -m "comment" [--auto-approve]
+#   rhacs-fp-request IMAGE CVE [CVE...] -m "comment" [--auto-approve]
 #       Request a false positive exception, always scoped to the image.
 #       IMAGE may be registry/repo:tag or registry/repo@sha256:...
 #       Tagged image  -> scope registry/repo:tag
@@ -29,12 +29,12 @@
 #
 # Approver commands:
 #
-#   rhacs-exceptions [pending|approved|denied]   list requests (default: pending)
-#   rhacs-exceptions-overview                    counts per status + pending detail
-#   rhacs-approve ID [-m "comment"]              approve one request
-#   rhacs-approve-all [-m "comment"] [-y]        approve every pending request
-#   rhacs-cancel ID                              revert an approved exception (CVEs re-observed)
-#   rhacs-cancel-all [-y]                        revert every approved exception (test cleanup)
+#   rhacs-fp-list [pending|approved|denied]         list requests (default: pending)
+#   rhacs-fp-overview                               counts per status + pending detail
+#   rhacs-fp-approve ID [-m "comment"]              approve one request
+#   rhacs-fp-approve-all [-m "comment"] [-y]        approve every pending request
+#   rhacs-fp-cancel ID                              revert an approved exception (CVEs re-observed)
+#   rhacs-fp-cancel-all [-y]                        revert every approved exception (test cleanup)
 #
 # Examples:
 #
@@ -42,27 +42,27 @@
 #   but Red Hat fixed it in the 2.4.53-7.el9_1.5 backport: the version number
 #   looks vulnerable, the patch is already in. Classic false positive.
 #
-#     rhacs-fp quay.io/vuln/asset-cache:v1 CVE-2023-25690 \
+#     rhacs-fp-request quay.io/vuln/asset-cache:v1 CVE-2023-25690 \
 #         -m "False positive: fixed by RHEL9 backport httpd-2.4.53-7.el9_1.5, version match only"
 #
 #   Test 2 - multiple CVEs in one request, same image. All flagged against
 #   httpd 2.4.50-1.el9 on version match; each is addressed by a RHEL9 backport.
 #
-#     rhacs-fp quay.io/vuln/asset-cache:v1 \
+#     rhacs-fp-request quay.io/vuln/asset-cache:v1 \
 #         CVE-2023-25690 CVE-2024-38474 CVE-2024-38475 CVE-2024-38476 \
 #         CVE-2024-38477 CVE-2025-58098 CVE-2026-28780 \
 #         -m "False positives: httpd CVEs fixed by RHEL9 backports, scanner matched on version only"
 #
 #   Test 3 - auto-approve (token needs both request and approval permissions):
 #
-#     rhacs-fp quay.io/vuln/asset-cache:v1 CVE-2023-25690 \
+#     rhacs-fp-request quay.io/vuln/asset-cache:v1 CVE-2023-25690 \
 #         -m "False positive: RHEL9 backport" --auto-approve
 #
 #   Approver flow:
 #
-#     rhacs-exceptions                 # see what is pending
-#     rhacs-approve <id> -m "verified against Red Hat VEX"
-#     rhacs-approve-all -m "verified batch against Red Hat VEX"
+#     rhacs-fp-list                 # see what is pending
+#     rhacs-fp-approve <id> -m "verified against Red Hat VEX"
+#     rhacs-fp-approve-all -m "verified batch against Red Hat VEX"
 #
 # Dependencies: curl, jq
 
@@ -123,7 +123,7 @@ _rox_parse_image() {
 
 # ---------------------------------------------------------------- requester
 
-rhacs-fp() {
+rhacs-fp-request() {
     local cves=() comment="" auto_approve="" image=""
 
     while [ $# -gt 0 ]; do
@@ -131,7 +131,7 @@ rhacs-fp() {
             -m|--comment)   comment="$2"; shift 2 ;;
             --auto-approve) auto_approve=1; shift ;;
             -h|--help)
-                echo 'usage: rhacs-fp IMAGE CVE [CVE...] -m "comment" [--auto-approve]'
+                echo 'usage: rhacs-fp-request IMAGE CVE [CVE...] -m "comment" [--auto-approve]'
                 return 0 ;;
             *)
                 if [ -z "$image" ]; then image="$1"; else cves+=("$1"); fi
@@ -140,7 +140,7 @@ rhacs-fp() {
     done
 
     if [ -z "$image" ] || [ ${#cves[@]} -eq 0 ] || [ -z "$comment" ]; then
-        echo 'usage: rhacs-fp IMAGE CVE [CVE...] -m "comment" [--auto-approve]' >&2
+        echo 'usage: rhacs-fp-request IMAGE CVE [CVE...] -m "comment" [--auto-approve]' >&2
         return 1
     fi
 
@@ -202,19 +202,19 @@ rhacs-fp() {
     echo "  cves:  ${cves[*]}"
 
     if [ -n "$auto_approve" ]; then
-        rhacs-approve "$id" -m "Auto-approved: $comment"
+        rhacs-fp-approve "$id" -m "Auto-approved: $comment"
     fi
 }
 
 # ---------------------------------------------------------------- approver
 
-rhacs-exceptions() {
+rhacs-fp-list() {
     local state="${1:-pending}" query
     case "$state" in
         pending)  query='Request Status:PENDING,APPROVED_PENDING_UPDATE' ;;
         approved) query='Request Status:APPROVED' ;;
         denied)   query='Request Status:DENIED' ;;
-        *) echo "usage: rhacs-exceptions [pending|approved|denied]" >&2; return 1 ;;
+        *) echo "usage: rhacs-fp-list [pending|approved|denied]" >&2; return 1 ;;
     esac
 
     _rox_curl GET "/v2/vulnerability-exceptions?query=$(jq -rn --arg q "$query" '$q|@uri')&pagination.limit=100" \
@@ -235,17 +235,17 @@ rhacs-exceptions() {
         end' | column -t -s $'\t'
 }
 
-rhacs-exceptions-overview() {
+rhacs-fp-overview() {
     local token="${ROX_APPROVER_TOKEN:-$ROX_API_TOKEN}"
     echo "== exception requests by status"
     _rox_curl GET "/v2/vulnerability-exceptions?pagination.limit=1000" "" "$token" |
         jq -r '.exceptions // [] | group_by(.status) | map("\(.[0].status): \(length)") | .[]'
     echo
     echo "== pending detail"
-    rhacs-exceptions pending
+    rhacs-fp-list pending
 }
 
-rhacs-approve() {
+rhacs-fp-approve() {
     local id="" comment="Approved via CLI"
     while [ $# -gt 0 ]; do
         case "$1" in
@@ -254,7 +254,7 @@ rhacs-approve() {
         esac
     done
     if [ -z "$id" ]; then
-        echo 'usage: rhacs-approve ID [-m "comment"]' >&2
+        echo 'usage: rhacs-fp-approve ID [-m "comment"]' >&2
         return 1
     fi
 
@@ -273,10 +273,10 @@ rhacs-approve() {
     fi
 }
 
-rhacs-cancel() {
+rhacs-fp-cancel() {
     local id="${1:-}"
     if [ -z "$id" ]; then
-        echo "usage: rhacs-cancel ID    (find IDs with: rhacs-exceptions approved)" >&2
+        echo "usage: rhacs-fp-cancel ID    (find IDs with: rhacs-fp-list approved)" >&2
         return 1
     fi
 
@@ -295,7 +295,7 @@ rhacs-cancel() {
     fi
 }
 
-rhacs-cancel-all() {
+rhacs-fp-cancel-all() {
     local yes=""
     case "${1:-}" in -y|--yes) yes=1 ;; esac
 
@@ -309,7 +309,7 @@ rhacs-cancel-all() {
     fi
 
     echo "approved exceptions:"
-    rhacs-exceptions approved
+    rhacs-fp-list approved
     echo
 
     if [ -z "$yes" ]; then
@@ -321,7 +321,7 @@ rhacs-cancel-all() {
     local id ok=0 fail=0
     while IFS= read -r id; do
         [ -z "$id" ] && continue
-        if rhacs-cancel "$id" >/dev/null; then
+        if rhacs-fp-cancel "$id" >/dev/null; then
             echo "canceled: $id"; ok=$((ok+1))
         else
             fail=$((fail+1))
@@ -330,13 +330,13 @@ rhacs-cancel-all() {
     echo "done: $ok canceled, $fail failed"
 }
 
-rhacs-approve-all() {
+rhacs-fp-approve-all() {
     local comment="Bulk-approved via CLI" yes=""
     while [ $# -gt 0 ]; do
         case "$1" in
             -m|--comment) comment="$2"; shift 2 ;;
             -y|--yes)     yes=1; shift ;;
-            *) echo 'usage: rhacs-approve-all [-m "comment"] [-y]' >&2; return 1 ;;
+            *) echo 'usage: rhacs-fp-approve-all [-m "comment"] [-y]' >&2; return 1 ;;
         esac
     done
 
@@ -350,7 +350,7 @@ rhacs-approve-all() {
     fi
 
     echo "pending requests:"
-    rhacs-exceptions pending
+    rhacs-fp-list pending
     echo
 
     if [ -z "$yes" ]; then
@@ -362,7 +362,7 @@ rhacs-approve-all() {
     local id ok=0 fail=0
     while IFS= read -r id; do
         [ -z "$id" ] && continue
-        if rhacs-approve "$id" -m "$comment"; then ok=$((ok+1)); else fail=$((fail+1)); fi
+        if rhacs-fp-approve "$id" -m "$comment"; then ok=$((ok+1)); else fail=$((fail+1)); fi
     done <<<"$ids"
     echo "done: $ok approved, $fail failed"
 }
