@@ -506,6 +506,10 @@ def parse_args() -> argparse.Namespace:
 def main():
     args = parse_args()
 
+    # ── VEX mirror, before any scanning stage forks or threads ──────────────
+    from .triage import ensure_mirror
+    ensure_mirror()
+
     # ── Validate pull-secret ────────────────────────────────────────────────
     pull_secret = os.path.expanduser(args.pull_secret)
     if not os.path.isfile(pull_secret):

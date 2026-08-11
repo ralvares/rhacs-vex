@@ -6,8 +6,7 @@ import sys, json, os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src'))
 import pandas as pd
 from rhacs_vex.triage import (audit_row_detailed, WorkloadContext, parse_context_from_labels,
-                              rhacs_to_df, download_and_convert_with_lib)
-from concurrent.futures import ThreadPoolExecutor, as_completed
+                              rhacs_to_df, ensure_mirror)
 
 with open('data/baseline.json') as f:
     baseline = json.load(f)
@@ -20,10 +19,10 @@ labels = (scan.get('metadata') or {}).get('v1', {}).get('labels') or {}
 ctx_cli = parse_context_from_labels(labels, image_ref)
 df_cli = rhacs_to_df(scan)
 
-# Sync VEX
-cves = set(b['cve'] for b in baseline)
-with ThreadPoolExecutor(max_workers=20) as ex:
-    for f in as_completed({ex.submit(download_and_convert_with_lib, c): c for c in cves}): pass
+# The mirror is the only source a run reads, so make sure it is current before
+# comparing verdicts — auditing against a short mirror reports mass "changes"
+# that are really absent files.
+ensure_mirror()
 
 results = {}
 

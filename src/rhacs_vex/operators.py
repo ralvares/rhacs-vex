@@ -372,6 +372,9 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    # Before the worker pool, not inside it — see triage.ensure_mirror.
+    triage.ensure_mirror(console)
+
     ROX_ENDPOINT  = os.environ.get('ROX_ENDPOINT', '')
     ROX_API_TOKEN = os.environ.get('ROX_API_TOKEN', '')
     if not ROX_ENDPOINT or not ROX_API_TOKEN:

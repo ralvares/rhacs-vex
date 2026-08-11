@@ -51,6 +51,7 @@ def _scanner_cmd(scanner: str, args) -> int:
     from . import triage
     from .context import context_for_image
     console = Console()
+    triage.ensure_mirror(console)
 
     if scanner == 'grype':
         from .adapters import grype as adapter
@@ -83,13 +84,13 @@ def _scanner_cmd(scanner: str, args) -> int:
     console.print(f"🧭 Image context via labels: [bold cyan]{image_ref}[/bold cyan]")
     ctx = context_for_image(image_ref, os_hint=hint, labels=labels or None,
                             digests=digests)
-    df = _merge_index(df, args, console, image_ref, labels)
+    df, merged = _merge_index(df, args, console, image_ref, labels)
     if scanner == 'grype':
         _wire_rpm_owners(df, ctx, adapter.rpm_file_owners(target))
 
     result_df = triage._audit_and_display(
         df, ctx, console, output_path=args.output, output_fmt=args.format,
-        false_only=args.false_only, source_label=scanner)
+        false_only=args.false_only, source_label=scanner, candidates=merged)
 
     if args.openvex_dir:
         try:
@@ -112,6 +113,7 @@ def _scanfree_cmd(args) -> int:
     from .adapters import grype as adapter
     from .context import context_for_image
     console = Console()
+    triage.ensure_mirror(console)
 
     index_path = args.index or scanfree.INDEX_PATH
     if args.build_index or not os.path.exists(index_path):
@@ -181,7 +183,8 @@ def _scanfree_cmd(args) -> int:
 
     result_df = triage._audit_and_display(
         df, ctx, console, output_path=args.output, output_fmt=args.format,
-        false_only=args.false_only, source_label='VEX index (no scanner)')
+        false_only=args.false_only, source_label='VEX index (no scanner)',
+        candidates=True)
 
     if args.openvex_dir:
         try:
@@ -214,6 +217,8 @@ def _generate_cmd(args) -> int:
     """
     import re as _re
     from concurrent.futures import ThreadPoolExecutor, as_completed
+    from . import triage as _triage
+    _triage.ensure_mirror(Console())
 
     from . import hub, openvex, triage
     from .adapters import grype as adapter
@@ -750,6 +755,14 @@ def _add_index_args(p: argparse.ArgumentParser, *, default: bool) -> None:
                    help='scanner findings only')
     p.add_argument('--index', default=None, metavar='FILE',
                    help=f'index location (default: {scanfree.INDEX_PATH})')
+    p.add_argument('--skip-sync', dest='skip_sync', action='store_true', default=False,
+                   help='do not refresh the VEX mirror, however old it is')
+
+
+def _apply_sync_policy(args) -> None:
+    """A run reads the mirror; --skip-sync stops it being refreshed first."""
+    if getattr(args, 'skip_sync', False):
+        os.environ['VEX_SKIP_SYNC'] = '1'
 
 
 def _build_index(console, index_path: str) -> dict:
@@ -762,35 +775,100 @@ def _build_index(console, index_path: str) -> dict:
     return idx
 
 
-def _merge_index(df, args, console, image_ref: str, labels) -> 'pd.DataFrame':
+def _merge_index(df, args, console, image_ref: str, labels) -> tuple:
     """Union scanner findings with the index candidates, when asked for.
 
     The index is never built implicitly here: building it walks the whole VEX
     mirror and a scan should not silently turn into a several-minute job.
     """
     if not getattr(args, 'vex_index', False):
-        return df
+        return df, False
     index_path = getattr(args, 'index', None) or scanfree.INDEX_PATH
     index = scanfree.load_index(index_path)
     if not index:
         console.print(f'[yellow]no VEX index at {index_path} — scanner findings '
                       f'only; run `vextriage build-index` for the rpm + image '
                       f'classes too.[/yellow]')
-        return df
+        return df, False
     df, added = scanfree.merge_index_candidates(df, index, image_ref=image_ref,
                                                 labels=labels)
     if added:
         console.print(f"🧮 +{added:,} candidates from the VEX index "
                       f"(rpm + image classes the scanner did not report)")
-    return df
+    return df, bool(added)
 
 
 def _build_index_cmd(args) -> int:
     """Build the inverted VEX index every scan path can draw candidates from."""
+    from . import triage
     console = Console()
     index_path = args.index or scanfree.INDEX_PATH
+    if getattr(args, 'sync', False):
+        try:
+            st = triage.sync_vex_mirror(console)
+        except RuntimeError as e:
+            console.print(f'[red]{e}[/red]')
+            return 1
+        console.print(f"   mirrored [bold]{st['fetched']:,}[/bold] file(s); "
+                      f"{st['corpus']:,} CVEs in the corpus")
     console.print(f"🧱 building VEX index → [cyan]{index_path}[/cyan]")
     _build_index(console, index_path)
+    return 0
+
+
+def _report_cmd(args) -> int:
+    """Triage a RHACS report CSV end to end and write one shareable HTML file."""
+    import time
+    from . import report, triage as triage_mod
+    console = Console()
+    triage_mod.ensure_mirror(console)
+    if not os.path.exists(args.csv):
+        console.print(f'[red]no such file: {args.csv}[/red]')
+        return 2
+    try:
+        result = report.triage_report(args.csv, workers=args.workers,
+                                      platform=args.platform, console=console,
+                                      rescan=args.rescan)
+    except ValueError as e:
+        console.print(f'[red]{e}[/red]')
+        return 2
+    rows = result['rows']
+    if rows.empty:
+        console.print('[yellow]nothing to report — no row survived triage.[/yellow]')
+        return 1
+    real = int((~rows['AUDIT_RESULT'].str.contains('FALSE', na=False)).sum())
+    path = report.render_html(result, args.output,
+                              when=time.strftime('%Y-%m-%d %H:%M'))
+    if args.rescan:
+        # A rescan enumerates candidates, so the cleared rows were never claims
+        # about these images — same wording as scanfree.
+        console.print(f"\n[bold]{len(rows):,}[/bold] candidates checked → "
+                      f"[red]{real:,} findings[/red]; "
+                      f"{len(rows) - real:,} not a match")
+    else:
+        console.print(f"\n[bold]{len(rows):,}[/bold] findings → "
+                      f"[green]{len(rows) - real:,} false positives[/green], "
+                      f"[red]{real:,} real[/red]")
+    console.print(f"📄 {path}")
+    return 0
+
+
+def _sync_cmd(args) -> int:
+    """Mirror the Red Hat VEX corpus, then refresh the index over it."""
+    from . import triage
+    console = Console()
+    try:
+        st = triage.sync_vex_mirror(console, workers=args.workers, limit=args.limit,
+                                    bulk=args.bulk)
+    except RuntimeError as e:
+        console.print(f'[red]{e}[/red]')
+        return 1
+    console.print(f"✅ mirrored [bold]{st['fetched']:,}[/bold] file(s) "
+                  f"({st['missing']:,} missing, {st['changed']:,} changed)")
+    if not args.no_index:
+        index_path = args.index or scanfree.INDEX_PATH
+        console.print(f"🧱 rebuilding VEX index → [cyan]{index_path}[/cyan]")
+        _build_index(console, index_path)
     return 0
 
 
@@ -866,12 +944,53 @@ def main() -> int:
     pf.add_argument('--output', default=None)
     pf.add_argument('--format', default='table', choices=['table', 'csv', 'json'])
     pf.add_argument('--false-only', action='store_true', default=False)
+    pf.add_argument('--skip-sync', dest='skip_sync', action='store_true', default=False,
+                    help='do not refresh the VEX mirror, however old it is')
 
     pb = sub.add_parser('build-index',
                         help='(re)build the inverted VEX index every scan path '
                              'draws rpm + image candidates from')
     pb.add_argument('--index', default=None, metavar='FILE',
                     help=f'index location (default: {scanfree.INDEX_PATH})')
+    pb.add_argument('--sync', action='store_true', default=False,
+                    help='mirror the Red Hat VEX corpus first (same as `vextriage sync`)')
+
+    pr = sub.add_parser('report',
+                        help='triage a RHACS vulnerability report CSV (clusters, '
+                             'namespaces, deployments, images) into one '
+                             'self-contained HTML file')
+    pr.add_argument('csv', help='RHACS report CSV export')
+    pr.add_argument('--output', '-o', required=True, metavar='FILE',
+                    help='where to write the HTML report')
+    pr.add_argument('--workers', type=int, default=4, metavar='N',
+                    help='images SBOM-ed in parallel (default: 4).  Scanning '
+                         'only — the verdict pass is single-threaded on '
+                         'purpose, so raising this costs registry bandwidth, '
+                         'not memory')
+    pr.add_argument('--platform', default='linux/amd64')
+    pr.add_argument('--rescan', action='store_true', default=False,
+                    help='ignore the CSV findings and scan every image live '
+                         '(syft + grype + VEX index), keeping the cluster, '
+                         'namespace and deployment placement from the CSV — run '
+                         'it alongside the default to compare the two')
+    pr.add_argument('--skip-sync', dest='skip_sync', action='store_true', default=False,
+                    help='do not refresh the VEX mirror, however old it is')
+
+    psy = sub.add_parser('sync',
+                         help='mirror the whole Red Hat VEX corpus from the '
+                              'change feed, then rebuild the index — after this '
+                              'a run needs no network (--offline)')
+    psy.add_argument('--workers', type=int, default=0, metavar='N')
+    psy.add_argument('--limit', type=int, default=0, metavar='N',
+                     help='stop after N files (try a slice before the full corpus)')
+    psy.add_argument('--index', default=None, metavar='FILE')
+    psy.add_argument('--no-index', action='store_true', default=False,
+                     help='mirror only, leave the index alone')
+    psy.add_argument('--bulk', dest='bulk', action='store_true', default=None,
+                     help='force the tarball path (default: automatic above '
+                          '2,000 outstanding files)')
+    psy.add_argument('--no-bulk', dest='bulk', action='store_false',
+                     help='force file-by-file fetching')
 
     sub.add_parser('doctor', help='check external tools, auth env and data '
                                   'artifacts')
@@ -892,6 +1011,7 @@ def main() -> int:
                             argv[1:])
 
     args = parser.parse_args(argv)
+    _apply_sync_policy(args)
     if args.command in ('grype', 'trivy'):
         return _scanner_cmd(args.command, args)
     if args.command == 'generate':
@@ -900,6 +1020,10 @@ def main() -> int:
         return _scanfree_cmd(args)
     if args.command == 'build-index':
         return _build_index_cmd(args)
+    if args.command == 'sync':
+        return _sync_cmd(args)
+    if args.command == 'report':
+        return _report_cmd(args)
     if args.command == 'doctor':
         return _doctor_cmd()
     if args.command == 'hub':

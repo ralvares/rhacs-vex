@@ -700,15 +700,42 @@ version line (§2). CVE-2026-58055 names those three PIDs and nothing else, so a
 already refuses to compare NEVRAs across lineages **in** scope; out of scope the same NEVRA is no
 more comparable. A versioned related PID is now skipped unless `_stream_comparable`.
 
+**Another RHEL line, per its own CPE.** Pre-RHEL-6 documents identify products as `3AS`,
+`4Desktop`, `2.1AS` — no `enterprise_linux_N`, no `.elN`, nothing the PID-string tests recognise,
+so `_is_version_neutral_product` returned True and rung 8 admitted them. That is how CVE-2004-0642
+(krb5, RHEL 3) held a 2026 `krb5-libs-1.21.1-10.el9_8` vulnerable, and with the corpus fully
+mirrored it was 56 rows on one image. The CPE says what the PID does not
+(`cpe:/o:redhat:enterprise_linux:3::as`), so a product whose CPE names a RHEL major other than the
+workload's is skipped. `_is_any_rhel_ver_product` already knew the `3AS` shape — only the
+version-neutral test did not.
+
 **Source alias.** A bare `openssl.src` under `red_hat_jboss_enterprise_application_platform_5`
 matches `openssl-libs` only through the SRPM name (rung 5s), and every product that ever shipped an
 openssl carries that source name. CVE-2014-3566 (POODLE) enumerates RHEL 5 `openssl097a` and RHEL 7
 `openssl098e` and no RHEL 9 at all, so the alias was the only thing holding a 2014 protocol flaw
 against a current openssl 3.5.5. A **version-neutral** PID must now match the binary component name
-on its own. The restriction stops at that class: a PID carrying our own RHEL major is Red Hat
-enumerating our package line (§9.1), where the source name is how a subpackage is tracked at all
-(`util-linux.src` for `libsmartcols`), and the alias stays. `openshift-clients` under a
-version-neutral OCP product still decides — the name matches directly.
+on its own, and a `.src` PID from that class never decides at all: it names the source the product
+ships, not a binary of ours, so on a component literally named `openssl` the name test alone would
+still let POODLE through. The restriction stops at that class: a PID carrying our own RHEL major is
+Red Hat enumerating our package line (§9.1), where the source name is how a subpackage is tracked at
+all (`util-linux.src` for `libsmartcols`), and the alias stays. `openshift-clients` under a
+version-neutral OCP product still decides — the name matches directly and the PID names a binary.
+
+**Tracked under any of our names.** The "Red Hat enumerates this package per RHEL major" test above
+matched the name the *standalone product* used, which fails whenever RHEL packages the same software
+differently: RHEL 7 tracks `python-requests` where Satellite 6 says `python3-requests`, so a 2015
+cookie CVE stayed POSITIVE against RHEL 9's 2.25.1 even though Red Hat had already marked RHEL 7
+not affected. It now matches against every name the component answers to — binary, SBOM source and
+`.src` alias — so the question is "does Red Hat track OUR package under a RHEL product here", not
+"did this product happen to spell it our way". `openshift-clients` is unaffected: RHEL ships no such
+package under any name.
+
+> A document-level variant was tried first: skip every version-neutral product when the file
+> enumerates the RHEL line without our major. It fixed both cases but disabled a whole rung on a
+> per-document condition, and it fired 265 times on cert-manager while altering no verdict there.
+> The two row-level tests replacing it give identical results on measured data — 497 POSITIVE over
+> 4,755 candidate rows on an OCP payload image, 261 over 3,252 on cert-manager — with the decision
+> made per statement instead of per file.
 
 ### 8b-bis. Do NOT loosen image-name matching (2026-08-05)
 

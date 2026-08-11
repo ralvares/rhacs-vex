@@ -825,6 +825,21 @@ def _is_any_rhel_ver_product(pid: str, rhel_ver: str) -> bool:
     return False
 
 
+def _cpe_rhel_major(pid: str, pid_cpe) -> str:
+    """RHEL major a product's own CPE names, or '' when it names none.
+
+    Pre-RHEL-6 documents identify products as `3AS`, `4Desktop`, `2.1AS` — no
+    `enterprise_linux_N`, no `.elN`, nothing the PID-string tests recognise, so
+    they read as version-neutral and rung 8 admits them as related evidence.
+    That is how CVE-2004-0642 (krb5, RHEL 3) ends up holding a RHEL 9 image
+    vulnerable.  The CPE says what the PID does not:
+    `cpe:/o:redhat:enterprise_linux:3::as`.
+    """
+    cpe = (pid_cpe or {}).get(pid.split(':')[0], '')
+    m = re.search(r':enterprise_linux:(\d+)', cpe or '')
+    return m.group(1) if m else ''
+
+
 def _is_version_neutral_product(pid: str) -> bool:
     """True when a PID carries no RHEL/el version marker at all (VEX-MODEL §1d).
 
@@ -1921,17 +1936,35 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec, srpm=''
                                               vex_ns_map, pid_cpe=pid_cpe)):
                     if not _module_stream_compatible(pid, found_v):
                         continue
+                    other_major = _cpe_rhel_major(pid, pid_cpe)
+                    if other_major and other_major != rhel_ver:
+                        continue          # another RHEL line entirely, per its CPE
                     pkg_name, _pkg_ver = _pkg_from_pid(pid, pid_ident)
                     if _pkg_ver and not _stream_comparable(found_v, _pkg_ver):
                         continue
-                    if pkg_name not in (own_names if _is_version_neutral_product(pid)
-                                        else names):
+                    if _is_version_neutral_product(pid):
+                        # A `.src` PID names the SOURCE package a standalone
+                        # product ships and no binary of ours.  CVE-2014-3566
+                        # (POODLE) reaches a current openssl 3.0.7 only through
+                        # JBoss EAP 5's `openssl.src`, and the binary-name test
+                        # below cannot stop it because this component IS named
+                        # `openssl`.  openshift-clients keeps working: that PID
+                        # names a binary.
+                        if pid.endswith('.src') or pkg_name not in own_names:
+                            continue
+                    elif pkg_name not in names:
                         continue
                     if (pkg_name and _is_version_neutral_product(pid)
-                            and pkg_name in rhel_tracked):
+                            and (names & rhel_tracked)):
                         # Red Hat enumerates this package per RHEL major (it
                         # appears under RHEL base products elsewhere in this
                         # file), so our major's absence is informative — §5g.
+                        # Matched against every name this component answers to,
+                        # not just the one the standalone product used: RHEL 7
+                        # tracks `python-requests` where Satellite 6 says
+                        # `python3-requests`, and on the exact-name test the
+                        # 2015 CVE stayed POSITIVE against RHEL 9's 2.25.1 even
+                        # though Red Hat had already cleared RHEL 7.
                         # A standalone product's bundled copy then says nothing:
                         # JBoss EWS 3 and Directory Server 8 ship their own pcre,
                         # unrelated to RHEL 9's, and flagging on the shared NAME
@@ -2225,7 +2258,7 @@ def _audit_nonrpm_image_sha(comp, found_v, data, ctx, maps, our_shas, row, dec):
     img_not_affected = False
     img_fixed_label = None
     img_fixed_pid = None
-    img_fixed_ver = str(row.get('FIXED_VERSION', '')) if 'FIXED_VERSION' in row.index else None
+    img_fixed_ver = str(row.get('FIXED_VERSION', '')) if 'FIXED_VERSION' in row else None
 
     for vuln in data.get('vulnerabilities', []):
         ps = vuln.get('product_status', {})
@@ -2724,9 +2757,15 @@ def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
 # The pipeline entry points
 # ══════════════════════════════════════════════════════════════════════════════
 
-@functools.lru_cache(maxsize=int(os.environ.get('VEX_CACHE_SIZE', '512')))
-def _load_vex(cve_id: str) -> Optional[dict]:
-    """Load + cache a Red Hat VEX JSON by CVE ID (shared across audit calls)."""
+def _read_vex(cve_id: str) -> Optional[dict]:
+    """Read a Red Hat VEX JSON by CVE ID, uncached.
+
+    The caller owns the document's lifetime, which is the point: the parsed form
+    runs about 5× the file size (a 73 MB document costs ~390 MB of RSS) and the
+    memo maps this module stashes on it add more.  A batch driver walking the
+    work CVE-major reads each document once and drops it, so peak memory is one
+    document instead of whatever the LRU below happens to be holding.
+    """
     vex_path = os.path.join(VEX_DIR, f"{cve_id}.json")
     if not os.path.exists(vex_path):
         return None
@@ -2743,6 +2782,12 @@ def _load_vex(cve_id: str) -> Optional[dict]:
         except OSError:
             pass
         return None
+
+
+@functools.lru_cache(maxsize=int(os.environ.get('VEX_CACHE_SIZE', '512')))
+def _load_vex(cve_id: str) -> Optional[dict]:
+    """Load + cache a Red Hat VEX JSON by CVE ID (shared across audit calls)."""
+    return _read_vex(cve_id)
 
 
 def _evaluate(row, ctx, data, maps):
@@ -2789,7 +2834,7 @@ def _evaluate(row, ctx, data, maps):
         rpm_rhel = None
     else:
         rpm_rhel = _detect_rhel_ver(found_v)
-        comp_source = str(row.get('SOURCE', '')) if 'SOURCE' in row.index else ''
+        comp_source = str(row.get('SOURCE', '')) if 'SOURCE' in row else ''
         if not rpm_rhel and comp_source == 'OS':
             rpm_rhel = ctx.rhel_ver
 
@@ -2806,13 +2851,13 @@ def _evaluate(row, ctx, data, maps):
         # component against the image's own SPDX inventory.  Image-identity
         # pseudo-components (SOURCE=OS, '/' in name) are image refs, not
         # packages — never in the SBOM.
-        comp_source = str(row.get('SOURCE', '')) if 'SOURCE' in row.index else ''
+        comp_source = str(row.get('SOURCE', '')) if 'SOURCE' in row else ''
         if not ('/' in comp and comp_source == 'OS'):
             sn = _sbom_note(comp, found_v, ctx)
             if sn:
                 note = f"{note} {sn}." if note.endswith('.') else f"{note}; {sn}."
     else:
-        _srpm = str(row.get('SRPM', '') or '') if 'SRPM' in row.index else ''
+        _srpm = str(row.get('SRPM', '') or '') if 'SRPM' in row else ''
         if _srpm.lower() in ('nan', 'none'):
             _srpm = ''
         verdict, fix, note = _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver,
@@ -2831,9 +2876,22 @@ def audit_row_detailed(row, ctx: WorkloadContext):
     """
     import pandas as pd
     cve = str(row['CVE']).strip().upper()
-    data = _load_vex(cve)
+    return pd.Series(audit_row_with_doc(row, ctx, _load_vex(cve)))
+
+
+def audit_row_with_doc(row, ctx: WorkloadContext, data: Optional[dict]) -> list:
+    """audit_row_detailed's decision, on a VEX document the caller already holds.
+
+    Same six values, as a plain list — a batch driver evaluating tens of
+    thousands of rows against one document should not pay for a Series per row,
+    and it needs to hand in the document so it, not the LRU, decides when the
+    parsed form is freed.
+
+    `row` may be a Series or a plain mapping.  The optional-column tests below
+    this all read `'COL' in row`, which means the same thing for both.
+    """
     if data is None:
-        return pd.Series(["❌ POSITIVE", "N/A", "VEX file missing.", "Unknown", "Unknown", False])
+        return ["❌ POSITIVE", "N/A", "VEX file missing.", "Unknown", "Unknown", False]
 
     maps = _build_pid_name(data)
     pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe, pid_ident = maps
@@ -2848,7 +2906,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         verdict, dec, data, ctx, pid_name, rhel_base_pids, vex_ns_map, pid_cpe)
     stated = (dec.get('kind', '') not in _UNSTATED_KINDS
               and not dec.get('unstated', False))
-    return pd.Series([verdict, fix, note, severity, state, stated])
+    return [verdict, fix, note, severity, state, stated]
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -2886,12 +2944,15 @@ def _get_vex_product(data: dict, comp: str, ctx) -> str:
 
 def _vex_product_for_row(row, ctx) -> str:
     """df.apply wrapper for _get_vex_product."""
-    cve  = str(row.get('CVE', '')).strip().upper()
-    comp = str(row.get('COMPONENT', ''))
-    data = _load_vex(cve)
+    cve = str(row.get('CVE', '')).strip().upper()
+    return _vex_product_with_doc(row, ctx, _load_vex(cve))
+
+
+def _vex_product_with_doc(row, ctx, data) -> str:
+    """_vex_product_for_row on a document the caller already holds."""
     if not data:
         return ''
     try:
-        return _get_vex_product(data, comp, ctx)
+        return _get_vex_product(data, str(row.get('COMPONENT', '')), ctx)
     except Exception:
         return ''

@@ -31,8 +31,24 @@ _SEVERITY = {'critical': 'CRITICAL', 'high': 'HIGH', 'medium': 'MEDIUM',
              'low': 'LOW', 'negligible': 'LOW'}
 
 
+def _registry_env() -> dict:
+    """Point the container tooling at the docker credentials when it has none.
+
+    skopeo and syft read REGISTRY_AUTH_FILE or ~/.config/containers/auth.json,
+    while an OpenShift pull secret installed with `docker login` lands in
+    ~/.docker/config.json.  Without this an art-dev payload image answers
+    `unauthorized`, which is 82 of the 103 images in a ROSA report.
+    """
+    env = dict(os.environ)
+    if not env.get('REGISTRY_AUTH_FILE'):
+        docker_cfg = os.path.expanduser('~/.docker/config.json')
+        if os.path.exists(docker_cfg):
+            env['REGISTRY_AUTH_FILE'] = docker_cfg
+    return env
+
+
 def _run(cmd: list, what: str) -> subprocess.CompletedProcess:
-    proc = subprocess.run(cmd, capture_output=True, text=True)
+    proc = subprocess.run(cmd, capture_output=True, text=True, env=_registry_env())
     if proc.returncode != 0:
         tail = (proc.stderr or '').strip().splitlines()[-3:]
         raise RuntimeError(f"{what} failed ({proc.returncode}): " + ' / '.join(tail))

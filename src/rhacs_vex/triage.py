@@ -20,7 +20,7 @@ import time
 import tempfile
 import requests
 import requests_cache
-from datetime import timedelta
+from datetime import datetime, timedelta
 import pandas as pd
 from collections import Counter
 from typing import Optional
@@ -33,8 +33,9 @@ from rich import box
 # ── Engine (re-exported so sibling modules keep `triage.<symbol>` working) ──
 from .engine import (  # noqa: F401
     WorkloadContext, parse_image_ref, parse_context_from_labels,
-    audit_row_detailed, _vex_product_for_row, _get_vex_product,
-    _load_vex, _RHACS_SEVERITY_MAP, compare_versions, _normalize_epoch,
+    audit_row_detailed, audit_row_with_doc, _vex_product_for_row,
+    _vex_product_with_doc, _get_vex_product,
+    _load_vex, _read_vex, _RHACS_SEVERITY_MAP, compare_versions, _normalize_epoch,
     BASE_DIR, VEX_DIR, wire_rpm_owners, rpm_file_owners_from_sbom,
     rpm_source_map_from_sbom,
 )
@@ -88,7 +89,258 @@ def _vex_meta_set(cve_id: str, etag: str) -> None:
                 pass
 
 
-def download_and_convert_with_lib(cve_id: str) -> tuple:
+VEX_FEED = 'https://security.access.redhat.com/data/csaf/v2/vex'
+CHANGES_URL = f'{VEX_FEED}/changes.csv'
+ARCHIVE_PTR = f'{VEX_FEED}/archive_latest.txt'
+
+# Below this many missing files the per-file fetch is quicker than pulling a
+# 273 MB archive; above it, 49,000 HTTPS round trips are not.
+_BULK_THRESHOLD = int(os.environ.get('VEX_BULK_THRESHOLD', '2000'))
+
+
+def _bulk_fetch(console, chunk=1 << 20) -> int:
+    """Mirror the corpus from Red Hat's dated tarball instead of file by file.
+
+    `archive_latest.txt` names a `csaf_vex_<date>.tar.zst` holding every VEX
+    document — 273 MB against 49,263 separate requests for the same content.
+    The stream is piped through `zstd` and unpacked member by member straight to
+    the mirror's flat `CVE-<id>.json` layout, so nothing is staged twice on disk.
+
+    Returns the number of files written.  Raises RuntimeError when the archive
+    or zstd is unavailable, which leaves the caller free to fall back.
+    """
+    import shutil
+    import subprocess
+    import tarfile
+
+    if not shutil.which('zstd'):
+        raise RuntimeError('zstd is not installed')
+    try:
+        name = requests.get(ARCHIVE_PTR, timeout=30).text.strip().splitlines()[0]
+        url = f'{VEX_FEED}/{name}'
+        res = requests.get(url, timeout=120, stream=True)
+        res.raise_for_status()
+    except (requests.RequestException, IndexError) as e:
+        raise RuntimeError(f'archive unavailable: {e}') from e
+
+    os.makedirs(VEX_DIR, exist_ok=True)
+    total = int(res.headers.get('Content-Length') or 0)
+    if console:
+        console.print(f"📦 {name} ({total / 1e6:.0f} MB)")
+    fd, tmp_archive = tempfile.mkstemp(dir=VEX_DIR, suffix='.tar.zst')
+    written = 0
+    try:
+        with os.fdopen(fd, 'wb') as fh:
+            got = 0
+            for blk in res.iter_content(chunk_size=chunk):
+                fh.write(blk)
+                got += len(blk)
+                if console and total and got % (50 << 20) < chunk:
+                    console.print(f"   {got / 1e6:.0f}/{total / 1e6:.0f} MB", highlight=False)
+        proc = subprocess.Popen(['zstd', '-dc', tmp_archive], stdout=subprocess.PIPE)
+        try:
+            with tarfile.open(fileobj=proc.stdout, mode='r|') as tf:
+                for member in tf:
+                    base = os.path.basename(member.name)
+                    if not (member.isfile() and base.lower().endswith('.json')):
+                        continue
+                    cve = base[:-5].upper()
+                    if not cve.startswith('CVE-'):
+                        continue
+                    src = tf.extractfile(member)
+                    if src is None:
+                        continue
+                    part = os.path.join(VEX_DIR, f'.{cve}.part')
+                    with open(part, 'wb') as out:
+                        shutil.copyfileobj(src, out, chunk)
+                    os.replace(part, os.path.join(VEX_DIR, f'{cve}.json'))
+                    written += 1
+                    if console and written % 5000 == 0:
+                        console.print(f"   unpacked {written:,}", highlight=False)
+        finally:
+            if proc.stdout:
+                proc.stdout.close()
+            proc.wait()
+    finally:
+        try:
+            os.unlink(tmp_archive)
+        except OSError:
+            pass
+    return written
+
+
+SYNC_STAMP = os.path.join(VEX_DIR, '.sync.json')
+MIRROR_MAX_AGE = int(os.environ.get('VEX_MAX_AGE', 24 * 3600))
+
+# A run answers from the mirror, full stop.  Per-CVE fetching exists for the one
+# caller that mirrors — sync itself — and is off everywhere else, so no triage
+# result depends on whether some earlier run happened to pull that file.  Module
+# scope rather than thread-local: sync fans out over a pool and every worker has
+# to see it.
+_ALLOW_FETCH = False
+
+
+def _fetch_allowed() -> bool:
+    return _ALLOW_FETCH
+
+
+def mirror_age():
+    """Seconds since the mirror last synced, or None when it never has."""
+    try:
+        with open(SYNC_STAMP) as fh:
+            return max(0.0, time.time() - float(json.load(fh)['at']))
+    except Exception:
+        return None
+
+
+def _stamp_sync(stats: dict) -> None:
+    try:
+        with open(SYNC_STAMP, 'w') as fh:
+            json.dump({'at': time.time(), **stats}, fh)
+    except OSError:
+        pass
+
+
+def ensure_mirror(console=None, skip: bool = False, max_age: int = 0) -> None:
+    """Sync the VEX mirror when it is missing or stale, then leave the network.
+
+    This is the whole freshness story for a run: one corpus-level check per day
+    instead of a conditional GET per CVE, and nothing to fetch mid-audit.
+    """
+    if skip or os.environ.get('VEX_SKIP_SYNC') or os.environ.get('VEX_OFFLINE'):
+        return
+    age = mirror_age()
+    limit = max_age or MIRROR_MAX_AGE
+    if age is not None and age < limit:
+        return
+    if console:
+        console.print("🔄 VEX mirror " + (f"is {age / 3600:.0f}h old" if age is not None
+                                          else "has never synced") + " — syncing")
+    try:
+        sync_vex_mirror(console)
+    except RuntimeError as e:
+        if console:
+            console.print(f'[yellow]sync skipped ({e}) — using the mirror as it is[/yellow]')
+
+
+def sync_vex_mirror(console=None, workers: int = 0, limit: int = 0, bulk=None) -> dict:
+    """Bring data/vex level with Red Hat's published corpus.
+
+    `changes.csv` lists every VEX file with the time it last changed — 63,244
+    entries — which is enough to mirror by difference: fetch what is missing,
+    refetch what changed since the local copy was written, leave the rest alone.
+    Past _BULK_THRESHOLD outstanding files the dated tarball wins instead
+    (273 MB against 49,000 round trips).
+
+    This is the only place that reaches Red Hat for VEX, and the stamp it writes
+    is what `ensure_mirror` reads to decide whether a run needs to sync at all.
+    """
+    global _ALLOW_FETCH
+    _ALLOW_FETCH = True
+    try:
+        return _sync_vex_mirror(console, workers, limit, bulk)
+    finally:
+        _ALLOW_FETCH = False
+
+
+def _sync_vex_mirror(console, workers, limit, bulk) -> dict:
+    try:
+        res = requests.get(CHANGES_URL, timeout=60)
+        res.raise_for_status()
+    except requests.RequestException as e:
+        raise RuntimeError(f'could not read the change feed: {e}') from e
+
+    want = {}
+    for line in res.text.splitlines():
+        parts = [p.strip().strip('"') for p in line.split('","')]
+        if len(parts) != 2 or not parts[0].endswith('.json'):
+            continue
+        cve = os.path.basename(parts[0])[:-5].upper()
+        if cve.startswith('CVE-'):
+            want[cve] = parts[1]
+
+    os.makedirs(VEX_DIR, exist_ok=True)
+    stale, missing = [], []
+    for cve, stamp in want.items():
+        path = os.path.join(VEX_DIR, f'{cve}.json')
+        try:
+            local = os.path.getmtime(path)
+        except OSError:
+            missing.append(cve)
+            continue
+        try:
+            remote = datetime.fromisoformat(stamp).timestamp()
+        except ValueError:
+            continue
+        if remote > local:
+            stale.append(cve)
+
+    todo = missing + stale
+    if limit:
+        todo = todo[:limit]
+    if console:
+        console.print(f"📚 corpus {len(want):,} CVEs · local {len(want) - len(missing):,} · "
+                      f"missing {len(missing):,} · changed {len(stale):,}")
+    if not todo:
+        _stamp_sync({'corpus': len(want), 'fetched': 0})
+        return {'corpus': len(want), 'missing': 0, 'changed': 0, 'fetched': 0}
+
+    def _finish(fetched):
+        # Stamp on evidence, never on having run.  `--limit` leaves the mirror
+        # short on purpose and a swallowed network error leaves it short by
+        # accident; either way, marking it current would make ensure_mirror skip
+        # for a day and every absent CVE would read as "no VEX file" → POSITIVE.
+        left = []
+        for cve, stamp in want.items():
+            fp = os.path.join(VEX_DIR, f'{cve}.json')
+            try:
+                if os.path.getmtime(fp) < datetime.fromisoformat(stamp).timestamp():
+                    left.append(cve)          # still the copy we had before
+            except (OSError, ValueError):
+                left.append(cve)              # absent, or an unreadable stamp
+        if not left:
+            _stamp_sync({'corpus': len(want), 'fetched': fetched})
+        elif console:
+            console.print(f"[yellow]{len(left):,} file(s) still missing — the mirror "
+                          f"is not marked current[/yellow]")
+        return {'corpus': len(want), 'missing': len(missing), 'changed': len(stale),
+                'fetched': fetched, 'outstanding': len(left)}
+
+    if bulk is None:
+        bulk = not limit and len(todo) > _BULK_THRESHOLD
+    if bulk:
+        try:
+            written = _bulk_fetch(console)
+        except RuntimeError as e:
+            if console:
+                console.print(f'[yellow]bulk archive skipped ({e}) — fetching file '
+                              f'by file[/yellow]')
+        else:
+            # The archive is cut on a date; anything Red Hat changed after it is
+            # still outstanding, and that tail is small enough to fetch singly.
+            tail = [c for c in todo
+                    if not os.path.exists(os.path.join(VEX_DIR, f'{c}.json'))
+                    or os.path.getmtime(os.path.join(VEX_DIR, f'{c}.json'))
+                    < datetime.fromisoformat(want[c]).timestamp()]
+            if tail and console:
+                console.print(f"🔄 {len(tail):,} changed since the archive was cut")
+            with ThreadPoolExecutor(max_workers=workers or MAX_WORKERS) as ex:
+                for _ in as_completed({ex.submit(download_and_convert_with_lib, c, True): c
+                                       for c in tail}):
+                    pass
+            return _finish(written + len(tail))
+
+    done = 0
+    with ThreadPoolExecutor(max_workers=workers or MAX_WORKERS) as ex:
+        for _ in as_completed({ex.submit(download_and_convert_with_lib, c, True): c
+                               for c in todo}):
+            done += 1
+            if console and done % 500 == 0:
+                console.print(f"   {done:,}/{len(todo):,}", highlight=False)
+    return _finish(len(todo))
+
+
+def download_and_convert_with_lib(cve_id: str, force: bool = False) -> tuple:
     """Mirror one Red Hat VEX JSON file, revalidating by ETag after the TTL.
 
     Within _VEX_TTL of the last check: no network at all.  After it: one
@@ -96,6 +348,8 @@ def download_and_convert_with_lib(cve_id: str) -> tuple:
     Network failure falls back to whatever is on disk (stale-if-error).
     """
     cve_id = cve_id.upper().strip()
+    if not _fetch_allowed():
+        return cve_id, os.path.exists(os.path.join(VEX_DIR, f'{cve_id}.json'))
     m = re.search(r'CVE-(\d{4})-', cve_id)
     if not m:
         return cve_id, False
@@ -104,11 +358,14 @@ def download_and_convert_with_lib(cve_id: str) -> tuple:
     url       = f"https://security.access.redhat.com/data/csaf/v2/vex/{year}/{cve_id.lower()}.json"
     json_path = os.path.join(VEX_DIR, f"{cve_id}.json")
 
-    try:
-        if time.time() - os.path.getmtime(json_path) < _VEX_TTL:
-            return cve_id, True
-    except OSError:
-        pass
+    # sync already knows from the change feed that this file moved, so the TTL
+    # would only stop it refreshing exactly the files it set out to refresh.
+    if not force:
+        try:
+            if time.time() - os.path.getmtime(json_path) < _VEX_TTL:
+                return cve_id, True
+        except OSError:
+            pass
 
     headers = {}
     if os.path.exists(json_path):
@@ -603,7 +860,13 @@ def _sort_and_filter_df(df: pd.DataFrame, false_only: bool = False) -> pd.DataFr
     cols = ['COMPONENT', 'VEX_PRODUCT', 'VERSION', 'CVE', 'SEVERITY',
             'AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'VEX_STATE',
             'RHACS_SEVERITY', 'SEVERITY_MISMATCH']
-    for extra in ('SOURCE', 'LOCATION', 'FIXED_VERSION', 'OCP_COMPONENT', 'IMAGE', 'IMAGE_ROLE', 'SRPM', 'VEX_STATED'):
+    # CLUSTER/NAMESPACE/DEPLOYMENT ride along for the report path, where a
+    # finding is only actionable once you know which workload carries it.
+    # _UID rides along for the report path, which audits one row per distinct
+    # finding and joins the verdict back onto every workload carrying it.
+    for extra in ('SOURCE', 'LOCATION', 'FIXED_VERSION', 'OCP_COMPONENT', 'IMAGE',
+                  'IMAGE_ROLE', 'SRPM', 'VEX_STATED', 'ALIAS_ID',
+                  'CLUSTER', 'NAMESPACE', 'DEPLOYMENT', '_UID'):
         if extra in df.columns:
             cols.append(extra)
     for col in cols:
@@ -818,7 +1081,8 @@ def _component_cell(row) -> str:
 
 def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx,
                          source_label: str = 'RHACS',
-                         actionable_only: bool = False) -> None:
+                         actionable_only: bool = False,
+                         candidates: bool = False) -> None:
     """Render a compact box table: POSITIVE first, RHACS vs VEX severity, footer."""
     _vstyle = {'POSITIVE': 'bold red', 'FALSE POSITIVE': 'bold green'}
     _sev_rank = {'Critical': 0, 'Important': 1, 'Moderate': 2, 'Low': 3, 'Unknown': 4}
@@ -951,44 +1215,77 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx,
     m = re.search(r'@sha256:([a-f0-9]{6})', label or '')
     if m:
         label = re.sub(r'@sha256:[a-f0-9]+', f" (sha256:{m.group(1)}...)", label)
-    fp_ev = Counter(r['evidence'] for r in rows_all
-                    if r['verdict_plain'] == 'FALSE POSITIVE')
-    fp_stated = fp_ev['stated']
-
     console.print(f"\nImage: [bold cyan]{label}[/bold cyan]")
-    console.print(
-        f"[bold]{total}[/bold] findings → [bold green]{fp} false positives[/bold green] "
-        f"({100 * fp // total}%), [bold red]{pos} real[/bold red]."
-    )
-    if fp:
+    # A scanner hands over findings, so clearing one is calling it a false
+    # positive.  The index hands over every pair the corpus COULD decide, most of
+    # which were never claims about this image — calling those false positives
+    # invents a scanner that never reported them.
+    if candidates:
         console.print(
-            f"  of those: [green]{fp_ev['stated']}[/green] cleared by Red Hat for this build "
-            f"(published as OpenVEX), [dim]{fp - fp_stated} not listed / other scope[/dim]."
+            f"[bold]{total}[/bold] candidates checked → [bold red]{pos} findings"
+            f"[/bold red]; {fp} not a match for this image."
+        )
+    else:
+        console.print(
+            f"[bold]{total}[/bold] findings → [bold green]{fp} false positives[/bold green] "
+            f"({100 * fp // total}%), [bold red]{pos} real[/bold red]."
         )
     if hidden:
-        console.print(f"  [dim]{hidden} false positive row(s) hidden — --false-only to see "
+        what = 'non-matching' if candidates else 'false positive'
+        console.print(f"  [dim]{hidden} {what} row(s) hidden — --false-only to see "
                       f"them, --all-rows for everything; exports always contain all rows.[/dim]")
     if sev_shift:
         console.print(f"[yellow]{sev_shift} finding(s) rated differently by Red Hat VEX than by the scanner.[/yellow]")
     console.print()
 
 
+def _resolve_advisory_ids(df: pd.DataFrame, console: Optional[Console] = None) -> pd.DataFrame:
+    """Rewrite GHSA/GO rows to the CVE Red Hat publishes VEX under (see osv.py).
+
+    The original ID is kept in ALIAS_ID so the row still traces back to what the
+    scanner reported.  When the same pair arrives under both IDs the CVE-native
+    row wins, since it carries the scanner's own metadata for that identity.
+    Set OSV_DISABLE=1 to keep every ID exactly as scanned.
+    """
+    if df is None or df.empty or 'CVE' not in df.columns:
+        return df
+    if os.environ.get('OSV_DISABLE'):
+        return df
+    from . import osv
+    ids = [str(c).strip() for c in df['CVE'].unique() if osv.is_advisory_id(c)]
+    if not ids:
+        return df
+    mapped = osv.resolve_many(ids)
+    if not mapped:
+        return df
+    if console:
+        console.print(f"🔗 {len(mapped)}/{len(ids)} advisory ID(s) resolved to a CVE via OSV")
+    if 'ALIAS_ID' not in df.columns:
+        df['ALIAS_ID'] = ''
+    hit = df['CVE'].isin(mapped)
+    df.loc[hit, 'ALIAS_ID'] = df.loc[hit, 'CVE']
+    df.loc[hit, 'CVE'] = df.loc[hit, 'CVE'].map(mapped)
+    if 'COMPONENT' in df.columns:
+        # Only a remapped row that lands on a pair the scanner already reported
+        # natively goes.  A blanket drop_duplicates would also take the genuine
+        # repeats RHACS emits for one component found at several locations —
+        # 45 of 551 rows on a single RHOAI workbench image.
+        native = set(zip(df.loc[~hit, 'COMPONENT'], df.loc[~hit, 'CVE']))
+        collides = hit & pd.Series(
+            [pair in native for pair in zip(df['COMPONENT'], df['CVE'])],
+            index=df.index)
+        if collides.any():
+            df = df[~collides].reset_index(drop=True)
+    return df
+
+
 def _audit_and_display(df: pd.DataFrame, ctx, console: Console, *,
                        output_path: Optional[str] = None, output_fmt: str = "csv",
                        false_only: bool = False, show_all: bool = False,
-                       source_label: str = "RHACS") -> pd.DataFrame:
+                       source_label: str = "RHACS",
+                       candidates: bool = False) -> pd.DataFrame:
     """Sync VEX, run audit, render table, print summary, optionally write output."""
-    unique_cves = [c.strip().upper() for c in df['CVE'].unique()]
-    cached  = sum(1 for c in unique_cves if os.path.exists(os.path.join(VEX_DIR, f"{c}.json")))
-    to_fetch = len(unique_cves) - cached
-    # Only say something when there is something to wait for — a fully cached
-    # run should print nothing until it has an answer.
-    if to_fetch:
-        console.print(f"🔄 syncing {to_fetch} CVEs from Red Hat...")
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
-        futures = {ex.submit(download_and_convert_with_lib, c): c for c in unique_cves}
-        for f in as_completed(futures):
-            pass
+    df = _resolve_advisory_ids(df, console)
     if not df.empty:
         df['RHACS_SEVERITY'] = df['SEVERITY'].apply(
             lambda s: _RHACS_SEVERITY_MAP.get(str(s).strip().upper(), 'Unknown'))
@@ -1012,7 +1309,8 @@ def _audit_and_display(df: pd.DataFrame, ctx, console: Console, *,
     # of them buries the handful that need work — they are counted in the footer
     # instead.  --false-only flips this, --all-rows shows both.
     _render_triage_table(console, result_df, ctx, source_label,
-                         actionable_only=not (false_only or show_all))
+                         actionable_only=not (false_only or show_all),
+                         candidates=candidates)
 
     if output_path and output_fmt != "table":
         _write_output(result_df, output_path, output_fmt, console)
@@ -1028,10 +1326,7 @@ def _audit_silent(df: pd.DataFrame, ctx, false_only: bool = False,
     full-document scan per row that nearly doubles audit time.  Callers that
     only feed openvex.statements_from_df (the generate path) never read it.
     """
-    unique_cves = [c.strip().upper() for c in df['CVE'].unique()]
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
-        for f in as_completed({ex.submit(download_and_convert_with_lib, c): c for c in unique_cves}):
-            pass
+    df = _resolve_advisory_ids(df)
 
     if not df.empty:
         df['RHACS_SEVERITY'] = df['SEVERITY'].apply(
@@ -1045,6 +1340,78 @@ def _audit_silent(df: pd.DataFrame, ctx, false_only: bool = False,
             (df['RHACS_SEVERITY'] != 'Unknown') & (df['SEVERITY'] != df['RHACS_SEVERITY']))
 
     return _sort_and_filter_df(df, false_only)
+
+
+def audit_batch(jobs: list, *, false_only: bool = False, vex_product: bool = True,
+                progress=None) -> list:
+    """Audit many (ctx, df) pairs at once, walking the work CVE-major.
+
+    `_audit_silent` per image reads a VEX document once per image that cites the
+    CVE and leans on an LRU to amortise that.  On a 286-image report the corpus
+    in play is 2,192 documents and 3.3 GB on disk, several GB parsed, so the LRU
+    stops being a cache and becomes a memory floor that still misses.
+
+    Inverting the loop reads each document once for the whole report, hands it
+    to every row anywhere that names that CVE, and drops it.  Peak memory is one
+    document.  Rows are visited image-first inside a CVE because the product
+    scope memo lives in that document's own pid maps and is fingerprinted on the
+    workload — interleaving contexts would rebuild it per row.
+
+    `jobs` is a list of dicts carrying at least `ctx` and `df`; each job's other
+    keys are ignored.  Returns one result DataFrame per job, in the same order
+    and in the same shape `_audit_silent` returns.
+    """
+    prepared = []
+    for job in jobs:
+        df = _resolve_advisory_ids(job['df'])
+        if df is None:
+            df = pd.DataFrame()
+        if not df.empty:
+            df = df.reset_index(drop=True)
+            df['RHACS_SEVERITY'] = df['SEVERITY'].apply(
+                lambda s: _RHACS_SEVERITY_MAP.get(str(s).strip().upper(), 'Unknown'))
+        prepared.append((job['ctx'], df))
+
+    # {CVE: {job index: [row positions]}} — the dict preserves insertion order,
+    # so one job's rows stay contiguous under each CVE.
+    work: dict = {}
+    for ji, (_ctx, df) in enumerate(prepared):
+        if df.empty:
+            continue
+        for ri, cve in enumerate(df['CVE']):
+            work.setdefault(str(cve).strip().upper(), {}).setdefault(ji, []).append(ri)
+
+    verdicts = [[None] * len(df) for _ctx, df in prepared]
+    products = [[''] * len(df) for _ctx, df in prepared]
+    # to_dict is paid once per job: audit_row_with_doc reads a mapping, and
+    # re-slicing the frame per CVE would cost more than holding the records.
+    records = [df.to_dict('records') if len(df) else [] for _ctx, df in prepared]
+
+    for n, (cve, per_job) in enumerate(work.items()):
+        data = _read_vex(cve)
+        for ji, positions in per_job.items():
+            ctx, recs = prepared[ji][0], records[ji]
+            for ri in positions:
+                rec = recs[ri]
+                verdicts[ji][ri] = audit_row_with_doc(rec, ctx, data)
+                if vex_product:
+                    products[ji][ri] = _vex_product_with_doc(rec, ctx, data)
+        data = None
+        if progress:
+            progress(n + 1, len(work))
+
+    out = []
+    for ji, (_ctx, df) in enumerate(prepared):
+        if not df.empty:
+            df[['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY',
+                'VEX_STATE', 'VEX_STATED']] = pd.DataFrame(
+                verdicts[ji], index=df.index)
+            df['VEX_PRODUCT'] = products[ji] if vex_product else ''
+            df['SEVERITY_MISMATCH'] = (
+                (df['RHACS_SEVERITY'] != 'Unknown')
+                & (df['SEVERITY'] != df['RHACS_SEVERITY']))
+        out.append(_sort_and_filter_df(df, false_only))
+    return out
 
 
 def _merge_vex_index(df, index, image_ref: str, labels) -> tuple:
@@ -1221,7 +1588,12 @@ def main():
                              "not only what RHACS reported. Build it with `vextriage build-index`.")
     parser.add_argument("--index", default=None, metavar="FILE",
                         help="VEX index location (default: data/vex-index.json.gz).")
+    parser.add_argument("--skip-sync", dest="skip_sync", action="store_true", default=False,
+                        help="Do not refresh the VEX mirror, however old it is.\n"
+                             "By default a run syncs when the mirror is over a day old.")
     args = parser.parse_args()
+    if args.skip_sync:
+        os.environ['VEX_SKIP_SYNC'] = '1'
 
     if args.target:
         if os.path.exists(args.target):
@@ -1239,6 +1611,9 @@ def main():
         parser.error("--ocp cannot be combined with --image or --namespace")
 
     _console = Console()
+    # Once, before any worker pool: a stale mirror synced from inside a pool
+    # would have every thread pulling the same archive.
+    ensure_mirror(_console)
 
     _vex_index = None
     if getattr(args, 'vex_index', False):

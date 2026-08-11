@@ -194,7 +194,7 @@ A scanner contributes exactly one thing the VEX corpus cannot: the
 inverted index over the mirrored VEX files, so an SBOM alone is enough:
 
 ```bash
-vextriage build-index                                 # once, ~1 min → data/vex-index.json.gz
+vextriage sync                                        # mirror the corpus + build the index
 vextriage scanfree data/syft/<image>.json             # triage, no scanner
 vextriage scanfree data/syft/<image>.json --openvex-dir vexhub/
 ```
@@ -224,6 +224,29 @@ no scanner row changed verdict. On
 23, agreed with that path on all 691 overlapping (CVE, component) pairs, and
 suppressed zero real findings when its document was fed back through
 `grype --vex`.
+
+---
+
+## Triage a RHACS report into one shareable HTML
+
+`triage.html` answers this in the browser by joining an uploaded CSV against the per-version
+parquets. When those do not exist, or do not cover the versions in front of you, the same
+question has a server-side answer:
+
+```bash
+vextriage report Report-RHACS-ROSA.csv -o rosa.html            # triage what RHACS reported
+vextriage report Report-RHACS-ROSA.csv -o rosa-live.html --rescan
+```
+
+The CSV supplies the topology — cluster, namespace, deployment, image — which no scan can know.
+Three things it does not supply come from elsewhere: installed NEVRAs and the OpenShift version
+from a syft SBOM of each image, and the CVEs behind each `RHSA-…` row from Red Hat's CSAF advisory
+document (2,001 of 5,200 rows on the reference report). The result is one self-contained file with
+no external assets, safe to send to someone who has neither this repo nor a cluster.
+
+`--rescan` ignores the CSV's findings and scans every image live (syft + grype + the VEX index),
+keeping the placement from the CSV. Generate both and you can see what a newer scanner and today's
+VEX data change against a report written by whatever RHACS version produced it.
 
 ---
 
@@ -388,6 +411,35 @@ Ad-hoc queries over the built OCP parquet are available via `python3 -m rhacs_ve
 
 ---
 
+## The VEX mirror
+
+Every path reads `data/vex/`, and only `vextriage sync` writes it. A run refreshes the mirror
+when it is more than a day old and then stays off the network, so a verdict never depends on
+whether some earlier run happened to pull that CVE.
+
+```bash
+vextriage sync                  # mirror + rebuild the index
+vextriage sync --no-index       # mirror only
+vextriage <anything> --skip-sync   # use the mirror as it is, however old
+```
+
+Red Hat publishes a dated tarball of the whole corpus (`archive_latest.txt` names it) plus a
+`changes.csv` change feed. Past 2,000 outstanding files sync pulls the 273 MB tarball and unpacks
+it straight into the mirror, then fetches only what changed after the archive was cut; under that
+it fetches file by file. The full corpus is 63,244 documents, about 16 GB unpacked. The freshness
+stamp is written only when nothing is outstanding, so an interrupted or `--limit`ed sync does not
+mark a short mirror current.
+
+## Advisory IDs that are not CVEs
+
+Scanners report Go, Python and npm findings under `GHSA-…` or `GO-…`, which Red Hat publishes no
+VEX for, so those rows used to come out POSITIVE with an Unknown severity. OSV carries the alias
+graph and the lookup is automatic; the original ID is kept in `ALIAS_ID`. Nothing is cached to
+disk. Coverage is partial by nature — 7 of 27 sampled advisories carried a CVE, and 6 of those 7
+had a Red Hat VEX document. Set `OSV_DISABLE=1` to keep every ID exactly as scanned.
+
+---
+
 ## Environment variables
 
 | Variable | Used by | Purpose |
@@ -395,6 +447,11 @@ Ad-hoc queries over the built OCP parquet are available via `python3 -m rhacs_ve
 | `ROX_ENDPOINT` | triage, operators, pipeline | RHACS Central `host:port` (scanning stages only) |
 | `ROX_API_TOKEN` | triage, operators, pipeline | RHACS API bearer token (scanning stages only) |
 | `VEX_CACHE_SIZE` | engine | Max parsed-VEX documents kept in each process's LRU cache (default `512`). `vextriage retriage` sets it to `96` per worker to bound memory across a fork ProcessPool — override to trade memory for hit rate |
+| `VEX_MAX_AGE` | every triage path | Seconds before a run refreshes the mirror (default `86400`) |
+| `VEX_SKIP_SYNC` | every triage path | Set to skip the refresh entirely, same as `--skip-sync` |
+| `VEX_BULK_THRESHOLD` | sync | Outstanding files above which the tarball beats per-file fetching (default `2000`) |
+| `OSV_DISABLE` | triage | Set to leave GHSA/GO advisory IDs unresolved |
+| `REGISTRY_AUTH_FILE` | syft, skopeo | Credentials for image pulls; falls back to `~/.docker/config.json`, which is where an OpenShift pull secret lands |
 
 ---
 

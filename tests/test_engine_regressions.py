@@ -448,6 +448,91 @@ _v, _n = _verdict(_ocp, 'openshift-clients', '4.14.0-202501.el9')
 check('J3 …but a matching binary name in a related product still decides',
       '❌' in _v, f'{_v} {_n}')
 
+# RHEL 7 tracks `python-requests`, Satellite 6 says `python3-requests`.  On the
+# exact-name test the standalone product decided, so a 2015 CVE stayed POSITIVE
+# against RHEL 9's 2.25.1 — the enumeration is about our package, whichever name
+# Red Hat gave it on which product.
+_sat = {
+    'product_tree': {
+        'branches': [{'branches': [
+            {'product': {'product_id': 'red_hat_enterprise_linux_7',
+                         'product_identification_helper':
+                             {'cpe': 'cpe:/o:redhat:enterprise_linux:7'}}},
+            {'product': {'product_id': 'python-requests.src',
+                         'product_identification_helper':
+                             {'purl': 'pkg:rpm/redhat/python-requests?arch=src'}}},
+            {'product': {'product_id': 'python3-requests',
+                         'product_identification_helper':
+                             {'purl': 'pkg:rpm/redhat/python3-requests'}}}]}],
+        'relationships': [
+            {'product_reference': 'python-requests.src',
+             'relates_to_product_reference': 'red_hat_enterprise_linux_7',
+             'full_product_name': {'product_id': 'red_hat_enterprise_linux_7:python-requests.src'}},
+            {'product_reference': 'python3-requests',
+             'relates_to_product_reference': 'red_hat_satellite_6',
+             'full_product_name': {'product_id': 'red_hat_satellite_6:python3-requests'}}],
+    },
+    'vulnerabilities': [{'product_status': {
+        'known_not_affected': ['red_hat_enterprise_linux_7:python-requests.src'],
+        'known_affected': ['red_hat_satellite_6:python3-requests']}}],
+}
+_orig = engine._load_vex
+engine._load_vex = lambda cve: dict(_sat)
+try:
+    _ctx9 = WorkloadContext(workload_type='ubi', rhel_ver='9', display_name='UBI9')
+    _r = audit_row_detailed(pd.Series({
+        'COMPONENT': 'python3-requests', 'VERSION': '2.25.1-8.el9', 'CVE': 'CVE-9999-0007',
+        'SEVERITY': 'MODERATE_VULNERABILITY_SEVERITY', 'FIXED_VERSION': '',
+        'SOURCE': 'OS', 'LOCATION': 'var/lib/rpm', 'SRPM': 'python-requests'}), _ctx9)
+    check('J7 RHEL tracking our package under its own name closes the standalone route',
+          '✅' in str(_r.iloc[0]), f'{_r.iloc[0]} {_r.iloc[2][:60]}')
+finally:
+    engine._load_vex = _orig
+
+# Pre-RHEL-6 documents name products `3AS` / `4Desktop`, which carry no
+# enterprise_linux_N, no .elN, nothing the PID-string tests see — so they read as
+# version-neutral and rung 8 admitted them.  That is how CVE-2004-0642 held a
+# 2026 krb5 vulnerable.  Their CPE says which RHEL line they really are.
+_old = {
+    'product_tree': {
+        'branches': [{'branches': [
+            {'product': {'product_id': '3AS',
+                         'product_identification_helper':
+                             {'cpe': 'cpe:/o:redhat:enterprise_linux:3::as'}}},
+            {'product': {'product_id': 'krb5-libs-0:1.2.7-28.i386',
+                         'product_identification_helper':
+                             {'purl': 'pkg:rpm/redhat/krb5-libs@1.2.7-28?arch=i386'}}}]}],
+        'relationships': [
+            {'product_reference': 'krb5-libs-0:1.2.7-28.i386',
+             'relates_to_product_reference': '3AS',
+             'full_product_name': {'product_id': '3AS:krb5-libs-0:1.2.7-28.i386'}}],
+    },
+    'vulnerabilities': [{'product_status':
+                         {'fixed': ['3AS:krb5-libs-0:1.2.7-28.i386']}}],
+}
+# Same PID shape as J2, but the component IS named `openssl`, so the binary-name
+# guard cannot fire — J2 passed only because `openssl-libs` differs from
+# `openssl`.  What settles it is that the PID names the SOURCE package: a
+# standalone product's `.src` statement says which source IT ships, never which
+# binary of ours is affected.
+_v6, _n6 = _verdict(_jboss, 'openssl', '1:3.0.7-29.el9_4')
+check('J5 a .src statement does not decide even when the names match exactly',
+      '✅' in _v6, f'{_v6} {_n6}')
+
+# ...and the discriminator really is the .src, not the product: the same
+# standalone product naming a binary still decides (this is J3's mechanism).
+_jboss_bin = vex_under('red_hat_jboss_enterprise_application_platform_5',
+                       [('openssl', 'pkg:rpm/redhat/openssl')],
+                       {'known_affected':
+                        ['red_hat_jboss_enterprise_application_platform_5:openssl']})
+_v7, _n7 = _verdict(_jboss_bin, 'openssl', '1:3.0.7-29.el9_4')
+check('J6 …while a binary-named statement from the same product still decides',
+      '❌' in _v7, f'{_v7} {_n7}')
+
+_v5, _n5 = _verdict(_old, 'krb5-libs', '1.21.1-10.el9_8')
+check('J4 a RHEL 3 product does not decide a RHEL 9 build', '✅' in _v5, f'{_v5} {_n5}')
+
+
 print()
 if _failures:
     print(f'{len(_failures)} FAILED: {_failures}')
