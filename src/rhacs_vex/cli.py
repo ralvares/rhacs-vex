@@ -21,10 +21,13 @@ tool in this package.
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import sys
 
 from rich.console import Console
+
+from . import scanfree
 
 
 def _export_openvex(result_df, image_ref: str, hub_dir: str, author: str,
@@ -85,7 +88,7 @@ def _scanner_cmd(scanner: str, args) -> int:
 
     result_df = triage._audit_and_display(
         df, ctx, console, output_path=args.output, output_fmt=args.format,
-        false_only=args.false_only)
+        false_only=args.false_only, source_label=scanner)
 
     if args.openvex_dir:
         try:
@@ -97,36 +100,99 @@ def _scanner_cmd(scanner: str, args) -> int:
 
 
 def _wire_rpm_owners(df, ctx, owners: dict) -> None:
-    """Give matching and emission the rpm identity of go-binary components.
+    """Go-binary → vendoring-rpm link; shared with the RHACS path."""
+    from .engine import wire_rpm_owners
+    wire_rpm_owners(df, ctx, owners)
 
-    Red Hat assesses golang CVEs against the VENDORING rpm (rhel9:buildah),
-    not the module purl the scanner reports — without this link those
-    verdicts are invisible: an affected rpm looks "not listed" (⇒ false
-    positive) and a not_affected rpm never reaches trivy's rpm-level finding.
 
-    - df['OWNER_RPM'] = 'name@version-release' per non-OS row (emitter bridge)
-    - ctx.sbom_src_map[component] = rpm name (engine _resolve_comp alias);
-      a component seen in binaries of two different rpms stays unmapped —
-      one verdict row can't represent diverging owners.
-    """
-    if df is None or df.empty or not owners:
-        return
-    df['OWNER_RPM'] = df.apply(
-        lambda r: '{}@{}'.format(*owners[str(r.get('LOCATION', ''))])
-        if str(r.get('SOURCE', '')).strip().upper() != 'OS'
-        and str(r.get('LOCATION', '')) in owners else '', axis=1)
-    src_map, conflict = {}, set()
-    for _, r in df.iterrows():
-        owner = str(r.get('OWNER_RPM', '') or '')
-        if not owner:
-            continue
-        comp, name = str(r['COMPONENT']), owner.split('@')[0]
-        if src_map.get(comp, name) != name:
-            conflict.add(comp)
-        src_map.setdefault(comp, name)
-    for c in conflict:
-        src_map.pop(c, None)
-    ctx.sbom_src_map = {**src_map, **(ctx.sbom_src_map or {})}
+def _scanfree_cmd(args) -> int:
+    """SBOM + VEX triage with no scanner: index → candidates → engine → export."""
+    from . import triage
+    from .adapters import grype as adapter
+    from .context import context_for_image
+    console = Console()
+
+    index_path = args.index or scanfree.INDEX_PATH
+    if args.build_index or not os.path.exists(index_path):
+        why = 'rebuilding' if args.build_index else 'no index yet — building'
+        console.print(f"🧱 {why} VEX index → [cyan]{index_path}[/cyan]")
+        idx = scanfree.build_index(
+            out_path=index_path,
+            progress=lambda i, n: console.print(f"   {i:,}/{n:,} CVE files", highlight=False))
+        console.print(f"   indexed [bold]{idx['files']:,}[/bold] CVE files: "
+                      f"{len(idx['rpm']):,} rpm names, {len(idx['oci']):,} image keys")
+        if not args.target:
+            return 0
+    if not args.target:
+        console.print('[red]an image ref or syft-json SBOM path is required '
+                      '(or --build-index alone).[/red]')
+        return 2
+
+    # Same ergonomics as `vextriage grype`: a path is used as-is, anything else
+    # is an image ref and syft produces (or reuses) the cached SBOM for it.
+    sbom_path, image_ref = args.target, args.image
+    if not os.path.exists(sbom_path):
+        console.print("🧾 syft SBOM...")
+        try:
+            sbom_path = adapter.syft_sbom(args.target, platform=args.platform,
+                                          force=args.force)
+        except Exception as e:
+            console.print(f'[red]syft failed: {e}[/red]')
+            return 1
+        image_ref = image_ref or args.target
+
+    index = scanfree.load_index(index_path)
+    if not index:
+        console.print(f'[red]could not read the index at {index_path}.[/red]')
+        return 1
+
+    try:
+        df = scanfree.candidates_from_sbom(sbom_path, index)
+    except scanfree.UnreadableSBOM as e:
+        console.print(f'[red]unreadable SBOM: {e}[/red]')
+        console.print('[red]regenerate it (`syft ... -o syft-json`) — an empty or truncated '
+                      'SBOM must not be read as "no findings".[/red]')
+        return 1
+    if df.empty:
+        console.print('[yellow]no candidates — the SBOM has no rpm or image '
+                      'identity the VEX corpus names.[/yellow]')
+        return 0
+    console.print(f"🧮 {len(df):,} candidates from the VEX index (no scanner)")
+
+    if not image_ref:
+        # repoDigests carries the ref as pulled; manifestDigest is the per-arch
+        # manifest and is NOT what a consumer resolves, so it must not become the
+        # OpenVEX product identity.
+        try:
+            src = json.load(open(sbom_path)).get('source') or {}
+            meta = src.get('metadata') or {}
+            image_ref = next(iter(meta.get('repoDigests') or []), '')
+            if not image_ref:
+                name, ver = src.get('name') or '', str(src.get('version') or '')
+                if name and ver.startswith('sha256:'):
+                    image_ref = f'{name}@{ver}'
+        except Exception:
+            image_ref = ''
+    if not image_ref:
+        console.print('[red]--image <digest-pinned ref> is required (context + '
+                      'OpenVEX product identity).[/red]')
+        return 2
+
+    ctx = context_for_image(image_ref, labels=adapter.sbom_labels(sbom_path) or None,
+                            digests=adapter.sbom_digests(sbom_path))
+    _wire_rpm_owners(df, ctx, adapter.rpm_file_owners(sbom_path))
+
+    result_df = triage._audit_and_display(
+        df, ctx, console, output_path=args.output, output_fmt=args.format,
+        false_only=args.false_only, source_label='VEX index (no scanner)')
+
+    if args.openvex_dir:
+        try:
+            _export_openvex(result_df, image_ref, args.openvex_dir, args.author, console)
+        except ValueError as e:
+            console.print(f'[red]OpenVEX export skipped: {e}[/red]')
+            return 1
+    return 0
 
 
 def _audit_worker(df, ctx, ref: str) -> list:
@@ -723,6 +789,31 @@ def main() -> int:
     pg.add_argument('--verify', action='store_true', default=False,
                     help='re-scan each image with trivy against its doc; fail on leaks')
 
+    pf = sub.add_parser('scanfree',
+                        help='triage an SBOM against Red Hat VEX with no '
+                             'vulnerability scanner (rpm + image classes)')
+    pf.add_argument('target', nargs='?', default=None,
+                    help='image ref (digest-pinned) or syft-json SBOM path; an '
+                         'image ref is SBOM-ed with syft and cached '
+                         '(omit with --build-index)')
+    pf.add_argument('--image', default=None,
+                    help='digest-pinned image ref when target is a file '
+                         '(default: the SBOM source)')
+    pf.add_argument('--platform', default='linux/amd64')
+    pf.add_argument('--force', action='store_true', default=False,
+                    help='regenerate the cached syft SBOM')
+    pf.add_argument('--build-index', action='store_true', default=False,
+                    help='(re)build the inverted VEX index, then exit unless a '
+                         'target is given')
+    pf.add_argument('--index', default=None, metavar='FILE',
+                    help=f'index location (default: {scanfree.INDEX_PATH})')
+    pf.add_argument('--openvex-dir', default=None, metavar='DIR',
+                    help='export FALSE POSITIVE verdicts as OpenVEX into this hub dir')
+    pf.add_argument('--author', default='vextriage')
+    pf.add_argument('--output', default=None)
+    pf.add_argument('--format', default='table', choices=['table', 'csv', 'json'])
+    pf.add_argument('--false-only', action='store_true', default=False)
+
     sub.add_parser('doctor', help='check external tools, auth env and data '
                                   'artifacts')
 
@@ -746,6 +837,8 @@ def main() -> int:
         return _scanner_cmd(args.command, args)
     if args.command == 'generate':
         return _generate_cmd(args)
+    if args.command == 'scanfree':
+        return _scanfree_cmd(args)
     if args.command == 'doctor':
         return _doctor_cmd()
     if args.command == 'hub':

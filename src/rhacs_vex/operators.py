@@ -249,60 +249,15 @@ def _write_operators_index(versions_by_report: dict) -> None:
 
 # ── Core triage logic ─────────────────────────────────────────────────────────
 
-def triage_operator(
-    bundle: dict,
-    session,
-    false_only: bool = False,
-    workers:    int  = MAX_WORKERS,
-) -> pd.DataFrame | None:
-    """
-    Triage all workload images in *bundle* via RHACS and return a combined
-    DataFrame, or None if no actionable findings were produced.
-
-    Uses on-demand scanning (POST /v1/images/scan) so images that are not
-    currently deployed in the cluster are scanned and triaged correctly.
-
-    Each row in the DataFrame carries the standard triage columns plus:
-      IMAGE      — full image reference
-      IMAGE_ROLE — the 'name' field from relatedImages (may be empty)
-    """
-    images = _get_unique_workload_images(bundle)
-    if not images:
-        return None
-
-    frame_parts: list = []
-
-    with ThreadPoolExecutor(max_workers=workers) as ex:
-        futures = {
-            ex.submit(triage._fetch_and_audit, session, img, None, false_only): (role, img)
-            for role, img in images
-        }
-        for future in as_completed(futures):
-            role, img = futures[future]
-            try:
-                res = future.result()
-            except Exception:
-                continue
-            if not res.get('found') or res.get('result_df') is None:
-                continue
-            rdf = res['result_df'].copy()
-            rdf.insert(0, 'IMAGE',      img)
-            rdf.insert(1, 'IMAGE_ROLE', role)
-            frame_parts.append(rdf)
-
-    if not frame_parts:
-        return None
-    return pd.concat(frame_parts, ignore_index=True)
-
-
 def _assemble_report_from_cache(
     bundle: dict,
     scan_cache: dict[str, dict],
 ) -> pd.DataFrame | None:
     """Build a triage report from pre-scanned image results.
 
-    Same output as triage_operator() but uses cached _fetch_and_audit results
-    instead of calling RHACS — no network I/O.
+    Rows carry the standard triage columns plus IMAGE (full reference) and
+    IMAGE_ROLE (the 'name' field from relatedImages, may be empty).  Reads
+    cached _fetch_and_audit results instead of calling RHACS — no network I/O.
     """
     images = _get_unique_workload_images(bundle)
     if not images:

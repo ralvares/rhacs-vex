@@ -7,6 +7,19 @@ not from memory.
 **Corpus measured:** `data/vex/CVE-*.json` = **7,212 files**, 0 parse errors. Scanner side
 sampled from `data/scans/*.json` (13,745 files) and `data/sbom/*.sbom` (13,109 files) — see §7.
 
+> **Re-measured 2026-08-05 — the mirror has grown to 18,273 files** (5,398,502 product-tree
+> nodes, 7,747,974 `product_status` refs). Ratios below were re-derived, not rescaled; where a
+> figure or rule changed it is corrected in place and marked **(2026-08-05)**. Red Hat
+> regenerates VEX daily, so absolute counts drift — the shapes and rules are the durable part.
+
+**Identity of record: the purl, not the `product_id`.** Red Hat's own
+[csaf-lib](https://github.com/RedHatProductSecurity/csaf-lib) models `product_id` as an opaque
+string and parses only `product_identification_helper.purl` (via `PackageURL.from_string`).
+**99.88% of all 7,747,974 status refs resolve to a purl** with no string parsing —
+`relationships[].product_reference` → product-tree node → purl. The PID grammar in §3 is a
+reverse-engineered fallback for the remainder (upstream-project pseudo-components such as
+`jackson-databind`, and bare product nodes), not the primary identity. (2026-08-05)
+
 **Format:** CSAF 2.0, `document.category = "csaf_vex"`, publisher `Red Hat Product Security`,
 engine `Red Hat SDEngine`. One file per CVE. Three top-level objects: `document`,
 `product_tree` (`branches` + `relationships`), `vulnerabilities[]`.
@@ -174,13 +187,34 @@ node or a `relationship.full_product_name.product_id`. Counts are refs over the 
 | `nevra_noarch_or_other` | 33,895 | NEVRA with rare arch (ia64/ppc) | `4AS-LACD:java-…-0:….el4.ia64` |
 | `stream_other_digest` | 2,607 | bare `<name>@sha256:…_<arch>` (generic, no ns) | `9Base-RHOSE-4.17:rhcos@sha256:1be4…_aarch64` |
 | `leaf_bare` | 1,821 | product node used directly (no `:`) | `red_hat_products`, `Red Hat JBoss Web Server 2.1` |
+| `module@arch` **(2026-08-05)** | 3,300 in 553 files | `<module>@<arch>` — Red Hat Hardened Images ("hummingbird") | `Red Hat Hardened Images:perl-main@aarch64` |
+
+The `module@arch` shape carries **no package name and no version**: the component names a
+module, and only the purl gives the real identity —
+`perl-main@aarch64` → `pkg:rpm/redhat/perl@5.42.2-524.hum1?arch=aarch64`. A NEVRA-style parse
+yields a name that matches nothing and the statement silently reaches rung 9 ("not listed"),
+which is a FALSE POSITIVE — one more reason identity must come from the purl.
 
 ### 3a. Structural parsing rules
 1. Strip module suffix first: `pid.split('::')[0]`.
 2. Component = everything after the **first** `:` (parent may itself contain no colon in practice;
    epoch colon is the 2nd `:`).
 3. NEVRA detection: `-(\d+):` = the epoch colon → `name` before it, `ver-rel[.arch]` after.
-   Strip trailing `.<arch>` in `{aarch64,x86_64,ppc64le,s390x,i686,i386,noarch,src}`.
+   Strip trailing `.<arch>` — the **full** measured `arch=` vocabulary is 14 tokens
+   **(2026-08-05)**, and the shorter set previously listed here left the arch glued to the
+   version on 18,365 nodes (`0.9.8e-12.el5.i386`), which can never equal an installed NEVRA:
+
+   | arch | nodes | | arch | nodes |
+   |---|---:|---|---|---:|
+   | `x86_64` | 677,953 | | `ppc64` | 10,000 |
+   | `aarch64` | 570,326 | | `ppc` | 3,288 |
+   | `ppc64le` | 496,558 | | `s390` | 3,085 |
+   | `s390x` | 495,471 | | `i386` | 1,307 |
+   | `src` | 237,534 | | `ia64` | 459 |
+   | `noarch` | 234,844 | | `i586` | 226 |
+   | `i686` | 65,069 | | `source` | 68 |
+
+   Alternation order matters: `ppc64le` before `ppc64` before `ppc`, `s390x` before `s390`.
 4. No epoch colon → bare package name (version-less leaf).
 5. **RHEL parents now carry image-path components too** (Konflux era):
    `red_hat_enterprise_linux_9:redhat-user-workloads/bootc-image-builder-9-6` — a `/` in the
@@ -220,6 +254,13 @@ Two `.src` forms coexist and mean different things:
   `known_affected`/`known_not_affected` (e.g. `red_hat_enterprise_linux_8:tar.src`). Acts as a
   wildcard over all versions.
 
+> **Not always a wildcard (2026-08-05).** The wildcard reading was inferred from the PID's
+> version-lessness, and the purl contradicts it on 168 refs: `red_hat_ceph_storage_6:python-asyncssh.src`
+> → `pkg:rpm/redhat/python-asyncssh@2.9.0-5.el9cp`, `…rhel_ai_3:ffmpeg.src` → `6.1.5-2.el9ai`.
+> Those nodes name a specific build. Verdict impact measured as nil on ceph + AAP images
+> (4,180 rows), but a consumer reading the PID alone would treat a build-specific statement as
+> covering every version.
+
 The source PID is what the binary→source alias (§8, step 5) keys on: a binary subpackage
 (`perl-libs`) is aliased to its source (`perl`) only when a `.src` PID exists whose VR equals the
 installed VR **or** which is version-less. Red Hat VEX
@@ -234,7 +275,7 @@ Counts = product-tree nodes.
 
 | Type | Nodes | Exact shape | Query params |
 |---|---:|---|---|
-| `rpm` | 1,916,489 | `pkg:rpm/redhat/<name>?arch=<a>` | `arch`, `epoch`, `rpmmod` |
+| `rpm` | 1,916,489 | `pkg:rpm/redhat/<name>[@<ver-rel>]?arch=<a>` — **versioned, see below** | `arch`, `epoch`, `rpmmod`, `distro`, `repository_id` |
 | `oci` | 1,066,138 | `pkg:oci/<img>@sha256:<hex>?arch=<a>&repository_url=<reg>/<ns>/<img>&tag=<tag>` | `repository_url`, `tag`, `arch` |
 | `maven` | 21,284 | `pkg:maven/<group>/<artifact>?repository_url=…&type=pom` | `repository_url`, `type`, `classifier` |
 | `npm` | 6,787 | `pkg:npm/<name>@<ver>` | — |
@@ -249,6 +290,28 @@ Global qparam frequency: `arch` 2,767,907 · `repository_url` 1,074,615 · `tag`
   a namespace path inside the rpm purl).
 - OCI no-digest (product-tree leaf): `pkg:oci/elasticsearch6-rhel8?repository_url=registry.redhat.io/openshift-logging/elasticsearch6-rhel8`.
 - OCI full (digest build): `pkg:oci/ose-cluster-autoscaler-rhel9@sha256:ebca…?arch=amd64&repository_url=registry.redhat.io/openshift4/ose-cluster-autoscaler-rhel9&tag=v4.19.0-…assembly.stream.el9`.
+
+**rpm purls carry the version (2026-08-05).** The version-less shape above is stale.
+Of 3,966,621 rpm nodes, **2,745,460 (69.2%) carry `@version-release`**:
+
+```
+pkg:rpm/redhat/perl-XML-Parser@2.46-9.el9_6.1?arch=src
+pkg:rpm/redhat/openssl@0.9.8e-12.el5?arch=i386
+```
+
+The remaining 1,221,161 are the genuinely version-less leaves (`red_hat_enterprise_linux_10:tar`).
+There are **zero** nodes whose PID is a NEVRA while the purl lacks the version, so the purl is
+never less informative than the PID. Three consequences for any consumer:
+
+- **Percent-decoding is mandatory.** 230,752 purls (21.9%) write module builds as
+  `2.4.37-51.module%2Bel8.7.0%2B18026`; without `unquote` both the `.module+` test (§6d) and
+  the RPM version compare break.
+- **Only the vendor namespace may be stripped.** 713 nodes carry a product path
+  (`pkg:rpm/redhat/openshift4/ose-cli`), and that surviving `/` is what routes the component
+  to the non-RPM ladder (§3a rule 5, §8b). Every rpm purl uses the `redhat` namespace
+  (3,982,862 of 3,982,862), so strip it positionally, not by name.
+- `rpmmod` carries the full module NSVCA (`httpd:2.4:8070020230131172653:bd1311ed`), richer
+  than the PID's `::httpd:2.4`.
 
 **Load-bearing:** image matching must key on the OCI purl — exact `repository_url` match
 first, then `pkg:oci/<name>` package-name equality as fallback (bridges Brew-label namespace ≠
@@ -350,6 +413,23 @@ surfaced as such. `vendor_fix` co-occurs with `fixed` NEVRAs.
 Used only as a **severity fallback** (v3 `baseSeverity` → RH scale) when no `impact` threat scopes
 to the finding.
 
+### 5e-bis. Image statements only ever CLEAR (2026-08-05)
+
+oci statements by shape × status, whole corpus:
+
+| shape | known_not_affected | fixed | known_affected | under_investigation |
+|---|---:|---:|---:|---:|
+| with digest | 487,218 | 129,806 | **0** | 0 |
+| no digest | 386,501 | 88,827 | 52,680 | 4,490 |
+
+**Red Hat never marks a specific image build affected.** Per-build statements exist only in
+the clearing direction; "affected" is asserted at the image-family level. Two consequences:
+
+- a digest-pinned statement is the strongest evidence available for false-positive
+  identification, and it is exactly the evidence that cannot be manufactured;
+- no path can ever derive "this build is affected" from an image statement alone — that
+  verdict has to come from the family plus the errata policy (§5g).
+
 ### 5f. Co-occurrence rules mined (design-critical)
 - **Digest `known_not_affected` + generic `known_affected` for the same image** = per-build
   override: the exact build cleared even though the image family is generally affected
@@ -375,6 +455,34 @@ Triage semantics: absence cannot confirm a scanner finding, so a component/image
 are a component *named* in related products (§8 rung 8, conservative) and a VEX file that does
 not exist at all (no enumeration to be absent from → the scanner finding stands).
 
+> **Correction (2026-08-05) — "listed" means the PRODUCT, not the component.** The sentence
+> governs *packages of a product listed here*, so when Red Hat lists our product as affected
+> and simply does not name our image/component, the assumption applies and the row is
+> **POSITIVE**, not a false positive. Proof, CVE-2026-42507:
+>
+> ```
+> known_affected: red_hat_web_terminal:web-terminal/web-terminal-exec-rhel9
+> our image:      web-terminal/web-terminal-tooling-rhel9     (same product, unnamed)
+> ```
+>
+> **How thoroughly Red Hat enumerated decides whether absence is evidence, and that varies per
+> CVE, not per identity class:**
+>
+> | CVE | known_affected | known_not_affected | reading |
+> |---|---:|---:|---|
+> | CVE-2026-42507 | 367 | 5 | thin — absence proves nothing → POSITIVE |
+> | CVE-2024-45337 | 74 | 8,476 (incl. `ose-cli-artifacts`) | thorough — absence is meaningful → FALSE POSITIVE |
+>
+> Operative rule: assume vulnerable only when Red Hat lists our product as affected **and
+> cleared nothing under that same parent product**. The parent restriction is load-bearing —
+> `_pid_in_scope` deliberately admits any product carrying the workload's RHEL major (§8a), so
+> a plain in-scope sweep for an OCP 4.12 / RHEL 8 image returns 521 clears of which **490 are
+> RHACM, MCE, RHACS and GitOps** — products that are not ours and whose clears say nothing
+> about us.
+>
+> This applies to the **non-RPM** path only. Red Hat enumerates rpms exhaustively (§9.1), so an
+> absent rpm remains meaningful absence and stays a FALSE POSITIVE.
+
 **Per-build corollary (images):** a `fixed` PID whose digest is not ours names another build,
 and digests cannot be ordered — compare **Brew build stamps** (the purl `tag=` timestamp/epoch
 vs this build's `version`-`release` labels): ours ≥ newest fix → the rebuild carries the fix
@@ -397,6 +505,14 @@ Spot-check #2 (CVE-2020-11023, pkg `cpp`): `el9_0` fixed at `11.2.1-9.5.el9_0`, 
    minor stream.
 3. If a fix exists but **not in the installed stream yet** → **still vulnerable** (POSITIVE,
    "No fix in el<N>_<M>; fix in other streams: …").
+   - **Exception — strictly newer upstream version.** No erratum exists for our stream when our
+     stream never needed one. Release numbers are branch-local and must not be compared across
+     streams (`expat-2.5.0-6.el9_8.1` vs the 9.0 E4S backport `2.2.10-12.el9_0.4` reads 6 < 12 and
+     calls the newer branch older), but the upstream **VERSION** carries no such confound: a build
+     strictly greater on `EPOCH:VERSION` alone than *every* listed fix cannot be missing that fix.
+     That case clears (FALSE POSITIVE). Equal versions differing only in release keep the confound
+     and stay POSITIVE. Measured on `web-terminal-tooling-rhel9`: of 346 rows in this branch, 156
+     were strictly newer on version, 190 tied on version — so the exception is deliberately narrow.
 4. If installed has **no** minor marker (GA package) → it must be `>=` **all** stream fixes
    (a newer-stream fix proves the GA baseline is still vulnerable).
 5. Compare with epoch-aware RPM vercmp; missing epoch propagated (§6e).
@@ -555,6 +671,29 @@ A PID is in scope for the workload iff:
 name (RHACS image-identity pseudo-component) **or** absence of an `.elN` marker routes to the
 non-RPM path (rungs 3,4,6,7,8,9); an `.elN` marker or `SOURCE=OS` routes to the RPM path
 (rungs 5,5s, then 8,9). Rungs 1,2 precede both.
+
+### 8b-bis. Do NOT loosen image-name matching (2026-08-05)
+
+Exact `repository_url` / `pkg:oci/<name>` equality is correct as written; normalising names
+(stripping `-rhelN` or an `ose-` prefix) or matching on `com.redhat.component` manufactures
+**cross-product** false matches:
+
+- `registry.redhat.io/amq-streams/console-rhel9-operator` normalises onto VEX's
+  `ose-console-rhel9-operator`, which belongs to `openshift4`. VEX has **zero** repos under
+  `amq-streams` — that image is genuinely untracked and 0 matches is the right answer.
+- VEX's `console-api` belongs to `rhacm2`, not amq-streams.
+- `com.redhat.component` is `ubi8-container` for the StackRox `collector` image; matching on it
+  would attribute base-image assessments to the product.
+
+Of 337 images matching by no route at all, **249 are genuinely untracked by Red Hat**; the
+other 88 are collisions of this kind. Silence is the correct output for both.
+
+**Identity-route availability is thin for OCP payload images.** Across 13,136 RHACS scans
+(2,932,234 findings): 27.2% of findings have the `name` label as their *only* identity route,
+and 7.6% have none. VEX names the **published** `registry.redhat.io` digest, never the
+`ocp-v4.0-art-dev` pre-release one, so for payload images the digest route and the registry-path
+route are both structurally dead (0 of 201 sampled) — the `name` label carries them alone, on a
+population where label and path namespaces disagree 67.3% of the time.
 
 ### 8c. Scanner-identity × VEX-identity pairings (every observed pairing + resolution)
 | Scanner side | VEX side it matches | Rung |

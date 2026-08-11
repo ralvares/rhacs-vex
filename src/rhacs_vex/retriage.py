@@ -9,7 +9,7 @@ import sys, os, re, json, time, glob, argparse
 # level — the worker functions import triage lazily so this setdefault wins, and
 # the rhacs_vex package __init__ deliberately defers its engine re-export.
 os.environ.setdefault('VEX_CACHE_SIZE', '96')
-from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
+from concurrent.futures import ProcessPoolExecutor, as_completed
 import pandas as pd
 
 REPORT_DIR = 'data/reports'

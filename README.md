@@ -106,18 +106,39 @@ vextriage rhacs registry.redhat.io/openshift4/ose-cli@sha256:4f2e216ad46aa75f84e
 (equivalently `python3 -m rhacs_vex.triage …`). Output is a compact, colour-coded table with the scanner severity and Red Hat's product-specific severity side by side, followed by a one-line summary and an SBOM cross-check:
 
 ```
-┌────────────────┬───────────┬───────────┬───────────┬────────────────┬───────────────┬─────────────────┬──────────────────────────────────┐
-│ CVE            │ Component │ RHACS Sev │ VEX Sev   │ Verdict        │ State         │ Fix             │ Justification                    │
-├────────────────┼───────────┼───────────┼───────────┼────────────────┼───────────────┼─────────────────┼──────────────────────────────────┤
-│ CVE-2026-27532 │ openssl   │ Important │ Important │ POSITIVE       │ Fix available │ 3.2.2-6.el9_5.1 │ Installed 3.2.2-6.el9_5 < fix.   │
-│ CVE-2026-33186 │ grpc      │ Important │ Important │ FALSE POSITIVE │ Not affected  │ -               │ Vulnerable code not present.     │
-│ CVE-2026-1229  │ circl     │ Moderate  │ Moderate  │ FALSE POSITIVE │ Not affected  │ -               │ No supported Red Hat product …   │
-└────────────────┴───────────┴───────────┴───────────┴────────────────┴───────────────┴─────────────────┴──────────────────────────────────┘
+┌────────────────┬───────────┬───────────┬───────────┬────────────────┬───────────────┬────────────┬─────────────────┬──────────────────────────────┐
+│ CVE            │ Component │ RHACS Sev │ VEX Sev   │ Verdict        │ State         │ Evidence   │ Fix             │ Justification                │
+├────────────────┼───────────┼───────────┼───────────┼────────────────┼───────────────┼────────────┼─────────────────┼──────────────────────────────┤
+│ CVE-2026-27532 │ openssl   │ Important │ Important │ POSITIVE       │ Fix available │ Red Hat    │ 3.2.2-6.el9_5.1 │ Installed 3.2.2-6.el9_5 < fix│
+│ CVE-2026-33186 │ grpc      │ Important │ Important │ FALSE POSITIVE │ Not affected  │ Red Hat    │ -               │ Vulnerable code not present. │
+│ CVE-2026-1229  │ circl     │ Moderate  │ Moderate  │ FALSE POSITIVE │ Not affected  │ no RH data │ -               │ No supported Red Hat product…│
+└────────────────┴───────────┴───────────┴───────────┴────────────────┴───────────────┴────────────┴─────────────────┴──────────────────────────────┘
 
 Image: registry.redhat.io/openshift4/ose-cli (sha256:4f2e21…)
 RHACS reports 182 findings → VEX triage: 122 false positives (67%), 60 real.
+  false positives by evidence: 41 stated for this build · 12 stated for another build/product ·
+  8 inferred from absence where Red Hat does enumerate this package type · 61 with no Red Hat
+  data for the component type at all.
+  Only the 41 verdict(s) stated for this build are published as OpenVEX; the rest are triage
+  judgements, not vendor claims.
 🔍 SBOM verified: 20/20 component versions confirmed in image
 ```
+
+The **Evidence** column is the provenance of the verdict, and it matters as much as the
+verdict itself:
+
+| label | meaning | published as OpenVEX |
+|---|---|---|
+| `Red Hat` | Red Hat stated this for **this** product/build | yes |
+| `RH (other)` | a real statement exists, for another build/product/version | no |
+| `inferred` | absent from an enumeration that **does** cover this package type — meaningful absence | no |
+| `no RH data` | the component type is never tracked as a purl at all (Go, Python) — absence proves nothing | no |
+
+Red Hat's errata policy — *"unless explicitly stated as not affected, all previous versions of
+packages in any minor update stream of a product listed here should be assumed vulnerable"* —
+only speaks about products it lists, so silence means different things per class. An absent
+**rpm** is evidence (Red Hat enumerates rpms exhaustively); an absent **Go module** is not
+(2 golang purls exist in the entire corpus). Only Red Hat-stated verdicts are ever published.
 
 If the image is not already indexed in RHACS, the tool triggers an on-demand scan (`POST /v1/images/scan`) and waits for the result.
 
@@ -163,6 +184,39 @@ Same table, same verdicts, same rules as the RHACS path. Add
 `--openvex-dir vexhub/` to also write the image's FALSE-POSITIVE verdicts as an
 OpenVEX document (see next section). Image refs must be digest-pinned — the
 OpenVEX product identity is the digest.
+
+---
+
+## Triage with no scanner at all
+
+A scanner contributes exactly one thing the VEX corpus cannot: the
+(component, CVE) candidate list. `vextriage scanfree` supplies that from an
+inverted index over the mirrored VEX files, so an SBOM alone is enough:
+
+```bash
+vextriage scanfree --build-index                      # once, ~1 min → data/vex-index.json.gz
+vextriage scanfree data/syft/<image>.json             # triage, no scanner
+vextriage scanfree data/syft/<image>.json --openvex-dir vexhub/
+```
+
+The image ref is taken from the SBOM's `repoDigests`; pass `--image <ref@sha256:…>`
+to override. Verdicts come from the same engine, so the ladder, scoping,
+severity chain and publication gate are identical to every other path.
+
+**Coverage is the mirror image of a scanner's**, and that is the point:
+
+| class | scan-free | why |
+|---|---|---|
+| rpm | complete | Red Hat enumerates every binary subpackage per arch, and the syft and VEX purls agree on `(name, version-release, arch, epoch)` — an exact join |
+| image (oci) | complete | 14.8% of all Red Hat statements |
+| golang / pypi | **empty** | Red Hat publishes 2 golang purls and 19 pypi refs in the entire corpus — vendored Go is assessed at the operator/component image, never the module purl |
+
+So it finds rpm CVEs a scanner database has not caught up with, and is blind to
+language ecosystems. Run it *alongside* a scanner, not instead of one. On
+`ose-cli-rhel9` it produced 543 statements where the grype-driven path produced
+23, agreed with that path on all 691 overlapping (CVE, component) pairs, and
+suppressed zero real findings when its document was fed back through
+`grype --vex`.
 
 ---
 
@@ -362,6 +416,7 @@ data/
   manifest.json              ← scope catalogue + summary stats consumed by the UI
   ns_vex_prefixes.json       ← namespace → VEX-prefix map (from stage 2)
   baseline.json              ← regression fixture for tests/check_baseline.py
+  vex-index.json.gz          ← inverted VEX index for `scanfree` (derived; rebuild anytime)
 ```
 
 The static site is served from the repo root: `index.html`, `triage.html`, and `assets/`
@@ -399,6 +454,7 @@ src/rhacs_vex/
   openvex.py                ← triage verdicts → OpenVEX statements
   hub.py                    ← vexhub builder (layout, index, manifest, merge)
   context.py                ← workload context via skopeo labels (non-RHACS paths)
+  scanfree.py               ← SBOM + VEX only, no scanner            (vextriage scanfree)
   adapters/grype.py         ← syft SBOM + grype scan → triage rows
   adapters/trivy.py         ← trivy scan → triage rows
   operators.py              ← operator triage                     (vextriage operators)
@@ -408,6 +464,10 @@ src/rhacs_vex/
   ns_map.py                 ← namespace → VEX-prefix map builder
   query.py                  ← ad-hoc queries over OCP parquet
 tests/check_baseline.py     ← 189-case regression check (run from repo root)
+tests/test_verdict_cases.py ← verdict case matrix (rpm, golang, image identity, states)
+tests/test_module_streams.py ← module-stream guard cases
+tests/test_scanfree.py      ← scan-free purl identity, candidates, emission safety
+tests/test_engine_regressions.py ← bugs found by independent VEX cross-checking (synthetic VEX)
 index.html, triage.html, assets/, data/   ← static explorer + dataset
 ```
 

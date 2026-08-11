@@ -152,6 +152,7 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
         return ''
 
     divergent = set()
+    rpm_open_cves = set()
     for _, row in df.iterrows():
         if 'FALSE POSITIVE' in str(row.get('AUDIT_RESULT', '')):
             continue
@@ -164,6 +165,7 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
         # statement must never re-claim these via an extension.
         if str(row.get('SOURCE', '')).strip().upper() == 'OS':
             divergent.add((cve, f"{row.get('COMPONENT', '')}@{row.get('VERSION', '')}"))
+            rpm_open_cves.add(cve)
         owner = str(row.get('OWNER_RPM', '') or '').strip()
         if owner and owner.lower() != 'nan':
             divergent.add((cve, owner))
@@ -182,7 +184,18 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
         if not status:
             continue
         srpm = _row_srpm(row)
-        if srpm and (str(row.get('CVE', '')).strip().upper(), srpm) in divergent:
+        cve_up = str(row.get('CVE', '')).strip().upper()
+        if srpm and (cve_up, srpm) in divergent:
+            continue
+        # A language-ecosystem statement is keyed on the module purl alone
+        # (pkg:golang/stdlib@1.24.11), so it cannot distinguish the binary the
+        # verdict came from.  When an rpm in this same image is still open for
+        # the same CVE, that rpm's own binaries may embed the very module we are
+        # about to clear — measured: web-terminal CVE-2026-25679 clears stdlib
+        # inside usr/bin/virtctl while openshift-clients (which ships
+        # usr/bin/oc, another Go binary) is known_affected.  Ownership cannot
+        # resolve it either: virtctl belongs to no rpm at all.  Withhold.
+        if str(row.get('SOURCE', '')).strip().upper() != 'OS' and cve_up in rpm_open_cves:
             continue
         subs = subcomponent_ids(row.get('COMPONENT', ''), row.get('VERSION', ''),
                                 row.get('SOURCE', ''))

@@ -168,6 +168,27 @@ vextriage trivy <ref@sha256:…> --openvex-dir vexhub/
 
 Refs must be **digest-pinned** — the digest is the OpenVEX product identity.
 
+### No scanner at all
+
+The scanner's only irreplaceable job is producing the (component, CVE) candidate
+list. An inverted index over the VEX mirror does that instead, so an SBOM is
+enough:
+
+```bash
+vextriage scanfree --build-index                        # once → data/vex-index.json.gz
+vextriage scanfree data/syft/<image>.json --openvex-dir vexhub/
+```
+
+Rebuild the index after a big VEX sync (`--build-index` again); it is derived
+data and safe to delete. The image ref comes from the SBOM's `repoDigests`
+unless `--image` is given.
+
+Coverage is **complete for rpm and image statements and empty for golang/pypi** —
+Red Hat assesses vendored Go at the operator/component image, never the module
+purl (2 golang purls exist in the whole corpus). Use it next to a scanner, not
+instead of one: it catches rpm CVEs a scanner database has not picked up yet,
+and cannot see language ecosystems at all.
+
 ### Batch — images, OCP versions, operators
 
 ```bash

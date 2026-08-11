@@ -35,7 +35,8 @@ from .engine import (  # noqa: F401
     WorkloadContext, parse_image_ref, parse_context_from_labels,
     audit_row_detailed, _vex_product_for_row, _get_vex_product,
     _load_vex, _RHACS_SEVERITY_MAP, compare_versions, _normalize_epoch,
-    BASE_DIR, VEX_DIR,
+    BASE_DIR, VEX_DIR, wire_rpm_owners, rpm_file_owners_from_sbom,
+    rpm_source_map_from_sbom,
 )
 
 # --- 1. JUPYTER VIEW CONFIGURATION ---
@@ -637,7 +638,187 @@ def _sort_and_filter_df(df: pd.DataFrame, false_only: bool = False) -> pd.DataFr
     return result_df
 
 
-def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None:
+# Engine literal for rung 8 (engine._decide_rpm, kind 'rpm_related_vuln').
+# tests/test_engine_regressions.py case G pins this against engine drift.
+_RELATED_MARKER = 'affected in related products'
+
+
+def _is_stated(row) -> bool:
+    """Did Red Hat actually state this verdict, or did the engine infer it?
+
+    A verdict reached because the component is ABSENT from Red Hat's enumeration
+    (VEX-MODEL §5g / rung 9) is the engine's reading of the errata policy, not a
+    Red Hat claim.  Both render as "FALSE POSITIVE / Not affected", so without
+    this split the table presents an inference as a vendor statement.  The
+    OpenVEX emitter already gates on the same flag (openvex.statements_from_df).
+    Bool survives CSV round-trips as the string "True"/"False".
+    """
+    return str(row.get('VEX_STATED', '')).strip().lower() in ('true', '1')
+
+
+# A justification that OPENS with one of these was derived from a real Red Hat
+# statement — just one that does not scope to this build/product, so the engine
+# refuses to let it decide (VEX_STATED stays False).  Absence-derived verdicts
+# open with "<component> not listed", "Not listed as affected", "No VEX statement".
+# Matched as a prefix on purpose: "Not listed as affected; known_affected in RHEL
+# 9 names other components only" mentions a status mid-string yet IS an absence
+# verdict.
+_STATEMENT_PREFIXES = (
+    'known_not_affected', 'known_affected', 'under_investigation',
+    'No affected entry', 'No supported Red Hat product affected',
+    'Image build', 'This image build', 'Fixed in',
+)
+
+
+def _evidence_of(row) -> str:
+    """Scope of Red Hat's claim: 'stated', 'other bld', 'related', 'not listed'.
+
+    Red Hat's errata policy ("unless explicitly stated as not affected, all
+    previous versions ... of a product listed here should be assumed vulnerable")
+    only speaks about products it lists, so silence means different things
+    depending on what Red Hat tracks:
+
+      stated     — Red Hat says this about YOUR product/build; only kind published
+      other bld  — Red Hat says it, but about another build/version of your product
+      related    — Red Hat says it about a DIFFERENT product that ships the same
+                   package (rung 8).  Kept open conservatively, but it is not a
+                   statement about your product and must not read as one.
+      not listed — absent from an enumeration that DOES cover this package type
+      not listed — Red Hat's enumeration for this CVE does not name us.
+
+    There is no separate bucket for Go/Python.  Red Hat does assess them — at the
+    PRODUCT level (the operator or component image that ships the binary), which
+    is exactly what the workload context is for.  The module purl is absent
+    because that is not Red Hat's unit of assessment, not because the component
+    is untracked; and since Red Hat DOES enumerate affected products, our
+    product's absence carries the same meaning it does for an rpm.
+    """
+    just = str(row.get('JUSTIFICATION', '') or '').lstrip()
+    # Checked BEFORE _is_stated: rung 8 (kind 'rpm_related_vuln') carries a real
+    # Red Hat statement, so VEX_STATED is True — but the statement is about
+    # another product that ships the same package, never about ours.  Labelling
+    # it 'stated' would present a third-party claim as Red Hat's view of this
+    # image, which is the one thing this tool must not do.
+    if _RELATED_MARKER in just:
+        return 'related'
+    if _is_stated(row):
+        return 'stated'
+    if just.startswith(_STATEMENT_PREFIXES):
+        return 'other bld'
+    return 'not listed'
+
+
+SYFT_DIR = os.path.join(BASE_DIR, "syft")
+
+
+def _wire_go_owner_rpms(df: pd.DataFrame, ctx, image_ref: str) -> None:
+    """Attach the vendoring rpm to each go-binary row of an RHACS scan.
+
+    Red Hat assesses vendored Go at the rpm (or the component image), never the
+    module purl, so this link is what lets a Go verdict reach rpm-level findings
+    — and, just as importantly, what lets openvex.statements_from_df spot a
+    divergent group and withhold a statement (a Go component cleared while its
+    vendoring rpm is still open would otherwise suppress a real finding).
+
+    RHACS components carry a `location` but their `executables` list comes back
+    empty, so ownership is read from the syft SBOM already cached for the same
+    digest.  Absent SBOM ⇒ no link, exactly as before.
+
+    The same SBOM also supplies each binary rpm's SOURCE package, which the
+    matcher needs: without it `libsmartcols` never reaches `util-linux`'s
+    statements and reads as "not listed as affected" while the scanner paths —
+    which get SRPM from the purl — correctly call it known_affected.  Both paths
+    must decide alike.
+    """
+    if df is None or df.empty or not image_ref:
+        return
+    path = os.path.join(SYFT_DIR, image_ref.replace('/', '_') + '.json')
+    if not os.path.exists(path):
+        return
+    try:
+        owners = rpm_file_owners_from_sbom(path)
+        srcs = rpm_source_map_from_sbom(path)
+    except Exception:
+        return
+    if owners:
+        wire_rpm_owners(df, ctx, owners)
+    if srcs and 'COMPONENT' in df.columns:
+        def _srpm_for(row):
+            """Keep an SRPM the adapter already resolved; fill the rest."""
+            have = str(row.get('SRPM', '') or '')
+            if have and have.lower() not in ('nan', 'none'):
+                return have
+            return srcs.get(str(row.get('COMPONENT', '')), '')
+
+        df['SRPM'] = df.apply(_srpm_for, axis=1)
+
+
+_SCOPE_NOTE = {
+    'other bld': 'other build',
+    'not listed': 'not listed',
+}
+
+
+_RELATED_PRODUCTS_RE = re.compile(r'affected in related products \(([^)]*)\)')
+
+
+def _related_product(just: str) -> str:
+    """First product named by a rung-8 justification, shortened for the column.
+
+    "(other product)" told the reader nothing — the whole question is WHICH
+    product, and the engine already names it.
+    """
+    m = _RELATED_PRODUCTS_RE.search(just or '')
+    if not m:
+        return 'other product'
+    first = m.group(1).split(',')[0].strip()
+    first = re.sub(r'^Red Hat\s+', '', first)
+    more = ', +' if ',' in m.group(1) else ''
+    return (first[:26] + '…' if len(first) > 27 else first) + more
+
+
+def _redhat_says(row) -> str:
+    """What Red Hat says, in Red Hat's own vocabulary, qualified by scope.
+
+    The State column already carries Red Hat's CVE-page wording (Affected, Not
+    affected, Fixed, Will not fix, Fix deferred, Out of support scope).  What was
+    missing is WHO it is about, which used to live in a second column of
+    abstract words.  Folding the qualifier in keeps one column and one reading:
+    an unqualified value is Red Hat's verdict on THIS build; anything in
+    parentheses is not.
+    """
+    state = str(row.get('VEX_STATE', '') or '').strip() or '-'
+    ev = _evidence_of(row)
+    if ev == 'related':
+        return f'{state} (in {_related_product(str(row.get("JUSTIFICATION", "")))})'
+    note = _SCOPE_NOTE.get(ev)
+    return f'{state} ({note})' if note else state
+
+
+def _component_cell(row) -> str:
+    """Component label, disambiguated by the binary a language module lives in.
+
+    One image ships several Go binaries, each built with its own toolchain, and
+    the scanner reports the module per binary — `stdlib` appears once for
+    /usr/bin/virtctl (1.24.11) and again for /usr/local/bin/subctl (1.25.9).
+    Printing the bare module name makes those look like duplicate rows with
+    contradictory verdicts, when they are different artefacts.  rpm rows are left
+    alone: their location is always var/lib/rpm and adds nothing.
+    """
+    comp = str(row.get('COMPONENT', ''))
+    src = str(row.get('SOURCE', '') or '').strip().upper()
+    if src in ('', 'OS'):
+        return comp
+    loc = str(row.get('LOCATION', '') or '').strip()
+    binary = os.path.basename(loc) if loc else ''
+    if binary and binary not in comp:
+        return f'{comp} @{binary}'
+    return comp
+
+
+def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx,
+                         source_label: str = 'RHACS',
+                         actionable_only: bool = False) -> None:
     """Render a compact box table: POSITIVE first, RHACS vs VEX severity, footer."""
     _vstyle = {'POSITIVE': 'bold red', 'FALSE POSITIVE': 'bold green'}
     _sev_rank = {'Critical': 0, 'Important': 1, 'Moderate': 2, 'Low': 3, 'Unknown': 4}
@@ -646,37 +827,78 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
     for _, row in result_df.iterrows():
         verdict = str(row['AUDIT_RESULT'])
         verdict_plain = 'FALSE POSITIVE' if 'FALSE' in verdict else 'POSITIVE'
+        verdict_mark = 'FP' if verdict_plain == 'FALSE POSITIVE' else 'P'
         fix = str(row.get('VEX_FIX_VER', '') or '')
         rows.append({
             'cve': str(row['CVE']),
-            'comp': str(row['COMPONENT']),
+            'comp': _component_cell(row),
             'rhacs': str(row.get('RHACS_SEVERITY', 'Unknown')),
             'vex': str(row.get('SEVERITY', 'Unknown')),
-            'verdict': verdict_plain,
-            'state': str(row.get('VEX_STATE', '') or '-'),
+            'verdict': verdict_mark,
+            'verdict_plain': verdict_plain,
+            'state': _redhat_says(row),
+            'evidence': _evidence_of(row),
             'fix': fix if fix not in ('', 'N/A', 'nan') else '-',
             'just': str(row['JUSTIFICATION']),
         })
+    shown = [r for r in rows if r['verdict_plain'] == 'POSITIVE'] if actionable_only else rows
+    hidden = len(rows) - len(shown)
+    rows_all, rows = rows, shown
     rows.sort(key=lambda r: (
-        0 if r['verdict'] == 'POSITIVE' else 1,
+        0 if r['verdict_plain'] == 'POSITIVE' else 1,
         _sev_rank.get(r['vex'], 9),
         _sev_rank.get(r['rhacs'], 9),
         r['cve'],
     ))
 
+    # Small terminals: drop columns that carry no information for this run
+    # (scan-free has no scanner severity at all), then drop the least useful
+    # ones until the table fits.  Justification takes whatever is left.
+    def _uniform(key, *dead):
+        vals = {r[key] for r in rows}
+        return not vals or vals <= set(dead)
+
     columns = [
-        ('CVE',           'cve',     18),
-        ('Component',     'comp',    None),   # never truncate identities
-        ('RHACS Sev',     'rhacs',   10),
-        ('VEX Sev',       'vex',     10),
-        ('Verdict',       'verdict', 14),
-        ('State',         'state',   20),
-        ('Fix',           'fix',     18),
-        ('Justification', 'just',    46),
+        ('CVE',          'cve',      18),
+        ('Component',    'comp',     None),   # never truncate identities
+        ('Scan Sev',     'rhacs',    10),
+        ('VEX Sev',      'vex',      10),
+        ('Verdict',      'verdict',  7),
+        ('Red Hat says', 'state',    30),
+        ('Fix',          'fix',      18),
+        ('Why',          'just',     46),
     ]
-    widths = [max(len(h), min(max((len(r[k]) for r in rows), default=0), cap)
-                  if cap else max((len(r[k]) for r in rows), default=0))
-              for h, k, cap in columns]
+    if _uniform('rhacs', 'Unknown', '-', ''):
+        columns = [c for c in columns if c[1] != 'rhacs']
+    if _uniform('fix', '-', ''):
+        columns = [c for c in columns if c[1] != 'fix']
+    if _uniform('vex', 'Unknown', '-', ''):
+        columns = [c for c in columns if c[1] != 'vex']
+
+    def _measure(cols):
+        w = [max(len(h), min(max((len(r[k]) for r in rows), default=0), cap)
+                 if cap else max((len(r[k]) for r in rows), default=0))
+             for h, k, cap in cols]
+        return w, sum(w) + 3 * len(cols) + 1
+
+    avail = max(60, getattr(console, 'width', 120) or 120)
+    widths, total = _measure(columns)
+
+    # Squeeze the free-text column BEFORE sacrificing any structured one: State
+    # is what says WHAT Red Hat claimed (Fixed / Not affected / Will not fix),
+    # and RH evidence only says who claimed it — dropping State to keep prose
+    # would remove the more informative half.
+    if total > avail:
+        slack = total - avail
+        columns = [(h, k, (max(24, (cap or 40) - slack) if k == 'just' else cap))
+                   for h, k, cap in columns]
+        widths, total = _measure(columns)
+    for droppable in ('rhacs', 'vex', 'fix', 'just', 'state'):
+        if total <= avail:
+            break
+        if any(c[1] == droppable for c in columns) and len(columns) > 4:
+            columns = [c for c in columns if c[1] != droppable]
+            widths, total = _measure(columns)
 
     def cell(text, w):
         return (text[:w - 1] + '…') if len(text) > w else text.ljust(w)
@@ -685,7 +907,10 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
         if key in ('rhacs', 'vex'):
             return SEVERITY_STYLES.get(r[key], 'dim')
         if key == 'verdict':
-            return _vstyle[r['verdict']]
+            return _vstyle[r['verdict_plain']]
+        if key == 'evidence':
+            return {'stated': 'green', 'other bld': 'cyan', 'related': 'magenta',
+                    'not listed': 'yellow'}.get(r['evidence'], 'dim')
         if key == 'comp':
             return 'cyan'
         if key == 'fix':
@@ -696,7 +921,9 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
     mid = '├─' + '─┼─'.join('─' * w for w in widths) + '─┤'
     bot = '└─' + '─┴─'.join('─' * w for w in widths) + '─┘'
 
-    console.print(top, markup=False, soft_wrap=True)
+    if not rows:
+        console.print('[green]Nothing to act on — no open findings.[/green]')
+    console.print(top, markup=False, soft_wrap=True) if rows else None
     hdr = '│ ' + ' │ '.join(cell(h, w) for (h, _, _), w in zip(columns, widths)) + ' │'
     console.print(f"[bold]{hdr}[/bold]", soft_wrap=True)
     console.print(mid, markup=False, soft_wrap=True)
@@ -709,27 +936,38 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
         console.print('│ ' + ' │ '.join(parts) + ' │', soft_wrap=True)
     console.print(bot, markup=False, soft_wrap=True)
 
-    total = len(rows)
+    total = len(rows_all)
     if not total:
         return
-    fp  = sum(1 for r in rows if r['verdict'] == 'FALSE POSITIVE')
-    pos = sum(1 for r in rows if r['verdict'] == 'POSITIVE')
+    fp  = sum(1 for r in rows_all if r['verdict_plain'] == 'FALSE POSITIVE')
+    pos = sum(1 for r in rows_all if r['verdict_plain'] == 'POSITIVE')
 
-    rhacs_counts = Counter(r['rhacs'] for r in rows)
+    rhacs_counts = Counter(r['rhacs'] for r in rows_all)
     rhacs_str = ", ".join(f"{n} {s}" for s, n in
                           sorted(rhacs_counts.items(), key=lambda kv: _sev_rank.get(kv[0], 9)))
-    sev_shift = sum(1 for r in rows if r['rhacs'] not in ('Unknown', r['vex']))
+    sev_shift = sum(1 for r in rows_all if r['rhacs'] not in ('Unknown', r['vex']))
 
     label = ctx.image_ref or ctx.display_name
     m = re.search(r'@sha256:([a-f0-9]{6})', label or '')
     if m:
         label = re.sub(r'@sha256:[a-f0-9]+', f" (sha256:{m.group(1)}...)", label)
+    fp_ev = Counter(r['evidence'] for r in rows_all
+                    if r['verdict_plain'] == 'FALSE POSITIVE')
+    fp_stated = fp_ev['stated']
+
     console.print(f"\nImage: [bold cyan]{label}[/bold cyan]")
     console.print(
-        f"RHACS reports [bold]{total}[/bold] findings ({rhacs_str}) → VEX triage: "
-        f"[bold green]{fp} false positives[/bold green] ({100 * fp // total}%), "
-        f"[bold red]{pos} real[/bold red]."
+        f"[bold]{total}[/bold] findings → [bold green]{fp} false positives[/bold green] "
+        f"({100 * fp // total}%), [bold red]{pos} real[/bold red]."
     )
+    if fp:
+        console.print(
+            f"  of those: [green]{fp_ev['stated']}[/green] cleared by Red Hat for this build "
+            f"(published as OpenVEX), [dim]{fp - fp_stated} not listed / other scope[/dim]."
+        )
+    if hidden:
+        console.print(f"  [dim]{hidden} false positive row(s) hidden — --false-only to see "
+                      f"them, --all-rows for everything; exports always contain all rows.[/dim]")
     if sev_shift:
         console.print(f"[yellow]{sev_shift} finding(s) rated differently by Red Hat VEX than by the scanner.[/yellow]")
     console.print()
@@ -737,24 +975,20 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx) -> None
 
 def _audit_and_display(df: pd.DataFrame, ctx, console: Console, *,
                        output_path: Optional[str] = None, output_fmt: str = "csv",
-                       false_only: bool = False) -> pd.DataFrame:
+                       false_only: bool = False, show_all: bool = False,
+                       source_label: str = "RHACS") -> pd.DataFrame:
     """Sync VEX, run audit, render table, print summary, optionally write output."""
     unique_cves = [c.strip().upper() for c in df['CVE'].unique()]
     cached  = sum(1 for c in unique_cves if os.path.exists(os.path.join(VEX_DIR, f"{c}.json")))
     to_fetch = len(unique_cves) - cached
+    # Only say something when there is something to wait for — a fully cached
+    # run should print nothing until it has an answer.
     if to_fetch:
-        console.print(f"🔄 Syncing {to_fetch} new/updated CVEs ({cached} cached)...")
-    else:
-        console.print(f"✅ All {len(unique_cves)} CVEs already cached — skipping download.")
-    start_time = time.time()
+        console.print(f"🔄 syncing {to_fetch} CVEs from Red Hat...")
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
         futures = {ex.submit(download_and_convert_with_lib, c): c for c in unique_cves}
         for f in as_completed(futures):
             pass
-    if to_fetch:
-        console.print(f"✅ Sync Complete in {time.time() - start_time:.2f}s.")
-
-    console.print(f"🚀 Running Structured Audit — context: [bold cyan]{ctx.display_name}[/bold cyan]")
     if not df.empty:
         df['RHACS_SEVERITY'] = df['SEVERITY'].apply(
             lambda s: _RHACS_SEVERITY_MAP.get(str(s).strip().upper(), 'Unknown'))
@@ -773,7 +1007,12 @@ def _audit_and_display(df: pd.DataFrame, ctx, console: Console, *,
             (df['RHACS_SEVERITY'] != 'Unknown') & (df['SEVERITY'] != df['RHACS_SEVERITY']))
 
     result_df = _sort_and_filter_df(df, false_only)
-    _render_triage_table(console, result_df, ctx)
+    # The terminal shows what you can act on; the exported file keeps every row.
+    # False positives are the ones you do NOT have to touch, so listing thousands
+    # of them buries the handful that need work — they are counted in the footer
+    # instead.  --false-only flips this, --all-rows shows both.
+    _render_triage_table(console, result_df, ctx, source_label,
+                         actionable_only=not (false_only or show_all))
 
     if output_path and output_fmt != "table":
         _write_output(result_df, output_path, output_fmt, console)
@@ -833,9 +1072,12 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
                 session.cache.delete(expired=True)
                 image_data = rhacs_get_image(session, image_id, force=True, image_ref=image_ref)
         labels     = (image_data.get("metadata") or {}).get("v1", {}).get("labels") or {}
-        img_ctx    = parse_context_from_labels(labels, image_ref) if labels \
-            else parse_image_ref(image_ref)
         os_info    = (image_data.get("scan") or {}).get("operatingSystem", "")
+        # os_info first: it is the scanner's own read of the image and outranks
+        # labels and path (art-dev images ship no labels at all, so without it
+        # they silently keep rhel_ver='8' — 92 of 13,136 scans).
+        img_ctx    = parse_context_from_labels(labels, image_ref, os_info) if labels \
+            else parse_image_ref(image_ref, os_hint=os_info)
 
         if release_ocp_ver:
             minor_ver = '.'.join(release_ocp_ver.split('.')[:2])
@@ -865,6 +1107,7 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
             return {"found": True, "img_ctx": img_ctx, "os_info": os_info,
                     "result_df": None, "sbom_summary": None, "error": None}
 
+        _wire_go_owner_rpms(img_df, img_ctx, image_ref)
         result_df    = _audit_silent(img_df, img_ctx, false_only)
         sbom_summary = _verify_sbom_against_df(session, image_ref, result_df)
         return {"found": True, "img_ctx": img_ctx, "os_info": os_info,
@@ -1302,11 +1545,14 @@ def main():
                 raise SystemExit(1)
 
             labels = (image_data.get("metadata") or {}).get("v1", {}).get("labels") or {}
+            os_info = (image_data.get("scan") or {}).get("operatingSystem", "")
             if labels:
-                ctx = parse_context_from_labels(labels, args.image)
+                ctx = parse_context_from_labels(labels, args.image, os_info)
+            elif os_info:
+                ctx = parse_image_ref(args.image, os_hint=os_info)
 
             df = rhacs_to_df(image_data)
-            os_info = (image_data.get("scan") or {}).get("operatingSystem", "")
+            _wire_go_owner_rpms(df, ctx, args.image)
             if os_info:
                 _console.print(f"[bold]OS:[/bold] [cyan]{os_info}[/cyan]")
             _console.print(f"[bold]Found:[/bold] [cyan]{len(df)} CVE findings[/cyan] across "

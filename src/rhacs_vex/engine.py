@@ -51,7 +51,7 @@ import re
 import json
 from dataclasses import dataclass, field
 from typing import Optional, List
-from version_utils.rpm import compare_versions as _raw_compare_versions
+from urllib.parse import unquote
 
 
 # ── Config ────────────────────────────────────────────────────────────────────
@@ -82,7 +82,106 @@ def compare_versions(a: str, b: str) -> int:
     epoch_b, ver_b = _parse_epoch(b)
     if epoch_a != epoch_b:
         return 1 if epoch_a > epoch_b else -1
-    return _raw_compare_versions(ver_a, ver_b)
+    return _evr_compare(ver_a, ver_b)
+
+
+def _rpmvercmp(a: str, b: str) -> int:
+    """rpmvercmp — segment-wise comparison of ONE version or release string.
+
+    Ported from rpm's lib/rpmvercmp.c: walk both strings, skipping any character
+    that is not alphanumeric, '~' or '^'.  Numeric runs compare numerically
+    (leading zeros stripped, longer run wins); alphabetic runs compare
+    lexically; a numeric run outranks an alphabetic one.  '~' sorts BEFORE
+    everything (pre-releases: 1.0~rc1 < 1.0) and '^' after.  When one side runs
+    out first the other is newer.
+    """
+    if a == b:
+        return 0
+    i, j, la, lb = 0, 0, len(a), len(b)
+    while i < la or j < lb:
+        while i < la and not (a[i].isalnum() or a[i] in '~^'):
+            i += 1
+        while j < lb and not (b[j].isalnum() or b[j] in '~^'):
+            j += 1
+
+        # '~' sorts before anything, including the end of the string
+        if (i < la and a[i] == '~') or (j < lb and b[j] == '~'):
+            if i >= la or a[i] != '~':
+                return 1
+            if j >= lb or b[j] != '~':
+                return -1
+            i += 1
+            j += 1
+            continue
+        # '^' sorts after everything except the end of the string
+        if (i < la and a[i] == '^') or (j < lb and b[j] == '^'):
+            if i >= la:
+                return -1
+            if j >= lb:
+                return 1
+            if a[i] != '^':
+                return 1
+            if b[j] != '^':
+                return -1
+            i += 1
+            j += 1
+            continue
+
+        if i >= la or j >= lb:
+            break
+
+        start_a, start_b = i, j
+        isnum = a[i].isdigit()
+        if isnum:
+            while i < la and a[i].isdigit():
+                i += 1
+            while j < lb and b[j].isdigit():
+                j += 1
+        else:
+            while i < la and a[i].isalpha():
+                i += 1
+            while j < lb and b[j].isalpha():
+                j += 1
+        seg_a, seg_b = a[start_a:i], b[start_b:j]
+        if not seg_b:
+            # a has a numeric segment where b has an alphabetic one (or none)
+            return 1 if isnum else -1
+        if isnum:
+            seg_a, seg_b = seg_a.lstrip('0') or '0', seg_b.lstrip('0') or '0'
+            if len(seg_a) != len(seg_b):
+                return 1 if len(seg_a) > len(seg_b) else -1
+        if seg_a != seg_b:
+            return 1 if seg_a > seg_b else -1
+
+    if i >= la and j >= lb:
+        return 0
+    # whichever side still has characters left is the newer one
+    return 1 if i < la else -1
+
+
+def _evr_compare(a: str, b: str) -> int:
+    """Compare VERSION[-RELEASE] the way RPM does: version first, release only
+    as a tie-breaker.
+
+    Replaces version_utils.rpm.compare_versions, which decides some pairs on the
+    RELEASE even when the VERSIONS already differ:
+
+        compare_versions('1.1.1-9.el8', '1.1.1k-4.el8')  ->  +1
+
+    1.1.1 is older than 1.1.1k, so that answer marks a genuinely vulnerable
+    build as "installed >= fix" — a false suppression.  It hits every package
+    whose upstream version carries a letter suffix (openssl 1.1.1k / 1.0.2k /
+    3.0.7a being the obvious ones).
+    """
+    ver_a, _, rel_a = a.partition('-')
+    ver_b, _, rel_b = b.partition('-')
+    c = _rpmvercmp(ver_a, ver_b)
+    if c:
+        return c
+    if not rel_a or not rel_b:
+        # one side quotes a bare version — versions tie, nothing more to compare
+        return 0
+    return _rpmvercmp(rel_a, rel_b)
 
 
 def _normalize_epoch(installed: str, fix: str) -> tuple:
@@ -128,10 +227,24 @@ def _rpm_stream_family(version_str: str):
     OCP-built rpms carry a `rhaosX.Y` disttag ('5.4.0-14.rhaos4.21.el9');
     RHEL-built rpms don't ('4.2.0-6.el9_0.6').  The two lineages version
     independently (RHEL podman 4.x vs OCP podman 5.x), so their NEVRAs are
-    never comparable.  Returns ('rhaos', 'X.Y') or ('el', None).
+    never comparable.
+
+    The dist-tag SUFFIX splits lineages the same way (§2): `el8pc` is Satellite
+    Capsule, `el9cp` Ceph, `el9ap` Ansible AP, `el8ost` OpenStack, `el9fdp` Fast
+    Datapath, `el7a` RHEL Alt, `hum` Red Hat Hardened Images.  Each ships its own
+    build of a shared package — libsolv is 0.7.20 in RHEL 8 base and 0.7.22 in
+    Satellite — so comparing across them makes a current base package look
+    permanently behind.  A base build ('el8', 'el8_6', 'module+el8.10.0') has no
+    suffix.  Returns ('rhaos', 'X.Y'), ('hum', None) or ('el', suffix|None).
     """
-    m = re.search(r'(?:^|[.+])rhaos(\d+\.\d+)(?:[.+]|$)', str(version_str or ''))
-    return ('rhaos', m.group(1)) if m else ('el', None)
+    v = str(version_str or '')
+    m = re.search(r'(?:^|[.+])rhaos(\d+\.\d+)(?:[.+]|$)', v)
+    if m:
+        return ('rhaos', m.group(1))
+    if re.search(r'(?:^|[.+])hum\d*(?:[.+]|$)', v):
+        return ('hum', None)
+    m = re.search(r'[.+]el\d+(?:_\d+)?([a-z]+)', v)
+    return ('el', m.group(1) if m else None)
 
 
 def _stream_comparable(installed_v, candidate_v) -> bool:
@@ -146,7 +259,8 @@ def _stream_comparable(installed_v, candidate_v) -> bool:
         return False
     if fam_i == 'rhaos':
         return ver_i == ver_c
-    return True
+    # base RHEL vs a layered product's own build of the same package
+    return ver_i == ver_c
 
 
 def _extract_sha256(ref: str):
@@ -218,12 +332,53 @@ def _module_stream_compatible(pid: str, found_v: str) -> bool:
     return True
 
 
+# Every arch token the corpus actually uses as an `arch=` purl qualifier, longest
+# first so the alternation cannot match a prefix (ppc64le before ppc64 before
+# ppc, s390x before s390).  Measured over data/vex: x86_64, aarch64, ppc64le,
+# s390x, src, noarch, i686, ppc64, ppc, s390, i386, ia64, i586, source.
+_ARCH_ALT = (r'x86_64|aarch64|ppc64le|ppc64|ppc|s390x|s390|i686|i586|i486|i386'
+             r'|ia64|armv7hl|armv5tel|noarch|source|src')
+_ARCH_SUFFIX_RE = re.compile(r'\.(?:' + _ARCH_ALT + r')$')
+
+
+def _purl_ident(purl: str):
+    """(package_name, version_release) from an rpm purl — the identity of record.
+
+    Red Hat's own csaf-lib models `product_id` as an opaque string and parses
+    only `product_identification_helper.purl` (PackageURL.from_string), so the
+    purl — not the PID — is the sanctioned identity.  It carries the version for
+    every versioned node; `arch`/`epoch`/`rpmmod` are qualifiers, so nothing has
+    to be sliced off the version.
+
+    Percent-decoding is load-bearing: module builds are written
+    `2.4.37-51.module%2Bel8.7.0%2B18026` and the `.module+` test in
+    _version_is_module_stream (plus the RPM version compare) needs the literal
+    '+' back.  Returns (None, None) for non-rpm purls; a version-less node
+    (`pkg:rpm/redhat/tar?arch=src`) returns (name, None) like a bare leaf PID.
+
+    Only the vendor namespace is dropped, never a deeper path: 713 nodes carry a
+    product path (`pkg:rpm/redhat/openshift4/ose-cli`) and the surviving '/' is
+    what routes the component to the non-RPM ladder (VEX-MODEL §3a rule 5, §8b).
+    Every rpm purl in the corpus uses the `redhat` namespace (3,982,862 of
+    3,982,862), so the prefix is stripped positionally rather than by name.
+    """
+    if not purl.startswith('pkg:rpm/'):
+        return None, None
+    body = unquote(purl.partition('?')[0][len('pkg:rpm/'):])
+    path, _, version = body.partition('@')
+    name = path.partition('/')[2] or path
+    return (name or None), (version or None)
+
+
 def _parse_pkg_from_product_id(pid: str):
     """(package_name, version_release) from a VEX product_id (VEX-MODEL §3a).
 
-    Strip the '::module:stream' suffix, take the component after the first ':',
-    split on the epoch colon ('-<digits>:') into name / ver-rel, and drop a
-    trailing arch.  Bare leaf PIDs return (name, None).
+    Fallback for the ~0.1% of statement refs whose component node ships no purl
+    (upstream-project pseudo-components such as `jackson-databind`).  Red Hat
+    publishes no product_id grammar, so this is reverse-engineered: strip the
+    '::module:stream' suffix, take the component after the first ':', split on
+    the epoch colon ('-<digits>:') into name / ver-rel, and drop a trailing
+    arch.  Bare leaf PIDs return (name, None).  Prefer _purl_ident.
     """
     pid = pid.split('::')[0]
     colon = pid.find(':')
@@ -234,14 +389,25 @@ def _parse_pkg_from_product_id(pid: str):
     if epoch_match:
         name = component_part[:epoch_match.start()]
         rest = component_part[epoch_match.end():]
-        arch_match = re.search(
-            r'\.(aarch64|x86_64|ppc64le|s390x|i686|noarch|src)$', rest)
+        arch_match = _ARCH_SUFFIX_RE.search(rest)
         if arch_match:
             rest = rest[:arch_match.start()]
         return name, rest
-    component_part = re.sub(
-        r'\.(aarch64|x86_64|ppc64le|s390x|i686|noarch|src)$', '', component_part)
+    component_part = _ARCH_SUFFIX_RE.sub('', component_part)
     return component_part, None
+
+
+def _pkg_from_pid(pid: str, pid_ident: dict):
+    """(package_name, version_release) for a status PID — purl first.
+
+    *pid_ident* is the purl-derived map from _build_pid_name, keyed by both the
+    composite `<parent>:<component>` PID used in product_status and the bare
+    component PID.  Falls back to the string parse when the node has no purl.
+    """
+    ident = pid_ident.get(pid) if pid_ident else None
+    if ident is not None:
+        return ident
+    return _parse_pkg_from_product_id(pid)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -327,11 +493,14 @@ def _normalize_ocp_component(name: str) -> str:
     return name
 
 
-def parse_image_ref(image_ref: str) -> WorkloadContext:
+def parse_image_ref(image_ref: str, os_hint: str = "") -> WorkloadContext:
     """Parse a Red Hat container image reference into a WorkloadContext.
 
     Namespace/type classification is structural + catalog-map driven; no
-    hardcoded product list.
+    hardcoded product list.  *os_hint* is the scanner's OS string and overrides
+    the rhel_ver guessed from the path — the path of an OCP payload image
+    (`openshift-release-dev/ocp-v4.0-art-dev`) encodes no RHEL major at all, so
+    without it the "8" default silently wins on a RHEL 9/10 image.
     """
     ctx = WorkloadContext(image_ref=image_ref)
 
@@ -346,6 +515,10 @@ def parse_image_ref(image_ref: str) -> WorkloadContext:
     rv = re.search(r'rhel(\d+)', name) or re.search(r'rhel(\d+)', ns) \
         or re.search(r'^ubi(\d+)$', ns)
     ctx.rhel_ver = rv.group(1) if rv else "8"
+    if os_hint:
+        om = re.search(r'(?:rhel|coreos|redhat)[^0-9]{0,3}(\d+)', str(os_hint).lower())
+        if om:
+            ctx.rhel_ver = om.group(1)
 
     ocp_tag = re.search(r'v(4\.\d+)', image_ref)
     if ocp_tag:
@@ -378,12 +551,15 @@ def parse_image_ref(image_ref: str) -> WorkloadContext:
     return ctx
 
 
-def parse_context_from_labels(labels: dict, image_ref: str = "") -> WorkloadContext:
+def parse_context_from_labels(labels: dict, image_ref: str = "",
+                              os_hint: str = "") -> WorkloadContext:
     """Derive a WorkloadContext from container image labels (VEX-MODEL §7c/§7d).
 
     The registry pull path is authoritative for the RHEL variant (labels can lag
     a rebuild); the CPE label refines RHEL major, product version, and promotes
-    a plain-'openshift' CPE product to the OCP workload type.
+    a plain-'openshift' CPE product to the OCP workload type.  *os_hint* is the
+    scanner's own OS string (RHACS `scan.operatingSystem`, grype `distro`) and
+    outranks all of them — it was read from inside the image.
     """
     cpe  = labels.get("cpe", "")
     name = labels.get("name", "")
@@ -392,6 +568,19 @@ def parse_context_from_labels(labels: dict, image_ref: str = "") -> WorkloadCont
     ctx = parse_image_ref(ref) if ref else WorkloadContext()
     if image_ref:
         ctx.image_ref = image_ref
+
+    # The label namespace above wins for identity (the art-dev pull path names no
+    # image), but it is the *secondary* signal per §7d and disagrees with the
+    # registry path on 18-46% of images — always in the direction that loses the
+    # namespace map: label `managed-open-data-hub` vs registry `rhoai`,
+    # `amq-broker-7` vs `amq7`, `kernel-module-management` vs `kmm`, `keycloak`
+    # vs `rhbk`.  Merge the pull path's prefixes so operator scoping resolves
+    # under either name instead of silently falling through.
+    if image_ref and ctx.workload_type == "operator":
+        path_ctx = parse_image_ref(image_ref)
+        for p in path_ctx.extra_prefixes:
+            if p not in ctx.extra_prefixes:
+                ctx.extra_prefixes.append(p)
     if cpe:
         ctx.cpe = cpe
 
@@ -445,6 +634,17 @@ def parse_context_from_labels(labels: dict, image_ref: str = "") -> WorkloadCont
         if rm:
             ctx.rhel_ver = rm.group(1)
 
+    # The scanner read /etc/redhat-release inside the image, so it outranks every
+    # naming convention above.  Without it an image carrying no labels and no
+    # `-rhelN` in its path silently keeps the rhel_ver='8' dataclass default:
+    # measured 92 of 13,136 RHACS scans, all `openshift-release-dev/ocp-v4.0-art-dev`
+    # (labels absent, actual OS rhel:9 or rhel:10), which scopes RHEL 8 products
+    # onto a RHEL 9/10 workload.
+    if os_hint:
+        om = re.search(r'(?:rhel|redhat)[:\-]?(\d+)', str(os_hint).lower())
+        if om:
+            ctx.rhel_ver = om.group(1)
+
     return ctx
 
 
@@ -455,7 +655,8 @@ def parse_context_from_labels(labels: dict, image_ref: str = "") -> WorkloadCont
 def _build_pid_name(data: dict):
     """Lookup maps from a VEX product tree — no hardcoded labels (VEX-MODEL §4).
 
-    Returns (pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe):
+    Returns (pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe,
+             pid_ident):
       pid_name       {product_id → human name} from branch nodes
       rel_parent     {composite_pid → parent human name} from relationships
       rhel_base_pids parent PIDs whose name starts 'Red Hat Enterprise Linux'
@@ -463,6 +664,9 @@ def _build_pid_name(data: dict):
       vex_ns_map     {registry_namespace → {parent product ids / cpe tokens}}
                      derived dynamically from OCI purls (bridges label namespace)
       pid_cpe        {product_id → cpe}
+      pid_ident      {product_id → (pkg_name, version_release)} from the rpm
+                     purl, keyed by BOTH the composite `<parent>:<component>`
+                     PID that product_status uses and the bare component PID
     Memoized in data['__pid_maps__'].
     """
     cached = data.get('__pid_maps__')
@@ -488,6 +692,13 @@ def _build_pid_name(data: dict):
 
     _walk(data.get('product_tree', {}).get('branches', []))
 
+    # Package identity straight off the rpm purl, before any PID string parsing.
+    pid_ident: dict = {}
+    for pid, purl in pid_purl.items():
+        name, ver = _purl_ident(purl)
+        if name:
+            pid_ident[pid] = (name, ver)
+
     rel_parent: dict = {}
     comp_to_parent_pid: dict = {}
     for rel in data.get('product_tree', {}).get('relationships', []):
@@ -498,6 +709,11 @@ def _build_pid_name(data: dict):
             rel_parent[fpid] = pid_name.get(parent, parent)
         if comp and parent:
             comp_to_parent_pid[comp] = parent
+        # product_status names the composite PID; the purl hangs off the
+        # component node, and relationships are the only link between them
+        # (0 of 105,512 relationships carry their own identification helper).
+        if fpid and comp and comp in pid_ident:
+            pid_ident[fpid] = pid_ident[comp]
 
     rhel_base_pids = {
         pid for pid, name in pid_name.items()
@@ -521,7 +737,8 @@ def _build_pid_name(data: dict):
                 if len(cpe_parts) > 2:
                     vex_ns_map[oci_ns].add(cpe_parts[2])
 
-    result = (pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe)
+    result = (pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe,
+              pid_ident)
     data['__pid_maps__'] = result
     return result
 
@@ -623,6 +840,35 @@ def _is_version_neutral_product(pid: str) -> bool:
     return True
 
 
+@functools.lru_cache(maxsize=4096)
+def _prefix_pattern(prefix_lower: str):
+    """Token-boundary matcher for a catalog/namespace prefix."""
+    return re.compile(rf'(?:^|[^a-z0-9]){re.escape(prefix_lower)}(?:[^a-z0-9]|$)')
+
+
+def _prefix_matches_pid(prefix: str, pid_lower: str) -> bool:
+    """Does a catalog/namespace prefix name this PID's product?
+
+    Path prefixes ('rhoai/', 'registry.redhat.io/rhoai/') keep substring
+    semantics — the trailing '/' already bounds them.  Bare tokens must match on
+    a token boundary, because the map contributes very short CPE tokens ('ai',
+    'dns', 'eap', 'mcg', 'ocs', 'odf', 'ptp', 'sbd', …) and a raw substring test
+    lets them collide with unrelated products: 'ai' matches the *stream name* in
+    `BaseOS-8.10.0.Z.M(AI)N.EUS`, which pulled every RHEL major's base repos into
+    an operator workload's scope.  A cross-major fix then wins the §6b GA
+    comparison an el8 package can never satisfy (systemd 239-78.el8 vs the el9
+    fix 250-12.el9_1.1), making the finding permanently POSITIVE.  Boundary
+    matching still matches what the token is for — 'ai' in
+    `Red Hat OpenShift AI 2.25`.
+    """
+    p = prefix.lower()
+    if not p:
+        return False
+    if p.endswith('/'):
+        return p in pid_lower
+    return bool(_prefix_pattern(p).search(pid_lower))
+
+
 def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict,
                   rhel_base_pids: set, vex_ns_map: Optional[dict] = None,
                   pid_cpe: Optional[dict] = None) -> bool:
@@ -681,7 +927,7 @@ def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict,
     # operator
     pid_lower = pid.lower()
     for prefix in ctx.extra_prefixes:
-        if prefix.lower() in pid_lower:
+        if _prefix_matches_pid(prefix, pid_lower):
             return _memo(True)
     if vex_ns_map and ctx.image_ns:
         parent_pid = pid.split(':')[0]
@@ -689,7 +935,7 @@ def _pid_in_scope(pid: str, ctx: WorkloadContext, pid_name: dict,
         if parent_pid in ns_products:
             return _memo(True)
         for prod_id in ns_products:
-            if prod_id.lower() in pid_lower:
+            if _prefix_matches_pid(prod_id, pid_lower):
                 return _memo(True)
     return _memo(False)
 
@@ -770,6 +1016,99 @@ _NOT_AFFECTED_FLAGS = {
 }
 
 
+def wire_rpm_owners(df, ctx, owners: dict) -> None:
+    """Give matching and emission the rpm identity of go-binary components.
+
+    Red Hat assesses golang CVEs against the VENDORING rpm (rhel9:buildah), not
+    the module purl the scanner reports — without this link those verdicts are
+    invisible: an affected rpm looks "not listed" (⇒ false positive) and a
+    not_affected rpm never reaches trivy's rpm-level finding.  It is also what
+    lets openvex.statements_from_df see a divergent group — a Go component
+    cleared while its vendoring rpm is still open — and withhold the statement.
+
+    - df['OWNER_RPM'] = 'name@version-release' per non-OS row (emitter bridge)
+    - ctx.sbom_src_map[component] = rpm name (engine _resolve_comp alias); a
+      component seen in binaries of two different rpms stays unmapped — one
+      verdict row can't represent diverging owners.
+
+    Path forms differ by producer: syft records absolute paths (`/usr/bin/oc`),
+    RHACS component locations are relative (`usr/bin/oc`), so both are indexed.
+    """
+    if df is None or df.empty or not owners:
+        return
+    norm = {}
+    for path, owner in owners.items():
+        p = str(path)
+        norm[p] = owner
+        norm['/' + p.lstrip('/')] = owner
+        norm[p.lstrip('/')] = owner
+
+    df['OWNER_RPM'] = df.apply(
+        lambda r: '{}@{}'.format(*norm[str(r.get('LOCATION', ''))])
+        if str(r.get('SOURCE', '')).strip().upper() != 'OS'
+        and str(r.get('LOCATION', '')) in norm else '', axis=1)
+    src_map, conflict = {}, set()
+    for _, r in df.iterrows():
+        owner = str(r.get('OWNER_RPM', '') or '')
+        if not owner:
+            continue
+        comp, name = str(r['COMPONENT']), owner.split('@')[0]
+        if src_map.get(comp, name) != name:
+            conflict.add(comp)
+        src_map.setdefault(comp, name)
+    for c in conflict:
+        src_map.pop(c, None)
+    ctx.sbom_src_map = {**src_map, **(ctx.sbom_src_map or {})}
+
+
+def rpm_source_map_from_sbom(sbom_path: str) -> dict:
+    """binary rpm name → source rpm name, from a syft-json SBOM's `upstream=`.
+
+    The authoritative binary→source link.  Without it `libsmartcols` never
+    reaches `util-linux`'s statements and reads as "not listed as affected" — a
+    FALSE POSITIVE for a package Red Hat lists as known_affected.
+    """
+    try:
+        with open(sbom_path) as fh:
+            doc = json.load(fh)
+    except Exception:
+        return {}
+    out = {}
+    for a in doc.get('artifacts', []):
+        if a.get('type') != 'rpm' or not a.get('name'):
+            continue
+        m = re.search(r'upstream=([^&]+?)-[^-]+-[^-]+\.src\.rpm', a.get('purl') or '')
+        if m and m.group(1) != a['name']:
+            out[a['name']] = m.group(1)
+    return out
+
+
+def rpm_file_owners_from_sbom(sbom_path: str) -> dict:
+    """path → ('rpm name', 'version-release') from a syft-json SBOM.
+
+    Mirrors adapters.grype.rpm_file_owners so the RHACS path can build the same
+    ownership link from an SBOM already on disk, without a scanner run.
+    """
+    try:
+        with open(sbom_path) as fh:
+            doc = json.load(fh)
+    except Exception:
+        return {}
+    owners = {}
+    for a in doc.get('artifacts', []):
+        if a.get('type') != 'rpm':
+            continue
+        name = a.get('name', '')
+        ver = re.sub(r'^\d+:', '', str(a.get('version', '')))
+        if not name or not ver:
+            continue
+        for f in (a.get('metadata') or {}).get('files') or []:
+            path = f.get('path') if isinstance(f, dict) else str(f)
+            if path:
+                owners[path] = (name, ver)
+    return owners
+
+
 def _resolve_comp(comp: str, ctx: WorkloadContext) -> set:
     """Candidate package names for matching VEX PIDs (VEX-MODEL §7a).
 
@@ -789,7 +1128,7 @@ def _resolve_comp(comp: str, ctx: WorkloadContext) -> set:
     return names
 
 
-def _src_alias_names(data: dict, comp: str, found_v: str) -> set:
+def _src_alias_names(data: dict, comp: str, found_v: str, srpm: str = '') -> set:
     """Source-RPM aliases for a binary subpackage, derived from the VEX (§3f/§8 5s).
 
     Red Hat sometimes tracks only the source package (`ceph`, `perl`) while the
@@ -811,6 +1150,7 @@ def _src_alias_names(data: dict, comp: str, found_v: str) -> set:
     src_vr = data.get('__src_vr__')
     if src_vr is None:
         src_vr = {}
+        pid_ident = _build_pid_name(data)[6]
         for vuln in data.get('vulnerabilities', []):
             ps = vuln.get('product_status', {})
             for st in ('known_affected', 'fixed', 'known_not_affected',
@@ -819,15 +1159,28 @@ def _src_alias_names(data: dict, comp: str, found_v: str) -> set:
                     base = pid.split('::')[0]
                     if not base.endswith('.src'):
                         continue
-                    name, vr = _parse_pkg_from_product_id(pid)
+                    name, vr = _pkg_from_pid(pid, pid_ident)
                     if name:
                         # vr is None for a version-less product-level .src PID
                         # (red_hat_ceph_storage:ceph.src) — record as wildcard.
                         src_vr.setdefault(name, set()).add(vr)
         data['__src_vr__'] = src_vr
     vr = found_v.split(':', 1)[-1] if ':' in found_v else found_v
-    return {src for src, vrs in src_vr.items()
-            if comp.startswith(src + '-') and (vr in vrs or None in vrs)}
+    aliases = {src for src, vrs in src_vr.items()
+               if comp.startswith(src + '-') and (vr in vrs or None in vrs)}
+
+    # When the SOURCE package is known for certain — the rpm purl's `upstream=`
+    # qualifier names it — a dash-prefix guess must never override it.  The VR
+    # gate above cannot catch this on its own: a version-less `.src` PID is a
+    # wildcard, so ANY `python3-*` package matches `python3` regardless of its
+    # own version.  That misattributed python3's fixed NEVRA to
+    # python3-chardet 4.0.0-5.el9 ("4.0.0 >= 3.9.21" → FALSE POSITIVE) even
+    # though CVE-2024-0397 lists chardet as known_affected and ships no chardet
+    # fix at all.  chardet is built from python-chardet, not python3.
+    if srpm:
+        aliases = {a for a in aliases if a == srpm}
+        aliases.add(srpm)
+    return aliases
 
 
 def _sbom_note(comp: str, version: str, ctx: WorkloadContext) -> str:
@@ -1004,6 +1357,7 @@ def _severity_fallback(data, comp, ctx, pid_name, rhel_base_pids, vex_ns_map,
     """
     severity = "UNKNOWN"
     names_to_match = _resolve_comp(comp, ctx)
+    pid_ident = _build_pid_name(data)[6]
 
     # OCI-purl match — when the image's OCI purl matches a VEX PID (even one not
     # decisive for the verdict, e.g. a not-listed component), use that PID's
@@ -1048,7 +1402,7 @@ def _severity_fallback(data, comp, ctx, pid_name, rhel_base_pids, vex_ns_map,
                     continue
                 if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map, pid_cpe=pid_cpe):
                     continue
-                tpkg, _ = _parse_pkg_from_product_id(pid)
+                tpkg, _ = _pkg_from_pid(pid, pid_ident)
                 if not tpkg:
                     continue
                 if '/' in tpkg and _normalize_vex_image_core(tpkg) == img_comp:
@@ -1062,7 +1416,7 @@ def _severity_fallback(data, comp, ctx, pid_name, rhel_base_pids, vex_ns_map,
         for pid, sev in pid_severity.items():
             if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map, pid_cpe=pid_cpe):
                 continue
-            tpkg, _ = _parse_pkg_from_product_id(pid)
+            tpkg, _ = _pkg_from_pid(pid, pid_ident)
             if tpkg and tpkg in names_to_match:
                 severity = sev
                 break
@@ -1230,7 +1584,7 @@ def _rpm_candidates(vuln, ctx, maps, names, found_v, comp=None):
     status: a package with its own statement (own SRPM, own remediation) must be
     decisive over its alias source (openssl-fips-provider vs openssl).
     """
-    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = maps
+    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe, pid_ident = maps
     ps = vuln.get('product_status', {})
     flags = vuln.get('flags', [])
     out = []
@@ -1240,7 +1594,7 @@ def _rpm_candidates(vuln, ctx, maps, names, found_v, comp=None):
             return
         if not _module_stream_compatible(pid, found_v):
             return
-        name, ver = _parse_pkg_from_product_id(pid)
+        name, ver = _pkg_from_pid(pid, pid_ident)
         if name in names:
             out.append((status, pid, ver, name))
 
@@ -1263,6 +1617,31 @@ def _rpm_candidates(vuln, ctx, maps, names, found_v, comp=None):
     return [(s, p, v) for s, p, v, _n in out]
 
 
+def _upstream_newer_than_all(installed: str, fixes) -> bool:
+    """Is *installed* strictly newer than every fix on EPOCH:VERSION alone?
+
+    Cross-stream RELEASE comparison is meaningless — RHEL minor branches number
+    their releases independently, so `expat-2.5.0-6.el9_8.1` vs the 9.0 E4S
+    backport `expat-2.2.10-12.el9_0.4` compares 6 < 12 and calls the newer branch
+    older.  That is why §6b forbids it.  The upstream VERSION carries no such
+    confound: a build whose version is strictly greater than the version a fix
+    shipped in cannot be missing that fix, whatever branch either came from.
+
+    Deliberately strict.  Equal versions differing only in release (2.2.10-12 vs
+    2.2.10-14) fall back to the release confound and stay POSITIVE.
+    """
+    seen = False
+    for fix_v in fixes:
+        try:
+            inst, fix = _normalize_epoch(installed, fix_v)
+        except Exception:
+            return False
+        if _rpmvercmp(inst.partition('-')[0], fix.partition('-')[0]) <= 0:
+            return False
+        seen = True
+    return seen
+
+
 def _compare_fixed(found_v, unique_fixed, comp, ctx, rpm_rhel, dec, fix_pid_by_ver):
     """Stream-aware RPM version comparison against VEX fixed NEVRAs (VEX-MODEL §6b).
 
@@ -1283,6 +1662,18 @@ def _compare_fixed(found_v, unique_fixed, comp, ctx, rpm_rhel, dec, fix_pid_by_v
         same_stream = [v for v in unique_fixed if _detect_rhel_minor(v) == installed_minor]
         if same_stream:
             compare_fixes = same_stream
+        elif _upstream_newer_than_all(found_v, unique_fixed):
+            # No erratum for our stream because our stream never needed one: we
+            # carry a strictly newer upstream version than any branch the fix
+            # shipped in.  Without this, every package that moved forward a
+            # release stays POSITIVE forever against a backport to a frozen EUS
+            # branch — expat 2.5.0 on 9.8 against 2.2.10-12.el9_0.4 (2013).
+            ref = unique_fixed[0]
+            _decide(ref, 'rpm_fixed_newer_upstream', False)
+            prefix = f"{sn}; " if sn else ''
+            return ("✅ FALSE POSITIVE", ref,
+                    f"{prefix}Installed {found_v} is a newer upstream version "
+                    f"than every fix Red Hat shipped ({ref}).")
         else:
             best_ref = unique_fixed[0]
             _decide(best_ref, 'rpm_fixed_fail', True)
@@ -1321,10 +1712,10 @@ def _compare_fixed(found_v, unique_fixed, comp, ctx, rpm_rhel, dec, fix_pid_by_v
     return ("❌ POSITIVE", compare_fixes[0] if compare_fixes else "N/A", note)
 
 
-def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec):
+def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec, srpm=''):
     """RPM decision ladder (rungs 5, 5s, 8, 9).  Returns (verdict, fix, note)."""
-    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = maps
-    names = _resolve_comp(comp, ctx) | _src_alias_names(data, comp, found_v)
+    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe, pid_ident = maps
+    names = _resolve_comp(comp, ctx) | _src_alias_names(data, comp, found_v, srpm)
     installed_minor = _detect_rhel_minor(found_v)
 
     vulns = data.get('vulnerabilities', [])
@@ -1408,7 +1799,7 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec):
                 if (_is_any_rhel_ver_product(fpid, rhel_ver)
                         and not _pid_in_scope(fpid, ctx, pid_name, rhel_base_pids,
                                               vex_ns_map, pid_cpe=pid_cpe)):
-                    fpkg, _ = _parse_pkg_from_product_id(fpid)
+                    fpkg, _ = _pkg_from_pid(fpid, pid_ident)
                     if fpkg and fpkg in names:
                         other_products.add(_pid_label(fpid, pid_name, rel_parent))
             sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
@@ -1428,6 +1819,14 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec):
             return ("❌ POSITIVE", "N/A", f"under_investigation for {ctx.display_name}.")
 
         # rung 8 — related products (out-of-scope RHEL-N / version-neutral) ---
+        # Packages Red Hat tracks per RHEL major anywhere in this file.
+        rhel_tracked = set()
+        for status in ('fixed', 'known_affected', 'known_not_affected'):
+            for pid in ps.get(status, []):
+                if 'enterprise_linux' in pid.lower() or re.search(r'[.+]el\d', pid):
+                    nm, _ = _pkg_from_pid(pid, pid_ident)
+                    if nm:
+                        rhel_tracked.add(nm)
         other_vuln, other_safe = set(), set()
         other_vuln_pids, other_safe_pids = [], []
         for status in ('fixed', 'known_affected', 'known_not_affected'):
@@ -1437,7 +1836,20 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec):
                                               vex_ns_map, pid_cpe=pid_cpe)):
                     if not _module_stream_compatible(pid, found_v):
                         continue
-                    pkg_name, _ = _parse_pkg_from_product_id(pid)
+                    pkg_name, _pkg_ver = _pkg_from_pid(pid, pid_ident)
+                    if (pkg_name and _is_version_neutral_product(pid)
+                            and pkg_name in rhel_tracked):
+                        # Red Hat enumerates this package per RHEL major (it
+                        # appears under RHEL base products elsewhere in this
+                        # file), so our major's absence is informative — §5g.
+                        # A standalone product's bundled copy then says nothing:
+                        # JBoss EWS 3 and Directory Server 8 ship their own pcre,
+                        # unrelated to RHEL 9's, and flagging on the shared NAME
+                        # marks a current package vulnerable forever over a 2015
+                        # CVE in a product we do not run.  openshift-clients is
+                        # the opposite case — RHEL never ships it, so the
+                        # version-neutral OCP PID is the only statement there is.
+                        continue
                     if pkg_name in names:
                         label = _pid_label(pid, pid_name, rel_parent)
                         if status in ('known_affected', 'fixed'):
@@ -1458,6 +1870,19 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec):
         # rung 9 — not listed: Red Hat enumerates affected products per CVE;
         # a component absent from that enumeration is not affected (§5g — the
         # errata assumption covers only listed products, never silence).
+        img_status, img_lbl, img_pids = _image_level_open_verdict(data, ctx, maps)
+        if img_status:
+            dec.update(kind='rpm_img_open', status=img_status, pids=img_pids)
+            what = ('under_investigation — Red Hat has not assessed this yet'
+                    if img_status == 'under_investigation' else 'known_affected')
+            return ("❌ POSITIVE", "N/A",
+                    f"{what}. This image: {', '.join(sorted(set(img_lbl))[:2])}.")
+        ui_lbl, ui_pids = _scoped_under_investigation(data, ctx, maps, comp, names)
+        if ui_lbl:
+            dec.update(kind='rpm_ui_scope', status='under_investigation', pids=ui_pids)
+            return ("❌ POSITIVE", "N/A",
+                    f"under_investigation in {', '.join(sorted(set(ui_lbl))[:3])} — "
+                    f"Red Hat has not assessed this yet.")
         dec['kind'] = 'rpm_not_listed'
         return ("✅ FALSE POSITIVE", "N/A", f"'{comp}' not listed as affected in VEX.")
 
@@ -1516,7 +1941,7 @@ def _image_identity_lookup(ctx, data, maps, dec):
     the decisive PID so severity/state read from it.  Verdicts are the internal
     tokens POSITIVE / FALSE_POSITIVE / POSITIVE_OTHER_RHEL / NOT_LISTED.
     """
-    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = maps
+    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe, pid_ident = maps
 
     _label_name = f"{ctx.image_ns}/{ctx.image_name}" if (ctx.image_ns and ctx.image_name) else None
     _candidates, _image_sha = _build_image_purl(ctx.image_ref, _label_name)
@@ -1530,7 +1955,7 @@ def _image_identity_lookup(ctx, data, maps, dec):
             for status in ('known_not_affected', 'known_affected', 'fixed', 'under_investigation'):
                 for pid in ps.get(status, []):
                     if _extract_sha256(pid) in _own_sha_set:
-                        _leaf, _ = _parse_pkg_from_product_id(pid)
+                        _leaf, _ = _pkg_from_pid(pid, pid_ident)
                         if _leaf:
                             _purl_matched_pids.add(_leaf)
 
@@ -1580,7 +2005,7 @@ def _image_identity_lookup(ctx, data, maps, dec):
             nonlocal family_assessed
             if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map, pid_cpe=pid_cpe):
                 return
-            pid_pkg, _ = _parse_pkg_from_product_id(pid)
+            pid_pkg, _ = _pkg_from_pid(pid, pid_ident)
             if not pid_pkg:
                 return
             has_path = '/' in pid_pkg
@@ -1611,10 +2036,6 @@ def _image_identity_lookup(ctx, data, maps, dec):
     # our-digest assessments override generic ones
     if any(m[4] == 2 for m in matches):
         matches = [m for m in matches if m[4] == 2]
-
-    def _fin(res):
-        """Record the decisive image PID (if any) then return the tuple."""
-        return res
 
     if not matches:
         # rung 7 — errata policy (no family match for this OCP version)
@@ -1710,7 +2131,7 @@ def _image_identity_lookup(ctx, data, maps, dec):
 def _audit_nonrpm_image_sha(comp, found_v, data, ctx, maps, our_shas, row, dec):
     """Image-level VEX PIDs carrying an @sha256 digest (rung 4).  Returns
     (verdict, fix, note) or None."""
-    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = maps
+    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe, pid_ident = maps
     comp_base = re.sub(r'[@:][^/]*$', '', comp)
     img_not_affected = False
     img_fixed_label = None
@@ -1762,6 +2183,166 @@ def _audit_nonrpm_image_sha(comp, found_v, data, ctx, maps, our_shas, row, dec):
     return None
 
 
+def _pid_is_our_image(pid: str, ctx: WorkloadContext) -> bool:
+    """Does this PID's component name OUR image (not a sibling in the product)?
+
+    Identity, in the order VEX-MODEL §8b ranks it: our exact digest, then the
+    image path/name, then the derived OCP component.  Being in scope is NOT
+    enough — an OCP workload has every OpenShift image in scope, and treating a
+    statement about `ose-hypershift-rhel9` as one about `ose-cli` is the same
+    over-broad match that produced bugs 8 and 12.
+    """
+    comp = pid.split(':', 1)[-1] if ':' in pid else pid
+    sha = _extract_sha256(pid)
+    if sha:
+        return sha in _own_shas(ctx)
+    if '/' not in comp and '@' not in comp:
+        return False                       # a package name, not an image path
+    base = re.sub(r'@sha256:.*$', '', comp).split('/')[-1].lower()
+    ours = {x.lower() for x in (ctx.image_name or '', ctx.ocp_component or '') if x}
+    if base in ours:
+        return True
+    core = _normalize_vex_image_core(comp)
+    return bool(core) and (core.lower() in ours
+                           or (ctx.ocp_component
+                               and _normalize_ocp_component(core)
+                               == _normalize_ocp_component(ctx.ocp_component)))
+
+
+def _image_level_open_verdict(data, ctx, maps):
+    """(status, labels, pids) when a statement about OUR IMAGE leaves it open.
+
+    Identity hierarchy (§8b): our digest, then our image, then our product, then
+    the component.  A statement about the image outranks the component level, so
+    reaching rung 9 ("this package is not named") while Red Hat says the IMAGE is
+    known_affected — or is still under_investigation — reports a confirmed clear
+    the vendor never gave.
+
+    CVE-2026-39833 names `red_hat_web_terminal:web-terminal/web-terminal-tooling-rhel9`
+    as known_affected and no libgcc PID at all; libgcc inside that image was
+    being called a FALSE POSITIVE.  CVE-2026-45287 is the same shape with
+    under_investigation.
+    """
+    pid_name, rel_parent, rhel_base_pids, _pp, vex_ns_map, pid_cpe, _ident = maps
+    for status in ('known_affected', 'under_investigation'):
+        labels, pids = [], []
+        for vuln in data.get('vulnerabilities', []):
+            for pid in vuln.get('product_status', {}).get(status, []):
+                if not _pid_is_our_image(pid, ctx):
+                    continue
+                if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                     pid_cpe=pid_cpe):
+                    continue
+                labels.append(_pid_label(pid, pid_name, rel_parent))
+                pids.append(pid)
+        if labels:
+            return status, labels, pids
+    return None, [], []
+
+
+def _scoped_under_investigation(data, ctx, maps, comp=None, names=()):
+    """(labels, pids) of `under_investigation` statements about US.
+
+    §5a: under_investigation means Red Hat has NOT decided yet, and the rule is
+    to treat it as vulnerable.  A rung-9 "not listed as affected" reached while
+    such a statement covers our image is a false suppression — it reports a
+    confirmed clear where the vendor explicitly said "unknown".  Seen on
+    CVE-2026-45287, whose only statement about us is
+    `red_hat_web_terminal:web-terminal/web-terminal-tooling-rhel9` under
+    investigation, while every component of that image was called a FALSE
+    POSITIVE.
+
+    Restricted to OUR image or OUR component on purpose: an in-scope UI naming a
+    sibling image (`ose-hypershift-rhel9`) or an unrelated package (`buildah`)
+    says nothing about this finding.
+    """
+    pid_name, rel_parent, rhel_base_pids, _pp, vex_ns_map, pid_cpe, pid_ident = maps
+    want = {n for n in (set(names) | ({comp} if comp else set())) if n}
+    labels, pids = [], []
+    for vuln in data.get('vulnerabilities', []):
+        for pid in vuln.get('product_status', {}).get('under_investigation', []):
+            if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
+                continue
+            pkg, _ = _pkg_from_pid(pid, pid_ident)
+            if not (_pid_is_our_image(pid, ctx) or (pkg and pkg in want)):
+                continue
+            labels.append(_pid_label(pid, pid_name, rel_parent))
+            pids.append(pid)
+    return labels, pids
+
+
+def _scoped_affected(data, ctx, maps):
+    """(labels, pids) of in-scope known_affected products for this workload.
+
+    Non-empty means Red Hat lists THIS product as affected by the CVE — the
+    precondition of the errata sentence (§5g): "unless explicitly stated as not
+    affected, all previous versions of packages in any minor update stream of a
+    product listed here should be assumed vulnerable".
+    """
+    pid_name, rel_parent, rhel_base_pids, _pid_purl, vex_ns_map, pid_cpe, _ident = maps
+    labels, pids = [], []
+    for vuln in data.get('vulnerabilities', []):
+        for pid in vuln.get('product_status', {}).get('known_affected', []):
+            if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map, pid_cpe=pid_cpe):
+                labels.append(_pid_label(pid, pid_name, rel_parent))
+                pids.append(pid)
+    return labels, pids
+
+
+def _clears_under(data, ctx, maps, affected_pids) -> list:
+    """In-scope clears belonging to the SAME parent product(s) listed as affected.
+
+    Answers "did Red Hat assess *us* for this CVE", and the parent restriction is
+    load-bearing.  `_pid_in_scope` deliberately admits any product carrying the
+    workload's RHEL major (§8a, so Fast Datapath and friends are not missed), so
+    a plain in-scope sweep for an OCP 4.12 / RHEL8 image also returns
+    8Base-RHACM-2.9, 8Base-multicluster-engine-2.4, 8Base-RHACS-4.5,
+    8Base-GitOps-1.14 — 490 of 521 clears on CVE-2024-45337 come from products
+    that are not ours.  RHACM clearing its own images says nothing about whether
+    ose-cli was assessed, so only clears under a parent Red Hat also listed as
+    affected count as evidence that the enumeration covered us.
+    """
+    parents = {p.split(':')[0] for p in affected_pids}
+    if not parents:
+        return []
+    pid_name, _rel, rhel_base_pids, _pp, vex_ns_map, pid_cpe, _ident = maps
+    out = []
+    for vuln in data.get('vulnerabilities', []):
+        ps = vuln.get('product_status', {})
+        for status in ('known_not_affected', 'fixed'):
+            for pid in ps.get(status, []):
+                if pid.split(':')[0] not in parents:
+                    continue
+                if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map,
+                                 pid_cpe=pid_cpe):
+                    out.append(pid)
+    return out
+
+
+def _errata_assumed_vulnerable(labels, pids, dec, what: str):
+    """Apply the errata assumption to a non-RPM component of a listed product.
+
+    Only called when Red Hat lists this product as affected AND cleared nothing
+    in our scope — i.e. they never assessed us for this CVE, so the errata
+    sentence governs: "unless explicitly stated as not affected, all previous
+    versions of packages in any minor update stream of a product listed here
+    should be assumed vulnerable".  A sibling image of a listed product is not
+    enumerated (CVE-2026-42507 names web-terminal-exec-rhel9 while
+    web-terminal-tooling-rhel9 appears nowhere), so silence is not a
+    not-affected claim.  When in-scope clears DO exist the caller keeps the
+    FALSE POSITIVE — the enumeration covered us and absence is meaningful.
+
+    The rpm path never reaches here: Red Hat enumerates rpms exhaustively (every
+    binary subpackage, per arch, §9.1), so an absent rpm is already meaningful.
+    """
+    dec.update(kind='ft_errata_assumed', status='known_affected', pids=pids)
+    return ("❌ POSITIVE", "N/A",
+            f"{what} not explicitly cleared; Red Hat lists "
+            f"{', '.join(sorted(set(labels))[:3])} as affected and cleared nothing in "
+            f"this scope — per Red Hat's errata policy, assumed vulnerable.")
+
+
 def _audit_nonrpm_fallthrough(comp, ctx, maps, affected, fixed, not_affected,
                               investigating, data, dec):
     """Non-RPM fallthrough — product-family clear (rung 6), else not-listed.
@@ -1775,16 +2356,14 @@ def _audit_nonrpm_fallthrough(comp, ctx, maps, affected, fixed, not_affected,
     CVE).  Only an in-scope under_investigation statement keeps a row POSITIVE
     here — that is a real VEX statement that the scope is being assessed.
     """
-    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = maps
+    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe, pid_ident = maps
 
     if ctx.workload_type != "ubi":
-        scoped_affected, scoped_investigating, scoped_clear = [], [], []
+        scoped_affected, aff_pids = _scoped_affected(data, ctx, maps)
+        scoped_investigating, scoped_clear = [], []
         inv_pids, clear_pids = [], []
         for vuln in data.get('vulnerabilities', []):
             ps = vuln.get('product_status', {})
-            for pid in ps.get('known_affected', []):
-                if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map, pid_cpe=pid_cpe):
-                    scoped_affected.append(_pid_label(pid, pid_name, rel_parent))
             for pid in ps.get('under_investigation', []):
                 if _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map, pid_cpe=pid_cpe):
                     scoped_investigating.append(_pid_label(pid, pid_name, rel_parent))
@@ -1804,10 +2383,16 @@ def _audit_nonrpm_fallthrough(comp, ctx, maps, affected, fixed, not_affected,
                     f"No affected entry in {', '.join(sorted(set(scoped_clear))[:3])} "
                     f"(known_not_affected/fixed only).")
         if scoped_affected:
-            dec['kind'] = 'ft_novex_scoped'
-            return ("✅ FALSE POSITIVE", "N/A",
-                    f"Not listed as affected; known_affected in "
-                    f"{', '.join(sorted(set(scoped_affected))[:3])} names other components only.")
+            if _clears_under(data, ctx, maps, aff_pids):
+                # Red Hat cleared builds in our scope for this CVE, so the
+                # enumeration did cover us and our absence from known_affected
+                # is meaningful (§5g).
+                dec['kind'] = 'ft_novex_scoped'
+                return ("✅ FALSE POSITIVE", "N/A",
+                        f"Not listed as affected; known_affected in "
+                        f"{', '.join(sorted(set(scoped_affected))[:3])} names other "
+                        f"components only.")
+            return _errata_assumed_vulnerable(scoped_affected, aff_pids, dec, comp)
 
     if ctx.workload_type == "operator" and (affected or investigating or fixed):
         dec['kind'] = 'ft_operator_novex'
@@ -1844,7 +2429,7 @@ def _audit_nonrpm_fallthrough(comp, ctx, maps, affected, fixed, not_affected,
 
 def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
     """Non-RPM decision ladder (rungs 3, 4, 6, 7, 8, 9).  Returns (verdict, fix, note)."""
-    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = maps
+    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe, pid_ident = maps
     affected, fixed, not_affected, investigating = _summarise_vex_products(data, pid_name, rel_parent)
 
     if not affected and not fixed and not not_affected and not investigating:
@@ -1881,8 +2466,29 @@ def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
                     sha = _extract_sha256(pid_match) if pid_match else None
                     parent = pid_match.split(':', 1)[0].strip() if pid_match else ''
                     if sha and sha not in _own_shas(ctx):
-                        # digest-pinned statement about ANOTHER build of this
-                        # image — build-exact claim, display-only for ours
+                        # Digest-pinned statement about ANOTHER build of this
+                        # image.  Red Hat assesses vendored Go at the component
+                        # image rather than the module purl (2 golang purls in
+                        # the whole corpus), so this IS the vendor's verdict for
+                        # those subcomponents — but it describes one build's
+                        # content, so it only travels to ours when:
+                        #   (a) the claim is about content ("vulnerable code not
+                        #       present"/"component not present"), not a shipped
+                        #       fix, which is build-ordered; and
+                        #   (b) our build is at least as new as the assessed one
+                        #       — measured, 33 of 44 such statements describe a
+                        #       NEWER build, where the vulnerable dependency may
+                        #       since have been bumped out, so the claim must
+                        #       never travel backwards.
+                        # Tried and rejected: gating the transfer on a content
+                        # claim plus "our build is newer" (tests B3).  Build
+                        # stamps order TIME, not CONTENT — a newer build of ours
+                        # can have added the very dependency the older assessed
+                        # build lacked, so a "code not present" claim still does
+                        # not travel.  The sound way to publish Red Hat's Go
+                        # verdict is to triage the build Red Hat assessed (a
+                        # published registry.redhat.io digest), not to move a
+                        # build-exact claim between builds.
                         dec['unstated'] = True
                     elif not sha and re.search(r'\d+\.\d+$', parent):
                         # versionless image PID under a minor-versioned product
@@ -1910,6 +2516,30 @@ def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
                 if verdict == 'NOT_LISTED':
                     if not (ctx.sbom_src_map and ctx.sbom_src_map.get(comp)):
                         comp_ref = ctx.ocp_component or ctx.display_name
+                        # Our image is not named — but if Red Hat lists this
+                        # product as affected, the errata sentence covers it:
+                        # sibling images of a listed product are not enumerated,
+                        # so silence is not a not-affected claim.
+                        _st, _lbl, _pids = _image_level_open_verdict(data, ctx, maps)
+                        if _st:
+                            dec.update(kind='img_open', status=_st, pids=_pids)
+                            _what = ('under_investigation — Red Hat has not assessed this yet'
+                                     if _st == 'under_investigation' else 'known_affected')
+                            return ("❌ POSITIVE", "N/A",
+                                    f"{_what}. This image: "
+                                    f"{', '.join(sorted(set(_lbl))[:2])}.")
+                        _ui_lbl, _ui_pids = _scoped_under_investigation(
+                            data, ctx, maps, comp, _resolve_comp(comp, ctx))
+                        if _ui_lbl:
+                            dec.update(kind='img_ui_scope', status='under_investigation',
+                                       pids=_ui_pids)
+                            return ("❌ POSITIVE", "N/A",
+                                    f"under_investigation in "
+                                    f"{', '.join(sorted(set(_ui_lbl))[:3])} — Red Hat has not "
+                                    f"assessed this yet.")
+                        _aff_lbl, _aff_pids = _scoped_affected(data, ctx, maps)
+                        if _aff_lbl and not _clears_under(data, ctx, maps, _aff_pids):
+                            return _errata_assumed_vulnerable(_aff_lbl, _aff_pids, dec, comp_ref)
                         dec.update(kind='img_not_listed', pids=[])
                         return ("✅ FALSE POSITIVE", "N/A",
                                 f"{comp_ref} not listed as affected.")
@@ -1920,6 +2550,23 @@ def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
                     # _resolve_comp (rhel9:buildah for golang.org/x/net).
 
         # not-affected flags scoped to our component / digest
+        #
+        # "a '/' means an image" (§3a rule 5) is a rule about VEX component
+        # names.  Applied to a SCANNER component it swallows every Go module
+        # path — github.com/sigstore/fulcio, golang.org/x/net — and the image
+        # branch below skips the package-name check, so ANY in-scope
+        # not-affected flag would clear ANY Go module no matter which component
+        # the flag actually names.  The scanner's SOURCE is what distinguishes
+        # them: an image-identity pseudo-component is SOURCE=OS with a path in
+        # its name (§7b), a Go/npm/maven module never is.
+        # NOTE: "a '/' means an image" (§3a rule 5) is a rule about VEX component
+        # names; applied to a SCANNER component it also captures Go module paths
+        # (github.com/sigstore/fulcio).  Restricting it with the row's SOURCE was
+        # tried and REVERTED: it changes Go clears in the permissive direction
+        # (a RHEL-base not-affected flag naming the vendoring rpm would start
+        # clearing the module) and no observed defect required it — the two rows
+        # that prompted it turned out to be the vendoring-rpm bridge working
+        # correctly.  Left as-is deliberately; needs evidence before changing.
         is_image_comp = '/' in comp
         for vuln in data.get('vulnerabilities', []):
             for flag in vuln.get('flags', []):
@@ -1935,7 +2582,7 @@ def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
                     elif is_image_comp and _is_rhel_base_product(pid, ctx.rhel_ver, rhel_base_pids):
                         continue
                     else:
-                        flag_pkg, _ = _parse_pkg_from_product_id(pid)
+                        flag_pkg, _ = _pkg_from_pid(pid, pid_ident)
                         if flag_pkg and flag_pkg not in _resolve_comp(comp, ctx):
                             continue
                     lbl = _pid_label(pid, pid_name, rel_parent)
@@ -1964,7 +2611,7 @@ def _decide_nonrpm(comp, found_v, data, ctx, maps, row, dec):
                         if pid_sha not in our_shas:
                             continue
                     else:
-                        pid_pkg, _ = _parse_pkg_from_product_id(pid)
+                        pid_pkg, _ = _pkg_from_pid(pid, pid_ident)
                         if pid_pkg and pid_pkg not in _resolve_comp(comp, ctx):
                             continue
                     lbl = _pid_label(pid, pid_name, rel_parent)
@@ -2011,7 +2658,7 @@ def _load_vex(cve_id: str) -> Optional[dict]:
 
 def _evaluate(row, ctx, data, maps):
     """Rungs 1-2 then the RPM/non-RPM split.  Returns (verdict, fix, note, dec)."""
-    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = maps
+    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe, pid_ident = maps
     comp    = row['COMPONENT']
     found_v = str(row['VERSION'])
     dec = {'kind': '', 'pids': [], 'status': '', 'fix_set': False}
@@ -2076,7 +2723,11 @@ def _evaluate(row, ctx, data, maps):
             if sn:
                 note = f"{note} {sn}." if note.endswith('.') else f"{note}; {sn}."
     else:
-        verdict, fix, note = _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec)
+        _srpm = str(row.get('SRPM', '') or '') if 'SRPM' in row.index else ''
+        if _srpm.lower() in ('nan', 'none'):
+            _srpm = ''
+        verdict, fix, note = _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver,
+                                         rpm_rhel, dec, _srpm)
     return verdict, fix, note, dec
 
 
@@ -2096,7 +2747,7 @@ def audit_row_detailed(row, ctx: WorkloadContext):
         return pd.Series(["❌ POSITIVE", "N/A", "VEX file missing.", "Unknown", "Unknown", False])
 
     maps = _build_pid_name(data)
-    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe = maps
+    pid_name, rel_parent, rhel_base_pids, pid_purl, vex_ns_map, pid_cpe, pid_ident = maps
     pid_severity = _build_pid_severity_map(data)
 
     verdict, fix, note, dec = _evaluate(row, ctx, data, maps)
@@ -2117,7 +2768,8 @@ def audit_row_detailed(row, ctx: WorkloadContext):
 
 def _get_vex_product(data: dict, comp: str, ctx) -> str:
     """Short product label(s) for the VEX entry matching *comp* in *ctx*."""
-    pid_name, rel_parent, rhel_base_pids, _pid_purl, vex_ns_map, _pid_cpe = _build_pid_name(data)
+    (pid_name, rel_parent, rhel_base_pids, _pid_purl, vex_ns_map, _pid_cpe,
+     pid_ident) = _build_pid_name(data)
     labels: set = set()
     any_in_scope = False
     for vuln in data.get('vulnerabilities', []):
@@ -2133,7 +2785,7 @@ def _get_vex_product(data: dict, comp: str, ctx) -> str:
             if not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids, vex_ns_map, pid_cpe=_pid_cpe):
                 continue
             any_in_scope = True
-            pkg_name, _ = _parse_pkg_from_product_id(pid)
+            pkg_name, _ = _pkg_from_pid(pid, pid_ident)
             if pkg_name in _resolve_comp(comp, ctx) and pid in rel_parent:
                 labels.add(rel_parent[pid])
     if labels:

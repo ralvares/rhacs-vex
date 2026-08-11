@@ -42,7 +42,7 @@
     "verdict": "✅ FALSE POSITIVE",
     "fix": "N/A",
     "severity": "Important",
-    "justification": "Fixed in OCP 4.20."
+    "justification": "Build newer than newest fixed stream (OCP 4.20)."
   },
   {
     "id": "fastdatapath",
@@ -66,10 +66,10 @@
     "id": "cli-CVE-2023-2253-github.com/docker/distribution",
     "cve": "CVE-2023-2253",
     "comp": "github.com/docker/distribution",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2024-45337-golang.org/x/crypto",
@@ -96,7 +96,7 @@
     "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "under_investigation. Red Hat OpenShift Container Platform 4 — openshift4/ose-cli."
+    "justification": "known_affected. Red Hat OpenShift Container Platform 4 — openshift4/ose-cli."
   },
   {
     "id": "cli-CVE-2025-58181-golang.org/x/crypto",
@@ -132,7 +132,7 @@
     "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "No supported Red Hat product affected."
+    "justification": "under_investigation. Red Hat OpenShift Container Platform 4 — openshift4/ose-cli."
   },
   {
     "id": "cli-CVE-2026-39831-golang.org/x/crypto",
@@ -141,7 +141,7 @@
     "verdict": "✅ FALSE POSITIVE",
     "fix": "N/A",
     "severity": "Important",
-    "justification": "No supported Red Hat product affected."
+    "justification": "cli not listed as affected."
   },
   {
     "id": "cli-CVE-2026-39827-golang.org/x/crypto",
@@ -150,7 +150,7 @@
     "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "No supported Red Hat product affected."
+    "justification": "under_investigation. Red Hat OpenShift Container Platform 4 — openshift4/ose-cli."
   },
   {
     "id": "cli-CVE-2026-39828-golang.org/x/crypto",
@@ -165,10 +165,10 @@
     "id": "cli-CVE-2026-46598-golang.org/x/crypto",
     "cve": "CVE-2026-46598",
     "comp": "golang.org/x/crypto",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2026-42508-golang.org/x/crypto",
@@ -186,7 +186,7 @@
     "verdict": "✅ FALSE POSITIVE",
     "fix": "N/A",
     "severity": "Important",
-    "justification": "No supported Red Hat product affected."
+    "justification": "cli not listed as affected."
   },
   {
     "id": "cli-CVE-2025-47913-golang.org/x/crypto",
@@ -327,19 +327,19 @@
     "id": "cli-CVE-2023-28642-github.com/opencontainers/runc",
     "cve": "CVE-2023-28642",
     "comp": "github.com/opencontainers/runc",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2021-43784-github.com/opencontainers/runc",
     "cve": "CVE-2021-43784",
     "comp": "github.com/opencontainers/runc",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Low",
-    "justification": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8 names other components only."
+    "justification": "github.com/opencontainers/runc not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2022-29162-github.com/opencontainers/runc",
@@ -348,16 +348,16 @@
     "verdict": "✅ FALSE POSITIVE",
     "fix": "N/A",
     "severity": "Low",
-    "justification": "Fixed in OCP 4.11."
+    "justification": "Build newer than newest fixed stream (OCP 4.11)."
   },
   {
     "id": "cli-CVE-2024-45310-github.com/opencontainers/runc",
     "cve": "CVE-2024-45310",
     "comp": "github.com/opencontainers/runc",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Low",
-    "justification": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 names other components only."
+    "justification": "github.com/opencontainers/runc not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2026-41579-github.com/opencontainers/runc",
@@ -365,8 +365,8 @@
     "comp": "github.com/opencontainers/runc",
     "verdict": "❌ POSITIVE",
     "fix": "N/A",
-    "severity": "Unknown",
-    "justification": "VEX file missing."
+    "severity": "Low",
+    "justification": "github.com/opencontainers/runc not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2023-25809-github.com/opencontainers/runc",
@@ -444,28 +444,28 @@
     "id": "cli-CVE-2025-22870-golang.org/x/net",
     "cve": "CVE-2025-22870",
     "comp": "golang.org/x/net",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2025-22872-golang.org/x/net",
     "cve": "CVE-2025-22872",
     "comp": "golang.org/x/net",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2026-33814-golang.org/x/net",
     "cve": "CVE-2026-33814",
     "comp": "golang.org/x/net",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Important",
-    "justification": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 names other components only."
+    "justification": "known_affected. Red Hat OpenShift Container Platform 4 — openshift4/ose-cli."
   },
   {
     "id": "cli-CVE-2025-47911-golang.org/x/net",
@@ -510,7 +510,7 @@
     "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Important",
-    "justification": "No supported Red Hat product affected."
+    "justification": "known_affected. Red Hat OpenShift Container Platform 4 — openshift4/ose-cli."
   },
   {
     "id": "cli-CVE-2026-39821-golang.org/x/net",
@@ -537,7 +537,7 @@
     "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "No supported Red Hat product affected."
+    "justification": "known_affected. Red Hat OpenShift Container Platform 4 — openshift4/ose-cli."
   },
   {
     "id": "cli-CVE-2026-33186-google.golang.org/grpc",
@@ -546,7 +546,7 @@
     "verdict": "✅ FALSE POSITIVE",
     "fix": "N/A",
     "severity": "Important",
-    "justification": "known_not_affected (vulnerable code not present). Red Hat OpenShift Container Platform 4.12 — registry.redhat.io/openshift4/ose-cli@sha256:a8a99c22b9de95868d1578467d3e21ddb5a061a80a4a3aba64f381ec0780ee30_amd64."
+    "justification": "known_not_affected (vulnerable code not present). Red Hat OpenShift Container Platform 4.12 — registry.redhat.io/openshift4/ose-cli@sha256:7a0f7aecf2f766c059adb04daaffcd7abe985b02d0c8d7c20759d182074cc161_amd64."
   },
   {
     "id": "cli-CVE-2023-44487-google.golang.org/grpc",
@@ -627,7 +627,7 @@
     "verdict": "✅ FALSE POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "No supported Red Hat product affected."
+    "justification": "Not listed as affected; no VEX entry for OpenShift 4.12. Other products: fixed: Red Hat Openshift Data Foundation 4.22; not affected: Red Hat Openshift Data Foundation 4.22."
   },
   {
     "id": "cli-CVE-2026-34165-github.com/go-git/go-git/v5",
@@ -768,10 +768,10 @@
     "id": "cli-CVE-2024-40635-github.com/containerd/containe",
     "cve": "CVE-2024-40635",
     "comp": "github.com/containerd/containerd",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-GHSA-7WW5-4WQC-M92C-github.com/containerd/containe",
@@ -816,7 +816,7 @@
     "verdict": "✅ FALSE POSITIVE",
     "fix": "N/A",
     "severity": "Important",
-    "justification": "known_affected. Red Hat OpenShift Container Platform 4 — openshift4/ose-cli."
+    "justification": "known_not_affected (component not present). Red Hat OpenShift Container Platform 4 — openshift4/ose-cli."
   },
   {
     "id": "cli-CVE-2026-53489-github.com/containerd/containe",
@@ -867,10 +867,10 @@
     "id": "cli-CVE-2026-42306-github.com/docker/docker",
     "cve": "CVE-2026-42306",
     "comp": "github.com/docker/docker",
-    "verdict": "❌ POSITIVE",
+    "verdict": "✅ FALSE POSITIVE",
     "fix": "N/A",
-    "severity": "Unknown",
-    "justification": "VEX file missing."
+    "severity": "Important",
+    "justification": "known_not_affected (vulnerable code not present). Red Hat OpenShift Container Platform 4 — openshift4/ose-cli."
   },
   {
     "id": "cli-CVE-2024-24557-github.com/docker/docker",
@@ -921,10 +921,10 @@
     "id": "cli-CVE-2022-24769-github.com/docker/docker",
     "cve": "CVE-2022-24769",
     "comp": "github.com/docker/docker",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2024-29018-github.com/docker/docker",
@@ -939,10 +939,10 @@
     "id": "cli-CVE-2021-41091-github.com/docker/docker",
     "cve": "CVE-2021-41091",
     "comp": "github.com/docker/docker",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Low",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2022-36109-github.com/docker/docker",
@@ -975,19 +975,19 @@
     "id": "cli-CVE-2025-54410-github.com/docker/docker",
     "cve": "CVE-2025-54410",
     "comp": "github.com/docker/docker",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Low",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2021-41089-github.com/docker/docker",
     "cve": "CVE-2021-41089",
     "comp": "github.com/docker/docker",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Low",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-GHSA-VP35-85Q5-9F25-github.com/docker/docker",
@@ -1029,19 +1029,19 @@
     "id": "cli-CVE-2026-44973-github.com/go-git/go-billy/v5",
     "cve": "CVE-2026-44973",
     "comp": "github.com/go-git/go-billy/v5",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Important",
-    "justification": "No supported Red Hat product affected."
+    "justification": "under_investigation in Multicluster Engine for Kubernetes, Red Hat Advanced Cluster Management for Kubernetes 2."
   },
   {
     "id": "cli-CVE-2026-44740-github.com/go-git/go-billy/v5",
     "cve": "CVE-2026-44740",
     "comp": "github.com/go-git/go-billy/v5",
-    "verdict": "❌ POSITIVE",
+    "verdict": "✅ FALSE POSITIVE",
     "fix": "N/A",
     "severity": "Important",
-    "justification": "known_affected. Red Hat OpenShift Container Platform 4 — openshift4/ose-cli."
+    "justification": "known_not_affected (vulnerable code not in execute path). Red Hat OpenShift Container Platform 4 — openshift4/ose-cli."
   },
   {
     "id": "cli-CVE-2026-39824-golang.org/x/sys",
@@ -1101,10 +1101,10 @@
     "id": "cli-CVE-2024-23650-github.com/moby/buildkit",
     "cve": "CVE-2024-23650",
     "comp": "github.com/moby/buildkit",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "Not listed as affected; known_affected in Red Hat OpenShift Container Platform 4 names other components only."
+    "justification": "github.com/moby/buildkit not explicitly cleared; Red Hat lists Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2025-68121-stdlib",
@@ -1139,8 +1139,8 @@
     "comp": "stdlib",
     "verdict": "✅ FALSE POSITIVE",
     "fix": "N/A",
-    "severity": "Important",
-    "justification": "No supported Red Hat product affected."
+    "severity": "Moderate",
+    "justification": "cli not listed as affected."
   },
   {
     "id": "cli-CVE-2026-32281-stdlib",
@@ -1164,10 +1164,10 @@
     "id": "cli-CVE-2026-33814-stdlib",
     "cve": "CVE-2026-33814",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Important",
-    "justification": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 names other components only."
+    "justification": "known_affected. Red Hat OpenShift Container Platform 4 — openshift4/ose-cli."
   },
   {
     "id": "cli-CVE-2026-39820-stdlib",
@@ -1227,10 +1227,10 @@
     "id": "cli-CVE-2026-32289-stdlib",
     "cve": "CVE-2026-32289",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2023-39318-stdlib",
@@ -1245,19 +1245,19 @@
     "id": "cli-CVE-2026-32288-stdlib",
     "cve": "CVE-2026-32288",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2024-24789-stdlib",
     "cve": "CVE-2024-24789",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2023-39326-stdlib",
@@ -1290,19 +1290,19 @@
     "id": "cli-CVE-2025-58185-stdlib",
     "cve": "CVE-2025-58185",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2026-39826-stdlib",
     "cve": "CVE-2026-39826",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2025-61729-stdlib",
@@ -1347,7 +1347,7 @@
     "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "Fixed build exists (Red Hat OpenShift Container Platform 4.12 — registry.redhat.io/openshift4/ose-cli@sha256:3099f18f64217f3b3d8b31097e432c3521200e50257026e6716176429492dbea_amd64); this build predates it."
+    "justification": "Fixed build exists (Red Hat OpenShift Container Platform 4.12 — registry.redhat.io/openshift4/ose-cli@sha256:f6df3843ee806150df793ecd94ed6f1289a3107a06fb065919f8e8dd214b692b_amd64); this build predates it."
   },
   {
     "id": "cli-CVE-2025-61725-stdlib",
@@ -1380,10 +1380,10 @@
     "id": "cli-CVE-2024-45341-stdlib",
     "cve": "CVE-2024-45341",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Low",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2026-42504-stdlib",
@@ -1434,10 +1434,10 @@
     "id": "cli-CVE-2025-4673-stdlib",
     "cve": "CVE-2025-4673",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "Not listed as affected; known_affected in Red Hat Certification for Red Hat Enterprise Linux 8, Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 names other components only."
+    "justification": "stdlib not explicitly cleared; Red Hat lists Red Hat Certification for Red Hat Enterprise Linux 8, Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2025-22866-stdlib",
@@ -1461,10 +1461,10 @@
     "id": "cli-CVE-2023-45289-stdlib",
     "cve": "CVE-2023-45289",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat Certification for Red Hat Enterprise Linux 8, Red Hat Enterprise Linux 8 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2024-34156-stdlib",
@@ -1479,28 +1479,28 @@
     "id": "cli-CVE-2026-27142-stdlib",
     "cve": "CVE-2026-27142",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 names other components only."
+    "justification": "stdlib not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2025-61723-stdlib",
     "cve": "CVE-2025-61723",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2025-22870-stdlib",
     "cve": "CVE-2025-22870",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2023-45288-stdlib",
@@ -1542,10 +1542,10 @@
     "id": "cli-CVE-2025-61730-stdlib",
     "cve": "CVE-2025-61730",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2024-24784-stdlib",
@@ -1578,19 +1578,19 @@
     "id": "cli-CVE-2026-27139-stdlib",
     "cve": "CVE-2026-27139",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Low",
-    "justification": "Not listed as affected; known_affected in Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 names other components only."
+    "justification": "stdlib not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2025-22873-stdlib",
     "cve": "CVE-2025-22873",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2025-61726-stdlib",
@@ -1605,10 +1605,10 @@
     "id": "cli-CVE-2025-47907-stdlib",
     "cve": "CVE-2025-47907",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "Fixed build exists (Red Hat OpenShift Container Platform 4.12 — registry.redhat.io/openshift4/ose-cli@sha256:3099f18f64217f3b3d8b31097e432c3521200e50257026e6716176429492dbea_amd64); this build predates it."
+    "justification": "stdlib not explicitly cleared; Red Hat lists Red Hat Certification for Red Hat Enterprise Linux 8, Red Hat Enterprise Linux 8 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2026-27145-stdlib",
@@ -1686,10 +1686,10 @@
     "id": "cli-CVE-2025-58189-stdlib",
     "cve": "CVE-2025-58189",
     "comp": "stdlib",
-    "verdict": "✅ FALSE POSITIVE",
+    "verdict": "❌ POSITIVE",
     "fix": "N/A",
     "severity": "Moderate",
-    "justification": "cli not listed as affected."
+    "justification": "cli not explicitly cleared; Red Hat lists Red Hat Enterprise Linux 8, Red Hat OpenShift Container Platform 4 as affected and cleared nothing in this scope — per Red Hat's errata policy, assumed vulnerable."
   },
   {
     "id": "cli-CVE-2026-35469-github.com/moby/spdystream",
@@ -1698,6 +1698,6 @@
     "verdict": "✅ FALSE POSITIVE",
     "fix": "N/A",
     "severity": "Important",
-    "justification": "cli not listed as affected."
+    "justification": "known_not_affected (vulnerable code not present). Red Hat OpenShift Container Platform 4.12 — registry.redhat.io/openshift4/ose-cli@sha256:f66b1f256319a8a9509248c7f863866b3e2b2031c1a857b4abf9e47d836d57b6_amd64."
   }
 ]
