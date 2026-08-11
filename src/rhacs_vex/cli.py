@@ -83,6 +83,7 @@ def _scanner_cmd(scanner: str, args) -> int:
     console.print(f"🧭 Image context via labels: [bold cyan]{image_ref}[/bold cyan]")
     ctx = context_for_image(image_ref, os_hint=hint, labels=labels or None,
                             digests=digests)
+    df = _merge_index(df, args, console, image_ref, labels)
     if scanner == 'grype':
         _wire_rpm_owners(df, ctx, adapter.rpm_file_owners(target))
 
@@ -116,11 +117,7 @@ def _scanfree_cmd(args) -> int:
     if args.build_index or not os.path.exists(index_path):
         why = 'rebuilding' if args.build_index else 'no index yet — building'
         console.print(f"🧱 {why} VEX index → [cyan]{index_path}[/cyan]")
-        idx = scanfree.build_index(
-            out_path=index_path,
-            progress=lambda i, n: console.print(f"   {i:,}/{n:,} CVE files", highlight=False))
-        console.print(f"   indexed [bold]{idx['files']:,}[/bold] CVE files: "
-                      f"{len(idx['rpm']):,} rpm names, {len(idx['oci']):,} image keys")
+        _build_index(console, index_path)
         if not args.target:
             return 0
     if not args.target:
@@ -739,6 +736,62 @@ def _add_scanner_args(p: argparse.ArgumentParser) -> None:
     p.add_argument('--false-only', action='store_true', default=False)
     p.add_argument('--force', action='store_true', default=False,
                    help='regenerate the cached syft SBOM (grype only)')
+    _add_index_args(p, default=True)
+
+
+def _add_index_args(p: argparse.ArgumentParser, *, default: bool) -> None:
+    """--vex-index / --no-vex-index and where the index lives."""
+    p.add_argument('--vex-index', dest='vex_index', action='store_true',
+                   default=default,
+                   help='add the rpm and image candidates the VEX index names '
+                        'to the scanner\'s own findings'
+                        + ('' if default else ' (off by default)'))
+    p.add_argument('--no-vex-index', dest='vex_index', action='store_false',
+                   help='scanner findings only')
+    p.add_argument('--index', default=None, metavar='FILE',
+                   help=f'index location (default: {scanfree.INDEX_PATH})')
+
+
+def _build_index(console, index_path: str) -> dict:
+    """(Re)build the inverted VEX index, reporting progress."""
+    idx = scanfree.build_index(
+        out_path=index_path,
+        progress=lambda i, n: console.print(f"   {i:,}/{n:,} CVE files", highlight=False))
+    console.print(f"   indexed [bold]{idx['files']:,}[/bold] CVE files: "
+                  f"{len(idx['rpm']):,} rpm names, {len(idx['oci']):,} image keys")
+    return idx
+
+
+def _merge_index(df, args, console, image_ref: str, labels) -> 'pd.DataFrame':
+    """Union scanner findings with the index candidates, when asked for.
+
+    The index is never built implicitly here: building it walks the whole VEX
+    mirror and a scan should not silently turn into a several-minute job.
+    """
+    if not getattr(args, 'vex_index', False):
+        return df
+    index_path = getattr(args, 'index', None) or scanfree.INDEX_PATH
+    index = scanfree.load_index(index_path)
+    if not index:
+        console.print(f'[yellow]no VEX index at {index_path} — scanner findings '
+                      f'only; run `vextriage build-index` for the rpm + image '
+                      f'classes too.[/yellow]')
+        return df
+    df, added = scanfree.merge_index_candidates(df, index, image_ref=image_ref,
+                                                labels=labels)
+    if added:
+        console.print(f"🧮 +{added:,} candidates from the VEX index "
+                      f"(rpm + image classes the scanner did not report)")
+    return df
+
+
+def _build_index_cmd(args) -> int:
+    """Build the inverted VEX index every scan path can draw candidates from."""
+    console = Console()
+    index_path = args.index or scanfree.INDEX_PATH
+    console.print(f"🧱 building VEX index → [cyan]{index_path}[/cyan]")
+    _build_index(console, index_path)
+    return 0
 
 
 def main() -> int:
@@ -804,7 +857,7 @@ def main() -> int:
                     help='regenerate the cached syft SBOM')
     pf.add_argument('--build-index', action='store_true', default=False,
                     help='(re)build the inverted VEX index, then exit unless a '
-                         'target is given')
+                         'target is given — same as `vextriage build-index`')
     pf.add_argument('--index', default=None, metavar='FILE',
                     help=f'index location (default: {scanfree.INDEX_PATH})')
     pf.add_argument('--openvex-dir', default=None, metavar='DIR',
@@ -813,6 +866,12 @@ def main() -> int:
     pf.add_argument('--output', default=None)
     pf.add_argument('--format', default='table', choices=['table', 'csv', 'json'])
     pf.add_argument('--false-only', action='store_true', default=False)
+
+    pb = sub.add_parser('build-index',
+                        help='(re)build the inverted VEX index every scan path '
+                             'draws rpm + image candidates from')
+    pb.add_argument('--index', default=None, metavar='FILE',
+                    help=f'index location (default: {scanfree.INDEX_PATH})')
 
     sub.add_parser('doctor', help='check external tools, auth env and data '
                                   'artifacts')
@@ -839,6 +898,8 @@ def main() -> int:
         return _generate_cmd(args)
     if args.command == 'scanfree':
         return _scanfree_cmd(args)
+    if args.command == 'build-index':
+        return _build_index_cmd(args)
     if args.command == 'doctor':
         return _doctor_cmd()
     if args.command == 'hub':

@@ -513,6 +513,23 @@ Spot-check #2 (CVE-2020-11023, pkg `cpp`): `el9_0` fixed at `11.2.1-9.5.el9_0`, 
      That case clears (FALSE POSITIVE). Equal versions differing only in release keep the confound
      and stay POSITIVE. Measured on `web-terminal-tooling-rhel9`: of 346 rows in this branch, 156
      were strictly newer on version, 190 tied on version — so the exception is deliberately narrow.
+   - **Exception — later stream than every fix.** The release confound runs one way only. Red Hat
+     fixes the current stream first and backports to EUS/E4S afterwards, so a fix living **only**
+     in older minors was already carried by the branch ours forked from, usually through a rebase
+     that never needed an erratum of its own. Branch base releases climb monotonically with the
+     minor (glibc on 9.0=28, 9.2=60, 9.4=100, 9.6=168, 9.7=231, 9.8=272) and a branch keeps its
+     fork-point release and appends to it (`2.34-100.el9_4.12`, `252-55.el9_7.7`), so within one
+     major, and only in the later-stream direction, the NEVRA comparison is meaningful again.
+     Clears when **all** of: same RHEL major; every fix on a strictly lower minor, or minor-less
+     (a mainline build, the ancestor every `.el9_N` branch forked from); installed `>` every fix on
+     full NEVRA; and **no in-scope `known_affected` / `under_investigation`** in the same
+     vulnerability entry — an erratum pending for our stream is exactly what Red Hat records that
+     way, and inferring "our branch already has it" over an explicit affected statement would
+     publish a clear for a live bug. Measured on `jetstack-cert-manager-rhel9` (scan-free, 1,842
+     candidates): 101 rows sat in step 3, 100 of them wrongly — glibc `2.34-272.el9_8` held
+     POSITIVE against the 9.0 E4S backport `2.34-28.el9_0.4`, upstream 2.34 either side so the
+     version exception could not reach it. The one row that stayed POSITIVE is the shape the step
+     is for: libarchive `3.5.3-9.el9_7` against a fix that exists only in `3.5.3-11.el9_8`.
 4. If installed has **no** minor marker (GA package) → it must be `>=` **all** stream fixes
    (a newer-stream fix proves the GA baseline is still vulnerable).
 5. Compare with epoch-aware RPM vercmp; missing epoch propagated (§6e).
@@ -662,7 +679,7 @@ A PID is in scope for the workload iff:
 | 5s | **src-alias expansion** | binary comp aliased to source name when a `.src` PID's VR == installed VR **or** a version-less `.src` exists; also Maven `group:artifact`→`artifact`, SBOM binary→source. Within a status, a PID naming the component **exactly** outranks alias matches — a package with its own SRPM/statement is decisive over its alias source (`openssl-fips-provider` vs `openssl`) | expands names-to-match for rung 5 |
 | 6 | **Product-family clear** (non-RPM fallthrough) | all in-scope PIDs for this CVE are `known_not_affected`/`fixed`, none affected/UI (in-scope UI alone → POSITIVE "under_investigation") | **FALSE POSITIVE** "no affected entry" (scoped-clear) |
 | 7 | **Errata policy** (version-streams) | no direct match, but versioned OCP/RHOSE `fixed` streams exist: installed **older** than newest fix → assumed vulnerable; **equal/newer** → not | POSITIVE / FALSE POSITIVE |
-| 8 | **Related-products evidence** | same package **named** in out-of-scope products marked with the workload's RHEL major **or** version-neutral PIDs (no el/rhel marker) | any affected→POSITIVE (conservative); clear-only carries no claim about our product → falls through to rung 9 |
+| 8 | **Related-products evidence** | same package **named** in out-of-scope products marked with the workload's RHEL major **or** version-neutral PIDs (no el/rhel marker); the PID must speak about a build like ours — a versioned PID from another **lineage** is skipped (§2 `_rpm_stream_family`), and a **version-neutral** PID must match the binary component name, not a source alias (§8 rung 8-bis) | any affected→POSITIVE (conservative); clear-only carries no claim about our product → falls through to rung 9 |
 | 9 | **Not listed** | no statement names this component/image/product anywhere relevant — in-scope affected rows (if any) name *other* components only (§5g: the errata assumption covers only *listed* products) | **FALSE POSITIVE** "not listed as affected" |
 | 9r | **Truly absent** (RPM path) | RPM component name absent from the entire file, no related-product mention either | **FALSE POSITIVE** "not listed as affected" (same §5g logic as rung 9: the enumeration exists and does not name it) |
 | 10 | **No VEX file** | Red Hat has not published a VEX for the CVE — no enumeration exists to be absent from | **POSITIVE** "VEX file missing" (severity/state Unknown) |
@@ -671,6 +688,27 @@ A PID is in scope for the workload iff:
 name (RHACS image-identity pseudo-component) **or** absence of an `.elN` marker routes to the
 non-RPM path (rungs 3,4,6,7,8,9); an `.elN` marker or `SOURCE=OS` routes to the RPM path
 (rungs 5,5s, then 8,9). Rungs 1,2 precede both.
+
+### 8 rung 8-bis. A related product must speak about OUR build (2026-08-11)
+
+Rung 8 is conservative by design, but the evidence it admits still has to be evidence. Two shapes
+were producing verdicts that describe someone else's package:
+
+**Lineage.** Red Hat Hardened Images ship `curl-8.21.0-0.1.1.hum1` — a `hum` build on its own
+version line (§2). CVE-2026-58055 names those three PIDs and nothing else, so a RHEL 9
+`curl-minimal-7.76.1-40.el9` was reported POSITIVE with "Fix available (in Hardened Images)". §6b
+already refuses to compare NEVRAs across lineages **in** scope; out of scope the same NEVRA is no
+more comparable. A versioned related PID is now skipped unless `_stream_comparable`.
+
+**Source alias.** A bare `openssl.src` under `red_hat_jboss_enterprise_application_platform_5`
+matches `openssl-libs` only through the SRPM name (rung 5s), and every product that ever shipped an
+openssl carries that source name. CVE-2014-3566 (POODLE) enumerates RHEL 5 `openssl097a` and RHEL 7
+`openssl098e` and no RHEL 9 at all, so the alias was the only thing holding a 2014 protocol flaw
+against a current openssl 3.5.5. A **version-neutral** PID must now match the binary component name
+on its own. The restriction stops at that class: a PID carrying our own RHEL major is Red Hat
+enumerating our package line (§9.1), where the source name is how a subpackage is tracked at all
+(`util-linux.src` for `libsmartcols`), and the alias stays. `openshift-clients` under a
+version-neutral OCP product still decides — the name matches directly.
 
 ### 8b-bis. Do NOT loosen image-name matching (2026-08-05)
 

@@ -1047,9 +1047,24 @@ def _audit_silent(df: pd.DataFrame, ctx, false_only: bool = False,
     return _sort_and_filter_df(df, false_only)
 
 
+def _merge_vex_index(df, index, image_ref: str, labels) -> tuple:
+    """Union RHACS findings with the VEX index candidates.  Returns (df, added).
+
+    Off unless the caller loaded an index: an RHACS run usually feeds the
+    exception workflow, and an exception can only be written for a CVE RHACS
+    itself reports, so extra rows are opt-in here rather than the default.
+    """
+    if index is None:
+        return df, 0
+    from . import scanfree
+    return scanfree.merge_index_candidates(df, index, image_ref=image_ref,
+                                           labels=labels)
+
+
 def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
                      false_only: bool, release_ocp_ver: Optional[str] = None,
-                     force: bool = False, comp_name: Optional[str] = None) -> dict:
+                     force: bool = False, comp_name: Optional[str] = None,
+                     vex_index: Optional[dict] = None) -> dict:
     """Fetch image scan from RHACS and run a silent audit.
 
     image_id=None → search RHACS by digest first (OCP mode).
@@ -1102,7 +1117,8 @@ def _fetch_and_audit(session, image_ref: str, image_id: Optional[str],
         except Exception:
             pass
 
-        img_df = rhacs_to_df(image_data)
+        img_df, _added = _merge_vex_index(rhacs_to_df(image_data), vex_index,
+                                          image_ref, labels)
         if img_df.empty:
             return {"found": True, "img_ctx": img_ctx, "os_info": os_info,
                     "result_df": None, "sbom_summary": None, "error": None}
@@ -1200,6 +1216,11 @@ def main():
                              "and VEX files are validated via ETag.")
     parser.add_argument("--workers", type=int, default=10, metavar="N",
                         help="Parallel image workers for --ocp / --namespace modes (default: 10).")
+    parser.add_argument("--vex-index", dest="vex_index", action="store_true", default=False,
+                        help="Also triage the rpm and image candidates the VEX index names,\n"
+                             "not only what RHACS reported. Build it with `vextriage build-index`.")
+    parser.add_argument("--index", default=None, metavar="FILE",
+                        help="VEX index location (default: data/vex-index.json.gz).")
     args = parser.parse_args()
 
     if args.target:
@@ -1218,6 +1239,16 @@ def main():
         parser.error("--ocp cannot be combined with --image or --namespace")
 
     _console = Console()
+
+    _vex_index = None
+    if getattr(args, 'vex_index', False):
+        from . import scanfree
+        _vex_index = scanfree.load_index(args.index or scanfree.INDEX_PATH)
+        if not _vex_index:
+            _console.print(f"[yellow]no VEX index at "
+                           f"{args.index or scanfree.INDEX_PATH} — RHACS findings only; "
+                           f"run `vextriage build-index` first.[/yellow]")
+            _vex_index = None
 
     ROX_ENDPOINT  = os.environ.get("ROX_ENDPOINT", "")
     ROX_API_TOKEN = os.environ.get("ROX_API_TOKEN", "")
@@ -1387,8 +1418,8 @@ def main():
             with ThreadPoolExecutor(max_workers=args.workers) as ex:
                 future_to_comp = {
                     ex.submit(_fetch_and_audit, session, image_ref, None,
-                              args.false_only, _manifest_ocp_ver, _force, comp_name):
-                        (comp_name, image_ref)
+                              args.false_only, _manifest_ocp_ver, _force, comp_name,
+                              _vex_index): (comp_name, image_ref)
                     for comp_name, image_ref in images}
                 done = 0
                 for future in as_completed(future_to_comp):
@@ -1412,7 +1443,8 @@ def main():
                 with ThreadPoolExecutor(max_workers=args.workers) as ex:
                     retry_futures = {
                         ex.submit(_fetch_and_audit, session, ir, None,
-                                  args.false_only, _manifest_ocp_ver, True, cn): (cn, ir)
+                                  args.false_only, _manifest_ocp_ver, True, cn,
+                                  _vex_index): (cn, ir)
                         for cn, ir in failed}
                     for future in as_completed(retry_futures):
                         cn, ir = retry_futures[future]
@@ -1490,7 +1522,8 @@ def main():
             with ThreadPoolExecutor(max_workers=args.workers) as ex:
                 future_to_img = {
                     ex.submit(_fetch_and_audit, session, image_ref, image_id,
-                              args.false_only, None, getattr(args, 'force', False)):
+                              args.false_only, None, getattr(args, 'force', False),
+                              None, _vex_index):
                         (image_ref, image_id)
                     for image_ref, image_id in images}
                 done = 0
@@ -1551,7 +1584,11 @@ def main():
             elif os_info:
                 ctx = parse_image_ref(args.image, os_hint=os_info)
 
-            df = rhacs_to_df(image_data)
+            df, _added = _merge_vex_index(rhacs_to_df(image_data), _vex_index,
+                                          args.image, labels)
+            if _added:
+                _console.print(f"🧮 +{_added:,} candidates from the VEX index "
+                               f"(rpm + image classes RHACS did not report)")
             _wire_go_owner_rpms(df, ctx, args.image)
             if os_info:
                 _console.print(f"[bold]OS:[/bold] [cyan]{os_info}[/cyan]")
@@ -1577,7 +1614,10 @@ def main():
             _console.print("  or provide a scan CSV with --scan.")
             raise SystemExit(1)
         _console.print(f"[bold]Mode:[/bold] [cyan]CSV[/cyan]  file=[cyan]{scan_file}[/cyan]")
-        df = pd.read_csv(scan_file)
+        df, _added = _merge_vex_index(pd.read_csv(scan_file), _vex_index,
+                                      args.image or '', None)
+        if _added:
+            _console.print(f"🧮 +{_added:,} candidates from the VEX index")
 
     _console.print(f"[bold]Context:[/bold] type=[cyan]{ctx.workload_type}[/cyan]  "
                    f"rhel=[cyan]{ctx.rhel_ver}[/cyan]  display=[cyan]{ctx.display_name}[/cyan]")

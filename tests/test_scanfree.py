@@ -162,6 +162,57 @@ with tempfile.TemporaryDirectory() as td:
           scanfree.load_index(os.path.join(td, 'nope.json.gz')) == {})
 
 print()
+print('=== D. merging the index into a scanner run ===')
+
+import pandas as pd                                   # noqa: E402
+
+_IDX = {'rpm': {'openssl': ['CVE-3000-1', 'CVE-3000-2'],
+                'openshift4/ose-cli': ['CVE-3000-9']},
+        'oci': {'openshift4/ose-cli-rhel9': ['CVE-3000-3']}}
+_COLS = ['COMPONENT', 'VERSION', 'CVE', 'SEVERITY', 'CVSS', 'LINK',
+         'FIXED_VERSION', 'SOURCE', 'LOCATION']
+_scan = pd.DataFrame(
+    [{'COMPONENT': 'openssl', 'VERSION': '3.0.7-24.el9', 'CVE': 'CVE-3000-1',
+      'SEVERITY': 'High', 'CVSS': 7.5, 'LINK': 'x', 'FIXED_VERSION': '3.0.7-25.el9',
+      'SOURCE': 'OS', 'LOCATION': 'var/lib/rpm'},
+     {'COMPONENT': 'golang.org/x/net', 'VERSION': 'v0.17.0', 'CVE': 'CVE-3000-7',
+      'SEVERITY': 'Moderate', 'CVSS': 5.0, 'LINK': 'y', 'FIXED_VERSION': '',
+      'SOURCE': 'GO', 'LOCATION': 'usr/bin/oc'}], columns=_COLS)
+
+_merged, _added = scanfree.merge_index_candidates(
+    _scan, _IDX, image_ref='registry.redhat.io/openshift4/ose-cli-rhel9@sha256:abc',
+    labels={'name': 'openshift4/ose-cli-rhel9', 'release': '1'})
+check('D1 the pair the scanner already reported is not duplicated',
+      len(_merged[(_merged.COMPONENT == 'openssl') & (_merged.CVE == 'CVE-3000-1')]) == 1)
+check('D2 the scanner row keeps its own metadata',
+      _merged.iloc[0]['FIXED_VERSION'] == '3.0.7-25.el9' and _merged.iloc[0]['CVSS'] == 7.5)
+check('D3 the rpm CVE the scanner missed is added at the installed version',
+      len(_merged[_merged.CVE == 'CVE-3000-2']) == 1
+      and _merged[_merged.CVE == 'CVE-3000-2'].iloc[0]['VERSION'] == '3.0.7-24.el9')
+check('D4 the image identity contributes its own CVEs',
+      len(_merged[(_merged.CVE == 'CVE-3000-3')
+                  & (_merged.SOURCE == scanfree.IMAGE_SOURCE)]) == 1)
+check('D5 added rows carry the frame\'s columns, nothing invented',
+      list(_merged.columns) == _COLS, str(list(_merged.columns)))
+check('D6 added count matches the rows appended', _added == len(_merged) - len(_scan),
+      f'{_added} vs {len(_merged) - len(_scan)}')
+
+# An image-identity pseudo-component (§7b) is a path, not an rpm name — looking
+# it up in the rpm index joins on something no NEVRA carries.
+_pseudo = pd.DataFrame(
+    [{'COMPONENT': 'openshift4/ose-cli', 'VERSION': '4.20.0', 'CVE': 'CVE-3000-8',
+      'SEVERITY': '', 'CVSS': 0, 'LINK': '', 'FIXED_VERSION': '', 'SOURCE': 'OS',
+      'LOCATION': 'root/buildinfo/labels.json'}], columns=_COLS)
+_m2, _a2 = scanfree.merge_index_candidates(_pseudo, _IDX)
+check('D7 an image-path pseudo-component is not looked up as an rpm', _a2 == 0,
+      f'added {_a2}')
+
+_bare = pd.DataFrame([{'cve': 'CVE-3000-1', 'pkg': 'openssl'}])
+_m3, _a3 = scanfree.merge_index_candidates(_bare, _IDX)
+check('D8 a CSV without the triage schema is left untouched',
+      _a3 == 0 and list(_m3.columns) == ['cve', 'pkg'])
+
+print()
 if _failures:
     print(f'{len(_failures)} FAILED: {_failures}')
     sys.exit(1)

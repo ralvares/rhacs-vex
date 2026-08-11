@@ -194,7 +194,7 @@ A scanner contributes exactly one thing the VEX corpus cannot: the
 inverted index over the mirrored VEX files, so an SBOM alone is enough:
 
 ```bash
-vextriage scanfree --build-index                      # once, ~1 min → data/vex-index.json.gz
+vextriage build-index                                 # once, ~1 min → data/vex-index.json.gz
 vextriage scanfree data/syft/<image>.json             # triage, no scanner
 vextriage scanfree data/syft/<image>.json --openvex-dir vexhub/
 ```
@@ -212,7 +212,14 @@ severity chain and publication gate are identical to every other path.
 | golang / pypi | **empty** | Red Hat publishes 2 golang purls and 19 pypi refs in the entire corpus — vendored Go is assessed at the operator/component image, never the module purl |
 
 So it finds rpm CVEs a scanner database has not caught up with, and is blind to
-language ecosystems. Run it *alongside* a scanner, not instead of one. On
+language ecosystems. Run it *alongside* a scanner, not instead of one — which is
+what the scanner paths now do by themselves. `vextriage grype` and
+`vextriage trivy` union their findings with the index candidates once
+`build-index` has run (`--no-vex-index` for scanner-only); `vextriage rhacs`
+takes `--vex-index` opt-in, because an RHACS exception can only be written for a
+CVE RHACS itself reports. On `jetstack-cert-manager-rhel9` the grype path went
+from 166 rows to 1,650, of which 95 are POSITIVE findings grype never reported —
+no scanner row changed verdict. On
 `ose-cli-rhel9` it produced 543 statements where the grype-driven path produced
 23, agreed with that path on all 691 overlapping (CVE, component) pairs, and
 suppressed zero real findings when its document was fed back through

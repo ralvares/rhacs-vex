@@ -322,13 +322,131 @@ check('H8 _compare_fixed returns the clear for the newer-upstream case',
       'FALSE POSITIVE' in _v and _dec.get('kind') == 'rpm_fixed_newer_upstream',
       f'{_v} kind={_dec.get("kind")} note={_note}')
 
-_dec2 = {}
-_v2, _fix2, _note2 = _eng._compare_fixed(
-    '2.2.10-14.el9_8', ['2.2.10-12.el9_0.4'], 'expat', _ctx_rhel9, True, _dec2,
-    {'2.2.10-12.el9_0.4': 'AppStream-9.0.0.Z.E4S:expat-0:2.2.10-12.el9_0.4.x86_64'})
-check('H9 …and keeps POSITIVE when only the release differs',
-      'FALSE POSITIVE' not in _v2 and 'No fix in el9_8' in _note2,
-      f'{_v2} note={_note2}')
+print()
+print('=== I. later-stream install vs an older-branch-only fix ===')
+# Equal upstream version, so H1's exception cannot reach it — glibc 2.34-272.el9_8
+# against the 9.0 E4S backport 2.34-28.el9_0.4.  Red Hat fixes the current stream
+# first and backports to EUS/E4S after, so a fix living only in older minors was
+# already in the branch ours forked from; branch base releases climb with the
+# minor, which makes the NEVRA compare meaningful in this direction alone.
+_sup = _eng._installed_stream_supersedes
+_fix_pid = {'2.2.10-12.el9_0.4': 'AppStream-9.0.0.Z.E4S:expat-0:2.2.10-12.el9_0.4.x86_64'}
+
+
+def _cf(installed, fixes, affected=False):
+    d = {}
+    v, _f, n = _eng._compare_fixed(installed, fixes, 'expat', _ctx_rhel9, True, d,
+                                   _fix_pid, affected)
+    return v, n, d
+
+
+check('I1 equal version, later stream, higher release clears',
+      _sup('2.34-272.el9_8', ['2.34-28.el9_0.4']) is True,
+      _sup('2.34-272.el9_8', ['2.34-28.el9_0.4']))
+
+check('I2 a fix in a NEWER stream is "not backported to us yet" — no clear',
+      _sup('3.5.3-9.el9_7', ['3.5.3-11.el9_8']) is False,
+      _sup('3.5.3-9.el9_7', ['3.5.3-11.el9_8']))
+
+check('I3 same minor is the same-stream path, not this one',
+      _sup('2.34-272.el9_8', ['2.34-274.el9_8']) is False,
+      _sup('2.34-272.el9_8', ['2.34-274.el9_8']))
+
+check('I4 an el8 backport says nothing about an el9 build',
+      _sup('2.34-272.el9_8', ['2.28-189.6.el8_6']) is False,
+      _sup('2.34-272.el9_8', ['2.28-189.6.el8_6']))
+
+check('I5 a mainline fix is the ancestor of our branch and orders too',
+      _sup('2.9.13-14.el9_8.1', ['2.9.13-3.el9']) is True,
+      _sup('2.9.13-14.el9_8.1', ['2.9.13-3.el9']))
+
+check('I5b …but a mainline build ahead of our fork point does not clear',
+      _sup('2.9.13-14.el9_8.1', ['2.9.13-20.el9']) is False,
+      _sup('2.9.13-14.el9_8.1', ['2.9.13-20.el9']))
+
+check('I6 every fix must be older-stream AND older, not just the first',
+      _sup('2.34-272.el9_8', ['2.34-28.el9_0.4', '2.34-300.el9_6']) is False,
+      _sup('2.34-272.el9_8', ['2.34-28.el9_0.4', '2.34-300.el9_6']))
+
+check('I7 a GA install (no minor marker) keeps §6b step 4',
+      _sup('2.34-60.el9', ['2.34-28.el9_0.4']) is False,
+      _sup('2.34-60.el9', ['2.34-28.el9_0.4']))
+
+_v2, _note2, _dec2 = _cf('2.2.10-14.el9_8', ['2.2.10-12.el9_0.4'])
+check('I8 _compare_fixed reaches the clear through the ladder',
+      'FALSE POSITIVE' in _v2 and _dec2.get('kind') == 'rpm_fixed_newer_stream',
+      f'{_v2} kind={_dec2.get("kind")} note={_note2}')
+
+_v3, _note3, _dec3 = _cf('2.2.10-14.el9_8', ['2.2.10-12.el9_0.4'], affected=True)
+check('I9 an in-scope known_affected vetoes the inference (erratum pending)',
+      'FALSE POSITIVE' not in _v3 and 'No fix in el9_8' in _note3,
+      f'{_v3} note={_note3}')
+
+_v4, _note4, _dec4 = _cf('3.5.3-9.el9_7', ['3.5.3-11.el9_8'])
+check('I10 …and a newer-stream fix still reports the stream gap',
+      'FALSE POSITIVE' not in _v4 and 'No fix in el9_7' in _note4,
+      f'{_v4} note={_note4}')
+
+print()
+print('=== J. rung 8 — a related product must speak about OUR build ===')
+
+
+def vex_under(product, nodes, statuses):
+    """Same minimal doc, with the statements hanging off an arbitrary product."""
+    d = vex(nodes, {})
+    d['product_tree']['relationships'] = [
+        {'product_reference': pid, 'relates_to_product_reference': product,
+         'full_product_name': {'product_id': f'{product}:{pid}'}}
+        for pid, _ in nodes]
+    d['vulnerabilities'] = [{'product_status': statuses}]
+    return d
+
+
+_ctx_ubi9 = WorkloadContext(workload_type='ubi', rhel_ver='9', display_name='UBI9')
+
+
+def _verdict(doc, comp, ver, cve='CVE-9999-0002'):
+    _orig_load = engine._load_vex
+    engine._load_vex = lambda _c: dict(doc)
+    try:
+        r = audit_row_detailed(pd.Series({
+            'COMPONENT': comp, 'VERSION': ver, 'CVE': cve, 'SOURCE': 'OS',
+            'SEVERITY': 'MODERATE_VULNERABILITY_SEVERITY', 'FIXED_VERSION': '',
+            'LOCATION': 'var/lib/rpm'}), _ctx_ubi9)
+        return r.iloc[0], r.iloc[2]
+    finally:
+        engine._load_vex = _orig_load
+
+
+# Red Hat Hardened Images ship their own `hum` build of curl.  CVE-2026-58055
+# names those three PIDs and nothing else, and "fix available in Hardened
+# Images" is not a statement about a RHEL 9 curl-minimal.
+_hum = vex_under('Red Hat Hardened Images',
+                 [('curl-main@x86_64',
+                   'pkg:rpm/redhat/curl@8.21.0-0.1.1.hum1?arch=x86_64')],
+                 {'fixed': ['Red Hat Hardened Images:curl-main@x86_64']})
+_v, _n = _verdict(_hum, 'curl-minimal', '7.76.1-40.el9')
+check('J1 a `hum` build does not decide an `el` build', '✅' in _v, f'{_v} {_n}')
+
+# POODLE.  RHEL 9 is absent from the file; the only thing linking the CVE to a
+# current openssl 3.5.5 is the SRPM name shared with a 2014 middleware product.
+_jboss = vex_under('red_hat_jboss_enterprise_application_platform_5',
+                   [('openssl.src', 'pkg:rpm/redhat/openssl?arch=src')],
+                   {'known_affected':
+                    ['red_hat_jboss_enterprise_application_platform_5:openssl.src']})
+_v, _n = _verdict(_jboss, 'openssl-libs', '1:3.5.5-4.el9_8')
+check('J2 a standalone product\'s source name does not carry to our binary',
+      '✅' in _v, f'{_v} {_n}')
+
+# The signal this rung exists for survives: RHEL never ships openshift-clients,
+# so a version-neutral OCP PID naming it is the only statement there is.
+_ocp = vex_under('red_hat_openshift_container_platform_4',
+                 [('openshift-clients', 'pkg:rpm/redhat/openshift-clients')],
+                 {'known_affected':
+                  ['red_hat_openshift_container_platform_4:openshift-clients']})
+_v, _n = _verdict(_ocp, 'openshift-clients', '4.14.0-202501.el9')
+check('J3 …but a matching binary name in a related product still decides',
+      '❌' in _v, f'{_v} {_n}')
 
 print()
 if _failures:

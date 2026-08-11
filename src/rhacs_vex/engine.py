@@ -1642,13 +1642,63 @@ def _upstream_newer_than_all(installed: str, fixes) -> bool:
     return seen
 
 
-def _compare_fixed(found_v, unique_fixed, comp, ctx, rpm_rhel, dec, fix_pid_by_ver):
+def _installed_stream_supersedes(installed: str, fixes) -> bool:
+    """Is *installed* on a later RHEL minor than every fix, and newer than all?
+
+    The release-number confound §6b guards against runs one way only.  Red Hat
+    fixes the current stream first and backports to EUS/E4S afterwards, so a fix
+    that exists ONLY in older minors was already carried by the branch ours
+    forked from — most often silently, through a rebase that never needed an
+    erratum of its own (glibc `2.34-272.el9_8` against the 9.0 E4S backport
+    `2.34-28.el9_0.4`, upstream 2.34 either side, so §6b's version exception
+    cannot reach it).  Branch base releases climb monotonically with the minor
+    (9.0=28, 9.2=60, 9.4=100, 9.6=168, 9.7=231, 9.8=272), so within one major and
+    only in this later-stream direction the NEVRA comparison means something
+    again.
+
+    A minor-less fix (`krb5-libs-1.21.1-1.el9`) is a mainline build, the ancestor
+    every `.el9_N` branch forked from, so it orders too.  Branches keep their
+    fork-point release and append to it (`2.34-100.el9_4.12`, `252-55.el9_7.7`),
+    which is what keeps the comparison honest in both of these shapes.
+
+    The other guards are load-bearing.  Same major: an el8 backport says nothing
+    about an el9 build.  Fix minor strictly lower: a fix in a NEWER stream is the
+    ordinary "not backported to us yet" case and must stay POSITIVE.
+    """
+    inst_major, inst_minor = _detect_rhel_ver(installed), _detect_rhel_minor(installed)
+    if not (inst_major and inst_minor):
+        return False
+    seen = False
+    for fix_v in fixes:
+        fix_minor = _detect_rhel_minor(fix_v)
+        if _detect_rhel_ver(fix_v) != inst_major:
+            return False
+        try:
+            if fix_minor and int(fix_minor) >= int(inst_minor):
+                return False
+            inst, fix = _normalize_epoch(installed, fix_v)
+        except Exception:
+            return False
+        if compare_versions(inst, fix) <= 0:
+            return False
+        seen = True
+    return seen
+
+
+def _compare_fixed(found_v, unique_fixed, comp, ctx, rpm_rhel, dec, fix_pid_by_ver,
+                   affected_in_scope=False):
     """Stream-aware RPM version comparison against VEX fixed NEVRAs (VEX-MODEL §6b).
 
     A minor-stream install (el9_4) compares only against same-minor fixes; a fix
     that exists but not yet in the installed stream stays POSITIVE; a GA install
     must be ≥ every stream fix.  Records the decisive fixed PID in *dec* and
     returns (verdict, fix, note).
+
+    *affected_in_scope* is True when the same vulnerability entry also names a
+    product of ours as known_affected or under_investigation.  It vetoes the
+    later-stream inference: an erratum pending for our stream is exactly what
+    Red Hat records that way, and inferring "our branch already has it" over the
+    top of an explicit affected statement would publish a clear for a live bug.
     """
     installed_minor = _detect_rhel_minor(found_v)
     sn = _sbom_note(comp, found_v, ctx) if rpm_rhel else ''
@@ -1674,6 +1724,14 @@ def _compare_fixed(found_v, unique_fixed, comp, ctx, rpm_rhel, dec, fix_pid_by_v
             return ("✅ FALSE POSITIVE", ref,
                     f"{prefix}Installed {found_v} is a newer upstream version "
                     f"than every fix Red Hat shipped ({ref}).")
+        elif not affected_in_scope and _installed_stream_supersedes(found_v, unique_fixed):
+            ref = unique_fixed[0]
+            _decide(ref, 'rpm_fixed_newer_stream', False)
+            prefix = f"{sn}; " if sn else ''
+            return ("✅ FALSE POSITIVE", ref,
+                    f"{prefix}Every fix Red Hat shipped predates el{ctx.rhel_ver}_"
+                    f"{installed_minor} ({ref}) and installed {found_v} is newer "
+                    f"than all of them; no product of ours is listed affected.")
         else:
             best_ref = unique_fixed[0]
             _decide(best_ref, 'rpm_fixed_fail', True)
@@ -1784,7 +1842,11 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec, srpm=''
                     seen.add(v)
                     unique_fixed.append(v)
                     fix_pid_by_ver[v] = pid
-            return _compare_fixed(found_v, unique_fixed, comp, ctx, rpm_rhel, dec, fix_pid_by_ver)
+            affected_in_scope = any(
+                status in ('known_affected', 'under_investigation')
+                for status, _pid, _ver in cands)
+            return _compare_fixed(found_v, unique_fixed, comp, ctx, rpm_rhel, dec,
+                                  fix_pid_by_ver, affected_in_scope)
 
         # known_affected → POSITIVE (permanent no-fix / fix-elsewhere / no-fix)
         ka_pids = [pid for status, pid, _ver in cands if status == 'known_affected']
@@ -1827,6 +1889,29 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec, srpm=''
                     nm, _ = _pkg_from_pid(pid, pid_ident)
                     if nm:
                         rhel_tracked.add(nm)
+        # A related product speaks about the build IT ships.  Two ways that build
+        # can be someone else's package wearing our name:
+        #
+        #   lineage — Red Hat Hardened Images ship `curl-8.21.0-0.1.1.hum1`, a
+        #   `hum` build with its own version line.  CVE-2026-58055 names nothing
+        #   but those three PIDs, and reporting "fix available in Hardened Images"
+        #   against a RHEL 9 `curl-minimal-7.76.1-40.el9` states the position of a
+        #   product the image does not run.  §6b already refuses to compare across
+        #   lineages in scope; out of scope the same NEVRA is no more comparable.
+        #
+        #   source alias — a bare `openssl.src` under JBoss EAP 5 matches
+        #   `openssl-libs` only through the SRPM name (§8 rung 5s), and every
+        #   product that ever shipped an openssl carries that same source name.
+        #   CVE-2014-3566 (POODLE, 2014) enumerates RHEL 5 and RHEL 7 compat
+        #   builds and no RHEL 9 at all, so the alias is the only thing holding a
+        #   2014 protocol flaw against a current openssl 3.5.5.  The restriction
+        #   is on the VERSION-NEUTRAL class only: a PID carrying our own RHEL
+        #   major is Red Hat enumerating our package line (§9.1), where the
+        #   source name is how a subpackage is tracked at all (util-linux.src
+        #   for libsmartcols) and dropping it would lose a real finding.
+        own_names = {comp}
+        if ':' in comp and '/' not in comp and not comp.startswith('cpe:'):
+            own_names.add(comp.rsplit(':', 1)[-1])
         other_vuln, other_safe = set(), set()
         other_vuln_pids, other_safe_pids = [], []
         for status in ('fixed', 'known_affected', 'known_not_affected'):
@@ -1837,6 +1922,11 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec, srpm=''
                     if not _module_stream_compatible(pid, found_v):
                         continue
                     pkg_name, _pkg_ver = _pkg_from_pid(pid, pid_ident)
+                    if _pkg_ver and not _stream_comparable(found_v, _pkg_ver):
+                        continue
+                    if pkg_name not in (own_names if _is_version_neutral_product(pid)
+                                        else names):
+                        continue
                     if (pkg_name and _is_version_neutral_product(pid)
                             and pkg_name in rhel_tracked):
                         # Red Hat enumerates this package per RHEL major (it
@@ -1850,14 +1940,13 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec, srpm=''
                         # the opposite case — RHEL never ships it, so the
                         # version-neutral OCP PID is the only statement there is.
                         continue
-                    if pkg_name in names:
-                        label = _pid_label(pid, pid_name, rel_parent)
-                        if status in ('known_affected', 'fixed'):
-                            other_vuln.add(label)
-                            other_vuln_pids.append(pid)
-                        else:
-                            other_safe.add(label)
-                            other_safe_pids.append(pid)
+                    label = _pid_label(pid, pid_name, rel_parent)
+                    if status in ('known_affected', 'fixed'):
+                        other_vuln.add(label)
+                        other_vuln_pids.append(pid)
+                    else:
+                        other_safe.add(label)
+                        other_safe_pids.append(pid)
 
         # clear-only related products carry no claim about OUR product — fall
         # through to rung 9 (not listed); only affected-elsewhere stays decisive

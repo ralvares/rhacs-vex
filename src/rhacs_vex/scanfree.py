@@ -147,6 +147,98 @@ def load_index(path: str = INDEX_PATH) -> dict:
 
 # ── candidates ────────────────────────────────────────────────────────────────
 
+def image_identity(repo: str, labels) -> tuple:
+    """(index keys, pseudo-component, version) for the image's own identity.
+
+    Both the repo path as pulled and the `name` label are looked up: the two
+    purl eras index the image under either form (§4a), and an art-dev build
+    carries no labels at all.
+    """
+    labels = labels or {}
+    label_name = labels.get('name') or ''
+    keys = {repo, repo.split('/')[-1]} if repo else set()
+    if label_name:
+        keys |= {label_name, label_name.split('/')[-1]}
+    comp = label_name or (repo.split('/')[-1] if repo else '')
+    return {k for k in keys if k}, comp, labels.get('release') or labels.get('version') or ''
+
+
+def repo_from_ref(image_ref: str) -> str:
+    """Repo path of an image reference, digest and tag dropped."""
+    ref = (image_ref or '').split('@')[0]
+    head, _, tail = ref.rpartition('/')
+    return f"{head}/{tail.partition(':')[0]}" if head else tail.partition(':')[0]
+
+
+def merge_index_candidates(df, index: dict, *, image_ref: str = '', labels=None):
+    """Union a scanner's findings with every pair the VEX index can decide.
+
+    The two candidate sources are complements, not rivals (see the module
+    docstring): a scanner enumerates the classes Red Hat does not publish purls
+    for, the index enumerates the classes it does.  Running one without the
+    other leaves a hole on whichever side is missing — a scanner DB that has not
+    caught up on rpms, or the golang/pypi components the corpus never names.
+
+    Scanner rows win on collision: their severity, CVSS, fix version and file
+    location are richer than anything the index can mint.  Only (component, CVE)
+    pairs the scanner never reported are appended.  Returns (df, added).
+    """
+    if df is None or index is None:
+        return df, 0
+    # A hand-rolled scan CSV need not carry the triage schema; merging into one
+    # that doesn't would KeyError deep inside the audit instead of here.
+    if not {'COMPONENT', 'VERSION', 'CVE', 'SOURCE'} <= set(df.columns):
+        return df, 0
+    rpm_idx, oci_idx = index.get('rpm') or {}, index.get('oci') or {}
+    if not (rpm_idx or oci_idx):
+        return df, 0
+
+    cols = list(df.columns)
+    seen = set(zip(df['COMPONENT'], df['CVE'])) if not df.empty else set()
+    has_srpm = 'SRPM' in cols
+    rows = []
+
+    def _add(comp, ver, cve, source, location, srpm=''):
+        if (comp, cve) in seen:
+            return
+        seen.add((comp, cve))
+        row = dict.fromkeys(cols, '')
+        if 'CVSS' in row:
+            row['CVSS'] = 0
+        row.update(COMPONENT=comp, VERSION=ver, CVE=cve, SOURCE=source,
+                   LOCATION=location)
+        if has_srpm:
+            row['SRPM'] = srpm
+        rows.append(row)
+
+    if not df.empty:
+        os_rows = df[df['SOURCE'].astype(str).str.upper() == 'OS']
+        # An image-identity pseudo-component (§7b) is not an rpm name; looking it
+        # up in the rpm index would join on a path that no NEVRA carries.
+        for comp, ver, srpm in {(str(r['COMPONENT']), str(r['VERSION']),
+                                 str(r['SRPM']) if has_srpm and r.get('SRPM') else '')
+                                for _i, r in os_rows.iterrows()}:
+            if '/' in comp:
+                continue
+            cves = set(rpm_idx.get(comp, ()))
+            if srpm:
+                cves |= set(rpm_idx.get(srpm, ()))
+            for cve in sorted(cves):
+                _add(comp, ver, cve, 'OS', 'var/lib/rpm', srpm)
+
+    img_keys, img_comp, img_ver = image_identity(repo_from_ref(image_ref), labels)
+    if img_comp:
+        img_cves: set = set()
+        for key in img_keys:
+            img_cves |= set(oci_idx.get(key, ()))
+        for cve in sorted(img_cves):
+            _add(img_comp, img_ver, cve, IMAGE_SOURCE, 'root/buildinfo/labels.json')
+
+    if not rows:
+        return df, 0
+    return pd.concat([df, pd.DataFrame(rows, columns=cols)], ignore_index=True), len(rows)
+
+
 class UnreadableSBOM(Exception):
     """The SBOM file could not be parsed — distinct from parsing to nothing.
 
@@ -201,16 +293,10 @@ def candidates_from_sbom(sbom_path: str, index: dict) -> pd.DataFrame:
 
     src = sbom.get('source') or {}
     labels = (src.get('metadata') or {}).get('labels') or {}
-    repo = src.get('name') or ''
-    label_name = labels.get('name') or ''
-    img_keys = {repo, repo.split('/')[-1]}
-    if label_name:
-        img_keys |= {label_name, label_name.split('/')[-1]}
+    img_keys, img_comp, img_ver = image_identity(src.get('name') or '', labels)
     img_cves: set = set()
-    for key in filter(None, img_keys):
+    for key in img_keys:
         img_cves |= set(oci_idx.get(key, ()))
-    img_comp = label_name or repo.split('/')[-1]
-    img_ver = labels.get('release') or labels.get('version') or ''
     for cve in sorted(img_cves):
         if (img_comp, img_ver, cve) in seen:
             continue
