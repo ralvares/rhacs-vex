@@ -828,7 +828,7 @@ def _report_cmd(args) -> int:
     try:
         result = report.triage_report(args.csv, workers=args.workers,
                                       platform=args.platform, console=console,
-                                      rescan=args.rescan)
+                                      rescan=args.rescan, ocp=args.ocp)
     except ValueError as e:
         console.print(f'[red]{e}[/red]')
         return 2
@@ -839,6 +839,13 @@ def _report_cmd(args) -> int:
     real = int((~rows['AUDIT_RESULT'].str.contains('FALSE', na=False)).sum())
     path = report.render_html(result, args.output,
                               when=time.strftime('%Y-%m-%d %H:%M'))
+    if not args.no_parquet:
+        pq_path = args.parquet or os.path.splitext(args.output)[0] + '.parquet'
+        try:
+            report.write_parquet(result, pq_path)
+            console.print(f"🗃  {pq_path}")
+        except Exception as e:
+            console.print(f'[yellow]parquet skipped: {type(e).__name__}: {e}[/yellow]')
     if args.rescan:
         # A rescan enumerates candidates, so the cleared rows were never claims
         # about these images — same wording as scanfree.
@@ -968,6 +975,15 @@ def main() -> int:
                          'purpose, so raising this costs registry bandwidth, '
                          'not memory')
     pr.add_argument('--platform', default='linux/amd64')
+    pr.add_argument('--ocp', default='', metavar='VER',
+                    help="the cluster's OpenShift version(s), comma-separated — an "
+                         "image's labels carry its own build version, not the "
+                         "cluster's, so this is the only place it can come from")
+    pr.add_argument('--parquet', default=None, metavar='FILE',
+                    help='also write the rows as parquet for triage.html / DuckDB '
+                         '(default: alongside --output)')
+    pr.add_argument('--no-parquet', action='store_true', default=False,
+                    help='HTML only')
     pr.add_argument('--rescan', action='store_true', default=False,
                     help='ignore the CSV findings and scan every image live '
                          '(syft + grype + VEX index), keeping the cluster, '

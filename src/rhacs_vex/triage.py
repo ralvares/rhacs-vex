@@ -1072,6 +1072,12 @@ def _component_cell(row) -> str:
     src = str(row.get('SOURCE', '') or '').strip().upper()
     if src in ('', 'OS'):
         return comp
+    if src == 'IMAGE':
+        # The image's own identity, whose location is the buildinfo file the
+        # labels were read from.  Appending it reads as though the finding were
+        # against a JSON file; §7b is explicit that the path is the location and
+        # never the name.
+        return comp
     loc = str(row.get('LOCATION', '') or '').strip()
     binary = os.path.basename(loc) if loc else ''
     if binary and binary not in comp:
@@ -1342,8 +1348,49 @@ def _audit_silent(df: pd.DataFrame, ctx, false_only: bool = False,
     return _sort_and_filter_df(df, false_only)
 
 
+# Set by audit_batch for the duration of one call.  Forked workers inherit it;
+# nothing else reads it.
+_BATCH_STATE = None
+
+
+def _audit_one_cve(item) -> list:
+    """Every verdict that one VEX document decides.  Runs in a forked worker.
+
+    Reading the document once and handing it to every row anywhere in the report
+    that names that CVE is the whole point of the CVE-major walk; this keeps that
+    property and only spreads the documents across cores.
+    """
+    cve, per_job = item
+    prepared, records, vex_product = _BATCH_STATE
+    data = _read_vex(cve)
+    out = []
+    for ji, positions in per_job.items():
+        ctx, recs = prepared[ji][0], records[ji]
+        for ri in positions:
+            rec = recs[ri]
+            out.append((ji, ri, audit_row_with_doc(rec, ctx, data),
+                        _vex_product_with_doc(rec, ctx, data) if vex_product else ''))
+    return out
+
+
+def _audit_pool_size(workers: int, cves: int) -> int:
+    """How many processes to spread the documents over.
+
+    Below a few hundred documents the fork and the round trip cost more than the
+    audit saves, and a small report should not pay for a pool it cannot fill.
+    """
+    if workers:
+        return max(1, workers)
+    if cves < 200 or os.environ.get('VEX_AUDIT_WORKERS') == '1':
+        return 1
+    env = os.environ.get('VEX_AUDIT_WORKERS')
+    if env and env.isdigit():
+        return max(1, int(env))
+    return max(1, min(8, (os.cpu_count() or 2) - 2))
+
+
 def audit_batch(jobs: list, *, false_only: bool = False, vex_product: bool = True,
-                progress=None) -> list:
+                progress=None, workers: int = 0) -> list:
     """Audit many (ctx, df) pairs at once, walking the work CVE-major.
 
     `_audit_silent` per image reads a VEX document once per image that cites the
@@ -1387,18 +1434,39 @@ def audit_batch(jobs: list, *, false_only: bool = False, vex_product: bool = Tru
     # re-slicing the frame per CVE would cost more than holding the records.
     records = [df.to_dict('records') if len(df) else [] for _ctx, df in prepared]
 
-    for n, (cve, per_job) in enumerate(work.items()):
-        data = _read_vex(cve)
-        for ji, positions in per_job.items():
-            ctx, recs = prepared[ji][0], records[ji]
-            for ri in positions:
-                rec = recs[ri]
-                verdicts[ji][ri] = audit_row_with_doc(rec, ctx, data)
+    global _BATCH_STATE
+    _BATCH_STATE = (prepared, records, vex_product)
+    pool = _audit_pool_size(workers, len(work))
+    if pool > 1:
+        # Verdicts are pure CPU, so threads would serialise on the GIL.  Fork so
+        # the children inherit `prepared` and `records` copy-on-write instead of
+        # pickling every row into each worker; only the verdict tuples travel
+        # back.  Peak memory is one document per worker, not one per report.
+        import multiprocessing as _mp
+        from concurrent.futures import ProcessPoolExecutor
+        try:
+            with ProcessPoolExecutor(max_workers=pool,
+                                     mp_context=_mp.get_context('fork')) as ex:
+                done = 0
+                for got in ex.map(_audit_one_cve, work.items(), chunksize=4):
+                    for ji, ri, verdict, product in got:
+                        verdicts[ji][ri] = verdict
+                        if vex_product:
+                            products[ji][ri] = product
+                    done += 1
+                    if progress:
+                        progress(done, len(work))
+        except Exception:
+            pool = 1                       # fall back to the serial walk below
+    if pool <= 1:
+        for n, (cve, per_job) in enumerate(work.items()):
+            for ji, ri, verdict, product in _audit_one_cve((cve, per_job)):
+                verdicts[ji][ri] = verdict
                 if vex_product:
-                    products[ji][ri] = _vex_product_with_doc(rec, ctx, data)
-        data = None
-        if progress:
-            progress(n + 1, len(work))
+                    products[ji][ri] = product
+            if progress:
+                progress(n + 1, len(work))
+    _BATCH_STATE = None
 
     out = []
     for ji, (_ctx, df) in enumerate(prepared):
