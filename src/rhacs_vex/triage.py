@@ -723,18 +723,19 @@ def sbom_to_packages_df(sbom: dict) -> pd.DataFrame:
     return pd.DataFrame(rows, columns=["NAME", "VERSION", "PURPOSE", "FILE"])
 
 
-def _verify_sbom_against_df(session, image_ref: str, result_df: pd.DataFrame) -> dict:
-    """Cross-check every unique component+version in result_df against the SBOM."""
+def verify_versions(result_df: pd.DataFrame, pkg_versions: dict) -> dict:
+    """Cross-check every component+version in result_df against a package list.
+
+    What this proves depends entirely on where *pkg_versions* came from, and the
+    two callers are not equally strong.  RHACS reports its findings from one
+    place and serves the SPDX SBOM from another, so agreement is corroboration.
+    On the scanner paths the package list and the findings both descend from the
+    same syft catalogue, so agreement only shows that the adapter and the
+    scanner report what syft found — worth checking, since epoch handling and
+    purl normalisation are exactly where a version quietly changes shape, but it
+    is not independent evidence about the image.
+    """
     try:
-        sbom = rhacs_get_sbom(session, image_ref)
-        parser = _SBOMParser(sbom_type="spdx")
-        parser.parse_string(json.dumps(sbom))
-        pkg_versions: dict = {}
-        for pkg in parser.get_packages():
-            name = pkg.get("name", "")
-            ver  = pkg.get("version", "")
-            if name:
-                pkg_versions.setdefault(name, set()).add(ver)
         matched, mismatched, seen = 0, [], set()
         for _, row in result_df.iterrows():
             key = (row["COMPONENT"], row["VERSION"])
@@ -752,6 +753,22 @@ def _verify_sbom_against_df(session, image_ref: str, result_df: pd.DataFrame) ->
         return {"matched": matched, "total": len(seen), "mismatched": mismatched, "error": None}
     except Exception as exc:
         return {"matched": 0, "total": 0, "mismatched": [], "error": str(exc)}
+
+
+def _verify_sbom_against_df(session, image_ref: str, result_df: pd.DataFrame) -> dict:
+    """RHACS path: its findings against the SPDX SBOM it serves separately."""
+    try:
+        sbom = rhacs_get_sbom(session, image_ref)
+        parser = _SBOMParser(sbom_type="spdx")
+        parser.parse_string(json.dumps(sbom))
+        pkg_versions: dict = {}
+        for pkg in parser.get_packages():
+            name, ver = pkg.get("name", ""), pkg.get("version", "")
+            if name:
+                pkg_versions.setdefault(name, set()).add(ver)
+    except Exception as exc:
+        return {"matched": 0, "total": 0, "mismatched": [], "error": str(exc)}
+    return verify_versions(result_df, pkg_versions)
 
 
 def _print_sbom_summary(console: Console, sbom_s: dict) -> None:
@@ -1069,6 +1086,35 @@ def _type_cell(row) -> str:
     """Which ecosystem the finding came from — rpm, go, python, image."""
     src = str(row.get('SOURCE', '') or '').strip().upper()
     return _TYPES.get(src, src.lower())
+
+
+def print_preamble(console, *, image_ref: str = '', mode: str = '',
+                   os_info: str = '', df=None, ctx=None,
+                   noun: str = 'CVE findings') -> None:
+    """The header every scan path prints, so only the findings differ.
+
+    A scanner decides WHICH rows exist; everything around them — the image, the
+    OS the scanner read, how many components carry findings, the workload
+    context and the VEX scope that context resolves to — is the engine's, and
+    reads the same whichever scanner supplied the rows.
+    """
+    if image_ref:
+        console.print(f"\n[bold]Image:[/bold] [cyan]{image_ref}[/cyan]")
+    if mode:
+        console.print(f"[bold]Mode:[/bold] [cyan]{mode}[/cyan]")
+    if os_info:
+        console.print(f"[bold]OS:[/bold] [cyan]{os_info}[/cyan]")
+    if df is not None:
+        comps = df['COMPONENT'].nunique() if len(df) else 0
+        console.print(f"[bold]Found:[/bold] [cyan]{len(df):,} {noun}[/cyan] across "
+                      f"[cyan]{comps:,} components[/cyan]")
+    if ctx is not None:
+        console.print(f"[bold]Context:[/bold] type=[cyan]{ctx.workload_type}[/cyan]  "
+                      f"rhel=[cyan]{ctx.rhel_ver}[/cyan]  "
+                      f"display=[cyan]{ctx.display_name}[/cyan]")
+        if getattr(ctx, 'extra_prefixes', None):
+            console.print(f"[bold]VEX scope:[/bold] {', '.join(ctx.extra_prefixes[:6])}")
+    console.print()
 
 
 def _component_cell(row) -> str:
@@ -2011,6 +2057,7 @@ def main():
 
     # ── Single-image API mode or CSV mode ──
     session = None
+    os_info = ''
     if use_api:
         _console.print(f"[bold]Mode:[/bold] [cyan]RHACS API[/cyan]  endpoint=[cyan]{ROX_ENDPOINT}[/cyan]")
         try:
@@ -2035,10 +2082,6 @@ def main():
                 _console.print(f"🧮 +{_added:,} candidates from the VEX index "
                                f"(rpm + image classes RHACS did not report)")
             _wire_go_owner_rpms(df, ctx, args.image)
-            if os_info:
-                _console.print(f"[bold]OS:[/bold] [cyan]{os_info}[/cyan]")
-            _console.print(f"[bold]Found:[/bold] [cyan]{len(df)} CVE findings[/cyan] across "
-                           f"[cyan]{df['COMPONENT'].nunique() if len(df) else 0} components[/cyan]")
 
             try:
                 _sbom = rhacs_get_sbom(session, args.image, force=_force)
@@ -2064,11 +2107,7 @@ def main():
         if _added:
             _console.print(f"🧮 +{_added:,} candidates from the VEX index")
 
-    _console.print(f"[bold]Context:[/bold] type=[cyan]{ctx.workload_type}[/cyan]  "
-                   f"rhel=[cyan]{ctx.rhel_ver}[/cyan]  display=[cyan]{ctx.display_name}[/cyan]")
-    if ctx.extra_prefixes:
-        _console.print(f"[bold]VEX scope:[/bold] {', '.join(ctx.extra_prefixes[:6])}")
-    _console.print()
+    print_preamble(_console, os_info=os_info, df=df, ctx=ctx)
 
     _out_path = args.output if args.output and args.output_fmt != "table" else None
     result_df = _audit_and_display(df, ctx, _console, output_path=_out_path,

@@ -81,16 +81,29 @@ def _scanner_cmd(scanner: str, args) -> int:
                       'from a file (context + OpenVEX product identity).[/red]')
         return 2
 
-    console.print(f"🧭 Image context via labels: [bold cyan]{image_ref}[/bold cyan]")
     ctx = context_for_image(image_ref, os_hint=hint, labels=labels or None,
                             digests=digests)
     df, merged = _merge_index(df, args, console, image_ref, labels)
     if scanner == 'grype':
         _wire_rpm_owners(df, ctx, adapter.rpm_file_owners(target))
+    triage.print_preamble(console, image_ref=image_ref, mode=f'{scanner} scan',
+                          os_info=hint or '', df=df, ctx=ctx,
+                          noun='candidates' if merged else 'CVE findings')
 
     result_df = triage._audit_and_display(
         df, ctx, console, output_path=args.output, output_fmt=args.format,
         false_only=args.false_only, source_label=scanner, candidates=merged)
+
+    # Same check the RHACS path runs, against the package list this scanner's
+    # own SBOM carries.  Weaker evidence than RHACS's (both sides descend from
+    # the same syft catalogue) and it says so, but it still catches a version
+    # changing shape between the SBOM and the row — epochs and purl
+    # normalisation being where that happens.
+    if scanner == 'grype' and result_df is not None and not result_df.empty:
+        pkgs = adapter.sbom_package_versions(target)
+        if pkgs:
+            console.print("🔍 Verifying component versions against the SBOM...")
+            triage._print_sbom_summary(console, triage.verify_versions(result_df, pkgs))
 
     if args.openvex_dir:
         try:
@@ -156,7 +169,6 @@ def _scanfree_cmd(args) -> int:
         console.print('[yellow]no candidates — the SBOM has no rpm or image '
                       'identity the VEX corpus names.[/yellow]')
         return 0
-    console.print(f"🧮 {len(df):,} candidates from the VEX index (no scanner)")
 
     if not image_ref:
         # repoDigests carries the ref as pulled; manifestDigest is the per-arch
@@ -180,6 +192,8 @@ def _scanfree_cmd(args) -> int:
     ctx = context_for_image(image_ref, labels=adapter.sbom_labels(sbom_path) or None,
                             digests=adapter.sbom_digests(sbom_path))
     _wire_rpm_owners(df, ctx, adapter.rpm_file_owners(sbom_path))
+    triage.print_preamble(console, image_ref=image_ref, mode='VEX index (no scanner)',
+                          df=df, ctx=ctx, noun='candidates')
 
     result_df = triage._audit_and_display(
         df, ctx, console, output_path=args.output, output_fmt=args.format,

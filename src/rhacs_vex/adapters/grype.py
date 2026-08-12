@@ -260,3 +260,17 @@ def os_hint(grype_doc: dict) -> str:
     """Distro string from the grype document (refines ctx.rhel_ver)."""
     d = grype_doc.get('distro') or {}
     return f"{d.get('name', '')}:{d.get('version', '')}"
+
+
+def sbom_package_versions(sbom_path: str) -> dict:
+    """{package name: {versions}} from a syft SBOM, for version verification."""
+    try:
+        doc = json.load(open(sbom_path))
+    except Exception:
+        return {}
+    out: dict = {}
+    for art in doc.get('artifacts') or []:
+        name, ver = art.get('name'), art.get('version')
+        if name and ver:
+            out.setdefault(name, set()).add(str(ver))
+    return out
