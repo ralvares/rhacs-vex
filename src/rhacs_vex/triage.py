@@ -1058,31 +1058,29 @@ def _redhat_says(row) -> str:
     return f'{state} ({note})' if note else state
 
 
-def _component_cell(row) -> str:
-    """Component label, disambiguated by the binary a language module lives in.
+# What the scanner found the component in, in the ecosystem's own word rather
+# than the scanner's enum.  OS means the rpm database on every image this tool
+# looks at, and IMAGE is the image's own identity (§7b), not a package at all.
+_TYPES = {'OS': 'rpm', 'GO': 'go', 'PYTHON': 'python', 'JAVA': 'java',
+          'NODEJS': 'npm', 'RUBY': 'gem', 'IMAGE': 'image'}
 
-    One image ships several Go binaries, each built with its own toolchain, and
-    the scanner reports the module per binary — `stdlib` appears once for
-    /usr/bin/virtctl (1.24.11) and again for /usr/local/bin/subctl (1.25.9).
-    Printing the bare module name makes those look like duplicate rows with
-    contradictory verdicts, when they are different artefacts.  rpm rows are left
-    alone: their location is always var/lib/rpm and adds nothing.
-    """
-    comp = str(row.get('COMPONENT', ''))
+
+def _type_cell(row) -> str:
+    """Which ecosystem the finding came from — rpm, go, python, image."""
     src = str(row.get('SOURCE', '') or '').strip().upper()
-    if src in ('', 'OS'):
-        return comp
-    if src == 'IMAGE':
-        # The image's own identity, whose location is the buildinfo file the
-        # labels were read from.  Appending it reads as though the finding were
-        # against a JSON file; §7b is explicit that the path is the location and
-        # never the name.
-        return comp
-    loc = str(row.get('LOCATION', '') or '').strip()
-    binary = os.path.basename(loc) if loc else ''
-    if binary and binary not in comp:
-        return f'{comp} @{binary}'
-    return comp
+    return _TYPES.get(src, src.lower())
+
+
+def _component_cell(row) -> str:
+    """The component name as the scanner reported it, and nothing else.
+
+    This used to append the binary a language module was found in, because one
+    image ships several Go binaries with their own toolchains and `stdlib` can
+    appear twice with different versions and different verdicts.  The path costs
+    more width than that disambiguation is worth on screen; the exports still
+    carry LOCATION, so nothing is lost for anyone who needs it.
+    """
+    return str(row.get('COMPONENT', ''))
 
 
 def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx,
@@ -1102,6 +1100,7 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx,
         rows.append({
             'cve': str(row['CVE']),
             'comp': _component_cell(row),
+            'type': _type_cell(row),
             'rhacs': str(row.get('RHACS_SEVERITY', 'Unknown')),
             'vex': str(row.get('SEVERITY', 'Unknown')),
             'verdict': verdict_mark,
@@ -1131,6 +1130,7 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx,
     columns = [
         ('CVE',          'cve',      18),
         ('Component',    'comp',     None),   # never truncate identities
+        ('Type',         'type',     7),
         ('Scan Sev',     'rhacs',    10),
         ('VEX Sev',      'vex',      10),
         ('Verdict',      'verdict',  7),
@@ -1144,6 +1144,8 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx,
         columns = [c for c in columns if c[1] != 'fix']
     if _uniform('vex', 'Unknown', '-', ''):
         columns = [c for c in columns if c[1] != 'vex']
+    if _uniform('type', ''):
+        columns = [c for c in columns if c[1] != 'type']
 
     def _measure(cols):
         w = [max(len(h), min(max((len(r[k]) for r in rows), default=0), cap)
@@ -1163,7 +1165,7 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx,
         columns = [(h, k, (max(24, (cap or 40) - slack) if k == 'just' else cap))
                    for h, k, cap in columns]
         widths, total = _measure(columns)
-    for droppable in ('rhacs', 'vex', 'fix', 'just', 'state'):
+    for droppable in ('rhacs', 'vex', 'fix', 'just', 'state', 'type'):
         if total <= avail:
             break
         if any(c[1] == droppable for c in columns) and len(columns) > 4:

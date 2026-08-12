@@ -741,7 +741,7 @@ def _add_scanner_args(p: argparse.ArgumentParser) -> None:
     p.add_argument('--false-only', action='store_true', default=False)
     p.add_argument('--force', action='store_true', default=False,
                    help='regenerate the cached syft SBOM (grype only)')
-    _add_index_args(p, default=True)
+    _add_index_args(p, default=False)
 
 
 def _add_index_args(p: argparse.ArgumentParser, *, default: bool) -> None:
