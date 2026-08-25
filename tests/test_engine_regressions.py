@@ -31,7 +31,12 @@ def vex(nodes, statuses):
     """Minimal CSAF doc: nodes = [(component_pid, purl)], statuses = {bucket: [pid]}."""
     return {
         'product_tree': {
-            'branches': [{'branches': [
+            'branches': [{'product': {
+                'product_id': 'red_hat_enterprise_linux_9',
+                'name': 'Red Hat Enterprise Linux 9',
+                'product_identification_helper': {
+                    'cpe': 'cpe:/o:redhat:enterprise_linux:9'}},
+                'branches': [
                 {'product': {'product_id': pid,
                              'product_identification_helper': {'purl': purl}}}
                 for pid, purl in nodes]}],
@@ -231,23 +236,14 @@ check('F6 minor streams of base RHEL remain comparable',
 
 print('\n=== G. evidence labels must reflect RED HAT\'s view, not the engine\'s ===')
 
-from rhacs_vex.triage import _evidence_of, _RELATED_MARKER   # noqa: E402
+from rhacs_vex.triage import _evidence_of                    # noqa: E402
 from rhacs_vex import engine as _eng                          # noqa: E402
 import inspect                                                # noqa: E402
 
-# The tool presents Red Hat's view.  A rung-8 row carries a genuine statement
-# (so VEX_STATED is True) but it is about ANOTHER product that ships the same
-# package — labelling it 'stated' would present a third-party claim as Red Hat's
-# verdict on this image.
+# A product outside the resolved workload scope must never decide an RPM row.
 _src = inspect.getsource(_eng._decide_rpm)
-check('G1 engine still emits the rung-8 phrase the label keys on',
-      _RELATED_MARKER in _src, f'marker={_RELATED_MARKER!r}')
-
-related = pd.Series({'COMPONENT': 'openssl', 'SOURCE': 'OS', 'VEX_STATED': 'True',
-                     'JUSTIFICATION': "'openssl' affected in related products "
-                                      "(Red Hat Enterprise Linux 7)."})
-check('G2 rung-8 row is labelled related, not stated',
-      _evidence_of(related) == 'related', _evidence_of(related))
+check('G1 RPM decisions contain no related-product fallback',
+      'affected in related products' not in _src)
 
 ours = pd.Series({'COMPONENT': 'openssl', 'SOURCE': 'OS', 'VEX_STATED': 'True',
                   'JUSTIFICATION': 'UBI9: known_not_affected.'})
@@ -388,7 +384,7 @@ check('I10 …and a newer-stream fix still reports the stream gap',
       f'{_v4} note={_note4}')
 
 print()
-print('=== J. rung 8 — a related product must speak about OUR build ===')
+print('=== J. out-of-scope products never decide an RPM finding ===')
 
 
 def vex_under(product, nodes, statuses):
@@ -445,8 +441,20 @@ _ocp = vex_under('red_hat_openshift_container_platform_4',
                  {'known_affected':
                   ['red_hat_openshift_container_platform_4:openshift-clients']})
 _v, _n = _verdict(_ocp, 'openshift-clients', '4.14.0-202501.el9')
-check('J3 …but a matching binary name in a related product still decides',
-      '❌' in _v, f'{_v} {_n}')
+check('J3 a matching binary name in an out-of-scope product does not decide',
+      '✅' in _v, f'{_v} {_n}')
+
+# CVE-2018-1002105 names only the bare clients package under OpenShift
+# Enterprise 3.0.  That product generation is the missing version qualifier;
+# it must not make an OCP 4 clients package vulnerable by name alone.
+_ose3 = vex_under('red_hat_openshift_enterprise_3.0',
+                  [('openshift-clients', 'pkg:rpm/redhat/openshift-clients')],
+                  {'known_affected':
+                   ['red_hat_openshift_enterprise_3.0:openshift-clients']})
+_v, _n = _verdict(_ose3, 'openshift-clients', '4.14.0-202501.el9',
+                  'CVE-2018-1002105')
+check('J3b an OpenShift 3 bare package does not decide an OpenShift 4 build',
+      '✅' in _v, f'{_v} {_n}')
 
 # RHEL 7 tracks `python-requests`, Satellite 6 says `python3-requests`.  On the
 # exact-name test the standalone product decided, so a 2015 CVE stayed POSITIVE
@@ -526,8 +534,8 @@ _jboss_bin = vex_under('red_hat_jboss_enterprise_application_platform_5',
                        {'known_affected':
                         ['red_hat_jboss_enterprise_application_platform_5:openssl']})
 _v7, _n7 = _verdict(_jboss_bin, 'openssl', '1:3.0.7-29.el9_4')
-check('J6 …while a binary-named statement from the same product still decides',
-      '❌' in _v7, f'{_v7} {_n7}')
+check('J6 a binary-named statement from another product does not decide',
+      '✅' in _v7, f'{_v7} {_n7}')
 
 _v5, _n5 = _verdict(_old, 'krb5-libs', '1.21.1-10.el9_8')
 check('J4 a RHEL 3 product does not decide a RHEL 9 build', '✅' in _v5, f'{_v5} {_n5}')

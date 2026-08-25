@@ -25,7 +25,6 @@ Decision ladder (VEX-MODEL §8b), first decisive rung wins:
     RPM (rungs 5,5s,8,9):
     5  component in scope    name+dist-tag+minor+module+CPE scoped, status
                              priority KNA>fixed>KA>UI; fixed → §6 version compare
-    8  related products      same package in out-of-scope RHEL-N / neutral PIDs
     9  not listed            no VEX statement names the component (§5g: the
                              errata assumption covers only listed products)     → FALSE POSITIVE
     non-RPM (rungs 3,4,6,7,8,9):
@@ -825,36 +824,6 @@ def _is_any_rhel_ver_product(pid: str, rhel_ver: str) -> bool:
     return False
 
 
-def _cpe_rhel_major(pid: str, pid_cpe) -> str:
-    """RHEL major a product's own CPE names, or '' when it names none.
-
-    Pre-RHEL-6 documents identify products as `3AS`, `4Desktop`, `2.1AS` — no
-    `enterprise_linux_N`, no `.elN`, nothing the PID-string tests recognise, so
-    they read as version-neutral and rung 8 admits them as related evidence.
-    That is how CVE-2004-0642 (krb5, RHEL 3) ends up holding a RHEL 9 image
-    vulnerable.  The CPE says what the PID does not:
-    `cpe:/o:redhat:enterprise_linux:3::as`.
-    """
-    cpe = (pid_cpe or {}).get(pid.split(':')[0], '')
-    m = re.search(r':enterprise_linux:(\d+)', cpe or '')
-    return m.group(1) if m else ''
-
-
-def _is_version_neutral_product(pid: str) -> bool:
-    """True when a PID carries no RHEL/el version marker at all (VEX-MODEL §1d).
-
-    Version-agnostic product PIDs (…platform_4:openshift-clients) cannot
-    contradict the workload's RHEL version → admissible as related evidence.
-    """
-    if re.search(r'[.+]el\d', pid):
-        return False
-    if re.search(r'_rhel_?\d', pid.lower()):
-        return False
-    if 'enterprise_linux_' in pid.lower():
-        return False
-    return True
-
-
 @functools.lru_cache(maxsize=4096)
 def _prefix_pattern(prefix_lower: str):
     """Token-boundary matcher for a catalog/namespace prefix."""
@@ -1584,7 +1553,7 @@ def _state_from_decisive(verdict, dec, data, ctx, pid_name, rhel_base_pids,
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# §6  RPM path — component in scope (rung 5), related (8), absent (9)
+# §6  RPM path — component in scope (rung 5), absent (9)
 # ══════════════════════════════════════════════════════════════════════════════
 
 def _rpm_candidates(vuln, ctx, maps, names, found_v, comp=None):
@@ -1894,100 +1863,6 @@ def _decide_rpm(comp, found_v, data, ctx, maps, rhel_ver, rpm_rhel, dec, srpm=''
         if ui_pids:
             dec.update(kind='rpm_ui', status='under_investigation', pids=[ui_pids[0]])
             return ("❌ POSITIVE", "N/A", f"under_investigation for {ctx.display_name}.")
-
-        # rung 8 — related products (out-of-scope RHEL-N / version-neutral) ---
-        # Packages Red Hat tracks per RHEL major anywhere in this file.
-        rhel_tracked = set()
-        for status in ('fixed', 'known_affected', 'known_not_affected'):
-            for pid in ps.get(status, []):
-                if 'enterprise_linux' in pid.lower() or re.search(r'[.+]el\d', pid):
-                    nm, _ = _pkg_from_pid(pid, pid_ident)
-                    if nm:
-                        rhel_tracked.add(nm)
-        # A related product speaks about the build IT ships.  Two ways that build
-        # can be someone else's package wearing our name:
-        #
-        #   lineage — Red Hat Hardened Images ship `curl-8.21.0-0.1.1.hum1`, a
-        #   `hum` build with its own version line.  CVE-2026-58055 names nothing
-        #   but those three PIDs, and reporting "fix available in Hardened Images"
-        #   against a RHEL 9 `curl-minimal-7.76.1-40.el9` states the position of a
-        #   product the image does not run.  §6b already refuses to compare across
-        #   lineages in scope; out of scope the same NEVRA is no more comparable.
-        #
-        #   source alias — a bare `openssl.src` under JBoss EAP 5 matches
-        #   `openssl-libs` only through the SRPM name (§8 rung 5s), and every
-        #   product that ever shipped an openssl carries that same source name.
-        #   CVE-2014-3566 (POODLE, 2014) enumerates RHEL 5 and RHEL 7 compat
-        #   builds and no RHEL 9 at all, so the alias is the only thing holding a
-        #   2014 protocol flaw against a current openssl 3.5.5.  The restriction
-        #   is on the VERSION-NEUTRAL class only: a PID carrying our own RHEL
-        #   major is Red Hat enumerating our package line (§9.1), where the
-        #   source name is how a subpackage is tracked at all (util-linux.src
-        #   for libsmartcols) and dropping it would lose a real finding.
-        own_names = {comp}
-        if ':' in comp and '/' not in comp and not comp.startswith('cpe:'):
-            own_names.add(comp.rsplit(':', 1)[-1])
-        other_vuln, other_safe = set(), set()
-        other_vuln_pids, other_safe_pids = [], []
-        for status in ('fixed', 'known_affected', 'known_not_affected'):
-            for pid in ps.get(status, []):
-                if ((_is_any_rhel_ver_product(pid, rhel_ver) or _is_version_neutral_product(pid))
-                        and not _pid_in_scope(pid, ctx, pid_name, rhel_base_pids,
-                                              vex_ns_map, pid_cpe=pid_cpe)):
-                    if not _module_stream_compatible(pid, found_v):
-                        continue
-                    other_major = _cpe_rhel_major(pid, pid_cpe)
-                    if other_major and other_major != rhel_ver:
-                        continue          # another RHEL line entirely, per its CPE
-                    pkg_name, _pkg_ver = _pkg_from_pid(pid, pid_ident)
-                    if _pkg_ver and not _stream_comparable(found_v, _pkg_ver):
-                        continue
-                    if _is_version_neutral_product(pid):
-                        # A `.src` PID names the SOURCE package a standalone
-                        # product ships and no binary of ours.  CVE-2014-3566
-                        # (POODLE) reaches a current openssl 3.0.7 only through
-                        # JBoss EAP 5's `openssl.src`, and the binary-name test
-                        # below cannot stop it because this component IS named
-                        # `openssl`.  openshift-clients keeps working: that PID
-                        # names a binary.
-                        if pid.endswith('.src') or pkg_name not in own_names:
-                            continue
-                    elif pkg_name not in names:
-                        continue
-                    if (pkg_name and _is_version_neutral_product(pid)
-                            and (names & rhel_tracked)):
-                        # Red Hat enumerates this package per RHEL major (it
-                        # appears under RHEL base products elsewhere in this
-                        # file), so our major's absence is informative — §5g.
-                        # Matched against every name this component answers to,
-                        # not just the one the standalone product used: RHEL 7
-                        # tracks `python-requests` where Satellite 6 says
-                        # `python3-requests`, and on the exact-name test the
-                        # 2015 CVE stayed POSITIVE against RHEL 9's 2.25.1 even
-                        # though Red Hat had already cleared RHEL 7.
-                        # A standalone product's bundled copy then says nothing:
-                        # JBoss EWS 3 and Directory Server 8 ship their own pcre,
-                        # unrelated to RHEL 9's, and flagging on the shared NAME
-                        # marks a current package vulnerable forever over a 2015
-                        # CVE in a product we do not run.  openshift-clients is
-                        # the opposite case — RHEL never ships it, so the
-                        # version-neutral OCP PID is the only statement there is.
-                        continue
-                    label = _pid_label(pid, pid_name, rel_parent)
-                    if status in ('known_affected', 'fixed'):
-                        other_vuln.add(label)
-                        other_vuln_pids.append(pid)
-                    else:
-                        other_safe.add(label)
-                        other_safe_pids.append(pid)
-
-        # clear-only related products carry no claim about OUR product — fall
-        # through to rung 9 (not listed); only affected-elsewhere stays decisive
-        # (conservative POSITIVE, never a borrowed clear).
-        if other_vuln:
-            dec.update(kind='rpm_related_vuln', pids=other_vuln_pids)
-            return ("❌ POSITIVE", "N/A",
-                    f"'{comp}' affected in related products ({', '.join(sorted(other_vuln))}).")
 
         # rung 9 — not listed: Red Hat enumerates affected products per CVE;
         # a component absent from that enumeration is not affected (§5g — the

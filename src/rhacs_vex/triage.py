@@ -918,11 +918,6 @@ def _sort_and_filter_df(df: pd.DataFrame, false_only: bool = False) -> pd.DataFr
     return result_df
 
 
-# Engine literal for rung 8 (engine._decide_rpm, kind 'rpm_related_vuln').
-# tests/test_engine_regressions.py case G pins this against engine drift.
-_RELATED_MARKER = 'affected in related products'
-
-
 def _is_stated(row) -> bool:
     """Did Red Hat actually state this verdict, or did the engine infer it?
 
@@ -951,7 +946,7 @@ _STATEMENT_PREFIXES = (
 
 
 def _evidence_of(row) -> str:
-    """Scope of Red Hat's claim: 'stated', 'other bld', 'related', 'not listed'.
+    """Scope of Red Hat's claim: 'stated', 'other bld', or 'not listed'.
 
     Red Hat's errata policy ("unless explicitly stated as not affected, all
     previous versions ... of a product listed here should be assumed vulnerable")
@@ -960,9 +955,6 @@ def _evidence_of(row) -> str:
 
       stated     — Red Hat says this about YOUR product/build; only kind published
       other bld  — Red Hat says it, but about another build/version of your product
-      related    — Red Hat says it about a DIFFERENT product that ships the same
-                   package (rung 8).  Kept open conservatively, but it is not a
-                   statement about your product and must not read as one.
       not listed — absent from an enumeration that DOES cover this package type
       not listed — Red Hat's enumeration for this CVE does not name us.
 
@@ -974,13 +966,6 @@ def _evidence_of(row) -> str:
     product's absence carries the same meaning it does for an rpm.
     """
     just = str(row.get('JUSTIFICATION', '') or '').lstrip()
-    # Checked BEFORE _is_stated: rung 8 (kind 'rpm_related_vuln') carries a real
-    # Red Hat statement, so VEX_STATED is True — but the statement is about
-    # another product that ships the same package, never about ours.  Labelling
-    # it 'stated' would present a third-party claim as Red Hat's view of this
-    # image, which is the one thing this tool must not do.
-    if _RELATED_MARKER in just:
-        return 'related'
     if _is_stated(row):
         return 'stated'
     if just.startswith(_STATEMENT_PREFIXES):
@@ -1039,24 +1024,6 @@ _SCOPE_NOTE = {
 }
 
 
-_RELATED_PRODUCTS_RE = re.compile(r'affected in related products \(([^)]*)\)')
-
-
-def _related_product(just: str) -> str:
-    """First product named by a rung-8 justification, shortened for the column.
-
-    "(other product)" told the reader nothing — the whole question is WHICH
-    product, and the engine already names it.
-    """
-    m = _RELATED_PRODUCTS_RE.search(just or '')
-    if not m:
-        return 'other product'
-    first = m.group(1).split(',')[0].strip()
-    first = re.sub(r'^Red Hat\s+', '', first)
-    more = ', +' if ',' in m.group(1) else ''
-    return (first[:26] + '…' if len(first) > 27 else first) + more
-
-
 def _redhat_says(row) -> str:
     """What Red Hat says, in Red Hat's own vocabulary, qualified by scope.
 
@@ -1069,8 +1036,6 @@ def _redhat_says(row) -> str:
     """
     state = str(row.get('VEX_STATE', '') or '').strip() or '-'
     ev = _evidence_of(row)
-    if ev == 'related':
-        return f'{state} (in {_related_product(str(row.get("JUSTIFICATION", "")))})'
     note = _SCOPE_NOTE.get(ev)
     return f'{state} ({note})' if note else state
 
@@ -1227,7 +1192,7 @@ def _render_triage_table(console: Console, result_df: pd.DataFrame, ctx,
         if key == 'verdict':
             return _vstyle[r['verdict_plain']]
         if key == 'evidence':
-            return {'stated': 'green', 'other bld': 'cyan', 'related': 'magenta',
+            return {'stated': 'green', 'other bld': 'cyan',
                     'not listed': 'yellow'}.get(r['evidence'], 'dim')
         if key == 'comp':
             return 'cyan'

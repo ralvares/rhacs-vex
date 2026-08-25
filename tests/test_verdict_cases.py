@@ -142,12 +142,13 @@ if d and 'openshift-clients' not in json.dumps(d):
 else:
     skip('A4', 'openshift-clients now appears in CVE-2026-35469')
 
-# A5 — related-products affected (version-neutral OCP4 KA) → conservative POSITIVE
+# A5 — an out-of-scope OCP statement cannot decide the Web Terminal package.
 d = vex('CVE-2026-25679')
 if 'red_hat_openshift_container_platform_4:openshift-clients' in pids(d, 'known_affected'):
     r = rows_for(wt, 'CVE-2026-25679', 'openshift-clients')
-    check('A5 rpm affected in related product (OCP4 neutral KA) → POSITIVE',
-          len(r) and '❌' in r.iloc[0]['AUDIT_RESULT'])
+    check('A5 out-of-scope OCP package statement → FALSE POSITIVE',
+          len(r) and '✅' in r.iloc[0]['AUDIT_RESULT']
+          and str(r.iloc[0]['VEX_STATED']) != 'True')
 else:
     skip('A5', 'OCP4 version-neutral KA gone from CVE-2026-25679')
 
@@ -207,11 +208,11 @@ print('\n=== C. rpm/golang duality ===')
 r_rpm = rows_for(wt, 'CVE-2026-25679', 'openshift-clients')
 r_go = rows_for(wt, 'CVE-2026-25679', 'stdlib')
 if len(r_rpm) and len(r_go):
-    check('C1 same CVE: rpm row POSITIVE (OCP4 KA), go row FALSE POSITIVE (image KNA)',
-          '❌' in r_rpm.iloc[0]['AUDIT_RESULT'] and '✅' in r_go.iloc[0]['AUDIT_RESULT'],
+    check('C1 out-of-scope rpm and other-build go are both FALSE POSITIVE',
+          '✅' in r_rpm.iloc[0]['AUDIT_RESULT'] and '✅' in r_go.iloc[0]['AUDIT_RESULT'],
           f"rpm={r_rpm.iloc[0]['AUDIT_RESULT']!r} go={r_go.iloc[0]['AUDIT_RESULT']!r}")
     stmts = openvex.statements_from_df(wt, WT_REF)
-    check('C1 divergent CVE publishes NO statement (open rpm verdict + unstated go)',
+    check('C1 unstated component verdicts publish NO statement',
           not any(s['vulnerability']['name'] == 'CVE-2026-25679' for s in stmts))
 else:
     skip('C1', 'CVE-2026-25679 rows missing from scan result')
