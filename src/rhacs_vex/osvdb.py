@@ -6,18 +6,25 @@ without naming the module.  To put a real subcomponent purl on that statement �
 the identity grype and trivy match on — we need to know which packages CVE-Y is
 about.  The OSV dataset says exactly that, per ecosystem, with affected ranges.
 
-Data: the OSV bulk exports, one zip per ecosystem, under data/osv/, loaded
-into the on-disk index by `vextriage sync` (vexindex.build_osv) and queried one
-package at a time.  Fully offline once downloaded.
+Data: OSV's per-ecosystem exports, imported into the on-disk index by
+`vextriage sync` (`sync` below) and queried one package at a time — only the
+records that carry a CVE alias, about 49 MB of the 245 MB the four exports
+weigh (npm is 97% `MAL-` malware reports).  After the first import a sync
+fetches just the records changed since, from OSV's `modified_id.csv`.  Nothing
+is kept on disk but the index; fully offline once synced.
 """
 from __future__ import annotations
 
 import os
 import re
+import tempfile
+import time
+from datetime import datetime, timezone
 from typing import List, Optional
 
-OSV_DIR = os.path.join('data', 'osv')
 OSV_BUCKET = 'https://storage.googleapis.com/osv-vulnerabilities'
+DELTA_LIMIT = 5000           # more changed records than this → re-import the export
+LEGACY_DIR = os.path.join('data', 'osv')     # where older versions kept the exports
 
 # syft artifact type → OSV ecosystem
 ECOSYSTEMS = {
@@ -28,40 +35,113 @@ ECOSYSTEMS = {
 }
 
 
-def download(ecosystems=None, console=None) -> list:
-    """Fetch each ecosystem's OSV bulk export into data/osv/ — only when it changed.
+def sync(index_path: str, ecosystems=None, console=None, workers: int = 8,
+         full_threshold: int = DELTA_LIMIT) -> dict:
+    """Bring the index's OSV tables level with OSV — fetching only what changed.
 
-    The ETag of the copy on disk is sent back (If-None-Match); an unchanged
-    export answers 304 and costs nothing.  Returns the ecosystems that changed.
+    First run per ecosystem: the bulk export is streamed to a temporary file,
+    imported (CVE-aliased records only) and deleted.  After that, OSV's
+    `modified_id.csv` (newest first) is read down to the last import and only
+    those records are fetched one by one — `MAL-` malware reports are skipped
+    unread, so npm's 8 MB change list costs a few records, not 218 MB.
+    Returns {ecosystem: 'full N' | 'delta N' | 'current'}.
     """
     import requests
-    os.makedirs(OSV_DIR, exist_ok=True)
-    changed = []
+    from . import vexindex
+    out = {}
     for eco in ecosystems or ECOSYSTEMS.values():
-        url = f'{OSV_BUCKET}/{eco}/all.zip'
-        path = os.path.join(OSV_DIR, f'{eco}.zip')
-        tag_path = path + '.etag'
-        headers = {}
-        if os.path.exists(path) and os.path.exists(tag_path):
-            with open(tag_path) as fh:
-                headers['If-None-Match'] = fh.read().strip()
-        with requests.get(url, stream=True, timeout=600, headers=headers) as res:
-            if res.status_code == 304:
-                if console:
-                    console.print(f"   {eco}: unchanged")
-                continue
-            res.raise_for_status()
-            with open(path + '.part', 'wb') as fh:
-                for blk in res.iter_content(1 << 20):
-                    fh.write(blk)
-            os.replace(path + '.part', path)
-            if res.headers.get('ETag'):
-                with open(tag_path, 'w') as fh:
-                    fh.write(res.headers['ETag'])
-        changed.append(eco)
+        have = vexindex.osv_stamp(eco, index_path)
+        newest, changed = _changes_since(eco, have, full_threshold)
+        if have and changed is not None:
+            if not changed:
+                out[eco] = 'current'
+            else:
+                recs, gone = _fetch_records(eco, changed, workers)
+                n = vexindex.upsert_osv(eco, recs, index_path, stamp=newest, removed=gone)
+                out[eco] = f'delta {len(changed):,} record(s) → {n:,} row(s)'
+        elif not have and os.path.exists(os.path.join(LEGACY_DIR, f'{eco}.zip')):
+            # an export a previous version kept on disk: import it once, from
+            # its download time on, then free the space
+            old = os.path.join(LEGACY_DIR, f'{eco}.zip')
+            since = datetime.fromtimestamp(os.path.getmtime(old), timezone.utc) \
+                .strftime('%Y-%m-%dT%H:%M:%S.000000000Z')
+            n = vexindex.import_osv_zip(old, eco, index_path, stamp=since)
+            os.unlink(old)
+            for leftover in (old + '.etag', old + '.part'):
+                if os.path.exists(leftover):
+                    os.unlink(leftover)
+            out[eco] = f'imported the local export → {n:,} row(s); next sync fetches changes'
+        else:
+            fd, tmp = tempfile.mkstemp(suffix=f'.{eco}.zip')
+            os.close(fd)
+            try:
+                with requests.get(f'{OSV_BUCKET}/{eco}/all.zip', stream=True, timeout=600) as res:
+                    res.raise_for_status()
+                    with open(tmp, 'wb') as fh:
+                        for blk in res.iter_content(1 << 20):
+                            fh.write(blk)
+                size = os.path.getsize(tmp)
+                n = vexindex.import_osv_zip(tmp, eco, index_path, stamp=newest)
+                out[eco] = f'full {size / 1e6:.0f} MB → {n:,} row(s)'
+            finally:
+                os.unlink(tmp)
         if console:
-            console.print(f"   {eco}: {os.path.getsize(path) / 1e6:.0f} MB (updated)")
-    return changed
+            console.print(f"   {eco}: {out[eco]}")
+    return out
+
+
+def _changes_since(eco: str, stamp: str, limit: int):
+    """(newest modified time, [changed non-MAL ids]) from modified_id.csv.
+
+    The list is None when there is no stamp or more than *limit* records
+    changed — the bulk export is cheaper then.
+    """
+    import requests
+    newest, ids = '', []
+    with requests.get(f'{OSV_BUCKET}/{eco}/modified_id.csv', stream=True, timeout=120) as res:
+        res.raise_for_status()
+        for line in res.iter_lines(decode_unicode=True):
+            if not line or ',' not in line:
+                continue
+            modified, rid = line.split(',', 1)
+            newest = newest or modified
+            if not stamp:
+                break                        # only the newest time is needed
+            if modified <= stamp:
+                break                        # sorted newest first
+            if rid.startswith('MAL-'):
+                continue
+            ids.append(rid.strip())
+            if len(ids) > limit:
+                return newest, None
+    return newest, (ids if stamp else None)
+
+
+def _fetch_records(eco: str, ids, workers: int):
+    """([record], [ids that no longer exist]) — one GET per changed record."""
+    import requests
+    from concurrent.futures import ThreadPoolExecutor
+    session = requests.Session()
+
+    def get(rid):
+        for attempt in range(5):
+            try:
+                r = session.get(f'{OSV_BUCKET}/{eco}/{rid}.json', timeout=60)
+                if r.status_code == 404:
+                    return rid, None
+                if r.status_code < 500:
+                    r.raise_for_status()
+                    return rid, r.json()
+            except requests.ConnectionError:
+                pass
+            time.sleep(2 ** attempt)
+        raise RuntimeError(f'could not fetch OSV record {eco}/{rid}')
+
+    recs, gone = [], []
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        for rid, rec in ex.map(get, ids):
+            (recs.append(rec) if rec is not None else gone.append(rid))
+    return recs, gone
 
 
 def available(ecosystem: str, index=None) -> bool:

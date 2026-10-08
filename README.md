@@ -471,12 +471,32 @@ it fetches file by file. The full corpus is 63,244 documents, about 16 GB unpack
 stamp is written only when nothing is outstanding, so an interrupted or `--limit`ed sync does not
 mark a short mirror current.
 
+## What `vextriage sync` downloads from OSV
+
+OSV maps CVEs to the Go, PyPI, npm and Maven packages Red Hat never names as purls. Only records
+with a CVE alias are kept — the index is keyed by CVE — and that is a small part of OSV:
+
+| ecosystem | records | with a CVE | export | useful part |
+|---|---:|---:|---:|---:|
+| Go | 9,528 | 8,728 | 11 MB | 10 MB |
+| PyPI | 26,126 | 13,541 | 33 MB | 21 MB |
+| npm | 230,146 (222,343 `MAL-` malware reports) | 6,358 | 192 MB | 9 MB |
+| Maven | 7,179 | 7,004 | 9.5 MB | 9.2 MB |
+
+The first sync streams each export to a temporary file, imports the CVE-aliased records into
+`data/vex-index.sqlite` and deletes the file. After that, a sync reads OSV's `modified_id.csv`
+(newest first) down to the last import and fetches only the changed records, one GET each —
+`MAL-` reports are skipped unread (every CVE they carry is also on a GHSA advisory for the same
+package). A typical day is a few dozen records; more than 5,000 changes falls back to the export.
+Exports left in `data/osv/` by older versions are imported once and removed.
+
 ## Advisory IDs that are not CVEs
 
 Scanners report Go, Python and npm findings under `GHSA-…` or `GO-…`, which Red Hat publishes no
 VEX for, so those rows used to come out POSITIVE with an Unknown severity. OSV carries the alias
-graph and the lookup is automatic; the original ID is kept in `ALIAS_ID`. Nothing is cached to
-disk. Coverage is partial by nature — 7 of 27 sampled advisories carried a CVE, and 6 of those 7
+graph and the lookup is automatic; the original ID is kept in `ALIAS_ID`. It is answered from the
+local index (`vextriage sync` keeps every CVE-aliased OSV record there) and only falls back to
+api.osv.dev for an ID the index does not hold — never with `VEX_OFFLINE`. Coverage is partial by nature — 7 of 27 sampled advisories carried a CVE, and 6 of those 7
 had a Red Hat VEX document. Set `OSV_DISABLE=1` to keep every ID exactly as scanned.
 
 ---
@@ -508,7 +528,6 @@ data/
   vex/                       ← Red Hat CSAF/VEX advisories, one JSON per CVE   (cache, SHARED by all scanner paths)
   sbom/                      ← SPDX 2.3 SBOMs from RHACS, one per image digest (cache, RHACS path)
   syft/                      ← syft-json SBOMs, one per image ref              (cache, OpenVEX/grype path)
-  osv/                       ← OSV bulk exports per ecosystem                  (`vextriage sync`)
   scans/                     ← raw RHACS scan JSON, one per image digest       (cache, RHACS path)
   catalogs/                  ← rendered OLM operator index catalogs            (stage 1)
   pullspecs/                 ← OCP release manifests, one 4.x.y.txt per release (stage 3)
@@ -523,7 +542,7 @@ data/
   manifest.json              ← scope catalogue + summary stats consumed by the UI
   ns_vex_prefixes.json       ← namespace → VEX-prefix map (from stage 2)
   baseline.json              ← regression fixture for tests/check_baseline.py
-  vex-index.sqlite           ← on-disk index: rpm/image → CVEs, OSV package records (derived)
+  vex-index.sqlite           ← on-disk index: rpm/image → CVEs, OSV package records (`vextriage sync`)
 ```
 
 The static site is served from the repo root: `index.html`, `triage.html`, and `assets/`

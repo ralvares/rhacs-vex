@@ -7,8 +7,9 @@ usable on a small machine while the corpus itself is tens of GB.
 
     rpm(name, cve)        rpm package name → CVEs whose Red Hat VEX names it
     oci(key, cve)         image repo / name → CVEs whose Red Hat VEX names it
-    osv(eco, pkg, cves, ranges, versions)
-                          upstream package → OSV records (CVE aliases, ranges)
+    osv(eco, pkg, cves, ranges, versions, id)
+                          upstream package → OSV records (CVE aliases, ranges);
+                          only records with a CVE alias are kept
 
 Code that expects the old in-memory shape keeps working: `index.get('rpm')`
 returns a table object with `.get(name, default)`, like the dict it replaces.
@@ -33,7 +34,7 @@ _SCHEMA = """
 CREATE TABLE IF NOT EXISTS rpm (name TEXT NOT NULL, cve TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS oci (key  TEXT NOT NULL, cve TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS osv (eco TEXT NOT NULL, pkg TEXT NOT NULL, cves TEXT NOT NULL,
-                                ranges TEXT NOT NULL, versions TEXT NOT NULL);
+                                ranges TEXT NOT NULL, versions TEXT NOT NULL, id TEXT);
 CREATE TABLE IF NOT EXISTS meta (k TEXT PRIMARY KEY, v TEXT);
 """
 _INDEXES = """
@@ -42,6 +43,8 @@ CREATE INDEX IF NOT EXISTS oci_key  ON oci(key);
 CREATE INDEX IF NOT EXISTS rpm_cve  ON rpm(cve);
 CREATE INDEX IF NOT EXISTS oci_cve  ON oci(cve);
 CREATE INDEX IF NOT EXISTS osv_pkg  ON osv(eco, pkg);
+CREATE INDEX IF NOT EXISTS osv_rid  ON osv(id);
+DROP INDEX IF EXISTS osv_id;
 """
 
 
@@ -107,6 +110,9 @@ def _connect_write(path: str) -> sqlite3.Connection:
     con.execute('PRAGMA journal_mode=WAL')
     con.execute('PRAGMA synchronous=OFF')
     con.executescript(_SCHEMA)
+    cols = {r[1] for r in con.execute('PRAGMA table_info(osv)')}
+    if 'id' not in cols:                 # index built before OSV deltas
+        con.execute('ALTER TABLE osv ADD COLUMN id TEXT')
     return con
 
 
@@ -194,48 +200,90 @@ def _flush(con, batch_r, batch_o):
     batch_o.clear()
 
 
-def build_osv(osv_dir: str, path: str = INDEX_PATH, ecosystems=None) -> dict:
-    """(Re)build the osv table from the OSV bulk zips, one record at a time."""
-    con = _connect_write(path)
-    counts = {}
-    for zpath in sorted(glob.glob(os.path.join(osv_dir, '*.zip'))):
-        eco = os.path.splitext(os.path.basename(zpath))[0]
-        if ecosystems and eco not in ecosystems:
+def _osv_rows(eco: str, rec: dict) -> list:
+    """Index rows for one OSV record: one per affected package of *eco*.
+
+    Records without a CVE alias are dropped — every verdict is keyed by CVE —
+    and so are withdrawn ones.  That leaves out npm's 222k `MAL-` malware
+    reports (97% of the npm export), which never carry a CVE.
+    """
+    if rec.get('withdrawn'):
+        return []
+    cves = sorted({a for a in [rec.get('id', ''), *rec.get('aliases', [])]
+                   if a.startswith('CVE-')})
+    if not cves:
+        return []
+    rows = []
+    for aff in rec.get('affected', []):
+        pkg = aff.get('package') or {}
+        if pkg.get('ecosystem', '').split(':')[0] != eco or not pkg.get('name'):
             continue
-        with con:
-            con.execute('DELETE FROM osv WHERE eco = ?', (eco,))
-        rows, n = [], 0
-        with zipfile.ZipFile(zpath) as z:
-            for name in z.namelist():
-                try:
-                    rec = json.loads(z.read(name))
-                except Exception:
-                    continue
-                if rec.get('withdrawn'):
-                    continue
-                cves = sorted({a for a in [rec.get('id', ''), *rec.get('aliases', [])]
-                               if a.startswith('CVE-')})
-                if not cves:
-                    continue
-                for aff in rec.get('affected', []):
-                    pkg = aff.get('package') or {}
-                    if pkg.get('ecosystem', '').split(':')[0] != eco or not pkg.get('name'):
-                        continue
-                    rows.append((eco, package_key(eco, pkg['name']), ' '.join(cves),
-                                 json.dumps(aff.get('ranges') or []),
-                                 json.dumps(aff.get('versions') or [])))
-                    n += 1
-                if len(rows) > 20_000:
-                    with con:
-                        con.executemany('INSERT INTO osv VALUES (?, ?, ?, ?, ?)', rows)
-                    rows.clear()
-        with con:
-            con.executemany('INSERT INTO osv VALUES (?, ?, ?, ?, ?)', rows)
-        counts[eco] = n
+        rows.append((eco, package_key(eco, pkg['name']), ' '.join(cves),
+                     json.dumps(aff.get('ranges') or []),
+                     json.dumps(aff.get('versions') or []), rec.get('id', '')))
+    return rows
+
+
+def import_osv_zip(zpath: str, eco: str, path: str = INDEX_PATH, stamp: str = '') -> int:
+    """Replace one ecosystem's rows from its OSV bulk export, one record at a time."""
+    con = _connect_write(path)
     with con:
+        con.execute('DELETE FROM osv WHERE eco = ?', (eco,))
+    rows, n = [], 0
+    with zipfile.ZipFile(zpath) as z:
+        for name in z.namelist():
+            if name.startswith('MAL-'):
+                continue
+            try:
+                rec = json.loads(z.read(name))
+            except Exception:
+                continue
+            got = _osv_rows(eco, rec)
+            rows += got
+            n += len(got)
+            if len(rows) > 20_000:
+                with con:
+                    con.executemany('INSERT INTO osv VALUES (?, ?, ?, ?, ?, ?)', rows)
+                rows.clear()
+    with con:
+        con.executemany('INSERT INTO osv VALUES (?, ?, ?, ?, ?, ?)', rows)
         con.executescript(_INDEXES)
+        if stamp:
+            con.execute("INSERT OR REPLACE INTO meta VALUES (?, ?)", (f'osv:{eco}', stamp))
     con.close()
-    return counts
+    return n
+
+
+def upsert_osv(eco: str, records: list, path: str = INDEX_PATH, stamp: str = '',
+               removed=()) -> int:
+    """Apply changed OSV records: each replaces every row of its id."""
+    con = _connect_write(path)
+    rows = []
+    with con:
+        for rec in records:
+            con.execute('DELETE FROM osv WHERE eco = ? AND id = ?', (eco, rec.get('id', '')))
+            rows += _osv_rows(eco, rec)
+        for rid in removed:
+            con.execute('DELETE FROM osv WHERE eco = ? AND id = ?', (eco, rid))
+        con.executemany('INSERT INTO osv VALUES (?, ?, ?, ?, ?, ?)', rows)
+        if stamp:
+            con.execute("INSERT OR REPLACE INTO meta VALUES (?, ?)", (f'osv:{eco}', stamp))
+    con.executescript(_INDEXES)
+    con.close()
+    return len(rows)
+
+
+def osv_stamp(eco: str, path: str = INDEX_PATH) -> str:
+    """Modification time of the newest OSV record imported for *eco* ('' = never)."""
+    if not os.path.exists(path):
+        return ''
+    try:
+        con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+        row = con.execute('SELECT v FROM meta WHERE k = ?', (f'osv:{eco}',)).fetchone()
+        con.close()
+        return row[0] if row else ''
+    except sqlite3.Error:
+        return ''
 
 
 def package_key(eco: str, name: str) -> str:
@@ -286,6 +334,15 @@ class VexIndex:
         rows = self._con().execute('SELECT cves, ranges, versions FROM osv WHERE eco = ? AND pkg = ?',
                                    (eco, package_key(eco, name))).fetchall()
         return [(c.split(), json.loads(r), tuple(json.loads(v))) for c, r, v in rows]
+
+    def osv_cve(self, advisory_id: str) -> Optional[str]:
+        """The CVE an OSV record (GHSA-…, GO-…, PYSEC-…) aliases, or None."""
+        try:
+            row = self._con().execute('SELECT cves FROM osv WHERE id = ? LIMIT 1',
+                                      (advisory_id,)).fetchone()
+        except sqlite3.Error:            # an index built before OSV ids were kept
+            return None
+        return row[0].split()[0] if row else None
 
     def has_osv(self, eco: str) -> bool:
         return self._con().execute('SELECT 1 FROM osv WHERE eco = ? LIMIT 1',
