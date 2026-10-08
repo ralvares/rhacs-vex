@@ -44,6 +44,9 @@ for ref in "$@"; do
   grype "sbom:$d/sbom.syft.json" --by-cve -o json > "$d/grype.json" 2> "$d/grype.log" \
     || echo "   grype failed (see $d/grype.log)"
   grype "sbom:$d/sbom.syft.json" --by-cve -o json --vex "$d/openvex.json" > "$d/grype.vex.json" 2>> "$d/grype.log" || true
+  # the strict document (Red Hat-stated verdicts only), for comparison
+  VEX_SKIP_SYNC=1 vextriage openvex "$d/sbom.syft.json" --image "$ref" --stated-only -o "$d/openvex.stated.json" > /dev/null 2>&1
+  grype "sbom:$d/sbom.syft.json" --by-cve -o json --vex "$d/openvex.stated.json" > "$d/grype.vex.stated.json" 2>> "$d/grype.log" || true
   VEX_SKIP_SYNC=1 vextriage check "$d/sbom.syft.json" --image "$ref" --hub "" --quiet > "$d/check.log" 2>&1 || true
   tail -1 "$d/check.log"
 done

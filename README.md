@@ -136,26 +136,26 @@ RHACS reports 182 findings → VEX triage: 122 false positives (67%), 60 real.
   false positives by evidence: 41 stated for this build · 12 stated for another build/product ·
   8 inferred from absence where Red Hat does enumerate this package type · 61 with no Red Hat
   data for the component type at all.
-  Only the 41 verdict(s) stated for this build are published as OpenVEX; the rest are triage
-  judgements, not vendor claims.
 🔍 SBOM verified: 20/20 component versions confirmed in image
 ```
 
 The **Evidence** column is the provenance of the verdict, and it matters as much as the
 verdict itself:
 
-| label | meaning | published as OpenVEX |
+| label | meaning | in the OpenVEX |
 |---|---|---|
-| `Red Hat` | Red Hat stated this for **this** product/build | yes |
-| `RH (other)` | a real statement exists, for another build/product/version | no |
-| `inferred` | absent from an enumeration that **does** cover this package type — meaningful absence | no |
-| `no RH data` | the component type is never tracked as a purl at all (Go, Python) — absence proves nothing | no |
+| `Red Hat` | Red Hat stated this for **this** product/build | Red Hat's justification |
+| `RH (other)` | a real statement exists, for another build/product/version | marked `Inferred …` |
+| `inferred` | absent from an enumeration that **does** cover this package type — meaningful absence | marked `Inferred …` |
+| `no RH data` | the component type is never tracked as a purl at all (Go, Python) — absence proves nothing | marked `Inferred …` |
 
 Red Hat's errata policy — *"unless explicitly stated as not affected, all previous versions of
 packages in any minor update stream of a product listed here should be assumed vulnerable"* —
 only speaks about products it lists, so silence means different things per class. An absent
 **rpm** is evidence (Red Hat enumerates rpms exhaustively); an absent **Go module** is not
-(2 golang purls exist in the entire corpus). Only Red Hat-stated verdicts are ever published.
+(2 golang purls exist in the entire corpus). Every false positive is published so the scanner
+drops it; the ones Red Hat did not state for this build carry an `impact_statement` beginning
+`Inferred from Red Hat CSAF-VEX:`. `--stated-only` publishes Red Hat-stated verdicts only.
 
 If the image is not already indexed in RHACS, the tool triggers an on-demand scan (`POST /v1/images/scan`) and waits for the result.
 
@@ -269,15 +269,20 @@ VEX data change against a report written by whatever RHACS version produced it.
 
 ## OpenVEX export — a vexhub for trivy and grype
 
-The OpenVEX documents publish **Red Hat's own verdicts**, keyed to the purls of
-the components actually in the image. Only a syft SBOM is needed — no
+The OpenVEX documents publish **every false positive** the engine finds in
+Red Hat's VEX, keyed to the purls of the components actually in the image —
+enough for a scanner to drop exactly what triage drops. Verdicts Red Hat stated
+for this build carry its justification; inferred ones (a statement about
+another build, a newer OCP stream than the newest fix, absence where Red Hat
+enumerates) say `Inferred from Red Hat CSAF-VEX: …` in their `impact_statement`.
+`--stated-only` keeps only the stated ones. Only a syft SBOM is needed — no
 vulnerability scanner:
 
 ```
 syft SBOM ─┬─ rpm artifacts ─────── VEX index (rpm purl → CVEs)     ┐
            ├─ the image itself ──── VEX index (oci repo → CVEs)     ├→ engine → OpenVEX
-           ├─ go/pypi/npm/maven ─── OSV (package + version → CVEs)  │   (Red Hat-stated
-           └─ (--grype) grype findings                              ┘    verdicts only)
+           ├─ go/pypi/npm/maven ─── OSV (package + version → CVEs)  │   (every false
+           └─ (--grype) grype findings                              ┘    positive)
 ```
 
 Red Hat publishes every rpm per NEVRA, so rpm statements are exact joins. It
@@ -570,11 +575,8 @@ src/rhacs_vex/
   operators.py, report.py, parquet.py, pipeline.py, ns_map.py, osv.py
 tests/
   test_engine_regressions.py, test_module_streams.py, test_scanfree.py  (synthetic VEX, offline)
-  fuzz_engine_diff.py       ← legacy vs new engine on generated Red Hat-shaped VEX
-  diff_engines_parquet.py   ← legacy vs new engine on the stored findings + a real VEX mirror
-  diff_engines_corpus.py    ← legacy vs new engine on cached RHACS scans
-  legacy/engine_legacy.py   ← the pre-rewrite engine, kept only for the diff tools
   check_baseline.py, test_verdict_cases.py  (need cached RHACS scans)
+  collect_local_evidence.sh ← syft + grype ± OpenVEX on real images, tarred for review
 docs/VEX-MODEL.md           ← Red Hat CSAF-VEX ground-truth reference
 docs/OPENVEX-SPIKE-RESULTS.md ← empirical purl/suppression rules (grype + trivy proofs)
 index.html, triage.html, assets/, data/   ← static explorer + dataset

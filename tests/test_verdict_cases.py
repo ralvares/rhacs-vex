@@ -214,9 +214,14 @@ if len(r_rpm) and len(r_go):
     check('C1 out-of-scope rpm and other-build go are both FALSE POSITIVE',
           '✅' in r_rpm.iloc[0]['AUDIT_RESULT'] and '✅' in r_go.iloc[0]['AUDIT_RESULT'],
           f"rpm={r_rpm.iloc[0]['AUDIT_RESULT']!r} go={r_go.iloc[0]['AUDIT_RESULT']!r}")
-    stmts = openvex.statements_from_df(wt, WT_REF)
-    check('C1 unstated component verdicts publish NO statement',
+    stmts = openvex.statements_from_df(wt, WT_REF, stated_only=True)
+    check('C1 stated-only: unstated component verdicts publish NO statement',
           not any(s['vulnerability']['name'] == 'CVE-2026-25679' for s in stmts))
+    stmts = [s for s in openvex.statements_from_df(wt, WT_REF)
+             if s['vulnerability']['name'] == 'CVE-2026-25679']
+    check('C1 default: they publish, marked as inferred',
+          stmts and all(openvex.INFERRED in s.get('impact_statement', '') +
+                        s.get('status_notes', '') for s in stmts), str(stmts)[:200])
 else:
     skip('C1', 'CVE-2026-25679 rows missing from scan result')
 
@@ -274,11 +279,18 @@ for name, res, ref in (('web-terminal', wt, WT_REF), ('ose-cli', cli, CLI_REF)):
     check(f'F2 {name}: no invented states (no "Not assessed"/"Not listed")',
           not any('not assessed' in s.lower() or s.lower() == 'not listed' for s in states),
           str(sorted(states)))
+    fp_rows = res[res['AUDIT_RESULT'].str.contains('✅')]
+    stated_cves = set(fp_rows[fp_rows['VEX_STATED'].astype(str) == 'True']['CVE'])
+    strict = openvex.statements_from_df(res, ref, stated_only=True)
+    check(f'F3 {name}: stated-only statements trace to a stated FP row',
+          all(s['vulnerability']['name'] in stated_cves for s in strict),
+          f'{len(strict)} statements')
     stmts = openvex.statements_from_df(res, ref)
-    stated_cves = set(res[(res['AUDIT_RESULT'].str.contains('✅'))
-                          & (res['VEX_STATED'].astype(str) == 'True')]['CVE'])
-    check(f'F3 {name}: every published statement traces to a stated FP row',
-          all(s['vulnerability']['name'] in stated_cves for s in stmts),
+    check(f'F3b {name}: every statement traces to an FP row; unstated ones say "Inferred"',
+          all(s['vulnerability']['name'] in set(fp_rows['CVE']) for s in stmts)
+          and all(s['vulnerability']['name'] in stated_cves
+                  or openvex.INFERRED in s.get('impact_statement', '') + s.get('status_notes', '')
+                  for s in stmts),
           f'{len(stmts)} statements')
     check(f'F4 {name}: statements only not_affected/fixed',
           all(s['status'] in ('not_affected', 'fixed') for s in stmts))

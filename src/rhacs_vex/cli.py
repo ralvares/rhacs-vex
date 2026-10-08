@@ -2,7 +2,7 @@
 
 A scanner (or the VEX index, or OSV) only proposes (component, CVE) pairs; the
 engine decides them against Red Hat's CSAF-VEX; OpenVEX publishes the verdicts
-Red Hat stated.
+Red Hat stated or the engine inferred from it (marked as inferred).
 
     vextriage sync                      mirror Red Hat VEX + OSV, build the index
     vextriage openvex <image|sbom>      one image → OpenVEX (syft only)
@@ -286,7 +286,13 @@ def _scanfree_cmd(args) -> int:
 _GEN_INDEX = None
 
 
-def _gen_worker(ref: str, sbom_path: str, release, findings, use_osv: bool) -> list:
+STATED_ONLY_HELP = ('publish only verdicts Red Hat stated about this build; by default '
+                    'inferred false positives are published too, marked "Inferred" in '
+                    'their impact_statement')
+
+
+def _gen_worker(ref: str, sbom_path: str, release, findings, use_osv: bool,
+                stated_only: bool = False) -> list:
     """CPU stage of generate, run in a worker process: SBOM → statements."""
     global _GEN_INDEX
     os.environ['VEX_AUDIT_WORKERS'] = '1'        # no nested process pools
@@ -298,7 +304,8 @@ def _gen_worker(ref: str, sbom_path: str, release, findings, use_osv: bool) -> l
     if sbom is None:
         raise RuntimeError(f'unreadable SBOM {sbom_path}')
     statements, _result = vexgen.generate(ref, sbom, _GEN_INDEX, ocp_release=release,
-                                          findings=findings, use_osv=use_osv)
+                                          findings=findings, use_osv=use_osv,
+                                          stated_only=stated_only)
     return statements
 
 
@@ -336,7 +343,8 @@ def _openvex_cmd(args) -> int:
     findings = adapter.to_df(adapter.grype_scan(sbom_path)) if args.grype else None
 
     statements, result = vexgen.generate(image_ref, sbom, index, ocp_release=release,
-                                         findings=findings, use_osv=not args.no_osv)
+                                         findings=findings, use_osv=not args.no_osv,
+                                         stated_only=args.stated_only)
     by_src = collections.Counter(zip(result['SOURCE'], result['AUDIT_RESULT'],
                                      result['VEX_STATED'].astype(str))) if len(result) else {}
     console.print(f"\n[bold]{image_ref}[/bold]" + (f"  (OpenShift {release})" if release else ''))
@@ -403,7 +411,8 @@ def _check_cmd(args) -> int:
         sbom = SyftSBOM.load(sbom_path)
         statements, _res = vexgen.generate(image_ref, sbom, index,
                                            ocp_release=release_by_digest().get(
-                                               image_ref.split('@')[-1]))
+                                               image_ref.split('@')[-1]),
+                                           stated_only=args.stated_only)
         fd, tmp = tempfile.mkstemp(suffix='.openvex.json')
         with os.fdopen(fd, 'w') as fh:
             _json.dump(openvex.build_document(image_ref, statements, author='vextriage'), fh)
@@ -579,7 +588,7 @@ def _generate_cmd(args) -> int:
         findings = adapter.to_df(adapter.grype_scan(sbom)) if args.grype else None
         release = release_of.get(ref.split('@')[-1])
         return cpu_pool.submit(_gen_worker, ref, sbom, release, findings,
-                               not args.no_osv).result()
+                               not args.no_osv, args.stated_only).result()
 
     # Scanner threads handle syft/grype subprocesses and registry I/O (GIL
     # released); the pandas audit runs in worker PROCESSES or it would
@@ -1135,6 +1144,8 @@ def main() -> int:
                          'candidates (default: syft + VEX index + OSV only)')
     pg.add_argument('--no-osv', action='store_true', default=False,
                     help='do not use OSV to find CVEs for Go/Python/npm/Maven packages')
+    pg.add_argument('--stated-only', action='store_true', default=False,
+                    help=STATED_ONLY_HELP)
     pg.add_argument('--no-db-update', action='store_true', default=False,
                     help='keep the current grype DB so cached grype results stay '
                          'valid — re-audit from cache without rescanning')
@@ -1166,6 +1177,8 @@ def main() -> int:
                     help='add grype findings as candidates too')
     po.add_argument('--no-osv', action='store_true', default=False,
                     help='skip OSV (language packages get no candidates)')
+    po.add_argument('--stated-only', action='store_true', default=False,
+                    help=STATED_ONLY_HELP)
     po.add_argument('--index', default=None, metavar='FILE')
     po.add_argument('--skip-sync', dest='skip_sync', action='store_true', default=False)
 
@@ -1183,6 +1196,8 @@ def main() -> int:
     pc.add_argument('--platform', default='linux/amd64')
     pc.add_argument('--output', '-o', default=None, help='write the remaining findings as JSON')
     pc.add_argument('--quiet', action='store_true', default=False, help='summary line only')
+    pc.add_argument('--stated-only', action='store_true', default=False,
+                    help=STATED_ONLY_HELP)
     pc.add_argument('--index', default=None, metavar='FILE')
 
     pf = sub.add_parser('scanfree',

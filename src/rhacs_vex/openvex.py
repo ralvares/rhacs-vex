@@ -15,10 +15,14 @@ The purl rules are empirical, proven against both scanners
   * golang versions diverge between scanners (grype `stdlib@1.20.12` vs trivy
     `stdlib@v1.20.12`) → both variants are emitted for every golang component.
 
-Scope is suppression-only: statement-backed FALSE POSITIVE rows (VEX_STATED)
-become `not_affected` or `fixed` statements; POSITIVE rows and FALSE
-POSITIVEs derived from the component's absence in the VEX are never emitted
-(VEX-MODEL: state only what the VEX itself states).
+Scope is suppression-only: every FALSE POSITIVE verdict becomes a
+`not_affected` or `fixed` statement, so a scanner reading the document drops
+exactly what triage dropped; POSITIVE rows are never emitted.  A verdict Red
+Hat stated about this build carries Red Hat's justification; one the engine
+inferred (a statement about another build, absence from a VEX that lists the
+product, a newer OCP stream than the newest fix) says so in its
+impact_statement — "Inferred from Red Hat CSAF-VEX: …".  `stated_only=True`
+keeps the strict, Red-Hat-stated-only document.
 """
 from __future__ import annotations
 
@@ -150,7 +154,15 @@ def _justification_from_text(justification: str) -> Optional[str]:
 
 # --- statement / document assembly -------------------------------------------
 
-def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
+INFERRED = 'Inferred from Red Hat CSAF-VEX: '
+
+
+def _is_stated(row) -> bool:
+    # bool survives CSV round-trips as the string "True"/"False"
+    return str(row.get('VEX_STATED', 'True')).strip().lower() in ('true', '1')
+
+
+def statements_from_df(df: pd.DataFrame, image_ref: str, stated_only: bool = False) -> list:
     """OpenVEX statements for the FALSE POSITIVE rows of one image's triage df.
 
     Grouped by (CVE, status): one statement per verdict, subcomponents merged
@@ -197,14 +209,20 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
             divergent.add((cve, owner))
 
     fp = df[df['AUDIT_RESULT'].astype(str).str.contains('FALSE POSITIVE', na=False)]
-    # Publish only statement-backed verdicts: a FALSE POSITIVE derived from
-    # the component's ABSENCE in the VEX (engine VEX_STATED=False) is a triage
-    # display verdict, not a Red Hat claim — emitting not_affected for it
-    # would suppress the finding on the vendor's behalf.  (Bool survives CSV
-    # round-trips as the string "True"/"False".)
-    if 'VEX_STATED' in fp.columns:
+    if stated_only and 'VEX_STATED' in fp.columns:
         fp = fp[fp['VEX_STATED'].astype(str).str.strip().str.lower().isin(('true', '1'))]
     groups: dict = {}
+
+    def _note(g, row, status):
+        """Record why: Red Hat's flag for a stated verdict, the engine's reason
+        (marked as inferred) otherwise."""
+        stated = _is_stated(row)
+        if status == 'not_affected' and stated and not g['just']:
+            g['just'] = _justification_from_text(row.get('JUSTIFICATION', ''))
+        text = str(row.get('JUSTIFICATION', '')).strip()
+        if text and text.lower() != 'nan':
+            g['impacts'].add(text if stated else INFERRED + text)
+
     for _, row in fp.iterrows():
         status = _STATE_TO_STATUS.get(str(row.get('VEX_STATE', '')).strip())
         if not status:
@@ -237,11 +255,7 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
             g = groups.setdefault((cve_up, status), {'subs': set(), 'just': None,
                                                      'impacts': set(), 'image': False})
             g['image'] = True
-            if status == 'not_affected':
-                g['just'] = g['just'] or _justification_from_text(row.get('JUSTIFICATION', ''))
-                text = str(row.get('JUSTIFICATION', '')).strip()
-                if text and text.lower() != 'nan':
-                    g['impacts'].add(text)
+            _note(g, row, status)
             continue
         if not subs:
             subs = subcomponent_ids(row.get('COMPONENT', ''), row.get('VERSION', ''),
@@ -270,12 +284,7 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
         g = groups.setdefault(key, {'subs': set(), 'just': None, 'impacts': set(),
                                     'image': False})
         g['subs'].update(subs)
-        if status == 'not_affected' and not g['just']:
-            g['just'] = _justification_from_text(row.get('JUSTIFICATION', ''))
-        if status == 'not_affected':
-            text = str(row.get('JUSTIFICATION', '')).strip()
-            if text and text.lower() != 'nan':
-                g['impacts'].add(text)
+        _note(g, row, status)
 
     statements = []
     for (cve, status), g in sorted(groups.items()):
@@ -299,14 +308,24 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
             'status': status,
         }
         if status == 'not_affected':
+            # spec: not_affected MUST carry justification or impact_statement
             if g['just']:
                 stmt['justification'] = g['just']
-            else:
-                # spec: not_affected MUST carry justification or impact_statement
-                stmt['impact_statement'] = ' | '.join(sorted(g['impacts'])) or \
-                    'Not listed as affected in Red Hat CSAF-VEX for this product.'
+            if g['impacts'] or not g['just']:
+                stmt['impact_statement'] = _impact_text(g['impacts'])
+        elif g['impacts']:
+            stmt['status_notes'] = _impact_text(g['impacts'])
         statements.append(stmt)
     return statements
+
+
+def _impact_text(impacts: set, limit: int = 5) -> str:
+    """The distinct reasons, capped: one CVE can touch hundreds of packages."""
+    items = sorted(impacts)
+    text = ' | '.join(items[:limit])
+    if len(items) > limit:
+        text += f' | (+{len(items) - limit} more)'
+    return text or 'Not listed as affected in Red Hat CSAF-VEX for this product.'
 
 
 def build_document(image_ref: str, statements: list, *, author: str,

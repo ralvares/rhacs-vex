@@ -164,7 +164,9 @@ vextriage openvex <ref@sha256:…> --hub vexhub/          # …straight into the
 
 Candidates come from the VEX index (rpm and the image itself) and OSV (the
 Go/Python/npm/Maven modules Red Hat never names as purls); the verdict is always
-Red Hat's, and only verdicts Red Hat stated are published.
+Red Hat's. Every false positive is published; the ones Red Hat did not state
+for this build are marked `Inferred from Red Hat CSAF-VEX: …` in their
+`impact_statement` (`--stated-only` leaves them out).
 
 Then triage is the scanner plus that document:
 

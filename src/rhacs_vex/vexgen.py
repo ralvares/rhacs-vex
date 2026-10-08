@@ -2,14 +2,16 @@
 
     syft SBOM ─┬─ rpm artifacts ─────── VEX index (rpm purl → CVEs)    ┐
                ├─ the image itself ──── VEX index (oci repo → CVEs)    ├→ engine → OpenVEX
-               ├─ go/pypi/npm/maven ─── OSV (package+version → CVEs)   │   (stated verdicts
-               └─ (optional) grype findings                            ┘    only)
+               ├─ go/pypi/npm/maven ─── OSV (package+version → CVEs)   │   (every false
+               └─ (optional) grype findings                            ┘    positive)
 
 No vulnerability scanner is required.  The candidate (component, CVE) pairs
 come from the two data sets that name components: Red Hat's own VEX for rpms
 and the image, and OSV for the language packages Red Hat never names as purls.
 The verdict is always Red Hat's, through the same engine every triage path
-uses, and only verdicts Red Hat stated about this product/build are published.
+uses.  Every false positive is published so a scanner drops what triage drops;
+the ones the engine inferred rather than read off a statement about this build
+say so in their impact_statement (`stated_only=True` publishes only the others).
 
 Every subcomponent `@id` is the purl syft recorded for that artifact, reduced
 to the cross-scanner form proven in docs/OPENVEX-SPIKE-RESULTS.md (bare purl,
@@ -102,7 +104,8 @@ def merge_findings(base: pd.DataFrame, findings: Optional[pd.DataFrame]) -> pd.D
 
 
 def generate(image_ref: str, sbom: SyftSBOM, index: dict, *, ocp_release: Optional[str] = None,
-             findings: Optional[pd.DataFrame] = None, use_osv: bool = True):
+             findings: Optional[pd.DataFrame] = None, use_osv: bool = True,
+             stated_only: bool = False):
     """(statements, triage result) for one digest-pinned image."""
     df = merge_findings(candidates(sbom, index, image_ref=image_ref, use_osv=use_osv),
                         findings)
@@ -112,4 +115,4 @@ def generate(image_ref: str, sbom: SyftSBOM, index: dict, *, ocp_release: Option
         return [], df
     sbom.enrich(df, ctx)
     result = audit_frame(df, ctx, vex_product=False)
-    return openvex.statements_from_df(result, image_ref), result
+    return openvex.statements_from_df(result, image_ref, stated_only=stated_only), result
