@@ -169,7 +169,7 @@ Red Hat's, and only verdicts Red Hat stated are published.
 Then triage is the scanner plus that document:
 
 ```bash
-vextriage check <ref@sha256:…>                    # trivy (default) or --scanner grype
+vextriage check <ref@sha256:…>                    # grype (default) or --scanner trivy
 trivy image <ref@sha256:…> --vex vexhub/pkg/oci/<registry>/<ns>/<name>/scan.openvex.json
 ```
 

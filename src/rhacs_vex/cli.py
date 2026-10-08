@@ -1153,12 +1153,12 @@ def main() -> int:
     po.add_argument('--skip-sync', dest='skip_sync', action='store_true', default=False)
 
     pc = sub.add_parser('check',
-                        help='triage = scanner + OpenVEX: run trivy/grype with Red Hat\'s '
+                        help='triage = scanner + OpenVEX: run grype (or trivy) with Red Hat\'s '
                              'verdicts applied and list what is left')
     pc.add_argument('target', help='digest-pinned image ref, or an SBOM file the scanner reads '
                                    '(CycloneDX for trivy, syft-json for grype)')
     pc.add_argument('--image', default=None, help='digest-pinned ref when target is a file')
-    pc.add_argument('--scanner', default='trivy', choices=['trivy', 'grype'])
+    pc.add_argument('--scanner', default='grype', choices=['grype', 'trivy'])
     pc.add_argument('--hub', default='vexhub', metavar='DIR',
                     help='use the published document from this hub when present '
                          '(default: vexhub; "" to always generate)')

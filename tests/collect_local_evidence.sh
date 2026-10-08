@@ -3,9 +3,9 @@
 #
 #   tests/collect_local_evidence.sh <image@sha256:…> [<image@sha256:…> …]
 #
-# Needs: syft, trivy (grype optional), registry login for registry.redhat.io.
+# Needs: syft, grype, registry login for registry.redhat.io (for syft).
 # Run from the repo root after `pip install -e .`.  Collects only small files:
-# SBOMs, scanner reports with and without the generated OpenVEX, the OpenVEX
+# SBOMs, grype reports with and without the generated OpenVEX, the OpenVEX
 # documents, and the legacy-vs-new engine diff on your cached RHACS scans.
 set -uo pipefail
 
@@ -14,9 +14,10 @@ set -uo pipefail
 export SYFT_FILE_METADATA_SELECTION=none SYFT_FILE_METADATA_DIGESTS="" \
        SYFT_FILE_EXECUTABLE_GLOBS="" SYFT_CHECK_FOR_APP_UPDATE=false
 [ $# -ge 1 ] || { echo "usage: $0 <image@sha256:…> …" >&2; exit 2; }
+command -v grype >/dev/null || { echo "grype is required (brew install grype)" >&2; exit 2; }
 
 OUT=evidence; rm -rf "$OUT"; mkdir -p "$OUT"
-{ syft version; trivy --version; grype version 2>/dev/null || true; python3 --version; git rev-parse HEAD; } \
+{ syft version; grype version; python3 --version; git rev-parse HEAD; } \
   > "$OUT/versions.txt" 2>&1
 
 echo "== sync (Red Hat VEX + OSV + index)"
@@ -32,29 +33,14 @@ for ref in "$@"; do
     syft "registry:$ref" --platform linux/amd64 -o "syft-json=$d/sbom.syft.json" 2>> "$d/syft.log" \
       || { echo "   syft failed twice — skipping $ref"; continue; }
   fi
-  syft convert "$d/sbom.syft.json" -o "cyclonedx-json=$d/sbom.cdx.json" 2>> "$d/syft.log" || true
   VEX_SKIP_SYNC=1 vextriage openvex "$d/sbom.syft.json" --image "$ref" -o "$d/openvex.json" > "$d/openvex.log" 2>&1
-  if trivy image "$ref" --platform linux/amd64 --timeout 30m -q -f json -o "$d/trivy.json" 2> "$d/trivy.log"; then
-    trivy image "$ref" --platform linux/amd64 --timeout 30m -q -f json --vex "$d/openvex.json" \
-      -o "$d/trivy.vex.json" 2>> "$d/trivy.log" || true
-  else
-    # No image pull needed: scan the CycloneDX SBOM syft already produced.
-    echo "   trivy image failed (see $d/trivy.log) — scanning the SBOM instead"
-    trivy sbom "$d/sbom.cdx.json" -q -f json -o "$d/trivy.json" 2>> "$d/trivy.log" || echo "   trivy sbom failed too"
-    trivy sbom "$d/sbom.cdx.json" -q -f json --vex "$d/openvex.json" -o "$d/trivy.vex.json" 2>> "$d/trivy.log" || true
-  fi
-  if command -v grype >/dev/null; then
-    grype "sbom:$d/sbom.syft.json" --by-cve -o json > "$d/grype.json" 2> "$d/grype.log" || true
-    grype "sbom:$d/sbom.syft.json" --by-cve -o json --vex "$d/openvex.json" > "$d/grype.vex.json" 2>> "$d/grype.log" || true
-  fi
-  VEX_SKIP_SYNC=1 vextriage check "$d/sbom.cdx.json" --image "$ref" --hub "" --sbom "$d/sbom.syft.json" \
-    --quiet > "$d/check.log" 2>&1 || true
+  tail -1 "$d/openvex.log"
+  # grype reads the syft SBOM directly — no image pull.
+  grype "sbom:$d/sbom.syft.json" --by-cve -o json > "$d/grype.json" 2> "$d/grype.log" \
+    || echo "   grype failed (see $d/grype.log)"
+  grype "sbom:$d/sbom.syft.json" --by-cve -o json --vex "$d/openvex.json" > "$d/grype.vex.json" 2>> "$d/grype.log" || true
+  VEX_SKIP_SYNC=1 vextriage check "$d/sbom.syft.json" --image "$ref" --hub "" --quiet > "$d/check.log" 2>&1 || true
   tail -1 "$d/check.log"
-  if command -v grype >/dev/null; then
-    VEX_SKIP_SYNC=1 vextriage check "$d/sbom.syft.json" --image "$ref" --hub "" --scanner grype \
-      --quiet > "$d/check.grype.log" 2>&1 || true
-    tail -1 "$d/check.grype.log"
-  fi
 done
 
 if ls data/scans/*.json >/dev/null 2>&1; then
