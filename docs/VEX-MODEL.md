@@ -422,8 +422,15 @@ oci statements by shape × status, whole corpus:
 | with digest | 487,218 | 129,806 | **0** | 0 |
 | no digest | 386,501 | 88,827 | 52,680 | 4,490 |
 
-**Red Hat never marks a specific image build affected.** Per-build statements exist only in
+**Red Hat never marks a specific image build affected — by PID.** Per-build statements exist only in
 the clearing direction; "affected" is asserted at the image-family level. Two consequences:
+
+> **Correction (2026-10-08).** The PID never pins an affected build, but the purl can: 896
+> `known_affected` refs (of 14,005 files) name an image by path only while its purl pins a
+> digest — Konflux pre-release builds on `quay.io` (RHOAI, exploit-intelligence) and Ceph
+> dashboards (`red_hat_ceph_storage_5:rhceph/rhceph-5-dashboard-rhel8` →
+> `pkg:oci/…@sha256:7027…`). The statement is still family-level for every other build; for the
+> pinned build itself it is this build's verdict (`VexDocument.build_digest`).
 
 - a digest-pinned statement is the strongest evidence available for false-positive
   identification, and it is exactly the evidence that cannot be manufactured;
@@ -761,10 +768,18 @@ other 88 are collisions of this kind. Silence is the correct output for both.
 
 **Identity-route availability is thin for OCP payload images.** Across 13,136 RHACS scans
 (2,932,234 findings): 27.2% of findings have the `name` label as their *only* identity route,
-and 7.6% have none. VEX names the **published** `registry.redhat.io` digest, never the
-`ocp-v4.0-art-dev` pre-release one, so for payload images the digest route and the registry-path
-route are both structurally dead (0 of 201 sampled) — the `name` label carries them alone, on a
-population where label and path namespaces disagree 67.3% of the time.
+and 7.6% have none. VEX names the **published** `registry.redhat.io` digest, and the registry-path route is
+structurally dead for payload images — the `name` label carries identity, on a population where
+label and path namespaces disagree 67.3% of the time.
+
+> **Correction (2026-10-08) — the digest route is alive.** The published per-arch digest *is* the
+> payload digest: the release payload references the same manifest that is mirrored to
+> `registry.redhat.io`. Of 7,775 distinct `ocp-v4.0-art-dev` digests in the stored OCP findings,
+> **3,347 (43%) appear verbatim in the VEX corpus** — e.g. the 4.20.16 `hyperkube`
+> (`art-dev@sha256:7fc7a7fb…`) is CVE-2025-68121's `fixed` build
+> `Red Hat OpenShift Container Platform 4.20:registry.redhat.io/openshift4/ose-hyperkube-rhel9@sha256:7fc7a7fb…_amd64`.
+> The earlier 0/201 came from a sample of older payloads. Rung 2 (this build) therefore decides a
+> large share of payload findings outright, as long as the scan carries the payload digest.
 
 ### 8c. Scanner-identity × VEX-identity pairings (every observed pairing + resolution)
 | Scanner side | VEX side it matches | Rung |
@@ -852,6 +867,122 @@ document header:
    arch suffix).
 8. **Under-investigation is rare (146 files) but load-bearing:** always treated as POSITIVE; a
    later regeneration may flip it — verdicts are only as fresh as the mirrored VEX file.
+
+
+## 10. Census 2026-10-08 — statement shapes per product class
+
+Measured over **14,005 files**: the 7,097 the tool had already mirrored for real images, plus a
+**random sample of 6,908** (random CVE ids per year 2019–2026, and CVEs OSV ties to Go/PyPI/npm/
+Maven packages), so the counts are not biased toward the images we happened to scan.
+4,948,703 status refs. Scripts: `tools/vex_census.py`, `tools/vex_identity_census.py` (one document in memory at a time).
+
+### 10a. Where the statements are
+
+| status | parent class | component | share of refs |
+|---|---|---|---:|
+| fixed | RHEL minor stream (`AppStream-9.4.0.Z.EUS` …) | rpm NEVRA | 36.5% |
+| known_not_affected | OCP named minor (`Red Hat OpenShift Container Platform 4.18`) | image digest | 9.4% |
+| known_not_affected | OCP stream (`9Base-RHOSE-4.16`) | image digest | 8.5% |
+| known_not_affected | layered product (cpe with version) | image | 7.8% |
+| known_not_affected | layered stream (`9Base-Ansible-…`) | rpm | 5.2% |
+| fixed | RHEL ≤7 (`7Server-7.9.Z`) | rpm | 4.1% |
+| known_not_affected | layered | maven | 3.5% |
+| known_affected | RHEL version-neutral (`red_hat_enterprise_linux_9`) | rpm name | 2.8% |
+| fixed | OCP stream / named minor | image digest | 3.6% |
+| known_affected | layered / OCP version-neutral | image path | 1.4% |
+
+6,055 of 14,005 files carry **only** `known_not_affected` (typically a language-ecosystem CVE
+Red Hat checked and cleared everywhere). 273 refs list the same PID as both `fixed` and
+`known_not_affected` (RHOSE 4.6 `runc`); `fixed` is read first.
+
+### 10b. RPM streams — three shapes the engine must read by build, not by parent
+
+1. **The common mixed shape:** fixed in the EUS/E4S minors + `known_affected` on the
+   version-neutral `red_hat_enterprise_linux_N` node (top 6 RHEL signatures, kernel-rt, webkit,
+   go-toolset). It means **the mainline stream is still affected**; an installed build on a
+   minor with no fix stays POSITIVE (`later_stream_than_all` is vetoed by that in-scope
+   `known_affected`). Example CVE-2023-52933: kernel-rt fixed in 9.0/9.2/9.4/9.6, RHEL 9 "Affected".
+2. **GA-delivered fixes carry no minor marker:** 204,916 fixed refs (11%) sit under a minor
+   stream but the build is a plain `.elN` (`AppStream-8.10.0.GA:ghostscript-9.27-12.el8`) — the
+   fix shipped in the minor release itself. The comparison reads the build's dist-tag, so these
+   are "mainline" fixes (`rhel_minor() is None`), never same-stream fixes of 8.10.
+3. **Module streams list the whole module:** 53,220 fixed refs carry an *older* module build
+   than the stream they sit in (`AppStream-8.6.0.GA:mod_md-…module+el8.3…::httpd:2.4`) — a
+   module erratum lists every package of the module, rebuilt or not. Compared by the build's
+   own `module+elN.M`, they behave correctly.
+
+Red Hat Hardened Images ("hummingbird"): 13,677 rpm purls with `distro=hummingbird-20251124`,
+PIDs `nginx-main@aarch64`, versions `…hum1` — the identity is only in the purl, and the lineage
+guard keeps them away from RHEL builds.
+
+### 10c. OpenShift — three layers, each with its own job
+
+| layer | PID shape | what it says |
+|---|---|---|
+| version-neutral `red_hat_openshift_container_platform_4` | `openshift4/ose-hyperkube-rhel9` (path, no digest) | family-level: **known_affected** with "Fix deferred" / "Will not fix" |
+| OCP stream `9Base-RHOSE-4.16` (Brew era) | `openshift4/ose-cli@sha256:…_amd64`, rhaos rpms | per-build fixed / not affected |
+| OCP named minor `Red Hat OpenShift Container Platform 4.18` (Konflux era) | `registry.redhat.io/openshift4/…@sha256:…_amd64`, purl `sha256%3A…` | per-build fixed / not affected |
+
+A family-level `known_affected` coexists with per-build clears of the same image in other
+builds (CVE-2025-5187: hyperkube "Fix deferred" for OCP 4, while the published 4.18 and 4.19
+builds are `known_not_affected`). Only our own build's statement overrides the family; a clear of
+a sibling build does not (§5f). §8b-bis's correction above is what makes this workable: the
+payload digest is very often listed.
+
+### 10d. Layered products and operators — version streams via CPE
+
+Layered products are published **per version** — `Red Hat Web Terminal 1.13` is
+`cpe:/a:redhat:webterminal:1.13::el9`, `Red Hat OpenShift GitOps 1.18` is
+`openshift_gitops:1.18::el8` — beside a version-neutral node (`webterminal:1`,
+`openshift_gitops:1`) that carries the family-level `known_affected`. The image says which
+version it is, in the same vocabulary: the web-terminal tooling image's `cpe` label is
+`cpe:/a:redhat:webterminal:1.16::el9`.
+
+Rule (`scope.other_version`): a statement under **another version** of the image's own product
+is out of scope — a 1.13 build being not affected says nothing about 1.16, exactly as an el9_4
+fix says nothing about el9_6. One thing still transfers: a **fix** that exists only in other
+versions, in builds made after ours, means ours predates the fix (errata policy, §5g) — measured
+on CVE-2026-33186 (grpc), fixed in Web Terminal 1.13–1.15 builds dated after our 1.16 build,
+with the image's grpc v1.76.0 below the upstream fix. Before the rule, 99 rows of that image
+cited 1.11/1.13 builds as their evidence; they now cite 1.16 builds or nothing.
+
+### 10e. "A product listed here" means the image's own product
+
+The errata assumption (§5g) — listed product, nothing cleared, assume vulnerable — was firing on
+whichever in-scope product listed something affected. For an OpenShift payload image, scope
+admits every product carrying RHEL 9, so RHEL 9's `golang` rpm being affected made the Go inside
+`thanos` POSITIVE, and so did "Red Hat Certification Program for RHEL 9". Measured on five 4.19
+and 4.20 payload SBOMs (19,519 candidate rows): 42 rows rested on such a product.
+
+For an image, and for a module vendored in it, the product is OpenShift (payload) or the
+operator's own product (`decide._our_product`); a package shipped inside a RHEL rpm keeps RHEL as
+its product. Sibling images **under investigation** keep an unnamed image POSITIVE as well
+(CVE-2025-58187: 70 OCP 4 images under investigation, `thanos` not named).
+
+**Not cleared is not covered.** The per-build `known_not_affected` sweeps under "OpenShift
+Container Platform 4.N" list the builds that *lack* the code. CVE-2026-25639 (axios): OCP 4 lists
+the console images affected, 160 4.20 builds are cleared, and `monitoring-plugin` — which ships
+axios — is in neither list. Its absence from the sweep means it was not cleared, so it does not
+count as evidence that Red Hat enumerated it; only clears under the same node that lists the
+family affected do (`_clears_under`). Treating sibling sweeps as coverage was tried and turned
+18 such rows into false positives on the stored OCP findings before it was reverted.
+
+### 10f. Identity: PID and purl disagree on 0.55% of image nodes
+
+Image nodes whose PID name and purl name disagree: **9,354 of 1.69M (0.55%)** —
+`…-rhel8` PID with a `…-rhel9` purl (4,958), Brew component names as PIDs
+(`cert-manager-operator-container` → `pkg:oci/cert-manager-operator-rhel9`, 508), and renamed
+repositories (3,888). The engine matches images by purl. The RHEL variant is the exception: it
+is read from the PID's `-rhelN` when present, because the purl can be the wrong one —
+CVE-2025-58183 lists `ose-agent-installer-node-agent-rhel8` affected and `-rhel9` not affected,
+and both nodes carry the same `…-rhel8` purl. rpm PID vs purl name: 2,338 of 2.15M differ, all hummingbird `module@arch` nodes.
+
+Purl `tag=` is stable per digest: 378,033 of 378,343 digests carry one tag across all files; the
+310 others differ only as empty vs set or `v4.9` vs the full NVR. Build-stamp ordering on it is
+sound.
+
+New purl types since §4a: `cargo` (13), `gem` (2), `github` (1), `golang` (67, all
+`known_not_affected` with a flag), `pypi` (6).
 
 ---
 

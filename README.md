@@ -577,6 +577,7 @@ tests/
   test_engine_regressions.py, test_module_streams.py, test_scanfree.py  (synthetic VEX, offline)
   check_baseline.py, test_verdict_cases.py  (need cached RHACS scans)
   collect_local_evidence.sh ← syft + grype ± OpenVEX on real images, tarred for review
+tools/vex_census.py, tools/vex_identity_census.py ← measure statement shapes over the mirror
 docs/VEX-MODEL.md           ← Red Hat CSAF-VEX ground-truth reference
 docs/OPENVEX-SPIKE-RESULTS.md ← empirical purl/suppression rules (grype + trivy proofs)
 index.html, triage.html, assets/, data/   ← static explorer + dataset
