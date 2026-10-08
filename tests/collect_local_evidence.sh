@@ -49,7 +49,12 @@ for ref in "$@"; do
   fi
   VEX_SKIP_SYNC=1 vextriage check "$d/sbom.cdx.json" --image "$ref" --hub "" --sbom "$d/sbom.syft.json" \
     --quiet > "$d/check.log" 2>&1 || true
-  cat "$d/check.log" | tail -1
+  tail -1 "$d/check.log"
+  if command -v grype >/dev/null; then
+    VEX_SKIP_SYNC=1 vextriage check "$d/sbom.syft.json" --image "$ref" --hub "" --scanner grype \
+      --quiet > "$d/check.grype.log" 2>&1 || true
+    tail -1 "$d/check.grype.log"
+  fi
 done
 
 if ls data/scans/*.json >/dev/null 2>&1; then
