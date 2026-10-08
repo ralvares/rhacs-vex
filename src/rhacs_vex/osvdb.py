@@ -28,21 +28,40 @@ ECOSYSTEMS = {
 }
 
 
-def download(ecosystems=None, console=None) -> None:
-    """Fetch the OSV bulk export for each ecosystem into data/osv/."""
+def download(ecosystems=None, console=None) -> list:
+    """Fetch each ecosystem's OSV bulk export into data/osv/ — only when it changed.
+
+    The ETag of the copy on disk is sent back (If-None-Match); an unchanged
+    export answers 304 and costs nothing.  Returns the ecosystems that changed.
+    """
     import requests
     os.makedirs(OSV_DIR, exist_ok=True)
+    changed = []
     for eco in ecosystems or ECOSYSTEMS.values():
         url = f'{OSV_BUCKET}/{eco}/all.zip'
         path = os.path.join(OSV_DIR, f'{eco}.zip')
-        with requests.get(url, stream=True, timeout=600) as res:
+        tag_path = path + '.etag'
+        headers = {}
+        if os.path.exists(path) and os.path.exists(tag_path):
+            with open(tag_path) as fh:
+                headers['If-None-Match'] = fh.read().strip()
+        with requests.get(url, stream=True, timeout=600, headers=headers) as res:
+            if res.status_code == 304:
+                if console:
+                    console.print(f"   {eco}: unchanged")
+                continue
             res.raise_for_status()
             with open(path + '.part', 'wb') as fh:
                 for blk in res.iter_content(1 << 20):
                     fh.write(blk)
-        os.replace(path + '.part', path)
+            os.replace(path + '.part', path)
+            if res.headers.get('ETag'):
+                with open(tag_path, 'w') as fh:
+                    fh.write(res.headers['ETag'])
+        changed.append(eco)
         if console:
-            console.print(f"   {eco}: {os.path.getsize(path) / 1e6:.0f} MB")
+            console.print(f"   {eco}: {os.path.getsize(path) / 1e6:.0f} MB (updated)")
+    return changed
 
 
 def available(ecosystem: str, index=None) -> bool:

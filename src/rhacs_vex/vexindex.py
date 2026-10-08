@@ -39,6 +39,8 @@ CREATE TABLE IF NOT EXISTS meta (k TEXT PRIMARY KEY, v TEXT);
 _INDEXES = """
 CREATE INDEX IF NOT EXISTS rpm_name ON rpm(name);
 CREATE INDEX IF NOT EXISTS oci_key  ON oci(key);
+CREATE INDEX IF NOT EXISTS rpm_cve  ON rpm(cve);
+CREATE INDEX IF NOT EXISTS oci_cve  ON oci(cve);
 CREATE INDEX IF NOT EXISTS osv_pkg  ON osv(eco, pkg);
 """
 
@@ -140,6 +142,48 @@ def build_vex(vex_dir: str = VEX_DIR, path: str = INDEX_PATH, progress=None) -> 
              'oci': con.execute('SELECT COUNT(DISTINCT key) FROM oci').fetchone()[0]}
     con.close()
     return stats
+
+
+def update_vex(cves, vex_dir: str = VEX_DIR, path: str = INDEX_PATH) -> dict:
+    """Re-index only these CVEs (the ones a sync just fetched)."""
+    con = _connect_write(path)
+    con.executescript(_INDEXES)
+    batch_r, batch_o = [], []
+    for cve in cves:
+        with con:
+            con.execute('DELETE FROM rpm WHERE cve = ?', (cve,))
+            con.execute('DELETE FROM oci WHERE cve = ?', (cve,))
+        fp = os.path.join(vex_dir, f'{cve}.json')
+        try:
+            with open(fp) as fh:
+                doc = json.load(fh)
+        except Exception:
+            continue
+        rpms, ocis = _doc_keys(doc)
+        del doc
+        batch_r += [(n, cve) for n in rpms]
+        batch_o += [(k, cve) for k in ocis]
+        if len(batch_r) + len(batch_o) > 50_000:
+            _flush(con, batch_r, batch_o)
+    _flush(con, batch_r, batch_o)
+    files = len(glob.glob(os.path.join(vex_dir, 'CVE-*.json')))
+    with con:
+        con.execute("INSERT OR REPLACE INTO meta VALUES ('vex_files', ?)", (str(files),))
+    con.close()
+    return {'updated': len(cves), 'files': files}
+
+
+def has_vex(path: str = INDEX_PATH) -> bool:
+    """Has a full VEX build been written into this index?"""
+    if not os.path.exists(path):
+        return False
+    try:
+        con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+        row = con.execute("SELECT v FROM meta WHERE k = 'vex_files'").fetchone()
+        con.close()
+        return bool(row)
+    except sqlite3.Error:
+        return False
 
 
 def _flush(con, batch_r, batch_o):

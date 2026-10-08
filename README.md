@@ -69,7 +69,7 @@ python3 -m venv .venv && source .venv/bin/activate && pip install -e .
 ```
 
 ```
-vextriage sync                         mirror Red Hat VEX + OSV, build the index (then offline)
+vextriage sync                         Red Hat VEX + OSV + index, deltas only (then offline)
 vextriage openvex  <image|sbom>        one image → OpenVEX (syft SBOM, no scanner)
 vextriage check    <image|sbom>        grype + that OpenVEX → what is left to fix
 vextriage generate --ocp V | --operators | --images FILE

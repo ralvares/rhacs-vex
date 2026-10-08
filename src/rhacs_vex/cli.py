@@ -1024,26 +1024,43 @@ def _report_cmd(args) -> int:
 
 
 def _sync_cmd(args) -> int:
-    """Mirror the Red Hat VEX corpus and OSV, then refresh the index."""
-    from . import mirror, osvdb
+    """Bring the local data up to date — only what changed is fetched or re-indexed.
+
+    data/vex/            Red Hat VEX, delta from Red Hat's change feed
+    data/osv/*.zip       OSV exports, re-downloaded only when their ETag changed
+    data/vex-index.sqlite  re-indexes just the fetched CVEs / changed ecosystems
+    """
+    from . import mirror, osvdb, vexindex
     console = Console()
     try:
         st = mirror.sync(console, workers=args.workers, limit=args.limit, bulk=args.bulk)
     except RuntimeError as e:
         console.print(f'[red]{e}[/red]')
         return 1
-    console.print(f"✅ mirrored [bold]{st['fetched']:,}[/bold] file(s) "
+    console.print(f"✅ VEX: fetched [bold]{st['fetched']:,}[/bold] file(s) "
                   f"({st['missing']:,} missing, {st['changed']:,} changed)")
+    osv_changed = []
     if not args.no_osv:
         console.print("📥 OSV (CVE → Go/PyPI/npm/Maven packages)")
         try:
-            osvdb.download(console=console)
+            osv_changed = osvdb.download(console=console)
         except Exception as e:
             console.print(f'[yellow]OSV download failed: {e}[/yellow]')
-    if not args.no_index:
-        index_path = args.index or scanfree.INDEX_PATH
-        console.print(f"🧱 rebuilding VEX index → [cyan]{index_path}[/cyan]")
+    if args.no_index:
+        return 0
+    index_path = args.index or scanfree.INDEX_PATH
+    if st.get('updated') is None or not vexindex.has_vex(index_path):
+        console.print(f"🧱 building the index → [cyan]{index_path}[/cyan]")
         _build_index(console, index_path)
+        return 0
+    if st['updated']:
+        r = vexindex.update_vex(st['updated'], path=index_path)
+        console.print(f"🧱 index: re-indexed {r['updated']:,} changed CVE file(s)")
+    if osv_changed:
+        counts = vexindex.build_osv(osvdb.OSV_DIR, index_path, ecosystems=set(osv_changed))
+        console.print("🧱 index: OSV " + ', '.join(f"{k} {v:,}" for k, v in counts.items()))
+    if not st['updated'] and not osv_changed:
+        console.print("🧱 index: already current")
     return 0
 
 

@@ -107,13 +107,14 @@ def sync(console=None, workers: int = 0, limit: int = 0, bulk=None) -> dict:
         console.print(f"📚 corpus {len(want):,} CVEs · local {len(want) - len(missing):,} · "
                       f"missing {len(missing):,} · changed {len(stale):,}")
 
-    fetched = 0
+    fetched, used_bulk, updated = 0, False, list(todo)
     if todo:
         if bulk is None:
             bulk = not limit and len(todo) > BULK_THRESHOLD
         if bulk:
             try:
                 fetched = _bulk_fetch(console)
+                used_bulk = True
                 # the archive is cut on a date; fetch what changed after it
                 todo = [c for c in todo if _outdated(c, want[c])]
                 if todo and console:
@@ -134,8 +135,11 @@ def sync(console=None, workers: int = 0, limit: int = 0, bulk=None) -> dict:
     elif console:
         console.print(f"[yellow]{len(left):,} file(s) still missing — the mirror "
                       f"is not marked current[/yellow]")
+    # `updated` lets the index re-read just these files; after a bulk archive
+    # unpack every file may have changed, so it is None (rebuild everything).
     return {'corpus': len(want), 'missing': len(missing), 'changed': len(stale),
-            'fetched': fetched, 'outstanding': len(left)}
+            'fetched': fetched, 'outstanding': len(left),
+            'updated': None if used_bulk else updated}
 
 
 def _outdated(cve: str, stamp: str) -> bool:
