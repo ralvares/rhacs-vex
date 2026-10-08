@@ -157,15 +157,3 @@ def wire_rpm_owners(df, ctx, owners: dict) -> None:
     for c in conflict:
         src_map.pop(c, None)
     ctx.sbom_src_map = {**src_map, **(ctx.sbom_src_map or {})}
-
-
-# ── path-based helpers kept for callers that hold only a path ────────────────
-
-def rpm_file_owners_from_sbom(path: str) -> dict:
-    s = SyftSBOM.load(path)
-    return s.file_owners() if s else {}
-
-
-def rpm_source_map_from_sbom(path: str) -> dict:
-    s = SyftSBOM.load(path)
-    return s.source_rpms() if s else {}

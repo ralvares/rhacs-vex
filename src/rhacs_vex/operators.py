@@ -1,620 +1,161 @@
-#!/usr/bin/env python3
+"""Triage every operator's channel-head images (RHACS findings → engine).
+
+    vextriage operators [--version 4.20,4.21] [--operator NAME,…] [--offline]
+
+One CSV per unique bundle under data/reports/operators/
+(`<operator>-<channel>-<bundle version>.csv`); which OCP minors' catalogs
+reference each bundle is recorded in data/reports/operators_index.json.  A
+bundle referenced by several minors is scanned and written once.
+
+--offline re-triages from the cached RHACS scans only (no Central), which is
+how verdicts are refreshed as Red Hat's VEX changes.
 """
-operators.py — Triage all operators from OLM catalogs against Red Hat VEX data.
-
-For each OCP catalog version found in data/catalogs/, the tool:
-  1. Parses the catalog to find all operator packages.
-  2. Identifies the head bundle of each operator's default channel.
-  3. Retrieves all workload images from that bundle's relatedImages.
-  4. Triages every image via the RHACS API using the VEX audit engine.
-  5. Writes per-operator reports (flat, one CSV per unique bundle) to:
-       data/reports/operators/{operator}-{channel}-{bundle_version}.csv
-
-Run from the repository root:  python3 -m rhacs_vex.operators [OPTIONS]
-
-Environment variables required:
-  ROX_ENDPOINT  — RHACS Central hostname:port (e.g. central.example.com:443)
-  ROX_API_TOKEN — RHACS API bearer token
-"""
+from __future__ import annotations
 
 import argparse
 import json
-import logging
 import os
 import re
-import time
-from concurrent.futures import ThreadPoolExecutor, as_completed
-
-# requests_cache logs spurious "Unable to deserialize response" errors when
-# multiple threads hit the SQLite cache simultaneously.  The cache miss is
-# already handled gracefully (a live HTTP request follows), so silence it.
-logging.getLogger('requests_cache.backends.base').setLevel(logging.CRITICAL)
 
 import pandas as pd
-from rich.console import Console
 from rich import box
+from rich.console import Console
 from rich.table import Table
 
-from . import triage  # noqa: E402
+from . import discovery, mirror, scan
+from .adapters.rhacs import Central
 
-# ── Constants ─────────────────────────────────────────────────────────────────
-
-BASE_DIR    = "data"
-CATALOG_DIR = os.path.join(BASE_DIR, "catalogs")
-REPORTS_DIR = os.path.join(BASE_DIR, "reports")
-MAX_WORKERS = 10
-
-console = Console()
+REPORTS_DIR = os.path.join('data', 'reports')
+OPERATOR_DIR = os.path.join(REPORTS_DIR, 'operators')
+INDEX_PATH = os.path.join(REPORTS_DIR, 'operators_index.json')
+FP, POS = '✅ FALSE POSITIVE', '❌ POSITIVE'
 
 
-# ── Catalog parsing ───────────────────────────────────────────────────────────
+def report_path(operator: str, channel: str, bundle_version: str) -> str:
+    clean = lambda s: re.sub(r'[/\\:*?"<>|]', '_', s)          # noqa: E731
+    return os.path.join(OPERATOR_DIR, f"{operator}-{clean(channel)}-{clean(bundle_version)}.csv")
 
-def _parse_catalog(catalog_path: str) -> tuple:
-    """
-    Parse a multi-object JSON catalog file (OLM FBC format) and return
-    (packages, channels, bundles) as separate lists.
 
-    The file contains sequential top-level JSON objects (not JSON-lines);
-    we use brace-depth tracking to split them correctly.
-    """
-    packages, channels, bundles = [], [], []
-    buf   = ''
-    depth = 0
-    with open(catalog_path) as f:
-        for line in f:
-            line = line.strip()
-            if not line:
+def collect(minors, op_filter=None, skip_existing=False):
+    """(bundles to scan {basename: item}, {basename: {minors}}) across catalogs."""
+    work, minors_of = {}, {}
+    for minor in minors:
+        path = discovery.catalog_path(minor)
+        if not os.path.exists(path):
+            continue
+        for op, entries in discovery.channel_heads(path).items():
+            if op_filter and op not in op_filter:
                 continue
-            depth += line.count('{') - line.count('}')
-            buf   += line
-            if depth == 0 and buf:
-                try:
-                    obj    = json.loads(buf)
-                    schema = obj.get('schema', '')
-                    if schema == 'olm.package':
-                        packages.append(obj)
-                    elif schema == 'olm.channel':
-                        channels.append(obj)
-                    elif schema == 'olm.bundle':
-                        bundles.append(obj)
-                except Exception:
-                    pass
-                buf = ''
-    return packages, channels, bundles
+            for e in entries:
+                bundle = e['head_bundle']
+                version = discovery.bundle_version(op, bundle.get('name', ''))
+                out = report_path(op, e['channel'], version)
+                base = os.path.splitext(os.path.basename(out))[0]
+                minors_of.setdefault(base, set()).add(minor)
+                if base in work or (skip_existing and os.path.exists(out)):
+                    continue
+                work[base] = {'operator': op, 'channel': e['channel'], 'version': version,
+                              'path': out, 'images': discovery.workload_images(bundle)}
+    return work, minors_of
 
 
-def _find_channel_head(channel: dict) -> str | None:
-    """
-    Return the name of the head bundle in an OLM channel.
-
-    The head is the entry not reachable via another entry's 'replaces' or
-    'skips' fields (i.e. nothing upgrades *to* it from within the channel).
-    Falls back to the last entry alphabetically if the graph is ambiguous.
-    """
-    entries = channel.get('entries', [])
-    if not entries:
-        return None
-
-    entry_names = {e['name'] for e in entries}
-    pointed_to: set = set()
-    for e in entries:
-        if e.get('replaces'):
-            pointed_to.add(e['replaces'])
-        for s in e.get('skips', []):
-            pointed_to.add(s)
-
-    heads = entry_names - pointed_to
-    if not heads:
-        return entries[-1]['name']
-
-    # If multiple candidates, pick the lexicographically greatest (highest version string).
-    return sorted(heads)[-1]
-
-
-def build_operator_index(catalog_path: str) -> dict:
-    """
-    Return a dict keyed by operator package name.  Each value is a list of
-    channel entries — one per channel in the catalog:
-      {
-        'pkg_name': [
-          {'channel': str, 'is_default': bool, 'head_bundle': <bundle dict>},
-          ...
-        ],
-        ...
-      }
-    Channels whose head bundle cannot be resolved are silently skipped.
-    """
-    packages, channels, bundles = _parse_catalog(catalog_path)
-    bundle_by_name = {b['name']: b for b in bundles}
-
-    # Build a set of default channels per package
-    default_ch_map: dict = {pkg['name']: pkg.get('defaultChannel', '') for pkg in packages}
-
-    result: dict = {}
-    for ch in channels:
-        pkg_name = ch.get('package', '')
-        ch_name  = ch.get('name', '')
-        if not pkg_name:
-            continue
-
-        head_name = _find_channel_head(ch)
-        if not head_name:
-            continue
-
-        head_bundle = bundle_by_name.get(head_name)
-        if not head_bundle:
-            continue
-
-        result.setdefault(pkg_name, []).append({
-            'channel':    ch_name,
-            'is_default': ch_name == default_ch_map.get(pkg_name, ''),
-            'head_bundle': head_bundle,
-        })
-
-    # Sort each package's channels so the default channel comes first,
-    # then alphabetically for deterministic ordering.
-    for pkg_name in result:
-        result[pkg_name].sort(key=lambda x: (not x['is_default'], x['channel']))
-
-    return result
-
-
-# ── Image helpers ─────────────────────────────────────────────────────────────
-
-def _sha_from_ref(image_ref: str) -> str | None:
-    """Extract the sha256 hex digest from an image reference, or None."""
-    m = re.search(r'@sha256:([a-f0-9]+)', image_ref, re.IGNORECASE)
-    return m.group(1) if m else None
-
-
-def _get_unique_workload_images(bundle: dict) -> list:
-    """
-    Return a deduplicated list of (role_name, image_ref) pairs for all
-    *workload* images in a bundle's relatedImages.
-
-    Exclusions:
-      - The bundle image itself (it is a metadata artifact, not a workload).
-      - Duplicate digests (annotation entries that repeat the operator image).
-    """
-    bundle_sha = _sha_from_ref(bundle.get('image', ''))
-    seen_shas: set = set()
-    result: list = []
-
-    for ri in bundle.get('relatedImages', []):
-        img  = ri.get('image', '')
-        name = ri.get('name', '')
-        sha  = _sha_from_ref(img)
-
-        # Skip the bundle image
-        if bundle_sha and sha == bundle_sha:
-            continue
-        # Skip duplicate digests (annotation copies, etc.)
-        if sha and sha in seen_shas:
-            continue
-        if sha:
-            seen_shas.add(sha)
-
-        result.append((name or '', img))
-
-    return result
-
-
-# ── Report path helper ────────────────────────────────────────────────────────
-
-def _report_path(ocp_version: str, operator_name: str, channel: str, bundle_version: str) -> str:
-    """
-    Build and ensure the flat, OCP-version-agnostic output CSV path:
-      data/reports/operators/{operator}-{channel}-{bundle_version}.csv
-
-    The same operator bundle serves multiple OCP minors, so it is stored ONCE.
-    The ocp_version parameter is kept for signature/caller compatibility but is
-    intentionally NOT part of the path — the minor→bundle association lives only
-    in data/reports/operators_index.json.
-    """
-    safe_ver = re.sub(r'[/\\:*?"<>|]', '_', bundle_version)
-    safe_ch  = re.sub(r'[/\\:*?"<>|]', '_', channel)
-    dirname  = os.path.join(REPORTS_DIR, "operators")
-    os.makedirs(dirname, exist_ok=True)
-    return os.path.join(dirname, f"{operator_name}-{safe_ch}-{safe_ver}.csv")
-
-
-def _write_operators_index(versions_by_report: dict) -> None:
-    """
-    Merge this run's {report_basename: {minor, ...}} mapping into
-    data/reports/operators_index.json.
-
-    Loads any existing index and UNIONS the version lists so partial or
-    incremental runs never lose previously-recorded mappings.  This file is the
-    single source of truth for which OCP minors' catalogs reference each bundle.
-    """
-    index_path = os.path.join(REPORTS_DIR, "operators_index.json")
-    existing: dict = {}
-    if os.path.exists(index_path):
-        try:
-            with open(index_path) as f:
-                existing = {k: set(v) for k, v in json.load(f).items()}
-        except Exception:
-            existing = {}
-
-    for base, minors in versions_by_report.items():
-        existing.setdefault(base, set()).update(minors)
-
-    serialisable = {k: sorted(v) for k, v in sorted(existing.items())}
+def write_index(minors_of: dict) -> None:
+    """Union this run's bundle → minors map into operators_index.json."""
+    try:
+        with open(INDEX_PATH) as fh:
+            index = {k: set(v) for k, v in json.load(fh).items()}
+    except Exception:
+        index = {}
+    for base, minors in minors_of.items():
+        index.setdefault(base, set()).update(minors)
     os.makedirs(REPORTS_DIR, exist_ok=True)
-    with open(index_path, "w") as f:
-        json.dump(serialisable, f, indent=2)
-
-    console.print(f'📝 operators_index.json: {len(serialisable)} bundles → [cyan]{index_path}[/cyan]')
+    with open(INDEX_PATH, 'w') as fh:
+        json.dump({k: sorted(v) for k, v in sorted(index.items())}, fh, indent=2)
 
 
-# ── Core triage logic ─────────────────────────────────────────────────────────
+def assemble(item: dict, results: dict):
+    """One bundle's report from its images' results (IMAGE, IMAGE_ROLE first)."""
+    parts = []
+    for role, img in item['images']:
+        res = results.get(img) or {}
+        if res.get('result_df') is not None:
+            df = res['result_df'].copy()
+            df.insert(0, 'IMAGE', img)
+            df.insert(1, 'IMAGE_ROLE', role)
+            parts.append(df)
+    return pd.concat(parts, ignore_index=True) if parts else None
 
-def _assemble_report_from_cache(
-    bundle: dict,
-    scan_cache: dict[str, dict],
-) -> pd.DataFrame | None:
-    """Build a triage report from pre-scanned image results.
 
-    Rows carry the standard triage columns plus IMAGE (full reference) and
-    IMAGE_ROLE (the 'name' field from relatedImages, may be empty).  Reads
-    cached _fetch_and_audit results instead of calling RHACS — no network I/O.
-    """
-    images = _get_unique_workload_images(bundle)
+def run(minors, *, op_filter=None, workers=10, false_only=False, skip_existing=False,
+        offline=False, console=None) -> int:
+    console = console or Console()
+    central = Central.from_env(offline=offline)
+    if not (offline or central.configured):
+        console.print('[red]ROX_ENDPOINT and ROX_API_TOKEN must be set (or use --offline).[/red]')
+        return 1
+    work, minors_of = collect(minors, op_filter, skip_existing)
+    write_index(minors_of)
+    images = sorted({img for item in work.values() for _r, img in item['images']})
+    console.print(f"📊 {len(work)} bundles, {len(images)} unique images "
+                  f"({'cached scans only' if offline else 'RHACS'})")
     if not images:
-        return None
-
-    frame_parts: list = []
-    for role, img in images:
-        res = scan_cache.get(img)
-        if not res or not res.get('found') or res.get('result_df') is None:
-            continue
-        rdf = res['result_df'].copy()
-        rdf.insert(0, 'IMAGE', img)
-        rdf.insert(1, 'IMAGE_ROLE', role)
-        frame_parts.append(rdf)
-
-    if not frame_parts:
-        return None
-    return pd.concat(frame_parts, ignore_index=True)
-
-
-# ── Catalog version discovery ─────────────────────────────────────────────────
-
-def available_catalog_versions() -> list:
-    """
-    Return sorted OCP version strings inferred from
-    data/catalogs/catalog-{version}.json file names.
-    """
-    versions = []
-    if not os.path.isdir(CATALOG_DIR):
-        return versions
-    for fname in os.listdir(CATALOG_DIR):
-        m = re.match(r'^catalog-(\d+\.\d+)\.json$', fname)
-        if m:
-            versions.append(m.group(1))
-    return sorted(versions)
+        return 0
+    results = scan.rhacs_batch(central, [(img, img, None, None) for img in images],
+                               workers=workers, false_only=false_only)
+    os.makedirs(OPERATOR_DIR, exist_ok=True)
+    rows = []
+    for base, item in sorted(work.items()):
+        df = assemble(item, results)
+        counts = df['AUDIT_RESULT'].value_counts().to_dict() if df is not None else {}
+        if df is not None:
+            df.to_csv(item['path'], index=False)
+        rows.append({**item, 'base': base, 'pos': counts.get(POS, 0), 'fp': counts.get(FP, 0),
+                     'written': df is not None})
+    for minor in minors:
+        mine = [r for r in rows if minor in minors_of.get(r['base'], ())]
+        if mine:
+            summary(console, minor, mine)
+    failed = sum(1 for r in results.values() if r.get('found') is None)
+    return 2 if failed else 0
 
 
-# ── Terminal summary table ────────────────────────────────────────────────────
-
-def _print_version_summary(version: str, rows: list, false_only: bool = False) -> None:
-    """
-    Print a Rich table summarising all operator channels processed for *version*.
-
-    *rows* is a list of dicts with keys:
-      operator, channel, bundle_version, images, vulnerable, false_positive, skipped, report
-    """
-    table = Table(
-        title=f"OCP {version} — Operator Triage Summary",
-        box=box.ROUNDED,
-        show_header=True,
-        header_style="bold white",
-    )
-    table.add_column("Operator",       style="cyan",       no_wrap=True)
-    table.add_column("Channel",        style="magenta",    no_wrap=True)
-    table.add_column("Bundle",         style="dim",        no_wrap=True)
-    table.add_column("Images",         justify="right")
-    if not false_only:
-        table.add_column("Positive",   justify="right",    style="bold red")
-    table.add_column("False Positive", justify="right",    style="bold green")
-    table.add_column("Report",         style="dim")
-
+def summary(console, minor: str, rows: list) -> None:
+    t = Table(title=f"OCP {minor} — operators", box=box.ROUNDED, header_style="bold")
+    for col, kw in (('Operator', {'style': 'cyan'}), ('Channel', {'style': 'magenta'}),
+                    ('Bundle', {'style': 'dim'}), ('Images', {'justify': 'right'}),
+                    ('Positive', {'justify': 'right', 'style': 'bold red'}),
+                    ('False positive', {'justify': 'right', 'style': 'bold green'})):
+        t.add_column(col, **kw)
     for r in rows:
-        row_cells = [
-            r['operator'],
-            r.get('channel', ''),
-            r['bundle_version'],
-            str(r['images']),
-        ]
-        if not false_only:
-            row_cells.append(str(r['vulnerable']) if r['vulnerable'] else '-')
-        row_cells.append(str(r['false_positive']) if r['false_positive'] else '-')
-        row_cells.append(r['report'] if r['report'] else '[dim]no findings[/dim]')
-        table.add_row(*row_cells)
-
-    console.print(table)
+        t.add_row(r['operator'], r['channel'], r['version'], str(len(r['images'])),
+                  str(r['pos'] or '-'), str(r['fp'] or '-'))
+    console.print(t)
 
 
-# ── CLI ───────────────────────────────────────────────────────────────────────
-
-def main() -> None:
-    parser = argparse.ArgumentParser(
-        description=(
-            'Triage all operators from OLM catalogs against Red Hat VEX data.\n\n'
-            'Scans each operator\'s latest bundle images via RHACS and writes\n'
-            'per-operator CSV reports to data/reports/operators/.\n\n'
-            'Requires: ROX_ENDPOINT and ROX_API_TOKEN environment variables.'
-        ),
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-    )
-    parser.add_argument(
-        '--version', default=None, metavar='VERSION',
-        help=(
-            'Comma-separated OCP version(s) to process, e.g. "4.21" or "4.20,4.21".\n'
-            'Defaults to all versions found in data/catalogs/.'
-        ),
-    )
-    parser.add_argument(
-        '--operator', default=None, metavar='NAME',
-        help='Comma-separated operator package name(s) to process.  Defaults to all.',
-    )
-    parser.add_argument(
-        '--workers', type=int, default=MAX_WORKERS, metavar='N',
-        help=f'Parallel image workers per operator (default: {MAX_WORKERS}).',
-    )
-    parser.add_argument(
-        '--false-only', action='store_true', default=False,
-        help='Include only FALSE POSITIVE findings in the output CSVs.',
-    )
-    parser.add_argument(
-        '--skip-existing', action='store_true', default=False,
-        help='Skip operators whose report CSV already exists (useful for resuming).',
-    )
-    args = parser.parse_args()
-
-    # Before the worker pool, not inside it — see triage.ensure_mirror.
-    triage.ensure_mirror(console)
-
-    ROX_ENDPOINT  = os.environ.get('ROX_ENDPOINT', '')
-    ROX_API_TOKEN = os.environ.get('ROX_API_TOKEN', '')
-    if not ROX_ENDPOINT or not ROX_API_TOKEN:
-        console.print('[bold red]❌ ROX_ENDPOINT and ROX_API_TOKEN environment variables must be set.[/bold red]')
-        raise SystemExit(1)
-
-    import urllib3  # noqa: PLC0415
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-    # Resolve OCP versions to process
-    if args.version:
-        versions = [v.strip() for v in args.version.split(',') if v.strip()]
-    else:
-        versions = available_catalog_versions()
-    if not versions:
-        console.print(f'[bold red]❌ No catalog files found in {CATALOG_DIR}[/bold red]')
-        raise SystemExit(1)
-
-    # Resolve operator name filter
-    op_filter = {o.strip() for o in args.operator.split(',')} if args.operator else None
-
-    session = triage._rhacs_session(ROX_ENDPOINT, ROX_API_TOKEN)
-
-    # ── Phase 1: Parse catalogs and collect work items ────────────────
-    console.rule('[bold]Phase 1: Analyzing operator catalogs[/bold]')
-
-    # Dedupe work across OCP minors by report basename: the same operator bundle
-    # is referenced by several catalogs but is scanned/assembled ONCE.
-    work_items: dict[str, dict] = {}          # basename → work item (deduped)
-    versions_by_report: dict[str, set] = {}   # basename → {OCP minor, ...}
-    skipped_bases: set[str] = set()
-    all_unique_images: set[str] = set()
-
-    for ocp_ver in versions:
-        cat_path = os.path.join(CATALOG_DIR, f'catalog-{ocp_ver}.json')
-        if not os.path.exists(cat_path):
-            console.print(f'[yellow]⚠  Catalog not found for OCP {ocp_ver}: {cat_path}[/yellow]')
-            continue
-
-        console.print(f'📂 Parsing [cyan]{cat_path}[/cyan] ...')
-        op_index = build_operator_index(cat_path)
-
-        operators = {
-            k: v for k, v in op_index.items()
-            if op_filter is None or k in op_filter
-        }
-        if not operators:
-            console.print('[yellow]  No matching operators.[/yellow]')
-            continue
-
-        n_new = n_skipped = 0
-
-        for op_name, ch_entries in operators.items():
-            for ch_entry in ch_entries:
-                channel     = ch_entry['channel']
-                is_default  = ch_entry['is_default']
-                bundle      = ch_entry['head_bundle']
-                bundle_name = bundle.get('name', '')
-
-                _vm = re.search(r'\.v(\d)', bundle_name)
-                if _vm:
-                    bundle_version = bundle_name[_vm.start(0) + 1:]
-                elif bundle_name.startswith(op_name + '.'):
-                    bundle_version = bundle_name[len(op_name) + 1:]
-                else:
-                    bundle_version = bundle_name
-
-                report_path = _report_path(ocp_ver, op_name, channel, bundle_version)
-                basename = os.path.splitext(os.path.basename(report_path))[0]
-
-                # Record the minor→bundle reference unconditionally (even when
-                # deduped or skipped) so operators_index.json is complete.
-                versions_by_report.setdefault(basename, set()).add(ocp_ver)
-
-                if basename in work_items or basename in skipped_bases:
-                    continue
-
-                if args.skip_existing and os.path.exists(report_path):
-                    skipped_bases.add(basename)
-                    n_skipped += 1
-                    continue
-
-                images = _get_unique_workload_images(bundle)
-                for _, img in images:
-                    all_unique_images.add(img)
-
-                work_items[basename] = {
-                    'op_name': op_name, 'channel': channel,
-                    'is_default': is_default, 'bundle': bundle,
-                    'bundle_version': bundle_version,
-                    'report_path': report_path, 'images': images,
-                }
-                n_new += 1
-
-        console.print(f'   {len(operators)} operators, {n_new} new bundle(s) to scan'
-                      + (f', {n_skipped} skipped (exist)' if n_skipped else ''))
-
-    # Persist the minor→bundle index right after catalog analysis so even a
-    # skip-existing / nothing-to-scan run updates the mappings (union-merge).
-    _write_operators_index(versions_by_report)
-
-    console.print(f'\n📊 [bold]{len(work_items)}[/bold] unique operator bundles to scan, '
-                  f'[bold]{len(all_unique_images)}[/bold] unique images\n')
-
-    if not all_unique_images:
-        console.print('[bold green]Nothing to scan — all reports up to date.[/bold green]')
-        return
-
-    # ── Phase 2: Batch-scan all unique images ─────────────────────────
-    console.rule('[bold]Phase 2: Scanning unique images[/bold]')
-    t_scan_start = time.time()
-    console.print(f'🚀 Scanning [bold]{len(all_unique_images)}[/bold] unique images '
-                  f'with [bold]{args.workers}[/bold] workers...\n')
-
-    scan_cache: dict[str, dict] = {}
-    with ThreadPoolExecutor(max_workers=args.workers) as ex:
-        futures = {
-            ex.submit(triage._fetch_and_audit, session, img, None, args.false_only): img
-            for img in all_unique_images
-        }
-        done = 0
-        for future in as_completed(futures):
-            done += 1
-            img = futures[future]
-            try:
-                scan_cache[img] = future.result()
-            except Exception:
-                scan_cache[img] = {'found': None, 'error': 'exception'}
-            if done % 50 == 0 or done == len(all_unique_images):
-                elapsed = time.time() - t_scan_start
-                rate = done / elapsed if elapsed > 0 else 0
-                eta = (len(all_unique_images) - done) / rate if rate > 0 else 0
-                console.print(
-                    f'  [{done}/{len(all_unique_images)}] '
-                    f'{elapsed:.0f}s elapsed, ~{eta:.0f}s remaining'
-                )
-
-    # Retry any images that failed due to API errors (found=None).
-    failed = [img for img, res in scan_cache.items() if res.get('found') is None]
-    if failed:
-        console.print(f'\n[yellow]⚠  {len(failed)} image(s) failed — retrying...[/yellow]')
-        time.sleep(5)
-        with ThreadPoolExecutor(max_workers=args.workers) as ex:
-            retry_futures = {
-                ex.submit(triage._fetch_and_audit, session, img, None,
-                          args.false_only): img
-                for img in failed
-            }
-            for future in as_completed(retry_futures):
-                img = retry_futures[future]
-                try:
-                    scan_cache[img] = future.result()
-                except Exception:
-                    scan_cache[img] = {'found': None, 'error': 'retry failed'}
-
-        still_failed = sum(1 for img in failed if scan_cache[img].get('found') is None)
-        recovered = len(failed) - still_failed
-        console.print(f'  Recovered {recovered}/{len(failed)}'
-                      + (f', {still_failed} still failing' if still_failed else ''))
-
-    t_scan_elapsed = time.time() - t_scan_start
-    found = sum(1 for r in scan_cache.values() if r.get('found'))
-    with_vulns = sum(1 for r in scan_cache.values() if r.get('result_df') is not None)
-    console.print(f'\n✅ Scanned [bold]{found}[/bold]/{len(all_unique_images)} images '
-                  f'({with_vulns} with vulnerability data) in {t_scan_elapsed:.0f}s\n')
-
-    # ── Phase 3: Assemble operator reports (once per unique bundle) ────
-    console.rule('[bold]Phase 3: Assembling operator reports[/bold]')
-
-    report_by_base: dict[str, dict] = {}
-    for basename, item in work_items.items():
-        op_name        = item['op_name']
-        channel        = item['channel']
-        bundle         = item['bundle']
-        bundle_version = item['bundle_version']
-        report_path    = item['report_path']
-        images         = item['images']
-
-        if not images:
-            report_by_base[basename] = {
-                'operator': op_name, 'channel': channel,
-                'bundle_version': bundle_version,
-                'images': 0, 'vulnerable': 0, 'false_positive': 0,
-                'skipped': True, 'report': '',
-            }
-            continue
-
-        df = _assemble_report_from_cache(bundle, scan_cache)
-
-        if df is None or df.empty:
-            console.print(f'  [dim]{op_name} / {channel} {bundle_version} — no findings[/dim]')
-            report_by_base[basename] = {
-                'operator': op_name, 'channel': channel,
-                'bundle_version': bundle_version,
-                'images': len(images), 'vulnerable': 0, 'false_positive': 0,
-                'skipped': False, 'report': '',
-            }
-            continue
-
-        df.to_csv(report_path, index=False)
-
-        counts       = df['AUDIT_RESULT'].value_counts().to_dict()
-        n_vuln       = counts.get('❌ POSITIVE', 0)
-        n_fp         = counts.get('✅ FALSE POSITIVE', 0)
-        n_imgs_found = df['IMAGE'].nunique()
-
-        if args.false_only:
-            console.print(
-                f'  [bold green]✅ {n_fp}[/bold green] FP  '
-                f'({n_imgs_found}/{len(images)} images)  '
-                f'{op_name} / {channel} {bundle_version}  '
-                f'→ [cyan]{report_path}[/cyan]'
-            )
-        else:
-            console.print(
-                f'  [bold green]✅ {n_fp}[/bold green] FP  '
-                f'[bold red]❌ {n_vuln}[/bold red] POS  '
-                f'({n_imgs_found}/{len(images)} images)  '
-                f'{op_name} / {channel} {bundle_version}  '
-                f'→ [cyan]{report_path}[/cyan]'
-            )
-        report_by_base[basename] = {
-            'operator': op_name, 'channel': channel,
-            'bundle_version': bundle_version,
-            'images': len(images), 'vulnerable': n_vuln,
-            'false_positive': n_fp, 'skipped': False, 'report': report_path,
-        }
-
-    # Per-version summaries — group the freshly-assembled bundles by the OCP
-    # minors that reference them (from versions_by_report).
-    for ocp_ver in versions:
-        rows = [report_by_base[b] for b in sorted(report_by_base)
-                if ocp_ver in versions_by_report.get(b, set())]
-        if not rows:
-            continue
-        console.rule(f'[bold cyan]OCP {ocp_ver}[/bold cyan]')
-        _print_version_summary(ocp_ver, rows, false_only=args.false_only)
-
-    console.print('\n[bold green]Done.[/bold green]')
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(prog='vextriage operators', description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument('--version', default=None, help='OCP minor(s), comma-separated '
+                                                    '(default: every catalog on disk)')
+    ap.add_argument('--operator', default=None, help='package name(s), comma-separated')
+    ap.add_argument('--workers', type=int, default=10)
+    ap.add_argument('--false-only', action='store_true')
+    ap.add_argument('--skip-existing', action='store_true',
+                    help='skip bundles whose report already exists')
+    ap.add_argument('--offline', action='store_true',
+                    help='cached RHACS scans only — refresh verdicts without Central')
+    args = ap.parse_args(argv)
+    console = Console()
+    mirror.ensure_mirror(console)
+    minors = ([v.strip() for v in args.version.split(',') if v.strip()] if args.version
+              else discovery.catalog_versions())
+    if not minors:
+        console.print(f'[red]no catalogs under {discovery.CATALOG_DIR}[/red]')
+        return 1
+    ops = {o.strip() for o in args.operator.split(',')} if args.operator else None
+    return run(minors, op_filter=ops, workers=args.workers, false_only=args.false_only,
+               skip_existing=args.skip_existing, offline=args.offline, console=console)
 
 
 if __name__ == '__main__':
-    main()
+    raise SystemExit(main())

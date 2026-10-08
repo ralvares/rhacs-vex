@@ -1,27 +1,25 @@
-"""cli.py — the `vextriage` umbrella CLI.
+"""The `vextriage` CLI.
 
-One tool, scanner as subcommand; the engine judges every scanner the same way
-(scanner = discovery, engine = verdict, OpenVEX = output):
+A scanner (or the VEX index, or OSV) only proposes (component, CVE) pairs; the
+engine decides them against Red Hat's CSAF-VEX; OpenVEX publishes the verdicts
+Red Hat stated.
 
-    vextriage rhacs    ...             RHACS-backed triage, unchanged
-    vextriage grype    <image|sbom>    syft SBOM + grype scan → engine triage
-    vextriage trivy    <image|report>  trivy scan → engine triage
-    vextriage generate --images FILE   batch: scan → triage → OpenVEX hub
-    vextriage hub      ...             (re)build hub index + manifest
-    vextriage pipeline|operators|retriage|parquet   passthroughs
+    vextriage sync                      mirror Red Hat VEX + OSV, build the index
+    vextriage openvex <image|sbom>      one image → OpenVEX (syft only)
+    vextriage generate --ocp V | --operators | --images FILE
+                                        many images → OpenVEX hub
+    vextriage rhacs <image|csv> | --namespace NS | --ocp PULLSPECS [--offline]
+    vextriage grype|trivy <image>       scanner findings → triage
+    vextriage scanfree <image|sbom>     VEX-index candidates → triage
+    vextriage operators | retriage      batch RHACS triage / offline refresh
+    vextriage report CSV -o FILE        RHACS report → one HTML file
+    vextriage hub | doctor | build-index | pipeline | parquet
 
-OpenVEX documents are generated ONLY from consumer-side scans (syft+grype):
-the statement purls come from the scanner's own artifacts, so grype/trivy are
-guaranteed to match them.  RHACS triage output is never converted to OpenVEX —
-RHACS does not consume OpenVEX.  `--openvex-dir` on the scanner subcommands
-writes per-image documents in the vexhub layout (see hub.py / openvex.py).
-Run from the repository root — all data paths are relative, like every other
-tool in this package.
+Run from the repository root: every data path is relative to ./data.
 """
 from __future__ import annotations
 
 import argparse
-import json
 import os
 import sys
 
@@ -46,163 +44,239 @@ def _export_openvex(result_df, image_ref: str, hub_dir: str, author: str,
                   f"({state}; hub: {stats['documents']} documents)")
 
 
-def _scanner_cmd(scanner: str, args) -> int:
-    """Shared grype/trivy flow: adapt → context → audit → render → export."""
-    from . import triage
-    from .context import context_for_image
-    console = Console()
-    triage.ensure_mirror(console)
+def _load_index_opt(args, console):
+    """The VEX index when --vex-index asked for it, else None."""
+    if not getattr(args, 'vex_index', False):
+        return None
+    path = getattr(args, 'index', None) or scanfree.INDEX_PATH
+    index = scanfree.load_index(path)
+    if not index:
+        console.print(f'[yellow]no VEX index at {path} — scanner findings only; run '
+                      f'`vextriage build-index`.[/yellow]')
+        return None
+    return index
 
+
+def _rhacs_cmd(args) -> int:
+    """RHACS findings → engine: one image, a CSV export, a namespace, or a release."""
+    import pandas as pd
+
+    from . import display, discovery, mirror, scan
+    from .adapters.rhacs import Central
+    from .core.workload import WorkloadContext, parse_image_ref
+    console = Console()
+    mirror.ensure_mirror(console)
+    index = _load_index_opt(args, console)
+    central = Central.from_env(offline=args.offline)
+    target = args.target
+    is_csv = bool(target and os.path.exists(target))
+
+    def write(frames):
+        if frames and args.output and args.format != 'table':
+            display.write_output(pd.concat(frames, ignore_index=True), args.output,
+                                 args.format, console)
+
+    # ── CSV export: no Central needed ──────────────────────────────────────
+    if is_csv:
+        ctx = parse_image_ref(args.image) if args.image else WorkloadContext()
+        df, _added = scan.merge_index(pd.read_csv(target), index, args.image or '', None)
+        display.print_preamble(console, mode=f'RHACS CSV {target}', df=df, ctx=ctx)
+        scan.triage_one(df, ctx, console, output=args.output, fmt=args.format,
+                        false_only=args.false_only, show_all=args.all_rows)
+        return 0
+
+    if not (args.offline or central.configured):
+        console.print('[red]ROX_ENDPOINT and ROX_API_TOKEN must be set (or use --offline '
+                      'to re-triage cached scans).[/red]')
+        return 1
+
+    # ── one image ──────────────────────────────────────────────────────────
+    if target and not (args.namespace or args.ocp):
+        res = scan.rhacs_image(central, target, index=index, force=args.force,
+                               false_only=args.false_only)
+        if not res.get('found'):
+            console.print(f"[red]❌ {res.get('error') or 'no scan for ' + target}[/red]")
+            return 1
+        ctx, result = res['ctx'], res['result_df']
+        display.print_preamble(console, image_ref=target, mode='RHACS',
+                               os_info=res['os_info'], df=result, ctx=ctx)
+        if result is None or result.empty:
+            console.print('[green]No findings.[/green]')
+            return 0
+        display.render_table(console, result, ctx,
+                             actionable_only=not (args.false_only or args.all_rows))
+        if res.get('sbom_check'):
+            display.print_sbom_summary(console, res['sbom_check'])
+        write([result])
+        return 0
+
+    # ── many images: a namespace or an OCP release payload ─────────────────
+    release = None
+    if args.ocp:
+        release, comps = discovery.read_pullspecs(args.ocp)
+        items = [(comp, ref, None, comp) for comp, ref in comps]
+        if not items:
+            console.print(f'[red]no image pullspecs in {args.ocp} (oc adm release info '
+                          f'<ver> --pullspecs)[/red]')
+            return 1
+    elif args.namespace:
+        items = [(ref, ref, iid, None) for ref, iid in central.namespace_images(args.namespace)]
+    else:
+        console.print('[red]give an image ref, a CSV, --namespace or --ocp[/red]')
+        return 2
+    console.print(f"🚀 {len(items)} images, {args.workers} workers"
+                  + (f" — OpenShift {release}" if release else ''))
+    results = scan.rhacs_batch(central, items, workers=args.workers, console=console,
+                               ocp_release=release, index=index, force=args.force,
+                               false_only=args.false_only)
+    frames = []
+    for key, ref, _iid, comp in items:
+        res = results[key]
+        display.image_result(console, key if key == ref else f"{key}  [dim]{ref}[/dim]", res,
+                             actionable_only=not (args.false_only or args.all_rows))
+        if res.get('result_df') is None:
+            continue
+        df = res['result_df'].copy()
+        if comp:
+            df['OCP_COMPONENT'] = comp
+        df['IMAGE'] = ref
+        frames.append(df)
+    write(frames)
+    failed = sum(1 for r in results.values() if r.get('found') is None)
+    return 2 if failed else 0
+
+
+def _retriage_cmd(args) -> int:
+    """Refresh every stored verdict from cached scans: no Central, no registry."""
+    import subprocess
+
+    from . import discovery, mirror, operators
+    console = Console()
+    mirror.ensure_mirror(console)
+    versions = [v.strip() for v in args.version.split(',')] if args.version else None
+    rc = 0
+    if not args.operators_only:
+        for path in discovery.pullspec_files(versions):
+            ver = os.path.splitext(os.path.basename(path))[0]
+            out = os.path.join('data', 'reports', f'ocp-{ver}.csv')
+            console.rule(f'OCP {ver}')
+            sub = argparse.Namespace(target=None, image=None, namespace=None, ocp=path,
+                                     offline=True, output=out, format='csv',
+                                     false_only=False, all_rows=False, force=False,
+                                     workers=args.workers, vex_index=False, index=None)
+            rc = _rhacs_cmd(sub) or rc
+    if not args.ocp_only:
+        minors = sorted({'.'.join(v.split('.')[:2]) for v in versions}) if versions \
+            else discovery.catalog_versions()
+        rc = operators.run(minors, workers=args.workers, offline=True, console=console) or rc
+    subprocess.run([sys.executable, '-m', 'rhacs_vex.parquet'], check=False)
+    return rc
+
+
+def _scanner_cmd(scanner: str, args) -> int:
+    """grype or trivy findings → engine → table (+ optional OpenVEX export)."""
+    from . import display, mirror, scan
+    from .core.workload import context_for_image
+    from .sbom import SyftSBOM
+    console = Console()
+    mirror.ensure_mirror(console)
+
+    sbom = None
     if scanner == 'grype':
         from .adapters import grype as adapter
         target = args.target
         if not os.path.exists(target):
             console.print(f"🧾 syft SBOM for [bold cyan]{target}[/bold cyan]...")
-            target = adapter.syft_sbom(args.target, platform=args.platform,
-                                       force=args.force)
+            target = adapter.syft_sbom(args.target, platform=args.platform, force=args.force)
         console.print("🔍 grype scan...")
         doc = adapter.grype_scan(target)
-        df = adapter.to_df(doc)
-        hint = adapter.os_hint(doc)
-        labels = adapter.sbom_labels(target)
-        digests = adapter.sbom_digests(target)
+        sbom = SyftSBOM.load(target)
+        labels, digests = (sbom.labels, sbom.digests) if sbom else ({}, [])
     else:
         from .adapters import trivy as adapter
         console.print("🔍 trivy scan...")
         doc = adapter.trivy_scan(args.target, platform=args.platform)
-        df = adapter.to_df(doc)
-        hint = adapter.os_hint(doc)
-        labels = adapter.labels(doc)
-        digests = adapter.digests(doc)
+        labels, digests = adapter.labels(doc), adapter.digests(doc)
+    df, hint = adapter.to_df(doc), adapter.os_hint(doc)
 
     image_ref = args.image or (args.target if not os.path.exists(args.target) else '')
     if not image_ref:
         console.print('[red]--image <digest-pinned ref> is required when scanning '
                       'from a file (context + OpenVEX product identity).[/red]')
         return 2
-
-    ctx = context_for_image(image_ref, os_hint=hint, labels=labels or None,
-                            digests=digests)
-    df, merged = _merge_index(df, args, console, image_ref, labels)
-    if scanner == 'grype':
-        _wire_rpm_owners(df, ctx, adapter.rpm_file_owners(target))
-    triage.print_preamble(console, image_ref=image_ref, mode=f'{scanner} scan',
-                          os_info=hint or '', df=df, ctx=ctx,
-                          noun='candidates' if merged else 'CVE findings')
-
-    result_df = triage._audit_and_display(
-        df, ctx, console, output_path=args.output, output_fmt=args.format,
-        false_only=args.false_only, source_label=scanner, candidates=merged)
-
-    # Same check the RHACS path runs, against the package list this scanner's
-    # own SBOM carries.  Weaker evidence than RHACS's (both sides descend from
-    # the same syft catalogue) and it says so, but it still catches a version
-    # changing shape between the SBOM and the row — epochs and purl
-    # normalisation being where that happens.
-    if scanner == 'grype' and result_df is not None and not result_df.empty:
-        pkgs = adapter.sbom_package_versions(target)
-        if pkgs:
-            console.print("🔍 Verifying component versions against the SBOM...")
-            triage._print_sbom_summary(console, triage.verify_versions(result_df, pkgs))
-
+    ctx = context_for_image(image_ref, os_hint=hint, labels=labels or None, digests=digests)
+    index = _load_index_opt(args, console)
+    df, added = scan.merge_index(df, index, image_ref, labels)
+    if sbom:
+        sbom.enrich(df, ctx)
+    display.print_preamble(console, image_ref=image_ref, mode=f'{scanner} scan',
+                           os_info=hint or '', df=df, ctx=ctx,
+                           noun='candidates' if added else 'CVE findings')
+    result = scan.triage_one(df, ctx, console, output=args.output, fmt=args.format,
+                             false_only=args.false_only, candidates=bool(added))
+    # The SBOM and the findings both come from syft's catalogue, so this only
+    # catches a version changing shape between them (epochs, purl normalisation).
+    if sbom and result is not None and not result.empty:
+        display.print_sbom_summary(console, display.verify_versions(
+            result, sbom.package_versions()))
     if args.openvex_dir:
         try:
-            _export_openvex(result_df, image_ref, args.openvex_dir, args.author, console)
+            _export_openvex(result, image_ref, args.openvex_dir, args.author, console)
         except ValueError as e:
             console.print(f'[red]OpenVEX export skipped: {e}[/red]')
             return 1
     return 0
 
 
-def _wire_rpm_owners(df, ctx, owners: dict) -> None:
-    """Go-binary → vendoring-rpm link; shared with the RHACS path."""
-    from .engine import wire_rpm_owners
-    wire_rpm_owners(df, ctx, owners)
-
-
 def _scanfree_cmd(args) -> int:
-    """SBOM + VEX triage with no scanner: index → candidates → engine → export."""
-    from . import triage
+    """SBOM + VEX, no scanner: the rpm and image candidates the VEX index names."""
+    from . import display, mirror, scan
     from .adapters import grype as adapter
-    from .context import context_for_image
+    from .core.workload import context_for_image
+    from .sbom import SyftSBOM
     console = Console()
-    triage.ensure_mirror(console)
+    mirror.ensure_mirror(console)
 
     index_path = args.index or scanfree.INDEX_PATH
     if args.build_index or not os.path.exists(index_path):
-        why = 'rebuilding' if args.build_index else 'no index yet — building'
-        console.print(f"🧱 {why} VEX index → [cyan]{index_path}[/cyan]")
+        console.print(f"🧱 building VEX index → [cyan]{index_path}[/cyan]")
         _build_index(console, index_path)
         if not args.target:
             return 0
     if not args.target:
-        console.print('[red]an image ref or syft-json SBOM path is required '
-                      '(or --build-index alone).[/red]')
+        console.print('[red]an image ref or syft-json SBOM path is required.[/red]')
         return 2
-
-    # Same ergonomics as `vextriage grype`: a path is used as-is, anything else
-    # is an image ref and syft produces (or reuses) the cached SBOM for it.
     sbom_path, image_ref = args.target, args.image
     if not os.path.exists(sbom_path):
         console.print("🧾 syft SBOM...")
-        try:
-            sbom_path = adapter.syft_sbom(args.target, platform=args.platform,
-                                          force=args.force)
-        except Exception as e:
-            console.print(f'[red]syft failed: {e}[/red]')
-            return 1
+        sbom_path = adapter.syft_sbom(args.target, platform=args.platform, force=args.force)
         image_ref = image_ref or args.target
-
     index = scanfree.load_index(index_path)
-    if not index:
-        console.print(f'[red]could not read the index at {index_path}.[/red]')
-        return 1
-
     try:
         df = scanfree.candidates_from_sbom(sbom_path, index)
     except scanfree.UnreadableSBOM as e:
-        console.print(f'[red]unreadable SBOM: {e}[/red]')
-        console.print('[red]regenerate it (`syft ... -o syft-json`) — an empty or truncated '
-                      'SBOM must not be read as "no findings".[/red]')
+        console.print(f'[red]unreadable SBOM: {e} — regenerate it; an empty SBOM must '
+                      f'not read as "no findings".[/red]')
         return 1
-    if df.empty:
-        console.print('[yellow]no candidates — the SBOM has no rpm or image '
-                      'identity the VEX corpus names.[/yellow]')
-        return 0
-
+    sbom = SyftSBOM.load(sbom_path)
+    image_ref = image_ref or sbom.image_ref()
     if not image_ref:
-        # repoDigests carries the ref as pulled; manifestDigest is the per-arch
-        # manifest and is NOT what a consumer resolves, so it must not become the
-        # OpenVEX product identity.
-        try:
-            src = json.load(open(sbom_path)).get('source') or {}
-            meta = src.get('metadata') or {}
-            image_ref = next(iter(meta.get('repoDigests') or []), '')
-            if not image_ref:
-                name, ver = src.get('name') or '', str(src.get('version') or '')
-                if name and ver.startswith('sha256:'):
-                    image_ref = f'{name}@{ver}'
-        except Exception:
-            image_ref = ''
-    if not image_ref:
-        console.print('[red]--image <digest-pinned ref> is required (context + '
-                      'OpenVEX product identity).[/red]')
+        console.print('[red]--image <digest-pinned ref> is required.[/red]')
         return 2
-
-    ctx = context_for_image(image_ref, labels=adapter.sbom_labels(sbom_path) or None,
-                            digests=adapter.sbom_digests(sbom_path))
-    _wire_rpm_owners(df, ctx, adapter.rpm_file_owners(sbom_path))
-    triage.print_preamble(console, image_ref=image_ref, mode='VEX index (no scanner)',
-                          df=df, ctx=ctx, noun='candidates')
-
-    result_df = triage._audit_and_display(
-        df, ctx, console, output_path=args.output, output_fmt=args.format,
-        false_only=args.false_only, source_label='VEX index (no scanner)',
-        candidates=True)
-
+    if df.empty:
+        console.print('[yellow]no candidates — the SBOM has no rpm or image identity '
+                      'the VEX corpus names.[/yellow]')
+        return 0
+    ctx = context_for_image(image_ref, os_hint=sbom.os_hint(), labels=sbom.labels or None,
+                            digests=sbom.digests)
+    sbom.enrich(df, ctx)
+    display.print_preamble(console, image_ref=image_ref, mode='VEX index (no scanner)',
+                           df=df, ctx=ctx, noun='candidates')
+    result = scan.triage_one(df, ctx, console, output=args.output, fmt=args.format,
+                             false_only=args.false_only, candidates=True)
     if args.openvex_dir:
         try:
-            _export_openvex(result_df, image_ref, args.openvex_dir, args.author, console)
+            _export_openvex(result, image_ref, args.openvex_dir, args.author, console)
         except ValueError as e:
             console.print(f'[red]OpenVEX export skipped: {e}[/red]')
             return 1
@@ -482,7 +556,7 @@ def _crosscheck_statements(per_image: dict, console: Console) -> int:
     import json as _json
     import re as _re
 
-    from .engine import VEX_DIR
+    from .core.store import VEX_DIR
 
     EXPECT = {'not_affected': 'known_not_affected', 'fixed': 'fixed'}
     tally = {'match': 0, 'match_by_absence': 0, 'ambiguous': 0, 'mismatch': 0,
@@ -690,36 +764,12 @@ def _doctor_cmd() -> int:
 
 
 def _live_digests_by_doc(hub_dir: str) -> dict:
-    """doc path → set of 'sha256:…' digests still referenced by discovery.
-
-    Union of every data/pullspecs/*.txt ref and every catalog channel-head
-    workload image — the same sources `generate --ocp/--operators` scans from.
-    """
-    import glob as _glob
-    import re as _re
-
-    from . import hub, operators as ops
-    refs = []
-    for txt in _glob.glob(os.path.join('data', 'pullspecs', '*.txt')):
-        try:
-            with open(txt) as fh:
-                for line in fh:
-                    m = _re.search(r'(\S+@sha256:[a-f0-9]{64})', line)
-                    if m:
-                        refs.append(m.group(1))
-        except OSError:
-            continue
-    for cat in _glob.glob(os.path.join('data', 'catalogs', 'catalog-*.json')):
-        for _pkg, entries in ops.build_operator_index(cat).items():
-            for entry in entries:
-                for _role, img in ops._get_unique_workload_images(
-                        entry['head_bundle']):
-                    if _re.search(r'@sha256:[a-f0-9]{64}$', img):
-                        refs.append(img)
+    """hub doc path → {'sha256:…'} still referenced by discovery (pullspecs +
+    catalog channel heads) — what `hub --prune` keeps."""
+    from . import discovery, hub
     live: dict = {}
-    for ref in set(refs):
-        live.setdefault(hub.doc_path(hub_dir, ref), set()).add(
-            ref.split('@')[-1])
+    for ref in discovery.release_refs() + discovery.operator_refs():
+        live.setdefault(hub.doc_path(hub_dir, ref), set()).add(ref.split('@')[-1])
     return live
 
 
@@ -801,37 +851,14 @@ def _build_index(console, index_path: str) -> dict:
     return idx
 
 
-def _merge_index(df, args, console, image_ref: str, labels) -> tuple:
-    """Union scanner findings with the index candidates, when asked for.
-
-    The index is never built implicitly here: building it walks the whole VEX
-    mirror and a scan should not silently turn into a several-minute job.
-    """
-    if not getattr(args, 'vex_index', False):
-        return df, False
-    index_path = getattr(args, 'index', None) or scanfree.INDEX_PATH
-    index = scanfree.load_index(index_path)
-    if not index:
-        console.print(f'[yellow]no VEX index at {index_path} — scanner findings '
-                      f'only; run `vextriage build-index` for the rpm + image '
-                      f'classes too.[/yellow]')
-        return df, False
-    df, added = scanfree.merge_index_candidates(df, index, image_ref=image_ref,
-                                                labels=labels)
-    if added:
-        console.print(f"🧮 +{added:,} candidates from the VEX index "
-                      f"(rpm + image classes the scanner did not report)")
-    return df, bool(added)
-
-
 def _build_index_cmd(args) -> int:
     """Build the inverted VEX index every scan path can draw candidates from."""
-    from . import triage
+    from . import mirror
     console = Console()
     index_path = args.index or scanfree.INDEX_PATH
     if getattr(args, 'sync', False):
         try:
-            st = triage.sync_vex_mirror(console)
+            st = mirror.sync(console)
         except RuntimeError as e:
             console.print(f'[red]{e}[/red]')
             return 1
@@ -845,9 +872,9 @@ def _build_index_cmd(args) -> int:
 def _report_cmd(args) -> int:
     """Triage a RHACS report CSV end to end and write one shareable HTML file."""
     import time
-    from . import report, triage as triage_mod
+    from . import mirror, report
     console = Console()
-    triage_mod.ensure_mirror(console)
+    mirror.ensure_mirror(console)
     if not os.path.exists(args.csv):
         console.print(f'[red]no such file: {args.csv}[/red]')
         return 2
@@ -917,18 +944,46 @@ def main() -> int:
                     'Red Hat CSAF-VEX; export OpenVEX.')
     sub = parser.add_subparsers(dest='command')
 
-    sub.add_parser('rhacs', add_help=False,
-                   help="RHACS-backed triage")
-    for name in ('pipeline', 'operators', 'retriage', 'parquet'):
+    prh = sub.add_parser('rhacs', help='RHACS findings → engine triage')
+    prh.add_argument('target', nargs='?', default=None,
+                     help='image ref, or a RHACS scan CSV export')
+    prh.add_argument('--image', default=None,
+                     help='workload image for a CSV target (context for scoping)')
+    prh.add_argument('--namespace', default=None, help='every image deployed in a namespace')
+    prh.add_argument('--ocp', default=None, metavar='PULLSPECS',
+                     help='every image of an OCP release (`oc adm release info --pullspecs`)')
+    prh.add_argument('--offline', action='store_true', default=False,
+                     help='cached RHACS scans only — no Central')
+    prh.add_argument('--output', default=None)
+    prh.add_argument('--format', default='csv', choices=['table', 'csv', 'json'])
+    prh.add_argument('--false-only', action='store_true', default=False)
+    prh.add_argument('--all-rows', action='store_true', default=False,
+                     help='show false positives in the table too')
+    prh.add_argument('--force', action='store_true', default=False,
+                     help='re-scan, ignoring the local scan cache')
+    prh.add_argument('--workers', type=int, default=10)
+    _add_index_args(prh, default=False)
+
+    pop = sub.add_parser('operators', add_help=False,
+                         help='triage every operator channel head (see --help)')
+    prt = sub.add_parser('retriage', help='refresh stored verdicts from cached scans '
+                                          '(no Central, no registry)')
+    prt.add_argument('--version', default=None,
+                     help='OCP version(s), comma-separated (default: all pullspecs)')
+    prt.add_argument('--ocp-only', action='store_true', default=False)
+    prt.add_argument('--operators-only', action='store_true', default=False)
+    prt.add_argument('--workers', type=int, default=10)
+    for name in ('pipeline', 'parquet'):
         sub.add_parser(name, add_help=False, help=f'passthrough to rhacs_vex.{name}')
+    del pop
 
     for scanner in ('grype', 'trivy'):
         _add_scanner_args(sub.add_parser(
             scanner, help=f'{scanner} scan → engine triage (+ optional OpenVEX)'))
 
     pg = sub.add_parser('generate',
-                        help='scan images (syft+grype → engine triage) and '
-                             'populate the OpenVEX hub')
+                        help='many images → OpenVEX hub (syft SBOM + Red Hat '
+                             'VEX + OSV; grype optional)')
     pg.add_argument('--images', default=None, metavar='FILE',
                     help='file with digest-pinned image refs (pullspec files work)')
     pg.add_argument('--image', default=None, help='single digest-pinned image ref')
@@ -1084,12 +1139,18 @@ def main() -> int:
     ph.add_argument('--archive', action='store_true', default=False)
 
     argv = sys.argv[1:]
-    if argv and argv[0] in ('rhacs', 'pipeline', 'operators', 'retriage', 'parquet'):
-        return _passthrough(argv[0], 'triage' if argv[0] == 'rhacs' else argv[0],
-                            argv[1:])
+    if argv and argv[0] == 'operators':
+        from . import operators
+        return operators.main(argv[1:])
+    if argv and argv[0] in ('pipeline', 'parquet'):
+        return _passthrough(argv[0], argv[0], argv[1:])
 
     args = parser.parse_args(argv)
     _apply_sync_policy(args)
+    if args.command == 'rhacs':
+        return _rhacs_cmd(args)
+    if args.command == 'retriage':
+        return _retriage_cmd(args)
     if args.command in ('grype', 'trivy'):
         return _scanner_cmd(args.command, args)
     if args.command == 'generate':

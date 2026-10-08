@@ -40,12 +40,6 @@ import requests
 
 ADVISORY_FEED = 'https://security.access.redhat.com/data/csaf/v2/advisories'
 
-# The column names triage.html maps, so one CSV feeds both paths.
-COLUMNS = {'cluster': 'Cluster', 'namespace': 'Namespace', 'deployment': 'Deployment',
-           'image': 'Image', 'component': 'Component', 'cve': 'CVE',
-           'fixable': 'Fixable', 'fixed_in': 'CVE Fixed In', 'severity': 'Severity',
-           'cvss': 'CVSS', 'advisory': 'Advisory Name', 'link': 'Advisory Link'}
-
 _ERRATUM = re.compile(r'^(RH[SBE]A)-(\d{4}):(\d+)$', re.I)
 
 
@@ -113,16 +107,12 @@ def expand_errata(df: pd.DataFrame, workers: int = 8, progress=None) -> pd.DataF
     return pd.DataFrame(rows).fillna('')
 
 
-def _sbom_index(sbom_path: str) -> dict:
-    """{package name: (version, source, location)} from a syft SBOM."""
-    try:
-        doc = json.load(open(sbom_path))
-    except Exception:
-        return {}
+def _sbom_index(artifacts) -> dict:
+    """{package name: (version, source, location)} from syft artifacts."""
     kind = {'rpm': ('OS', 'var/lib/rpm'), 'go-module': ('GO', ''),
             'python': ('PYTHON', ''), 'npm': ('NODEJS', ''), 'java-archive': ('JAVA', '')}
     out = {}
-    for art in doc.get('artifacts') or []:
+    for art in artifacts:
         name, ver = art.get('name'), art.get('version')
         if not (name and ver) or name in out:
             continue
@@ -139,15 +129,17 @@ def image_facts(image_ref: str, platform: str = 'linux/amd64') -> dict:
     still has report rows, they just carry no installed version.
     """
     from .adapters import grype as adapter
+    from .sbom import SyftSBOM
     facts = {'ref': image_ref, 'packages': {}, 'labels': {}, 'digests': [], 'error': ''}
     try:
-        sbom = adapter.syft_sbom(image_ref, platform=platform)
+        path = adapter.syft_sbom(image_ref, platform=platform)
     except Exception as e:
         facts['error'] = f'{type(e).__name__}: {str(e)[:120]}'
         return facts
-    facts['packages'] = _sbom_index(sbom)
-    facts['labels'] = adapter.sbom_labels(sbom) or {}
-    facts['digests'] = adapter.sbom_digests(sbom) or []
+    sbom = SyftSBOM.load(path)
+    facts['packages'] = _sbom_index(sbom.artifacts if sbom else [])
+    facts['labels'] = sbom.labels if sbom else {}
+    facts['digests'] = sbom.digests if sbom else []
     return facts
 
 
@@ -280,7 +272,9 @@ def rescan_rows(image_ref: str, report_rows, platform: str = 'linux/amd64',
     from .adapters import grype as adapter
     sbom = adapter.syft_sbom(image_ref, platform=platform)
     df = adapter.to_df(adapter.grype_scan(sbom))
-    labels = adapter.sbom_labels(sbom) or {}
+    from .sbom import SyftSBOM
+    syft = SyftSBOM.load(sbom)
+    labels = (syft.labels if syft else {}) or {}
     if index:
         df, _added = scanfree.merge_index_candidates(df, index, image_ref=image_ref,
                                                      labels=labels)
@@ -293,7 +287,7 @@ def rescan_rows(image_ref: str, report_rows, platform: str = 'linux/amd64',
     df['NAMESPACE'] = ', '.join(sorted({n for _c, n, _d in spots if n}))
     df['DEPLOYMENT'] = ', '.join(sorted({d for _c, _n, d in spots if d}))
     df['IMAGE'] = image_ref
-    return df, labels, adapter.sbom_digests(sbom) or [], sbom
+    return df, labels, (syft.digests if syft else []), sbom
 
 
 def redhat_build(labels: dict) -> bool:
@@ -352,7 +346,7 @@ def image_job(image_ref: str, report_rows, platform: str = 'linux/amd64',
     nothing from threads while multiplying the resident VEX set by the worker
     count, which is why the two phases are split.
     """
-    from .context import context_for_image
+    from .core.workload import context_for_image
     error = ''
     if rescan:
         try:
@@ -378,16 +372,6 @@ def image_job(image_ref: str, report_rows, platform: str = 'linux/amd64',
             'versioned': versioned, 'ctx': ctx, 'df': uniq,
             'placement': placement, 'reported': len(df),
             'redhat': redhat, 'component': comp, 'version': ver, 'release': rel}
-
-
-def triage_image(image_ref: str, report_rows, platform: str = 'linux/amd64',
-                 rescan: bool = False, index: dict = None) -> dict:
-    """Engine verdicts for one image, from the report's rows or from a fresh scan."""
-    from .triage import audit_batch
-    job = image_job(image_ref, report_rows, platform, rescan, index)
-    result = audit_batch([job], vex_product=False)[0]
-    return {k: v for k, v in job.items() if k not in ('ctx', 'df', 'placement')} | \
-           {'rows': expand_verdicts(result, job['placement'])}
 
 
 def triage_report(csv_path: str, *, workers: int = 4, platform: str = 'linux/amd64',
@@ -468,7 +452,7 @@ def triage_report(csv_path: str, *, workers: int = 4, platform: str = 'linux/amd
         console.print(f"   {audited:,} distinct finding(s) to audit"
                       + (f" ({reported:,} report rows, {reported / audited:.1f}× repeats "
                          f"across workloads)" if audited and reported > audited else ''))
-    from .triage import audit_batch
+    from .audit import audit as audit_batch
     tick = (lambda n, total: console.print(f"   [{n}/{total}] CVEs audited", end='\r')
             if console and (n % 50 == 0 or n == total) else None)
     verdicts = audit_batch(jobs, vex_product=False, progress=tick)

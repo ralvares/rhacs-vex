@@ -6,13 +6,11 @@ Usage (run from the repository root):
     python3 -m rhacs_vex.parquet                   # all CSVs → per-version parquets
     python3 -m rhacs_vex.parquet --version 4.21.15 # single version only
     python3 -m rhacs_vex.parquet --manifest-only   # regenerate manifest.json from existing parquets
-    python3 -m rhacs_vex.parquet --legacy          # also build combined data/ocp.parquet (backwards compat)
 
 Output:
     data/parquet/ocp/<version>.parquet   — one per OCP release
     data/parquet/cve-index.parquet       — lightweight CVE × version index
     data/manifest.json                   — summary stats per scope
-    data/ocp.parquet                     — (legacy, only with --legacy)
 """
 
 import argparse
@@ -40,7 +38,6 @@ OPS_REPORTS_DIR = os.path.join(REPORTS_DIR, "operators")
 OPS_INDEX       = os.path.join(REPORTS_DIR, "operators_index.json")
 MANIFEST    = os.path.join(BASE_DIR, "data", "manifest.json")
 CVE_INDEX   = os.path.join(PARQUET_DIR, "cve-index.parquet")
-LEGACY_OUT  = os.path.join(BASE_DIR, "data", "ocp.parquet")
 
 COMPRESSION      = "zstd"
 COMPRESSION_LEVEL = 22
@@ -523,41 +520,11 @@ def build_manifest(scopes, prune_operators=False):
     print(f"  Manifest: {len(manifest['scopes'])} scopes → {MANIFEST}")
 
 
-def build_legacy(scopes):
-    """Build combined data/ocp.parquet for backwards compatibility."""
-    parquets = sorted(glob.glob(os.path.join(OCP_DIR, "*.parquet")))
-    if not parquets:
-        return
-
-    frames = []
-    for pf in parquets:
-        try:
-            frames.append(pd.read_parquet(pf))
-        except Exception as e:
-            print(f"  SKIP {os.path.basename(pf)} for legacy: {e}")
-
-    if not frames:
-        return
-
-    combined = pd.concat(frames, ignore_index=True)
-    table = pa.Table.from_pandas(combined, preserve_index=False)
-    pq.write_table(table, LEGACY_OUT,
-                    compression=COMPRESSION,
-                    compression_level=COMPRESSION_LEVEL,
-                    use_dictionary=True,
-                    write_statistics=True)
-
-    size_mb = os.path.getsize(LEGACY_OUT) / 1024 / 1024
-    print(f"  Legacy: {len(combined):,} rows, {size_mb:.1f} MB → {LEGACY_OUT}")
-
-
 def main():
     parser = argparse.ArgumentParser(description="Build per-version parquet files")
     parser.add_argument("--version", help="Build only this OCP version (e.g., 4.21.15)")
     parser.add_argument("--manifest-only", action="store_true",
                         help="Only regenerate manifest.json from existing parquets")
-    parser.add_argument("--legacy", action="store_true",
-                        help="Also build combined data/ocp.parquet")
     args = parser.parse_args()
 
     t0 = time.time()
@@ -697,10 +664,6 @@ def main():
         # old per-version layout (their per-version parquets are gone now).
         build_manifest(scopes, prune_operators=True)
         build_cve_index()
-
-        if args.legacy:
-            print("\n=== Building legacy combined parquet ===")
-            build_legacy(scopes)
 
     elapsed = time.time() - t0
     print(f"\nDone in {elapsed:.1f}s")

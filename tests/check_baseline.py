@@ -5,8 +5,9 @@ import sys, json, os
 # package imports even without `pip install -e .`.
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src'))
 import pandas as pd
-from rhacs_vex.triage import (audit_row_detailed, WorkloadContext, parse_context_from_labels,
-                              rhacs_to_df, ensure_mirror)
+from rhacs_vex.adapters.rhacs import scan_to_df as rhacs_to_df
+from rhacs_vex.engine import audit_row_detailed, WorkloadContext, parse_context_from_labels
+from rhacs_vex.mirror import ensure_mirror
 
 with open('data/baseline.json') as f:
     baseline = json.load(f)

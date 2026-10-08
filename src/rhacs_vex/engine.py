@@ -15,16 +15,10 @@ from __future__ import annotations
 
 from typing import Optional
 
-from .core.decide import (FP, POS, SEVERITY_FROM_SCANNER as _RHACS_SEVERITY_MAP,  # noqa: F401
-                          UNSTATED_KINDS, triage, vex_product)
-from .core.store import BASE_DIR, VEX_DIR, load_vex as _load_vex, read_vex as _read_vex  # noqa: F401
-from .core.vexdoc import NOT_AFFECTED_FLAGS as _NOT_AFFECTED_FLAGS                # noqa: F401
-from .core.versions import align_epochs as _normalize_epoch                        # noqa: F401
-from .core.versions import evr_compare as compare_versions                         # noqa: F401
-from .core.workload import (WorkloadContext, context_for_image,                    # noqa: F401
+from .core.decide import triage, vex_product
+from .core.store import load_vex as _load_vex      # module-level so tests can patch it
+from .core.workload import (WorkloadContext, context_for_image,  # noqa: F401  (re-exports)
                             parse_context_from_labels, parse_image_ref)
-from .sbom import (rpm_file_owners_from_sbom, rpm_source_map_from_sbom,            # noqa: F401
-                   wire_rpm_owners)
 
 
 def audit_row_with_doc(row, ctx: WorkloadContext, data: Optional[dict]) -> list:

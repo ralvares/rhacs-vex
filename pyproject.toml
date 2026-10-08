@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vextriage"
-description = "Scan images with RHACS, grype or trivy; triage against authoritative Red Hat CSAF-VEX data; export the verdicts as OpenVEX / a VEX repository (vexhub)."
+description = "Triage scanner findings against Red Hat CSAF-VEX and publish Red Hat's verdicts as OpenVEX (syft SBOM + Red Hat VEX, no scanner required)."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
@@ -21,9 +21,7 @@ dependencies = [
     "pandas",
     "pyarrow",
     "requests",
-    "requests-cache",
     "rich",
-    "lib4sbom",
     "packaging",
 ]
 
@@ -31,13 +29,7 @@ dependencies = [
 Homepage = "https://triage-explorer.ralvares.com"
 
 [project.scripts]
-vextriage           = "rhacs_vex.cli:main"
-# Compatibility aliases — the historical rhacs-vex entry points keep working.
-rhacs-vex           = "rhacs_vex.triage:main"
-rhacs-vex-pipeline  = "rhacs_vex.pipeline:main"
-rhacs-vex-operators = "rhacs_vex.operators:main"
-rhacs-vex-retriage  = "rhacs_vex.retriage:main"
-rhacs-vex-parquet   = "rhacs_vex.parquet:main"
+vextriage = "rhacs_vex.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

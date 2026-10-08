@@ -14,7 +14,8 @@ import subprocess
 
 import pandas as pd
 
-SYFT_DIR = os.path.join('data', 'syft')
+from ..sbom import srpm_from_purl, syft_path
+
 
 # grype artifact type → the SOURCE vocabulary the engine already knows from
 # RHACS scans (GO/OS/PYTHON/...).  Unknown types stay unmapped and their rows
@@ -58,8 +59,8 @@ def _run(cmd: list, what: str) -> subprocess.CompletedProcess:
 def syft_sbom(image_ref: str, *, platform: str = 'linux/amd64',
               force: bool = False) -> str:
     """Generate (or reuse) the syft-json SBOM for an image ref; returns path."""
-    os.makedirs(SYFT_DIR, exist_ok=True)
-    path = os.path.join(SYFT_DIR, image_ref.replace('/', '_') + '.json')
+    path = syft_path(image_ref)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     if not force and os.path.exists(path) and os.path.getsize(path) > 0:
         return path
     _run(['syft', f'registry:{image_ref}', '--platform', platform,
@@ -137,34 +138,6 @@ def grype_scan(target: str) -> dict:
     return doc
 
 
-def rpm_file_owners(sbom_path: str) -> dict:
-    """path → ('rpm name', 'version-release') for every rpm-owned file.
-
-    Bridges the identity gap for go binaries shipped inside rpms: the scanner
-    reports the golang module (pkg:golang/golang.org/x/net@…), while Red Hat
-    assesses the VENDORING rpm (rhel9:buildah).  File ownership from the SBOM
-    is the structural link between the two.
-    """
-    try:
-        with open(sbom_path) as fh:
-            doc = json.load(fh)
-    except Exception:
-        return {}
-    owners = {}
-    for a in doc.get('artifacts', []):
-        if a.get('type') != 'rpm':
-            continue
-        name = a.get('name', '')
-        ver = re.sub(r'^\d+:', '', str(a.get('version', '')))
-        if not name or not ver:
-            continue
-        for f in (a.get('metadata') or {}).get('files') or []:
-            path = f.get('path') if isinstance(f, dict) else str(f)
-            if path:
-                owners[path] = (name, ver)
-    return owners
-
-
 def fallback_platform(image_ref: str) -> str:
     """First linux platform in the image's manifest index, '' if none.
 
@@ -185,37 +158,6 @@ def fallback_platform(image_ref: str) -> str:
     return ''
 
 
-def sbom_labels(sbom_path: str) -> dict:
-    """Image labels recorded in the syft-json SBOM (source.metadata.labels).
-
-    Saves a skopeo inspect per image — the SBOM already carries the OCI config.
-    {} when absent (e.g. scratch images), letting callers fall back.
-    """
-    try:
-        with open(sbom_path) as fh:
-            doc = json.load(fh)
-        return (doc.get('source', {}).get('metadata') or {}).get('labels') or {}
-    except Exception:
-        return {}
-
-
-def sbom_digests(sbom_path: str) -> list:
-    """sha256 identities of the scanned build from the syft-json SBOM.
-
-    manifestDigest is the PLATFORM manifest digest — the identity Red Hat VEX
-    product ids carry (per-arch), unlike the multi-arch list digest in the
-    pull ref.  repoDigests included for completeness.
-    """
-    try:
-        with open(sbom_path) as fh:
-            md = json.load(fh).get('source', {}).get('metadata') or {}
-        out = [md.get('manifestDigest') or '']
-        out += list(md.get('repoDigests') or [])
-        return [d for d in out if d]
-    except Exception:
-        return []
-
-
 def to_df(grype_doc: dict) -> pd.DataFrame:
     """Flatten grype matches into the triage DataFrame shape (rhacs_to_df)."""
     rows, seen = [], set()
@@ -233,10 +175,7 @@ def to_df(grype_doc: dict) -> pd.DataFrame:
         fix = (vuln.get('fix') or {}).get('versions') or []
         # source-rpm name from the purl's upstream qualifier — Red Hat verdicts
         # are per source package, so the emitter extends rpm statements to it.
-        srpm = ''
-        m_up = re.search(r'upstream=([^&]+?)-[^-]+-[^-]+\.src\.rpm', art.get('purl', ''))
-        if m_up:
-            srpm = m_up.group(1)
+        srpm = srpm_from_purl(art.get('purl', ''))
         rows.append({
             'COMPONENT':     cname,
             'VERSION':       cver,
@@ -250,6 +189,7 @@ def to_df(grype_doc: dict) -> pd.DataFrame:
             'ADVISORY':      '',
             'ADVISORY_LINK': '',
             'SRPM':          srpm,
+            'PURL':          art.get('purl', ''),
         })
     return pd.DataFrame(rows) if rows else pd.DataFrame(
         columns=['COMPONENT', 'VERSION', 'CVE', 'SEVERITY', 'CVSS', 'LINK',
@@ -260,17 +200,3 @@ def os_hint(grype_doc: dict) -> str:
     """Distro string from the grype document (refines ctx.rhel_ver)."""
     d = grype_doc.get('distro') or {}
     return f"{d.get('name', '')}:{d.get('version', '')}"
-
-
-def sbom_package_versions(sbom_path: str) -> dict:
-    """{package name: {versions}} from a syft SBOM, for version verification."""
-    try:
-        doc = json.load(open(sbom_path))
-    except Exception:
-        return {}
-    out: dict = {}
-    for art in doc.get('artifacts') or []:
-        name, ver = art.get('name'), art.get('version')
-        if name and ver:
-            out.setdefault(name, set()).add(str(ver))
-    return out

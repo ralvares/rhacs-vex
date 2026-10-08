@@ -24,7 +24,7 @@ sys.path.insert(0, ROOT)
 from tests.legacy import engine_legacy as old   # noqa: E402
 from rhacs_vex import engine as new             # noqa: E402
 from rhacs_vex.core.store import read_vex      # noqa: E402
-from rhacs_vex.triage import rhacs_to_df as scan_to_df  # noqa: E402
+from rhacs_vex.adapters.rhacs import scan_to_df          # noqa: E402
 
 
 def contexts(scan: dict, ref: str):

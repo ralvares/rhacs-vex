@@ -35,7 +35,7 @@ from urllib.parse import unquote
 
 import pandas as pd
 
-from .engine import BASE_DIR, VEX_DIR
+from .core.store import BASE_DIR, VEX_DIR
 
 INDEX_PATH = os.path.join(BASE_DIR, 'vex-index.json.gz')
 

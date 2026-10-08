@@ -243,7 +243,7 @@ check('F6 minor streams of base RHEL remain comparable',
 
 print('\n=== G. evidence labels must reflect RED HAT\'s view, not the engine\'s ===')
 
-from rhacs_vex.triage import _evidence_of                    # noqa: E402
+from rhacs_vex.audit import evidence_of as _evidence_of      # noqa: E402
 from rhacs_vex.core import decide as _decide                  # noqa: E402
 import inspect                                                # noqa: E402
 

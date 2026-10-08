@@ -9,11 +9,11 @@ Stages (all enabled by default; each has a --skip-* flag):
   1. Render OLM operator index catalogs via opm (one per unique minor version).
   2. Build the namespace→VEX prefix map      (python -m rhacs_vex.ns_map).
   3. Fetch OCP release pullspecs via `oc adm release info` for each full version.
-  4. Triage each OCP release                 (python -m rhacs_vex.triage --ocp).
-  5. Triage all operators                     (python -m rhacs_vex.operators).
+  4. Triage each OCP release                 (vextriage rhacs --ocp).
+  5. Triage all operators                     (vextriage operators).
   6. (--refresh-operator-verdicts) offline operator verdict refresh.
-  7. Generate the OpenVEX hub from syft+grype scans (vextriage generate) for
-     every OCP release and all channel-head operators — independent of RHACS.
+  7. Generate the OpenVEX hub from syft SBOMs (vextriage generate) for every
+     OCP release and all channel-head operators — independent of RHACS.
 
 Requires:
   ROX_ENDPOINT   — RHACS Central hostname:port
@@ -26,9 +26,6 @@ Usage examples:
   # Only download catalogs, skip scanning
   vextriage pipeline --pull-secret ~/pullsecret.txt --skip-ocp --skip-operators
 
-  # Resume after an interruption, skip already-done items
-  vextriage pipeline --pull-secret ~/pullsecret.txt --skip-existing
-
   # Supply a custom versions CSV
   vextriage pipeline --pull-secret ~/pullsecret.txt --versions my_versions.csv
 
@@ -39,7 +36,6 @@ import argparse
 import csv
 import io
 import os
-import re
 import shutil
 import subprocess
 import sys
@@ -111,16 +107,14 @@ PULLSPEC_DIR = os.path.join("data", "pullspecs")
 # Triage modules run as subprocesses (`python -m ...`) for process isolation and
 # stdout redirection.  RHACS Central API backend (needs ROX_ENDPOINT /
 # ROX_API_TOKEN); OCP-release triage and operator triage respectively.
-OCP_TRIAGE_MODULE      = "rhacs_vex.triage"
-OPERATOR_TRIAGE_MODULE = "rhacs_vex.operators"
+VEXTRIAGE = [sys.executable, "-m", "rhacs_vex.cli"]
 
 
 def log(msg: str):
     print(f"[vextriage pipeline] {msg}", flush=True)
 
 
-def run(cmd: list[str], *, env: dict | None = None, capture_stdout: bool = False,
-        output_file: str | None = None) -> int:
+def run(cmd: list[str], *, env: dict | None = None, output_file: str | None = None) -> int:
     """Run a subprocess.  Optionally redirect stdout to *output_file*."""
     display = " ".join(cmd)
     log(f"$ {display}" + (f"  > {output_file}" if output_file else ""))
@@ -131,8 +125,6 @@ def run(cmd: list[str], *, env: dict | None = None, capture_stdout: bool = False
         os.makedirs(os.path.dirname(output_file) or ".", exist_ok=True)
         with open(output_file, "w") as fh:
             proc = subprocess.run(cmd, env=merged_env, stdout=fh, stderr=None)
-    elif capture_stdout:
-        proc = subprocess.run(cmd, env=merged_env, capture_output=True, text=True)
     else:
         proc = subprocess.run(cmd, env=merged_env)
 
@@ -213,7 +205,7 @@ def _age_days(path: str) -> float:
 
 
 def stage_catalogs(minor_versions: list[str], pull_secret: str,
-                   opm_bin: str, skip_existing: bool, max_age_days: int = 7):
+                   opm_bin: str, max_age_days: int = 7):
     log("=== STAGE 1: Render operator index catalogs ===")
     os.makedirs(CATALOG_DIR, exist_ok=True)
 
@@ -271,7 +263,7 @@ def stage_ns_map():
 # ---------------------------------------------------------------------------
 
 def stage_ocp_pullspecs(versions: list[str], pull_secret: str, oc_bin: str,
-                         arch: str, skip_existing: bool) -> list[str]:
+                         arch: str) -> list[str]:
     """
     Fetch release pullspecs for each version and return a list of txt paths
     that were successfully created.
@@ -309,7 +301,7 @@ def stage_ocp_pullspecs(versions: list[str], pull_secret: str, oc_bin: str,
 # ---------------------------------------------------------------------------
 
 def stage_ocp_triage(pullspec_files: list[str], workers: int,
-                     skip_existing: bool, false_only: bool,
+                     false_only: bool,
                      max_report_age: int = 7):
     log("=== STAGE 4: Triage OCP releases (rhacs) ===")
     os.makedirs(REPORTS_DIR, exist_ok=True)
@@ -345,50 +337,33 @@ def stage_ocp_triage(pullspec_files: list[str], workers: int,
                 log(f"  SKIP  {out} (already exists)")
                 continue
 
-        cmd = [
-            sys.executable, "-m", OCP_TRIAGE_MODULE,
-            "--ocp", txt,
-            "--format", "csv",
-            "--output", out,
-            "--workers", str(workers),
-        ]
+        cmd = VEXTRIAGE + ["rhacs", "--ocp", txt, "--format", "csv", "--output", out,
+                           "--workers", str(workers)]
         if false_only:
             cmd.append("--false-only")
 
         rc = run(cmd)
         if rc != 0:
-            log(f"  WARNING: {OCP_TRIAGE_MODULE} exited non-zero for {ver} (rc={rc})")
-
-
-# ---------------------------------------------------------------------------
-# Stage 5a — operator report prefill: REMOVED
-# ---------------------------------------------------------------------------
-# Operator reports are now stored flat (data/reports/operators/, one CSV per
-# unique bundle) with the minor→bundle association in operators_index.json, so
-# the old cross-version prefill/copy is obsolete — deduplication is structural.
+            log(f"  WARNING: rhacs triage exited non-zero for {ver} (rc={rc})")
 
 
 # ---------------------------------------------------------------------------
 # Stage 5 — operator triage
 # ---------------------------------------------------------------------------
 
-def stage_operator_triage(minor_versions: list[str], workers: int,
-                           skip_existing: bool, false_only: bool):
+def stage_operator_triage(minor_versions: list[str], workers: int, false_only: bool):
+    """A bundle version's images never change, so existing reports are kept;
+    their verdicts are refreshed offline by stage 6 (vextriage retriage)."""
     log("=== STAGE 5: Triage operators (rhacs) ===")
 
-    cmd = [
-        sys.executable, "-m", OPERATOR_TRIAGE_MODULE,
-        "--version", ",".join(minor_versions),
-        "--workers", str(workers),
-    ]
-    if skip_existing:
-        cmd.append("--skip-existing")
+    cmd = VEXTRIAGE + ["operators", "--version", ",".join(minor_versions),
+                       "--workers", str(workers), "--skip-existing"]
     if false_only:
         cmd.append("--false-only")
 
     rc = run(cmd)
     if rc != 0:
-        log(f"WARNING: {OPERATOR_TRIAGE_MODULE} exited non-zero")
+        log("WARNING: operator triage exited non-zero")
 
 
 # ---------------------------------------------------------------------------
@@ -407,13 +382,11 @@ def stage_openvex(pullspec_files: list[str], workers: int):
     log("=== STAGE 7: OpenVEX hub generation (syft+grype) ===")
     for txt in pullspec_files:
         ver = os.path.splitext(os.path.basename(txt))[0]
-        rc = run([sys.executable, "-m", "rhacs_vex.cli", "generate",
-                  "--ocp", ver, "--workers", str(workers), "--resume"])
+        rc = run(VEXTRIAGE + ["generate", "--ocp", ver, "--workers", str(workers), "--resume"])
         if rc != 0:
             log(f"  WARNING: openvex generate exited non-zero for {ver} (rc={rc})")
 
-    rc = run([sys.executable, "-m", "rhacs_vex.cli", "generate",
-              "--operators", "--workers", str(workers), "--resume"])
+    rc = run(VEXTRIAGE + ["generate", "--operators", "--workers", str(workers), "--resume"])
     if rc != 0:
         log("  WARNING: openvex generate --operators exited non-zero")
 
@@ -463,11 +436,6 @@ def parse_args() -> argparse.Namespace:
         help="Only include FALSE POSITIVE findings in output CSVs.",
     )
     parser.add_argument(
-        "--skip-existing", action="store_true", default=False,
-        help="Skip catalogs / pullspec files / reports that already exist on disk. "
-             "Useful for resuming an interrupted run.",
-    )
-    parser.add_argument(
         "--max-report-age", type=int, default=7, metavar="DAYS",
         help="Re-audit OCP report CSVs older than this many days so verdicts track "
              "current VEX data (0 = never). Re-runs use the permanent digest-pinned "
@@ -481,7 +449,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--refresh-operator-verdicts", action="store_true", default=False,
         help="After Stage 5, re-audit all operator report verdicts offline from "
-             "cached scans (python -m rhacs_vex.retriage) — CPU only, zero Central load.",
+             "cached scans (vextriage retriage) — CPU only, zero Central load.",
     )
 
     # Stage skip flags
@@ -507,7 +475,7 @@ def main():
     args = parse_args()
 
     # ── VEX mirror, before any scanning stage forks or threads ──────────────
-    from .triage import ensure_mirror
+    from .mirror import ensure_mirror
     ensure_mirror()
 
     # ── Validate pull-secret ────────────────────────────────────────────────
@@ -546,7 +514,7 @@ def main():
     # ── Stage 1: operator catalogs ──────────────────────────────────────────
     if not args.skip_catalogs:
         stage_catalogs(minor_versions_ordered, pull_secret, args.opm,
-                       args.skip_existing, max_age_days=args.max_catalog_age)
+                       max_age_days=args.max_catalog_age)
     else:
         log("=== STAGE 1: SKIPPED (--skip-catalogs) ===")
 
@@ -562,20 +530,17 @@ def main():
     pullspec_files: list[str] = []
     if not args.skip_ocp or not args.skip_openvex:
         pullspec_files = stage_ocp_pullspecs(
-            versions, pull_secret, args.oc, args.arch, args.skip_existing
+            versions, pull_secret, args.oc, args.arch
         )
     if not args.skip_ocp:
-        stage_ocp_triage(pullspec_files, args.workers, args.skip_existing,
+        stage_ocp_triage(pullspec_files, args.workers,
                          args.false_only, max_report_age=args.max_report_age)
     else:
         log("=== STAGE 4: SKIPPED (--skip-ocp) ===")
 
     # ── Stage 5: operator triage ─────────────────────────────────────────────
     if not args.skip_operators:
-        log("=== STAGE 5a: Prefill no longer needed (flat operator storage) ===")
-        stage_operator_triage(
-            minor_versions_ordered, args.workers, True, args.false_only
-        )
+        stage_operator_triage(minor_versions_ordered, args.workers, args.false_only)
     else:
         log("=== STAGE 5: SKIPPED (--skip-operators) ===")
 
@@ -585,13 +550,12 @@ def main():
     # retriage recomputes them from cached scans with zero RHACS/network load.
     if args.refresh_operator_verdicts and not args.skip_operators:
         log("=== STAGE 6: Offline operator verdict refresh (no Central load) ===")
-        run([sys.executable, "-m", "rhacs_vex.retriage",
-             "--operators-only",
+        run(VEXTRIAGE + ["retriage", "--operators-only",
              "--version", ",".join(minor_versions_ordered),
              "--workers", str(args.workers)])
     elif not args.skip_operators:
         log("HINT: operator verdicts age as VEX updates — refresh offline anytime with:")
-        log(f"      python3 -m rhacs_vex.retriage --operators-only --version {','.join(minor_versions_ordered)}")
+        log(f"      vextriage retriage --operators-only --version {','.join(minor_versions_ordered)}")
 
     # ── Stage 7: OpenVEX hub generation ─────────────────────────────────────
     if not args.skip_openvex:

@@ -20,7 +20,10 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src'))
 import pandas as pd
 
-from rhacs_vex import openvex, triage
+from rhacs_vex import mirror, openvex
+from rhacs_vex.adapters.rhacs import scan_to_df
+from rhacs_vex.audit import audit_frame
+from rhacs_vex.engine import audit_row_detailed, parse_context_from_labels
 
 WT_SCAN = ('data/scans/registry.redhat.io_web-terminal_web-terminal-tooling-rhel9'
            '@sha256:d2f32f9d478bbf8f140b7ccbbdb113ddc1c58ccb755ae4dd8dfe7d4d04bbc649.json')
@@ -48,7 +51,7 @@ def skip(name, why):
 def vex(cve):
     path = f'data/vex/{cve}.json'
     if not os.path.exists(path):
-        triage.download_and_convert_with_lib(cve)
+        mirror.fetch(cve)
     return json.load(open(path)) if os.path.exists(path) else None
 
 
@@ -62,8 +65,8 @@ def pids(doc, status):
 def load(scan_path, ref):
     scan = json.load(open(scan_path))
     labels = (scan.get('metadata') or {}).get('v1', {}).get('labels') or {}
-    ctx = triage.parse_context_from_labels(labels, ref)
-    return triage.rhacs_to_df(scan), ctx
+    ctx = parse_context_from_labels(labels, ref)
+    return scan_to_df(scan), ctx
 
 
 def rows_for(res, cve, comp):
@@ -73,11 +76,11 @@ def rows_for(res, cve, comp):
 print('=== auditing both scans (operator + ocp workloads) ===')
 wt_df, wt_ctx = load(WT_SCAN, WT_REF)
 check('web-terminal context is operator workload', wt_ctx.workload_type == 'operator')
-wt = triage._audit_silent(wt_df, wt_ctx)
+wt = audit_frame(wt_df, wt_ctx)
 
 cli_df, cli_ctx = load(CLI_SCAN, CLI_REF)
 check('ose-cli context is ocp workload', cli_ctx.workload_type == 'ocp')
-cli = triage._audit_silent(cli_df, cli_ctx)
+cli = audit_frame(cli_df, cli_ctx)
 
 # ══ A. RPM path ════════════════════════════════════════════════════════════
 
@@ -121,7 +124,7 @@ if fix_el98:
     # A3 — synthetic: installed == fix → FALSE POSITIVE, statement-backed
     row = pd.Series({'CVE': 'CVE-2026-5450', 'COMPONENT': 'glibc-minimal-langpack',
                      'VERSION': '2.34-272.el9_8', 'SOURCE': 'OS'})
-    a = triage.audit_row_detailed(row, wt_ctx)
+    a = audit_row_detailed(row, wt_ctx)
     check('A3 rpm fixed-compare pass (== fix) → FALSE POSITIVE, stated',
           '✅' in a.iloc[0] and a.iloc[5] is True,
           f'verdict={a.iloc[0]!r} stated={a.iloc[5]!r}')
