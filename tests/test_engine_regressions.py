@@ -547,6 +547,88 @@ _v5, _n5 = _verdict(_old, 'krb5-libs', '1.21.1-10.el9_8')
 check('J4 a RHEL 3 product does not decide a RHEL 9 build', '✅' in _v5, f'{_v5} {_n5}')
 
 
+print('=== K. RHCOS node images are separate builds ===')
+
+# Shape of CVE-2025-6032 (podman): Red Hat says `ose-rhel-coreos-8` is
+# known_affected / "Will not fix" under OCP 4, and fixes `rhcos` (the RHEL 9
+# node image, pkg:oci/rhcos@sha256… and pkg:generic/redhat/rhcos@4.20…) in the
+# 4.16 and 4.20 streams.
+_ocp4 = 'red_hat_openshift_container_platform_4'
+
+
+def _rhcos_doc():
+    branches = [
+        {'product': {'product_id': _ocp4, 'name': 'Red Hat OpenShift Container Platform 4',
+                     'product_identification_helper': {
+                         'cpe': 'cpe:/a:redhat:openshift:4'}}},
+        {'product': {'product_id': 'RHOSE-4.16', 'name': 'Red Hat OpenShift Container Platform 4.16',
+                     'product_identification_helper': {
+                         'cpe': 'cpe:/a:redhat:openshift:4.16::el9'}}},
+        {'product': {'product_id': 'RHOSE-4.20', 'name': 'Red Hat OpenShift Container Platform 4.20',
+                     'product_identification_helper': {
+                         'cpe': 'cpe:/a:redhat:openshift:4.20::el9'}}},
+        {'product': {'product_id': 'openshift/ose-rhel-coreos-8',
+                     'product_identification_helper': {'purl':
+                         'pkg:oci/ose-rhel-coreos-8?repository_url=registry.redhat.io/openshift/ose-rhel-coreos-8'}}},
+        {'product': {'product_id': 'rhcos@sha256:' + 'a' * 64 + '_x86_64',
+                     'product_identification_helper': {'purl':
+                         'pkg:oci/rhcos@sha256:' + 'a' * 64 + '?arch=x86_64&repository_url=registry.redhat.io/rhcos&tag=416.94.202507222002-0'}}},
+        {'product': {'product_id': 'rhcos-x86_64-4.20.9.6.202509251656-0',
+                     'product_identification_helper': {'purl':
+                         'pkg:generic/redhat/rhcos@4.20.9.6.202509251656?arch=x86_64'}}},
+    ]
+    rel = [('openshift/ose-rhel-coreos-8', _ocp4),
+           ('rhcos@sha256:' + 'a' * 64 + '_x86_64', 'RHOSE-4.16'),
+           ('rhcos-x86_64-4.20.9.6.202509251656-0', 'RHOSE-4.20')]
+    ka = f'{_ocp4}:openshift/ose-rhel-coreos-8'
+    return {
+        'product_tree': {'branches': branches, 'relationships': [
+            {'product_reference': c, 'relates_to_product_reference': p,
+             'full_product_name': {'product_id': f'{p}:{c}'}} for c, p in rel]},
+        'vulnerabilities': [{
+            'product_status': {'known_affected': [ka], 'fixed': [
+                'RHOSE-4.16:rhcos@sha256:' + 'a' * 64 + '_x86_64',
+                'RHOSE-4.20:rhcos-x86_64-4.20.9.6.202509251656-0']},
+            'remediations': [{'category': 'no_fix_planned', 'details': 'Will not fix',
+                              'product_ids': [ka]}]}],
+    }
+
+
+def _node(component, rhel, ocp):
+    _orig_load = engine._load_vex
+    engine._load_vex = lambda _c: _rhcos_doc()
+    try:
+        ctx = WorkloadContext(workload_type='ocp', ocp_ver=ocp, ocp_component=component,
+                              rhel_ver=rhel, display_name=f'OpenShift {ocp}')
+        r = audit_row_detailed(pd.Series({
+            'COMPONENT': 'github.com/containers/podman/v5', 'VERSION': 'v5.4.0',
+            'CVE': 'CVE-9999-0003', 'SOURCE': 'GO', 'LOCATION': 'usr/bin/podman',
+            'SEVERITY': 'IMPORTANT_VULNERABILITY_SEVERITY', 'FIXED_VERSION': ''}), ctx)
+        return r.iloc[0], r.iloc[2]
+    finally:
+        engine._load_vex = _orig_load
+
+
+_v, _n = _node('rhel-coreos-10', '10', '4.20')
+check('K1 a statement about rhel-coreos-8 / rhcos does not clear rhel-coreos-10',
+      '❌' in _v and 'coreos-8' not in _n and 'rhcos' not in _n, f'{_v} {_n}')
+_v, _n = _node('rhel-coreos', '9', '4.16')
+check('K2 rhcos@sha256 (an oci purl without a path) names rhel-coreos',
+      '✅' in _v and _n.startswith('Fixed'), f'{_v} {_n}')
+_v, _n = _node('rhel-coreos', '9', '4.20')
+check('K3 pkg:generic/redhat/rhcos names rhel-coreos', '✅' in _v, f'{_v} {_n}')
+_v, _n = _node('rhel-coreos', '9', '4.22')
+check('K4 a release past the image\'s newest fixed stream clears', '✅' in _v, f'{_v} {_n}')
+_v, _n = _node('rhel-coreos', '9', '4.14')
+check('K5 …one before the first fixed stream does not', '❌' in _v, f'{_v} {_n}')
+_v, _n = _node('rhel-coreos', '8', '4.12')
+check('K7 the default node image on RHEL 8 (OCP <= 4.12) is ose-rhel-coreos-8',
+      '❌' in _v and 'coreos-8' in _n, f'{_v} {_n}')
+_v, _n = _node('rhel-coreos-8', '8', '4.20')
+check('K6 "Will not fix" for the image is not reinterpreted by other streams\' fixes',
+      '❌' in _v and 'coreos-8' in _n, f'{_v} {_n}')
+
+
 print()
 if _failures:
     print(f'{len(_failures)} FAILED: {_failures}')

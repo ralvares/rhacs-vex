@@ -34,9 +34,11 @@ row_podman = pd.Series({
     'CVE': 'CVE-2025-6032', 'SEVERITY': 'IMPORTANT_VULNERABILITY_SEVERITY',
     'FIXED_VERSION': '5.5.2', 'SOURCE': 'GO', 'LOCATION': '',
 })
+# The default RHEL 9 node image (`rhcos` in the VEX).  rhel-coreos-8 / -10 are
+# other builds and are covered in test_engine_regressions.py.
 for ver in ["4.14", "4.16", "4.18", "4.20", "4.22"]:
-    ctx = WorkloadContext(workload_type="ocp", ocp_ver=ver, ocp_component="rhel-coreos-10",
-                          rhel_ver="10", display_name=f"OpenShift {ver}")
+    ctx = WorkloadContext(workload_type="ocp", ocp_ver=ver, ocp_component="rhel-coreos",
+                          rhel_ver="9", display_name=f"OpenShift {ver}")
     r = audit_row_detailed(row_podman, ctx)
     results[f"errata-{ver}"] = {"verdict": r.iloc[0], "fix": r.iloc[1], "severity": r.iloc[3]}
 

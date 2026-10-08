@@ -125,11 +125,27 @@ _GENERIC_ALIASES = {'rhcos': 'rhel-coreos'}
 
 
 def ocp_component_key(name: str) -> str:
-    """Normalise OCP manifest / VEX generic names: rhcos ↔ rhel-coreos-<N>."""
+    """Normalise OCP manifest / VEX generic names: rhcos ↔ rhel-coreos.
+
+    The numbered node images stay distinct: `rhel-coreos-8` and `rhel-coreos-10`
+    are separate builds on another RHEL major (other podman, other kernel), so a
+    statement about one says nothing about the other or about `rhel-coreos`.
+    """
     name = name.lower()
-    if name in _GENERIC_ALIASES:
-        return _GENERIC_ALIASES[name]
-    return re.sub(r'^(rhel-coreos)-\d+$', r'\1', name)
+    return _GENERIC_ALIASES.get(name, name)
+
+
+def same_ocp_component(ours: str, theirs: str, rhel: str = '') -> bool:
+    """Does a VEX image / generic name denote our OCP payload component?
+
+    RHCOS is named three ways: `rhel-coreos` in the release manifest, `rhcos`
+    in Red Hat's generic / oci purls, and `ose-rhel-coreos-<N>` for the image
+    of one RHEL major.  The unnumbered default node image is `rhel-coreos-<N>`
+    for its own RHEL major (9 on OCP 4.13+), never for another; a numbered
+    one (`rhel-coreos-10` beside the RHEL 9 default) is only itself.
+    """
+    a, b = ocp_component_key(ours), ocp_component_key(theirs)
+    return a == b or (a == 'rhel-coreos' and bool(rhel) and b == f'rhel-coreos-{rhel}')
 
 
 # ── builders ─────────────────────────────────────────────────────────────────

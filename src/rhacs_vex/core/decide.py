@@ -50,7 +50,7 @@ from . import versions as V
 from .scope import in_scope, is_rhel_base, mentions_rhel
 from .vexdoc import (CLEAR, OPEN, STATUSES, VexDocument, component_of, digest_of,
                      parent_of)
-from .workload import WorkloadContext, image_core, image_rhel, ocp_component_key
+from .workload import WorkloadContext, image_core, image_rhel, same_ocp_component
 
 FP = "✅ FALSE POSITIVE"
 POS = "❌ POSITIVE"
@@ -374,12 +374,11 @@ class _Triage:
             core = ctx.ocp_component or (image_core(ctx.image_name) if ctx.image_name else None)
             if not core:
                 return None
-            key = ocp_component_key(core)
-
             def names_us(pkg):
                 if pkg in matched:
                     return True
-                return image_core(pkg) == core if '/' in pkg else ocp_component_key(pkg) == key
+                return same_ocp_component(core, image_core(pkg) if '/' in pkg else pkg,
+                                          ctx.rhel_ver)
         elif ctx.workload_type == "operator":
             if not ctx.image_name:
                 return None
@@ -391,25 +390,36 @@ class _Triage:
 
         matches = []                      # (status, pid, rhel_quality, flag, own_digest)
         family = False
+        own_streams = set()               # OCP minors where Red Hat fixed THIS image
         for vuln in doc.vulns:
             flag_of = vuln.flag_label()
 
             def consider(st, pid, flag):
                 nonlocal family
-                if not self.scoped(pid):
-                    return
                 pkg, _ = doc.package(pid)
                 if not pkg:
                     return
                 is_path = '/' in pkg
-                generic = not is_path and doc.is_generic(pkg)
-                if not (is_path or generic):
+                # a bare image name with an oci purl (`rhcos@sha256:…`) is an
+                # image identity too, named without its digest
+                is_oci = not is_path and doc.purl.get(pkg, '').startswith('pkg:oci/')
+                generic = not (is_path or is_oci) and doc.is_generic(pkg)
+                if not (is_path or is_oci or generic):
+                    return
+                ours = names_us(_purl_name(doc.purl.get(pkg, '')) or pkg
+                                if (is_oci or generic) else pkg)
+                if not self.scoped(pid):
+                    # our image, fixed in another OCP stream: remembered for
+                    # the errata ordering below
+                    m = re.search(r'RHOSE[.-](\d+\.\d+)', pid)
+                    if ours and st == 'fixed' and m:
+                        own_streams.add(m.group(1))
                     return
                 if is_path:
                     family = True
-                if not names_us(pkg):
+                if not ours:
                     return
-                if generic:
+                if generic or is_oci:
                     family = True
                 prh = image_rhel(pkg)
                 quality = 2 if prh == ctx.rhel_ver else (1 if prh is None else 0)
@@ -429,8 +439,8 @@ class _Triage:
         not_listed = ('NOT_LISTED', '', '') if family else None
 
         if not matches:
-            if not family and ctx.workload_type == "ocp" and ctx.ocp_ver:
-                streams = doc.fixed_ocp_streams()
+            if ctx.workload_type == "ocp" and ctx.ocp_ver and (own_streams or not family):
+                streams = own_streams or doc.fixed_ocp_streams()
                 if streams:
                     cur = [int(x) for x in ctx.ocp_ver.split('.') if x.isdigit()]
                     newest = max(streams, key=_vkey)
@@ -454,8 +464,11 @@ class _Triage:
             st, pid = open_[0]
             # A generic known_affected (no RHOSE stream) covers all of OCP 4; a
             # release at or past the newest fixed stream is not a "previous
-            # version" under the errata policy (§5g).
-            if ctx.workload_type == "ocp" and ctx.ocp_ver and not any(
+            # version" under the errata policy (§5g).  Not when Red Hat says
+            # "Will not fix" for this image: no later stream carries a fix for
+            # it (ose-rhel-coreos-8 stays affected while rhcos is fixed in 4.16).
+            no_fix = any(cat == 'no_fix_planned' for cat, _d in doc.remediation.get(pid, []))
+            if ctx.workload_type == "ocp" and ctx.ocp_ver and not no_fix and not any(
                     re.search(r'RHOSE[.-]\d+\.\d+', p)
                     for s, p, *_ in matches if s in OPEN):
                 streams = doc.fixed_ocp_streams()
@@ -480,13 +493,13 @@ class _Triage:
         fixed = [p for s, p, _fl in cands if s == 'fixed']
         generic = [p for p in fixed if not digest_of(p)]
         if generic:
-            return 'FALSE_POSITIVE', generic[0], ''
+            return 'FALSE_POSITIVE', generic[0], 'fixed'
         if fixed:
             ours = V.build_stamp(ctx.image_build)
             stamps = [t for t in (self._purl_stamp(p) for p in fixed) if t]
             if ours and stamps and ours < max(stamps):
                 return 'POSITIVE', fixed[0], 'fixed'
-            return 'FALSE_POSITIVE', fixed[0], ''
+            return 'FALSE_POSITIVE', fixed[0], 'fixed'
         return not_listed
 
     def _purl_stamp(self, pid):
@@ -513,7 +526,8 @@ class _Triage:
                     return FP, "N/A", f"Fixed in OCP {ver}."
                 dec.set('errata_newer', pids=pids)   # §5g inference, never published
                 return FP, "N/A", f"Build newer than newest fixed stream (OCP {ver})."
-            flag = f" ({extra.replace('_', ' ')})" if extra else ""
+            fixed = extra == 'fixed'
+            flag = f" ({extra.replace('_', ' ')})" if extra and not fixed else ""
             sha = digest_of(pid) if pid else None
             if sha and sha not in ctx.own_digests():
                 # Pinned to ANOTHER build of this image.  It is Red Hat's verdict
@@ -525,6 +539,9 @@ class _Triage:
                 # versionless image PID under a minor-versioned product ("Web
                 # Terminal 1.11"): our build's membership in it is unproven
                 dec.unstated = True
+            if fixed:
+                dec.set('img_fp_fixed', status='fixed', pids=pids)
+                return FP, "N/A", f"Fixed. {img_lbl}."
             dec.set('img_fp_kna', pids=pids)
             return FP, "N/A", f"known_not_affected{flag}. {img_lbl}."
 
@@ -749,7 +766,7 @@ class _Triage:
             return True
         core = image_core(comp)
         return bool(core) and (core.lower() in ours or bool(
-            ctx.ocp_component and ocp_component_key(core) == ocp_component_key(ctx.ocp_component)))
+            ctx.ocp_component and same_ocp_component(ctx.ocp_component, core, ctx.rhel_ver)))
 
     def _image_open(self):
         """(status, labels, pids) when a statement about OUR image leaves it open."""
@@ -847,6 +864,11 @@ def compare_fixed(found_v, fixes, comp, ctx, dec, pid_by_ver, affected_in_scope=
 # ══════════════════════════════════════════════════════════════════════════════
 # component names
 # ══════════════════════════════════════════════════════════════════════════════
+
+def _purl_name(purl: str) -> str:
+    """Name segment of a purl: `pkg:generic/redhat/rhcos@4.20…` → `rhcos`."""
+    return purl.split('?')[0].split('@')[0].rsplit('/', 1)[-1] if purl else ''
+
 
 def component_names(comp: str, ctx: WorkloadContext) -> set:
     """Names a VEX PID may use for this component (§7a).
@@ -954,13 +976,12 @@ def _severity_fallback(doc: VexDocument, ctx: WorkloadContext, comp: str, row) -
         if not sev:
             core = ctx.image_component()
             if core:
-                key = ocp_component_key(core)
                 for pid, s in doc.severity.items():
                     if '@sha256:' in pid or not in_scope(pid, ctx, doc):
                         continue
                     pkg, _ = doc.package(pid)
-                    if pkg and (image_core(pkg) == core if '/' in pkg
-                                else ocp_component_key(pkg) == key):
+                    if pkg and same_ocp_component(core, image_core(pkg) if '/' in pkg else pkg,
+                                                  ctx.rhel_ver):
                         sev = s
                         break
     if not sev:
