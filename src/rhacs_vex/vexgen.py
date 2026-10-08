@@ -77,7 +77,7 @@ def candidates(sbom: SyftSBOM, index: dict, *, image_ref: str = '',
             for cve in sorted(cves):
                 add(name, ver, cve, 'OS', 'var/lib/rpm', srpm, purl)
         elif use_osv and osvdb.ecosystem_of(kind):
-            for cve in osvdb.cves_for(osvdb.ecosystem_of(kind), name, ver):
+            for cve in osvdb.cves_for(osvdb.ecosystem_of(kind), name, ver, index):
                 add(_component_name(art), ver, cve, _SOURCE[kind], loc, '', purl)
 
     keys, comp, ver = scanfree.image_identity(

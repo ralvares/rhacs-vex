@@ -842,13 +842,17 @@ def _apply_sync_policy(args) -> None:
 
 
 def _build_index(console, index_path: str) -> dict:
-    """(Re)build the inverted VEX index, reporting progress."""
-    idx = scanfree.build_index(
-        out_path=index_path,
-        progress=lambda i, n: console.print(f"   {i:,}/{n:,} CVE files", highlight=False))
-    console.print(f"   indexed [bold]{idx['files']:,}[/bold] CVE files: "
-                  f"{len(idx['rpm']):,} rpm names, {len(idx['oci']):,} image keys")
-    return idx
+    """(Re)build the on-disk index: VEX (rpm + image keys) and OSV, streamed."""
+    from . import osvdb, vexindex
+    st = vexindex.build_vex(path=index_path, progress=lambda i, n: console.print(
+        f"   {i:,}/{n:,} CVE files", highlight=False))
+    console.print(f"   indexed [bold]{st['files']:,}[/bold] CVE files: "
+                  f"{st['rpm']:,} rpm names, {st['oci']:,} image keys")
+    if os.path.isdir(osvdb.OSV_DIR):
+        counts = vexindex.build_osv(osvdb.OSV_DIR, index_path)
+        if counts:
+            console.print("   OSV: " + ', '.join(f"{k} {v:,}" for k, v in counts.items()))
+    return st
 
 
 def _build_index_cmd(args) -> int:

@@ -23,7 +23,7 @@ from typing import Optional
 import pandas as pd
 
 from .core.decide import SEVERITY_FROM_SCANNER, triage, vex_product as _vex_product
-from .core.store import read_vex
+from .core.store import load_document
 
 VERDICT_COLUMNS = ['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY',
                    'VEX_STATE', 'VEX_STATED']
@@ -89,7 +89,7 @@ _STATE = None   # (prepared, records, vex_product) for the duration of audit()
 def _audit_cve(item) -> list:
     cve, per_job = item
     prepared, records, want_product = _STATE
-    data = read_vex(cve)
+    data = load_document(cve)       # compact tables; the raw JSON is already freed
     out = []
     for ji, positions in per_job.items():
         ctx = prepared[ji][0]

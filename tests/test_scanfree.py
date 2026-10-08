@@ -133,7 +133,7 @@ with tempfile.TemporaryDirectory() as td:
 print('\n=== C. index round-trip ===')
 
 with tempfile.TemporaryDirectory() as td:
-    out = os.path.join(td, 'idx.json.gz')
+    out = os.path.join(td, 'idx.sqlite')
     vexdir = os.path.join(td, 'vex')
     os.makedirs(vexdir)
     doc = {
@@ -154,12 +154,14 @@ with tempfile.TemporaryDirectory() as td:
     }
     json.dump(doc, open(os.path.join(vexdir, 'CVE-3000-1.json'), 'w'))
     built = scanfree.build_index(vex_dir=vexdir, out_path=out)
+    idx = scanfree.load_index(out)
     check('C1 composite status PID resolves to the component purl',
-          built['rpm'].get('openssl') == ['CVE-3000-1'], str(built['rpm']))
-    check('C2 index round-trips through gzip',
-          scanfree.load_index(out).get('rpm') == built['rpm'])
+          idx.get('rpm').get('openssl') == ['CVE-3000-1'], str(built))
+    check('C2 the on-disk index reports what it holds',
+          built == {'files': 1, 'rpm': 1, 'oci': 0}, str(built))
     check('C3 missing index loads as empty, not an exception',
-          scanfree.load_index(os.path.join(td, 'nope.json.gz')) == {})
+          scanfree.load_index(os.path.join(td, 'nope.sqlite')) == {})
+    check('C4 an unknown key reads as no CVEs', idx.get('rpm').get('nope', ()) == ())
 
 print()
 print('=== D. merging the index into a scanner run ===')

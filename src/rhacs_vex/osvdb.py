@@ -6,18 +6,15 @@ without naming the module.  To put a real subcomponent purl on that statement �
 the identity grype and trivy match on — we need to know which packages CVE-Y is
 about.  The OSV dataset says exactly that, per ecosystem, with affected ranges.
 
-Data: the OSV bulk exports, one zip per ecosystem, under data/osv/
-(`vextriage osv-sync`, or https://storage.googleapis.com/osv-vulnerabilities/
-<Ecosystem>/all.zip).  Fully offline once downloaded.
+Data: the OSV bulk exports, one zip per ecosystem, under data/osv/, loaded
+into the on-disk index by `vextriage sync` (vexindex.build_osv) and queried one
+package at a time.  Fully offline once downloaded.
 """
 from __future__ import annotations
 
-import functools
-import json
 import os
 import re
-import zipfile
-from typing import Dict, List, Optional
+from typing import List, Optional
 
 OSV_DIR = os.path.join('data', 'osv')
 OSV_BUCKET = 'https://storage.googleapis.com/osv-vulnerabilities'
@@ -46,53 +43,23 @@ def download(ecosystems=None, console=None) -> None:
         os.replace(path + '.part', path)
         if console:
             console.print(f"   {eco}: {os.path.getsize(path) / 1e6:.0f} MB")
-    _load.cache_clear()
 
 
-@functools.lru_cache(maxsize=None)
-def _load(ecosystem: str) -> Dict[str, List[tuple]]:
-    """package name → [(CVE ids, ranges, versions)] for one ecosystem."""
-    path = os.path.join(OSV_DIR, f'{ecosystem}.zip')
-    out: Dict[str, List[tuple]] = {}
-    if not os.path.exists(path):
-        return out
-    with zipfile.ZipFile(path) as z:
-        for name in z.namelist():
-            try:
-                rec = json.loads(z.read(name))
-            except Exception:
-                continue
-            cves = tuple(sorted({a for a in [rec.get('id', ''), *rec.get('aliases', [])]
-                                 if a.startswith('CVE-')}))
-            if not cves or rec.get('withdrawn'):
-                continue
-            for aff in rec.get('affected', []):
-                pkg = aff.get('package') or {}
-                if pkg.get('ecosystem', '').split(':')[0] != ecosystem or not pkg.get('name'):
-                    continue
-                out.setdefault(_key(ecosystem, pkg['name']), []).append(
-                    (cves, aff.get('ranges') or [], tuple(aff.get('versions') or ())))
-    return out
+def available(ecosystem: str, index=None) -> bool:
+    return bool(index is not None and hasattr(index, 'has_osv') and index.has_osv(ecosystem))
 
 
-def available(ecosystem: str) -> bool:
-    return os.path.exists(os.path.join(OSV_DIR, f'{ecosystem}.zip'))
-
-
-def _key(ecosystem: str, name: str) -> str:
-    if ecosystem == 'PyPI':
-        return re.sub(r'[-_.]+', '-', name).lower()
-    return name
-
-
-def cves_for(ecosystem: str, name: str, version: str) -> List[str]:
+def cves_for(ecosystem: str, name: str, version: str, index=None) -> List[str]:
     """CVEs whose OSV record lists this package version as affected.
 
-    A record with no usable range (or a range type we cannot evaluate) counts
-    as affected: the candidate only proposes a pair, the Red Hat VEX decides.
+    Reads the package's records from the on-disk index (vexindex.py) — nothing
+    is held in memory.  A record with no usable range counts as affected: the
+    candidate only proposes a pair, the Red Hat VEX decides.
     """
+    if index is None or not hasattr(index, 'osv'):
+        return []
     hits = set()
-    for cves, ranges, versions in _load(ecosystem).get(_key(ecosystem, name), ()):
+    for cves, ranges, versions in index.osv(ecosystem, name):
         if _affected(ecosystem, version, ranges, versions):
             hits.update(cves)
     return sorted(hits)

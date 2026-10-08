@@ -44,7 +44,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import List
 
 from . import versions as V
 from .scope import in_scope, is_rhel_base, mentions_rhel
@@ -124,8 +124,9 @@ def _col(row, key) -> str:
 # entry point
 # ══════════════════════════════════════════════════════════════════════════════
 
-def triage(row, ctx: WorkloadContext, data: Optional[dict]) -> Verdict:
-    """Decide one finding.  *data* is the raw CSAF dict (None = no VEX file)."""
+def triage(row, ctx: WorkloadContext, data) -> Verdict:
+    """Decide one finding.  *data* is a VexDocument or the raw CSAF dict
+    (None = no VEX file)."""
     if data is None:
         return Verdict(POS, "N/A", "VEX file missing.", "Unknown", "Unknown", False,
                        Decision(kind='vex_missing'))
@@ -976,25 +977,10 @@ def _severity_fallback(doc: VexDocument, ctx: WorkloadContext, comp: str, row) -
         if found:
             sev = min(found, key=lambda s: _SEV_RANK.get(s, 9))
     if not sev:
-        agg = doc.data.get('document', {}).get('aggregate_severity', {}).get('text', '')
-        if agg and agg.strip().lower() not in ('', 'none'):
-            sev = agg.title()
-    if not sev:
-        for v in doc.data.get('vulnerabilities', []):
-            t = next((t for t in v.get('threats', [])
-                      if t.get('category') == 'impact' and t.get('details')), None)
-            if t:
-                sev = t['details'].title()
-                break
-    if not sev:
-        for v in doc.data.get('vulnerabilities', []):
-            base = next(((s.get('cvss_v3') or s.get('cvss_v2') or {}).get('baseSeverity', '').upper()
-                         for s in v.get('scores', [])
-                         if (s.get('cvss_v3') or s.get('cvss_v2') or {}).get('baseSeverity')), '')
-            if base:
-                sev = {'CRITICAL': 'Critical', 'HIGH': 'Important', 'MEDIUM': 'Moderate',
-                       'LOW': 'Low'}.get(base, base.title())
-                break
+        sev = doc.aggregate_severity or doc.any_impact
+    if not sev and doc.any_cvss:
+        sev = {'CRITICAL': 'Critical', 'HIGH': 'Important', 'MEDIUM': 'Moderate',
+               'LOW': 'Low'}.get(doc.any_cvss, doc.any_cvss.title())
     if sev in (None, "None", ""):
         sev = SEVERITY_FROM_SCANNER.get(str(row.get('SEVERITY', '')).strip().upper())
     return sev if sev not in (None, "None", "", "nan") else "Unknown"
@@ -1045,7 +1031,7 @@ def _state(doc: VexDocument, dec: Decision, result: str, ctx: WorkloadContext) -
 # VEX_PRODUCT display label
 # ══════════════════════════════════════════════════════════════════════════════
 
-def vex_product(data: Optional[dict], comp: str, ctx: WorkloadContext) -> str:
+def vex_product(data, comp: str, ctx: WorkloadContext) -> str:
     """Product label(s) of the in-scope statements naming *comp* ('' if none)."""
     if not data:
         return ''

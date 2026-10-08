@@ -43,7 +43,18 @@ def read_vex(cve_id: str) -> Optional[dict]:
         return None
 
 
-@functools.lru_cache(maxsize=int(os.environ.get('VEX_CACHE_SIZE', '512')))
-def load_vex(cve_id: str) -> Optional[dict]:
-    """read_vex behind an LRU, for per-row callers."""
-    return read_vex(cve_id)
+def load_document(cve_id: str):
+    """The parsed VexDocument for a CVE (None without a VEX file).
+
+    The raw JSON is dropped as soon as the lookup tables are built, so a caller
+    holds only the compact form.
+    """
+    from .vexdoc import VexDocument
+    data = read_vex(cve_id)
+    return VexDocument(data) if data is not None else None
+
+
+@functools.lru_cache(maxsize=int(os.environ.get('VEX_CACHE_SIZE', '16')))
+def load_vex(cve_id: str):
+    """load_document behind a small LRU, for per-row callers."""
+    return load_document(cve_id)

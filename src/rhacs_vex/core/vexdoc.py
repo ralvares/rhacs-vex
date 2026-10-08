@@ -127,7 +127,8 @@ class VexDocument:
     """Lookup tables over one CSAF-VEX file.  Build with VexDocument.of(data)."""
 
     def __init__(self, data: dict):
-        self.data = data
+        # The raw document is NOT kept: a parsed CSAF file runs to hundreds of
+        # MB for the largest CVEs, the tables below are a fraction of that.
         tree = data.get('product_tree', {}) or {}
         self.name: Dict[str, str] = {}
         self.purl: Dict[str, str] = {}
@@ -176,13 +177,30 @@ class VexDocument:
                 for pid in r.get('product_ids', []):
                     self.remediation.setdefault(pid, []).append((cat, det))
 
-        self.catchall_not_affected = self._catchall()
+        self.catchall_not_affected = self._catchall(tree)
+        # document-level severity fallbacks (§8d tiers 5-7)
+        agg = ((data.get('document') or {}).get('aggregate_severity') or {}).get('text', '')
+        self.aggregate_severity = agg.title() if agg.strip().lower() not in ('', 'none') else ''
+        self.any_impact, self.any_cvss = '', ''
+        for v in data.get('vulnerabilities', []):
+            t = next((t for t in v.get('threats', [])
+                      if t.get('category') == 'impact' and t.get('details')), None)
+            if t and not self.any_impact:
+                self.any_impact = t['details'].title()
+            base = next(((sc.get('cvss_v3') or sc.get('cvss_v2') or {}).get('baseSeverity', '').upper()
+                         for sc in v.get('scores', [])
+                         if (sc.get('cvss_v3') or sc.get('cvss_v2') or {}).get('baseSeverity')), '')
+            if base and not self.any_cvss:
+                self.any_cvss = base
         self._src_vr = None
         self.scope_cache: dict = {}
 
     @classmethod
-    def of(cls, data: dict) -> "VexDocument":
-        """Parse once per document; cached on the dict the caller holds."""
+    def of(cls, data) -> "VexDocument":
+        """A VexDocument for *data* (already one, or a raw dict — parsed once and
+        cached on the dict the caller holds)."""
+        if isinstance(data, VexDocument):
+            return data
         doc = data.get('__vexdoc__')
         if doc is None:
             doc = cls(data)
@@ -220,11 +238,11 @@ class VexDocument:
                 entry.add(parts[2])
         return out
 
-    def _catchall(self) -> bool:
+    def _catchall(self, tree: dict) -> bool:
         """Vendor catch-all (`red_hat_products`, or a bare `cpe:/a:redhat` node)
         marked not affected (§1g, rung 1)."""
         nodes = {'red_hat_products'}
-        for b in self.data.get('product_tree', {}).get('branches', []):
+        for b in tree.get('branches', []):
             prod = b.get('product', {})
             cpe = str((prod.get('product_identification_helper') or {}).get('cpe', ''))
             toks = [p for p in cpe.split(':') if p not in ('', 'cpe', '/a', '/o', '/h')]

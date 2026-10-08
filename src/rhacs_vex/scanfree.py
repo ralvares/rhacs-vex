@@ -25,19 +25,12 @@ Identity comes from the purl throughout — Red Hat's own csaf-lib models
 """
 from __future__ import annotations
 
-import collections
-import glob
-import gzip
 import json
-import os
 import re
-from urllib.parse import unquote
 
 import pandas as pd
 
-from .core.store import BASE_DIR, VEX_DIR
-
-INDEX_PATH = os.path.join(BASE_DIR, 'vex-index.json.gz')
+from .vexindex import INDEX_PATH, build_vex, oci_repo_keys, open_index, rpm_purl_name  # noqa: F401
 
 # Rows minted for the image itself use SOURCE='IMAGE' rather than 'OS': an
 # image-identity pseudo-component carries a path ('openshift/ose-cli-rhel9'), and
@@ -46,103 +39,15 @@ INDEX_PATH = os.path.join(BASE_DIR, 'vex-index.json.gz')
 IMAGE_SOURCE = 'IMAGE'
 
 
-# ── index ─────────────────────────────────────────────────────────────────────
-
-def _walk(branches, pid2purl):
-    for b in branches or []:
-        p = b.get('product') or {}
-        h = p.get('product_identification_helper') or {}
-        if p.get('product_id') and h.get('purl'):
-            pid2purl[p['product_id']] = h['purl']
-        _walk(b.get('branches'), pid2purl)
+def build_index(vex_dir: str = None, out_path: str = INDEX_PATH, progress=None) -> dict:
+    """(Re)build the on-disk index over the mirror; returns counts."""
+    from .core.store import VEX_DIR
+    return build_vex(vex_dir or VEX_DIR, out_path, progress)
 
 
-def rpm_purl_name(purl: str) -> str:
-    """Package name from an rpm purl, vendor namespace dropped, path kept.
-
-    Only the leading `redhat/` goes: 713 nodes carry a deeper product path
-    (`pkg:rpm/redhat/openshift4/ose-cli`) and the surviving '/' is what routes a
-    component to the non-RPM ladder (VEX-MODEL §3a rule 5).
-    """
-    body = unquote(purl.partition('?')[0][len('pkg:rpm/'):]).partition('@')[0]
-    return body.partition('/')[2] or body
-
-
-def oci_repo_keys(purl: str) -> list:
-    """Effective repo and bare image name for an oci purl.
-
-    Two purl eras coexist: `repository_url` is either the full repo path or the
-    namespace only, with the image name in the purl itself (VEX-MODEL §4a), so
-    the effective repo is composed and both forms are indexed.
-    """
-    body = purl.partition('?')[0][len('pkg:oci/'):]
-    tail = body.split('@')[0].split('/')[-1]
-    m = re.search(r'repository_url=([^&]+)', purl)
-    repo = m.group(1) if m else ''
-    if repo and not (repo.endswith('/' + tail) or repo.endswith(tail)):
-        repo = repo.rstrip('/') + '/' + tail
-    return [k for k in (repo, tail) if k]
-
-
-def build_index(vex_dir: str = VEX_DIR, out_path: str = INDEX_PATH,
-                progress=None) -> dict:
-    """Build and persist the inverted index: identity → CVEs that name it."""
-    rpm_idx = collections.defaultdict(set)
-    oci_idx = collections.defaultdict(set)
-    files = sorted(glob.glob(os.path.join(vex_dir, 'CVE-*.json')))
-    for i, fp in enumerate(files):
-        if progress and i % 2000 == 0:
-            progress(i, len(files))
-        try:
-            doc = json.load(open(fp))
-        except Exception:
-            continue
-        cve = os.path.basename(fp)[:-5]
-        pt = doc.get('product_tree') or {}
-        pid2purl: dict = {}
-        _walk(pt.get('branches'), pid2purl)
-        # product_status names the composite PID; the purl hangs off the
-        # component node and relationships are the only link between them.
-        comp = {}
-        for rel in pt.get('relationships') or []:
-            cid = (rel.get('full_product_name') or {}).get('product_id')
-            if cid:
-                comp[cid] = rel.get('product_reference')
-
-        for vuln in doc.get('vulnerabilities') or []:
-            ps = vuln.get('product_status') or {}
-            pids = set()
-            for st in ('known_affected', 'known_not_affected', 'fixed',
-                       'under_investigation'):
-                pids.update(ps.get(st, []))
-            for flag in vuln.get('flags') or []:
-                pids.update(flag.get('product_ids', []))
-            for pid in pids:
-                purl = pid2purl.get(comp.get(pid, pid)) or pid2purl.get(pid)
-                if not purl:
-                    continue
-                if purl.startswith('pkg:rpm/'):
-                    rpm_idx[rpm_purl_name(purl)].add(cve)
-                elif purl.startswith('pkg:oci/'):
-                    for key in oci_repo_keys(purl):
-                        oci_idx[key].add(cve)
-
-    index = {'rpm': {k: sorted(v) for k, v in rpm_idx.items()},
-             'oci': {k: sorted(v) for k, v in oci_idx.items()},
-             'files': len(files)}
-    os.makedirs(os.path.dirname(out_path) or '.', exist_ok=True)
-    with gzip.open(out_path, 'wt') as fh:
-        json.dump(index, fh, separators=(',', ':'))
-    return index
-
-
-def load_index(path: str = INDEX_PATH) -> dict:
-    """Load the inverted index, or {} when it has not been built yet."""
-    try:
-        with gzip.open(path, 'rt') as fh:
-            return json.load(fh)
-    except Exception:
-        return {}
+def load_index(path: str = INDEX_PATH):
+    """The on-disk index, or {} when it has not been built yet."""
+    return open_index(path) or {}
 
 
 # ── candidates ────────────────────────────────────────────────────────────────
