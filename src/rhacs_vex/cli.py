@@ -209,76 +209,120 @@ def _scanfree_cmd(args) -> int:
     return 0
 
 
-def _audit_worker(df, ctx, ref: str) -> list:
-    """CPU stage of generate, run in a forked worker process.
+_GEN_INDEX = None
 
-    The audit is pandas-heavy pure Python — in the thread pool it serializes
-    on the GIL, so scanner threads beyond ~2 buy nothing.  Same pattern as
-    retriage's fork ProcessPool.
-    """
-    from . import openvex, triage
-    result = triage._audit_silent(df, ctx, vex_product=False)
-    return openvex.statements_from_df(result, ref)
+
+def _gen_worker(ref: str, sbom_path: str, release, findings, use_osv: bool) -> list:
+    """CPU stage of generate, run in a worker process: SBOM → statements."""
+    global _GEN_INDEX
+    os.environ['VEX_AUDIT_WORKERS'] = '1'        # no nested process pools
+    from . import vexgen
+    from .sbom import SyftSBOM
+    if _GEN_INDEX is None:
+        _GEN_INDEX = scanfree.load_index()
+    sbom = SyftSBOM.load(sbom_path)
+    if sbom is None:
+        raise RuntimeError(f'unreadable SBOM {sbom_path}')
+    statements, _result = vexgen.generate(ref, sbom, _GEN_INDEX, ocp_release=release,
+                                          findings=findings, use_osv=use_osv)
+    return statements
+
+
+def _openvex_cmd(args) -> int:
+    """One image → OpenVEX: syft SBOM + Red Hat VEX (+ OSV, optionally grype)."""
+    import collections
+
+    from . import hub, mirror, openvex, vexgen
+    from .adapters import grype as adapter
+    from .discovery import release_by_digest
+    from .sbom import SyftSBOM
+    console = Console()
+    mirror.ensure_mirror(console)
+
+    index = scanfree.load_index(args.index or scanfree.INDEX_PATH)
+    if not index:
+        console.print('[red]no VEX index — run `vextriage sync` (or `vextriage '
+                      'build-index`) first.[/red]')
+        return 2
+    sbom_path = args.target
+    if not os.path.exists(sbom_path):
+        console.print(f"🧾 syft SBOM for [cyan]{args.target}[/cyan]")
+        sbom_path = adapter.syft_sbom(args.target, platform=args.platform, force=args.force)
+    sbom = SyftSBOM.load(sbom_path)
+    if sbom is None or not sbom.artifacts:
+        console.print(f'[red]unreadable or empty SBOM: {sbom_path}[/red]')
+        return 1
+    image_ref = args.image or (args.target if not os.path.exists(args.target)
+                               else sbom.image_ref())
+    if '@sha256:' not in (image_ref or ''):
+        console.print('[red]--image <repo@sha256:…> is required: the OpenVEX product '
+                      'is the digest-pinned image.[/red]')
+        return 2
+    release = args.ocp_release or release_by_digest().get(image_ref.split('@')[-1])
+    findings = adapter.to_df(adapter.grype_scan(sbom_path)) if args.grype else None
+
+    statements, result = vexgen.generate(image_ref, sbom, index, ocp_release=release,
+                                         findings=findings, use_osv=not args.no_osv)
+    by_src = collections.Counter(zip(result['SOURCE'], result['AUDIT_RESULT'],
+                                     result['VEX_STATED'].astype(str))) if len(result) else {}
+    console.print(f"\n[bold]{image_ref}[/bold]" + (f"  (OpenShift {release})" if release else ''))
+    console.print(f"{len(result):,} candidate (component, CVE) pairs from "
+                  f"{len(sbom.artifacts):,} SBOM artifacts")
+    for (src, verdict, stated), n in sorted(by_src.items()):
+        tag = 'stated' if stated == 'True' else 'inferred'
+        console.print(f"  {src or '?':7} {verdict:18} {tag:8} {n:6,}")
+    kinds = collections.Counter(s['status'] for s in statements)
+    console.print(f"→ [bold]{len(statements)}[/bold] OpenVEX statements "
+                  f"({', '.join(f'{v} {k}' for k, v in sorted(kinds.items())) or 'none'})")
+    if args.output:
+        import json as _json
+        with open(args.output, 'w') as fh:
+            _json.dump(openvex.build_document(image_ref, statements, author=args.author),
+                       fh, indent=2)
+        console.print(f"📄 {args.output}")
+    if args.hub:
+        path, changed = hub.write_image_doc(args.hub, image_ref, statements, author=args.author)
+        hub.build_index(args.hub, name=args.author,
+                        description='Red Hat VEX triage verdicts (OpenVEX)')
+        console.print(f"📦 {path} ({'updated' if changed else 'unchanged'})")
+    return 0
 
 
 def _generate_cmd(args) -> int:
-    """Scan a list of images with grype and populate the OpenVEX hub.
+    """syft-SBOM a list of images and publish Red Hat's verdicts as OpenVEX.
 
-    This is the ONLY hub-population pipeline: statements are minted from the
-    consumer-side scanner's own artifacts, so the purls in the document are
-    guaranteed to match what that scanner (and trivy) will look up.  RHACS
-    triage output is never converted to OpenVEX — RHACS does not consume it.
+    The hub-population pipeline (see vexgen.py): candidates come from the VEX
+    index (rpm + image) and OSV (language packages), optionally grype; the
+    subcomponent purls are the ones syft recorded, so grype and trivy match
+    them.  RHACS triage output is never converted to OpenVEX.
     """
     import re as _re
+    import time as _time
     from concurrent.futures import ThreadPoolExecutor, as_completed
-    from . import triage as _triage
-    _triage.ensure_mirror(Console())
 
-    from . import hub, openvex, triage
+    from . import hub, mirror
     from .adapters import grype as adapter
-    from .context import context_for_image
+    from . import discovery
     console = Console()
-
+    mirror.ensure_mirror(console)
     refs: list = []
     if args.image:
         refs.append(args.image)
     if args.images:
-        with open(args.images) as fh:
-            for line in fh:
-                m = _re.search(r'(\S+@sha256:[a-f0-9]{64})', line)
-                if m:
-                    refs.append(m.group(1))
+        refs += discovery.refs_in_file(args.images)
     if args.ocp:
-        # Same discovery artifact the RHACS pipeline uses (stage 3, oc release
-        # info) — an image list, not RHACS data.
-        for v in args.ocp.split(','):
-            path = os.path.join('data', 'pullspecs', f'{v.strip()}.txt')
-            if not os.path.exists(path):
-                console.print(f'[red]missing pullspec file: {path}[/red]')
-                return 2
-            with open(path) as fh:
-                for line in fh:
-                    m = _re.search(r'(\S+@sha256:[a-f0-9]{64})', line)
-                    if m:
-                        refs.append(m.group(1))
-    if args.operators:
-        # Channel-head bundles from the opm-rendered catalogs (pipeline stage 1)
-        # — identical scope to the RHACS operators run.
-        import glob as _glob
-
-        from . import operators as ops
-        pattern = f'catalog-{args.catalog}.json' if args.catalog else 'catalog-*.json'
-        catalogs = sorted(_glob.glob(os.path.join('data', 'catalogs', pattern)))
-        if not catalogs:
-            console.print(f'[red]no catalogs match data/catalogs/{pattern}[/red]')
+        versions = [v.strip() for v in args.ocp.split(',') if v.strip()]
+        missing = [p for p in discovery.pullspec_files(versions) if not os.path.exists(p)]
+        if missing:
+            console.print(f'[red]missing pullspec file(s): {", ".join(missing)}[/red]')
             return 2
-        for cat in catalogs:
-            for _pkg, entries in ops.build_operator_index(cat).items():
-                for entry in entries:
-                    for _role, img in ops._get_unique_workload_images(
-                            entry['head_bundle']):
-                        if _re.search(r'@sha256:[a-f0-9]{64}$', img):
-                            refs.append(img)
+        refs += discovery.release_refs(versions)
+    if args.operators:
+        minors = [args.catalog] if args.catalog else discovery.catalog_versions()
+        if not any(os.path.exists(discovery.catalog_path(m)) for m in minors):
+            console.print('[red]no operator catalogs under data/catalogs/[/red]')
+            return 2
+        refs += discovery.operator_refs(minors)
     refs = list(dict.fromkeys(refs))
     if not refs:
         console.print('[red]No digest-pinned refs — use --image, --images, '
@@ -317,12 +361,10 @@ def _generate_cmd(args) -> int:
             console.print('Nothing to do.')
             return 0
 
-    # One grype DB update up front, then freeze the per-call network checks —
-    # they otherwise run once per image.  --no-db-update keeps the current DB
-    # so cached grype results (keyed on the DB build stamp) stay valid — a
-    # re-audit-only regeneration after engine changes never touches grype.
+    # grype is optional: an extra candidate source on top of the VEX index and
+    # OSV.  One DB update up front, then freeze the per-call network checks.
     import subprocess as _sp
-    if not args.no_db_update:
+    if args.grype and not args.no_db_update:
         _sp.run(['grype', 'db', 'update'], capture_output=True)
     os.environ.setdefault('GRYPE_DB_AUTO_UPDATE', 'false')
     os.environ.setdefault('GRYPE_CHECK_FOR_APP_UPDATE', 'false')
@@ -331,62 +373,33 @@ def _generate_cmd(args) -> int:
     console.print(f'Generating OpenVEX for [bold]{len(refs)}[/bold] image(s), '
                   f'{args.workers} workers')
 
-    # digest → OCP release map from the pullspec files: release images carry no
-    # usable version label, so — exactly like retriage_ocp — the release
-    # manifest is the authority for the OCP product scope.
-    import glob as _glob
-    ocp_by_digest: dict = {}
-    for txt in _glob.glob(os.path.join('data', 'pullspecs', '*.txt')):
-        ver = os.path.splitext(os.path.basename(txt))[0]
-        minor = '.'.join(ver.split('.')[:2])
-        try:
-            with open(txt) as fh:
-                for line in fh:
-                    m = _re.search(r'@(sha256:[a-f0-9]{64})', line)
-                    if m:
-                        ocp_by_digest.setdefault(m.group(1), (ver, minor))
-        except OSError:
-            continue
+    # Payload images carry no usable version label: the release manifest is the
+    # authority for the OCP product scope.
+    release_of = discovery.release_by_digest()
+    index_path = scanfree.INDEX_PATH
+    if not scanfree.load_index(index_path):
+        console.print(f'[red]no VEX index at {index_path} — run `vextriage sync` '
+                      f'(or `vextriage build-index`) first.[/red]')
+        return 2
 
     def _one(ref: str):
         try:
-            sbom = adapter.syft_sbom(ref, platform=args.platform,
-                                     force=args.force)
+            sbom = adapter.syft_sbom(ref, platform=args.platform, force=args.force)
         except Exception as e:
             if 'no child with platform' in str(e):
-                # Image doesn't ship the requested arch at all (e.g. OpenJ9 =
-                # ppc64le/s390x only) — scan whatever the index does carry;
-                # statements are per-digest and valid for that build.
+                # single-arch-family image (e.g. ppc64le/s390x only): statements
+                # are per-digest, valid for whichever build the index carries
                 alt = adapter.fallback_platform(ref)
                 if not alt:
                     raise
                 sbom = adapter.syft_sbom(ref, platform=alt, force=True)
             else:
-                # Transient registry/CDN hiccups (e.g. quay CDN TLS errors) —
-                # one retry; force=True so a partially-written SBOM can't be
-                # reused.
-                import time as _time
-                _time.sleep(5)
-                sbom = adapter.syft_sbom(ref, platform=args.platform,
-                                         force=True)
-        doc = adapter.grype_scan(sbom)
-        df = adapter.to_df(doc)
-        # Labels + build digests from the SBOM itself — skopeo only as
-        # fallback (scratch images); the platform manifest digest enables
-        # exact-build VEX matching (per-arch product ids).
-        ctx = context_for_image(ref, os_hint=adapter.os_hint(doc),
-                                labels=adapter.sbom_labels(sbom) or None,
-                                digests=adapter.sbom_digests(sbom))
-        _wire_rpm_owners(df, ctx, adapter.rpm_file_owners(sbom))
-        digest = ref.split('@')[-1]
-        if digest in ocp_by_digest:
-            ver, minor = ocp_by_digest[digest]
-            ctx.workload_type = 'ocp'
-            ctx.ocp_ver = minor
-            ctx.display_name = f'OpenShift {ver}'
-            ctx.extra_prefixes = []
-        # CPU stage in the fork pool — the scanner thread just waits here.
-        return cpu_pool.submit(_audit_worker, df, ctx, ref).result()
+                _time.sleep(5)            # transient registry/CDN errors: one retry
+                sbom = adapter.syft_sbom(ref, platform=args.platform, force=True)
+        findings = adapter.to_df(adapter.grype_scan(sbom)) if args.grype else None
+        release = release_of.get(ref.split('@')[-1])
+        return cpu_pool.submit(_gen_worker, ref, sbom, release, findings,
+                               not args.no_osv).result()
 
     # Scanner threads handle syft/grype subprocesses and registry I/O (GIL
     # released); the pandas audit runs in worker PROCESSES or it would
@@ -399,7 +412,6 @@ def _generate_cmd(args) -> int:
     cpu_workers = max(2, min(args.workers, (os.cpu_count() or 8) - 2))
     cpu_pool = ProcessPoolExecutor(max_workers=cpu_workers,
                                    mp_context=_mp.get_context('spawn'))
-    import time as _time
     # N concurrent sleeps can't share a worker → all N spawn now.
     for w in [cpu_pool.submit(_time.sleep, 0.2) for _ in range(cpu_workers)]:
         w.result()
@@ -875,17 +887,22 @@ def _report_cmd(args) -> int:
 
 
 def _sync_cmd(args) -> int:
-    """Mirror the Red Hat VEX corpus, then refresh the index over it."""
-    from . import triage
+    """Mirror the Red Hat VEX corpus and OSV, then refresh the index."""
+    from . import mirror, osvdb
     console = Console()
     try:
-        st = triage.sync_vex_mirror(console, workers=args.workers, limit=args.limit,
-                                    bulk=args.bulk)
+        st = mirror.sync(console, workers=args.workers, limit=args.limit, bulk=args.bulk)
     except RuntimeError as e:
         console.print(f'[red]{e}[/red]')
         return 1
     console.print(f"✅ mirrored [bold]{st['fetched']:,}[/bold] file(s) "
                   f"({st['missing']:,} missing, {st['changed']:,} changed)")
+    if not args.no_osv:
+        console.print("📥 OSV (CVE → Go/PyPI/npm/Maven packages)")
+        try:
+            osvdb.download(console=console)
+        except Exception as e:
+            console.print(f'[yellow]OSV download failed: {e}[/yellow]')
     if not args.no_index:
         index_path = args.index or scanfree.INDEX_PATH
         console.print(f"🧱 rebuilding VEX index → [cyan]{index_path}[/cyan]")
@@ -931,6 +948,11 @@ def main() -> int:
                     help='regenerate cached syft SBOMs')
     pg.add_argument('--resume', action='store_true', default=False,
                     help='skip images whose digest is already in its hub doc')
+    pg.add_argument('--grype', action='store_true', default=False,
+                    help='also run grype on each SBOM and add its findings as '
+                         'candidates (default: syft + VEX index + OSV only)')
+    pg.add_argument('--no-osv', action='store_true', default=False,
+                    help='do not use OSV to find CVEs for Go/Python/npm/Maven packages')
     pg.add_argument('--no-db-update', action='store_true', default=False,
                     help='keep the current grype DB so cached grype results stay '
                          'valid — re-audit from cache without rescanning')
@@ -940,6 +962,30 @@ def main() -> int:
                          '(offline, seconds)')
     pg.add_argument('--verify', action='store_true', default=False,
                     help='re-scan each image with trivy against its doc; fail on leaks')
+
+    po = sub.add_parser('openvex',
+                        help='one image → OpenVEX from Red Hat VEX: syft SBOM, no '
+                             'vulnerability scanner needed')
+    po.add_argument('target', help='digest-pinned image ref, or a syft-json SBOM path')
+    po.add_argument('--image', default=None,
+                    help='digest-pinned ref when target is an SBOM (default: its repoDigest)')
+    po.add_argument('--ocp-release', default=None, metavar='VER',
+                    help='OCP release the image belongs to (default: looked up in '
+                         'data/pullspecs)')
+    po.add_argument('--output', '-o', default=None, metavar='FILE',
+                    help='write the OpenVEX document here')
+    po.add_argument('--hub', default=None, metavar='DIR',
+                    help='also write it into a VEX hub (e.g. vexhub)')
+    po.add_argument('--author', default='vextriage')
+    po.add_argument('--platform', default='linux/amd64')
+    po.add_argument('--force', action='store_true', default=False,
+                    help='regenerate the cached syft SBOM')
+    po.add_argument('--grype', action='store_true', default=False,
+                    help='add grype findings as candidates too')
+    po.add_argument('--no-osv', action='store_true', default=False,
+                    help='skip OSV (language packages get no candidates)')
+    po.add_argument('--index', default=None, metavar='FILE')
+    po.add_argument('--skip-sync', dest='skip_sync', action='store_true', default=False)
 
     pf = sub.add_parser('scanfree',
                         help='triage an SBOM against Red Hat VEX with no '
@@ -1016,6 +1062,8 @@ def main() -> int:
     psy.add_argument('--index', default=None, metavar='FILE')
     psy.add_argument('--no-index', action='store_true', default=False,
                      help='mirror only, leave the index alone')
+    psy.add_argument('--no-osv', action='store_true', default=False,
+                     help='skip the OSV download')
     psy.add_argument('--bulk', dest='bulk', action='store_true', default=None,
                      help='force the tarball path (default: automatic above '
                           '2,000 outstanding files)')
@@ -1046,6 +1094,8 @@ def main() -> int:
         return _scanner_cmd(args.command, args)
     if args.command == 'generate':
         return _generate_cmd(args)
+    if args.command == 'openvex':
+        return _openvex_cmd(args)
     if args.command == 'scanfree':
         return _scanfree_cmd(args)
     if args.command == 'build-index':

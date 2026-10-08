@@ -283,20 +283,28 @@ def context_for_image(image_ref: str, *, os_hint: Optional[str] = None,
     if digests:
         ctx.extra_digests = list(digests)
     if ocp_release:
-        apply_ocp_release(ctx, ocp_release, component=ocp_component)
+        apply_ocp_release(ctx, ocp_release, component=ocp_component, os_known=bool(rhel))
     return ctx
 
 
-def apply_ocp_release(ctx: WorkloadContext, ocp_version: str,
-                      component: Optional[str] = None) -> WorkloadContext:
-    """Pin a context to an OCP release (release-payload triage)."""
-    minor = '.'.join(str(ocp_version).split('.')[:2])
+def apply_ocp_release(ctx: WorkloadContext, release: str,
+                      component: Optional[str] = None,
+                      os_known: bool = False) -> WorkloadContext:
+    """Pin a context to an OCP release payload (`oc adm release info` triage).
+
+    Every image of a payload is an OCP component of that release whatever its
+    labels say; the manifest's component name is authoritative.  A payload
+    image without an OS hint takes its RHEL major from `rhel-coreos-N`.
+    """
     ctx.workload_type = "ocp"
-    ctx.ocp_ver = minor
-    ctx.display_name = f"OpenShift {minor}"
+    ctx.ocp_ver = '.'.join(str(release).split('.')[:2])
+    ctx.display_name = f"OpenShift {release}"
     ctx.extra_prefixes = []
-    if component and not ctx.ocp_component:
+    if component:
         ctx.ocp_component = component
+        m = re.search(r'rhel-(?:[^-]+-)?(\d+)$', component)
+        if m and not os_known:
+            ctx.rhel_ver = m.group(1)
     return ctx
 
 

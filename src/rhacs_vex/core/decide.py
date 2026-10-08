@@ -43,13 +43,13 @@ OpenVEX exporter publishes nothing else.
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field, replace
+from dataclasses import dataclass, field
 from typing import List, Optional
 
 from . import versions as V
 from .scope import in_scope, is_rhel_base, mentions_rhel
-from .vexdoc import (CLEAR, NOT_AFFECTED_FLAGS, OPEN, STATUSES, VexDocument,
-                     component_of, digest_of, parent_of)
+from .vexdoc import (CLEAR, OPEN, STATUSES, VexDocument, component_of, digest_of,
+                     parent_of)
 from .workload import WorkloadContext, image_core, image_rhel, ocp_component_key
 
 FP = "✅ FALSE POSITIVE"

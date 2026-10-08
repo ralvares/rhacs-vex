@@ -108,6 +108,30 @@ def subcomponent_ids(component: str, version: str, source: str) -> list:
     return []
 
 
+def purl_variants(purl: str) -> list:
+    """The cross-scanner forms of a purl a scanner recorded (syft's own).
+
+    Qualifiers and subpath are dropped (`distro=`, `arch=`, `upstream=`,
+    `repository_url=` each break one scanner or the other); golang is emitted
+    with and without the `v` (grype: stdlib@1.20.12, trivy: stdlib@v1.20.12);
+    pypi also in its PEP 503 normalised name.
+    """
+    bare = str(purl or '').strip().split('?')[0].split('#')[0]
+    m = re.match(r'^pkg:([^/]+)/(.+)@(.+)$', bare)
+    if not m:
+        return []
+    kind, name, ver = m.groups()
+    if kind == 'golang':
+        ver = re.sub(r'^go', '', ver)
+        ver = ver[1:] if ver.startswith('v') else ver
+        return [f"pkg:golang/{name}@{ver}", f"pkg:golang/{name}@v{ver}"]
+    if kind == 'pypi':
+        return sorted({bare, f"pkg:pypi/{_pep503(name)}@{ver}"})
+    if kind == 'rpm':
+        return [f"pkg:rpm/{name}@{re.sub(r'^[0-9]+:', '', ver)}"]
+    return [bare]
+
+
 # --- justification recovery --------------------------------------------------
 
 def _justification_from_text(justification: str) -> Optional[str]:
@@ -153,10 +177,12 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
 
     divergent = set()
     rpm_open_cves = set()
+    open_cves = set()          # any finding still open for the CVE in this image
     for _, row in df.iterrows():
         if 'FALSE POSITIVE' in str(row.get('AUDIT_RESULT', '')):
             continue
         cve = str(row.get('CVE', '')).strip().upper()
+        open_cves.add(cve)
         srpm = _row_srpm(row)
         if srpm:
             divergent.add((cve, srpm))
@@ -197,8 +223,29 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
         # resolve it either: virtctl belongs to no rpm at all.  Withhold.
         if str(row.get('SOURCE', '')).strip().upper() != 'OS' and cve_up in rpm_open_cves:
             continue
-        subs = subcomponent_ids(row.get('COMPONENT', ''), row.get('VERSION', ''),
-                                row.get('SOURCE', ''))
+        # The scanner's own purl when the row carries one (syft/grype), else
+        # minted from name + version + ecosystem (RHACS rows carry no purl).
+        purl = str(row.get('PURL', '') or '')
+        subs = purl_variants(purl) if purl.startswith('pkg:') else []
+        # Red Hat's statement is about the IMAGE (this build or this image):
+        # the product without subcomponents, which covers every package in it.
+        # Only when nothing else in the image is open for this CVE — an
+        # image-wide claim would otherwise hide that finding too.
+        if str(row.get('SOURCE', '')).strip().upper() == 'IMAGE':
+            if cve_up in open_cves:
+                continue
+            g = groups.setdefault((cve_up, status), {'subs': set(), 'just': None,
+                                                     'impacts': set(), 'image': False})
+            g['image'] = True
+            if status == 'not_affected':
+                g['just'] = g['just'] or _justification_from_text(row.get('JUSTIFICATION', ''))
+                text = str(row.get('JUSTIFICATION', '')).strip()
+                if text and text.lower() != 'nan':
+                    g['impacts'].add(text)
+            continue
+        if not subs:
+            subs = subcomponent_ids(row.get('COMPONENT', ''), row.get('VERSION', ''),
+                                    row.get('SOURCE', ''))
         if not subs:
             continue
         # Red Hat assesses rpms per SOURCE package: extend the statement to the
@@ -220,7 +267,8 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
                 oname, over = owner.split('@', 1)
                 subs += subcomponent_ids(oname, over, 'OS')
         key = (str(row['CVE']).strip().upper(), status)
-        g = groups.setdefault(key, {'subs': set(), 'just': None, 'impacts': set()})
+        g = groups.setdefault(key, {'subs': set(), 'just': None, 'impacts': set(),
+                                    'image': False})
         g['subs'].update(subs)
         if status == 'not_affected' and not g['just']:
             g['just'] = _justification_from_text(row.get('JUSTIFICATION', ''))
@@ -231,10 +279,13 @@ def statements_from_df(df: pd.DataFrame, image_ref: str) -> list:
 
     statements = []
     for (cve, status), g in sorted(groups.items()):
-        products = [{
-            '@id': prod,
-            'subcomponents': [{'@id': s} for s in sorted(g['subs'])],
-        }]
+        if g['image']:
+            products = [{'@id': prod}]
+        else:
+            products = [{
+                '@id': prod,
+                'subcomponents': [{'@id': s} for s in sorted(g['subs'])],
+            }]
         # rpm subcomponents are also listed as products: trivy's BOM walk does
         # not reach the image root for base-layer packages, so the OCI product
         # alone never matches them.  Safe for rpm only — a Red Hat NEVRA is a

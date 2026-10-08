@@ -60,6 +60,12 @@ class SyftSBOM:
         path = syft_path(image_ref)
         return cls.load(path) if os.path.exists(path) else None
 
+    def os_hint(self) -> str:
+        """'rhel:9.4' from syft's distro block ('' when absent)."""
+        d = self.doc.get('distro') or {}
+        return f"{d.get('id') or d.get('name') or ''}:{d.get('versionID') or d.get('version') or ''}" \
+            if d else ''
+
     # ── derived maps ────────────────────────────────────────────────────────
     def image_ref(self) -> str:
         """`repo@sha256:…` this SBOM was taken from ('' when unknown)."""
