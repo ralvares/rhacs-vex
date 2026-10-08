@@ -6,7 +6,7 @@
 # Needs: syft, grype, registry login for registry.redhat.io (for syft).
 # Run from the repo root after `pip install -e .`.  Collects only small files:
 # SBOMs, grype reports with and without the generated OpenVEX, the OpenVEX
-# documents, and the legacy-vs-new engine diff on your cached RHACS scans.
+# documents and the vextriage check summary.
 set -uo pipefail
 
 # Packages only: file digests / executable analysis are not needed (rpm file
@@ -48,11 +48,6 @@ for ref in "$@"; do
   tail -1 "$d/check.log"
 done
 
-if [ -n "$(find data/scans -maxdepth 1 -name '*.json' -print -quit 2>/dev/null)" ]; then
-  echo "== legacy vs new engine on 150 random cached RHACS scans (progress every 10)"
-  python3 tests/diff_engines_corpus.py --sample "${DIFF_SAMPLE:-150}" --show 50 > "$OUT/diff_corpus.txt" || true
-  tail -1 "$OUT/diff_corpus.txt"
-fi
 [ -f data/baseline.json ] && { python3 tests/check_baseline.py > "$OUT/check_baseline.txt" 2>&1 || true; }
 
 COPYFILE_DISABLE=1 tar czf evidence.tar.gz "$OUT"
