@@ -4,7 +4,6 @@
 > **Red Hat CSAF-VEX** → optionally export the verdicts as **OpenVEX** in a
 > [VEX repository](https://github.com/aquasecurity/vex-repo-spec) ("vexhub") that
 > trivy and grype consume to silence the same false positives.
-> *(formerly `rhacs-vex` — the old console scripts still work, see Install)*
 
 > [!IMPORTANT]
 > **NOT A RED HAT PRODUCT — USE AT YOUR OWN RISK**
@@ -47,9 +46,7 @@ Requires **Python 3.10+** (the code uses `X | Y` union type syntax). Install the
 pip3 install -e .
 ```
 
-This installs the `vextriage` distribution: the umbrella `vextriage` CLI plus the
-historical `rhacs-vex*` console scripts as compatibility aliases (same code, same
-behaviour — existing automation keeps working). On an externally-managed Python
+This installs one command, `vextriage`. On an externally-managed Python
 (Homebrew/PEP 668) use a virtualenv:
 
 ```bash
@@ -57,14 +54,18 @@ python3 -m venv .venv && source .venv/bin/activate && pip install -e .
 ```
 
 ```
-vextriage rhacs    <image|csv>     RHACS-backed triage (same as `rhacs-vex`)
-vextriage grype    <image|sbom>    syft SBOM + grype scan → engine triage
-vextriage trivy    <image|report>  trivy scan → engine triage
+vextriage sync                         mirror Red Hat VEX + OSV, build the index (then offline)
+vextriage openvex  <image|sbom>        one image → OpenVEX (syft SBOM, no scanner)
 vextriage generate --ocp V | --operators | --images FILE
-                                   batch scan → triage → OpenVEX hub
-vextriage hub      ...             rebuild hub index + repository manifest
-vextriage doctor                   check tools, auth env and data artifacts
-vextriage pipeline|operators|retriage|parquet     passthrough aliases
+                                       many images → OpenVEX hub
+vextriage rhacs    <image|csv> | --namespace NS | --ocp PULLSPECS [--offline]
+vextriage grype    <image|sbom>        syft SBOM + grype scan → engine triage
+vextriage trivy    <image|report>      trivy scan → engine triage
+vextriage scanfree <image|sbom>        VEX-index candidates → engine triage
+vextriage operators [--offline]        every operator channel head (RHACS)
+vextriage retriage                     refresh stored verdicts from cached scans
+vextriage report   CSV -o FILE         RHACS report → one HTML file
+vextriage hub | doctor | build-index | pipeline | parquet
 ```
 
 > [!IMPORTANT]
@@ -103,7 +104,7 @@ export ROX_API_TOKEN=<your-api-token>
 vextriage rhacs registry.redhat.io/openshift4/ose-cli@sha256:4f2e216ad46aa75f84e27aa2e6303327b99a4331c7ed8ef65850102898f3a9b0
 ```
 
-(equivalently `python3 -m rhacs_vex.triage …`). Output is a compact, colour-coded table with the scanner severity and Red Hat's product-specific severity side by side, followed by a one-line summary and an SBOM cross-check:
+Output is a compact, colour-coded table with the scanner severity and Red Hat's product-specific severity side by side, followed by a one-line summary and an SBOM cross-check:
 
 ```
 ┌────────────────┬───────────┬───────────┬───────────┬────────────────┬───────────────┬────────────┬─────────────────┬──────────────────────────────┐
@@ -252,10 +253,31 @@ VEX data change against a report written by whatever RHACS version produced it.
 
 ## OpenVEX export — a vexhub for trivy and grype
 
-`vextriage generate` scans a set of images (syft + grype), triages them through the
-engine, and writes the FALSE-POSITIVE verdicts as OpenVEX documents in the
-[vex-repo-spec](https://github.com/aquasecurity/vex-repo-spec) layout
-(same shape as [rancher/vexhub](https://github.com/rancher/vexhub)):
+The OpenVEX documents publish **Red Hat's own verdicts**, keyed to the purls of
+the components actually in the image. Only a syft SBOM is needed — no
+vulnerability scanner:
+
+```
+syft SBOM ─┬─ rpm artifacts ─────── VEX index (rpm purl → CVEs)     ┐
+           ├─ the image itself ──── VEX index (oci repo → CVEs)     ├→ engine → OpenVEX
+           ├─ go/pypi/npm/maven ─── OSV (package + version → CVEs)  │   (Red Hat-stated
+           └─ (--grype) grype findings                              ┘    verdicts only)
+```
+
+Red Hat publishes every rpm per NEVRA, so rpm statements are exact joins. It
+never publishes Go/Python module purls (vendored code is assessed at the image
+or the rpm that ships the binary), so the CVE → module link comes from OSV and
+the verdict from Red Hat's image- or rpm-level statement. Subcomponent `@id`s are
+the purls syft recorded, reduced to the form both scanners match (no
+qualifiers; golang with and without `v`). An image-level Red Hat statement
+becomes a product-only statement, unless anything else in the image is still
+open for that CVE.
+
+```bash
+vextriage sync                                                # once: VEX mirror + OSV + index
+vextriage openvex <ref@sha256:…> -o image.openvex.json        # one image
+vextriage openvex sbom.syft.json --image <ref@sha256:…> --hub vexhub/
+```
 
 ```bash
 vextriage generate --ocp 4.20.0                --hub vexhub/        # one OCP release
@@ -271,6 +293,8 @@ vextriage generate --image  <ref@sha256:…>     --hub vexhub/ --verify
 | `--crosscheck` | Re-check every statement against raw Red Hat VEX with independent rules; prints disagreements |
 | `--verify` | trivy re-scan gate: fail if a statement doesn't actually suppress |
 | `--force` | Regenerate cached SBOMs |
+| `--grype` | Also add grype's findings as candidates |
+| `--no-osv` | Skip OSV (no language-package candidates) |
 
 - `--ocp` / `--operators` reuse the pipeline's discovery artifacts
   (`data/pullspecs/*.txt`, `data/catalogs/*.json`) — the image lists, not RHACS data.
@@ -279,8 +303,8 @@ vextriage generate --image  <ref@sha256:…>     --hub vexhub/ --verify
 - Re-runs are idempotent: documents merge per image name, new release digests append,
   the doc version bumps only on real change, and a re-scan **retracts** statements
   that no longer hold. Interrupted runs resume for free (`--resume`).
-- Three layers of caching (immutable SBOMs, grype results keyed by DB build,
-  ETag-revalidated Red Hat VEX) make repeat sweeps minutes, not hours.
+- Immutable digest-pinned SBOMs and a local VEX/OSV mirror make repeat sweeps
+  minutes, not hours.
 - Suppression-safety rules baked into the emitter: a verdict never extends to a
   source-rpm whose sibling packages diverge, go-binary components are matched to
   their vendoring rpm via SBOM file ownership, and a not_affected claim never
@@ -294,9 +318,9 @@ vexhub/
 ```
 
 > [!NOTE]
-> **OpenVEX documents are generated ONLY from consumer-side scans (syft + grype).**
+> **OpenVEX documents are generated ONLY from consumer-side SBOMs (syft).**
 > RHACS triage output is never converted to OpenVEX: RHACS does not consume OpenVEX,
-> and statement purls minted from the consumer scanner's own artifacts are guaranteed
+> and statement purls taken from the consumer-side SBOM are guaranteed
 > to match what that scanner looks up. The RHACS path stays what it is — triage →
 > CSV/UI.
 
@@ -336,8 +360,7 @@ mode can); golang — the dominant false-positive class — is unaffected.
 
 `vextriage pipeline` is the one-command, end-to-end run: it renders operator catalogs,
 builds the namespace map, resolves OCP release pullspecs, and triages every OCP-release
-and operator image against VEX. It shells out to the other modules (`python -m
-rhacs_vex.ns_map`, `… .triage`, `… .operators`, `… .retriage`) for process isolation.
+and operator image against VEX. Each stage runs as its own `vextriage` subprocess.
 
 Its discovery stages are scanner-agnostic: stages 1 and 3 produce the image lists
 (`data/catalogs/`, `data/pullspecs/`) that `vextriage generate --operators` /
@@ -361,13 +384,12 @@ vextriage pipeline --pull-secret ~/pullsecret.txt
 | 4 | Triage each OCP release → `data/reports/ocp-<ver>.csv` | `--skip-ocp` |
 | 5 | Triage all operators → `data/reports/operators/*.csv` | `--skip-operators` |
 | 6 | *(optional)* offline verdict refresh for operators (`--refresh-operator-verdicts`) | — |
-| 7 | Generate the OpenVEX hub (`vextriage generate`, syft+grype — no RHACS) for every OCP release + all channel-head operators → `vexhub/` | `--skip-openvex` |
+| 7 | Generate the OpenVEX hub (`vextriage generate`, syft SBOMs — no RHACS) for every OCP release + all channel-head operators → `vexhub/` | `--skip-openvex` |
 
 ### Freshness / skip flags
 
 | Flag | Effect |
 |------|--------|
-| `--skip-existing` | Skip catalogs / pullspecs / reports already on disk (resume an interrupted run) |
 | `--max-report-age DAYS` | Re-audit OCP report CSVs older than N days so verdicts track current VEX (0 = never). Re-runs reuse the permanent digest-pinned scan/SBOM cache — no extra load on Central. Default: 7 |
 | `--max-catalog-age DAYS` | Re-render operator catalogs older than N days to pick up new bundles (0 = never). Default: 7 |
 | `--refresh-operator-verdicts` | After stage 5, recompute operator verdicts offline from cached scans (Stage 6) |
@@ -376,7 +398,7 @@ vextriage pipeline --pull-secret ~/pullsecret.txt
 
 Run the non-scanning stages (catalogs + namespace map) without Central by passing `--skip-ocp --skip-operators --skip-openvex`.
 
-OpenVEX-only run (no RHACS Central needed — stage 3 discovery still runs, then syft+grype → `vexhub/`):
+OpenVEX-only run (no RHACS Central needed — stage 3 discovery still runs, then syft → `vexhub/`):
 
 ```bash
 vextriage pipeline --pull-secret ~/pullsecret.txt --skip-ocp --skip-operators
@@ -389,25 +411,23 @@ vextriage pipeline --pull-secret ~/pullsecret.txt --skip-ocp --skip-operators
 The CSV reports under `data/reports/` are the source of truth. Two follow-up steps turn them into the browsable dataset:
 
 ```bash
-# 1. (optional) Re-audit ALL cached reports against fresh VEX — zero network, CPU only.
-#    Bounds each worker's VEX cache via VEX_CACHE_SIZE; uses a fork ProcessPool.
-python3 -m rhacs_vex.retriage                 # or: vextriage retriage
-python3 -m rhacs_vex.retriage --operators-only --version 4.21,4.22
+# 1. (optional) Re-audit ALL cached reports against fresh VEX — no Central, no registry.
+vextriage retriage                             # also rebuilds the parquets
+vextriage retriage --operators-only --version 4.21,4.22
 
 # 2. Build per-version parquet + manifest + CVE index from the CSV reports.
-python3 -m rhacs_vex.parquet                  # or: vextriage parquet
+vextriage parquet
 
 # 3. Serve the static explorer (reads data/parquet + data/manifest.json by relative path).
 python3 -m http.server 8080
 open http://localhost:8080          # index.html — search by CVE, package, image, operator
 ```
 
-`retriage` recomputes verdicts from the cached scans/SBOMs with no RHACS or network calls,
+`retriage` is `vextriage rhacs --ocp <release> --offline` for every release plus
+`vextriage operators --offline`: the same code path as a live run, fed from the scan cache,
 so it is the cheap way to re-run everything after Red Hat updates its VEX data. `parquet`
 then regenerates `data/parquet/**` and `data/manifest.json`, which the static pages
 `index.html` and `triage.html` consume directly.
-
-Ad-hoc queries over the built OCP parquet are available via `python3 -m rhacs_vex.query`.
 
 ---
 
@@ -444,9 +464,10 @@ had a Red Hat VEX document. Set `OSV_DISABLE=1` to keep every ID exactly as scan
 
 | Variable | Used by | Purpose |
 |----------|---------|---------|
-| `ROX_ENDPOINT` | triage, operators, pipeline | RHACS Central `host:port` (scanning stages only) |
-| `ROX_API_TOKEN` | triage, operators, pipeline | RHACS API bearer token (scanning stages only) |
-| `VEX_CACHE_SIZE` | engine | Max parsed-VEX documents kept in each process's LRU cache (default `512`). `vextriage retriage` sets it to `96` per worker to bound memory across a fork ProcessPool — override to trade memory for hit rate |
+| `ROX_ENDPOINT` | rhacs, operators, pipeline | RHACS Central `host:port` (scanning stages only) |
+| `ROX_API_TOKEN` | rhacs, operators, pipeline | RHACS API bearer token (scanning stages only) |
+| `VEX_CACHE_SIZE` | engine | Max parsed-VEX documents kept by per-row callers (default `512`); batch runs read each document once instead |
+| `VEX_AUDIT_WORKERS` | every triage path | Worker processes for the CVE-major audit (default: automatic) |
 | `VEX_MAX_AGE` | every triage path | Seconds before a run refreshes the mirror (default `86400`) |
 | `VEX_SKIP_SYNC` | every triage path | Set to skip the refresh entirely, same as `--skip-sync` |
 | `VEX_BULK_THRESHOLD` | sync | Outstanding files above which the tarball beats per-file fetching (default `2000`) |
@@ -465,7 +486,8 @@ CSV reports, catalogs, and pullspecs.
 data/
   vex/                       ← Red Hat CSAF/VEX advisories, one JSON per CVE   (cache, SHARED by all scanner paths)
   sbom/                      ← SPDX 2.3 SBOMs from RHACS, one per image digest (cache, RHACS path)
-  syft/                      ← syft-json SBOMs, one per image ref              (cache, grype/generate path)
+  syft/                      ← syft-json SBOMs, one per image ref              (cache, OpenVEX/grype path)
+  osv/                       ← OSV bulk exports per ecosystem                  (`vextriage sync`)
   scans/                     ← raw RHACS scan JSON, one per image digest       (cache, RHACS path)
   catalogs/                  ← rendered OLM operator index catalogs            (stage 1)
   pullspecs/                 ← OCP release manifests, one 4.x.y.txt per release (stage 3)
@@ -506,35 +528,37 @@ rules, and every decision branch — see **[docs/VEX-MODEL.md](docs/VEX-MODEL.md
 ## Project layout
 
 ```
-pyproject.toml              ← package metadata, dependencies, console scripts
-README.md                   ← this file
-docs/VEX-MODEL.md           ← Red Hat CSAF-VEX ground-truth reference
-docs/OPENVEX-PLAN.md        ← OpenVEX/vexhub architecture + decisions
-docs/OPENVEX-SPIKE-RESULTS.md ← empirical purl/suppression rules (grype+trivy proofs)
 src/rhacs_vex/
-  engine.py                 ← clean-room VEX matching engine
-  triage.py                 ← RHACS ↔ VEX triage CLI / IO layer   (vextriage rhacs)
-  cli.py                    ← umbrella CLI                        (vextriage)
-  openvex.py                ← triage verdicts → OpenVEX statements
+  core/                     ← the engine
+    vexdoc.py               ←   one CSAF-VEX file parsed once (identity, products, statements)
+    workload.py             ←   the scanned image's identity (WorkloadContext)
+    scope.py                ←   is a VEX product this workload's product
+    decide.py               ←   the decision ladder; severity/state/fix from the decisive statement
+    versions.py             ←   rpmvercmp, dist-tags, module streams, cross-stream fixes
+    store.py                ←   reading the local VEX mirror
+  engine.py                 ← public engine API (audit_row_detailed, WorkloadContext, …)
+  audit.py                  ← the one driver: findings × workloads → verdict columns
+  vexgen.py                 ← syft SBOM + Red Hat VEX (+ OSV) → OpenVEX statements
+  openvex.py                ← statement assembly + cross-scanner purl rules
   hub.py                    ← vexhub builder (layout, index, manifest, merge)
-  context.py                ← workload context via skopeo labels (non-RHACS paths)
-  scanfree.py               ← SBOM + VEX only, no scanner            (vextriage scanfree)
-  adapters/grype.py         ← syft SBOM + grype scan → triage rows
-  adapters/trivy.py         ← trivy scan → triage rows
-  operators.py              ← operator triage                     (vextriage operators)
-  retriage.py               ← offline re-audit from cache         (vextriage retriage)
-  parquet.py                ← build parquet + manifest + CVE index (vextriage parquet)
-  pipeline.py               ← end-to-end orchestrator             (vextriage pipeline)
-  ns_map.py                 ← namespace → VEX-prefix map builder
-  query.py                  ← ad-hoc queries over OCP parquet
-tests/check_baseline.py     ← 189-case regression check (run from repo root)
-tests/test_verdict_cases.py ← verdict case matrix (rpm, golang, image identity, states)
-tests/test_module_streams.py ← module-stream guard cases
-tests/test_scanfree.py      ← scan-free purl identity, candidates, emission safety
-tests/test_engine_regressions.py ← bugs found by independent VEX cross-checking (synthetic VEX)
+  osvdb.py                  ← CVE → Go/PyPI/npm/Maven package (offline OSV)
+  scanfree.py               ← inverted VEX index (rpm/oci purl → CVEs)
+  sbom.py                   ← syft-json reader (labels, digests, owners, source rpms)
+  mirror.py                 ← the only code that fetches Red Hat VEX
+  discovery.py              ← OCP pullspec files + OLM catalogs
+  scan.py                   ← shared scan → triage flows (RHACS image builder)
+  display.py                ← terminal / file output
+  adapters/                 ← finding sources: rhacs.py, grype.py, trivy.py
+  cli.py                    ← `vextriage`
+  operators.py, report.py, parquet.py, pipeline.py, ns_map.py, osv.py
+tests/
+  test_engine_regressions.py, test_module_streams.py, test_scanfree.py  (synthetic VEX, offline)
+  fuzz_engine_diff.py       ← legacy vs new engine on generated Red Hat-shaped VEX
+  diff_engines_parquet.py   ← legacy vs new engine on the stored findings + a real VEX mirror
+  diff_engines_corpus.py    ← legacy vs new engine on cached RHACS scans
+  legacy/engine_legacy.py   ← the pre-rewrite engine, kept only for the diff tools
+  check_baseline.py, test_verdict_cases.py  (need cached RHACS scans)
+docs/VEX-MODEL.md           ← Red Hat CSAF-VEX ground-truth reference
+docs/OPENVEX-SPIKE-RESULTS.md ← empirical purl/suppression rules (grype + trivy proofs)
 index.html, triage.html, assets/, data/   ← static explorer + dataset
 ```
-
-Console scripts: `vextriage` (umbrella), plus the historical aliases `rhacs-vex`,
-`rhacs-vex-pipeline`, `rhacs-vex-operators`, `rhacs-vex-retriage`, `rhacs-vex-parquet`.
-Modules without a script are run with `python3 -m rhacs_vex.<module>`.

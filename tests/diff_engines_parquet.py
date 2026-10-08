@@ -84,6 +84,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--scope', default='all', choices=['ocp', 'operators', 'all'])
     ap.add_argument('--show', type=int, default=15)
+    ap.add_argument('--per-cve', type=int, default=0, metavar='K',
+                    help='sample at most K findings per CVE, spread across distinct '
+                         '(image, source, component) — 0 = every finding')
     ap.add_argument('--shard', default='0/1', metavar='I/N',
                     help='only CVEs whose position mod N == I (run N in parallel)')
     args = ap.parse_args()
@@ -102,6 +105,17 @@ def main():
     stored_agree = stored_total = 0
     verdicts = collections.Counter()
     diff_kinds = collections.Counter()
+    if args.per_cve:
+        for cve, items in by_cve.items():
+            if len(items) > args.per_cve:
+                seen, keep = set(), []
+                for key, rec in items:          # one per (image, source, component)
+                    k = (key[1], rec['SOURCE'], rec['COMPONENT'])
+                    if k not in seen:
+                        seen.add(k)
+                        keep.append((key, rec))
+                by_cve[cve] = keep[:args.per_cve]
+        print(f'sampled to {sum(map(len, by_cve.values())):,} findings', file=sys.stderr)
     si, sn = (int(x) for x in args.shard.split('/'))
     todo = [kv for n, kv in enumerate(sorted(by_cve.items())) if n % sn == si]
     for i, (cve, items) in enumerate(todo, 1):

@@ -4,8 +4,9 @@ Two independent workflows, one engine:
 
 1. **RHACS triage** — scan with RHACS Central, triage against Red Hat VEX, get CSV
    reports, parquet files and the static explorer UI.
-2. **OpenVEX generation** — scan with syft+grype (no RHACS needed), export the
-   FALSE-POSITIVE verdicts as OpenVEX documents that trivy and grype consume.
+2. **OpenVEX generation** — a syft SBOM plus Red Hat's VEX (no RHACS, no
+   scanner needed): Red Hat's own verdicts as OpenVEX documents that trivy and
+   grype consume.
 
 > Run **every** command from the repository root — all tools read/write `./data`
 > and `./vexhub` by relative path.
@@ -136,8 +137,7 @@ data/manifest.json                    summary stats per scope
 ```
 
 Flags: `--version 4.21.15` (single release), `--manifest-only` (rebuild
-`manifest.json` from existing parquets), `--legacy` (also write combined
-`data/ocp.parquet`).
+`manifest.json` from existing parquets).
 
 Explore:
 
@@ -152,11 +152,21 @@ image or operator.
 
 ## Part 2 — OpenVEX generation (no RHACS)
 
-Hub documents are minted **only** from consumer-side scans (syft+grype): the purls
-come from the scanner's own artifacts, so grype/trivy are guaranteed to match them.
-RHACS triage output is never converted to OpenVEX.
+Hub documents are minted **only** from consumer-side SBOMs (syft): the purls come
+from the SBOM's own artifacts, so grype/trivy are guaranteed to match them. RHACS
+triage output is never converted to OpenVEX.
 
-### One image
+```bash
+vextriage sync                                          # once: Red Hat VEX + OSV + index
+vextriage openvex <ref@sha256:…> -o image.openvex.json  # syft SBOM → OpenVEX
+vextriage openvex <ref@sha256:…> --hub vexhub/          # …straight into the hub
+```
+
+Candidates come from the VEX index (rpm and the image itself) and OSV (the
+Go/Python/npm/Maven modules Red Hat never names as purls); the verdict is always
+Red Hat's, and only verdicts Red Hat stated are published.
+
+### One image, through a scanner
 
 ```bash
 # scan + triage + write the OpenVEX doc into the hub
@@ -183,11 +193,10 @@ Rebuild the index after a big VEX sync (`--build-index` again); it is derived
 data and safe to delete. The image ref comes from the SBOM's `repoDigests`
 unless `--image` is given.
 
-Coverage is **complete for rpm and image statements and empty for golang/pypi** —
-Red Hat assesses vendored Go at the operator/component image, never the module
-purl (2 golang purls exist in the whole corpus). Use it next to a scanner, not
-instead of one: it catches rpm CVEs a scanner database has not picked up yet,
-and cannot see language ecosystems at all.
+`scanfree` covers rpm and image statements only. For language packages use
+`vextriage openvex`, which adds OSV as the CVE → module source — Red Hat assesses
+vendored Go at the operator/component image, never the module purl (2 golang
+purls exist in the whole corpus).
 
 ### Batch — images, OCP versions, operators
 
