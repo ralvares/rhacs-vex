@@ -14,6 +14,21 @@
 
 **Your scanner found 300 CVEs. How many actually matter?**
 
+The short answer this project gives: run your scanner with Red Hat's verdicts
+applied, and look only at what is left.
+
+```bash
+vextriage sync                                  # once: Red Hat VEX + OSV → local index
+vextriage openvex <image@sha256:…> --hub vexhub # publish Red Hat's verdicts for the image
+trivy image <image@sha256:…> --vex vexhub/…     # or: vextriage check <image@sha256:…>
+```
+
+All the Red Hat-specific reasoning (product scoping, backports, module streams,
+vendored Go assessed at the image) happens once, when the OpenVEX document is
+generated. After that, triage is just the scanner plus `--vex`: whatever the
+scanner still reports is what Red Hat has not cleared for that exact image.
+Generation needs a syft SBOM and the local index only, and runs in ~130 MB of RAM.
+
 Most VEX tools do one thing: look up a CVE ID in an advisory file and echo back "not affected". That is a string match with extra steps, not triage.
 
 `vextriage` takes scan results — from RHACS, grype, or trivy — and cross-checks them against three authoritative sources — Red Hat VEX/CSAF advisories, SPDX SBOMs, and RPM version data — to separate real vulnerabilities from noise. The scanner is only discovery; the **engine** is the judge:
@@ -56,6 +71,7 @@ python3 -m venv .venv && source .venv/bin/activate && pip install -e .
 ```
 vextriage sync                         mirror Red Hat VEX + OSV, build the index (then offline)
 vextriage openvex  <image|sbom>        one image → OpenVEX (syft SBOM, no scanner)
+vextriage check    <image|sbom>        trivy/grype + that OpenVEX → what is left to fix
 vextriage generate --ocp V | --operators | --images FILE
                                        many images → OpenVEX hub
 vextriage rhacs    <image|csv> | --namespace NS | --ocp PULLSPECS [--offline]
@@ -502,7 +518,7 @@ data/
   manifest.json              ← scope catalogue + summary stats consumed by the UI
   ns_vex_prefixes.json       ← namespace → VEX-prefix map (from stage 2)
   baseline.json              ← regression fixture for tests/check_baseline.py
-  vex-index.json.gz          ← inverted VEX index for `scanfree` (derived; rebuild anytime)
+  vex-index.sqlite           ← on-disk index: rpm/image → CVEs, OSV package records (derived)
 ```
 
 The static site is served from the repo root: `index.html`, `triage.html`, and `assets/`
@@ -541,8 +557,9 @@ src/rhacs_vex/
   vexgen.py                 ← syft SBOM + Red Hat VEX (+ OSV) → OpenVEX statements
   openvex.py                ← statement assembly + cross-scanner purl rules
   hub.py                    ← vexhub builder (layout, index, manifest, merge)
-  osvdb.py                  ← CVE → Go/PyPI/npm/Maven package (offline OSV)
-  scanfree.py               ← inverted VEX index (rpm/oci purl → CVEs)
+  osvdb.py                  ← CVE → Go/PyPI/npm/Maven package (OSV ranges)
+  vexindex.py               ← the on-disk SQLite index (streamed build, per-key queries)
+  scanfree.py               ← VEX-index candidates for an SBOM
   sbom.py                   ← syft-json reader (labels, digests, owners, source rpms)
   mirror.py                 ← the only code that fetches Red Hat VEX
   discovery.py              ← OCP pullspec files + OLM catalogs

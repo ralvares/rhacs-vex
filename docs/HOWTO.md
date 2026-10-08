@@ -166,6 +166,13 @@ Candidates come from the VEX index (rpm and the image itself) and OSV (the
 Go/Python/npm/Maven modules Red Hat never names as purls); the verdict is always
 Red Hat's, and only verdicts Red Hat stated are published.
 
+Then triage is the scanner plus that document:
+
+```bash
+vextriage check <ref@sha256:…>                    # trivy (default) or --scanner grype
+trivy image <ref@sha256:…> --vex vexhub/pkg/oci/<registry>/<ns>/<name>/scan.openvex.json
+```
+
 ### One image, through a scanner
 
 ```bash
@@ -185,7 +192,7 @@ list. An inverted index over the VEX mirror does that instead, so an SBOM is
 enough:
 
 ```bash
-vextriage scanfree --build-index                        # once → data/vex-index.json.gz
+vextriage sync                                          # once → data/vex-index.sqlite
 vextriage scanfree data/syft/<image>.json --openvex-dir vexhub/
 ```
 

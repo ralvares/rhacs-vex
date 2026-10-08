@@ -362,6 +362,112 @@ def _openvex_cmd(args) -> int:
     return 0
 
 
+def _check_cmd(args) -> int:
+    """Triage = scanner + OpenVEX.  What the scanner still reports with Red Hat's
+    published verdicts applied is the list to act on."""
+    import json as _json
+    import shutil
+    import subprocess
+    import tempfile
+
+    from rich.table import Table
+
+    from . import hub, openvex, vexgen
+    from .adapters import grype as adapter
+    from .discovery import release_by_digest
+    from .sbom import SyftSBOM
+    console = Console()
+
+    is_file = os.path.exists(args.target)
+    image_ref = args.image or ('' if is_file else args.target)
+    if '@sha256:' not in image_ref:
+        console.print('[red]a digest-pinned image ref is required (--image when the target '
+                      'is an SBOM file): it is the OpenVEX product identity.[/red]')
+        return 2
+    tool = shutil.which(args.scanner)
+    if not tool:
+        console.print(f'[red]{args.scanner} is not installed.[/red]')
+        return 2
+
+    vex_doc = hub.doc_path(args.hub, image_ref) if args.hub else ''
+    tmp = None
+    if not (vex_doc and os.path.exists(vex_doc)):
+        # No published document for this image yet: generate it now.
+        index = scanfree.load_index(args.index or scanfree.INDEX_PATH)
+        if not index:
+            console.print('[red]no VEX index — run `vextriage sync` first.[/red]')
+            return 2
+        sbom_path = args.sbom or (None if not is_file else args.target)
+        if not sbom_path or not SyftSBOM.load(sbom_path) or not SyftSBOM.load(sbom_path).artifacts:
+            sbom_path = adapter.syft_sbom(image_ref, platform=args.platform)
+        sbom = SyftSBOM.load(sbom_path)
+        statements, _res = vexgen.generate(image_ref, sbom, index,
+                                           ocp_release=release_by_digest().get(
+                                               image_ref.split('@')[-1]))
+        fd, tmp = tempfile.mkstemp(suffix='.openvex.json')
+        with os.fdopen(fd, 'w') as fh:
+            _json.dump(openvex.build_document(image_ref, statements, author='vextriage'), fh)
+        vex_doc = tmp
+        console.print(f"🧾 generated {len(statements)} OpenVEX statements for this image")
+    else:
+        console.print(f"🧾 using {vex_doc}")
+
+    def scan(with_vex: bool) -> set:
+        if args.scanner == 'trivy':
+            cmd = [tool, 'sbom' if is_file else 'image', '--quiet', '-f', 'json']
+            if not is_file:
+                cmd += ['--platform', args.platform]
+            if with_vex:
+                cmd += ['--vex', vex_doc]
+            cmd.append(args.target)
+        else:
+            src = f'sbom:{args.target}' if is_file else args.target
+            cmd = [tool, src, '--by-cve', '-o', 'json'] + (['--vex', vex_doc] if with_vex else [])
+        out = subprocess.run(cmd, capture_output=True, text=True)
+        if out.returncode != 0:
+            raise RuntimeError(f"{args.scanner} failed: {out.stderr.strip()[-300:]}")
+        doc = _json.loads(out.stdout or '{}')
+        found = set()
+        if args.scanner == 'trivy':
+            for r in doc.get('Results', []):
+                for v in r.get('Vulnerabilities') or []:
+                    found.add((v['VulnerabilityID'], v.get('PkgName', ''),
+                               v.get('InstalledVersion', ''), v.get('Severity', '')))
+        else:
+            for m in doc.get('matches', []):
+                v, a = m.get('vulnerability', {}), m.get('artifact', {})
+                found.add((v.get('id', ''), a.get('name', ''), a.get('version', ''),
+                           v.get('severity', '')))
+        return found
+
+    try:
+        before = scan(False)
+        after = scan(True)
+    except RuntimeError as e:
+        console.print(f'[red]{e}[/red]')
+        return 1
+    finally:
+        if tmp:
+            os.unlink(tmp)
+
+    sev_rank = {'CRITICAL': 0, 'HIGH': 1, 'MEDIUM': 2, 'LOW': 3}
+    t = Table(title=f'{image_ref.split("@")[0]} — not cleared by Red Hat', show_lines=False)
+    for col in ('CVE', 'Package', 'Version', 'Severity'):
+        t.add_column(col)
+    for cve, pkg, ver, sev in sorted(after, key=lambda f: (sev_rank.get(f[3].upper(), 9), f[0])):
+        t.add_row(cve, pkg, ver, sev)
+    if args.output:
+        with open(args.output, 'w') as fh:
+            _json.dump([dict(zip(('cve', 'package', 'version', 'severity'), f))
+                        for f in sorted(after)], fh, indent=2)
+    if not args.quiet:
+        console.print(t)
+    console.print(f"{args.scanner}: [bold]{len(before):,}[/bold] findings → "
+                  f"[bold red]{len(after):,}[/bold red] after Red Hat's VEX "
+                  f"([green]{len(before) - len(after):,} cleared[/green])")
+    return 0
+
+
 def _generate_cmd(args) -> int:
     """syft-SBOM a list of images and publish Red Hat's verdicts as OpenVEX.
 
@@ -1046,6 +1152,22 @@ def main() -> int:
     po.add_argument('--index', default=None, metavar='FILE')
     po.add_argument('--skip-sync', dest='skip_sync', action='store_true', default=False)
 
+    pc = sub.add_parser('check',
+                        help='triage = scanner + OpenVEX: run trivy/grype with Red Hat\'s '
+                             'verdicts applied and list what is left')
+    pc.add_argument('target', help='digest-pinned image ref, or an SBOM file the scanner reads '
+                                   '(CycloneDX for trivy, syft-json for grype)')
+    pc.add_argument('--image', default=None, help='digest-pinned ref when target is a file')
+    pc.add_argument('--scanner', default='trivy', choices=['trivy', 'grype'])
+    pc.add_argument('--hub', default='vexhub', metavar='DIR',
+                    help='use the published document from this hub when present '
+                         '(default: vexhub; "" to always generate)')
+    pc.add_argument('--sbom', default=None, help='syft-json SBOM to generate from')
+    pc.add_argument('--platform', default='linux/amd64')
+    pc.add_argument('--output', '-o', default=None, help='write the remaining findings as JSON')
+    pc.add_argument('--quiet', action='store_true', default=False, help='summary line only')
+    pc.add_argument('--index', default=None, metavar='FILE')
+
     pf = sub.add_parser('scanfree',
                         help='triage an SBOM against Red Hat VEX with no '
                              'vulnerability scanner (rpm + image classes)')
@@ -1161,6 +1283,8 @@ def main() -> int:
         return _generate_cmd(args)
     if args.command == 'openvex':
         return _openvex_cmd(args)
+    if args.command == 'check':
+        return _check_cmd(args)
     if args.command == 'scanfree':
         return _scanfree_cmd(args)
     if args.command == 'build-index':
