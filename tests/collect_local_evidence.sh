@@ -16,8 +16,13 @@ export SYFT_FILE_METADATA_SELECTION=none SYFT_FILE_METADATA_DIGESTS="" \
 [ $# -ge 1 ] || { echo "usage: $0 <image@sha256:…> …" >&2; exit 2; }
 command -v grype >/dev/null || { echo "grype is required (brew install grype)" >&2; exit 2; }
 
+# Use THIS checkout, not an older installed copy of the package.
+VEXTRIAGE_BIN=$(command -v vextriage || true)
+python3 -c "import rhacs_vex, os, sys; sys.exit(0 if os.path.realpath(rhacs_vex.__file__).startswith(os.path.realpath('src')) else 1)" \
+  || { echo "vextriage is not this checkout — run: pip install -e .  (from the repo root)" >&2; exit 2; }
+
 OUT=evidence; rm -rf "$OUT"; mkdir -p "$OUT"
-{ syft version; grype version; python3 --version; git rev-parse HEAD; } \
+{ syft version; grype version; python3 --version; git rev-parse HEAD; echo "vextriage: $VEXTRIAGE_BIN"; } \
   > "$OUT/versions.txt" 2>&1
 
 echo "== sync (Red Hat VEX + OSV + index)"
@@ -43,12 +48,13 @@ for ref in "$@"; do
   tail -1 "$d/check.log"
 done
 
-if ls data/scans/*.json >/dev/null 2>&1; then
+if [ -n "$(find data/scans -maxdepth 1 -name '*.json' -print -quit 2>/dev/null)" ]; then
   echo "== legacy vs new engine on cached RHACS scans"
   python3 tests/diff_engines_corpus.py --show 50 > "$OUT/diff_corpus.txt" 2>&1 || true
+  tail -1 "$OUT/diff_corpus.txt"
 fi
 [ -f data/baseline.json ] && { python3 tests/check_baseline.py > "$OUT/check_baseline.txt" 2>&1 || true; }
 
-tar czf evidence.tar.gz "$OUT"
+COPYFILE_DISABLE=1 tar czf evidence.tar.gz "$OUT"
 ls -lh evidence.tar.gz
 echo "upload evidence.tar.gz"
