@@ -34,13 +34,22 @@ for ref in "$@"; do
   fi
   syft convert "$d/sbom.syft.json" -o "cyclonedx-json=$d/sbom.cdx.json" 2>> "$d/syft.log" || true
   VEX_SKIP_SYNC=1 vextriage openvex "$d/sbom.syft.json" --image "$ref" -o "$d/openvex.json" > "$d/openvex.log" 2>&1
-  trivy image "$ref" --platform linux/amd64 -q -f json -o "$d/trivy.json" 2> "$d/trivy.log" || echo "   trivy failed (see $d/trivy.log)"
-  trivy image "$ref" --platform linux/amd64 -q -f json --vex "$d/openvex.json" -o "$d/trivy.vex.json" 2>> "$d/trivy.log" || true
+  if trivy image "$ref" --platform linux/amd64 --timeout 30m -q -f json -o "$d/trivy.json" 2> "$d/trivy.log"; then
+    trivy image "$ref" --platform linux/amd64 --timeout 30m -q -f json --vex "$d/openvex.json" \
+      -o "$d/trivy.vex.json" 2>> "$d/trivy.log" || true
+  else
+    # No image pull needed: scan the CycloneDX SBOM syft already produced.
+    echo "   trivy image failed (see $d/trivy.log) — scanning the SBOM instead"
+    trivy sbom "$d/sbom.cdx.json" -q -f json -o "$d/trivy.json" 2>> "$d/trivy.log" || echo "   trivy sbom failed too"
+    trivy sbom "$d/sbom.cdx.json" -q -f json --vex "$d/openvex.json" -o "$d/trivy.vex.json" 2>> "$d/trivy.log" || true
+  fi
   if command -v grype >/dev/null; then
     grype "sbom:$d/sbom.syft.json" --by-cve -o json > "$d/grype.json" 2> "$d/grype.log" || true
     grype "sbom:$d/sbom.syft.json" --by-cve -o json --vex "$d/openvex.json" > "$d/grype.vex.json" 2>> "$d/grype.log" || true
   fi
-  VEX_SKIP_SYNC=1 vextriage check "$ref" --hub "" --sbom "$d/sbom.syft.json" --quiet > "$d/check.log" 2>&1 || true
+  VEX_SKIP_SYNC=1 vextriage check "$d/sbom.cdx.json" --image "$ref" --hub "" --sbom "$d/sbom.syft.json" \
+    --quiet > "$d/check.log" 2>&1 || true
+  cat "$d/check.log" | tail -1
 done
 
 if ls data/scans/*.json >/dev/null 2>&1; then
