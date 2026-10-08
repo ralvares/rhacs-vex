@@ -13,8 +13,9 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src'))
 import pandas as pd
 
-from rhacs_vex.engine import _module_stream_compatible
-from rhacs_vex.triage import audit_row_detailed, parse_image_ref, download_and_convert_with_lib
+from rhacs_vex import engine
+from rhacs_vex.core.versions import module_stream_applies as _module_stream_compatible
+from rhacs_vex.engine import audit_row_detailed, parse_image_ref
 
 MOD_PID = 'AppStream-8.10.0.GA:perl-libs-4:5.32.1-473.module+el8.10.0+21354+3ad137bb.x86_64::perl:5.32'
 
@@ -54,7 +55,26 @@ check('non-module PID unaffected',
 
 # --- end-to-end: synthetic §9.1a row through the real engine -------------------
 
-download_and_convert_with_lib('CVE-2023-47038')
+# CVE-2023-47038 in miniature: the el8 perl:5.32 module build fixed at 473.
+_MOD_LEAF = 'perl-libs-4:5.32.1-473.module+el8.10.0+21354+3ad137bb.x86_64::perl:5.32'
+_DOC = {
+    'product_tree': {
+        'branches': [{'branches': [
+            {'product': {'product_id': 'AppStream-8.10.0.GA',
+                         'name': 'Red Hat Enterprise Linux AppStream (v. 8)',
+                         'product_identification_helper': {
+                             'cpe': 'cpe:/a:redhat:enterprise_linux:8::appstream'}}},
+            {'product': {'product_id': _MOD_LEAF,
+                         'product_identification_helper': {'purl':
+                             'pkg:rpm/redhat/perl-libs@5.32.1-473.module%2Bel8.10.0%2B21354'
+                             '%2B3ad137bb?arch=x86_64&epoch=4&rpmmod=perl:5.32'}}}]}],
+        'relationships': [{'product_reference': _MOD_LEAF,
+                           'relates_to_product_reference': 'AppStream-8.10.0.GA',
+                           'full_product_name': {'product_id': MOD_PID}}],
+    },
+    'vulnerabilities': [{'product_status': {'fixed': [MOD_PID]}}],
+}
+engine._load_vex = lambda _cve: _DOC
 ctx = parse_image_ref('registry.access.redhat.com/ubi8/ubi@sha256:' + '0' * 64)
 ctx.rhel_ver = '8'
 

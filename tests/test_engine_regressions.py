@@ -15,8 +15,15 @@ sys.path.insert(0, os.path.join(
 
 import pandas as pd                                                  # noqa: E402
 from rhacs_vex import engine                                         # noqa: E402
-from rhacs_vex.engine import (WorkloadContext, _src_alias_names,     # noqa: E402
-                              _prefix_matches_pid, audit_row_detailed)
+from rhacs_vex.engine import WorkloadContext, audit_row_detailed     # noqa: E402
+from rhacs_vex.core import versions as V                             # noqa: E402
+from rhacs_vex.core.decide import Decision, compare_fixed, src_aliases  # noqa: E402
+from rhacs_vex.core.scope import prefix_matches as _prefix_matches_pid  # noqa: E402
+from rhacs_vex.core.vexdoc import VexDocument                        # noqa: E402
+
+
+def _src_alias_names(data, comp, found_v, srpm=''):
+    return src_aliases(VexDocument.of(data), comp, found_v, srpm)
 
 _failures = []
 
@@ -168,7 +175,7 @@ finally:
 
 print('\n=== E. rpmvercmp — version decides before release ===')
 
-from rhacs_vex.engine import _rpmvercmp, _evr_compare, compare_versions   # noqa: E402
+_rpmvercmp, _evr_compare, compare_versions = V.rpmvercmp, V.vr_compare, V.evr_compare
 
 # Vectors lifted from rpm's own tests/rpmvercmp.at.  The previous dependency
 # (version_utils.rpm.compare_versions) decided some pairs on the RELEASE even
@@ -203,7 +210,7 @@ check('E6 epoch outranks everything', compare_versions('1:1.0-1', '2:1.0-1') < 0
 
 print('\n=== F. dist-tag suffix separates build lineages ===')
 
-from rhacs_vex.engine import _rpm_stream_family, _stream_comparable   # noqa: E402
+_rpm_stream_family, _stream_comparable = V.lineage, V.same_lineage
 
 # §2: el8pc is Satellite Capsule, el9cp Ceph, el9ap Ansible AP, el7a RHEL Alt,
 # hum Red Hat Hardened Images.  Each ships its own build of a shared package, so
@@ -237,11 +244,11 @@ check('F6 minor streams of base RHEL remain comparable',
 print('\n=== G. evidence labels must reflect RED HAT\'s view, not the engine\'s ===')
 
 from rhacs_vex.triage import _evidence_of                    # noqa: E402
-from rhacs_vex import engine as _eng                          # noqa: E402
+from rhacs_vex.core import decide as _decide                  # noqa: E402
 import inspect                                                # noqa: E402
 
 # A product outside the resolved workload scope must never decide an RPM row.
-_src = inspect.getsource(_eng._decide_rpm)
+_src = inspect.getsource(_decide._Triage._rpm)
 check('G1 RPM decisions contain no related-product fallback',
       'affected in related products' not in _src)
 
@@ -277,7 +284,7 @@ print('\n=== H. cross-stream fixes: version may clear, release may not ===')
 # cannot be missing a 2013 fix that shipped in 2.2.10-12.el9_0.4, even though
 # release 6 < 12.  Equal versions differing only in release keep the confound
 # and must stay POSITIVE.
-_newer = _eng._upstream_newer_than_all
+_newer = V.upstream_newer_than_all
 
 check('H1 strictly newer upstream version clears an older-branch backport',
       _newer('2.5.0-6.el9_8.1', ['2.2.10-12.el9_0.4']) is True,
@@ -310,13 +317,13 @@ check('H7 letter-suffixed upstream versions still order correctly',
 
 # The clear must actually be reachable through the ladder, not just the helper.
 _ctx_rhel9 = WorkloadContext(workload_type='ubi', rhel_ver='9', display_name='UBI9')
-_dec = {}
-_v, _fix, _note = _eng._compare_fixed(
-    '2.5.0-6.el9_8.1', ['2.2.10-12.el9_0.4'], 'expat', _ctx_rhel9, True, _dec,
+_dec = Decision()
+_v, _fix, _note = compare_fixed(
+    '2.5.0-6.el9_8.1', ['2.2.10-12.el9_0.4'], 'expat', _ctx_rhel9, _dec,
     {'2.2.10-12.el9_0.4': 'AppStream-9.0.0.Z.E4S:expat-0:2.2.10-12.el9_0.4.x86_64'})
-check('H8 _compare_fixed returns the clear for the newer-upstream case',
-      'FALSE POSITIVE' in _v and _dec.get('kind') == 'rpm_fixed_newer_upstream',
-      f'{_v} kind={_dec.get("kind")} note={_note}')
+check('H8 compare_fixed returns the clear for the newer-upstream case',
+      'FALSE POSITIVE' in _v and _dec.kind == 'rpm_fixed_newer_upstream',
+      f'{_v} kind={_dec.kind} note={_note}')
 
 print()
 print('=== I. later-stream install vs an older-branch-only fix ===')
@@ -325,14 +332,13 @@ print('=== I. later-stream install vs an older-branch-only fix ===')
 # first and backports to EUS/E4S after, so a fix living only in older minors was
 # already in the branch ours forked from; branch base releases climb with the
 # minor, which makes the NEVRA compare meaningful in this direction alone.
-_sup = _eng._installed_stream_supersedes
+_sup = V.later_stream_than_all
 _fix_pid = {'2.2.10-12.el9_0.4': 'AppStream-9.0.0.Z.E4S:expat-0:2.2.10-12.el9_0.4.x86_64'}
 
 
 def _cf(installed, fixes, affected=False):
-    d = {}
-    v, _f, n = _eng._compare_fixed(installed, fixes, 'expat', _ctx_rhel9, True, d,
-                                   _fix_pid, affected)
+    d = Decision()
+    v, _f, n = compare_fixed(installed, fixes, 'expat', _ctx_rhel9, d, _fix_pid, affected)
     return v, n, d
 
 
@@ -369,9 +375,9 @@ check('I7 a GA install (no minor marker) keeps §6b step 4',
       _sup('2.34-60.el9', ['2.34-28.el9_0.4']))
 
 _v2, _note2, _dec2 = _cf('2.2.10-14.el9_8', ['2.2.10-12.el9_0.4'])
-check('I8 _compare_fixed reaches the clear through the ladder',
-      'FALSE POSITIVE' in _v2 and _dec2.get('kind') == 'rpm_fixed_newer_stream',
-      f'{_v2} kind={_dec2.get("kind")} note={_note2}')
+check('I8 compare_fixed reaches the clear through the ladder',
+      'FALSE POSITIVE' in _v2 and _dec2.kind == 'rpm_fixed_newer_stream',
+      f'{_v2} kind={_dec2.kind} note={_note2}')
 
 _v3, _note3, _dec3 = _cf('2.2.10-14.el9_8', ['2.2.10-12.el9_0.4'], affected=True)
 check('I9 an in-scope known_affected vetoes the inference (erratum pending)',

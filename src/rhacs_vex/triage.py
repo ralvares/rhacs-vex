@@ -34,8 +34,7 @@ from rich import box
 from .engine import (  # noqa: F401
     WorkloadContext, parse_image_ref, parse_context_from_labels,
     audit_row_detailed, audit_row_with_doc, _vex_product_for_row,
-    _vex_product_with_doc, _get_vex_product,
-    _load_vex, _read_vex, _RHACS_SEVERITY_MAP, compare_versions, _normalize_epoch,
+    _vex_product_with_doc, _read_vex, _RHACS_SEVERITY_MAP,
     BASE_DIR, VEX_DIR, wire_rpm_owners, rpm_file_owners_from_sbom,
     rpm_source_map_from_sbom,
 )
