@@ -19,8 +19,9 @@ own `GHSA-` — so only the direct record is read.  Six of the seven resolved CV
 had a Red Hat VEX document.
 
 Unresolved IDs are left exactly as they were: rung 10 is the correct answer when
-no CVE exists to look up.  Nothing here touches disk — the alias map is memoised
-for the life of the process and re-read from OSV next run.
+no CVE exists to look up.  The local index answers first — `vextriage sync`
+keeps every CVE-aliased OSV record there, by id — and only an ID it does not
+hold is asked of api.osv.dev (never with VEX_OFFLINE set).
 """
 from __future__ import annotations
 
@@ -72,6 +73,13 @@ def resolve(vuln_id: str):
     """
     if not is_advisory_id(vuln_id):
         return None
+    local = _index()
+    if local is not None:
+        cve = local.osv_cve(_canonical(vuln_id))
+        if cve:
+            return cve
+    if os.environ.get('VEX_OFFLINE'):
+        return None
     try:
         res = requests.get(_API + _canonical(vuln_id), timeout=15)
         if res.status_code != 200:          # 404 = OSV does not know the ID
@@ -84,6 +92,12 @@ def resolve(vuln_id: str):
     cves = sorted(a for a in (doc.get('aliases') or []) + (doc.get('upstream') or [])
                   if str(a).upper().startswith('CVE-'))
     return cves[0] if cves else None
+
+
+@functools.lru_cache(maxsize=1)
+def _index():
+    from . import vexindex
+    return vexindex.open_index()
 
 
 def resolve_many(vuln_ids, workers: int = 0) -> dict:

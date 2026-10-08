@@ -157,7 +157,7 @@ from the SBOM's own artifacts, so grype/trivy are guaranteed to match them. RHAC
 triage output is never converted to OpenVEX.
 
 ```bash
-vextriage sync                                          # once: Red Hat VEX + OSV + index
+vextriage sync                                          # Red Hat VEX + OSV + index; later runs fetch changes only
 vextriage openvex <ref@sha256:…> -o image.openvex.json  # syft SBOM → OpenVEX
 vextriage openvex <ref@sha256:…> --hub vexhub/          # …straight into the hub
 ```
