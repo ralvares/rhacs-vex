@@ -41,10 +41,15 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--scans', default='data/scans')
     ap.add_argument('--limit', type=int, default=0, help='images to check (0 = all)')
+    ap.add_argument('--sample', type=int, default=0, metavar='N',
+                    help='check N randomly chosen images instead of all')
     ap.add_argument('--show', type=int, default=10)
     args = ap.parse_args()
 
     files = sorted(glob.glob(os.path.join(args.scans, '*.json')))
+    if args.sample and len(files) > args.sample:
+        import random
+        files = sorted(random.Random(1).sample(files, args.sample))
     if args.limit:
         files = files[:args.limit]
     rows = diffs = shown = 0
@@ -77,7 +82,7 @@ def main():
                     for k, (x, y) in enumerate(zip(a, b)):
                         if x != y:
                             print(f'    [{k}] legacy={x!r}\n        new   ={y!r}')
-        if i % 50 == 0:
+        if i % 10 == 0:
             print(f'… {i}/{len(files)} images, {rows:,} rows, {diffs} diffs', file=sys.stderr)
     print(f'\n{len(files)} images, {rows:,} rows, {diffs} differences')
     sys.exit(1 if diffs else 0)

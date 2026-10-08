@@ -49,8 +49,8 @@ for ref in "$@"; do
 done
 
 if [ -n "$(find data/scans -maxdepth 1 -name '*.json' -print -quit 2>/dev/null)" ]; then
-  echo "== legacy vs new engine on cached RHACS scans"
-  python3 tests/diff_engines_corpus.py --show 50 > "$OUT/diff_corpus.txt" 2>&1 || true
+  echo "== legacy vs new engine on 150 random cached RHACS scans (progress every 10)"
+  python3 tests/diff_engines_corpus.py --sample "${DIFF_SAMPLE:-150}" --show 50 > "$OUT/diff_corpus.txt" || true
   tail -1 "$OUT/diff_corpus.txt"
 fi
 [ -f data/baseline.json ] && { python3 tests/check_baseline.py > "$OUT/check_baseline.txt" 2>&1 || true; }
