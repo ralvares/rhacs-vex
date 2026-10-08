@@ -629,6 +629,161 @@ check('K6 "Will not fix" for the image is not reinterpreted by other streams\' f
       '❌' in _v and 'coreos-8' in _n, f'{_v} {_n}')
 
 
+print('=== L. layered-product version streams and purl identity ===')
+
+# Shape of CVE-2026-33186 / CVE-2025-13465: a layered product is published per
+# version (`Red Hat Web Terminal 1.13` = cpe ...:webterminal:1.13::el9), plus a
+# version-neutral node (`webterminal:1`).  Statements name builds by digest.
+_WT = 'registry.redhat.io/web-terminal/web-terminal-tooling-rhel9'
+
+
+def _wt_doc(statuses, extra_nodes=()):
+    prods = {'wt': ('Red Hat Web Terminal', 'cpe:/a:redhat:webterminal:1'),
+             'wt13': ('Red Hat Web Terminal 1.13', 'cpe:/a:redhat:webterminal:1.13::el9'),
+             'wt16': ('Red Hat Web Terminal 1.16', 'cpe:/a:redhat:webterminal:1.16::el9')}
+    comps = {}
+    for st, items in statuses.items():
+        for parent, comp, purl in items:
+            comps[comp] = purl
+    branches = [{'product': {'product_id': k, 'name': n,
+                             'product_identification_helper': {'cpe': c}}}
+                for k, (n, c) in prods.items()]
+    branches += [{'product': {'product_id': c, 'product_identification_helper': {'purl': u}}}
+                 for c, u in comps.items()]
+    rel, ps = [], {}
+    for st, items in statuses.items():
+        for parent, comp, _ in items:
+            rel.append({'product_reference': comp, 'relates_to_product_reference': parent,
+                        'full_product_name': {'product_id': f'{parent}:{comp}'}})
+            ps.setdefault(st, []).append(f'{parent}:{comp}')
+    return {'product_tree': {'branches': branches, 'relationships': rel},
+            'vulnerabilities': [{'product_status': ps}]}
+
+
+def _wt_build(sha, tag):
+    return (f'web-terminal/web-terminal-tooling-rhel9@sha256:{sha * 64}_amd64',
+            f'pkg:oci/web-terminal-tooling-rhel9@sha256%3A{sha * 64}?arch=amd64'
+            f'&repository_url={_WT}&tag={tag}')
+
+
+def _wt(doc, build='1773341540', digest='f' * 64, cpe='cpe:/a:redhat:webterminal:1.16::el9'):
+    _orig_load = engine._load_vex
+    engine._load_vex = lambda _c: doc
+    try:
+        ctx = WorkloadContext(workload_type='operator', image_ns='web-terminal',
+                              image_name='web-terminal-tooling-rhel9', rhel_ver='9',
+                              image_ref=f'{_WT}@sha256:{digest}', cpe=cpe,
+                              image_build=build, display_name='Web Terminal 1.16')
+        r = audit_row_detailed(pd.Series({
+            'COMPONENT': 'google.golang.org/grpc', 'VERSION': 'v1.76.0', 'CVE': 'CVE-9999-0004',
+            'SOURCE': 'GO', 'LOCATION': 'usr/bin/x', 'SEVERITY': 'IMPORTANT_VULNERABILITY_SEVERITY',
+            'FIXED_VERSION': ''}), ctx)
+        return r.iloc[0], r.iloc[2]
+    finally:
+        engine._load_vex = _orig_load
+
+
+_c13, _p13 = _wt_build('a', '1780000000')          # built after ours
+_sibling = ('wt', 'web-terminal/web-terminal-exec-rhel9',
+            f'pkg:oci/web-terminal-exec-rhel9?repository_url={_WT[:-len("tooling-rhel9")]}exec-rhel9')
+_v, _n = _wt(_wt_doc({'known_not_affected': [('wt13', _c13, _p13)],
+                      'known_affected': [_sibling]}))
+check('L1 another version\'s not-affected build does not clear ours',
+      '❌' in _v and '1.13' not in _n, f'{_v} {_n}')
+_c16, _p16 = _wt_build('b', '1770000000')
+_v, _n = _wt(_wt_doc({'known_not_affected': [('wt16', _c16, _p16)]}))
+check('L2 a not-affected build of OUR version is evidence', '✅' in _v and '1.16' in _n,
+      f'{_v} {_n}')
+_v, _n = _wt(_wt_doc({'fixed': [('wt13', _c13, _p13)]}))
+check('L3 fixed only in another version, after our build → predates the fix',
+      '❌' in _v and 'predates' in _n, f'{_v} {_n}')
+_v, _n = _wt(_wt_doc({'fixed': [('wt13', _c13, _p13)]}), build='1790000000')
+check('L4 …a build newer than that fix gets no inference from it', '1.13' not in _n,
+      f'{_v} {_n}')
+_v, _n = _wt(_wt_doc({'known_affected': [
+    ('wt', 'web-terminal/web-terminal-tooling-rhel9',
+     f'pkg:oci/web-terminal-tooling-rhel9@sha256%3A{"f" * 64}?repository_url=quay.io/'
+     'web-terminal/web-terminal-tooling-rhel9')]}))
+check('L5 a digest pinned only in the purl (sha256%3A) is this build', '❌' in _v
+      and 'this image build' in _n, f'{_v} {_n}')
+# CVE-2025-58183: -rhel8 affected, -rhel9 not affected, both purls say -rhel8.
+_bad = f'pkg:oci/web-terminal-tooling-rhel8?repository_url={_WT[:-len("-rhel9")]}'
+_rhel = _wt_doc({'known_affected': [('wt', 'web-terminal/web-terminal-tooling-rhel8', _bad)],
+                 'known_not_affected': [('wt', 'web-terminal/web-terminal-tooling-rhel9', _bad)]})
+_v, _n = _wt(_rhel, digest='e' * 64)
+check('L6 the PID\'s -rhelN tells two statements with one purl apart',
+      '✅' in _v and 'rhel9' in _n, f'{_v} {_n}')
+
+
+print('=== M. errata assumption is about OUR product ===')
+
+# Shape of CVE-2024-45490 / CVE-2025-58187 on an OCP 4.20 payload image: RHEL 9
+# lists its expat / golang rpm affected; OpenShift 4 lists sibling images
+# (under investigation); our image is named nowhere.
+
+
+def _ocp_doc(statuses):
+    prods = {'red_hat_enterprise_linux_9': ('Red Hat Enterprise Linux 9', 'cpe:/o:redhat:enterprise_linux:9'),
+             _ocp4: ('Red Hat OpenShift Container Platform 4', 'cpe:/a:redhat:openshift:4'),
+             'cert9': ('Red Hat Certification Program for Red Hat Enterprise Linux 9',
+                       'cpe:/a:redhat:certifications:1::el9'),
+             'ocp420': ('Red Hat OpenShift Container Platform 4.20', 'cpe:/a:redhat:openshift:4.20::el9')}
+    branches = [{'product': {'product_id': k, 'name': n, 'product_identification_helper': {'cpe': c}}}
+                for k, (n, c) in prods.items()]
+    rel, ps, seen = [], {}, set()
+    for st, items in statuses.items():
+        for parent, comp, purl in items:
+            if comp not in seen:
+                seen.add(comp)
+                branches.append({'product': {'product_id': comp,
+                                             'product_identification_helper': {'purl': purl}}})
+            rel.append({'product_reference': comp, 'relates_to_product_reference': parent,
+                        'full_product_name': {'product_id': f'{parent}:{comp}'}})
+            ps.setdefault(st, []).append(f'{parent}:{comp}')
+    return {'product_tree': {'branches': branches, 'relationships': rel},
+            'vulnerabilities': [{'product_status': ps}]}
+
+
+def _payload(doc, comp='github.com/thanos-io/thanos', src='GO'):
+    _orig_load = engine._load_vex
+    engine._load_vex = lambda _c: doc
+    try:
+        ctx = WorkloadContext(workload_type='ocp', ocp_ver='4.20', ocp_component='thanos',
+                              rhel_ver='9', image_name='openshift/ose-thanos-rhel9',
+                              cpe='cpe:/a:redhat:openshift:4.20::el9', display_name='OpenShift 4.20')
+        r = audit_row_detailed(pd.Series({
+            'COMPONENT': comp, 'VERSION': 'v0.39.0', 'CVE': 'CVE-9999-0005', 'SOURCE': src,
+            'LOCATION': 'usr/bin/thanos', 'SEVERITY': 'MODERATE_VULNERABILITY_SEVERITY',
+            'FIXED_VERSION': ''}), ctx)
+        return r.iloc[0], r.iloc[2]
+    finally:
+        engine._load_vex = _orig_load
+
+
+_golang = ('red_hat_enterprise_linux_9', 'golang', 'pkg:rpm/redhat/golang')
+_v, _n = _payload(_ocp_doc({'known_affected': [_golang, ('cert9', 'golang', 'pkg:rpm/redhat/golang')]}))
+check('M1 RHEL\'s golang rpm being affected does not make an OpenShift binary positive',
+      '✅' in _v and 'assumed vulnerable' not in _n, f'{_v} {_n}')
+_sib = (_ocp4, 'openshift4/ose-console-rhel9',
+        'pkg:oci/ose-console-rhel9?repository_url=registry.redhat.io/openshift4/ose-console-rhel9')
+_v, _n = _payload(_ocp_doc({'known_affected': [_golang], 'under_investigation': [_sib]}))
+check('M2 sibling images of our product under investigation keep ours positive',
+      '❌' in _v and 'under_investigation' in _n, f'{_v} {_n}')
+_v, _n = _payload(_ocp_doc({'known_affected': [_sib]}))
+check('M3 our product listed affected (sibling image) → errata assumption',
+      '❌' in _v and 'OpenShift' in _n, f'{_v} {_n}')
+
+# Shape of CVE-2026-25639 (axios): OCP 4 lists the console images affected,
+# "OpenShift Container Platform 4.20" clears 160 builds that lack axios; our
+# monitoring-plugin is in neither list.  Not cleared ≠ covered.
+_sweep = [('ocp420', f'openshift4/ose-hyperkube-rhel9@sha256:{c * 64}_amd64',
+           f'pkg:oci/ose-hyperkube-rhel9@sha256%3A{c * 64}?arch=amd64&repository_url='
+           'registry.redhat.io/openshift4/ose-hyperkube-rhel9') for c in 'abc']
+_v, _n = _payload(_ocp_doc({'known_affected': [_sib], 'known_not_affected': _sweep}))
+check('M4 a not-affected sweep of other builds does not cover an image absent from it',
+      '❌' in _v, f'{_v} {_n}')
+
+
 print()
 if _failures:
     print(f'{len(_failures)} FAILED: {_failures}')

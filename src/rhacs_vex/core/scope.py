@@ -18,6 +18,29 @@ from .vexdoc import VexDocument, parent_of
 from .workload import WorkloadContext
 
 
+def other_version(image_cpe: str, vex_cpe: str) -> bool:
+    """Same product, another version stream (§1e).
+
+    Layered products are published per version — `Red Hat Web Terminal 1.13`
+    is `cpe:/a:redhat:webterminal:1.13::el9` — and the image says which one it
+    is (`cpe` label `…:webterminal:1.16::el9`).  A statement about 1.13's
+    builds says nothing about 1.16, exactly as an el9_4 fix says nothing
+    about el9_6.  The version-neutral product (`webterminal:1`) still covers.
+    """
+    if not image_cpe or not vex_cpe:
+        return False
+
+    def parts(cpe):
+        return re.sub(r'^cpe:[/\d.]*:*', '', cpe).strip(':').split(':')
+
+    img, vex = parts(image_cpe), parts(vex_cpe)
+    if len(img) < 4 or len(vex) < 4 or not img[3] or not vex[3]:
+        return False
+    if [x.lower() for x in img[:3]] != [x.lower() for x in vex[:3]]:
+        return False
+    return not cpe_covers(image_cpe, ':'.join(['cpe:/' + vex[0]] + vex[1:4]))
+
+
 def cpe_covers(image_cpe: str, vex_cpe: str) -> bool:
     """Image CPE prefix-covered by a VEX CPE, component-wise (§4b).
 
@@ -117,6 +140,8 @@ def _in_scope(pid: str, ctx: WorkloadContext, doc: VexDocument) -> bool:
             return True
         return mentions_rhel(pid, ctx.rhel_ver)
 
+    if ctx.cpe and other_version(ctx.cpe, doc.cpe.get(parent, '')):
+        return False
     low = pid.lower()
     if any(prefix_matches(p, low) for p in ctx.extra_prefixes):
         return True

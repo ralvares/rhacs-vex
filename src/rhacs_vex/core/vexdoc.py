@@ -279,6 +279,20 @@ class VexDocument:
                 return sev
         return None
 
+    def build_digest(self, pid: str) -> Optional[str]:
+        """sha256 hex of the build a PID names: in the PID, else in its oci purl.
+
+        Konflux-era statements can name an image by path alone while the purl
+        pins the build (`rhoai/odh-dashboard-rhel9` → `pkg:oci/…@sha256%3A…`);
+        purls write the digest percent-encoded.
+        """
+        d = digest_of(pid)
+        if d:
+            return d.lower()
+        purl = self.purl.get(component_of(pid)) or self.purl.get(pid) or ''
+        m = re.search(r'@sha256(?::|%3A)([a-f0-9]{64})', purl, re.IGNORECASE)
+        return m.group(1).lower() if m else None
+
     def purl_for(self, pid: str) -> Optional[str]:
         leaf = component_of(pid)
         purl = self.purl.get(pid) or self.purl.get(leaf)

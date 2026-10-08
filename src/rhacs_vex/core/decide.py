@@ -47,7 +47,7 @@ from dataclasses import dataclass, field
 from typing import List
 
 from . import versions as V
-from .scope import in_scope, is_rhel_base, mentions_rhel
+from .scope import other_version, in_scope, is_rhel_base, mentions_rhel, prefix_matches
 from .vexdoc import (CLEAR, OPEN, STATUSES, VexDocument, component_of, digest_of,
                      parent_of)
 from .workload import WorkloadContext, image_core, image_rhel, same_ocp_component
@@ -169,7 +169,7 @@ class _Triage:
             hits = {}
             for st, pid in doc.pids('known_affected', 'under_investigation', 'fixed',
                                     'known_not_affected'):
-                if any(sh in pid for sh in own):
+                if doc.build_digest(pid) in own:
                     hits.setdefault(st, pid)
             if hits:
                 return self._own_build(hits)
@@ -365,7 +365,7 @@ class _Triage:
         if own:
             for _st, pid in doc.pids('known_not_affected', 'known_affected', 'fixed',
                                      'under_investigation'):
-                if digest_of(pid) in own:
+                if doc.build_digest(pid) in own:
                     leaf, _ = doc.package(pid)
                     if leaf:
                         matched.add(leaf)
@@ -391,6 +391,7 @@ class _Triage:
         matches = []                      # (status, pid, rhel_quality, flag, own_digest)
         family = False
         own_streams = set()               # OCP minors where Red Hat fixed THIS image
+        other_fixed = []                  # fixed builds of this image in other versions
         for vuln in doc.vulns:
             flag_of = vuln.flag_label()
 
@@ -414,6 +415,9 @@ class _Triage:
                     m = re.search(r'RHOSE[.-](\d+\.\d+)', pid)
                     if ours and st == 'fixed' and m:
                         own_streams.add(m.group(1))
+                    if ours and st == 'fixed' and digest_of(pid) and ctx.cpe and \
+                            other_version(ctx.cpe, doc.cpe.get(parent_of(pid), '')):
+                        other_fixed.append(pid)
                     return
                 if is_path:
                     family = True
@@ -421,7 +425,11 @@ class _Triage:
                     return
                 if generic or is_oci:
                     family = True
-                prh = image_rhel(pkg)
+                # RHEL variant: the PID's `-rhelN` when it has one.  Neither
+                # source is always right — CVE-2025-58183 lists node-agent-rhel8
+                # affected and -rhel9 not affected, both purls saying -rhel8 —
+                # but the PID is what tells the two statements apart.
+                prh = image_rhel(pkg) or image_rhel(_purl_name(doc.purl.get(pkg, '')))
                 quality = 2 if prh == ctx.rhel_ver else (1 if prh is None else 0)
                 d = digest_of(pid)
                 matches.append((st, pid, quality, flag, bool(d and d in own)))
@@ -448,6 +456,15 @@ class _Triage:
                         return 'FALSE_POSITIVE', '', f'errata_fixed:{newest}'
                     if _vkey(newest) < cur:
                         return 'FALSE_POSITIVE', '', f'errata_not_previous:{newest}'
+            # Fixed only in other version streams of this product (Web
+            # Terminal 1.13-1.15 rebuilt for a fix, 1.16 not named).  Their
+            # clears never transfer, but a fix built after our build means
+            # ours predates it: a "previous version" under the errata policy.
+            ours = V.build_stamp(ctx.image_build)
+            stamps = [t for t in (self._purl_stamp(p) for p in other_fixed) if t]
+            if ours and stamps and ours < max(stamps):
+                newest = max(other_fixed, key=lambda p: self._purl_stamp(p) or 0)
+                return 'POSITIVE', newest, 'fixed'
             return not_listed
 
         best = max(m[2] for m in matches)
@@ -577,9 +594,20 @@ class _Triage:
             dec.set('img_ui_scope', status='under_investigation', pids=upids)
             return POS, "N/A", (f"under_investigation in {_first(labels, 3)} — Red Hat "
                                 f"has not assessed this yet.")
-        labels, apids = self._scoped_affected()
+        labels, apids = self._scoped_affected(own_product=True)
         if labels and not self._clears_under(apids):
             return self._errata_assumed(labels, apids, ref)
+        if not labels:
+            # our product is still being investigated (sibling images named)
+            ulabels, upids = [], []
+            for _s, pid in doc.pids('under_investigation'):
+                if self.scoped(pid) and self._our_product(pid):
+                    ulabels.append(doc.label(pid))
+                    upids.append(pid)
+            if ulabels and not self._clears_under(upids):
+                dec.set('img_ui_product', status='under_investigation', pids=upids)
+                return POS, "N/A", (f"under_investigation in {_first(ulabels, 2)} — Red Hat "
+                                    f"has not assessed {ref} yet.")
         dec.set('img_not_listed', pids=[])
         return FP, "N/A", f"{ref} not listed as affected."
 
@@ -688,11 +716,11 @@ class _Triage:
         """Every statement naming this component or image was consumed above."""
         doc, ctx, dec = self.doc, self.ctx, self.dec
         if ctx.workload_type != "ubi":
-            aff_lbl, aff_pids = self._scoped_affected()
+            aff_lbl, aff_pids = self._scoped_affected(own_product=True)
             inv_lbl, inv_pids, clr_lbl, clr_pids = [], [], [], []
             for vuln in doc.vulns:
                 for st, pid in vuln.pids('under_investigation'):
-                    if self.scoped(pid):
+                    if self.scoped(pid) and self._our_product(pid):
                         inv_lbl.append(doc.label(pid))
                         inv_pids.append(pid)
                 for st, pid in vuln.pids(*CLEAR):
@@ -793,10 +821,39 @@ class _Triage:
                 pids.append(pid)
         return labels, pids
 
-    def _scoped_affected(self):
+    def _our_product(self, pid) -> bool:
+        """Is this PID under the product our image ships in?
+
+        The errata policy speaks about "packages of a product listed here"
+        (§5g).  For an image or a module vendored in it, that product is
+        OpenShift (payload) or the operator's own product — not every product
+        that shares our RHEL major: RHEL 9's golang rpm being affected says
+        nothing about the Go inside an OpenShift binary, and "Red Hat
+        Certification Program for RHEL 9" is no product of ours at all.
+        """
+        ctx, doc = self.ctx, self.doc
+        parent = parent_of(pid)
+        cpe = doc.cpe.get(parent, '')
+        if ctx.sbom_src_map and ctx.sbom_src_map.get(self.comp) and \
+                is_rhel_base(pid, ctx.rhel_ver, doc):
+            return True          # shipped inside a RHEL rpm: RHEL is its product
+        if ctx.workload_type == 'ocp':
+            name = (doc.name.get(parent) or parent).lower()
+            return ('openshift container platform' in name or 'RHOSE' in parent
+                    or cpe.startswith('cpe:/a:redhat:openshift:'))
+        if ctx.workload_type == 'operator':
+            if ctx.cpe and cpe and _cpe_product(ctx.cpe) == _cpe_product(cpe):
+                return True
+            low = pid.lower()
+            products = doc.ns_products.get((ctx.image_ns or '').lower(), set())
+            return parent in products or any(prefix_matches(p, low)
+                                             for p in list(products) + ctx.extra_prefixes)
+        return True
+
+    def _scoped_affected(self, own_product=False):
         labels, pids = [], []
         for _s, pid in self.doc.pids('known_affected'):
-            if self.scoped(pid):
+            if self.scoped(pid) and (not own_product or self._our_product(pid)):
                 labels.append(self.doc.label(pid))
                 pids.append(pid)
         return labels, pids
@@ -811,6 +868,11 @@ class _Triage:
         parents = {parent_of(p) for p in affected_pids}
         if not parents:
             return []
+        # Only clears under the SAME node that lists the family affected count.
+        # A per-build not-affected sweep under a sibling node ("OpenShift
+        # Container Platform 4.20") lists the builds that LACK the code; an
+        # image missing from it was not cleared (CVE-2026-25639: axios, 160
+        # 4.20 builds cleared, monitoring-plugin absent and shipping axios).
         return [pid for _s, pid in self.doc.pids(*CLEAR)
                 if parent_of(pid) in parents and self.scoped(pid)]
 
@@ -864,6 +926,11 @@ def compare_fixed(found_v, fixes, comp, ctx, dec, pid_by_ver, affected_in_scope=
 # ══════════════════════════════════════════════════════════════════════════════
 # component names
 # ══════════════════════════════════════════════════════════════════════════════
+
+def _cpe_product(cpe: str) -> str:
+    """`cpe:/a:redhat:webterminal:1.16::el9` → `a:redhat:webterminal`."""
+    return ':'.join(re.sub(r'^cpe:[/\d.]*:*', '', cpe).split(':')[:3]).lower()
+
 
 def _purl_name(purl: str) -> str:
     """Name segment of a purl: `pkg:generic/redhat/rhcos@4.20…` → `rhcos`."""

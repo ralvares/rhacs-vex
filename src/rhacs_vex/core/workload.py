@@ -227,9 +227,11 @@ def parse_context_from_labels(labels: dict, image_ref: str = "",
         if rhel_m:
             ctx.rhel_ver = rhel_m.group(1)
         if version_tok:
-            ctx.display_name = f"{ctx.display_name.split('(')[0].strip()} {version_tok}"
             if ctx.workload_type == "ocp":
                 ctx.ocp_ver = version_tok
+                ctx.display_name = f"OpenShift {version_tok}"
+            else:
+                ctx.display_name = f"{ctx.display_name.split('(')[0].strip()} {version_tok}"
         product = parts[2].lower() if len(parts) > 2 else ""
         if ctx.workload_type == "operator" and product == "openshift":
             ctx.workload_type = "ocp"
