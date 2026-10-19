@@ -853,6 +853,69 @@ check('N4 a 9.6 image takes the el9_6 fix for a GA-tagged package',
       '❌' in _r.iloc[0] and _r.iloc[1] == '10.40-6.el9_6.1', f'{list(_r)[:3]}')
 
 
+print('=== O. which fix to name; modules shipped in rpms; other products ===')
+
+# vim on a 9.7 image (CVE-2026-73078 shape): fixed in 9.2 E4S, 9.6 EUS and 9.8;
+# 9.7 itself gets nothing.  The fix to name is the 9.8 build, never the older
+# 9.2 backport that sits below the installed 23.el9_7.
+from rhacs_vex.core.decide import _upgrade_fix                     # noqa: E402
+check('O1 no fix in our stream → name the next stream\'s build',
+      _upgrade_fix(['8.2.2637-20.el9_2.3', '8.2.2637-22.el9_6.4', '8.2.2637-26.el9_8.21'], '7')
+      == '8.2.2637-26.el9_8.21')
+check('O2 …and the newest when every fix is older',
+      _upgrade_fix(['1.0-5.el9_2.1', '1.0-6.el9_4.1'], '7') == '1.0-6.el9_4.1')
+
+# urllib3 (PYTHON) shipped in python3-urllib3: Red Hat fixes the rpm, so the
+# rpm's installed version decides; Ansible's same-named package does not.
+
+
+def _py_doc():
+    nodes = [('red_hat_enterprise_linux_9', 'Red Hat Enterprise Linux 9', 'cpe:/o:redhat:enterprise_linux:9', None),
+             ('BaseOS-9.4.0.Z.EUS', 'Red Hat Enterprise Linux BaseOS EUS (v.9.4)', 'cpe:/a:redhat:rhel_eus:9.4::baseos', None),
+             ('aap', 'Red Hat Ansible Automation Platform 2.4 for RHEL 9', 'cpe:/a:redhat:ansible_automation_platform:2.4::el9', None),
+             ('python3-urllib3-0:1.26.5-5.el9_4.4.noarch', None, None,
+              'pkg:rpm/redhat/python3-urllib3@1.26.5-5.el9_4.4?arch=noarch'),
+             ('python3-urllib3', None, None, 'pkg:rpm/redhat/python3-urllib3')]
+    branches = []
+    for pid, name, cpe, purl in nodes:
+        helper = {'cpe': cpe} if cpe else {'purl': purl}
+        prod = {'product_id': pid, 'product_identification_helper': helper}
+        if name:
+            prod['name'] = name
+        branches.append({'product': prod})
+    rel = [('python3-urllib3-0:1.26.5-5.el9_4.4.noarch', 'BaseOS-9.4.0.Z.EUS'), ('python3-urllib3', 'aap')]
+    return {'product_tree': {'branches': branches, 'relationships': [
+                {'product_reference': c, 'relates_to_product_reference': p,
+                 'full_product_name': {'product_id': f'{p}:{c}'}} for c, p in rel]},
+            'vulnerabilities': [{
+                'product_status': {'fixed': ['BaseOS-9.4.0.Z.EUS:python3-urllib3-0:1.26.5-5.el9_4.4.noarch']},
+                'flags': [{'label': 'vulnerable_code_not_present', 'product_ids': ['aap:python3-urllib3']}]}]}
+
+
+def _py(installed_rpm):
+    _orig_load = engine._load_vex
+    engine._load_vex = lambda _c: _py_doc()
+    try:
+        ctx = WorkloadContext(workload_type='ocp', ocp_ver='4.20', ocp_component='thanos', rhel_ver='9',
+                              rhel_minor='4', image_name='openshift/ose-thanos-rhel9',
+                              display_name='OpenShift 4.20',
+                              sbom_src_map={'urllib3': 'python3-urllib3'},
+                              sbom_packages={'python3-urllib3': {installed_rpm}})
+        r = audit_row_detailed(pd.Series({
+            'COMPONENT': 'urllib3', 'VERSION': '1.26.5', 'CVE': 'CVE-9999-0007', 'SOURCE': 'PYTHON',
+            'LOCATION': '/usr/lib/python3.9/site-packages/urllib3', 'SEVERITY': '', 'FIXED_VERSION': ''}), ctx)
+        return r.iloc[0], r.iloc[1], r.iloc[2]
+    finally:
+        engine._load_vex = _orig_load
+
+
+_v, _f, _n = _py('1.26.5-5.el9_4.1')
+check('O3 a module in an rpm is decided by the rpm version (below the fix)',
+      '❌' in _v and _f == '1.26.5-5.el9_4.4' and 'Ansible' not in _n, f'{_v} {_f} {_n}')
+_v, _f, _n = _py('1.26.5-5.el9_4.4')
+check('O4 …at the fix it clears', '✅' in _v and 'Ansible' not in _n, f'{_v} {_f} {_n}')
+
+
 print()
 if _failures:
     print(f'{len(_failures)} FAILED: {_failures}')

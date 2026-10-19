@@ -43,6 +43,7 @@ OpenVEX exporter publishes nothing else.
 from __future__ import annotations
 
 import re
+from urllib.parse import unquote
 from dataclasses import dataclass, field
 from typing import List
 
@@ -533,6 +534,15 @@ class _Triage:
             return 'FALSE_POSITIVE', fixed[0], 'fixed'
         return not_listed
 
+    def _build_ref(self, pid) -> str:
+        """How to name a fixed image build: its tag, else its digest."""
+        purl = self.doc.purl_for(pid) or ''
+        m = re.search(r'[?&]tag=([^&]+)', purl)
+        if m:
+            return f"build {unquote(m.group(1))}"
+        d = self.doc.build_digest(pid)
+        return f"sha256:{d[:12]}" if d else "N/A"
+
     def _purl_stamp(self, pid):
         purl = self.doc.purl_for(pid)
         m = re.search(r'[?&]tag=([^&]+)', purl) if purl else None
@@ -584,8 +594,9 @@ class _Triage:
                 return POS, "N/A", f"under_investigation. {img_lbl}."
             if st == 'fixed':
                 dec.set('img_pos_fixed_older', status='known_affected', pids=pids,
-                        fix_set=False)
-                return POS, "N/A", f"Fixed build exists ({img_lbl}); this build predates it."
+                        fix_set=True)
+                return POS, self._build_ref(pid), (f"Fixed build exists ({img_lbl}); this "
+                                                   f"build predates it.")
             dec.set('img_pos', status='known_affected', pids=pids)
             return POS, "N/A", f"{st}. {img_lbl}."
 
@@ -645,6 +656,8 @@ class _Triage:
                     pkg, _ = doc.package(pid)
                     if pkg and pkg not in self.names():
                         continue
+                    if not self._our_product(pid):
+                        continue         # another product's package of that name
                 self.dec.set('nonrpm_flag', status='known_not_affected', pids=[pid])
                 return FP, "N/A", (f"Not affected in {ctx.display_name} ({doc.label(pid)}): "
                                    f"{label.replace('_', ' ')}.")
@@ -704,12 +717,16 @@ class _Triage:
             if not self.scoped(pid):
                 continue
             sha = digest_of(pid)
+            pkg, ver = doc.package(pid)
             if sha:
                 if sha not in own:
                     continue
             else:
-                pkg, _ = doc.package(pid)
                 if pkg and pkg not in self.names():
+                    continue
+                if not self._our_product(pid):
+                    # another product's package of the same name (Ansible's
+                    # python3.11-urllib3 for the urllib3 in an OCP image)
                     continue
             lbl = doc.label(pid)
             if st == 'under_investigation':
@@ -719,11 +736,42 @@ class _Triage:
                 dec.set('nonrpm_ps_kna', status=st, pids=[pid])
                 return FP, "N/A", f"known_not_affected ({lbl})."
             if st == 'fixed':
+                owned = self._owner_compare(pkg)
+                if owned:
+                    return owned
                 dec.set('nonrpm_ps_fixed', status=st, pids=[pid])
                 return POS, "N/A", f"Fix exists ({lbl}); installed version not verified."
             dec.set('nonrpm_ps_ka', status=st, pids=[pid])
             return POS, "N/A", f"known_affected ({lbl})."
         return None
+
+    def _owner_compare(self, pkg):
+        """A module shipped inside an rpm, fixed in that rpm: compare the rpm.
+
+        The SBOM knows the owning rpm's installed version (python3-urllib3 for
+        urllib3), so Red Hat's fixed NEVRAs of it decide like any rpm row.
+        """
+        doc, ctx = self.doc, self.ctx
+        have = sorted((ctx.sbom_packages or {}).get(pkg) or [])
+        if not pkg or not have or pkg == self.comp:
+            return None
+        installed = have[0]
+        for v in have[1:]:
+            if V.installed_cmp(v, installed) > 0:
+                installed = v
+        fixes, pid_by_ver = [], {}
+        for _st, pid in doc.pids('fixed'):
+            name, ver = doc.package(pid)
+            if name == pkg and ver and self.scoped(pid) and self._our_product(pid) \
+                    and V.same_lineage(installed, ver) and ver not in pid_by_ver:
+                fixes.append(ver)
+                pid_by_ver[ver] = pid
+        if not fixes:
+            return None
+        affected = any(self.scoped(p) and doc.package(p)[0] == pkg
+                       for _s, p in doc.pids('known_affected', 'under_investigation'))
+        res, fix, note = compare_fixed(installed, fixes, pkg, ctx, self.dec, pid_by_ver, affected)
+        return res, fix, f"{self.comp} ships in {pkg}-{installed}: {note}"
 
     # ── rung 6/9: nothing names this component ─────────────────────────────
     def _fallthrough(self, affected, fixed, not_affected, investigating):
@@ -895,6 +943,24 @@ class _Triage:
 # rpm version comparison against fixes (§6b)
 # ══════════════════════════════════════════════════════════════════════════════
 
+def _upgrade_fix(fixes, minor: str) -> str:
+    """The fix to name when our stream has none: the one in the nearest later
+    minor — where a build of a minor that gets no more updates moves to (9.7 →
+    the 9.8 build) — else the newest.  Never an older stream's backport, which
+    can sit below the installed build (vim 23.el9_7 vs the 9.2 E4S 20.el9_2.3)."""
+    def mnum(v):
+        m = V.rhel_minor(v)
+        return int(m) if m and m.isdigit() else None
+    later = [v for v in fixes if mnum(v) is not None and mnum(v) > int(minor)]
+    if later:
+        return min(later, key=lambda v: mnum(v))
+    best = fixes[0]
+    for v in fixes[1:]:
+        if V.installed_cmp(v, best) > 0:
+            best = v
+    return best
+
+
 def compare_fixed(found_v, fixes, comp, ctx, dec, pid_by_ver, affected_in_scope=False):
     """Stream-aware comparison of the installed rpm against in-scope fixed NEVRAs.
 
@@ -925,7 +991,8 @@ def compare_fixed(found_v, fixes, comp, ctx, dec, pid_by_ver, affected_in_scope=
     if minor:
         same = [v for v in fixes if V.rhel_minor(v) == minor]
         if not same:
-            ref = fixes[0]
+            here = max((m for m in (minor, ctx.rhel_minor) if m and m.isdigit()), key=int)
+            ref = _upgrade_fix(fixes, here)
             if V.upstream_newer_than_all(found_v, fixes):
                 decide(ref, 'rpm_fixed_newer_upstream', False)
                 return FP, ref, (f"{prefix}Installed {found_v} is a newer upstream version "

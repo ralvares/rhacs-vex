@@ -111,6 +111,8 @@ class SyftSBOM:
     def enrich(self, df, ctx) -> None:
         """Attach SRPM / OWNER_RPM to findings and SBOM maps to the context."""
         wire_rpm_owners(df, ctx, self.file_owners())
+        if not ctx.sbom_packages:
+            ctx.sbom_packages = self.package_versions()
         srcs = self.source_rpms()
         if srcs and df is not None and not df.empty and 'COMPONENT' in df.columns:
             def srpm_for(row):
@@ -140,7 +142,9 @@ def wire_rpm_owners(df, ctx, owners: dict) -> None:
         norm[p] = norm['/' + p.lstrip('/')] = norm[p.lstrip('/')] = owner
 
     def owner_of(r):
-        loc = str(r.get('LOCATION', ''))
+        loc = str(r.get('LOCATION', '') or '').strip()
+        if loc.lower() in ('', 'nan', 'none', '/'):
+            return ''                    # '/' is the filesystem rpm's, not an owner
         if str(r.get('SOURCE', '')).strip().upper() != 'OS' and loc in norm:
             return '{}@{}'.format(*norm[loc])
         return ''

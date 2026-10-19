@@ -921,6 +921,20 @@ Red Hat checked and cleared everywhere). 273 refs list the same PID as both `fix
    Red Hat lists the version-neutral RHEL node affected (CVE-2026-103111: pcre2 fixed only as a
    9.6 EUS backport, RHEL 9 "Affected"), the row reports that statement, not "fix available".
 
+5. **Naming the fix.** When the image's stream has no fix, the fix named is the build of the
+   nearest later minor — where a minor that receives no more updates moves to (vim on 9.7 →
+   `26.el9_8.21`) — never an older stream's backport, which can sit below the installed build
+   (`20.el9_2.3` under an installed `23.el9_7`).
+6. **Modules shipped inside an rpm.** A Python or Go package the SBOM traces to an owning rpm
+   (`urllib3` → `python3-urllib3`) is decided by that rpm's installed version against Red Hat's
+   fixed NEVRAs, with the same stream rules — not "fix exists, version not verified". Only the
+   image's own product counts here too: Ansible's `python3.11-urllib3` statements say nothing
+   about the urllib3 in an OpenShift image.
+
+Checked on 21,857 rpm rows (web-terminal on 9.7, five OCP payloads on 9.4 and 9.6) against an
+independent evaluator written from these rules alone: the only disagreements left are rows
+decided by an image-level statement and OCP-product statements that evaluator does not read.
+
 Red Hat Hardened Images ("hummingbird"): 13,677 rpm purls with `distro=hummingbird-20251124`,
 PIDs `nginx-main@aarch64`, versions `…hum1` — the identity is only in the purl, and the lineage
 guard keeps them away from RHEL builds.

@@ -22,6 +22,8 @@ from typing import Optional
 
 import pandas as pd
 
+from .core import versions as V
+
 from .core.decide import SEVERITY_FROM_SCANNER, triage, vex_product as _vex_product
 from .core.store import load_document
 
@@ -37,6 +39,26 @@ _CARRIED = ('SOURCE', 'LOCATION', 'FIXED_VERSION', 'OCP_COMPONENT', 'IMAGE', 'IM
             'DEPLOYMENT', '_UID')
 
 
+def _infer_rhel_minor(ctx, df) -> None:
+    """The image's RHEL minor when no os-release told us (RHACS, grype rows).
+
+    An image holds builds of its own minor and older ones carried forward, so
+    the highest `elN_M` among its rpms is its minor (9.7 web-terminal: el9_7;
+    an OCP 4.20 payload on 9.4 EUS: el9_4).
+    """
+    if getattr(ctx, 'rhel_minor', None) or df is None or not len(df) or 'VERSION' not in df:
+        return
+    rows = df[df['SOURCE'].astype(str).str.upper() == 'OS'] if 'SOURCE' in df else df
+    minors = set()
+    for v in rows['VERSION'].astype(str):
+        if V.rhel_major(v) == str(ctx.rhel_ver):
+            m = V.rhel_minor(v)
+            if m is not None and m.isdigit():
+                minors.add(int(m))
+    if minors:
+        ctx.rhel_minor = str(max(minors))
+
+
 def audit_frame(df: pd.DataFrame, ctx, **kw) -> pd.DataFrame:
     return audit([{'df': df, 'ctx': ctx}], **kw)[0]
 
@@ -47,6 +69,7 @@ def audit(jobs: list, *, false_only: bool = False, vex_product: bool = True,
     prepared = []
     for job in jobs:
         df = prepare(job['df'])
+        _infer_rhel_minor(job['ctx'], df)
         prepared.append((job['ctx'], df))
 
     work: dict = {}                     # CVE → {job: [row positions]}
