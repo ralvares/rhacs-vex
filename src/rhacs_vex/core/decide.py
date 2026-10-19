@@ -256,7 +256,21 @@ class _Triage:
                     unique.append(ver)
                     pid_by_ver[ver] = pid
             affected = any(st in OPEN for st, _p, _v in cands)
-            return compare_fixed(found_v, unique, comp, ctx, dec, pid_by_ver, affected)
+            res, fix, note = compare_fixed(found_v, unique, comp, ctx, dec, pid_by_ver, affected)
+            # Red Hat lists the whole RHEL line (version-neutral node) as
+            # affected and the only fix is another stream's backport: that fix
+            # is not one this build can take — CVE-2026-103111, pcre2 fixed only
+            # as 10.40-6.el9_6.1 (9.6 EUS) while RHEL 9 is "Affected".  Report
+            # Red Hat's statement, not "fix available".
+            fm = V.rhel_minor(fix)
+            other_stream = fm is not None and fm != minor and fm != ctx.rhel_minor
+            line_ka = [p for st, p, v in cands if st == 'known_affected' and not v
+                       and re.fullmatch(r'red_hat_enterprise_linux_\d+', parent_of(p))]
+            if res == POS and other_stream and line_ka:
+                dec.set('rpm_ka_line', status='known_affected', pids=[line_ka[0]], fix_set=False)
+                return POS, "N/A", (f"{prefix}known_affected for {doc.label(line_ka[0])}; "
+                                    f"the only fix is another stream's ({fix}).")
+            return res, fix, note
 
         ka = [pid for st, pid, _v in cands if st == 'known_affected']
         if ka:
@@ -892,6 +906,17 @@ def compare_fixed(found_v, fixes, comp, ctx, dec, pid_by_ver, affected_in_scope=
     minor = V.rhel_minor(found_v)
     sn = sbom_note(comp, found_v, ctx)
     prefix = f"{sn}; " if sn else ''
+    # The image's own RHEL minor (os-release) decides which stream's fix is
+    # the one it can take: an OCP 4.20 payload sits on 9.4 EUS, where the
+    # el9_4 backport is the fix; a 9.7 image takes the el9_7 build.  A
+    # package keeps the dist tag it was built with (an el9_4 build shipped
+    # unchanged in 9.7), so the package's own marker is only the fallback.
+    img = ctx.rhel_minor
+    if img:
+        stream = [v for v in fixes if V.rhel_minor(v) == img
+                  and V.rhel_major(v) in (None, ctx.rhel_ver)]
+        if stream:
+            fixes, minor = stream, img
 
     def decide(ver, kind, fix_set):
         dec.set(kind, status='fixed', fix_set=fix_set,

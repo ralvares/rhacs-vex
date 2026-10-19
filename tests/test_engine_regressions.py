@@ -784,6 +784,75 @@ check('M4 a not-affected sweep of other builds does not cover an image absent fr
       '❌' in _v, f'{_v} {_n}')
 
 
+print('=== N. a fix for another stream is not this build\'s fix ===')
+
+# Shape of CVE-2026-103111 (pcre2): fixed only as a 9.6 EUS backport, while the
+# version-neutral RHEL 9 node says known_affected / "Affected".
+
+
+def _pcre2_doc():
+    eus = 'AppStream-9.6.0.Z.EUS'
+    nevra = 'pcre2-0:10.40-6.el9_6.1.x86_64'
+    return {
+        'product_tree': {
+            'branches': [
+                {'product': {'product_id': 'red_hat_enterprise_linux_9', 'name': 'Red Hat Enterprise Linux 9',
+                             'product_identification_helper': {'cpe': 'cpe:/o:redhat:enterprise_linux:9'}}},
+                {'product': {'product_id': eus, 'name': 'Red Hat Enterprise Linux AppStream EUS (v.9.6)',
+                             'product_identification_helper': {'cpe': 'cpe:/a:redhat:rhel_eus:9.6::appstream'}}},
+                {'product': {'product_id': 'pcre2', 'product_identification_helper': {'purl': 'pkg:rpm/redhat/pcre2'}}},
+                {'product': {'product_id': nevra, 'product_identification_helper': {
+                    'purl': 'pkg:rpm/redhat/pcre2@10.40-6.el9_6.1?arch=x86_64'}}}],
+            'relationships': [
+                {'product_reference': 'pcre2', 'relates_to_product_reference': 'red_hat_enterprise_linux_9',
+                 'full_product_name': {'product_id': 'red_hat_enterprise_linux_9:pcre2'}},
+                {'product_reference': nevra, 'relates_to_product_reference': eus,
+                 'full_product_name': {'product_id': f'{eus}:{nevra}'}}]},
+        'vulnerabilities': [{
+            'product_status': {'known_affected': ['red_hat_enterprise_linux_9:pcre2'],
+                               'fixed': [f'{eus}:{nevra}']},
+            'remediations': [{'category': 'none_available', 'details': 'Affected',
+                              'product_ids': ['red_hat_enterprise_linux_9:pcre2']}]}],
+    }
+
+
+def _pcre2(ver):
+    _orig_load = engine._load_vex
+    engine._load_vex = lambda _c: _pcre2_doc()
+    try:
+        r = audit_row_detailed(pd.Series({
+            'COMPONENT': 'pcre2', 'VERSION': ver, 'CVE': 'CVE-9999-0006', 'SOURCE': 'OS',
+            'SEVERITY': 'IMPORTANT_VULNERABILITY_SEVERITY', 'FIXED_VERSION': '',
+            'LOCATION': 'var/lib/rpm'}), _ctx_ubi9)
+        return r.iloc[0], r.iloc[1], r.iloc[2], r.iloc[4]
+    finally:
+        engine._load_vex = _orig_load
+
+
+_v, _f, _n, _st = _pcre2('10.40-6.el9')
+check('N1 a mainline build with only an EUS fix: Red Hat\'s "Affected", no fix offered',
+      '❌' in _v and _st == 'Affected' and _f in ('N/A', '', '-'), f'{_v} {_f} {_st} {_n}')
+_v, _f, _n, _st = _pcre2('10.40-6.el9_6')
+check('N2 a 9.6 EUS build still gets its own stream\'s fix', '❌' in _v and '10.40-6.el9_6.1' in _f,
+      f'{_v} {_f} {_st} {_n}')
+_v, _f, _n, _st = _pcre2('10.40-6.el9_6.1')
+check('N3 …and clears at it', '✅' in _v, f'{_v} {_f} {_st} {_n}')
+
+# The image's own minor (os-release 9.6) picks its stream's fix even for a
+# package that kept its GA dist tag.
+_orig_load = engine._load_vex
+engine._load_vex = lambda _c: _pcre2_doc()
+try:
+    _ctx96 = WorkloadContext(workload_type='ubi', rhel_ver='9', rhel_minor='6', display_name='UBI9')
+    _r = audit_row_detailed(pd.Series({
+        'COMPONENT': 'pcre2', 'VERSION': '10.40-6.el9', 'CVE': 'CVE-9999-0006', 'SOURCE': 'OS',
+        'SEVERITY': 'IMPORTANT_VULNERABILITY_SEVERITY', 'FIXED_VERSION': '', 'LOCATION': 'var/lib/rpm'}), _ctx96)
+finally:
+    engine._load_vex = _orig_load
+check('N4 a 9.6 image takes the el9_6 fix for a GA-tagged package',
+      '❌' in _r.iloc[0] and _r.iloc[1] == '10.40-6.el9_6.1', f'{list(_r)[:3]}')
+
+
 print()
 if _failures:
     print(f'{len(_failures)} FAILED: {_failures}')

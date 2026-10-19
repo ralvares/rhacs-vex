@@ -911,6 +911,16 @@ Red Hat checked and cleared everywhere). 273 refs list the same PID as both `fix
    module erratum lists every package of the module, rebuilt or not. Compared by the build's
    own `module+elN.M`, they behave correctly.
 
+4. **The image's stream picks the fix, not the package's dist tag.** An image carries packages
+   built in older minors unchanged (a RHEL 9.7 image: 143 `.el9`, 37 `el9_6`, 30 `el9_7`
+   builds), and OpenShift 4.16–4.20 payloads sit on **9.4 EUS** (os-release 9.4). The fix that
+   image can take is the one for its own minor, read from the SBOM's os-release
+   (`WorkloadContext.rhel_minor`): a 9.4 payload gets the `el9_4` backport, a 9.7 image the
+   `el9_7` build. Before, a GA-tagged `libacl-2.3.1-4.el9` on a 9.4 payload was told to take
+   `2.4.0-1.el9_8`, a build its stream never receives. When the image's stream has no fix and
+   Red Hat lists the version-neutral RHEL node affected (CVE-2026-103111: pcre2 fixed only as a
+   9.6 EUS backport, RHEL 9 "Affected"), the row reports that statement, not "fix available".
+
 Red Hat Hardened Images ("hummingbird"): 13,677 rpm purls with `distro=hummingbird-20251124`,
 PIDs `nginx-main@aarch64`, versions `…hum1` — the identity is only in the purl, and the lineage
 guard keeps them away from RHEL builds.

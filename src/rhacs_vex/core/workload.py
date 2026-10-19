@@ -42,6 +42,7 @@ class WorkloadContext:
     """
     image_ref     : Optional[str]   = None
     rhel_ver      : str             = "8"
+    rhel_minor    : Optional[str]   = None   # the image's own RHEL minor (os-release)
     workload_type : str             = "ubi"
     ocp_ver       : Optional[str]   = None
     image_ns      : Optional[str]   = None
@@ -278,6 +279,12 @@ def rhel_from_os(os_hint) -> Optional[str]:
     return m.group(1) if m else None
 
 
+def rhel_minor_from_os(os_hint, major: str) -> Optional[str]:
+    """RHEL minor from a scanner OS string ('rhel:9.4' → '4'), for *major* only."""
+    m = re.search(r'(?:rhel|redhat|enterprise linux)[^0-9]{0,3}(\d+)\.(\d+)', str(os_hint or '').lower())
+    return m.group(2) if m and m.group(1) == str(major) else None
+
+
 def context_for_image(image_ref: str, *, os_hint: Optional[str] = None,
                       labels: Optional[dict] = None,
                       digests: Optional[list] = None,
@@ -298,6 +305,7 @@ def context_for_image(image_ref: str, *, os_hint: Optional[str] = None,
     rhel = rhel_from_os(os_hint)
     if rhel:
         ctx.rhel_ver = rhel
+    ctx.rhel_minor = rhel_minor_from_os(os_hint, ctx.rhel_ver)
     if digests:
         ctx.extra_digests = list(digests)
     if ocp_release:
