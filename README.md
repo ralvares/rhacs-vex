@@ -46,6 +46,11 @@ vextriage openvex IMAGE -o image.openvex.json
 grype IMAGE --vex image.openvex.json
 trivy image --vex image.openvex.json IMAGE
 
+# the verdicts on a scanner's own findings (Go / Java / npm modules Red Hat never names
+# by purl are only here; grype's GHSA ids ride along as aliases)
+vextriage scan IMAGE --scanner grype --openvex grype.openvex.json
+grype IMAGE --vex grype.openvex.json
+
 # why: every statement about one CVE and how it decided
 vextriage explain CVE-2026-0915 --sbom sbom.syft.json
 ```

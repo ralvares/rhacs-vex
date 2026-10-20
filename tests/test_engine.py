@@ -372,3 +372,18 @@ def test_openvex_carries_the_scanners_id_as_an_alias():
     v = Verdict('not_affected', 'not listed', False)
     doc = openvex.document(img, [(CVE, go(), v, 'GHSA-mh2q-q3fh-2475'), (CVE, go(), v, ''), (CVE, go(), v)])
     assert [s['vulnerability'] for s in doc['statements']] == [{'name': CVE, 'aliases': ['GHSA-mh2q-q3fh-2475']}]
+
+
+def test_openvex_clears_the_whole_image_only_on_red_hats_word():
+    from vextriage import openvex
+    from vextriage.model import Verdict
+    img = rhel_image(digests=['ab' * 32])
+    me = Package('image', 'rhel9/go-toolset', '1.26.7-1')
+    golang = rpm_pkg('golang', '1.26.7-2.el9_8')
+    inferred = Verdict('not_affected', 'not listed', False)
+    stated = Verdict('not_affected', 'RHEL 9: ubi9/ubi not affected', True)
+    affected = Verdict('affected', 'RHEL 9: golang affected', True)
+    ids = lambda doc: [(s['status'], len(s['products'][0].get('subcomponents', []))) for s in doc['statements']]
+    assert ids(openvex.document(img, [(CVE, me, inferred), (CVE, golang, affected)])) == [('affected', 1)]
+    assert ids(openvex.document(img, [(CVE, me, stated), (CVE, golang, affected)])) == [('affected', 1)]
+    assert ids(openvex.document(img, [(CVE, me, stated)])) == [('not_affected', 0)]

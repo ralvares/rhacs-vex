@@ -94,7 +94,13 @@ def document(image: Image, rows, stated_only: bool = False, statuses=STATUSES) -
         if key not in picked:
             picked[key] = (cve, p, v, set())
         picked[key][3].update(a for a in alias if a and a != cve)
-    stmts = [statement(image, cve, p, v, aliases) for cve, p, v, aliases in picked.values()]
+    # a statement about the image has no subcomponent: the scanners apply it to every
+    # package. Only Red Hat's own word about the image clears that much, and never
+    # over a package still affected (go-toolset: an inferred 'not listed' for the image
+    # cleared the golang rpms Red Hat lists affected)
+    positive = {cve for cve, p, v, _ in picked.values() if p.kind != 'image' and v.positive}
+    stmts = [statement(image, cve, p, v, aliases) for cve, p, v, aliases in picked.values()
+             if not (p.kind == 'image' and not v.positive and (not v.stated or cve in positive))]
     stmts.sort(key=lambda s: (s['vulnerability']['name'], s['status'],
                               s['products'][0].get('subcomponents', [{}])[0].get('@id', '')))
     now = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
