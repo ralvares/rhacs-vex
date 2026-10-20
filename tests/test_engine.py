@@ -120,6 +120,18 @@ def test_module_streams_do_not_cross(index):
     assert (v.status, v.rule) == ('affected', 'rpm_stream_fix')
 
 
+def test_a_version_less_id_with_another_majors_purl_is_version_less(index):
+    # CVE-2026-63380: red_hat_enterprise_linux_9:libevent.src, purl libevent@2.1.12-16.el10
+    st = [(KNA, 'red_hat_enterprise_linux_9', ('libevent.src', 'pkg:rpm/redhat/libevent@2.1.12-16.el10?arch=src'),
+           'vulnerable_code_not_present'),
+          (KA, 'red_hat_enterprise_linux_8', ('libevent.src', 'pkg:rpm/redhat/libevent@2.1.12-16.el10?arch=src'))]
+    ix = index(csaf(CVE, st))
+    v = judge(ix, rhel_image(minor=8), rpm_pkg('libevent', '2.1.13-1.el9_8'))
+    assert (v.status, v.stated, v.rule, v.justification) == ('not_affected', True, 'rpm_not_affected',
+                                                            'vulnerable_code_not_present')
+    assert judge(ix, rhel_image(major=8, minor=10), rpm_pkg('libevent', '2.1.8-5.el8')).rule == 'rpm_open'
+
+
 def test_rpm_not_built_by_red_hat(index):
     ix = index(csaf(CVE, [(KA, 'red_hat_enterprise_linux_8', rpm('mongodb-org-server'))]))
     v = judge(ix, rhel_image(major=8, minor=10), rpm_pkg('mongodb-org-server', '8.0.3-1.el8', vendor='MongoDB'))

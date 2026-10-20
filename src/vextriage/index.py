@@ -24,7 +24,7 @@ from typing import Iterable, Optional
 from . import csaf
 from .sync import files as mirror_files, load
 
-VERSION = '3'
+VERSION = '4'
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS doc (id INTEGER PRIMARY KEY, cve TEXT UNIQUE, mtime REAL, blob BLOB);
 CREATE TABLE IF NOT EXISTS name (kind TEXT, name TEXT, doc INTEGER);

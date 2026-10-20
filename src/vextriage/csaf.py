@@ -13,7 +13,7 @@ coordinates or bare upstream names, read from the product id.
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import Optional
 
 from . import purl as purls
@@ -140,6 +140,7 @@ class Comp:
         return dist(self.evr.release) if self.evr else Dist(None, None, False, '')
 
 
+_BUILD_PID = re.compile(r'-\d+:')            # name-EPOCH:version-release: the id names a build
 _ARCH_TAIL = re.compile(r'_(amd64|arm64|aarch64|ppc64le|s390x|x86_64)$')
 _DIGEST = re.compile(r'sha256(?::|%3[Aa])([0-9a-f]{64})')
 
@@ -270,9 +271,9 @@ def encode(d: Document) -> dict:
         ci = -1
         if s.comp is not None:
             c = s.comp
-            ci = C.setdefault(c.pid, (len(C), [c.pid, c.kind, c.name, c.version,
-                                               c.evr.epoch if c.evr else None, c.arch, c.module, c.digest,
-                                               c.stamp, c.tag]))[0]
+            row = [c.pid, c.kind, c.name, c.version, c.evr.epoch if c.evr else None, c.arch, c.module, c.digest,
+                   c.stamp, c.tag]
+            ci = C.setdefault(tuple(row), (len(C), row))[0]     # one id may be read two ways (above)
         ri = [R.setdefault((r.category, r.details, r.url), len(R)) for r in s.remedies]
         rows.append([STATUSES.index(s.status), pi, ci, s.flag, ri, s.severity])
     return {'t': d.title, 's': d.severity, 'k': int(d.kev),
@@ -359,6 +360,12 @@ def parse(doc: dict, cve: str = '') -> Document:
             if pid in rel:
                 parent, cpid = rel[pid]
                 prod, c = product(parent), comp(cpid)
+                if c.kind == 'rpm' and c.evr is not None and prod.family == 'rhel' and prod.major is not None \
+                        and c.dist.major not in (None, prod.major) and not _BUILD_PID.search(c.pid):
+                    # `red_hat_enterprise_linux_9:libevent.src` with the purl of an el10 build
+                    # (786 statements, 317 documents): the product id is version-less and an
+                    # el10 build says nothing about RHEL 9 — the statement is about the package
+                    c = replace(c, version='', evr=None)
             elif pid in nodes:
                 prod, c = product(pid), None
             else:
