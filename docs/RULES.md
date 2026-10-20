@@ -83,8 +83,14 @@ version or the line; not affected; fixes only elsewhere → affected; else not l
 ## OpenVEX
 
 One statement per (CVE, package). Products: `pkg:oci/<name>@sha256:<digest>` for every
-digest of the image (plus the digest as a `sha-256` hash); subcomponents: the package purl
-without qualifiers (Go also lowercased, as trivy writes it). That is the shape grype and
-trivy match (go-vex `PurlMatches`: a purl without qualifiers matches any qualifiers).
+digest of the image (plus the digest as a `sha-256` hash), with the package purl without
+qualifiers as the subcomponent (Go also lowercased, as trivy writes it); then the package
+purl again as a product of its own. go-vex `PurlMatches`: a purl without qualifiers matches
+any qualifiers. grype matches the image product first, then the package as the product.
+trivy checks the package as the product, then walks up the dependency graph to the image —
+and keeps the finding when the walk meets a cycle (rpm Requires: glibc ↔ bash, which most
+rpms in an image sit above), so without the package product trivy dropped nothing on ubi9
+(verified: grype 527 → 525, trivy 534 → 532, the two findings vextriage clears). A
+statement about the image itself has no subcomponent: it covers the whole image.
 `not_affected` carries Red Hat's justification only when stated; inferred ones carry an
 `impact_statement`. `--stated-only` keeps Red Hat's own statements only.

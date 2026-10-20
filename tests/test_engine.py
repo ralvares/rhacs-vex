@@ -305,3 +305,23 @@ def test_dist_tags():
     assert (dist('2.34-100.el9_4.12').major, dist('2.34-100.el9_4.12').minor) == (9, 4)
     assert dist('3.18-4.module%2Bel8.9.0%2B21697').module
     assert dist('2.8.0-1.hum1').token == 'hum' and dist('1.0-1.el8ap').token == 'elap'
+
+
+def test_openvex_names_the_package_as_a_product_too():
+    # trivy keeps a finding whose path to the image meets an rpm dependency cycle
+    # (python3-pip-wheel → python3-libs → … glibc ↔ bash): only the package as the
+    # product reaches it. grype matches the image product with the subcomponent.
+    from vextriage import openvex
+    from vextriage.model import Verdict
+    img = rhel_image(minor=8, digests=['ab' * 32, 'cd' * 32])
+    pkg = rpm_pkg('python3-pip-wheel', '21.3.1-2.el9_8')
+    st = openvex.statement(img, CVE, pkg, Verdict('not_affected', 'RHEL 9: ubi9/ubi not affected', True,
+                                                  'vulnerable_code_not_present'))
+    ids = [p['@id'] for p in st['products']]
+    assert ids == ['pkg:oci/ubi@sha256:' + 'ab' * 32, 'pkg:oci/ubi@sha256:' + 'cd' * 32,
+                   'pkg:rpm/redhat/python3-pip-wheel@21.3.1-2.el9_8']
+    assert st['products'][0]['subcomponents'] == [{'@id': 'pkg:rpm/redhat/python3-pip-wheel@21.3.1-2.el9_8'}]
+    assert 'subcomponents' not in st['products'][2] and st['justification'] == 'vulnerable_code_not_present'
+    # the image itself: image products only
+    whole = openvex.statement(img, CVE, Package('image', 'ubi9/ubi', '9.8-1'), Verdict('not_affected', 'x', True))
+    assert [p['@id'] for p in whole['products']] == ids[:2]

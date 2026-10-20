@@ -8,6 +8,11 @@ scanner's purl with any qualifiers, and a version must be equal. So:
                  + the digest as a sha-256 hash   (grype also matches the bare digest)
   subcomponent   pkg:<type>/<ns>/<name>@<version>  the package's purl, qualifiers dropped
                  (Go purls also lowercased: trivy lowercases the module path)
+  product        the package purl itself, again: trivy walks from the package up
+                 to the image through the dependency graph and keeps the finding
+                 when the walk meets a cycle (rpm Requires: glibc ↔ bash …), so
+                 only a statement naming the package as the product reaches it.
+                 grype tries the image first, then the package as the product.
 """
 from __future__ import annotations
 
@@ -52,7 +57,7 @@ def statement(image: Image, cve: str, p: Package, v) -> dict:
     prods = products(image)
     subs = subcomponents(p)
     if subs:
-        prods = [dict(pr, subcomponents=subs) for pr in prods]
+        prods = [dict(pr, subcomponents=subs) for pr in prods] + [{'@id': sc['@id']} for sc in subs]
     st = {'vulnerability': {'name': cve}, 'products': prods, 'status': v.status}
     who = 'Red Hat' if v.stated else 'Red Hat (inferred)'
     if v.status == 'not_affected':
