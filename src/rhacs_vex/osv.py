@@ -172,10 +172,6 @@ def cves_for(ecosystem: str, name: str, version: str, index=None) -> List[str]:
     return sorted(hits)
 
 
-_TOOLCHAIN = ('stdlib', 'toolchain', 'cmd/', 'github.com/golang-fips/',
-              'github.com/microsoft/go-crypto-openssl', 'golang.org/toolchain')
-
-
 class Evidence:
     """What OSV says about the modules an image's SBOM lists, per CVE.
 
@@ -186,8 +182,13 @@ class Evidence:
 
       ('affected', mods)  a module of the scope is in the CVE's vulnerable range
       ('clear', mods)     the CVE's packages are in the scope, all past the fix
-      ('absent', pkgs)    OSV names the CVE's packages; the scope has none
-      None                OSV does not know the CVE, or the scope is empty
+      None                no evidence: OSV does not know the CVE, the scope is
+                          empty, or none of the CVE's packages is in it
+
+    Absence is never evidence: syft lists a fork or a replace target under its
+    own name (the jwt code of golang-jwt/jwt ships as dgrijalva/jwt-go or
+    form3tech-oss/jwt-go), and code bundled into a binary (undici in node,
+    pip's _vendor, Red Hat's FIPS Go toolchain) is not listed at all.
     """
 
     def __init__(self, index, modules):
@@ -213,11 +214,7 @@ class Evidence:
             return None
         rel = [m for m in scope if (m[0], package_key(m[0], m[1])) in pkgs]
         if not rel:
-            # code the Go toolchain compiles into every binary never shows up as a
-            # module: Red Hat's FIPS patches (golang-fips/openssl, CVE-2024-1394)
-            if any(p.startswith(_TOOLCHAIN) for _e, p in pkgs):
-                return None
-            return 'absent', sorted(p for _e, p in pkgs)
+            return None
         hit = [m for m in rel if any(cve in cves and _affected(m[0], m[2], ranges, versions)
                                      for cves, ranges, versions in self.index.osv(m[0], m[1]))]
         return ('affected', hit) if hit else ('clear', rel)
@@ -226,12 +223,14 @@ class Evidence:
 # ── version ranges ───────────────────────────────────────────────────────────
 
 def _affected(eco, version, ranges, versions) -> bool:
-    if versions and version in versions:
+    v = _norm(eco, version)
+    if not re.match(r'\d', v):
+        return True                     # syft's UNKNOWN, a branch name: cannot clear
+    if versions and (version in versions or v in {_norm(eco, x) for x in versions}):
         return True
     evaluable = [r for r in ranges if r.get('type') in ('SEMVER', 'ECOSYSTEM')]
     if not evaluable:
         return not versions             # nothing to evaluate → propose it
-    v = _norm(eco, version)
     for r in evaluable:
         try:
             if _in_range(eco, v, r.get('events', [])):
@@ -270,12 +269,27 @@ def _norm(eco: str, version: str) -> str:
     return v
 
 
+_MAVEN_PRE = re.compile(r'[.-]?(alpha|a|beta|b|milestone|m|rc|cr|snapshot)[.-]?(\d*)$', re.I)
+
+
+def _maven(v: str) -> str:
+    """Maven qualifiers as a semver pre-release: 2.0.0.RC1 / 2.0.0-RC1 sort
+    before 2.0.0; .Final / .RELEASE / .GA are the release itself."""
+    v = re.sub(r'[.-](final|release|ga)$', '', v, flags=re.I)
+    m = _MAVEN_PRE.search(v)
+    if m and m.start() > 0:
+        return f"{v[:m.start()]}-{m.group(1).lower()}.{m.group(2) or 0}"
+    return v
+
+
 def _cmp(eco: str, a: str, b: str) -> int:
     a, b = _norm(eco, a), _norm(eco, b)
     if eco == 'PyPI':
         from packaging.version import Version
         va, vb = Version(a), Version(b)
         return (va > vb) - (va < vb)
+    if eco == 'Maven':
+        a, b = _maven(a), _maven(b)
     return V.pkg_cmp(a, b)
 
 

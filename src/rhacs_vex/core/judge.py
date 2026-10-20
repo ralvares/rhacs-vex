@@ -246,33 +246,27 @@ class _Judge:
         this build are never second-guessed.
 
           the CVE's packages present, all past the fix  → FALSE POSITIVE
-          OSV names them, none is in these binaries     → FALSE POSITIVE
           one is in the vulnerable range                → POSITIVE, with the proof
+          none of them listed                           → no evidence: unchanged
         """
         ev = self.ctx.osv_evidence
         if ev is None or v.result != POS or v.stated or v.kind in ('vex_missing', 'not_red_hat'):
             return v
         cve = str(self.row.get('CVE', '')).strip().upper()
         if self.source == 'IMAGE' or ('/' in self.comp and self.source in ('OS', '')):
-            got, where = ev.judge(cve), 'this image'
+            got = ev.judge(cve)
         elif self.source == 'OS':
-            got, where = ev.judge(cve, owner=self.comp), f"{self.comp}'s binaries"
+            got = ev.judge(cve, owner=self.comp)
         else:
-            got, where = ev.judge(cve, module=(self.comp, self.version)), self.comp
+            got = ev.judge(cve, module=(self.comp, self.version))
         if got is None:
             return v
         state, what = got
         if state == 'affected':
             v.note += f" OSV: {_mods(what)} in the vulnerable range."
             return v
-        if state == 'clear':
-            note = f"OSV: {_mods(what)} past the fix. Red Hat (inferred): {v.note}"
-            kind = 'osv_past_fix'
-        else:
-            note = (f"OSV: the vulnerable package ({', '.join(what[:3])}) is not in {where}. "
-                    f"Red Hat (inferred): {v.note}")
-            kind = 'osv_not_present'
-        return Verdict(FP, 'N/A', note, stated=False, kind=kind, statements=v.statements)
+        note = f"OSV: {_mods(what)} past the fix. Red Hat (inferred): {v.note}"
+        return Verdict(FP, 'N/A', note, stated=False, kind='osv_past_fix', statements=v.statements)
 
     # ── the ladder ─────────────────────────────────────────────────────────
     def decide(self) -> Verdict:
@@ -755,8 +749,7 @@ class _Judge:
         if v.result == FP:
             return 'Fixed' if any(s.status == 'fixed' for s in v.statements) and \
                 v.kind not in ('rpm_newer_than_fixes', 'img_newer_than_fixes',
-                               'img_kna_other_version', 'osv_past_fix',
-                               'osv_not_present') else 'Not affected'
+                               'img_kna_other_version', 'osv_past_fix') else 'Not affected'
         if v.kind == 'ui' or any(s.status == 'under_investigation' for s in v.statements):
             return 'Under investigation'
         for s in v.statements:

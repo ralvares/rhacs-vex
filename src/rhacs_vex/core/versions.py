@@ -246,4 +246,15 @@ def pkg_cmp(a: str, b: str) -> int:
         return 1
     if not pb:
         return -1
-    return 1 if pa > pb else -1
+    # semver precedence: dot-separated identifiers, numbers numerically and
+    # below words (rc.9 < rc.10 < rc.beta), a shorter list first
+    ia, ib = pa.split('.'), pb.split('.')
+    for x, y in zip(ia, ib):
+        if x == y:
+            continue
+        if x.isdigit() and y.isdigit():
+            return 1 if int(x) > int(y) else -1
+        if x.isdigit() != y.isdigit():
+            return -1 if x.isdigit() else 1
+        return 1 if x > y else -1
+    return (len(ia) > len(ib)) - (len(ia) < len(ib))

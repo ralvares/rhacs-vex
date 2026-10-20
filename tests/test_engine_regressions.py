@@ -1079,12 +1079,22 @@ _v, _n = _row_cve(_ocq, _cq, 'openshift-clients', '4.20.0-1.el9', 'CVE-9999-0102
 check('Q2 in the vulnerable range → stays POSITIVE, with the proof', '❌' in _v and 'vulnerable range' in _n,
       f'{_v} {_n}')
 _v, _n = _row_cve(_ocq, _cq, 'openshift-clients', '4.20.0-1.el9', 'CVE-9999-0103')
-check('Q3 the vulnerable package is not compiled in → not affected', '✅' in _v and 'is not in' in _n,
-      f'{_v} {_n}')
+check('Q3 absence is no evidence (forks, replace targets, bundled code) → Red Hat\'s verdict stands',
+      '❌' in _v and 'OSV' not in _n, f'{_v} {_n}')
 _v, _n = _row_cve(_ocq, _cq, 'openshift-clients', '4.20.0-1.el9', 'CVE-9999-0104')
-check('Q4 toolchain-embedded code (golang-fips) is never "not present"', '❌' in _v, f'{_v} {_n}')
+check('Q4 toolchain-embedded code (golang-fips) is never cleared', '❌' in _v, f'{_v} {_n}')
 _v, _n = _row_cve(_ocq, _cq, 'openshift-clients', '4.20.0-1.el9', 'CVE-9999-0105')
 check('Q5 a CVE OSV does not know keeps Red Hat\'s verdict', '❌' in _v and 'OSV' not in _n, f'{_v} {_n}')
+check('Q7 a version syft cannot read (UNKNOWN) is never past a fix',
+      _osv._affected('Go', 'UNKNOWN', _sem('1.5.3'), ()) is True)
+check('Q8 npm prereleases compare numerically (rc.9 < rc.10)',
+      _osv._affected('npm', '1.0.0-rc.9', _sem('1.0.0-rc.10'), ()) is True
+      and _osv._affected('npm', '1.0.0-rc.10', _sem('1.0.0-rc.10'), ()) is False)
+check('Q9 a Maven RC sorts before its release',
+      _osv._affected('Maven', '2.0.0.RC1', _sem('2.0.0'), ()) is True
+      and _osv._affected('Maven', '2.0.0.Final', _sem('2.0.0'), ()) is False)
+check('Q10 a Go exact-versions list matches with or without the v',
+      _osv._affected('Go', 'v2.8.0', [], ('2.8.0',)) is True)
 _stated = _doc(_PR3, [('known_affected', 'red_hat_web_terminal', 'web-terminal/web-terminal-tooling-rhel9',
                        'pkg:oci/web-terminal-tooling-rhel9?repository_url=registry.redhat.io/web-terminal/'
                        'web-terminal-tooling-rhel9')])

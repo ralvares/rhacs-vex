@@ -132,8 +132,16 @@ def _component_name(art: dict) -> str:
 # ── builders ─────────────────────────────────────────────────────────────────
 
 def from_sbom(sbom: SyftSBOM, index, *, image_ref: str = '', use_osv: bool = True) -> pd.DataFrame:
-    """Every pair the VEX index (rpm + image) and OSV (language packages) propose."""
+    """Every pair the VEX index (rpm + image) and OSV (language packages) propose.
+
+    In a Red Hat image an OSV pair is kept only when Red Hat publishes VEX for
+    the CVE (else it could only come back as "no VEX file" noise); in anyone
+    else's image the finding stands on its own and is always kept."""
     out = _Rows()
+    host = image_ref.split('/')[0].lower() if '/' in image_ref else ''
+    red_hat = (host.endswith(('.redhat.io', '.redhat.com'))
+               or image_ref.lower().startswith('quay.io/openshift-release-dev/')
+               or (not host and str((sbom.labels or {}).get('vendor', '')).startswith('Red Hat')))
     for art in sbom.artifacts:
         kind, name, ver = art.get('type'), art.get('name', ''), str(art.get('version', ''))
         purl = art.get('purl') or ''
@@ -146,9 +154,9 @@ def from_sbom(sbom: SyftSBOM, index, *, image_ref: str = '', use_osv: bool = Tru
                 out.add(row(name, ver, cve, 'OS', RPM_LOCATION, srpm, purl, module))
         elif use_osv and osv.ecosystem_of(kind):
             loc = ((art.get('locations') or [{}])[0] or {}).get('path', '')
-            for cve in osv.cves_for(osv.ecosystem_of(kind), name, ver, index):
+            for cve in osv.cves_for(osv.ecosystem_of(kind), _component_name(art), ver, index):
                 out.add(row(_component_name(art), ver, cve, SOURCE_OF_TYPE[kind], loc, '', purl),
-                        need_vex=True)
+                        need_vex=red_hat)
     for r in _image_rows(index, image_ref, sbom.labels):
         out.add(r)
     return pd.DataFrame(out.rows, columns=ROW_COLUMNS)

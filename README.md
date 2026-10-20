@@ -90,9 +90,9 @@ filters over those, re-derived from the data (VEX-MODEL §11):
 6. **Inferred positives meet the binaries** — a POSITIVE that rests on an inference
    (another product's or version's statement, the errata assumption) is checked against
    the modules the SBOM finds compiled into the binaries and OSV's vulnerable ranges:
-   all past the fix, or the vulnerable package not compiled in → FALSE POSITIVE; in the
-   range → POSITIVE, with that as the proof.  Red Hat's statements about this build are
-   never overridden.
+   all past the fix → FALSE POSITIVE; in the range → POSITIVE, with that as the proof.
+   A module syft does not list proves nothing (forks, bundled code), and Red Hat's
+   statements about this build are never overridden.
 
 The full data model — product-ID grammar, RHEL and OpenShift streams, operator
 versions, every decision branch — is in **[docs/VEX-MODEL.md](docs/VEX-MODEL.md)**.

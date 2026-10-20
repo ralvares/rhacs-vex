@@ -1164,13 +1164,13 @@ component.
   modules compiled into them (per owning rpm, or the whole image) and OSV gives the
   CVE's vulnerable ranges.  The CVE's packages present and all past the fix → FALSE
   POSITIVE (`oc` 4.20 carries runc v1.1.13, past CVE-2024-21626's 1.1.12, whatever
-  "OpenShift 4: openshift-clients affected" says); OSV names the packages and none
-  is compiled in → FALSE POSITIVE (go-ldap is not in `oc`: CVE-2017-14623); one in
-  the vulnerable range → POSITIVE, with that as the proof.  Code the Go toolchain
-  compiles into every binary (Red Hat's FIPS `golang-fips/openssl`, CVE-2024-1394)
-  never counts as absent, and a statement about this build is never second-guessed.
-  On the Web Terminal 1.15 tooling image: 95 inferred positives cleared (66 past
-  the fix, 29 not compiled in), 225 confirmed in range.
+  "OpenShift 4: openshift-clients affected" says); one in the vulnerable range →
+  POSITIVE, with that as the proof.  **Absence is never evidence**: syft lists a fork
+  or a `replace` target under its own name (golang-jwt/jwt's vulnerable code ships
+  as `dgrijalva/jwt-go` / `form3tech-oss/jwt-go` in the RHACS and GitOps operators),
+  and code bundled into a binary is not listed at all (undici in `node`, pip's
+  `_vendor`, Red Hat's FIPS Go toolchain).  A version syft cannot read (`UNKNOWN`)
+  is never past a fix, and a statement about this build is never second-guessed.
 
 `stated` is True only when the deciding statement is about our product and our
 package / image / build; everything else is published as inferred.
