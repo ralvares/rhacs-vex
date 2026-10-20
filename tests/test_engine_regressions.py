@@ -1032,6 +1032,73 @@ check('P10 our own stream\'s not-affected build of our upstream version speaks f
 _v, _f, _n, _s = _row(_gl, WorkloadContext(workload_type='ubi', rhel_ver='8', rhel_minor='7'), 'glibc', '2.28-211.el8')
 check('P10b …but not for another stream\'s build', '❌' in _v, f'{_v} {_n}')
 
+print('=== Q. inferred positives checked against the binaries (OSV) ===')
+from rhacs_vex import osv as _osv                             # noqa: E402
+
+
+class _OsvIndex:
+    """Stub index: {(eco, pkg): [(cves, ranges, versions)]}."""
+    def __init__(self, recs):
+        self.recs = recs
+
+    def osv_packages(self):
+        return [(e, p, ' '.join(c)) for (e, p), rs in self.recs.items() for c, _r, _v in rs]
+
+    def osv(self, eco, name):
+        return self.recs.get((eco, name), [])
+
+
+def _sem(fixed):
+    return [{'type': 'SEMVER', 'events': [{'introduced': '0'}, {'fixed': fixed}]}]
+
+
+_idx = _OsvIndex({('Go', 'github.com/opencontainers/runc'): [(['CVE-9999-0101'], _sem('1.1.12'), ())],
+                  ('Go', 'golang.org/x/net'): [(['CVE-9999-0102'], _sem('0.40.0'), ())],
+                  ('Go', 'github.com/go-ldap/ldap'): [(['CVE-9999-0103'], _sem('2.5.0'), ())],
+                  ('Go', 'github.com/golang-fips/openssl/v2'): [(['CVE-9999-0104'], _sem('2.0.1'), ())]})
+_mods = [('Go', 'github.com/opencontainers/runc', 'v1.1.13', 'openshift-clients'),
+         ('Go', 'golang.org/x/net', 'v0.38.0', 'openshift-clients')]
+_ocq = _doc(_PR3, [('known_affected', _ocp4, 'openshift-clients', 'pkg:rpm/redhat/openshift-clients')])
+
+
+def _row_cve(doc, ctx, comp, ver, cve):
+    _orig_load = engine._load_vex
+    engine._load_vex = lambda _c: doc
+    try:
+        r = audit_row_detailed(pd.Series({'COMPONENT': comp, 'VERSION': ver, 'CVE': cve, 'SOURCE': 'OS',
+                                          'SEVERITY': '', 'FIXED_VERSION': ''}), ctx)
+        return r.iloc[0], r.iloc[2]
+    finally:
+        engine._load_vex = _orig_load
+
+
+_cq = WorkloadContext(**{**_wt9.__dict__, 'osv_evidence': _osv.Evidence(_idx, _mods)})
+_v, _n = _row_cve(_ocq, _cq, 'openshift-clients', '4.20.0-1.el9', 'CVE-9999-0101')
+check('Q1 the binary\'s module is past the fix → not affected', '✅' in _v and 'past the fix' in _n, f'{_v} {_n}')
+_v, _n = _row_cve(_ocq, _cq, 'openshift-clients', '4.20.0-1.el9', 'CVE-9999-0102')
+check('Q2 in the vulnerable range → stays POSITIVE, with the proof', '❌' in _v and 'vulnerable range' in _n,
+      f'{_v} {_n}')
+_v, _n = _row_cve(_ocq, _cq, 'openshift-clients', '4.20.0-1.el9', 'CVE-9999-0103')
+check('Q3 the vulnerable package is not compiled in → not affected', '✅' in _v and 'is not in' in _n,
+      f'{_v} {_n}')
+_v, _n = _row_cve(_ocq, _cq, 'openshift-clients', '4.20.0-1.el9', 'CVE-9999-0104')
+check('Q4 toolchain-embedded code (golang-fips) is never "not present"', '❌' in _v, f'{_v} {_n}')
+_v, _n = _row_cve(_ocq, _cq, 'openshift-clients', '4.20.0-1.el9', 'CVE-9999-0105')
+check('Q5 a CVE OSV does not know keeps Red Hat\'s verdict', '❌' in _v and 'OSV' not in _n, f'{_v} {_n}')
+_stated = _doc(_PR3, [('known_affected', 'red_hat_web_terminal', 'web-terminal/web-terminal-tooling-rhel9',
+                       'pkg:oci/web-terminal-tooling-rhel9?repository_url=registry.redhat.io/web-terminal/'
+                       'web-terminal-tooling-rhel9')])
+_orig_load = engine._load_vex
+engine._load_vex = lambda _c: _stated
+try:
+    _r = audit_row_detailed(pd.Series({'COMPONENT': 'web-terminal/web-terminal-tooling-rhel9', 'VERSION': '1',
+                                       'CVE': 'CVE-9999-0101', 'SOURCE': 'IMAGE', 'SEVERITY': '',
+                                       'FIXED_VERSION': ''}), _cq)
+finally:
+    engine._load_vex = _orig_load
+check('Q6 Red Hat\'s statement about this image is never second-guessed', '❌' in _r.iloc[0]
+      and 'OSV' not in _r.iloc[2], f'{list(_r)[:3]}')
+
 print()
 if _failures:
     print(f'{len(_failures)} FAILED: {_failures}')

@@ -154,6 +154,23 @@ def from_sbom(sbom: SyftSBOM, index, *, image_ref: str = '', use_osv: bool = Tru
     return pd.DataFrame(out.rows, columns=ROW_COLUMNS)
 
 
+def osv_evidence(sbom: SyftSBOM, index):
+    """osv.Evidence over the SBOM's language packages (None without OSV data)."""
+    if index is None or not hasattr(index, 'osv_packages'):
+        return None
+    owners = sbom.file_owners()
+    mods = []
+    for art in sbom.artifacts:
+        eco = osv.ecosystem_of(art.get('type'))
+        name, ver = _component_name(art), str(art.get('version', ''))
+        if not (eco and name and ver):
+            continue
+        loc = ((art.get('locations') or [{}])[0] or {}).get('path', '')
+        owner = owners.get(loc) or owners.get('/' + loc.lstrip('/'))
+        mods.append((eco, name, ver, owner[0] if owner else ''))
+    return osv.Evidence(index, mods) if mods else None
+
+
 def add_to_findings(df: pd.DataFrame, index, *, image_ref: str = '', labels=None) -> tuple:
     """Scanner findings plus every pair the VEX index can decide; (df, added).
 

@@ -335,6 +335,10 @@ class VexIndex:
                                    (eco, package_key(eco, name))).fetchall()
         return [(c.split(), json.loads(r), tuple(json.loads(v))) for c, r, v in rows]
 
+    def osv_packages(self) -> list:
+        """[(eco, pkg, cves)] for every OSV record — one scan (~0.1 s)."""
+        return self._con().execute('SELECT eco, pkg, cves FROM osv').fetchall()
+
     def osv_cve(self, advisory_id: str) -> Optional[str]:
         """The CVE an OSV record (GHSA-…, GO-…, PYSEC-…) aliases, or None."""
         try:

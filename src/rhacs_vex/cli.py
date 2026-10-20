@@ -447,11 +447,12 @@ def _scanner_cmd(scanner: str, args) -> int:
     df, hint = adapter.to_df(doc), adapter.os_hint(doc)
     ctx = context_for_image(image_ref, os_hint=hint, labels=labels or None, digests=digests)
     added = 0
+    index = _index(args, console, required=False)
     if args.vex_index:
-        df, added = candidates.add_to_findings(df, _index(args, console, required=False),
-                                               image_ref=image_ref, labels=labels)
+        df, added = candidates.add_to_findings(df, index, image_ref=image_ref, labels=labels)
     if sbom:
         sbom.enrich(df, ctx)
+        ctx.osv_evidence = candidates.osv_evidence(sbom, index)
     display.print_preamble(console, image_ref=image_ref, mode=f'{scanner} scan',
                            os_info=hint or '', df=df, ctx=ctx,
                            noun='candidates' if added else 'CVE findings')

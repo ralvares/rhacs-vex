@@ -87,6 +87,12 @@ filters over those, re-derived from the data (VEX-MODEL §11):
    that ships it, else the image's verdict, else: our product listed affected with
    nothing cleared under it → assumed vulnerable; a non-Red Hat image's own module →
    POSITIVE (Red Hat's VEX does not cover it); otherwise not listed.
+6. **Inferred positives meet the binaries** — a POSITIVE that rests on an inference
+   (another product's or version's statement, the errata assumption) is checked against
+   the modules the SBOM finds compiled into the binaries and OSV's vulnerable ranges:
+   all past the fix, or the vulnerable package not compiled in → FALSE POSITIVE; in the
+   range → POSITIVE, with that as the proof.  Red Hat's statements about this build are
+   never overridden.
 
 The full data model — product-ID grammar, RHEL and OpenShift streams, operator
 versions, every decision branch — is in **[docs/VEX-MODEL.md](docs/VEX-MODEL.md)**.

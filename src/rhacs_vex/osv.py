@@ -172,6 +172,57 @@ def cves_for(ecosystem: str, name: str, version: str, index=None) -> List[str]:
     return sorted(hits)
 
 
+_TOOLCHAIN = ('stdlib', 'toolchain', 'cmd/', 'github.com/golang-fips/',
+              'github.com/microsoft/go-crypto-openssl', 'golang.org/toolchain')
+
+
+class Evidence:
+    """What OSV says about the modules an image's SBOM lists, per CVE.
+
+    modules: [(eco, name, version, owner_rpm)] — every Go / PyPI / npm / Maven
+    package syft found, with the rpm whose file carries it ('' if none).
+    judge() answers for one CVE and a scope of those modules (one rpm's, or the
+    whole image's):
+
+      ('affected', mods)  a module of the scope is in the CVE's vulnerable range
+      ('clear', mods)     the CVE's packages are in the scope, all past the fix
+      ('absent', pkgs)    OSV names the CVE's packages; the scope has none
+      None                OSV does not know the CVE, or the scope is empty
+    """
+
+    def __init__(self, index, modules):
+        self.index, self.modules = index, list(modules)
+        self._rev = None
+
+    def _packages(self, cve) -> set:
+        if self._rev is None:
+            rev: dict = {}
+            for eco, pkg, cves in self.index.osv_packages():
+                for c in cves.split():
+                    rev.setdefault(c, set()).add((eco, pkg))
+            self._rev = rev
+        return self._rev.get(cve, set())
+
+    def judge(self, cve, owner=None, module=None):
+        """owner: only that rpm's modules; module: only (name, version)."""
+        from .vexindex import package_key
+        scope = [m for m in self.modules if (owner is None or m[3] == owner)
+                 and (module is None or (m[1], m[2]) == module)]
+        pkgs = self._packages(cve)
+        if not scope or not pkgs:
+            return None
+        rel = [m for m in scope if (m[0], package_key(m[0], m[1])) in pkgs]
+        if not rel:
+            # code the Go toolchain compiles into every binary never shows up as a
+            # module: Red Hat's FIPS patches (golang-fips/openssl, CVE-2024-1394)
+            if any(p.startswith(_TOOLCHAIN) for _e, p in pkgs):
+                return None
+            return 'absent', sorted(p for _e, p in pkgs)
+        hit = [m for m in rel if any(cve in cves and _affected(m[0], m[2], ranges, versions)
+                                     for cves, ranges, versions in self.index.osv(m[0], m[1]))]
+        return ('affected', hit) if hit else ('clear', rel)
+
+
 # ── version ranges ───────────────────────────────────────────────────────────
 
 def _affected(eco, version, ranges, versions) -> bool:

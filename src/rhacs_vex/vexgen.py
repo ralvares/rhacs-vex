@@ -39,6 +39,7 @@ def triage_sbom(image_ref: str, sbom: SyftSBOM, index, *, ocp_release: Optional[
     if df.empty:
         return ctx, df
     sbom.enrich(df, ctx)
+    ctx.osv_evidence = candidates.osv_evidence(sbom, index) if use_osv else None
     return ctx, audit_frame(df, ctx, vex_product=vex_product)
 
 

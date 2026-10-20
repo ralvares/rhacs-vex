@@ -1158,6 +1158,20 @@ component.
   * a module of an rpm RHEL tracks gets no assumption (RHEL lists every affected rpm);
   * otherwise not listed → FALSE POSITIVE, inferred.
 
+* **Inferred positives meet the binaries.**  A POSITIVE that rests on an inference —
+  the shipping product's version-neutral line, the errata assumption, another
+  version's fix — is checked against what the binaries contain: the SBOM lists the
+  modules compiled into them (per owning rpm, or the whole image) and OSV gives the
+  CVE's vulnerable ranges.  The CVE's packages present and all past the fix → FALSE
+  POSITIVE (`oc` 4.20 carries runc v1.1.13, past CVE-2024-21626's 1.1.12, whatever
+  "OpenShift 4: openshift-clients affected" says); OSV names the packages and none
+  is compiled in → FALSE POSITIVE (go-ldap is not in `oc`: CVE-2017-14623); one in
+  the vulnerable range → POSITIVE, with that as the proof.  Code the Go toolchain
+  compiles into every binary (Red Hat's FIPS `golang-fips/openssl`, CVE-2024-1394)
+  never counts as absent, and a statement about this build is never second-guessed.
+  On the Web Terminal 1.15 tooling image: 95 inferred positives cleared (66 past
+  the fix, 29 not compiled in), 225 confirmed in range.
+
 `stated` is True only when the deciding statement is about our product and our
 package / image / build; everything else is published as inferred.
 

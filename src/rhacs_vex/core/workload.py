@@ -42,6 +42,7 @@ class WorkloadContext:
     extra_digests : List[str]       = field(default_factory=list)
     vendor        : Optional[str]   = None   # the `vendor` label ("Red Hat, Inc.", "MongoDB")
     sbom_foreign_rpms: set          = field(default_factory=set)    # rpms Red Hat did not build
+    osv_evidence  : Optional[object] = None  # osv.Evidence over the SBOM's language packages
 
     # ── derived identity ────────────────────────────────────────────────────
     def own_digests(self) -> set:
