@@ -587,6 +587,13 @@ class Engine:
             s = na_older[0]
             return _v(NA, f'{_short(s.product)}: {s.comp.name} not affected in earlier versions', False, s,
                       'image_older_not_affected')
+        # not affected in a newer version, nothing open or fixed about the image anywhere:
+        # the code is not there (holdout: 6,900 of 7,099 clear, 192 fixed, 2 affected)
+        na_newer = [s for s in newer if s.status == NOT_AFFECTED]
+        if na_newer and not any(s.status in OPEN or s.status == FIXED for s in A):
+            s = na_newer[0]
+            return _v(NA, f'{_short(s.product)}: {s.comp.name} not affected in a newer version, '
+                      f'nothing open or fixed about it', False, s, 'image_newer_not_affected')
         return None
 
     def _order(self, s: Statement) -> Optional[int]:
@@ -612,6 +619,16 @@ class Engine:
         product node: an unnamed image of it is assumed vulnerable (errata policy)."""
         sc = self.scope
         if not sc.keys:
+            return None
+        # our version's own node clears images (and does not name ours): Red Hat went
+        # through this version's images, so the line's open ones do not speak for ours
+        # (holdout: precision 76.7% → 96.7% on 121,244 unnamed-image cases)
+        own_open, own_clear = set(), set()
+        for s in doc.statements:
+            if s.comp is not None and s.comp.kind == 'image' and s.product.key in sc.keys \
+                    and self._rel(s.product) == 'own':
+                (own_open if s.status in OPEN else own_clear).add((s.product.id, s.comp.name))
+        if own_clear - own_open:
             return None
         cleared = {s.product.id for s in doc.statements if s.status in (FIXED, NOT_AFFECTED)}
         for s in doc.statements:

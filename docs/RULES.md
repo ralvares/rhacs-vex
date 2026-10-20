@@ -71,13 +71,15 @@ version or the line; not affected; fixes only elsewhere → affected; else not l
    only in a later build → affected. Builds **after** ours never clear it. Then open /
    not affected for our version, then for the line. Then other versions: fixed or
    affected only in a newer version → affected; fixed in an older version → build time
-   decides; not affected in older versions → not affected (inferred); not affected only
-   in newer versions clears nothing.
+   decides; not affected in older versions → not affected (inferred); not affected in a
+   newer version, with nothing open or fixed about the image anywhere → not affected
+   (inferred; holdout below).
 4. Not a Red Hat image (registry not Red Hat's) and no Red Hat rpm ships it → **affected**
    (Red Hat VEX does not cover it).
 5. Errata assumption: our product (own, line or a newer version) lists images known
-   affected / under investigation and cleared nothing under that same product node →
-   **affected**, inferred.
+   affected / under investigation and cleared nothing under that same product node, and
+   our version's own node clears none of its images (Red Hat went through this version's
+   images and did not name ours) → **affected**, inferred.
 6. Otherwise → not affected, inferred (not listed).
 
 ## OpenVEX
@@ -94,3 +96,55 @@ rpms in an image sit above), so without the package product trivy dropped nothin
 statement about the image itself has no subcomponent: it covers the whole image.
 `not_affected` carries Red Hat's justification only when stated; inferred ones carry an
 `impact_statement`. `--stated-only` keeps Red Hat's own statements only.
+
+## Calibration (holdout on the whole corpus)
+
+`tools/holdout.py` hides Red Hat's own statement for an (image or rpm, CVE), lets the
+engine infer, and compares with the hidden truth — 1,138,085 cases from all 72,458
+documents (at most 40 per document per kind; 2 minutes). Run of 2026-10-20 (feed of the
+same day). Accuracy counts a hidden `fixed` as affected (an unnamed build may predate
+the fix); *decisive* scores only hidden affected vs. not affected with the component
+present (`component_not_present` alone is set apart: a scanner would not report there).
+
+| rule | case | n | accuracy | decisive |
+|---|---|---:|---:|---:|
+| errata_assumed | image unnamed | 28,832 | 96.7% | 96.8% |
+| errata_assumed | image named only in other versions | 784 | 99.5% | 99.5% |
+| not_listed (image) | image unnamed | 92,412 | 70.8% | 89.2% |
+| image_build | one build hidden | 5,908 | 100% | 100% |
+| image_older_not_affected | our version hidden | 13,526 | 96.3% | 100% |
+| image_newer_not_affected | our version hidden | 7,103 | 97.3% | 100% |
+| rpm_subpackage | stream not affected / at the fix / before the fix | 898 / 1,265 / 1,265 | 100% / 100% / 0% | |
+| rpm_clean_build | stream not affected / at the fix / before the fix | 84 / 49 / 49 | 100% / 100% / 0% | |
+| rpm_errata | before the stream's fix / stream not affected / at the fix | 89,069 / 646 / 86,925 | 100% / 0% / 0% | |
+
+Reading the rpm rows: the hidden truth for a stream is a fix (installed just before it →
+affected, or the fix itself → not affected) or a not-affected build. `rpm_errata` says
+affected whenever a stream lists nothing, so it is right for every build before the
+stream's fix and wrong for the fix itself — which no rule can know once the stream is
+silent; the stream was not affected only 646 times against 89,069 fixes (99.3%).
+`rpm_subpackage` / `rpm_clean_build` are right when the stream says the subpackage is
+not affected or carries the fix, wrong when Red Hat lists the subpackage itself fixed in
+that stream (it lists every binary of a fixed build) and the build predates it.
+
+Rule changes this calibration made, each with its test:
+* **errata_assumed** needed "our version's own node clears none of its images": without
+  it the assumption was right 76.7% (decisive 75.7%) on 38,590 cases; the 9,758 it no
+  longer fires on were clear 8,044, fixed 1,684, affected 29.
+* **image_newer_not_affected** is new: "not affected only in newer versions clears
+  nothing" left 1,288 such images to the errata assumption, right 3.4% of the time.
+
+Measured and not changed:
+* CVE-2026-42507 (OpenShift 4 node: 78 rpms and 3 images known affected, 1 image not
+  affected) — an unnamed OpenShift image is "not listed", and all 4 holdouts of that
+  node are wrong. Tolerating a few cleared images, or deciding by the share of open
+  statements under the node (≥ 90 / 95 / 98%), moves corpus accuracy by ≤ 0.2 points;
+  at 95% the 441 cases it adds are 63% affected across only 38 documents. Not evidence
+  enough.
+* An rpm RHEL never names, decided by another product's statement (Ironic's
+  python3-decorator rebuild, Hardened Images' version-less python-urllib3): where RHEL
+  does speak, those statements agree with RHEL's far better than "not listed" does
+  (`foreign` case: product_errata 99.5%, product_not_affected 90.1% vs. not listed 19%).
+  The holdout cannot see RHEL's real silence, but it gives no ground to drop them.
+* The holdout can only test where Red Hat speaks; rules that read silence ("not listed")
+  are scored on a selection a real scan does not meet.
