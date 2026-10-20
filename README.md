@@ -95,15 +95,15 @@ Verdicts are `FALSE POSITIVE` or `POSITIVE`; `VEX_STATE` mirrors Red Hat's CVE p
 (`Not affected`, `Fixed`, `Fix available`, `Affected`, `Will not fix`, `Fix deferred`,
 `Under investigation`). How much of a verdict is Red Hat's own claim:
 
-| evidence | meaning | in the OpenVEX |
+| "Red Hat says" | meaning | in the OpenVEX |
 |---|---|---|
-| stated | Red Hat stated it for **this** product/build | Red Hat's justification |
-| other build | a real statement, about another build/product/version | `Inferred from Red Hat CSAF-VEX: …` |
-| not listed | absent from an enumeration that covers this package type | `Inferred from Red Hat CSAF-VEX: …` |
+| `Affected` | Red Hat stated it for **this** product/build | Red Hat's justification |
+| `Affected (OpenShift 4)` | a real statement about another build, version or product — the one in parentheses (e.g. the product that ships the rpm, or a newer version) | `Inferred from Red Hat CSAF-VEX: …` |
+| `Not affected (not listed)` | absent from Red Hat's enumeration | `Inferred from Red Hat CSAF-VEX: …` |
 
-An absent **rpm** is evidence (Red Hat enumerates rpms exhaustively); an absent **Go
-module** is not (vendored code is assessed at the image or at the rpm that ships the
-binary). `--stated-only` publishes Red Hat-stated verdicts only.
+An absent **rpm** is evidence: RHEL lists every affected rpm.  Absence never clears what
+Red Hat did not ship — a third-party rpm or a non-Red Hat image's own modules stay
+POSITIVE ("not a Red Hat build").  `--stated-only` publishes Red Hat-stated verdicts only.
 
 ## OpenVEX and the vexhub
 

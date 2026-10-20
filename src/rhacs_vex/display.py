@@ -25,7 +25,7 @@ SEVERITY_STYLES = {
 
 
 _SCOPE_NOTE = {
-    'other bld': 'other build',
+    'other bld': 'inferred',
     'not listed': 'not listed',
 }
 
@@ -47,6 +47,12 @@ def redhat_says(row) -> str:
     state = str(row.get('VEX_STATE', '') or '').strip() or '-'
     ev = evidence_of(row)
     note = _SCOPE_NOTE.get(ev)
+    if ev == 'other bld':
+        # name whose statement it is (another build, version or the product
+        # that ships the package) rather than a generic "inferred"
+        product = str(row.get('VEX_PRODUCT', '') or '').split(',')[0].strip()
+        if product and product.lower() != 'nan':
+            note = product.replace('Red Hat ', '').replace('OpenShift Container Platform', 'OpenShift')
     return f'{state} ({note})' if note else state
 
 
