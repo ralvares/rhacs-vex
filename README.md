@@ -67,7 +67,8 @@ Every row says whether Red Hat **stated** it for this product and package, or it
 **inferred** from Red Hat's data (marked `*`). The rules, with the data behind each:
 [docs/RULES.md](docs/RULES.md). What Red Hat's documents contain:
 [docs/VEX-MODEL.md](docs/VEX-MODEL.md). `tools/vex_graph.py` turns the whole mirror into
-one SQLite graph for checking any rule against all of the data.
+one SQLite graph for checking any rule against all of the data; `tools/holdout.py` scores
+every rule by hiding Red Hat's own statements and comparing the inference with them.
 
 ## Layout
 
