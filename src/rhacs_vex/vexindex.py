@@ -10,6 +10,10 @@ usable on a small machine while the corpus itself is tens of GB.
     osv(eco, pkg, cves, ranges, versions, id)
                           upstream package → OSV records (CVE aliases, ranges);
                           only records with a CVE alias are kept
+    image(path, product, version, cve)
+                          image (the product id's namespace/name) → the products
+                          and versions Red Hat lists it under: which product an
+                          image belongs to, learned from the corpus
 
 Code that expects the old in-memory shape keeps working: `index.get('rpm')`
 returns a table object with `.get(name, default)`, like the dict it replaces.
@@ -35,6 +39,8 @@ CREATE TABLE IF NOT EXISTS rpm (name TEXT NOT NULL, cve TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS oci (key  TEXT NOT NULL, cve TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS osv (eco TEXT NOT NULL, pkg TEXT NOT NULL, cves TEXT NOT NULL,
                                 ranges TEXT NOT NULL, versions TEXT NOT NULL, id TEXT);
+CREATE TABLE IF NOT EXISTS image (path TEXT NOT NULL, product TEXT NOT NULL,
+                                  version TEXT NOT NULL, cve TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS meta (k TEXT PRIMARY KEY, v TEXT);
 """
 _INDEXES = """
@@ -44,6 +50,8 @@ CREATE INDEX IF NOT EXISTS rpm_cve  ON rpm(cve);
 CREATE INDEX IF NOT EXISTS oci_cve  ON oci(cve);
 CREATE INDEX IF NOT EXISTS osv_pkg  ON osv(eco, pkg);
 CREATE INDEX IF NOT EXISTS osv_rid  ON osv(id);
+CREATE INDEX IF NOT EXISTS image_path ON image(path);
+CREATE INDEX IF NOT EXISTS image_cve  ON image(cve);
 DROP INDEX IF EXISTS osv_id;
 """
 
@@ -66,6 +74,45 @@ def oci_repo_keys(purl: str) -> list:
     if repo and not (repo.endswith('/' + tail) or repo.endswith(tail)):
         repo = repo.rstrip('/') + '/' + tail
     return [k for k in (repo, tail) if k]
+
+
+def image_path(product_id: str) -> str:
+    """An image component's identity: its product id's namespace/name, registry
+    and digest dropped ('' when the id names no repository)."""
+    parts = re.sub(r'@.*$', '', product_id).split('/')
+    if len(parts) > 2 and '.' in parts[0]:
+        parts = parts[1:]
+    return '/'.join(parts).lower() if len(parts) >= 2 and all(parts) else ''
+
+
+def _doc_images(doc: dict) -> set:
+    """{(image path, product cpe key, cpe version)} for the image components of
+    one document — the purl's own name is not trusted (it names another image on
+    22% of image references); the product id is the identity."""
+    purls, cpes = {}, {}
+
+    def walk(branches):
+        for b in branches or []:
+            p = b.get('product') or {}
+            h = p.get('product_identification_helper') or {}
+            if p.get('product_id'):
+                purls[p['product_id']] = h.get('purl', '')
+                cpes[p['product_id']] = h.get('cpe', '')
+            walk(b.get('branches'))
+
+    pt = doc.get('product_tree') or {}
+    walk(pt.get('branches'))
+    out = set()
+    for r in pt.get('relationships') or []:
+        comp, parent = r.get('product_reference', ''), r.get('relates_to_product_reference', '')
+        purl = purls.get(comp, '')
+        if purl and not purl.startswith('pkg:oci/'):
+            continue
+        path = image_path(comp)
+        cp = cpes.get(parent, '').replace('cpe:/', '').split(':')
+        if path and len(cp) > 2 and cp[2]:
+            out.add((path, cp[2], cp[3] if len(cp) > 3 else ''))
+    return out
 
 
 def _doc_keys(doc: dict):
@@ -123,7 +170,8 @@ def build_vex(vex_dir: str = VEX_DIR, path: str = INDEX_PATH, progress=None) -> 
     with con:
         con.execute('DELETE FROM rpm')
         con.execute('DELETE FROM oci')
-    batch_r, batch_o = [], []
+        con.execute('DELETE FROM image')
+    batch_r, batch_o, batch_i = [], [], []
     for i, fp in enumerate(files):
         if progress and i % 2000 == 0:
             progress(i, len(files))
@@ -134,14 +182,16 @@ def build_vex(vex_dir: str = VEX_DIR, path: str = INDEX_PATH, progress=None) -> 
             continue
         cve = os.path.basename(fp)[:-5]
         rpms, ocis = _doc_keys(doc)
+        batch_i += [(p, k, v, cve) for p, k, v in _doc_images(doc)]
         del doc
         batch_r += [(n, cve) for n in rpms]
         batch_o += [(k, cve) for k in ocis]
-        if len(batch_r) + len(batch_o) > 50_000:
-            _flush(con, batch_r, batch_o)
-    _flush(con, batch_r, batch_o)
+        if len(batch_r) + len(batch_o) + len(batch_i) > 50_000:
+            _flush(con, batch_r, batch_o, batch_i)
+    _flush(con, batch_r, batch_o, batch_i)
     with con:
         con.executescript(_INDEXES)
+        con.execute("INSERT OR REPLACE INTO meta VALUES ('image_table', '1')")
         con.execute("INSERT OR REPLACE INTO meta VALUES ('vex_files', ?)", (str(len(files)),))
     stats = {'files': len(files),
              'rpm': con.execute('SELECT COUNT(DISTINCT name) FROM rpm').fetchone()[0],
@@ -154,11 +204,12 @@ def update_vex(cves, vex_dir: str = VEX_DIR, path: str = INDEX_PATH) -> dict:
     """Re-index only these CVEs (the ones a sync just fetched)."""
     con = _connect_write(path)
     con.executescript(_INDEXES)
-    batch_r, batch_o = [], []
+    batch_r, batch_o, batch_i = [], [], []
     for cve in cves:
         with con:
             con.execute('DELETE FROM rpm WHERE cve = ?', (cve,))
             con.execute('DELETE FROM oci WHERE cve = ?', (cve,))
+            con.execute('DELETE FROM image WHERE cve = ?', (cve,))
         fp = os.path.join(vex_dir, f'{cve}.json')
         try:
             with open(fp) as fh:
@@ -166,17 +217,60 @@ def update_vex(cves, vex_dir: str = VEX_DIR, path: str = INDEX_PATH) -> dict:
         except Exception:
             continue
         rpms, ocis = _doc_keys(doc)
+        batch_i += [(p, k, v, cve) for p, k, v in _doc_images(doc)]
         del doc
         batch_r += [(n, cve) for n in rpms]
         batch_o += [(k, cve) for k in ocis]
-        if len(batch_r) + len(batch_o) > 50_000:
-            _flush(con, batch_r, batch_o)
-    _flush(con, batch_r, batch_o)
+        if len(batch_r) + len(batch_o) + len(batch_i) > 50_000:
+            _flush(con, batch_r, batch_o, batch_i)
+    _flush(con, batch_r, batch_o, batch_i)
     files = len(glob.glob(os.path.join(vex_dir, 'CVE-*.json')))
     with con:
         con.execute("INSERT OR REPLACE INTO meta VALUES ('vex_files', ?)", (str(files),))
     con.close()
     return {'updated': len(cves), 'files': files}
+
+
+def has_images(path: str = INDEX_PATH) -> bool:
+    """Has the image table been built into this index (indexes from before it
+    existed need one pass over the mirror)?"""
+    try:
+        con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+        row = con.execute("SELECT v FROM meta WHERE k = 'image_table'").fetchone()
+        con.close()
+        return bool(row)
+    except sqlite3.Error:
+        return False
+
+
+def build_images(vex_dir: str = VEX_DIR, path: str = INDEX_PATH, progress=None) -> int:
+    """(Re)build only the image table from the mirror; rows written."""
+    files = sorted(glob.glob(os.path.join(vex_dir, 'CVE-*.json')))
+    con = _connect_write(path)
+    with con:
+        con.execute('DELETE FROM image')
+    batch, total = [], 0
+    for i, fp in enumerate(files):
+        if progress and i % 2000 == 0:
+            progress(i, len(files))
+        try:
+            with open(fp) as fh:
+                doc = json.load(fh)
+        except Exception:
+            continue
+        cve = os.path.basename(fp)[:-5]
+        batch += [(p, k, v, cve) for p, k, v in _doc_images(doc)]
+        del doc
+        if len(batch) > 50_000:
+            total += len(batch)
+            _flush(con, [], [], batch)
+    total += len(batch)
+    _flush(con, [], [], batch)
+    with con:
+        con.executescript(_INDEXES)
+        con.execute("INSERT OR REPLACE INTO meta VALUES ('image_table', '1')")
+    con.close()
+    return total
 
 
 def has_vex(path: str = INDEX_PATH) -> bool:
@@ -192,12 +286,15 @@ def has_vex(path: str = INDEX_PATH) -> bool:
         return False
 
 
-def _flush(con, batch_r, batch_o):
+def _flush(con, batch_r, batch_o, batch_i=None):
     with con:
         con.executemany('INSERT INTO rpm VALUES (?, ?)', batch_r)
         con.executemany('INSERT INTO oci VALUES (?, ?)', batch_o)
+        con.executemany('INSERT INTO image VALUES (?, ?, ?, ?)', batch_i or [])
     batch_r.clear()
     batch_o.clear()
+    if batch_i is not None:
+        batch_i.clear()
 
 
 def _osv_rows(eco: str, rec: dict) -> list:
@@ -334,6 +431,19 @@ class VexIndex:
         rows = self._con().execute('SELECT cves, ranges, versions FROM osv WHERE eco = ? AND pkg = ?',
                                    (eco, package_key(eco, name))).fetchall()
         return [(c.split(), json.loads(r), tuple(json.loads(v))) for c, r, v in rows]
+
+    def image_products(self, paths) -> dict:
+        """{product cpe key: {versions}} Red Hat lists these image paths under
+        ({} for an index built before the image table, or an unknown image)."""
+        out: dict = {}
+        try:
+            for path in paths:
+                for key, ver in self._con().execute(
+                        'SELECT DISTINCT product, version FROM image WHERE path = ?', (path,)):
+                    out.setdefault(key, set()).add(ver)
+        except sqlite3.Error:
+            return {}
+        return out
 
     def osv_packages(self) -> list:
         """[(eco, pkg, cves)] for every OSV record — one scan (~0.1 s)."""

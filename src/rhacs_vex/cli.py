@@ -615,6 +615,10 @@ def _sync_cmd(args) -> int:
         console.print(f"🧱 index: re-indexed {r['updated']:,} changed CVE file(s)")
     else:
         console.print("🧱 index: VEX already current")
+    if not vexindex.has_images(path):
+        console.print("🧱 index: learning image → product from the mirror (one pass)")
+        n = vexindex.build_images(path=path)
+        console.print(f"   {n:,} image listings")
     if not args.no_osv:
         console.print("📥 OSV (CVE → Go/PyPI/npm/Maven packages)")
         try:
