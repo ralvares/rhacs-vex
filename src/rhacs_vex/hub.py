@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import zipfile
 from datetime import datetime, timezone
 from urllib.parse import quote
@@ -62,13 +63,7 @@ def write_image_doc(hub_dir: str, image_ref: str, statements: list, *,
     path = doc_path(hub_dir, image_ref)
     os.makedirs(os.path.dirname(path), exist_ok=True)
 
-    existing = None
-    if os.path.exists(path):
-        try:
-            with open(path) as fh:
-                existing = json.load(fh)
-        except Exception:
-            existing = None
+    existing = _load(path) if os.path.exists(path) else None
 
     def _canon(stmts):
         return sorted(json.dumps(s, sort_keys=True) for s in stmts)
@@ -129,6 +124,32 @@ def write_image_docs(hub_dir: str, per_image: dict, *, author: str) -> int:
     return changed_docs
 
 
+def _digests(stmt: dict) -> set:
+    """'sha256:…' digests a statement's products name."""
+    return {m.group(1) for p in stmt.get('products', [])
+            for m in [re.search(r'@(sha256:[a-f0-9]{64})', str(p.get('@id', '')))] if m}
+
+
+def _load(path: str):
+    try:
+        with open(path) as fh:
+            return json.load(fh)
+    except Exception:
+        return None
+
+
+def digests_in_hub(hub_dir: str, refs) -> dict:
+    """doc path → digests its statements already cover, for the documents the
+    refs map to (generate --resume: an image with statements was scanned and
+    written; one with none leaves no trace and is scanned again, cheaply)."""
+    out = {}
+    for path in {doc_path(hub_dir, r) for r in refs}:
+        doc = _load(path) if os.path.exists(path) else None
+        if doc:
+            out[path] = set().union(*(_digests(s) for s in doc.get('statements', [])))
+    return out
+
+
 def prune(hub_dir: str, live_by_doc: dict) -> dict:
     """Drop statements about digests that rotated out of the discovery set.
 
@@ -140,25 +161,11 @@ def prune(hub_dir: str, live_by_doc: dict) -> dict:
     statements is deleted.  Returns {'statements': n, 'docs_removed': n,
     'docs_updated': n}.
     """
-    import re as _re
-    from datetime import datetime, timezone
-
     stats = {'statements': 0, 'docs_removed': 0, 'docs_updated': 0}
     for path, live in live_by_doc.items():
-        if not os.path.exists(path):
+        doc = _load(path) if os.path.exists(path) else None
+        if not doc:
             continue
-        try:
-            with open(path) as fh:
-                doc = json.load(fh)
-        except Exception:
-            continue
-
-        def _digests(stmt):
-            return {m.group(1)
-                    for p in stmt.get('products', [])
-                    for m in [_re.search(r'@(sha256:[a-f0-9]{64})',
-                                         str(p.get('@id', '')))] if m}
-
         keep = []
         for s in doc.get('statements', []):
             digs = _digests(s)

@@ -80,8 +80,6 @@ def print_preamble(console, *, image_ref: str = '', mode: str = '',
         console.print(f"[bold]Context:[/bold] type=[cyan]{ctx.workload_type}[/cyan]  "
                       f"rhel=[cyan]{ctx.rhel_ver}[/cyan]  "
                       f"display=[cyan]{ctx.display_name}[/cyan]")
-        if getattr(ctx, 'extra_prefixes', None):
-            console.print(f"[bold]VEX scope:[/bold] {', '.join(ctx.extra_prefixes[:6])}")
     console.print()
 
 

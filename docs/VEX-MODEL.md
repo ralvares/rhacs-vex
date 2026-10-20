@@ -660,6 +660,11 @@ Only two relationship types: **`CONTAINED_BY` 36,296** and **`GENERATED_FROM` 10
 
 ## 8. The Matching Problem & Decision Ladder
 
+> **Superseded (2026-10-20) by §11.**  The ladder below (`decide.py`, scoping by PID
+> prefixes and a namespace map) was replaced by an engine built from the statement
+> model of §10/§11 (`core/csaf.py` + `core/judge.py`).  It is kept as the record of
+> what was tried and why.
+
 The core spec: reconcile a **scanner identity** (RHACS component: name/version/source + image
 labels/digest) against a **VEX identity** (a `product_status` PID). This is the consolidation of
 all validated rules.
@@ -979,7 +984,7 @@ admits every product carrying RHEL 9, so RHEL 9's `golang` rpm being affected ma
 and 4.20 payload SBOMs (19,519 candidate rows): 42 rows rested on such a product.
 
 For an image, and for a module vendored in it, the product is OpenShift (payload) or the
-operator's own product (`decide._our_product`); a package shipped inside a RHEL rpm keeps RHEL as
+operator's own product (§11 `Scope.keys`); a package shipped inside a RHEL rpm keeps RHEL as
 its product. Sibling images **under investigation** keep an unnamed image POSITIVE as well
 (CVE-2025-58187: 70 OCP 4 images under investigation, `thanos` not named).
 
@@ -988,7 +993,7 @@ Container Platform 4.N" list the builds that *lack* the code. CVE-2026-25639 (ax
 the console images affected, 160 4.20 builds are cleared, and `monitoring-plugin` — which ships
 axios — is in neither list. Its absence from the sweep means it was not cleared, so it does not
 count as evidence that Red Hat enumerated it; only clears under the same node that lists the
-family affected do (`_clears_under`). Treating sibling sweeps as coverage was tried and turned
+family affected do (§11 `_errata_assumed`). Treating sibling sweeps as coverage was tried and turned
 18 such rows into false positives on the stored OCP findings before it was reverted.
 
 ### 10f. Identity: PID and purl disagree on 0.55% of image nodes
@@ -1007,6 +1012,163 @@ sound.
 
 New purl types since §4a: `cargo` (13), `gem` (2), `github` (1), `golang` (67, all
 `known_not_affected` with a flag), `pypi` (6).
+
+---
+
+### 10g. The rpm standard, re-derived from the data (2026-10-20)
+
+Re-derived from Red Hat's files alone, on 27 customer images (ubi8/ubi9/ubi10,
+postgresql-12/16, nodejs-20, python-312, buildah, ose-cli, mongodb …) plus the OpenShift
+payloads, with an independent evaluator that shares no code with the engine
+(purls and product names only).
+
+**Where an image's rpms come from is in the data.**  Every security-fix build sits in
+the product trees with its exact purl and the product that released it.  On these
+images: OpenShift payloads carry builds released only under `9.4 EUS` / `9.6 EUS`
+(they are EUS images); ubi9 9.8 and ubi8 8.10 builds come from their minor's
+`Z.MAIN` products; every image also carries builds of earlier minors' `GA` / `Z.MAIN`
+products (carried forward with their dist tags).
+
+**The decision, in order** (§11, `judge._rpm`):
+
+1. **The exact build.**  When the installed purl (name, version-release, epoch, module)
+   is itself a fixed build in any of our products, the fix is in it — whichever
+   stream shipped it (`pgaudit-1.4.0-6.module+el8.4.0` in an 8.7 image is the 8.4 AUS
+   fix).
+2. **The image's lineage.**  The installed build's stream is the image's minor
+   (os-release, else the newest `elN_M` among its rpms); a fix's minor is its dist-tag
+   marker, else its product's (`BaseOS-8.3.0.GA` builds carry a plain `.el8`).  A fix of
+   our minor decides; else the newest mainline (`GA`, `Z.MAIN`, RHEL 10 `X.Y.Z`) fix of
+   an earlier minor, which the image's minor inherits (8.10 carries the 8.9 mainline
+   fix: `openssl-1.1.1k-14.el8_6` ≥ `-12.el8_9` → FALSE POSITIVE).
+3. **Affected.**  known_affected / under_investigation for our line or stream →
+   POSITIVE.  Side-stream backports (EUS/AUS/E4S/TUS of other minors) never clear a
+   build while our line is affected (`systemd-libs-239-78.el8` on 8.10 is newer than
+   the 8.4 AUS / 8.8 E4S backports, but RHEL 8 is known_affected → POSITIVE).
+4. **Errata policy.**  A fix only in later or side streams → POSITIVE ("older builds are
+   assumed vulnerable"), unless the installed build is a newer upstream version than
+   every fix, or newer than all of them with nothing of ours open.
+5. known_not_affected → FALSE POSITIVE; not listed → FALSE POSITIVE (inferred).
+
+**Module streams.**  The SBOM, not the version string, names the stream: syft records
+`modularityLabel` (`nodejs:20:8090…`, empty for non-modular rpms), carried as `MODULE`.
+A versioned statement applies only to builds of the same stream; a version-less one
+scoped to a stream (`red_hat_enterprise_linux_8:pgaudit::postgresql:12`) only to that
+stream; one without a stream (`red_hat_enterprise_linux_8:nodejs`) to every stream, as
+written.  Without the label (RHACS, trivy rows) the version heuristic of §9.1a decides.
+The stream-blind match had: non-modular `python3-ply-3.9-9.el8` told to take the
+`python39:3.9` module's fix; `nodejs:20` cleared by a `nodejs:18` known_not_affected
+while Red Hat ships a `nodejs:20` fix it lacks; `postgresql:12` cleared by the `:13/:15`
+known_not_affected while `:12` is known_affected.
+
+**Names cross ecosystems.**  The owning-rpm map (a Go/npm/Python package → the rpm whose
+files carry it) applies to non-rpm rows only: npm `tar` inside the `npm` rpm must not
+make the rpm `tar` read the `npm` rpm's statements.
+
+## 11. The engine: statements in, verdict out (2026-10-20)
+
+`core/csaf.py` turns a document into flat **statements** — status × product × component
+purl — and `core/judge.py` decides a finding with filters over them.  No PID grammar,
+no scope predicate, no namespace map: everything the rules need is in the purls, the
+CPEs and the product ids.
+
+### 11a. Products
+
+| family | how it is recognised | what it carries |
+|---|---|---|
+| `rhel` | CPE `enterprise_linux`, `rhel_eus`, `rhel_aus`, `rhel_tus`, `rhel_e4s`, `rhel_els`, `rhel_ens` | major; minor from the PID (`BaseOS-9.4.0.Z.EUS`, `7Server-7.9.Z`, RHEL 10 `BaseOS-10.2.Z`); mainline = GA / Z / Z.MAIN / Z.MAIN.EUS, side = EUS/AUS/TUS/E4S/ENS/ELS; `red_hat_enterprise_linux_N` is the line |
+| `ocp` | CPE `openshift`, `NBase-RHOSE-4.N` | version (`4` = the line) |
+| `layered` | any other CPE product | the CPE product key and version |
+| `vendor` | `red_hat_products`, bare `cpe:/a:redhat` | Red Hat's catch-all |
+
+A product is **ours** when it is RHEL of the image's major, or the image's own product
+(OpenShift for payload images; the CPE label's product; else the product whose image
+statements share the image's registry namespace — `openshift-gitops-1/…`) at its
+version or version-neutral.  Another version of our product is **other-version**.
+
+### 11b. Image identity
+
+An image statement is about the namespace/name path of its **product id**
+(`openshift4/ose-cli-rhel9@sha256:…`); the purl decides only when the product id has
+no namespace (`rhcos@…`).  In a 4,000-file sample, 108,837 of 493,373 image references
+(22%) name a different image in the purl than in the product id — mostly Brew
+component names, sometimes another image outright (`fluentd-rhel9` stamped with the
+`fluentd-rhel8` purl, `subctl-rhel9` with a `thanos-rhel8` one).  Our image is matched
+on its pull path, its `name` label, its digests, and for payload images its OpenShift
+component.
+
+### 11c. The verdict
+
+* **Every finding** — the vendor catch-all not affected → FALSE POSITIVE; a statement
+  naming this build's digest decides; a statement naming this image (no digest) in
+  our product as not affected, with nothing open about it, covers what is inside it
+  (`rhel9/buildah` under RHEL 9 for CVE-2025-65637 while the buildah rpm is affected).
+* **Red Hat's builds only.**  An rpm Red Hat did not build (syft's rpm `vendor`:
+  MongoDB's `mongodb-org-server`) is never decided by statements about Red Hat's
+  build of that name, and what it ships is not Red Hat's either → POSITIVE, "not
+  covered".  An image is Red Hat's when its registry is (`registry.redhat.io`,
+  `registry.access.redhat.com`, the OpenShift release repository) — an image built
+  FROM ubi keeps the base's `vendor` label, so the label decides only without a ref.
+* **An rpm** (§10g) — exact build fixed / not affected; a fix in the lineage; open for
+  our line; not affected; a fix only in later or side streams → POSITIVE, unless the
+  build is at or past a later minor's mainline fix (mainline is cumulative: criu
+  `3.18-4.module+el8.9.0+21697` rebuilds the 8.10 GA fix `+20326`) or newer than every
+  fix.  An rpm RHEL never names is decided by the product that makes it, wherever
+  it is installed (inferred): the rpm carries the product's name or OpenShift's
+  `rhaos` tag, and the product's version line — `openshift-clients-4.20.0` is
+  OpenShift 4's, `openshift-serverless-clients-1.17.0` Serverless 1's.  The line's
+  version-neutral statements and builds of any minor (by NEVRA: 4.20's client
+  carries a fix 4.13 shipped) count.  The version line alone is not enough
+  (python3-decorator 4.4.2 is RHEL's, not OpenShift 4's), and a product of another
+  line is never the maker (JBoss EAP 5's `openssl.src` never decides RHEL 9's
+  openssl 3.5 — POODLE).  An rpm no statement names is not listed: the image's own verdict belongs to
+  its IMAGE row, not to every rpm inside (systemd-libs is not what makes the
+  authentication operator affected by go-jose's CVE-2024-28180).  A versioned `known_not_affected` is a clean build, like a fix — RHEL backports, so
+  one upstream version holds different code per stream (glibc 2.28: the 8.6 EUS builds
+  "vulnerable code not present", fixed in 8.8 and 8.10).  A not-affected build of the
+  installed upstream version speaks for the installed code when it is our own stream's
+  (glibc 2.28-189.5.el8_6 under 8.6 EUS's 189.10), or when nothing is fixed or open
+  for the package (openssl-fips-provider 3.0.7-6.el9_5 clears 3.0.7-2.el9).
+  Statements about the SBOM's module stream outrank stream-less version-less ones
+  (RHEL 8 "postgresql: not affected" beside fixes for every `postgresql:12` stream).
+  **Provenance:** a plain `.elN` build comes from RHEL, so RHEL's statements run the
+  ladder; an `rhaos` / `el8pc` / … build its product's.  A version-less not-affected
+  from the other side still clears — RHEL's is about the code (libzstd vs the zstd CLI's
+  CVE-2021-24031, despite OpenShift's blanket "out of support scope"), the image's own
+  product's about its context (systemd CVE-2025-4598: OpenShift 4 not affected, RHEL
+  fixed only from 9.7).
+* **The image** — statements naming it in our version: its assessed builds (fixed and
+  not affected) ordered by build stamp, the nearest at or before ours speaking for ours,
+  else a later fix → POSITIVE (predates it); then open; then not affected.  Then the
+  line.  Then other versions: a fix (or known_affected) only in a newer version →
+  POSITIVE (errata policy: GitOps 1.6 fixed only in 1.8+; ose-cli 4.12 fixed only in
+  4.13); fixed only in older versions → build time decides; not affected in other
+  versions → FALSE POSITIVE, inferred (the cluster-openshift-apiserver-operator, not
+  affected by bind in every version from 4.12 to 4.18).
+* **A module inside** (Go, npm, Python, Maven) — Red Hat's purl for it in our
+  products; else the rpm that ships it (owner from the SBOM's file ownership, with its
+  source rpm: `python3-urllib3` → `python-urllib3`); else the image's verdict.  Else:
+  * a **non-Red Hat image's own module** (no Red Hat rpm ships it) → POSITIVE: Red
+    Hat's VEX does not cover MongoDB's Go binary, and its silence is not a clear;
+  * our product — at our version, the line, or a **newer** version (a previous one
+    is assumed vulnerable: the RHACS 3.66 operator under RHACS 4's listing) — lists
+    images known_affected / under_investigation and cleared nothing under that same
+    product node → POSITIVE, assumed vulnerable (§5g; a clear under the same node —
+    CVE-2024-45337's 8,476 — means Red Hat enumerated, and our absence is meaningful);
+  * a module of an rpm RHEL tracks gets no assumption (RHEL lists every affected rpm);
+  * otherwise not listed → FALSE POSITIVE, inferred.
+
+`stated` is True only when the deciding statement is about our product and our
+package / image / build; everything else is published as inferred.
+
+### 11d. Checked against
+
+Old engine vs new engine on the candidate rows of 30 images (customer ubi8/9/10,
+postgresql, nodejs, python, openjdk, buildah, ose-cli, operators, OpenShift payloads;
+106,928 rows): every disagreement class was read against the statements in Red Hat's
+files; the classes and their resolution are summarised
+in the commit.  The rpm rules are also checked by an independent evaluator that
+shares no code with the engine (purls and product names only).
 
 ---
 

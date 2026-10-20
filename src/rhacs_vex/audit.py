@@ -24,7 +24,7 @@ import pandas as pd
 
 from .core import versions as V
 
-from .core.decide import SEVERITY_FROM_SCANNER, triage, vex_product as _vex_product
+from .core.judge import SEVERITY_FROM_SCANNER, judge
 from .core.store import load_document
 
 VERDICT_COLUMNS = ['AUDIT_RESULT', 'VEX_FIX_VER', 'JUSTIFICATION', 'SEVERITY',
@@ -35,7 +35,7 @@ _SEVERITY_ORDER = {"Critical": 0, "Important": 1, "Moderate": 2, "Low": 3, "Unkn
 
 # Columns carried into results when the input has them.
 _CARRIED = ('SOURCE', 'LOCATION', 'FIXED_VERSION', 'OCP_COMPONENT', 'IMAGE', 'IMAGE_ROLE',
-            'SRPM', 'OWNER_RPM', 'PURL', 'VEX_STATED', 'ALIAS_ID', 'CLUSTER', 'NAMESPACE',
+            'SRPM', 'OWNER_RPM', 'PURL', 'MODULE', 'VEX_STATED', 'ALIAS_ID', 'CLUSTER', 'NAMESPACE',
             'DEPLOYMENT', '_UID')
 
 
@@ -112,15 +112,14 @@ _STATE = None   # (prepared, records, vex_product) for the duration of audit()
 def _audit_cve(item) -> list:
     cve, per_job = item
     prepared, records, want_product = _STATE
-    data = load_document(cve)       # compact tables; the raw JSON is already freed
+    data = load_document(cve)       # statements; the raw JSON is already freed
     out = []
     for ji, positions in per_job.items():
         ctx = prepared[ji][0]
         for ri in positions:
             rec = records[ji][ri]
-            out.append((ji, ri, triage(rec, ctx, data).as_list(),
-                        _vex_product(data, str(rec.get('COMPONENT', '')), ctx)
-                        if want_product else ''))
+            v = judge(rec, ctx, data)
+            out.append((ji, ri, v.as_list(), v.product if want_product else ''))
     return out
 
 
@@ -235,11 +234,9 @@ def finalize(df: pd.DataFrame, false_only: bool = False) -> pd.DataFrame:
 
 # ── how much of a verdict is Red Hat's own claim ─────────────────────────────
 
-# A justification that opens with one of these quotes a real Red Hat statement,
-# just one not scoped to this build/product (VEX_STATED stays False).
-_STATEMENT_PREFIXES = ('known_not_affected', 'known_affected', 'under_investigation',
-                       'No affected entry', 'No supported Red Hat product affected',
-                       'Image build', 'This image build', 'Fixed in')
+# The engine's notes for a verdict no statement names: Red Hat's enumeration
+# leaves this component out (core/judge.py _not_listed / _not_red_hat).
+_ABSENT = ('not listed as affected', 'not a Red Hat build')
 
 
 def is_stated(row) -> bool:
@@ -252,6 +249,6 @@ def evidence_of(row) -> str:
     build/release), or 'not listed' (Red Hat's enumeration does not name us)."""
     if is_stated(row):
         return 'stated'
-    if str(row.get('JUSTIFICATION', '') or '').lstrip().startswith(_STATEMENT_PREFIXES):
-        return 'other bld'
-    return 'not listed'
+    if any(m in str(row.get('JUSTIFICATION', '') or '') for m in _ABSENT):
+        return 'not listed'
+    return 'other bld'

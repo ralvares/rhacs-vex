@@ -44,14 +44,11 @@ def read_vex(cve_id: str) -> Optional[dict]:
 
 
 def load_document(cve_id: str):
-    """The parsed VexDocument for a CVE (None without a VEX file).
-
-    The raw JSON is dropped as soon as the lookup tables are built, so a caller
-    holds only the compact form.
-    """
-    from .vexdoc import VexDocument
+    """The statements of a CVE's document (None without a VEX file); the raw
+    JSON is dropped once they are built."""
+    from .csaf import Document
     data = read_vex(cve_id)
-    return VexDocument(data) if data is not None else None
+    return Document(data) if data is not None else None
 
 
 @functools.lru_cache(maxsize=int(os.environ.get('VEX_CACHE_SIZE', '16')))

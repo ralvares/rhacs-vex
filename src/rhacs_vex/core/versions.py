@@ -1,12 +1,12 @@
 """RPM version arithmetic and dist-tag decoding (VEX-MODEL §2, §3e, §6).
 
 Pure functions, no VEX knowledge.  Every rule here was validated against the
-corpus or rpm's own test vectors; see tests/test_engine_regressions.py §E/F/H/I.
+corpus or rpm's own test vectors; see tests/test_engine_regressions.py §E/F/I.
 """
 from __future__ import annotations
 
 import re
-from typing import Iterable, Optional
+from typing import Optional
 
 
 # ── rpmvercmp / EVR ──────────────────────────────────────────────────────────
@@ -171,6 +171,13 @@ def is_module_build(version: str) -> bool:
     return '.module+' in version or '+module+' in version
 
 
+def sbom_module(label: str) -> str:
+    """'name:stream' from syft's modularityLabel ('nodejs:20:8090…:a751…'),
+    'non-modular' for an rpm the SBOM says is not modular."""
+    parts = str(label or '').split(':')
+    return ':'.join(parts[:2]) if len(parts) >= 2 and parts[0] else 'non-modular'
+
+
 def module_stream_applies(pid: str, installed: str) -> bool:
     """Does a '::module:stream' PID apply to the installed version?
 
@@ -196,50 +203,6 @@ def module_stream_applies(pid: str, installed: str) -> bool:
     return not (pid_el and inst_el and pid_el.group(1) != inst_el.group(1))
 
 
-# ── cross-stream fix inference (§6b exceptions) ──────────────────────────────
-
-def upstream_newer_than_all(installed: str, fixes: Iterable[str]) -> bool:
-    """Strictly newer than every fix on EPOCH:VERSION alone (release ignored).
-
-    Releases are branch-local, versions are not: expat 2.5.0 on 9.8 cannot be
-    missing a fix shipped in 2.2.10-12.el9_0.4.  Equal versions keep the
-    release confound and return False.
-    """
-    seen = False
-    for fix in fixes:
-        inst, fx = align_epochs(installed, fix)
-        # rpmvercmp treats ':' as a separator, so the aligned epoch is simply
-        # the first numeric segment of each side.
-        if rpmvercmp(inst.partition('-')[0], fx.partition('-')[0]) <= 0:
-            return False
-        seen = True
-    return seen
-
-
-def later_stream_than_all(installed: str, fixes: Iterable[str]) -> bool:
-    """Installed on a later RHEL minor than every fix, and newer on full NEVRA.
-
-    Red Hat fixes the current stream first and backports to EUS/E4S after, so a
-    fix living only in older minors (or in mainline, the fork point) was already
-    in the branch ours forked from.  Same major only; a fix in a newer stream is
-    the ordinary "not backported yet" case.
-    """
-    major, minor = rhel_major(installed), rhel_minor(installed)
-    if not (major and minor):
-        return False
-    seen = False
-    for fix in fixes:
-        if rhel_major(fix) != major:
-            return False
-        fminor = rhel_minor(fix)
-        if fminor and int(fminor) >= int(minor):
-            return False
-        if installed_cmp(installed, fix) <= 0:
-            return False
-        seen = True
-    return seen
-
-
 # ── image build stamps (§5g corollary) ───────────────────────────────────────
 
 def build_stamp(s: Optional[str]) -> Optional[int]:
@@ -254,3 +217,33 @@ def build_stamp(s: Optional[str]) -> Optional[int]:
         import time
         return int(time.strftime('%Y%m%d%H%M', time.gmtime(int(m.group(1)))))
     return None
+
+
+# ── language-package versions (maven / npm / golang / pypi) ──────────────────
+
+def pkg_cmp(a: str, b: str) -> int:
+    """Semver-like compare: dotted numbers, then the pre-release tail (a release
+    sorts after its pre-releases).  'v' / 'go' prefixes and '+build' are dropped
+    (golang: v1.2.3, stdlib: go1.21.3)."""
+    def norm(v):
+        v = re.sub(r'^(go|v)', '', str(v or '').strip())
+        return v.split('+')[0]
+
+    def split(v):
+        core, _, pre = v.partition('-')
+        return [int(x) if x.isdigit() else x for x in re.split(r'[.]', core)], pre
+
+    (na, pa), (nb, pb) = split(norm(a)), split(norm(b))
+    for x, y in zip(na + [0] * (len(nb) - len(na)), nb + [0] * (len(na) - len(nb))):
+        if x == y:
+            continue
+        if isinstance(x, int) and isinstance(y, int):
+            return 1 if x > y else -1
+        return 1 if str(x) > str(y) else -1
+    if pa == pb:
+        return 0
+    if not pa:
+        return 1
+    if not pb:
+        return -1
+    return 1 if pa > pb else -1

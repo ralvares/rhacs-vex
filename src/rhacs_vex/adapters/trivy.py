@@ -13,6 +13,8 @@ import subprocess
 
 import pandas as pd
 
+from ..candidates import empty_frame
+
 # purl type → engine SOURCE vocabulary (same table shape as the grype adapter).
 _PURL_TO_SOURCE = {
     'pkg:rpm':    'OS',
@@ -91,9 +93,7 @@ def to_df(trivy_doc: dict) -> pd.DataFrame:
                 'ADVISORY_LINK': '',
                 'SRPM':          v.get('SrcName', '') if v.get('SrcName') != cname else '',
             })
-    return pd.DataFrame(rows) if rows else pd.DataFrame(
-        columns=['COMPONENT', 'VERSION', 'CVE', 'SEVERITY', 'CVSS', 'LINK',
-                 'FIXED_VERSION', 'SOURCE', 'LOCATION', 'ADVISORY', 'ADVISORY_LINK'])
+    return pd.DataFrame(rows) if rows else empty_frame()
 
 
 def os_hint(trivy_doc: dict) -> str:

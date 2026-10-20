@@ -1,6 +1,6 @@
 """Scan → triage flows shared by every command.
 
-    triage_one(df, ctx, …)        audit + render + export one image's findings
+    triage(df, ctx, …)            audit + render + export one image's findings
     rhacs_image(central, ref, …)  RHACS scan → enriched findings → verdicts
     rhacs_batch(central, items)   the same over many images, with one retry
 
@@ -16,35 +16,35 @@ from typing import Optional
 
 import requests
 
-from . import display, scanfree
+from . import display
 from .adapters import rhacs
-from .audit import audit_frame
+from .audit import FP, audit_frame
+from .candidates import add_to_findings
 from .sbom import SyftSBOM
 
 
-def triage_one(df, ctx, console, *, output: Optional[str] = None, fmt: str = 'csv',
-               false_only: bool = False, show_all: bool = False, candidates: bool = False):
-    """Audit one image's findings, print the table, optionally write the file.
-
-    The terminal shows what needs action; false positives are counted in the
-    footer (--false-only flips that, --all-rows shows both).  Files keep all rows.
-    """
+def triage(df, ctx, console, args, *, candidates: bool = False):
+    """Audit one image's findings, then show() them."""
     if df is None or df.empty:
         console.print("[yellow]⚠  No CVE findings to audit.[/yellow]")
         return audit_frame(df, ctx)
-    result = audit_frame(df, ctx, false_only=false_only)
-    display.render_table(console, result, ctx,
-                         actionable_only=not (false_only or show_all), candidates=candidates)
-    if output and fmt != 'table':
-        display.write_output(result, output, fmt, console)
+    return show(audit_frame(df, ctx), ctx, console, args, candidates=candidates)
+
+
+def show(result, ctx, console, args, *, candidates: bool = False):
+    """Print the table, optionally write the file; returns the rows shown.
+
+    The terminal shows what needs action; false positives are counted in the
+    footer (--false-only flips that, --all-rows shows both).  --false-only also
+    limits the file to false positives; otherwise files keep every row.
+    """
+    if args.false_only:
+        result = result[result['AUDIT_RESULT'] == FP]
+    display.render_table(console, result, ctx, candidates=candidates,
+                         actionable_only=not (args.false_only or args.all_rows))
+    if args.output:
+        display.write_output(result, args.output, args.format, console)
     return result
-
-
-def merge_index(df, index, image_ref: str, labels):
-    """Add the VEX-index candidates (rpm + image) when an index is given."""
-    if index is None:
-        return df, 0
-    return scanfree.merge_index_candidates(df, index, image_ref=image_ref, labels=labels)
 
 
 def rhacs_image(central: rhacs.Central, image_ref: str, *, image_id: Optional[str] = None,
@@ -72,8 +72,8 @@ def rhacs_image(central: rhacs.Central, image_ref: str, *, image_id: Optional[st
             ctx.sbom_src_map = rhacs.spdx_source_rpms(spdx)
             ctx.sbom_packages = rhacs.spdx_packages(spdx)
 
-        df, _added = merge_index(rhacs.scan_to_df(data), index, image_ref,
-                                 rhacs.labels_of(data))
+        df, _added = add_to_findings(rhacs.scan_to_df(data), index,
+                                     image_ref=image_ref, labels=rhacs.labels_of(data))
         out = {'found': True, 'ctx': ctx, 'os_info': rhacs.os_of(data),
                'result_df': None, 'sbom_check': None, 'error': None}
         if df.empty:

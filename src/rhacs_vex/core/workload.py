@@ -2,32 +2,16 @@
 
 One place builds it — from the pull reference, the image labels, the scanner's
 OS string and any extra digests — and everything else only reads it
-(VEX-MODEL §7c/§7d).  Classification is structural plus the catalog-generated
-namespace map in data/ns_vex_prefixes.json; there is no hardcoded product list.
+(VEX-MODEL §7c/§7d).  Classification is structural; which Red Hat product an
+image belongs to is read from each VEX document (core/judge.py Scope).
 """
 from __future__ import annotations
 
 import json
-import os
 import re
 import subprocess
 from dataclasses import dataclass, field, replace
 from typing import List, Optional
-
-BASE_DIR = "data"
-NS_MAP_PATH = os.path.join(BASE_DIR, "ns_vex_prefixes.json")
-
-
-def _load_ns_map() -> dict:
-    try:
-        with open(NS_MAP_PATH) as fh:
-            return json.load(fh)
-    except Exception:
-        return {}
-
-
-NS_TO_VEX_PREFIXES = _load_ns_map()
-
 
 @dataclass
 class WorkloadContext:
@@ -35,7 +19,8 @@ class WorkloadContext:
 
     workload_type ∈ {"ubi", "ocp", "operator"}.  `cpe` is the image-label CPE,
     `ocp_component` the OCP manifest component ("etcd").  `sbom_src_map`
-    (component → source/owning rpm) and `sbom_packages` (name → [versions]) are
+    (binary → source rpm), `sbom_owner_map` (vendored package → the rpm whose
+    files carry it) and `sbom_packages` (name → [versions]) are
     filled by callers with SBOM access.  `extra_digests` are further sha256
     identities of THIS build (per-arch manifest, repo digests): VEX PIDs carry
     per-arch digests while a pull ref usually carries the manifest-list one.
@@ -48,13 +33,15 @@ class WorkloadContext:
     image_ns      : Optional[str]   = None
     image_name    : Optional[str]   = None
     display_name  : str             = "UBI8"
-    extra_prefixes: List[str]       = field(default_factory=list)
     sbom_src_map  : dict            = field(default_factory=dict)
+    sbom_owner_map: dict            = field(default_factory=dict)   # vendored pkg → owning rpm
     sbom_packages : dict            = field(default_factory=dict)
     ocp_component : Optional[str]   = None
     cpe           : Optional[str]   = None
     image_build   : Optional[str]   = None   # version-release of THIS build
     extra_digests : List[str]       = field(default_factory=list)
+    vendor        : Optional[str]   = None   # the `vendor` label ("Red Hat, Inc.", "MongoDB")
+    sbom_foreign_rpms: set          = field(default_factory=set)    # rpms Red Hat did not build
 
     # ── derived identity ────────────────────────────────────────────────────
     def own_digests(self) -> set:
@@ -69,11 +56,17 @@ class WorkloadContext:
                 shas.add(m.group(1))
         return shas
 
-    def scope_key(self) -> tuple:
-        """Everything the product-scope predicate depends on."""
-        return (self.workload_type, self.rhel_ver, self.ocp_ver, self.image_ns,
-                self.image_name, self.ocp_component, self.cpe,
-                tuple(self.extra_prefixes))
+    def red_hat_image(self) -> Optional[bool]:
+        """Did Red Hat ship this image?  Its registry says so (an image built FROM
+        ubi keeps the `vendor` label of its base); without a pull ref, the
+        label.  None when nothing tells."""
+        host = (self.image_ref or '').split('/')[0].lower() if '/' in (self.image_ref or '') else ''
+        if host:
+            return host.endswith('.redhat.io') or host.endswith('.redhat.com') or \
+                (self.image_ref or '').lower().startswith('quay.io/openshift-release-dev/')
+        if self.vendor:
+            return self.vendor.lower().startswith('red hat')
+        return None
 
     def with_rhel(self, rhel_ver: str) -> "WorkloadContext":
         return replace(self, rhel_ver=rhel_ver)
@@ -82,26 +75,6 @@ class WorkloadContext:
         """The OCP component core this image ships, if it is an OCP image."""
         return self.ocp_component or (
             image_core(self.image_name) if self.image_name else None)
-
-    def oci_candidates(self) -> list:
-        """(repository_url, image_name) pairs for OCI-purl matching (§4a).
-
-        The pull reference is authoritative; the `name` label repo is the
-        secondary route (art-dev pull paths name no image at all).
-        """
-        out = []
-        if self.image_ref:
-            bare = re.sub(r'[@:][^/]*$', '', self.image_ref)
-            parts = bare.split('/')
-            if len(parts) >= 2:
-                out.append((bare, parts[-1]))
-        label = (f"{self.image_ns}/{self.image_name}"
-                 if self.image_ns and self.image_name else None)
-        if label:
-            repo = f"registry.redhat.io/{label}"
-            if all(c[0] != repo for c in out):
-                out.append((repo, label.split('/')[-1]))
-        return out
 
 
 # ── image-name normalisation (§8 3b) ─────────────────────────────────────────
@@ -115,11 +88,6 @@ def image_core(img: str) -> str:
         img = img[4:]
     img = re.sub(r'-rhel\d+', '', img)
     return re.sub(r'--+', '-', img).strip('-')
-
-
-def image_rhel(img: str) -> Optional[str]:
-    m = re.search(r'-rhel(\d+)', img)
-    return m.group(1) if m else None
 
 
 _GENERIC_ALIASES = {'rhcos': 'rhel-coreos'}
@@ -187,12 +155,6 @@ def parse_image_ref(image_ref: str, os_hint: str = "") -> WorkloadContext:
         ctx.display_name = f"OpenShift {ctx.ocp_ver or '4.x'}"
     else:
         ctx.workload_type = "operator"
-        host = re.match(r'^([^/]+)/', image_ref)
-        host = host.group(1) if host else "registry.redhat.io"
-        ctx.extra_prefixes += [f"{host}/{ns}/", f"{ns}/"]
-        for key, prefixes in NS_TO_VEX_PREFIXES.items():
-            if key == ns or key in ns:
-                ctx.extra_prefixes += [p for p in prefixes if p not in ctx.extra_prefixes]
         ctx.display_name = f"{ns}/{name} (RHEL {ctx.rhel_ver})"
     return ctx
 
@@ -214,10 +176,6 @@ def parse_context_from_labels(labels: dict, image_ref: str = "",
     ctx = parse_image_ref(ref) if ref else WorkloadContext()
     if image_ref:
         ctx.image_ref = image_ref
-    if image_ref and ctx.workload_type == "operator":
-        for p in parse_image_ref(image_ref).extra_prefixes:
-            if p not in ctx.extra_prefixes:
-                ctx.extra_prefixes.append(p)
 
     if cpe:
         ctx.cpe = cpe
@@ -237,7 +195,6 @@ def parse_context_from_labels(labels: dict, image_ref: str = "",
         if ctx.workload_type == "operator" and product == "openshift":
             ctx.workload_type = "ocp"
             ctx.display_name = f"OpenShift {version_tok or ctx.ocp_ver or '4.x'}"
-            ctx.extra_prefixes = []
             if version_tok:
                 ctx.ocp_ver = version_tok
 
@@ -247,6 +204,8 @@ def parse_context_from_labels(labels: dict, image_ref: str = "",
             ctx.ocp_ver = m.group(1)
             ctx.display_name = f"OpenShift {ctx.ocp_ver}"
 
+    if labels.get("vendor"):
+        ctx.vendor = labels["vendor"]
     if labels.get("version") and labels.get("release"):
         ctx.image_build = f"{labels['version']}-{labels['release']}"
     elif image_ref and not ctx.image_build:
@@ -325,7 +284,6 @@ def apply_ocp_release(ctx: WorkloadContext, release: str,
     ctx.workload_type = "ocp"
     ctx.ocp_ver = '.'.join(str(release).split('.')[:2])
     ctx.display_name = f"OpenShift {release}"
-    ctx.extra_prefixes = []
     if component:
         ctx.ocp_component = component
         m = re.search(r'rhel-(?:[^-]+-)?(\d+)$', component)

@@ -10,7 +10,9 @@ publishing VEX requires:
   * file → owning rpm: Red Hat assesses vendored Go at the rpm that ships the
     binary (golang.org/x/net in /usr/bin/buildah → `buildah`), never at the
     module purl, so a Go finding needs its owning rpm to reach the statement;
-  * installed versions, to verify the scanner's version claims.
+  * installed versions, to verify the scanner's version claims;
+  * which rpms Red Hat built (syft's rpm `vendor`): a third-party rpm
+    (MongoDB's `mongodb-org-server`) and what it ships are not Red Hat's to clear.
 """
 from __future__ import annotations
 
@@ -100,6 +102,18 @@ class SyftSBOM:
                     owners[path] = (a['name'], ver)
         return owners
 
+    def rpm_modules(self) -> dict:
+        """(name, version) → module stream ('nodejs:20') or 'non-modular', per rpm."""
+        from .core.versions import sbom_module
+        return {(a['name'], str(a.get('version', ''))):
+                sbom_module((a.get('metadata') or {}).get('modularityLabel'))
+                for a in self.rpms()}
+
+    def foreign_rpms(self) -> set:
+        """Names of installed rpms Red Hat did not build (vendor not Red Hat)."""
+        return {a['name'] for a in self.rpms() if a['name'] != 'gpg-pubkey'
+                and not str((a.get('metadata') or {}).get('vendor') or '').startswith('Red Hat')}
+
     def package_versions(self) -> dict:
         """package name → {versions} across every artifact type."""
         out: dict = {}
@@ -113,7 +127,17 @@ class SyftSBOM:
         wire_rpm_owners(df, ctx, self.file_owners())
         if not ctx.sbom_packages:
             ctx.sbom_packages = self.package_versions()
+        ctx.sbom_foreign_rpms = self.foreign_rpms()
+        if df is not None and not df.empty and 'COMPONENT' in df.columns:
+            # a scanner's rpm rows learn their module stream from the SBOM
+            mods = self.rpm_modules()
+            have = df['MODULE'].fillna('').astype(str) if 'MODULE' in df.columns else None
+            found = [mods.get((str(c), str(v)), '') if str(s).upper() == 'OS' else ''
+                     for c, v, s in zip(df['COMPONENT'], df['VERSION'],
+                                        df.get('SOURCE', [''] * len(df)))]
+            df['MODULE'] = [h or f for h, f in zip(have, found)] if have is not None else found
         srcs = self.source_rpms()
+        ctx.sbom_src_map = {**srcs, **(ctx.sbom_src_map or {})}
         if srcs and df is not None and not df.empty and 'COMPONENT' in df.columns:
             def srpm_for(row):
                 have = str(row.get('SRPM', '') or '')
@@ -128,9 +152,11 @@ def wire_rpm_owners(df, ctx, owners: dict) -> None:
 
     - df['OWNER_RPM'] = 'name@version-release' (the OpenVEX emitter uses it to
       withhold a Go clear while the vendoring rpm is still open);
-    - ctx.sbom_src_map[component] = rpm name, so the engine matches the rpm's
-      statements.  A component found in binaries of two different rpms stays
-      unmapped — one verdict row cannot represent diverging owners.
+    - ctx.sbom_owner_map[component] = rpm name, so the engine matches the
+      rpm's statements (for non-rpm rows only: npm `tar` inside the `npm` rpm
+      must not send the rpm `tar` there).  A component found in binaries of two
+      different rpms stays unmapped — one verdict row cannot represent
+      diverging owners.
 
     syft paths are absolute, RHACS locations relative; both are indexed.
     """
@@ -150,14 +176,14 @@ def wire_rpm_owners(df, ctx, owners: dict) -> None:
         return ''
 
     df['OWNER_RPM'] = df.apply(owner_of, axis=1)
-    src_map, conflict = {}, set()
+    owner_map, conflict = {}, set()
     for comp, owner in zip(df['COMPONENT'].astype(str), df['OWNER_RPM']):
         if not owner:
             continue
         name = owner.split('@')[0]
-        if src_map.get(comp, name) != name:
+        if owner_map.get(comp, name) != name:
             conflict.add(comp)
-        src_map.setdefault(comp, name)
+        owner_map.setdefault(comp, name)
     for c in conflict:
-        src_map.pop(c, None)
-    ctx.sbom_src_map = {**src_map, **(ctx.sbom_src_map or {})}
+        owner_map.pop(c, None)
+    ctx.sbom_owner_map = {**owner_map, **(ctx.sbom_owner_map or {})}

@@ -34,5 +34,8 @@ vextriage = "rhacs_vex.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+rhacs_vex = ["report.html"]
+
 [tool.setuptools.dynamic]
 version = { attr = "rhacs_vex.__version__" }

@@ -17,13 +17,7 @@ import pandas as pd                                                  # noqa: E40
 from rhacs_vex import engine                                         # noqa: E402
 from rhacs_vex.engine import WorkloadContext, audit_row_detailed     # noqa: E402
 from rhacs_vex.core import versions as V                             # noqa: E402
-from rhacs_vex.core.decide import Decision, compare_fixed, src_aliases  # noqa: E402
-from rhacs_vex.core.scope import prefix_matches as _prefix_matches_pid  # noqa: E402
-from rhacs_vex.core.vexdoc import VexDocument                        # noqa: E402
-
-
-def _src_alias_names(data, comp, found_v, srpm=''):
-    return src_aliases(VexDocument.of(data), comp, found_v, srpm)
+from rhacs_vex.core.csaf import classify                              # noqa: E402
 
 _failures = []
 
@@ -57,43 +51,61 @@ def vex(nodes, statuses):
     }
 
 
-print('=== A. src-alias must not override a known SRPM ===')
+print('=== A. a binary rpm reaches statements only through its own source rpm ===')
 
-# python3 ships a version-less .src PID (a wildcard), and python3-chardet shares
-# its dash prefix — but chardet is built from python-chardet.  Before the fix the
-# wildcard let chardet inherit python3's fixed NEVRA and 4.0.0 >= 3.9.21 cleared
-# a package Red Hat never fixed.
+# python3 ships a version-less .src statement, and python3-chardet shares its
+# dash prefix — but chardet is built from python-chardet.  A name-prefix guess
+# let chardet inherit python3's statements; only the SBOM's SRPM links them.
 DOC = vex(
     [('python3-0:3.9.21-1.el9_5.x86_64', 'pkg:rpm/redhat/python3@3.9.21-1.el9_5?arch=x86_64'),
      ('python3.src', 'pkg:rpm/redhat/python3?arch=src')],
     {'fixed': ['red_hat_enterprise_linux_9:python3-0:3.9.21-1.el9_5.x86_64'],
      'known_affected': ['red_hat_enterprise_linux_9:python3.src']},
 )
-check('A1 dash-prefix alias still works when no SRPM is known',
-      _src_alias_names(dict(DOC), 'python3-libs', '3.9.21-1.el9_5') == {'python3'})
-check('A2 a known SRPM overrides the dash-prefix guess',
-      _src_alias_names(dict(DOC), 'python3-chardet', '4.0.0-5.el9', 'python-chardet')
-      == {'python-chardet'},
-      str(_src_alias_names(dict(DOC), 'python3-chardet', '4.0.0-5.el9', 'python-chardet')))
-check('A3 a matching SRPM is preserved',
-      'python3' in _src_alias_names(dict(DOC), 'python3-libs', '3.9.21-1.el9_5', 'python3'))
 
-print('\n=== B. namespace prefixes must match on token boundaries ===')
 
-# 'ai' is a real CPE token in the namespace map.  A raw substring test matched
-# the stream name in BaseOS-8.10.0.Z.M(AI)N.EUS, pulling every RHEL major into an
-# operator workload's scope; a cross-major fix then wins the §6b GA comparison
-# that an el8 package can never satisfy.
-check('B1 short token does not match inside a stream name',
-      not _prefix_matches_pid('ai', 'baseos-8.10.0.z.main.eus:systemd-0:239-78.el8.x86_64'))
-check('B2 short token still matches its own product',
-      _prefix_matches_pid('ai', 'red hat openshift ai 2.25:rhoai/odh-x'))
-check('B3 underscored product id still matches',
-      _prefix_matches_pid('ai', 'red_hat_openshift_ai:x'))
-check('B4 path prefixes keep substring semantics',
-      _prefix_matches_pid('rhoai/', 'registry.redhat.io/rhoai/odh-x'))
-check('B5 odf does not match a MAIN stream',
-      not _prefix_matches_pid('odf', 'baseos-9.1.0.z.main:zlib-0:1.2.11-1.el9.x86_64'))
+def _a(comp, ver, srpm):
+    _orig_load = engine._load_vex
+    engine._load_vex = lambda _c: dict(DOC)
+    try:
+        r = audit_row_detailed(pd.Series({
+            'COMPONENT': comp, 'VERSION': ver, 'CVE': 'CVE-9999-0001', 'SOURCE': 'OS',
+            'SRPM': srpm, 'SEVERITY': '', 'FIXED_VERSION': ''}),
+            WorkloadContext(workload_type='ubi', rhel_ver='9', rhel_minor='5', display_name='UBI9'))
+        return r.iloc[0], r.iloc[2]
+    finally:
+        engine._load_vex = _orig_load
+
+
+_v, _n = _a('python3-libs', '3.9.21-1.el9_5', 'python3')
+check('A1 a subpackage takes its source rpm\'s fix', '✅' in _v and 'fixed' in _n, f'{_v} {_n}')
+_v, _n = _a('python3-chardet', '4.0.0-5.el9', 'python-chardet')
+check('A2 a dash-prefix sibling does not inherit python3\'s statements',
+      'not listed' in _n, f'{_v} {_n}')
+
+print('\n=== B. products are classified from their CPE and product id ===')
+
+
+def _cls(pid, cpe, name=''):
+    return classify(pid, name, cpe)
+
+
+_p = _cls('BaseOS-8.10.0.Z.MAIN.EUS', 'cpe:/o:redhat:rhel_eus:8.10::baseos')
+check('B1 Z.MAIN.EUS is the mainline of 8.10', (_p.family, _p.minor, _p.mainline) == ('rhel', 10, True), _p)
+_p = _cls('AppStream-9.0.0.Z.E4S', 'cpe:/a:redhat:rhel_e4s:9.0::appstream')
+check('B2 E4S is a side branch', (_p.family, _p.minor, _p.mainline) == ('rhel', 0, False), _p)
+_p = _cls('7Server-ELS', 'cpe:/o:redhat:rhel_els:7')
+check('B3 7Server-ELS is RHEL 7 and a side branch', (_p.family, _p.major, _p.mainline) == ('rhel', '7', False), _p)
+_p = _cls('red_hat_enterprise_linux_9', 'cpe:/o:redhat:enterprise_linux:9')
+check('B4 the version-neutral RHEL product is the line', (_p.family, _p.major, _p.minor) == ('rhel', '9', None), _p)
+_p = _cls('9Base-RHOSE-4.16', 'cpe:/a:redhat:openshift:4.16::el9')
+check('B5 RHOSE-4.16 is OpenShift 4.16 on RHEL 9', (_p.family, _p.version, _p.major) == ('ocp', '4.16', '9'), _p)
+_p = _cls('red_hat_openshift_container_platform_4', 'cpe:/a:redhat:openshift:4')
+check('B6 OpenShift 4 is the version-neutral line', (_p.family, _p.version) == ('ocp', ''), _p)
+_p = _cls('BaseOS-10.2.Z', 'cpe:/o:redhat:enterprise_linux:10.2')
+check('B7 RHEL 10 minors read from BaseOS-10.2.Z', (_p.major, _p.minor, _p.mainline) == ('10', 2, True), _p)
+_p = _cls('red_hat_products', 'cpe:/a:redhat')
+check('B8 the vendor catch-all', _p.family == 'vendor', _p)
 
 print('\n=== C. SRPM reaches the matcher (both paths decide alike) ===')
 
@@ -244,13 +256,6 @@ check('F6 minor streams of base RHEL remain comparable',
 print('\n=== G. evidence labels must reflect RED HAT\'s view, not the engine\'s ===')
 
 from rhacs_vex.audit import evidence_of as _evidence_of      # noqa: E402
-from rhacs_vex.core import decide as _decide                  # noqa: E402
-import inspect                                                # noqa: E402
-
-# A product outside the resolved workload scope must never decide an RPM row.
-_src = inspect.getsource(_decide._Triage._rpm)
-check('G1 RPM decisions contain no related-product fallback',
-      'affected in related products' not in _src)
 
 ours = pd.Series({'COMPONENT': 'openssl', 'SOURCE': 'OS', 'VEX_STATED': 'True',
                   'JUSTIFICATION': 'UBI9: known_not_affected.'})
@@ -276,118 +281,84 @@ rpm_absent = pd.Series({'COMPONENT': 'perl-Encode', 'SOURCE': 'OS', 'VEX_STATED'
 check('G6 rpm absence is not listed', _evidence_of(rpm_absent) == 'not listed',
       _evidence_of(rpm_absent))
 
-print('\n=== H. cross-stream fixes: version may clear, release may not ===')
+print('=== I. streams: our minor, inherited mainline fixes, side branches ===')
+# Red Hat fixes the current mainline first and backports to EUS/E4S after.  A
+# fix in an earlier mainline minor is in the branch ours forked from (inherited);
+# a fix only in a later minor or a side branch is not ours (errata policy) —
+# unless the installed build is newer than every fix.
 
-# A fix backported to a frozen EUS/E4S branch numbers its release independently
-# of the current stream, so comparing releases across streams is meaningless
-# (§6b).  The upstream VERSION carries no such confound: expat 2.5.0 on 9.8
-# cannot be missing a 2013 fix that shipped in 2.2.10-12.el9_0.4, even though
-# release 6 < 12.  Equal versions differing only in release keep the confound
-# and must stay POSITIVE.
-_newer = V.upstream_newer_than_all
-
-check('H1 strictly newer upstream version clears an older-branch backport',
-      _newer('2.5.0-6.el9_8.1', ['2.2.10-12.el9_0.4']) is True,
-      _newer('2.5.0-6.el9_8.1', ['2.2.10-12.el9_0.4']))
-
-check('H2 …and must beat EVERY listed fix, not just the first',
-      _newer('2.4.9-1.el9_1', ['2.2.10-12.el9_0.4', '2.5.0-1.el9_5']) is False,
-      _newer('2.4.9-1.el9_1', ['2.2.10-12.el9_0.4', '2.5.0-1.el9_5']))
-
-check('H3 equal version, differing release stays unresolved (release confound)',
-      _newer('2.2.10-14.el9_8', ['2.2.10-12.el9_0.4']) is False,
-      _newer('2.2.10-14.el9_8', ['2.2.10-12.el9_0.4']))
-
-check('H4 an older upstream version never clears',
-      _newer('2.2.10-99.el9_8', ['2.5.0-1.el9_5']) is False,
-      _newer('2.2.10-99.el9_8', ['2.5.0-1.el9_5']))
-
-check('H5 epoch is aligned before the version compare',
-      _newer('1:1.21.1-10.el9_8', ['1.20.1-8.el9']) is True,
-      _newer('1:1.21.1-10.el9_8', ['1.20.1-8.el9']))
-
-check('H6 an empty fix list clears nothing', _newer('2.5.0-6.el9_8', []) is False,
-      _newer('2.5.0-6.el9_8', []))
-
-check('H7 letter-suffixed upstream versions still order correctly',
-      _newer('1.1.1k-4.el9_8', ['1.1.1-9.el9_0']) is True
-      and _newer('1.1.1-9.el9_8', ['1.1.1k-4.el9_0']) is False,
-      f"k>bare={_newer('1.1.1k-4.el9_8', ['1.1.1-9.el9_0'])} "
-      f"bare>k={_newer('1.1.1-9.el9_8', ['1.1.1k-4.el9_0'])}")
-
-# The clear must actually be reachable through the ladder, not just the helper.
-_ctx_rhel9 = WorkloadContext(workload_type='ubi', rhel_ver='9', display_name='UBI9')
-_dec = Decision()
-_v, _fix, _note = compare_fixed(
-    '2.5.0-6.el9_8.1', ['2.2.10-12.el9_0.4'], 'expat', _ctx_rhel9, _dec,
-    {'2.2.10-12.el9_0.4': 'AppStream-9.0.0.Z.E4S:expat-0:2.2.10-12.el9_0.4.x86_64'})
-check('H8 compare_fixed returns the clear for the newer-upstream case',
-      'FALSE POSITIVE' in _v and _dec.kind == 'rpm_fixed_newer_upstream',
-      f'{_v} kind={_dec.kind} note={_note}')
-
-print()
-print('=== I. later-stream install vs an older-branch-only fix ===')
-# Equal upstream version, so H1's exception cannot reach it — glibc 2.34-272.el9_8
-# against the 9.0 E4S backport 2.34-28.el9_0.4.  Red Hat fixes the current stream
-# first and backports to EUS/E4S after, so a fix living only in older minors was
-# already in the branch ours forked from; branch base releases climb with the
-# minor, which makes the NEVRA compare meaningful in this direction alone.
-_sup = V.later_stream_than_all
-_fix_pid = {'2.2.10-12.el9_0.4': 'AppStream-9.0.0.Z.E4S:expat-0:2.2.10-12.el9_0.4.x86_64'}
+_CPE = {'MAIN': 'cpe:/a:redhat:enterprise_linux:9::appstream',
+        'EUS': 'cpe:/a:redhat:rhel_eus:9.{m}::appstream',
+        'E4S': 'cpe:/a:redhat:rhel_e4s:9.{m}::appstream'}
 
 
-def _cf(installed, fixes, affected=False):
-    d = Decision()
-    v, _f, n = compare_fixed(installed, fixes, 'expat', _ctx_rhel9, d, _fix_pid, affected)
-    return v, n, d
+def _streams_doc(fixes, affected=False):
+    """fixes = [(minor, 'MAIN'|'EUS'|'E4S', nevra-version)]."""
+    branches, rel, fixed = [{'product': {'product_id': 'red_hat_enterprise_linux_9',
+                                         'name': 'Red Hat Enterprise Linux 9',
+                                         'product_identification_helper': {
+                                             'cpe': 'cpe:/o:redhat:enterprise_linux:9'}}},
+                            {'product': {'product_id': 'expat', 'product_identification_helper': {
+                                'purl': 'pkg:rpm/redhat/expat'}}}], [], []
+    for minor, kind, ver in fixes:
+        prod = f'AppStream-9.{minor}.0.Z.{kind}'
+        comp = f'expat-0:{ver}.x86_64'
+        branches.append({'product': {'product_id': prod, 'name': f'RHEL AppStream {kind} 9.{minor}',
+                                     'product_identification_helper': {
+                                         'cpe': _CPE[kind].format(m=minor)}}})
+        branches.append({'product': {'product_id': comp, 'product_identification_helper': {
+            'purl': f'pkg:rpm/redhat/expat@{ver}?arch=x86_64'}}})
+        rel.append({'product_reference': comp, 'relates_to_product_reference': prod,
+                    'full_product_name': {'product_id': f'{prod}:{comp}'}})
+        fixed.append(f'{prod}:{comp}')
+    status = {'fixed': fixed}
+    if affected:
+        rel.append({'product_reference': 'expat', 'relates_to_product_reference': 'red_hat_enterprise_linux_9',
+                    'full_product_name': {'product_id': 'red_hat_enterprise_linux_9:expat'}})
+        status['known_affected'] = ['red_hat_enterprise_linux_9:expat']
+    return {'product_tree': {'branches': branches, 'relationships': rel},
+            'vulnerabilities': [{'product_status': status}]}
 
 
-check('I1 equal version, later stream, higher release clears',
-      _sup('2.34-272.el9_8', ['2.34-28.el9_0.4']) is True,
-      _sup('2.34-272.el9_8', ['2.34-28.el9_0.4']))
+def _stream(installed, minor, fixes, affected=False):
+    doc = _streams_doc(fixes, affected)
+    _orig_load = engine._load_vex
+    engine._load_vex = lambda _c: doc
+    try:
+        r = audit_row_detailed(pd.Series({
+            'COMPONENT': 'expat', 'VERSION': installed, 'CVE': 'CVE-9999-0003', 'SOURCE': 'OS',
+            'SEVERITY': '', 'FIXED_VERSION': ''}),
+            WorkloadContext(workload_type='ubi', rhel_ver='9', rhel_minor=str(minor), display_name='UBI9'))
+        return r.iloc[0], r.iloc[1], r.iloc[2]
+    finally:
+        engine._load_vex = _orig_load
 
-check('I2 a fix in a NEWER stream is "not backported to us yet" — no clear',
-      _sup('3.5.3-9.el9_7', ['3.5.3-11.el9_8']) is False,
-      _sup('3.5.3-9.el9_7', ['3.5.3-11.el9_8']))
 
-check('I3 same minor is the same-stream path, not this one',
-      _sup('2.34-272.el9_8', ['2.34-274.el9_8']) is False,
-      _sup('2.34-272.el9_8', ['2.34-274.el9_8']))
-
-check('I4 an el8 backport says nothing about an el9 build',
-      _sup('2.34-272.el9_8', ['2.28-189.6.el8_6']) is False,
-      _sup('2.34-272.el9_8', ['2.28-189.6.el8_6']))
-
-check('I5 a mainline fix is the ancestor of our branch and orders too',
-      _sup('2.9.13-14.el9_8.1', ['2.9.13-3.el9']) is True,
-      _sup('2.9.13-14.el9_8.1', ['2.9.13-3.el9']))
-
-check('I5b …but a mainline build ahead of our fork point does not clear',
-      _sup('2.9.13-14.el9_8.1', ['2.9.13-20.el9']) is False,
-      _sup('2.9.13-14.el9_8.1', ['2.9.13-20.el9']))
-
-check('I6 every fix must be older-stream AND older, not just the first',
-      _sup('2.34-272.el9_8', ['2.34-28.el9_0.4', '2.34-300.el9_6']) is False,
-      _sup('2.34-272.el9_8', ['2.34-28.el9_0.4', '2.34-300.el9_6']))
-
-check('I7 a GA install (no minor marker) keeps §6b step 4',
-      _sup('2.34-60.el9', ['2.34-28.el9_0.4']) is False,
-      _sup('2.34-60.el9', ['2.34-28.el9_0.4']))
-
-_v2, _note2, _dec2 = _cf('2.2.10-14.el9_8', ['2.2.10-12.el9_0.4'])
-check('I8 compare_fixed reaches the clear through the ladder',
-      'FALSE POSITIVE' in _v2 and _dec2.kind == 'rpm_fixed_newer_stream',
-      f'{_v2} kind={_dec2.kind} note={_note2}')
-
-_v3, _note3, _dec3 = _cf('2.2.10-14.el9_8', ['2.2.10-12.el9_0.4'], affected=True)
-check('I9 an in-scope known_affected vetoes the inference (erratum pending)',
-      'FALSE POSITIVE' not in _v3 and 'No fix in el9_8' in _note3,
-      f'{_v3} note={_note3}')
-
-_v4, _note4, _dec4 = _cf('3.5.3-9.el9_7', ['3.5.3-11.el9_8'])
-check('I10 …and a newer-stream fix still reports the stream gap',
-      'FALSE POSITIVE' not in _v4 and 'No fix in el9_7' in _note4,
-      f'{_v4} note={_note4}')
+_v, _f, _n = _stream('2.5.0-6.el9_8.1', 8, [(0, 'E4S', '2.2.10-12.el9_0.4')])
+check('I1 newer than an older side-branch backport clears (inferred)', '✅' in _v, f'{_v} {_f} {_n}')
+_v, _f, _n = _stream('2.2.10-14.el9_8', 8, [(0, 'E4S', '2.2.10-12.el9_0.4')], affected=True)
+check('I2 …but our line known_affected keeps it positive', '❌' in _v, f'{_v} {_f} {_n}')
+_v, _f, _n = _stream('3.5.3-9.el9_7', 7, [(8, 'MAIN', '3.5.3-11.el9_8')])
+check('I3 a fix only in a later minor is not ours', '❌' in _v and 'No fix in el9_7' in _n
+      and _f == '3.5.3-11.el9_8', f'{_v} {_f} {_n}')
+_v, _f, _n = _stream('1.0-4.el9_6', 6, [(2, 'MAIN', '1.0-3.el9_2')])
+check('I4 an earlier mainline fix is inherited', '✅' in _v and 'inherits' in _n, f'{_v} {_f} {_n}')
+_v, _f, _n = _stream('1.0-2.el9', 6, [(2, 'MAIN', '1.0-3.el9_2')])
+check('I5 …and an older build is below it', '❌' in _v and _f == '1.0-3.el9_2', f'{_v} {_f} {_n}')
+_v, _f, _n = _stream('1.0-2.el9_6', 6, [(2, 'MAIN', '1.0-3.el9_2'), (6, 'EUS', '1.0-2.el9_6.1')])
+check('I6 our own minor\'s fix outranks an inherited one', '❌' in _v and _f == '1.0-2.el9_6.1',
+      f'{_v} {_f} {_n}')
+_v, _f, _n = _stream('8.2.2637-23.el9_7', 7, [(2, 'E4S', '8.2.2637-20.el9_2.3'),
+                                              (6, 'EUS', '8.2.2637-22.el9_6.4'),
+                                              (8, 'MAIN', '8.2.2637-26.el9_8.21')])
+check('I7 no fix in our stream → name the next minor\'s build', '❌' in _v
+      and _f == '8.2.2637-26.el9_8.21', f'{_v} {_f} {_n}')
+_v, _f, _n = _stream('1.0-5.el9_7', 7, [(2, 'E4S', '1.0-5.el9_2.1'), (4, 'EUS', '1.0-6.el9_4.1')])
+check('I8 …and the newest when every fix is older', '❌' in _v and _f == '1.0-6.el9_4.1',
+      f'{_v} {_f} {_n}')
+_v, _f, _n = _stream('3.18-4.module+el8.9.0+21697', 7, [(8, 'MAIN', '3.18-4.module+el8.9.0+20326'),
+                                                         (9, 'MAIN', '3.18-5.module+el8.10.0+22417')])
+check('I9 at or past a later minor\'s mainline fix, the build carries it', '✅' in _v, f'{_v} {_f} {_n}')
 
 print()
 print('=== J. out-of-scope products never decide an RPM finding ===')
@@ -440,8 +411,8 @@ _v, _n = _verdict(_jboss, 'openssl-libs', '1:3.5.5-4.el9_8')
 check('J2 a standalone product\'s source name does not carry to our binary',
       '✅' in _v, f'{_v} {_n}')
 
-# The signal this rung exists for survives: RHEL never ships openshift-clients,
-# so a version-neutral OCP PID naming it is the only statement there is.
+# A product PID without a CPE (no version line) says nothing about who ships the
+# rpm, so it cannot decide a UBI's package (P7 has the real, CPE-carrying shape).
 _ocp = vex_under('red_hat_openshift_container_platform_4',
                  [('openshift-clients', 'pkg:rpm/redhat/openshift-clients')],
                  {'known_affected':
@@ -505,7 +476,7 @@ finally:
 
 # Pre-RHEL-6 documents name products `3AS` / `4Desktop`, which carry no
 # enterprise_linux_N, no .elN, nothing the PID-string tests see — so they read as
-# version-neutral and rung 8 admitted them.  That is how CVE-2004-0642 held a
+# version-neutral and the old ladder admitted them.  That is how CVE-2004-0642 held a
 # 2026 krb5 vulnerable.  Their CPE says which RHEL line they really are.
 _old = {
     'product_tree': {
@@ -678,18 +649,21 @@ def _wt(doc, build='1773341540', digest='f' * 64, cpe='cpe:/a:redhat:webterminal
             'COMPONENT': 'google.golang.org/grpc', 'VERSION': 'v1.76.0', 'CVE': 'CVE-9999-0004',
             'SOURCE': 'GO', 'LOCATION': 'usr/bin/x', 'SEVERITY': 'IMPORTANT_VULNERABILITY_SEVERITY',
             'FIXED_VERSION': ''}), ctx)
+        global _stated
+        _stated = bool(r.iloc[5])
         return r.iloc[0], r.iloc[2]
     finally:
         engine._load_vex = _orig_load
 
 
+_stated = None
 _c13, _p13 = _wt_build('a', '1780000000')          # built after ours
 _sibling = ('wt', 'web-terminal/web-terminal-exec-rhel9',
             f'pkg:oci/web-terminal-exec-rhel9?repository_url={_WT[:-len("tooling-rhel9")]}exec-rhel9')
 _v, _n = _wt(_wt_doc({'known_not_affected': [('wt13', _c13, _p13)],
                       'known_affected': [_sibling]}))
-check('L1 another version\'s not-affected build does not clear ours',
-      '❌' in _v and '1.13' not in _n, f'{_v} {_n}')
+check('L1 another version\'s not-affected build is only an inference for ours',
+      '✅' in _v and 'other versions' in _n and not _stated, f'{_v} {_n}')
 _c16, _p16 = _wt_build('b', '1770000000')
 _v, _n = _wt(_wt_doc({'known_not_affected': [('wt16', _c16, _p16)]}))
 check('L2 a not-affected build of OUR version is evidence', '✅' in _v and '1.16' in _n,
@@ -698,7 +672,7 @@ _v, _n = _wt(_wt_doc({'fixed': [('wt13', _c13, _p13)]}))
 check('L3 fixed only in another version, after our build → predates the fix',
       '❌' in _v and 'predates' in _n, f'{_v} {_n}')
 _v, _n = _wt(_wt_doc({'fixed': [('wt13', _c13, _p13)]}), build='1790000000')
-check('L4 …a build newer than that fix gets no inference from it', '1.13' not in _n,
+check('L4 …a build newer than that fix is past it (inferred)', '✅' in _v and not _stated,
       f'{_v} {_n}')
 _v, _n = _wt(_wt_doc({'known_affected': [
     ('wt', 'web-terminal/web-terminal-tooling-rhel9',
@@ -783,6 +757,15 @@ _v, _n = _payload(_ocp_doc({'known_affected': [_sib], 'known_not_affected': _swe
 check('M4 a not-affected sweep of other builds does not cover an image absent from it',
       '❌' in _v, f'{_v} {_n}')
 
+# CVE-2024-45337 shape: clears under the SAME node that lists siblings affected
+# mean Red Hat enumerated the product — our absence is meaningful.
+_same = [(_ocp4, f'openshift4/ose-cli-artifacts-rhel9@sha256:{c * 64}_amd64',
+          f'pkg:oci/ose-cli-artifacts-rhel9@sha256%3A{c * 64}?arch=amd64&repository_url='
+          'registry.redhat.io/openshift4/ose-cli-artifacts-rhel9') for c in 'de']
+_v, _n = _payload(_ocp_doc({'known_affected': [_sib], 'known_not_affected': _same}))
+check('M5 clears under the node that lists siblings affected → not listed',
+      '✅' in _v and 'not listed' in _n, f'{_v} {_n}')
+
 
 print('=== N. a fix for another stream is not this build\'s fix ===')
 
@@ -853,17 +836,7 @@ check('N4 a 9.6 image takes the el9_6 fix for a GA-tagged package',
       '❌' in _r.iloc[0] and _r.iloc[1] == '10.40-6.el9_6.1', f'{list(_r)[:3]}')
 
 
-print('=== O. which fix to name; modules shipped in rpms; other products ===')
-
-# vim on a 9.7 image (CVE-2026-73078 shape): fixed in 9.2 E4S, 9.6 EUS and 9.8;
-# 9.7 itself gets nothing.  The fix to name is the 9.8 build, never the older
-# 9.2 backport that sits below the installed 23.el9_7.
-from rhacs_vex.core.decide import _upgrade_fix                     # noqa: E402
-check('O1 no fix in our stream → name the next stream\'s build',
-      _upgrade_fix(['8.2.2637-20.el9_2.3', '8.2.2637-22.el9_6.4', '8.2.2637-26.el9_8.21'], '7')
-      == '8.2.2637-26.el9_8.21')
-check('O2 …and the newest when every fix is older',
-      _upgrade_fix(['1.0-5.el9_2.1', '1.0-6.el9_4.1'], '7') == '1.0-6.el9_4.1')
+print('=== O. a module shipped in an rpm; other products ===')
 
 # urllib3 (PYTHON) shipped in python3-urllib3: Red Hat fixes the rpm, so the
 # rpm's installed version decides; Ansible's same-named package does not.
@@ -915,6 +888,149 @@ check('O3 a module in an rpm is decided by the rpm version (below the fix)',
 _v, _f, _n = _py('1.26.5-5.el9_4.4')
 check('O4 …at the fix it clears', '✅' in _v and 'Ansible' not in _n, f'{_v} {_f} {_n}')
 
+
+print('=== P. whose statement decides; what Red Hat does not ship ===')
+
+
+def _doc(products, entries):
+    """products = {pid: (name, cpe)}; entries = [(status, parent, leaf, purl)]."""
+    branches = [{'product': {'product_id': k, 'name': n, 'product_identification_helper': {'cpe': c}}}
+                for k, (n, c) in products.items()]
+    rel, ps, seen = [], {}, set()
+    for st, parent, leaf, purl in entries:
+        if leaf not in seen:
+            seen.add(leaf)
+            branches.append({'product': {'product_id': leaf, 'product_identification_helper': {'purl': purl}}})
+        rel.append({'product_reference': leaf, 'relates_to_product_reference': parent,
+                    'full_product_name': {'product_id': f'{parent}:{leaf}'}})
+        ps.setdefault(st, []).append(f'{parent}:{leaf}')
+    return {'product_tree': {'branches': branches, 'relationships': rel},
+            'vulnerabilities': [{'product_status': ps}]}
+
+
+def _row(doc, ctx, comp, ver, source='OS', **extra):
+    _orig_load = engine._load_vex
+    engine._load_vex = lambda _c: doc
+    try:
+        r = audit_row_detailed(pd.Series({'COMPONENT': comp, 'VERSION': ver, 'CVE': 'CVE-9999-0009',
+                                          'SOURCE': source, 'SEVERITY': '', 'FIXED_VERSION': '',
+                                          **extra}), ctx)
+        return r.iloc[0], r.iloc[1], r.iloc[2], bool(r.iloc[5])
+    finally:
+        engine._load_vex = _orig_load
+
+
+_PR = {'red_hat_enterprise_linux_8': ('Red Hat Enterprise Linux 8', 'cpe:/o:redhat:enterprise_linux:8'),
+       'red_hat_enterprise_linux_9': ('Red Hat Enterprise Linux 9', 'cpe:/o:redhat:enterprise_linux:9'),
+       'BaseOS-9.7.0.Z.MAIN': ('Red Hat Enterprise Linux BaseOS (v. 9)', 'cpe:/o:redhat:enterprise_linux:9::baseos'),
+       'BaseOS-9.5.0.GA': ('Red Hat Enterprise Linux BaseOS (v. 9)', 'cpe:/o:redhat:enterprise_linux:9::baseos'),
+       _ocp4: ('Red Hat OpenShift Container Platform 4', 'cpe:/a:redhat:openshift:4')}
+_ose = WorkloadContext(workload_type='ocp', ocp_ver='4.20', ocp_component='cli', rhel_ver='9', rhel_minor='4',
+                       image_name='openshift4/ose-cli-rhel9', display_name='OpenShift 4.20')
+_ose8 = WorkloadContext(workload_type='ocp', ocp_ver='4.12', ocp_component='cli', rhel_ver='8',
+                        image_name='openshift4/ose-cli', display_name='OpenShift 4.12')
+
+# CVE-2025-4598 shape: RHEL 9 fixed systemd only in 9.7; OpenShift 4 says not affected.
+_sd = _doc(_PR, [('fixed', 'BaseOS-9.7.0.Z.MAIN', 'systemd-0:252-55.el9_7.7.x86_64',
+                  'pkg:rpm/redhat/systemd@252-55.el9_7.7?arch=x86_64'),
+                 ('known_not_affected', _ocp4, 'systemd', 'pkg:rpm/redhat/systemd')])
+_v, _f, _n, _s = _row(_sd, _ose, 'systemd', '252-32.el9_4.8')
+check('P1 the image\'s own product clears a RHEL rpm RHEL fixed only later', '✅' in _v and _s
+      and 'OpenShift' in _n, f'{_v} {_n}')
+# CVE-2021-24031 shape: RHEL 8 libzstd not affected; OpenShift 4 known_affected "out of support scope".
+_zs = _doc(_PR, [('known_not_affected', 'red_hat_enterprise_linux_8', 'libzstd', 'pkg:rpm/redhat/libzstd'),
+                 ('known_affected', _ocp4, 'libzstd', 'pkg:rpm/redhat/libzstd')])
+_v, _f, _n, _s = _row(_zs, _ose8, 'libzstd', '1.4.4-1.el8')
+check('P2 RHEL\'s not-affected for its own rpm decides a plain .el8 build', '✅' in _v
+      and 'Enterprise Linux 8' in _n, f'{_v} {_n}')
+# openssl-fips-provider: only a versioned not-affected for the same upstream version.
+_fp = _doc(_PR, [('known_not_affected', 'BaseOS-9.5.0.GA', 'openssl-fips-provider-0:3.0.7-6.el9_5.x86_64',
+                  'pkg:rpm/redhat/openssl-fips-provider@3.0.7-6.el9_5?arch=x86_64')])
+_v, _f, _n, _s = _row(_fp, WorkloadContext(workload_type='ubi', rhel_ver='9', rhel_minor='4'),
+                      'openssl-fips-provider', '3.0.7-2.el9')
+check('P3 a not-affected build of the same upstream version clears the package', '✅' in _v,
+      f'{_v} {_n}')
+# MongoDB's own Go binary in a ubi8-based image: Red Hat's VEX does not cover it.
+_mongo = WorkloadContext(workload_type='ubi', rhel_ver='8', vendor='MongoDB', display_name='UBI8',
+                         image_ref='docker.io/mongodb/mongodb-community-server@sha256:' + '2' * 64,
+                         sbom_foreign_rpms={'mongodb-org-server'})
+_go = _doc(_PR, [('known_affected', 'red_hat_enterprise_linux_8', 'golang', 'pkg:rpm/redhat/golang')])
+_v, _f, _n, _s = _row(_go, _mongo, 'stdlib', 'go1.23.8', source='GO')
+check('P4 a module of a non-Red Hat image is not cleared by Red Hat\'s silence', '❌' in _v
+      and 'MongoDB' in _n and not _s, f'{_v} {_n}')
+_v, _f, _n, _s = _row(_go, _mongo, 'stdlib', 'go1.23.8', source='GO',
+                      OWNER_RPM='mongodb-org-server@8.0.3-1.el8')
+check('P4b …nor one a third-party rpm ships', '❌' in _v and 'not a Red Hat build' in _n, f'{_v} {_n}')
+_mrpm = _doc(_PR, [('fixed', 'BaseOS-9.7.0.Z.MAIN', 'mongodb-org-server-0:9.0-1.el8.x86_64',
+                    'pkg:rpm/redhat/mongodb-org-server@9.0-1.el8?arch=x86_64')])
+_v, _f, _n, _s = _row(_mrpm, _mongo, 'mongodb-org-server', '8.0.3-1.el8')
+check('P4c a third-party rpm is never decided by a Red Hat build of the same name', '❌' in _v
+      and 'not a Red Hat build' in _n, f'{_v} {_n}')
+_rh = WorkloadContext(workload_type='ubi', rhel_ver='8', vendor='Red Hat, Inc.',
+                      image_ref='registry.access.redhat.com/ubi8/ubi@sha256:' + '3' * 64)
+_v, _f, _n, _s = _row(_go, _rh, 'stdlib', 'go1.23.8', source='GO')
+check('P5 …while in a Red Hat image the unnamed module is not listed', '✅' in _v and 'not listed' in _n,
+      f'{_v} {_n}')
+_cust = WorkloadContext(workload_type='ubi', rhel_ver='8', vendor='Red Hat, Inc.',
+                        image_ref='quay.io/acme/app@sha256:' + '4' * 64)
+_v, _f, _n, _s = _row(_go, _cust, 'stdlib', 'go1.23.8', source='GO')
+check('P5b an image built FROM ubi (inherited vendor label) is not Red Hat\'s', '❌' in _v, f'{_v} {_n}')
+# An operator image without a CPE label: its registry namespace names its product.
+_PR2 = dict(_PR, red_hat_openshift_gitops=('Red Hat OpenShift GitOps', 'cpe:/a:redhat:openshift_gitops:1'))
+_gd = _doc(_PR2, [('known_affected', 'red_hat_openshift_gitops', 'openshift-gitops-1/argocd-rhel8',
+                   'pkg:oci/argocd-rhel8?repository_url=registry.redhat.io/openshift-gitops-1/argocd-rhel8')])
+_gitops = WorkloadContext(workload_type='operator', rhel_ver='8', image_ns='openshift-gitops-1',
+                          image_name='gitops-rhel8-operator', image_build='v1.6.0-1',
+                          image_ref='registry.redhat.io/openshift-gitops-1/gitops-rhel8-operator@sha256:' + '1' * 64,
+                          vendor='Red Hat, Inc.')
+_v, _f, _n, _s = _row(_gd, _gitops, 'golang.org/x/net', 'v0.0.1', source='GO')
+check('P6 a sibling image of our product (found by namespace) affected → errata assumption',
+      '❌' in _v and 'GitOps' in _n, f'{_v} {_n}')
+
+# openshift-clients in a Web Terminal image: RHEL never ships it; OpenShift 4 does.
+_PR3 = dict(_PR, red_hat_web_terminal=('Red Hat Web Terminal', 'cpe:/a:redhat:webterminal:1'),
+            red_hat_openshift_enterprise_3=('Red Hat OpenShift Enterprise 3.0', 'cpe:/a:redhat:openshift:3.0'))
+_oc = _doc(_PR3, [('known_affected', _ocp4, 'openshift-clients', 'pkg:rpm/redhat/openshift-clients')])
+_wt9 = WorkloadContext(workload_type='operator', rhel_ver='9', cpe='cpe:/a:redhat:webterminal:1.16::el9',
+                       image_ns='web-terminal', image_name='web-terminal-tooling-rhel9',
+                       image_ref='registry.redhat.io/web-terminal/web-terminal-tooling-rhel9@sha256:' + '5' * 64)
+_v, _f, _n, _s = _row(_oc, _wt9, 'openshift-clients', '4.20.0-202605211651.p2.g02b0b2d.assembly.stream.el9')
+check('P7 an rpm RHEL never names is decided by the product that ships it (inferred)',
+      '❌' in _v and 'OpenShift' in _n and not _s, f'{_v} {_n}')
+_oc3 = _doc(_PR3, [('known_affected', 'red_hat_openshift_enterprise_3', 'openshift-clients',
+                    'pkg:rpm/redhat/openshift-clients')])
+_v, _f, _n, _s = _row(_oc3, _wt9, 'openshift-clients', '4.20.0-1.el9')
+check('P7b …never by a product of another version line', '✅' in _v, f'{_v} {_n}')
+# A Go module path carries a '/': it is a package, not an image pseudo-component.
+_bd = _doc(_PR, [('fixed', 'BaseOS-9.7.0.Z.MAIN', 'buildah-2:1.41.6-1.el9_7.x86_64',
+                  'pkg:rpm/redhat/buildah@1.41.6-1.el9_7?arch=x86_64&epoch=2')])
+_v, _f, _n, _s = _row(_bd, WorkloadContext(workload_type='ubi', rhel_ver='9', rhel_minor='7'),
+                      'github.com/opencontainers/runc', 'v1.2.4', source='GO',
+                      OWNER_RPM='buildah@1.39.4-2.el9_7')
+check('P8 a Go module reaches the rpm that ships it', '❌' in _v and 'ships in buildah' in _n, f'{_v} {_n}')
+# The image itself stated not affected covers the rpms inside it.
+_bi = _doc(_PR, [('known_not_affected', 'red_hat_enterprise_linux_9', 'rhel9/buildah',
+                  'pkg:oci/buildah?repository_url=registry.redhat.io/rhel9/buildah'),
+                 ('known_affected', 'red_hat_enterprise_linux_9', 'buildah', 'pkg:rpm/redhat/buildah')])
+_v, _f, _n, _s = _row(_bi, WorkloadContext(workload_type='ubi', rhel_ver='9', image_ns='rhel9',
+                                           image_name='buildah',
+                                           image_ref='registry.redhat.io/rhel9/buildah@sha256:' + '6' * 64),
+                      'buildah', '2:1.39.4-2.el9_6')
+check('P9 an image stated not affected clears the rpm inside it', '✅' in _v and _s
+      and 'rhel9/buildah' in _n, f'{_v} {_n}')
+
+# CVE-2024-33599 shape: 8.6 EUS glibc builds "vulnerable code not present", fixed in 8.8.
+_PR4 = dict(_PR, **{'BaseOS-8.6.0.Z.EUS': ('Red Hat Enterprise Linux BaseOS EUS (v.8.6)', 'cpe:/o:redhat:rhel_eus:8.6::baseos'),
+                    'BaseOS-8.8.0.Z.EUS': ('Red Hat Enterprise Linux BaseOS EUS (v.8.8)', 'cpe:/o:redhat:rhel_eus:8.8::baseos')})
+_gl = _doc(_PR4, [('known_not_affected', 'BaseOS-8.6.0.Z.EUS', 'glibc-0:2.28-189.10.el8_6.x86_64',
+                   'pkg:rpm/redhat/glibc@2.28-189.10.el8_6?arch=x86_64'),
+                  ('fixed', 'BaseOS-8.8.0.Z.EUS', 'glibc-0:2.28-225.el8_8.11.x86_64',
+                   'pkg:rpm/redhat/glibc@2.28-225.el8_8.11?arch=x86_64')])
+_v, _f, _n, _s = _row(_gl, WorkloadContext(workload_type='ubi', rhel_ver='8', rhel_minor='6'), 'glibc', '2.28-189.5.el8_6')
+check('P10 our own stream\'s not-affected build of our upstream version speaks for our code', '✅' in _v,
+      f'{_v} {_n}')
+_v, _f, _n, _s = _row(_gl, WorkloadContext(workload_type='ubi', rhel_ver='8', rhel_minor='7'), 'glibc', '2.28-211.el8')
+check('P10b …but not for another stream\'s build', '❌' in _v, f'{_v} {_n}')
 
 print()
 if _failures:

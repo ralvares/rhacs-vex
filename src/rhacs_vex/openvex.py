@@ -36,7 +36,7 @@ import pandas as pd
 OPENVEX_CONTEXT = "https://openvex.dev/ns/v0.2.0"
 
 # The five OpenVEX justification labels — byte-identical to the Red Hat CSAF
-# flag labels (core.vexdoc.NOT_AFFECTED_FLAGS), so no translation table is needed.
+# flag labels (core.csaf reads them as-is), so no translation table is needed.
 JUSTIFICATIONS = {
     'component_not_present',
     'vulnerable_code_not_present',

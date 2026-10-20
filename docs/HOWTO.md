@@ -1,357 +1,147 @@
 # HOWTO — vextriage in 10 minutes
 
-Two independent workflows, one engine:
+One engine, two ways to use it:
 
-1. **RHACS triage** — scan with RHACS Central, triage against Red Hat VEX, get CSV
-   reports, parquet files and the static explorer UI.
-2. **OpenVEX generation** — a syft SBOM plus Red Hat's VEX (no RHACS, no
-   scanner needed): Red Hat's own verdicts as OpenVEX documents that trivy and
-   grype consume.
+1. **Publish** Red Hat's verdicts as OpenVEX (syft SBOM + Red Hat VEX, no scanner),
+   then let grype or trivy apply them.
+2. **Triage** what a scanner (grype, trivy, RHACS) or the SBOM itself proposes, as a
+   table, CSV or one HTML report.
 
-> Run **every** command from the repository root — all tools read/write `./data`
-> and `./vexhub` by relative path.
+Run every command from the repository root: data lives under `./data` and the hub under
+`./vexhub` by relative path.
 
 ## 0. Setup
 
 ```bash
-pip3 install -e .          # installs the `vextriage` CLI
-vextriage doctor           # check tools, auth env, discovery/cache artifacts
+pip install -e .
+vextriage doctor           # tools, credentials, data
+vextriage sync             # first run: Red Hat VEX (tarball) + OSV exports + index
 ```
 
-External tools by workflow:
+After the first sync, `vextriage sync` fetches only what changed (run it daily, or let
+any command refresh a mirror older than a day). Afterwards everything works offline.
 
-| Workflow | Needs |
-|----------|-------|
-| RHACS triage | reachable RHACS Central only (`ROX_ENDPOINT` + `ROX_API_TOKEN`) |
-| Discovery (catalogs + pullspecs) | `oc`, `opm` + Red Hat [pull secret](https://console.redhat.com/openshift/install/pull-secret) (`podman` optional — login convenience only) |
-| OpenVEX generation | `syft`, `grype` (+ `trivy` for `--verify`; `skopeo` only as label fallback for scratch images) |
+### Registry credentials
 
-```bash
-export ROX_ENDPOINT=central-stackrox.apps.mycluster.example.com:443
-export ROX_API_TOKEN=<your-api-token>
-```
-
-### Registry auth — no podman needed
-
-The pull secret from console.redhat.com **is** a docker-config file (`{"auths": …}`).
-Two env vars cover every tool; set them once per shell:
+The pull secret from [console.redhat.com](https://console.redhat.com/openshift/install/pull-secret)
+is a docker-config file. One variable covers syft, skopeo, oc and opm:
 
 ```bash
-# skopeo + opm read this directly
 export REGISTRY_AUTH_FILE=~/pullsecret.txt
-
-# syft (and some opm builds) want a directory containing a file named config.json
-mkdir -p ~/.vextriage-auth && cp ~/pullsecret.txt ~/.vextriage-auth/config.json
-export DOCKER_CONFIG=~/.vextriage-auth
 ```
 
-Who needs what: **syft** pulls images (`DOCKER_CONFIG`), **opm**/**oc** fetch
-catalogs/pullspecs (either var — the pipeline sets both, `oc` also takes
-`--registry-config FILE`). **grype** never touches the registry here — it scans
-the cached SBOM file. Image labels (workload context) come from the SBOM / trivy
-report themselves; **skopeo** (`REGISTRY_AUTH_FILE`) is only the fallback when
-they carry none. `podman login` (pipeline stage 0) just validates credentials;
-skip it with `--skip-login` when the env vars are set.
+(or `docker login`: without `REGISTRY_AUTH_FILE`, `~/.docker/config.json` is used).
+grype and trivy read the cached SBOM, not the registry.
 
----
-
-## Part 1 — RHACS triage
+## 1. Publish OpenVEX
 
 ### One image
 
 ```bash
-vextriage rhacs registry.redhat.io/openshift4/ose-cli@sha256:4f2e216ad46aa75f84e27aa2e6303327b99a4331c7ed8ef65850102898f3a9b0
+vextriage openvex registry.redhat.io/openshift4/ose-cli-rhel9@sha256:<digest> -o ose-cli.openvex.json
+vextriage openvex data/syft/<image>.json --image <ref@sha256:…> --hub vexhub   # from an SBOM
 ```
 
-Colour table: scanner severity vs Red Hat severity, verdict (`POSITIVE` /
-`FALSE POSITIVE`), fix version, justification. Not indexed yet? The tool triggers
-an on-demand RHACS scan and waits.
+The summary shows the candidate pairs per source (rpm, image, Go/Python/npm/Maven), how
+many were cleared, and how many of those Red Hat stated for this build vs inferred.
+`--stated-only` publishes stated verdicts only; `--grype` adds grype's findings as
+candidates; `--ocp-release 4.20.3` scopes a payload image whose release is not in
+`data/pullspecs`.
 
-Variants:
+### Is it right? Check with the scanner
 
 ```bash
-vextriage rhacs --namespace my-app                  # every image in a k8s namespace
-vextriage rhacs --ocp data/pullspecs/4.20.0.txt     # every component of an OCP release
-vextriage rhacs <ref> --format csv --output report.csv
-vextriage rhacs <ref> --false-only                  # only the suppressible noise
-vextriage rhacs scan-export.csv                     # RHACS CSV export instead of live API
+vextriage check <ref@sha256:…>                    # grype before/after the OpenVEX
+vextriage check <ref@sha256:…> --scanner trivy
+vextriage check sbom.syft.json --image <ref@sha256:…> -o remaining.json
 ```
 
-The positional target works like `grype`/`trivy`: an existing file is treated as
-`--scan`, anything else as `--image` (both flags still accepted).
+`check` uses the hub document when the image has one (`--hub ""` to always generate) and
+prints what is still reported: the list to act on.
 
-### Everything at once — the pipeline
+### Many images — a hub
 
 ```bash
-vextriage pipeline --pull-secret ~/pullsecret.txt
+oc adm release info 4.20.3 --pullspecs > data/pullspecs/4.20.3.txt
+opm render registry.redhat.io/redhat/redhat-operator-index:v4.20 > data/catalogs/catalog-4.20.json
+
+vextriage generate --ocp 4.20.3               --hub vexhub
+vextriage generate --operators --catalog 4.20 --hub vexhub
+vextriage generate --images my-images.txt     --hub vexhub --workers 8
+vextriage generate --image <ref@sha256:…>     --hub vexhub --verify
 ```
 
-Stages (each skippable with `--skip-*`):
+- `--resume` skips digests already in their document (interrupted runs).
+- `--verify` re-scans every image with trivy against its document; any statement that
+  does not suppress fails the run.
+- `vextriage hub --prune` drops statements for digests that left the release lists and
+  channel heads; `vextriage hub --base-url https://… --archive` publishes the archive.zip
+  trivy's repository mode downloads.
 
-| Stage | Does |
-|:---:|------|
-| 0 | `podman login` to Red Hat registries |
-| 1 | `opm` renders operator catalogs → `data/catalogs/catalog-<minor>.json` |
-| 2 | namespace → VEX-prefix map |
-| 3 | `oc adm release info --pullspecs` → `data/pullspecs/<ver>.txt` |
-| 4 | RHACS triage of every OCP release → `data/reports/ocp-<ver>.csv` |
-| 5 | RHACS triage of all channel-head operators → `data/reports/operators/*.csv` |
-| 6 | *(opt-in)* offline operator verdict refresh |
-| 7 | OpenVEX hub generation (see Part 2) — `--skip-openvex` to disable |
-
-OCP version list is embedded (override: `--versions my.csv`, CSV with a `Version`
-column). Interrupted? Re-run with `--skip-existing`.
-
-Operators standalone (without the pipeline):
+### Consume it
 
 ```bash
-vextriage operators --version 4.21,4.22        # minors from data/catalogs/
-vextriage operators --operator amq-streams     # single package
-```
+grype <ref@sha256:…> --vex vexhub/pkg/oci/<registry>/<ns>/<name>/scan.openvex.json
 
-### Refresh verdicts offline
-
-Red Hat updates VEX daily; your cached scans don't age. Recompute verdicts with
-zero network / zero Central load:
-
-```bash
-vextriage retriage                                  # everything
-vextriage retriage --operators-only --version 4.21,4.22
-```
-
-### Parquet files + explorer
-
-Turn the CSV reports into the browsable dataset:
-
-```bash
-vextriage parquet
-```
-
-Output:
-
-```
-data/parquet/ocp/<version>.parquet    one per OCP release
-data/parquet/operators/…              per-operator parquet
-data/parquet/cve-index.parquet        lightweight CVE × version index
-data/manifest.json                    summary stats per scope
-```
-
-Flags: `--version 4.21.15` (single release), `--manifest-only` (rebuild
-`manifest.json` from existing parquets).
-
-Explore:
-
-```bash
-python3 -m http.server 8080     # then open http://localhost:8080
-```
-
-`index.html` queries the parquet files client-side — search by CVE, package,
-image or operator.
-
----
-
-## Part 2 — OpenVEX generation (no RHACS)
-
-Hub documents are minted **only** from consumer-side SBOMs (syft): the purls come
-from the SBOM's own artifacts, so grype/trivy are guaranteed to match them. RHACS
-triage output is never converted to OpenVEX.
-
-```bash
-vextriage sync                                          # Red Hat VEX + OSV + index; later runs fetch changes only
-vextriage openvex <ref@sha256:…> -o image.openvex.json  # syft SBOM → OpenVEX
-vextriage openvex <ref@sha256:…> --hub vexhub/          # …straight into the hub
-```
-
-Candidates come from the VEX index (rpm and the image itself) and OSV (the
-Go/Python/npm/Maven modules Red Hat never names as purls); the verdict is always
-Red Hat's. Every false positive is published; the ones Red Hat did not state
-for this build are marked `Inferred from Red Hat CSAF-VEX: …` in their
-`impact_statement` (`--stated-only` leaves them out).
-
-Then triage is the scanner plus that document:
-
-```bash
-vextriage check <ref@sha256:…>                    # grype (default) or --scanner trivy
-trivy image <ref@sha256:…> --vex vexhub/pkg/oci/<registry>/<ns>/<name>/scan.openvex.json
-```
-
-### One image, through a scanner
-
-```bash
-# scan + triage + write the OpenVEX doc into the hub
-vextriage grype registry.access.redhat.com/ubi8/ubi@sha256:<digest> --openvex-dir vexhub/
-
-# trivy as the scanner works too
-vextriage trivy <ref@sha256:…> --openvex-dir vexhub/
-```
-
-Refs must be **digest-pinned** — the digest is the OpenVEX product identity.
-
-### No scanner at all
-
-The scanner's only irreplaceable job is producing the (component, CVE) candidate
-list. An inverted index over the VEX mirror does that instead, so an SBOM is
-enough:
-
-```bash
-vextriage sync                                          # once → data/vex-index.sqlite
-vextriage scanfree data/syft/<image>.json --openvex-dir vexhub/
-```
-
-Rebuild the index after a big VEX sync (`--build-index` again); it is derived
-data and safe to delete. The image ref comes from the SBOM's `repoDigests`
-unless `--image` is given.
-
-`scanfree` covers rpm and image statements only. For language packages use
-`vextriage openvex`, which adds OSV as the CVE → module source — Red Hat assesses
-vendored Go at the operator/component image, never the module purl (2 golang
-purls exist in the whole corpus).
-
-### Batch — images, OCP versions, operators
-
-```bash
-vextriage generate --image <ref@sha256:…>                 # single image
-vextriage generate --images my-images.txt                 # file of digest-pinned refs
-vextriage generate --ocp 4.20.0                           # one OCP release
-vextriage generate --ocp 4.20.0,4.21.0,4.22.0             # several
-vextriage generate --operators                            # all catalogs' channel heads
-vextriage generate --operators --catalog 4.20             # one catalog only
-```
-
-- `--ocp` reads `data/pullspecs/<ver>.txt`, `--operators` reads
-  `data/catalogs/catalog-*.json` — produced by pipeline stages 3 / 1, or by hand
-  (next section).
-- Re-runs are idempotent: docs merge per image, new digests append, versions bump
-  only on real change. A re-scan of a digest also **retracts** statements that no
-  longer hold (verdicts move as Red Hat updates its VEX).
-- Three caches make re-runs cheap: SBOMs (`data/syft/`, immutable per digest),
-  grype results (`data/scans/grype/`, valid per vulnerability-DB build — same-day
-  re-runs skip grype entirely), and Red Hat VEX files (`data/vex/`, revalidated
-  by ETag after 4 h).
-- `--workers N` parallelizes; scanning threads feed a separate CPU worker pool,
-  so the triage step actually uses your cores. `--force` regenerates cached SBOMs.
-- `--resume` skips digests already present in their hub doc — restarts only pay
-  for the tail. Use it for interrupted runs, NOT for a correctness sweep (a sweep
-  must re-audit everything).
-- `--crosscheck` re-checks every emitted statement against the raw Red Hat VEX
-  files with independent rules (seconds, offline) and prints any statement whose
-  answer differs from Red Hat's. Mismatches naming another RHEL major or an old
-  OpenShift are scope noise; anything else deserves a look.
-- Images without an amd64 build (e.g. OpenJ9 = Power/Z only) automatically fall
-  back to a platform the image's index does carry.
-- Scope: statements come from the **linux/amd64** build (images without an
-  amd64 child fall back to whatever the index carries). Product identity is
-  the multi-arch list digest and subcomponent purls are arch-less, so
-  suppression works for consumers on any platform pulling the pinned ref —
-  packages exclusive to non-amd64 children are simply not covered.
-
-All OCP versions on disk, checkpointed per release:
-
-```bash
-for v in $(ls data/pullspecs | sed 's/\.txt$//' | sort -V); do
-  vextriage generate --ocp "$v" --workers 8
-done
-vextriage generate --operators --workers 8
-```
-
-Or let the pipeline do all of it — **stage 7** runs exactly that loop. Without
-RHACS credentials:
-
-```bash
-vextriage pipeline --pull-secret ~/pullsecret.txt --skip-ocp --skip-operators
-```
-
-(discovery stages still fetch catalogs + pullspecs; RHACS triage is skipped;
-stage 7 generates the hub.)
-
-### Discovery artifacts by hand (no pipeline)
-
-Both inputs are plain files — fetch them yourself with `oc` and `opm`
-(auth via the env vars from Setup):
-
-**OCP release pullspecs** → `data/pullspecs/<full-version>.txt`, one file per
-release. The filename **is** the version — it also drives the OpenVEX product
-scope for release images:
-
-```bash
-VER=4.20.0
-oc adm release info "quay.io/openshift-release-dev/ocp-release:${VER}-x86_64" \
-   --pullspecs --registry-config ~/pullsecret.txt \
-   > "data/pullspecs/${VER}.txt"
-```
-
-**Operator index catalogs** → `data/catalogs/catalog-<minor>.json`, one per OCP
-minor. Big (100–170 MB) and slow to render — do it once, refresh weekly:
-
-```bash
-MINOR=4.20
-opm render "registry.redhat.io/redhat/redhat-operator-index:v${MINOR}" -o json \
-   > "data/catalogs/catalog-${MINOR}.json"
-```
-
-(Some `opm` builds ignore `REGISTRY_AUTH_FILE` — that's what the `DOCKER_CONFIG`
-fallback in Setup is for.) Then `vextriage generate --ocp 4.20.0` /
-`--operators --catalog 4.20` work without ever running the pipeline.
-
-### Trust gate
-
-```bash
-vextriage generate --image <ref@sha256:…> --verify
-```
-
-Re-scans each image with trivy against its own document — fails on any statement
-that does not actually suppress. Use before publishing.
-
-### The hub
-
-```
-vexhub/
-  vex-repository.json                        repository manifest (+ .well-known/ copy)
-  index.json                                 purl → document location
-  pkg/oci/<registry>/<ns>/<name>/scan.openvex.json
-```
-
-Rebuild the index without scanning: `vextriage hub`.
-
-Housekeeping — drop statements for digests that rotated out of the current
-pullspecs/catalogs (images generated outside discovery are never touched):
-
-```bash
-vextriage hub --prune
-```
-
-### Consuming
-
-```bash
-# trivy — native VEX repository support (~/.trivy/vex/repository.yaml):
+# trivy: ~/.trivy/vex/repository.yaml
 #   repositories:
 #     - name: my-vexhub
 #       url: https://github.com/<you>/<vexhub-repo>
 #       enabled: true
 trivy image <ref@sha256:…> --vex repo
-
-# grype — file-based, path derivable from the image ref:
-grype <ref@sha256:…> --vex vexhub/pkg/oci/<registry>/<ns>/<name>/scan.openvex.json
 ```
 
-Known limitation: trivy **repo-mode** can't suppress base-image-layer RPM findings
-(file mode can); golang findings — the dominant false-positive class — are
-unaffected. Details: [OPENVEX-SPIKE-RESULTS.md](OPENVEX-SPIKE-RESULTS.md).
-
----
-
-## Cheat sheet
+## 2. Triage tables
 
 ```bash
-vextriage doctor                                     # system check
-vextriage rhacs <ref>                                # RHACS triage, one image
-vextriage pipeline --pull-secret ~/ps.txt            # everything: reports + hub
-vextriage retriage                                   # refresh verdicts offline
-vextriage parquet                                    # CSVs → parquet + manifest
-vextriage generate --ocp <ver> | --operators | --images FILE   # OpenVEX hub
-vextriage generate --image <ref> --verify            # publish gate
-vextriage generate ... --crosscheck                  # second opinion vs Red Hat VEX
-vextriage generate ... --resume                      # resume interrupted run
-vextriage hub                                        # reindex only
-vextriage hub --prune                                # drop rotated-out digests
+vextriage scanfree <ref@sha256:…>                       # no scanner: VEX index + OSV candidates
+vextriage grype    <ref@sha256:…> --output grype.csv    # grype's findings
+vextriage grype    <ref@sha256:…> --vex-index           # + rpm/image pairs grype's DB lacks
+vextriage trivy    <ref@sha256:…>
 ```
+
+The table shows what needs action; `--all-rows` shows the false positives too,
+`--false-only` only them. `--output` always writes every row (CSV, or `--format json`).
+
+### RHACS
+
+```bash
+export ROX_ENDPOINT=central.example.com:443 ROX_API_TOKEN=<token>
+vextriage rhacs <ref@sha256:…>
+vextriage rhacs --namespace payments --output payments.csv
+vextriage rhacs --ocp data/pullspecs/4.20.3.txt --workers 10
+vextriage rhacs scan-export.csv --image <ref@sha256:…>    # a RHACS CSV export, no Central
+vextriage rhacs --ocp data/pullspecs/4.20.3.txt --offline # re-triage the cached scans
+```
+
+### A RHACS report as one HTML file
+
+```bash
+vextriage report Report-RHACS.csv -o report.html --ocp 4.20
+vextriage report Report-RHACS.csv -o live.html --rescan   # scan every image again today
+```
+
+## 3. Evidence for review
+
+On a machine with registry access:
+
+```bash
+pip install zstandard
+tests/collect_local_evidence.sh <ref@sha256:…> [<ref@sha256:…> …]
+```
+
+It syncs, SBOMs each image, generates the OpenVEX (inferred and stated-only), runs grype
+with and without it, and the scanfree table — then packs everything into
+`evidence.parquet` (the exact files, zstd; `python3 tests/evidence_parquet.py unpack
+evidence.parquet out/` restores them).
+
+## 4. Tests
+
+```bash
+python3 tests/test_engine_regressions.py
+python3 tests/test_module_streams.py
+python3 tests/test_scanfree.py
+```
+
+Offline, synthetic VEX documents, seconds. `tests/check_baseline.py` and
+`tests/test_verdict_cases.py` need cached RHACS scans under `data/scans/`.

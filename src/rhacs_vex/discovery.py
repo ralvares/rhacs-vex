@@ -1,9 +1,9 @@
 """What to scan: OCP release payloads and OLM operator catalogs.
 
-Two artifacts on disk, produced by `vextriage pipeline` stages 1 and 3:
+Two artifacts on disk, produced once by hand:
 
-    data/pullspecs/<ver>.txt        `oc adm release info --pullspecs`
-    data/catalogs/catalog-<minor>.json   `opm render` of the operator index
+    data/pullspecs/<ver>.txt             `oc adm release info <ver> --pullspecs`
+    data/catalogs/catalog-<minor>.json   `opm render <operator index>`
 
 Every command that needs an image list reads it from here.
 """
@@ -181,16 +181,6 @@ def workload_images(bundle: dict) -> List[Tuple[str, str]]:
             seen.add(sha)
         out.append((ri.get('name', '') or '', img))
     return out
-
-
-def bundle_version(op_name: str, bundle_name: str) -> str:
-    """'foo-operator.v1.2.3' → 'v1.2.3'."""
-    m = re.search(r'\.v(\d)', bundle_name)
-    if m:
-        return bundle_name[m.start() + 1:]
-    if bundle_name.startswith(op_name + '.'):
-        return bundle_name[len(op_name) + 1:]
-    return bundle_name
 
 
 def operator_refs(minors=None) -> List[str]:

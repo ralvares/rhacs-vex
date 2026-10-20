@@ -6,9 +6,9 @@
 # Needs: syft, grype, registry login for registry.redhat.io (for syft).
 # Run from the repo root after `pip install -e .`.  Collects the SBOMs, grype
 # reports with and without the generated OpenVEX, the OpenVEX documents, the
-# vextriage check summary and the engine's per-finding verdicts, packed into
-# zstd Parquet tables (tests/pack_evidence.py): nothing dropped, every JSON
-# file can be rebuilt with `pack_evidence.py --unpack`.
+# vextriage check summary and the scanfree verdict table, packed into one
+# Parquet file (tests/evidence_parquet.py — the exact tar stream, zstd; needs
+# `pip install zstandard`).
 set -uo pipefail
 
 # Packages only: file digests / executable analysis are not needed (rpm file
@@ -51,11 +51,9 @@ for ref in "$@"; do
   grype "sbom:$d/sbom.syft.json" --by-cve -o json --vex "$d/openvex.stated.json" > "$d/grype.vex.stated.json" 2>> "$d/grype.log" || true
   VEX_SKIP_SYNC=1 vextriage check "$d/sbom.syft.json" --image "$ref" --hub "" --quiet > "$d/check.log" 2>&1 || true
   tail -1 "$d/check.log"
+  VEX_SKIP_SYNC=1 vextriage scanfree "$d/sbom.syft.json" --image "$ref" --output "$d/triage.csv" > /dev/null 2>&1 || true
 done
 
 [ -f data/baseline.json ] && { python3 tests/check_baseline.py > "$OUT/check_baseline.txt" 2>&1 || true; }
 
-echo "== packing (Parquet, lossless — checked by a round trip)"
-VEX_SKIP_SYNC=1 python3 tests/pack_evidence.py "$OUT" evidence.parquet.tar \
-  || echo "   round trip differs — say so when uploading"
-echo "upload evidence.parquet.tar"
+python3 tests/evidence_parquet.py pack "$OUT" evidence.parquet && echo "upload evidence.parquet"

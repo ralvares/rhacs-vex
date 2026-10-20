@@ -14,19 +14,9 @@ import subprocess
 
 import pandas as pd
 
+from ..candidates import SOURCE_OF_TYPE, empty_frame
 from ..sbom import srpm_from_purl, syft_path
 
-
-# grype artifact type → the SOURCE vocabulary the engine already knows from
-# RHACS scans (GO/OS/PYTHON/...).  Unknown types stay unmapped and their rows
-# are still triaged; they just mint no subcomponent purl on export.
-_TYPE_TO_SOURCE = {
-    'rpm':          'OS',
-    'go-module':    'GO',
-    'python':       'PYTHON',
-    'npm':          'NODEJS',
-    'java-archive': 'JAVA',
-}
 
 _SEVERITY = {'critical': 'CRITICAL', 'high': 'HIGH', 'medium': 'MEDIUM',
              'low': 'LOW', 'negligible': 'LOW'}
@@ -184,16 +174,15 @@ def to_df(grype_doc: dict) -> pd.DataFrame:
             'CVSS':          0,
             'LINK':          vuln.get('dataSource', ''),
             'FIXED_VERSION': fix[0] if fix else '',
-            'SOURCE':        _TYPE_TO_SOURCE.get(art.get('type', ''), ''),
+            # unknown types are still triaged, they just mint no purl on export
+            'SOURCE':        SOURCE_OF_TYPE.get(art.get('type', ''), ''),
             'LOCATION':      locations[0].get('path', ''),
             'ADVISORY':      '',
             'ADVISORY_LINK': '',
             'SRPM':          srpm,
             'PURL':          art.get('purl', ''),
         })
-    return pd.DataFrame(rows) if rows else pd.DataFrame(
-        columns=['COMPONENT', 'VERSION', 'CVE', 'SEVERITY', 'CVSS', 'LINK',
-                 'FIXED_VERSION', 'SOURCE', 'LOCATION', 'ADVISORY', 'ADVISORY_LINK'])
+    return pd.DataFrame(rows) if rows else empty_frame()
 
 
 def os_hint(grype_doc: dict) -> str:

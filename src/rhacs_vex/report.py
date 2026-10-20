@@ -109,16 +109,16 @@ def expand_errata(df: pd.DataFrame, workers: int = 8, progress=None) -> pd.DataF
 
 def _sbom_index(artifacts) -> dict:
     """{package name: (version, source, location)} from syft artifacts."""
-    kind = {'rpm': ('OS', 'var/lib/rpm'), 'go-module': ('GO', ''),
-            'python': ('PYTHON', ''), 'npm': ('NODEJS', ''), 'java-archive': ('JAVA', '')}
+    from .candidates import RPM_LOCATION, SOURCE_OF_TYPE
     out = {}
     for art in artifacts:
         name, ver = art.get('name'), art.get('version')
         if not (name and ver) or name in out:
             continue
-        src, loc = kind.get(art.get('type'), ('OS', ''))
+        src = SOURCE_OF_TYPE.get(art.get('type'), 'OS')
         locs = art.get('locations') or []
-        out[name] = (ver, src, loc or (locs[0].get('path', '') if locs else ''))
+        out[name] = (ver, src, RPM_LOCATION if art.get('type') == 'rpm'
+                     else (locs[0].get('path', '') if locs else ''))
     return out
 
 
@@ -268,7 +268,7 @@ def rescan_rows(image_ref: str, report_rows, platform: str = 'linux/amd64',
     the cluster knows where it is deployed — so each finding is repeated once per
     workload carrying that image.
     """
-    from . import scanfree
+    from . import candidates
     from .adapters import grype as adapter
     sbom = adapter.syft_sbom(image_ref, platform=platform)
     df = adapter.to_df(adapter.grype_scan(sbom))
@@ -276,8 +276,7 @@ def rescan_rows(image_ref: str, report_rows, platform: str = 'linux/amd64',
     syft = SyftSBOM.load(sbom)
     labels = (syft.labels if syft else {}) or {}
     if index:
-        df, _added = scanfree.merge_index_candidates(df, index, image_ref=image_ref,
-                                                     labels=labels)
+        df, _added = candidates.add_to_findings(df, index, image_ref=image_ref, labels=labels)
     # One row per finding, with every workload carrying the image listed on it.
     # Repeating the finding per placement instead multiplies a 3,500-candidate
     # scan by however many namespaces run that image — 63,244 rows for three
@@ -384,11 +383,11 @@ def triage_report(csv_path: str, *, workers: int = 4, platform: str = 'linux/amd
                       + (' · [bold]live rescan[/bold]' if rescan else ''))
     index = None
     if rescan:
-        from . import scanfree
-        index = scanfree.load_index() or None
+        from . import vexindex
+        index = vexindex.open_index()
         if console and not index:
             console.print('[yellow]no VEX index — rescan covers the scanner classes '
-                          'only; `vextriage build-index` adds rpm + image[/yellow]')
+                          'only; `vextriage sync` adds rpm + image[/yellow]')
     else:
         df = expand_errata(df, progress=(lambda m: console.print(f"   {m}")) if console else None)
 
@@ -505,360 +504,12 @@ def triage_report(csv_path: str, *, workers: int = 4, platform: str = 'linux/amd
 # justification as full strings.  The payload below is columnar and
 # dictionary-encoded — each distinct string is stored once and referenced by
 # index — which is the same trick parquet uses and costs one lookup in the view.
+# The page itself (views, filters, export) is report.html.
 
-_COLS = ('cve', 'comp', 'ver', 'cluster', 'ns', 'dep', 'image', 'operator',
-         'opver', 'ocp', 'build', 'triage', 'sev', 'rsev', 'state', 'fix',
-         'source', 'why')
-
-_PAGE = """<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>__TITLE__</title>
-<style>__CSS__</style>
-</head><body>
-<div class="app">
-  <header>
-    <h1>RHACS Report Triage</h1>
-    <p class="sub">__SOURCE__ · __WHEN__ · __OCP__</p>
-    <p class="sub">__MODE__ · __IMAGES__ images · __CLUSTERS__ clusters</p>
-  </header>
-  <nav class="tabs">
-    <button class="tab-btn active" data-tab="overview">Overview</button>
-    <button class="tab-btn" data-tab="triage">Triage</button>
-    <button class="tab-btn" data-tab="insights">Insights</button>
-  </nav>
-
-  <section id="overview" class="tab-panel active">
-    <div class="tiles" id="tiles"></div>
-    <h2>Clusters</h2><div class="grid" id="clusters"></div>
-    <h2>Operator inventory</h2><div class="tablewrap"><table id="operators"><thead><tr>
-      <th>Operator</th><th>Version</th><th>OpenShift</th><th>Build</th>
-      <th>Positive CVEs</th><th>False positive CVEs</th>
-      <th>Critical</th><th>Important</th><th>Moderate</th></tr></thead><tbody></tbody></table></div>
-    <h2>Images</h2><div class="tablewrap"><table id="images"><thead><tr>
-      <th>Image</th><th>OpenShift</th><th>Build</th><th>Namespaces</th>
-      <th>CVEs</th><th>Critical</th><th>Important</th><th>Findings</th><th></th>
-      </tr></thead><tbody></tbody></table></div>
-  </section>
-
-  <section id="triage" class="tab-panel">
-    <div class="filters" id="filters"></div>
-    <div class="filterbar">
-      <input id="q" type="search" placeholder="filter by CVE, component, namespace, deployment, reason…">
-      <button id="reset" class="btn">clear filters</button>
-      <button id="export" class="btn">export CSV</button>
-      <span id="count" class="count"></span>
-    </div>
-    <div class="tablewrap"><table id="rows"><thead><tr>
-      <th>Triage</th><th>CVE</th><th>RHACS sev</th><th>VEX sev</th><th>Component</th>
-      <th>Version</th><th>Fix</th><th>Cluster</th><th>Namespace</th><th>Deployment</th>
-      <th>Why</th></tr></thead><tbody></tbody></table></div>
-  </section>
-
-  <section id="insights" class="tab-panel">
-    <h2>CVEs by reach</h2><div class="tablewrap"><table id="bycve"><thead><tr>
-      <th>Triage</th><th>CVE</th><th>VEX sev</th><th>Components</th><th>Source</th>
-      <th>Images</th><th>Deployments</th><th>Fix</th><th>Findings</th>
-      </tr></thead><tbody></tbody></table></div>
-    <h2>Components by reach</h2><div class="tablewrap"><table id="bycomp"><thead><tr>
-      <th>Component</th><th>Source</th><th>CVEs</th><th>Positive</th>
-      <th>Images</th><th>Findings</th></tr></thead><tbody></tbody></table></div>
-  </section>
-</div>
-<script id="data" type="application/gzip;base64">__DATA__</script>
-<script>__JS__</script>
-</body></html>
-"""
-
-_CSS = """
-:root{--bg:#fff;--panel:#f7f7f8;--text:#1a1a1a;--muted:#6a6a70;--border:#e0e0e3;
---accent:#0066cc;--red:#c9190b;--green:#3d7317;--amber:#c58c00;--grey:#8a8a92}
-@media (prefers-color-scheme:dark){:root{--bg:#151517;--panel:#1d1d20;--text:#e8e8ea;
---muted:#9a9aa2;--border:#33333a;--accent:#58a6ff;--red:#ff7b72;--green:#7ee787;
---amber:#e3b341;--grey:#9a9aa2}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);
-font:14px/1.5 'Red Hat Text',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
-.app{max-width:1680px;margin:0 auto;padding:1.4rem 1.8rem}
-header{border-bottom:1px solid var(--border);padding-bottom:.7rem}
-h1{font-size:1.25rem;margin:0}h2{font-size:.95rem;margin:1.5rem 0 .55rem}
-.sub{color:var(--muted);font-size:.8rem;margin:.25rem 0 0}
-.tabs{display:flex;border-bottom:2px solid var(--border);margin:1rem 0 1.2rem}
-.tab-btn{padding:.5rem 1.1rem;font:inherit;font-size:.82rem;font-weight:600;color:var(--muted);
-border:0;background:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px}
-.tab-btn:hover{color:var(--text)}
-.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
-.tab-panel{display:none}.tab-panel.active{display:block}
-.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:.65rem}
-.tile{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:.65rem .85rem}
-.tile .n{font-size:1.45rem;font-weight:700}
-.tile .l{color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.04em}
-.tile.real .n{color:var(--red)}.tile.fp .n{color:var(--green)}.tile.nrh .n{color:var(--grey)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.65rem}
-.card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:.75rem}
-.card h3{margin:0 0 .45rem;font-size:.85rem;word-break:break-all}
-.row{display:flex;justify-content:space-between;font-size:.75rem;padding:.08rem 0}
-.row .k{color:var(--muted)}.row .v{font-weight:600}
-.tablewrap{overflow-x:auto;max-height:70vh;overflow-y:auto;border:1px solid var(--border);border-radius:10px}
-table{border-collapse:collapse;width:100%;font-size:.78rem}
-th,td{text-align:left;padding:.4rem .58rem;border-bottom:1px solid var(--border);white-space:nowrap}
-th{background:var(--panel);position:sticky;top:0;z-index:1;font-size:.7rem;
-text-transform:uppercase;letter-spacing:.04em;color:var(--muted);cursor:pointer;user-select:none}
-th:hover{color:var(--text)}
-td.why{white-space:normal;min-width:280px;max-width:520px;color:var(--muted)}
-td.wrap{white-space:normal;max-width:340px;word-break:break-all}
-tbody tr:hover{background:var(--panel)}
-.t-P{color:var(--red);font-weight:700}.t-FP{color:var(--green);font-weight:700}
-.t-NRH{color:var(--grey);font-weight:700}
-.s-Critical{color:var(--red);font-weight:700}.s-Important{color:var(--red)}
-.s-Moderate{color:var(--amber)}.s-Low{color:var(--muted)}
-.filters{display:flex;flex-wrap:wrap;gap:.9rem;margin:.2rem 0 .5rem}
-.fgroup{border:1px solid var(--border);border-radius:9px;padding:.4rem .55rem;background:var(--panel)}
-.fgroup h4{margin:0 0 .3rem;font-size:.66rem;text-transform:uppercase;
-letter-spacing:.05em;color:var(--muted);font-weight:700}
-.chips{display:flex;flex-wrap:wrap;gap:.25rem;max-height:5.4rem;overflow-y:auto;max-width:460px}
-.chip{font-size:.71rem;padding:.13rem .45rem;border:1px solid var(--border);border-radius:999px;
-cursor:pointer;background:var(--bg);color:var(--muted);white-space:nowrap}
-.chip:hover{color:var(--text)}
-.chip.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
-.filterbar{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin:.35rem 0 .6rem}
-input,.btn{background:var(--bg);color:var(--text);border:1px solid var(--border);
-border-radius:7px;padding:.35rem .55rem;font:inherit;font-size:.78rem}
-input#q{min-width:340px;flex:1}
-.btn{cursor:pointer;font-weight:600}.btn:hover{border-color:var(--accent);color:var(--accent)}
-.count{color:var(--muted);font-size:.75rem}
-.warn{color:var(--amber);white-space:normal}
-"""
-
-_JS = r"""
-// The payload is gzipped and base64'd: as plain JSON the reference report is
-// 19 MB of index arrays, which is not something anyone wants to email.
-// DecompressionStream is standard in every current browser.
-async function payload() {
-  const b64 = document.getElementById('data').textContent.trim();
-  const bin = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
-  const stream = new Blob([bin]).stream().pipeThrough(new DecompressionStream('gzip'));
-  return JSON.parse(await new Response(stream).text());
-}
-let D, N, DICT, COL;
-// Every column is an index into its own dictionary; val() is the only decode.
-const val = (c, i) => DICT[c][COL[c][i]];
-const esc = s => String(s ?? '').replace(/[&<>"]/g, c =>
-  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const num = n => n.toLocaleString();
-const TRI = {P: 'real', FP: 'false positive', NRH: 'not Red Hat'};
-const SEP = '\u0001';
-const SEVS = ['Critical', 'Important', 'Moderate', 'Low', 'Unknown'];
-
-// ── filters ───────────────────────────────────────────────────────────────
-const FILTERS = [['triage', 'Triage'], ['sev', 'VEX severity'], ['cluster', 'Cluster'],
-                 ['ns', 'Namespace'], ['dep', 'Deployment'], ['fixable', 'Fixable'],
-                 ['comp', 'Component'], ['build', 'Build'], ['ocp', 'OpenShift']];
-const state = {};
-FILTERS.forEach(([k]) => state[k] = new Set());
-let term = '', view = [];
-
-const fixable = i => (val('fix', i) && val('fix', i) !== '-' && val('fix', i) !== 'N/A')
-  ? 'fixable' : 'no fix';
-
-function options(key) {
-  if (key === 'fixable') return ['fixable', 'no fix'];
-  if (key === 'triage') return ['P', 'FP', 'NRH'].filter(t => DICT.triage.includes(t));
-  if (key === 'sev') return SEVS.filter(s => DICT.sev.includes(s));
-  return [...DICT[key]].filter(Boolean).sort();
-}
-
-function passes(i) {
-  for (const [k] of FILTERS) {
-    if (!state[k].size) continue;
-    const v = k === 'fixable' ? fixable(i) : val(k, i);
-    if (!state[k].has(v)) return false;
-  }
-  if (term) {
-    const hay = (val('cve', i) + ' ' + val('comp', i) + ' ' + val('ns', i) + ' ' +
-                 val('dep', i) + ' ' + val('why', i) + ' ' + val('image', i)).toLowerCase();
-    if (!hay.includes(term)) return false;
-  }
-  return true;
-}
-
-function apply() {
-  view = [];
-  for (let i = 0; i < N; i++) if (passes(i)) view.push(i);
-}
-
-function renderFilters() {
-  document.getElementById('filters').innerHTML = FILTERS.map(([k, label]) => {
-    const opts = options(k);
-    if (!opts.length) return '';
-    return `<div class="fgroup"><h4>${label}</h4><div class="chips">` +
-      opts.map(o => `<span class="chip${state[k].has(o) ? ' on' : ''}" data-k="${k}" ` +
-        `data-v="${esc(o)}">${esc(k === 'triage' ? TRI[o] : o)}</span>`).join('') +
-      `</div></div>`;
-  }).join('');
-  document.querySelectorAll('.chip').forEach(el => el.onclick = () => {
-    const k = el.dataset.k, v = el.dataset.v;
-    state[k].has(v) ? state[k].delete(v) : state[k].add(v);
-    renderFilters(); renderRows();
-  });
-}
-
-// ── triage table ──────────────────────────────────────────────────────────
-let sortCol = null, sortDir = 1;
-const ROWCOLS = ['triage', 'cve', 'rsev', 'sev', 'comp', 'ver', 'fix', 'cluster',
-                 'ns', 'dep', 'why'];
-const LIMIT = 2500;
-
-function renderRows() {
-  apply();
-  let rows = view;
-  if (sortCol !== null) {
-    const c = ROWCOLS[sortCol];
-    rows = [...view].sort((a, b) => String(val(c, a)).localeCompare(String(val(c, b))) * sortDir);
-  }
-  document.getElementById('count').textContent =
-    `${num(rows.length)} of ${num(N)} rows · ${num(new Set(rows.map(i => val('cve', i))).size)} CVEs`;
-  const body = rows.slice(0, LIMIT).map(i => `<tr>
-    <td class="t-${val('triage', i)}">${TRI[val('triage', i)]}</td>
-    <td>${esc(val('cve', i))}</td><td class="s-${esc(val('rsev', i))}">${esc(val('rsev', i))}</td>
-    <td class="s-${esc(val('sev', i))}">${esc(val('sev', i))}</td>
-    <td>${esc(val('comp', i))}</td><td>${esc(val('ver', i))}</td><td>${esc(val('fix', i))}</td>
-    <td>${esc(val('cluster', i))}</td><td>${esc(val('ns', i))}</td><td>${esc(val('dep', i))}</td>
-    <td class="why">${esc(val('why', i))}</td></tr>`).join('');
-  document.querySelector('#rows tbody').innerHTML = body +
-    (rows.length > LIMIT ? `<tr><td colspan="11" class="why">showing the first
-      ${num(LIMIT)} of ${num(rows.length)} — narrow the filters to see the rest,
-      or export the CSV, which contains every filtered row.</td></tr>` : '');
-}
-
-document.querySelectorAll('#rows th').forEach((th, n) => th.onclick = () => {
-  sortDir = sortCol === n ? -sortDir : 1; sortCol = n; renderRows();
-});
-
-// ── overview ──────────────────────────────────────────────────────────────
-const uniq = (rows, c) => new Set(rows.map(i => val(c, i))).size;
-const count = (rows, c, v) => rows.reduce((a, i) => a + (val(c, i) === v ? 1 : 0), 0);
-const cvesWhere = (rows, t) =>
-  new Set(rows.filter(i => val('triage', i) === t).map(i => val('cve', i))).size;
-
-function group(keyfn) {
-  const m = new Map();
-  for (let i = 0; i < N; i++) {
-    const k = keyfn(i);
-    let g = m.get(k); if (!g) m.set(k, g = []);
-    g.push(i);
-  }
-  return m;
-}
-
-function tile(n, l, cls) {
-  return `<div class="tile ${cls || ''}"><div class="n">${num(n)}</div><div class="l">${l}</div></div>`;
-}
-
-function renderOverview() {
-  const all = [...Array(N).keys()];
-  document.getElementById('tiles').innerHTML =
-    tile(N, 'findings') +
-    tile(count(all, 'triage', 'P'), 'real', 'real') +
-    tile(count(all, 'triage', 'FP'), 'false positive', 'fp') +
-    tile(count(all, 'triage', 'NRH'), 'not Red Hat', 'nrh') +
-    tile(uniq(all, 'cve'), 'CVEs') +
-    tile(uniq(all, 'image'), 'images') +
-    tile(uniq(all, 'cluster'), 'clusters') +
-    tile(uniq(all, 'ns'), 'namespaces') +
-    tile(uniq(all, 'dep'), 'deployments');
-
-  document.getElementById('clusters').innerHTML = [...group(i => val('cluster', i))]
-    .sort((a, b) => b[1].length - a[1].length).map(([name, rows]) => `<div class="card">
-      <h3>${esc(name || '—')}</h3>
-      <div class="row"><span class="k">findings</span><span class="v">${num(rows.length)}</span></div>
-      <div class="row"><span class="k">real</span><span class="v">${num(count(rows, 'triage', 'P'))}</span></div>
-      <div class="row"><span class="k">CVEs</span><span class="v">${num(uniq(rows, 'cve'))}</span></div>
-      <div class="row"><span class="k">images</span><span class="v">${num(uniq(rows, 'image'))}</span></div>
-      <div class="row"><span class="k">namespaces</span><span class="v">${num(uniq(rows, 'ns'))}</span></div>
-      <div class="row"><span class="k">deployments</span><span class="v">${num(uniq(rows, 'dep'))}</span></div>
-    </div>`).join('');
-
-  document.querySelector('#operators tbody').innerHTML =
-    [...group(i => val('operator', i) + SEP + val('opver', i))]
-      .sort((a, b) => cvesWhere(b[1], 'P') - cvesWhere(a[1], 'P')).map(([k, rows]) => {
-        const [op, ver] = k.split(SEP);
-        return `<tr><td class="wrap">${esc(op || '—')}</td><td>${esc(ver)}</td>
-          <td>${esc(val('ocp', rows[0]))}</td><td>${esc(val('build', rows[0]))}</td>
-          <td class="t-P">${num(cvesWhere(rows, 'P'))}</td>
-          <td class="t-FP">${num(cvesWhere(rows, 'FP'))}</td>
-          <td>${num(count(rows, 'sev', 'Critical'))}</td>
-          <td>${num(count(rows, 'sev', 'Important'))}</td>
-          <td>${num(count(rows, 'sev', 'Moderate'))}</td></tr>`;
-      }).join('');
-
-  document.querySelector('#images tbody').innerHTML = [...group(i => val('image', i))]
-    .sort((a, b) => cvesWhere(b[1], 'P') - cvesWhere(a[1], 'P')).map(([img, rows]) => `<tr>
-      <td class="wrap">${esc(img.split('@')[0])}</td><td>${esc(val('ocp', rows[0]))}</td>
-      <td>${esc(val('build', rows[0]))}</td><td>${num(uniq(rows, 'ns'))}</td>
-      <td>${num(uniq(rows, 'cve'))}</td>
-      <td>${num(count(rows, 'sev', 'Critical'))}</td>
-      <td>${num(count(rows, 'sev', 'Important'))}</td>
-      <td class="t-P">${num(count(rows, 'triage', 'P'))}</td>
-      <td class="warn">${esc(D.errors[img] || '')}</td></tr>`).join('');
-}
-
-// ── insights ──────────────────────────────────────────────────────────────
-function renderInsights() {
-  document.querySelector('#bycve tbody').innerHTML = [...group(i => val('cve', i))]
-    .sort((a, b) => b[1].length - a[1].length).slice(0, 400).map(([cve, rows]) => {
-      const comps = [...new Set(rows.map(i => val('comp', i)))];
-      return `<tr><td class="t-${val('triage', rows[0])}">${TRI[val('triage', rows[0])]}</td>
-        <td>${esc(cve)}</td><td class="s-${esc(val('sev', rows[0]))}">${esc(val('sev', rows[0]))}</td>
-        <td class="wrap">${esc(comps.slice(0, 4).join(', '))}${comps.length > 4 ? ` +${comps.length - 4}` : ''}</td>
-        <td>${esc(val('source', rows[0]))}</td><td>${num(uniq(rows, 'image'))}</td>
-        <td>${num(uniq(rows, 'dep'))}</td><td>${esc(val('fix', rows[0]))}</td>
-        <td>${num(rows.length)}</td></tr>`;
-    }).join('');
-
-  document.querySelector('#bycomp tbody').innerHTML = [...group(i => val('comp', i))]
-    .sort((a, b) => b[1].length - a[1].length).slice(0, 400).map(([comp, rows]) => `<tr>
-      <td class="wrap">${esc(comp)}</td><td>${esc(val('source', rows[0]))}</td>
-      <td>${num(uniq(rows, 'cve'))}</td><td class="t-P">${num(count(rows, 'triage', 'P'))}</td>
-      <td>${num(uniq(rows, 'image'))}</td><td>${num(rows.length)}</td></tr>`).join('');
-}
-
-// ── export ────────────────────────────────────────────────────────────────
-document.getElementById('export').onclick = () => {
-  const cols = ['triage', 'cve', 'rsev', 'sev', 'comp', 'ver', 'fix', 'source',
-                'cluster', 'ns', 'dep', 'image', 'operator', 'opver', 'ocp',
-                'build', 'state', 'why'];
-  const q = s => `"${String(s ?? '').replace(/"/g, '""')}"`;
-  const csv = [cols.join(',')].concat(
-    view.map(i => cols.map(c => q(c === 'triage' ? TRI[val(c, i)] : val(c, i))).join(','))
-  ).join('\n');
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([csv], {type: 'text/csv'}));
-  a.download = 'triage-filtered.csv';
-  a.click();
-  URL.revokeObjectURL(a.href);
-};
-
-document.getElementById('reset').onclick = () => {
-  FILTERS.forEach(([k]) => state[k].clear());
-  term = ''; document.getElementById('q').value = '';
-  renderFilters(); renderRows();
-};
-document.getElementById('q').oninput = e => { term = e.target.value.trim().toLowerCase(); renderRows(); };
-document.querySelectorAll('.tab-btn').forEach(b => b.onclick = () => {
-  document.querySelectorAll('.tab-btn').forEach(x => x.classList.toggle('active', x === b));
-  document.querySelectorAll('.tab-panel').forEach(p =>
-    p.classList.toggle('active', p.id === b.dataset.tab));
-});
-
-payload().then(p => {
-  D = p; N = D.n; DICT = D.dict; COL = D.cols;
-  renderOverview(); renderFilters(); renderRows(); renderInsights();
-}).catch(e => {
-  document.querySelector('.app').insertAdjacentHTML('beforeend',
-    `<p class="warn">could not read the embedded data: ${e}</p>`);
-});
-"""
+def _template() -> str:
+    """report.html: the page, its CSS and JS; __NAME__ marks what render_html fills."""
+    from importlib.resources import files
+    return files(__package__).joinpath('report.html').read_text(encoding='utf-8')
 
 
 def _encode(rows: pd.DataFrame) -> dict:
@@ -916,10 +567,8 @@ def render_html(result: dict, path: str, *, when: str = '') -> str:
                  {i['ocp'] for i in result['images'] if i.get('ocp')})
     payload = _encode(rows)
     payload['errors'] = {i['ref']: i['error'] for i in result['images'] if i.get('error')}
-    html = (_PAGE
+    html = (_template()
             .replace('__TITLE__', f'RHACS Report Triage — {result["source"]}')
-            .replace('__CSS__', _CSS)
-            .replace('__JS__', _JS)
             .replace('__SOURCE__', result['source'])
             .replace('__WHEN__', when or '')
             .replace('__OCP__', ('OpenShift ' + ', '.join(ocp)) if ocp
