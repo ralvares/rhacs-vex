@@ -4,9 +4,11 @@
 #   tests/collect_local_evidence.sh <image@sha256:…> [<image@sha256:…> …]
 #
 # Needs: syft, grype, registry login for registry.redhat.io (for syft).
-# Run from the repo root after `pip install -e .`.  Collects only small files:
-# SBOMs, grype reports with and without the generated OpenVEX, the OpenVEX
-# documents and the vextriage check summary.
+# Run from the repo root after `pip install -e .`.  Collects the SBOMs, grype
+# reports with and without the generated OpenVEX, the OpenVEX documents, the
+# vextriage check summary and the engine's per-finding verdicts, packed into
+# zstd Parquet tables (tests/pack_evidence.py): nothing dropped, every JSON
+# file can be rebuilt with `pack_evidence.py --unpack`.
 set -uo pipefail
 
 # Packages only: file digests / executable analysis are not needed (rpm file
@@ -53,6 +55,7 @@ done
 
 [ -f data/baseline.json ] && { python3 tests/check_baseline.py > "$OUT/check_baseline.txt" 2>&1 || true; }
 
-COPYFILE_DISABLE=1 tar czf evidence.tar.gz "$OUT"
-ls -lh evidence.tar.gz
-echo "upload evidence.tar.gz"
+echo "== packing (Parquet, lossless — checked by a round trip)"
+VEX_SKIP_SYNC=1 python3 tests/pack_evidence.py "$OUT" evidence.parquet.tar \
+  || echo "   round trip differs — say so when uploading"
+echo "upload evidence.parquet.tar"
