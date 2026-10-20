@@ -4,38 +4,33 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vextriage"
-description = "Triage scanner findings against Red Hat CSAF-VEX and publish Red Hat's verdicts as OpenVEX (syft SBOM + Red Hat VEX, no scanner required)."
+description = "Triage grype / trivy / syft findings against Red Hat CSAF-VEX and publish the verdicts as OpenVEX."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
 authors = [{ name = "Rodrigo Alvares" }]
-keywords = ["rhacs", "stackrox", "vex", "csaf", "openvex", "grype", "trivy", "syft", "openshift", "vulnerability", "triage", "cve"]
+keywords = ["vex", "csaf", "openvex", "grype", "trivy", "syft", "red hat", "rhel", "openshift", "triage", "cve"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
     "Topic :: Security",
 ]
 dynamic = ["version"]
-
 dependencies = [
-    "pandas",
-    "pyarrow",
     "requests",
     "rich",
     "packaging",
 ]
 
-[project.urls]
-Homepage = "https://triage-explorer.ralvares.com"
+[project.optional-dependencies]
+archive = ["zstandard"]
+test = ["pytest"]
 
 [project.scripts]
-vextriage = "rhacs_vex.cli:main"
+vextriage = "vextriage.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
-[tool.setuptools.package-data]
-rhacs_vex = ["report.html"]
-
 [tool.setuptools.dynamic]
-version = { attr = "rhacs_vex.__version__" }
+version = { attr = "vextriage.__version__" }

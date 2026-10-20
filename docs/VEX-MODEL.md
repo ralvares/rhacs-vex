@@ -1,5 +1,9 @@
 # VEX-MODEL.md — Red Hat CSAF-VEX Data Model (Ground-Truth Reference)
 
+> The data reference: what Red Hat's documents contain, measured over the corpus. How
+> vextriage decides with it is in [RULES.md](RULES.md). Mentions of functions in the text
+> below refer to code that has since been rewritten; the data facts stand.
+
 Reference documentation of Red Hat's CSAF-VEX data model and of the rules required to match
 RHACS scanner findings against it. Every count and example below is **mined from the data**,
 not from memory.
@@ -561,7 +565,7 @@ epoch the RPM carries, it is propagated so the same-source packages compare corr
 
 ---
 
-## 7. Scanner-Side Model (RHACS)
+## 7. Scanner-Side Model (image labels and identity, measured on RHACS scans)
 
 SAMPLED — 766 distinct images of 13,745 (250 quay art-dev, 500 registry.redhat.io,
 13 registry.access.redhat.com, 2 docker.io, 1 quay-other) plus 52 SBOMs (24,241 packages,
@@ -655,167 +659,6 @@ Only two relationship types: **`CONTAINED_BY` 36,296** and **`GENERATED_FROM` 10
   (`cpe:2.3:o:redhat:enterprise_linux:8:*:baseos:*…`) — i.e. the repoid/RHEL variant, **not**
   package→package. External refs use `cpe23Type` (334), not purl (RPMs identified by CPE here).
   Read: the SBOM confirms both the binary→source lineage and the RHEL/repo the package came from.
-
----
-
-## 8. The Matching Problem & Decision Ladder
-
-> **Superseded (2026-10-20) by §11.**  The ladder below (`decide.py`, scoping by PID
-> prefixes and a namespace map) was replaced by an engine built from the statement
-> model of §10/§11 (`core/csaf.py` + `core/judge.py`).  It is kept as the record of
-> what was tried and why.
-
-The core spec: reconcile a **scanner identity** (RHACS component: name/version/source + image
-labels/digest) against a **VEX identity** (a `product_status` PID). This is the consolidation of
-all validated rules.
-
-### 8a. Scoping predicate — evaluated for *every* candidate PID first
-A PID is in scope for the workload iff:
-- **UBI/RHEL:** PID is a RHEL base repo of the workload's RHEL major (derived from product-tree
-  names starting "Red Hat Enterprise Linux" — no hardcoded stream list).
-- **OCP:** RHEL base repos **+** any parent whose name is "Red Hat OpenShift Container Platform
-  `<v>`", version prefix-matched (VEX `4` covers all `4.x`; `4.21` matches only `4.21.x`) **+** CPE
-  prefix match of the image-label CPE against the VEX parent CPE **+** any product mentioning the
-  workload's RHEL major (catches Fast Datapath etc.).
-- **Operator:** RHEL base repos **+** catalog prefixes **+** a dynamic namespace map
-  (registry-namespace → VEX product, built from the OCI purls in the product tree).
-
-### 8b. The ordered ladder (first decisive rung wins)
-| # | Rung | Condition (in scope unless noted) | Verdict |
-|---|---|---|---|
-| 1 | **Vendor catch-all** | `red_hat_products` (or any bare `cpe:/a:redhat` node) ∈ `known_not_affected`/not-affected flag | **FALSE POSITIVE** "No supported Red Hat product affected" |
-| 2 | **Our-digest override** | any PID contains the scanned image's exact `@sha256:` digest | authoritative per-build: KA/UI→**POSITIVE**, KNA/fixed→**FALSE POSITIVE** (applies to RPM *and* non-RPM) |
-| 3a | **Image identity via OCI purl** | image candidates {ref-repo (authoritative), `name`-label repo (secondary)} match a VEX OCI purl by exact `repository_url`, else by `pkg:oci/<name>` equality | matched generic image PID → POSITIVE/FALSE POSITIVE |
-| 3b | **Image identity via path/generic** | image-path PID normalized (`ose-etcd-rhel9`→`etcd`) == OCP component; or generic `pkg:generic/redhat/<c>` (rhcos↔rhel-coreos) | same |
-| 4 | **Same-image other-build evidence** | matched image PIDs for *other* builds, scored by RHEL-variant quality (exact `-rhelN`=2, version-neutral=1, other RHEL=0); SHA-exact (spec=2) overrides generic (spec=1); at equal quality, affected wins; other-build **fixed** digests decide by **build-stamp comparison** (§5g corollary: purl `tag=` vs this build's version-release) | POSITIVE / FALSE POSITIVE / POSITIVE (other-RHEL evidence, flagged) |
-| 5 | **Component NEVRA/name in-scope** (RPM path) | package name ∈ names-to-match; dist-tag + minor-stream + module-stream + CPE scoping; then §6 version compare | KNA→FP; fixed→compare; KA→POSITIVE; UI→POSITIVE |
-| 5s | **src-alias expansion** | binary comp aliased to source name when a `.src` PID's VR == installed VR **or** a version-less `.src` exists; also Maven `group:artifact`→`artifact`, SBOM binary→source. Within a status, a PID naming the component **exactly** outranks alias matches — a package with its own SRPM/statement is decisive over its alias source (`openssl-fips-provider` vs `openssl`) | expands names-to-match for rung 5 |
-| 6 | **Product-family clear** (non-RPM fallthrough) | all in-scope PIDs for this CVE are `known_not_affected`/`fixed`, none affected/UI (in-scope UI alone → POSITIVE "under_investigation") | **FALSE POSITIVE** "no affected entry" (scoped-clear) |
-| 7 | **Errata policy** (version-streams) | no direct match, but versioned OCP/RHOSE `fixed` streams exist: installed **older** than newest fix → assumed vulnerable; **equal/newer** → not | POSITIVE / FALSE POSITIVE |
-| 9 | **Not listed** | no statement names this component/image/product anywhere relevant — in-scope affected rows (if any) name *other* components only (§5g: the errata assumption covers only *listed* products) | **FALSE POSITIVE** "not listed as affected" |
-| 10 | **No VEX file** | Red Hat has not published a VEX for the CVE — no enumeration exists to be absent from | **POSITIVE** "VEX file missing" (severity/state Unknown) |
-
-**RPM vs non-RPM split** happens after rungs 1-2: a `/` in the component
-name (RHACS image-identity pseudo-component) **or** absence of an `.elN` marker routes to the
-non-RPM path (rungs 3,4,6,7,9); an `.elN` marker or `SOURCE=OS` routes to the RPM path
-(rungs 5,5s, then 9). Rungs 1,2 precede both.
-
-### Superseded: related-product fallback (2026-08-25)
-
-Out-of-scope products never decide an RPM finding. The scanner may discover a CVE candidate by
-joining an SBOM package name to the VEX index, but the assessment is usable only when the VEX
-product relationship resolves inside the scanned workload's scope. The historical rung-8 notes
-below document the removed behavior; they are not current matching rules.
-
-### Historical: rung 8-bis (2026-08-11)
-
-Rung 8 is conservative by design, but the evidence it admits still has to be evidence. Two shapes
-were producing verdicts that describe someone else's package:
-
-**Lineage.** Red Hat Hardened Images ship `curl-8.21.0-0.1.1.hum1` — a `hum` build on its own
-version line (§2). CVE-2026-58055 names those three PIDs and nothing else, so a RHEL 9
-`curl-minimal-7.76.1-40.el9` was reported POSITIVE with "Fix available (in Hardened Images)". §6b
-already refuses to compare NEVRAs across lineages **in** scope; out of scope the same NEVRA is no
-more comparable. A versioned related PID is now skipped unless `_stream_comparable`.
-
-**Another RHEL line, per its own CPE.** Pre-RHEL-6 documents identify products as `3AS`,
-`4Desktop`, `2.1AS` — no `enterprise_linux_N`, no `.elN`, nothing the PID-string tests recognise,
-so `_is_version_neutral_product` returned True and rung 8 admitted them. That is how CVE-2004-0642
-(krb5, RHEL 3) held a 2026 `krb5-libs-1.21.1-10.el9_8` vulnerable, and with the corpus fully
-mirrored it was 56 rows on one image. The CPE says what the PID does not
-(`cpe:/o:redhat:enterprise_linux:3::as`), so a product whose CPE names a RHEL major other than the
-workload's is skipped. `_is_any_rhel_ver_product` already knew the `3AS` shape — only the
-version-neutral test did not.
-
-**Source alias.** A bare `openssl.src` under `red_hat_jboss_enterprise_application_platform_5`
-matches `openssl-libs` only through the SRPM name (rung 5s), and every product that ever shipped an
-openssl carries that source name. CVE-2014-3566 (POODLE) enumerates RHEL 5 `openssl097a` and RHEL 7
-`openssl098e` and no RHEL 9 at all, so the alias was the only thing holding a 2014 protocol flaw
-against a current openssl 3.5.5. A **version-neutral** PID must now match the binary component name
-on its own, and a `.src` PID from that class never decides at all: it names the source the product
-ships, not a binary of ours, so on a component literally named `openssl` the name test alone would
-still let POODLE through. The restriction stops at that class: a PID carrying our own RHEL major is
-Red Hat enumerating our package line (§9.1), where the source name is how a subpackage is tracked at
-all (`util-linux.src` for `libsmartcols`), and the alias stays. `openshift-clients` under a
-version-neutral OCP product still decides — the name matches directly and the PID names a binary.
-
-**Tracked under any of our names.** The "Red Hat enumerates this package per RHEL major" test above
-matched the name the *standalone product* used, which fails whenever RHEL packages the same software
-differently: RHEL 7 tracks `python-requests` where Satellite 6 says `python3-requests`, so a 2015
-cookie CVE stayed POSITIVE against RHEL 9's 2.25.1 even though Red Hat had already marked RHEL 7
-not affected. It now matches against every name the component answers to — binary, SBOM source and
-`.src` alias — so the question is "does Red Hat track OUR package under a RHEL product here", not
-"did this product happen to spell it our way". `openshift-clients` is unaffected: RHEL ships no such
-package under any name.
-
-> A document-level variant was tried first: skip every version-neutral product when the file
-> enumerates the RHEL line without our major. It fixed both cases but disabled a whole rung on a
-> per-document condition, and it fired 265 times on cert-manager while altering no verdict there.
-> The two row-level tests replacing it give identical results on measured data — 497 POSITIVE over
-> 4,755 candidate rows on an OCP payload image, 261 over 3,252 on cert-manager — with the decision
-> made per statement instead of per file.
-
-### 8b-bis. Do NOT loosen image-name matching (2026-08-05)
-
-Exact `repository_url` / `pkg:oci/<name>` equality is correct as written; normalising names
-(stripping `-rhelN` or an `ose-` prefix) or matching on `com.redhat.component` manufactures
-**cross-product** false matches:
-
-- `registry.redhat.io/amq-streams/console-rhel9-operator` normalises onto VEX's
-  `ose-console-rhel9-operator`, which belongs to `openshift4`. VEX has **zero** repos under
-  `amq-streams` — that image is genuinely untracked and 0 matches is the right answer.
-- VEX's `console-api` belongs to `rhacm2`, not amq-streams.
-- `com.redhat.component` is `ubi8-container` for the StackRox `collector` image; matching on it
-  would attribute base-image assessments to the product.
-
-Of 337 images matching by no route at all, **249 are genuinely untracked by Red Hat**; the
-other 88 are collisions of this kind. Silence is the correct output for both.
-
-**Identity-route availability is thin for OCP payload images.** Across 13,136 RHACS scans
-(2,932,234 findings): 27.2% of findings have the `name` label as their *only* identity route,
-and 7.6% have none. VEX names the **published** `registry.redhat.io` digest, and the registry-path route is
-structurally dead for payload images — the `name` label carries identity, on a population where
-label and path namespaces disagree 67.3% of the time.
-
-> **Correction (2026-10-08) — the digest route is alive.** The published per-arch digest *is* the
-> payload digest: the release payload references the same manifest that is mirrored to
-> `registry.redhat.io`. Of 7,775 distinct `ocp-v4.0-art-dev` digests in the stored OCP findings,
-> **3,347 (43%) appear verbatim in the VEX corpus** — e.g. the 4.20.16 `hyperkube`
-> (`art-dev@sha256:7fc7a7fb…`) is CVE-2025-68121's `fixed` build
-> `Red Hat OpenShift Container Platform 4.20:registry.redhat.io/openshift4/ose-hyperkube-rhel9@sha256:7fc7a7fb…_amd64`.
-> The earlier 0/201 came from a sample of older payloads. Rung 2 (this build) therefore decides a
-> large share of payload findings outright, as long as the scan carries the payload digest.
-
-### 8c. Scanner-identity × VEX-identity pairings (every observed pairing + resolution)
-| Scanner side | VEX side it matches | Rung |
-|---|---|---|
-| image digest (`@sha256:` in `image_ref`) | `stream:img@sha256:X_arch` PID with same X | 2 |
-| image ref repo / `name` label | OCI purl `repository_url=` / `pkg:oci/<name>` | 3a |
-| `ocp_component` (from name label) | image-path PID `ose-<c>-rhelN` / generic `<c>` | 3b/4 |
-| RPM binary name + `.elN_M` version (`SOURCE=OS`) | `parent:name-E:ver-rel.elN_M.arch` in scope | 5 |
-| RPM binary subpackage (`perl-libs`, `ceph-mon`) | source `.src` PID (`perl`,`ceph`) via alias | 5s |
-| Maven `group:artifact` (`SOURCE=JAVA`) | bare `artifact` PID (`pkg:maven`) | 5s |
-| Go module path (`SOURCE=GO`) | *(never tracked directly)* → containing image, else not listed | 3/6/9 |
-| any component, family assessed clear | in-scope KNA/fixed only | 6 |
-| OCP version vs RHOSE-`4.x` fixed streams | version comparison per errata policy | 7 |
-| component/image unlisted (statements name others only) | — | 9 |
-| RPM name absent from the entire file | — | 9r |
-
-### 8d. Severity, state, and fix version come from the DECISIVE PID
-Once a rung fires, severity/state/fix are read from **that** PID's `threats`/`remediations`, not the
-document header:
-- **Severity** priority chain: (1) OCI-purl-matched
-  PID's impact — within this, **own digest > generic (no-digest) > other builds only if uniform**;
-  (2) image-level PID impact; (3) component-name PID impact; (4) in-scope KA/fixed impact (highest);
-  (5) `aggregate_severity`; (6) any impact threat; (7) CVSS `baseSeverity`; (8) RHACS scan severity.
-- **State/justification**: from the decisive PID's remediation
-  `details` — `no_fix_planned`→"Will not fix"/"Out of support scope"; `none_available`→"Fix
-  deferred"/"Affected". **Never borrow another package's remediation**: "Will not fix"/"Fix
-  deferred" are package-specific plans — a component with its own statement reads its own
-  (`openssl-fips-provider` = Affected even though `openssl` = Will not fix in the same file).
-  Not-listed FALSE POSITIVES carry "Not affected"; a missing VEX file → "Unknown".
-- **Fix version:** the matched `fixed` NEVRA, preferring RHEL **base-repo** references over add-on
-  builds.
 
 ---
 
@@ -1065,124 +908,10 @@ known_not_affected while `:12` is known_affected.
 files carry it) applies to non-rpm rows only: npm `tar` inside the `npm` rpm must not
 make the rpm `tar` read the `npm` rpm's statements.
 
-## 11. The engine: statements in, verdict out (2026-10-20)
+## 11. The engine
 
-`core/csaf.py` turns a document into flat **statements** — status × product × component
-purl — and `core/judge.py` decides a finding with filters over them.  No PID grammar,
-no scope predicate, no namespace map: everything the rules need is in the purls, the
-CPEs and the product ids.
-
-### 11a. Products
-
-| family | how it is recognised | what it carries |
-|---|---|---|
-| `rhel` | CPE `enterprise_linux`, `rhel_eus`, `rhel_aus`, `rhel_tus`, `rhel_e4s`, `rhel_els`, `rhel_ens` | major; minor from the PID (`BaseOS-9.4.0.Z.EUS`, `7Server-7.9.Z`, RHEL 10 `BaseOS-10.2.Z`); mainline = GA / Z / Z.MAIN / Z.MAIN.EUS, side = EUS/AUS/TUS/E4S/ENS/ELS; `red_hat_enterprise_linux_N` is the line |
-| `ocp` | CPE `openshift`, `NBase-RHOSE-4.N` | version (`4` = the line) |
-| `layered` | any other CPE product | the CPE product key and version |
-| `vendor` | `red_hat_products`, bare `cpe:/a:redhat` | Red Hat's catch-all |
-
-A product is **ours** when it is RHEL of the image's major, or the image's own product
-(OpenShift for payload images; the CPE label's product; else the product whose image
-statements share the image's registry namespace — `openshift-gitops-1/…`) at its
-version or version-neutral.  Another version of our product is **other-version**.
-
-### 11b. Image identity
-
-An image statement is about the namespace/name path of its **product id**
-(`openshift4/ose-cli-rhel9@sha256:…`); the purl decides only when the product id has
-no namespace (`rhcos@…`).  In a 4,000-file sample, 108,837 of 493,373 image references
-(22%) name a different image in the purl than in the product id — mostly Brew
-component names, sometimes another image outright (`fluentd-rhel9` stamped with the
-`fluentd-rhel8` purl, `subctl-rhel9` with a `thanos-rhel8` one).  Our image is matched
-on its pull path, its `name` label, its digests, and for payload images its OpenShift
-component.
-
-### 11c. The verdict
-
-* **Every finding** — the vendor catch-all not affected → FALSE POSITIVE; a statement
-  naming this build's digest decides; a statement naming this image (no digest) in
-  our product as not affected, with nothing open about it, covers what is inside it
-  (`rhel9/buildah` under RHEL 9 for CVE-2025-65637 while the buildah rpm is affected).
-* **Red Hat's builds only.**  An rpm Red Hat did not build (syft's rpm `vendor`:
-  MongoDB's `mongodb-org-server`) is never decided by statements about Red Hat's
-  build of that name, and what it ships is not Red Hat's either → POSITIVE, "not
-  covered".  An image is Red Hat's when its registry is (`registry.redhat.io`,
-  `registry.access.redhat.com`, the OpenShift release repository) — an image built
-  FROM ubi keeps the base's `vendor` label, so the label decides only without a ref.
-* **An rpm** (§10g) — exact build fixed / not affected; a fix in the lineage; open for
-  our line; not affected; a fix only in later or side streams → POSITIVE, unless the
-  build is at or past a later minor's mainline fix (mainline is cumulative: criu
-  `3.18-4.module+el8.9.0+21697` rebuilds the 8.10 GA fix `+20326`) or newer than every
-  fix.  An rpm RHEL never names is decided by the product that makes it, wherever
-  it is installed (inferred): the rpm carries the product's name or OpenShift's
-  `rhaos` tag, and the product's version line — `openshift-clients-4.20.0` is
-  OpenShift 4's, `openshift-serverless-clients-1.17.0` Serverless 1's.  The line's
-  version-neutral statements and builds of any minor (by NEVRA: 4.20's client
-  carries a fix 4.13 shipped) count.  The version line alone is not enough
-  (python3-decorator 4.4.2 is RHEL's, not OpenShift 4's), and a product of another
-  line is never the maker (JBoss EAP 5's `openssl.src` never decides RHEL 9's
-  openssl 3.5 — POODLE).  An rpm no statement names is not listed: the image's own verdict belongs to
-  its IMAGE row, not to every rpm inside (systemd-libs is not what makes the
-  authentication operator affected by go-jose's CVE-2024-28180).  A versioned `known_not_affected` is a clean build, like a fix — RHEL backports, so
-  one upstream version holds different code per stream (glibc 2.28: the 8.6 EUS builds
-  "vulnerable code not present", fixed in 8.8 and 8.10).  A not-affected build of the
-  installed upstream version speaks for the installed code when it is our own stream's
-  (glibc 2.28-189.5.el8_6 under 8.6 EUS's 189.10), or when nothing is fixed or open
-  for the package (openssl-fips-provider 3.0.7-6.el9_5 clears 3.0.7-2.el9).
-  Statements about the SBOM's module stream outrank stream-less version-less ones
-  (RHEL 8 "postgresql: not affected" beside fixes for every `postgresql:12` stream).
-  **Provenance:** a plain `.elN` build comes from RHEL, so RHEL's statements run the
-  ladder; an `rhaos` / `el8pc` / … build its product's.  A version-less not-affected
-  from the other side still clears — RHEL's is about the code (libzstd vs the zstd CLI's
-  CVE-2021-24031, despite OpenShift's blanket "out of support scope"), the image's own
-  product's about its context (systemd CVE-2025-4598: OpenShift 4 not affected, RHEL
-  fixed only from 9.7).
-* **The image** — statements naming it in our version: its assessed builds (fixed and
-  not affected) ordered by build stamp, the nearest at or before ours speaking for ours,
-  else a later fix → POSITIVE (predates it); then open; then not affected.  Then the
-  line.  Then other versions: a fix (or known_affected) only in a newer version →
-  POSITIVE (errata policy: GitOps 1.6 fixed only in 1.8+; ose-cli 4.12 fixed only in
-  4.13); fixed only in older versions → build time decides; not affected in other
-  versions → FALSE POSITIVE, inferred (the cluster-openshift-apiserver-operator, not
-  affected by bind in every version from 4.12 to 4.18).
-* **A module inside** (Go, npm, Python, Maven) — Red Hat's purl for it in our
-  products; else the rpm that ships it (owner from the SBOM's file ownership, with its
-  source rpm: `python3-urllib3` → `python-urllib3`); else the image's verdict.  Else:
-  * a **non-Red Hat image's own module** (no Red Hat rpm ships it) → POSITIVE: Red
-    Hat's VEX does not cover MongoDB's Go binary, and its silence is not a clear;
-  * our product — at our version, the line, or a **newer** version (a previous one
-    is assumed vulnerable: the RHACS 3.66 operator under RHACS 4's listing) — lists
-    images known_affected / under_investigation and cleared nothing under that same
-    product node → POSITIVE, assumed vulnerable (§5g; a clear under the same node —
-    CVE-2024-45337's 8,476 — means Red Hat enumerated, and our absence is meaningful);
-  * a module of an rpm RHEL tracks gets no assumption (RHEL lists every affected rpm);
-  * otherwise not listed → FALSE POSITIVE, inferred.
-
-* **Inferred positives meet the binaries.**  A POSITIVE that rests on an inference —
-  the shipping product's version-neutral line, the errata assumption, another
-  version's fix — is checked against what the binaries contain: the SBOM lists the
-  modules compiled into them (per owning rpm, or the whole image) and OSV gives the
-  CVE's vulnerable ranges.  The CVE's packages present and all past the fix → FALSE
-  POSITIVE (`oc` 4.20 carries runc v1.1.13, past CVE-2024-21626's 1.1.12, whatever
-  "OpenShift 4: openshift-clients affected" says); one in the vulnerable range →
-  POSITIVE, with that as the proof.  **Absence is never evidence**: syft lists a fork
-  or a `replace` target under its own name (golang-jwt/jwt's vulnerable code ships
-  as `dgrijalva/jwt-go` / `form3tech-oss/jwt-go` in the RHACS and GitOps operators),
-  and code bundled into a binary is not listed at all (undici in `node`, pip's
-  `_vendor`, Red Hat's FIPS Go toolchain).  A version syft cannot read (`UNKNOWN`)
-  is never past a fix, and a statement about this build is never second-guessed.
-
-`stated` is True only when the deciding statement is about our product and our
-package / image / build; everything else is published as inferred.
-
-### 11d. Checked against
-
-Old engine vs new engine on the candidate rows of 30 images (customer ubi8/9/10,
-postgresql, nodejs, python, openjdk, buildah, ose-cli, operators, OpenShift payloads;
-106,928 rows): every disagreement class was read against the statements in Red Hat's
-files; the classes and their resolution are summarised
-in the commit.  The rpm rules are also checked by an independent evaluator that
-shares no code with the engine (purls and product names only).
+The engine that applies this model is described in [RULES.md](RULES.md); the decision ladder of
+earlier versions (§8 of previous revisions of this file) was removed with that code.
 
 ---
 
