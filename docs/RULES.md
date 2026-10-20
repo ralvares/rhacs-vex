@@ -87,20 +87,29 @@ version or the line; not affected; fixes only elsewhere → affected; else not l
 One statement per (CVE, package). Products: `pkg:oci/<name>@sha256:<digest>` for every
 digest of the image (plus the digest as a `sha-256` hash), with the package purl without
 qualifiers as the subcomponent (Go also lowercased, as trivy writes it); then the package
-purl again as a product of its own. go-vex `PurlMatches`: a purl without qualifiers matches
+purl again as a product of its own, with itself as its only subcomponent. go-vex `PurlMatches`: a purl without qualifiers matches
 any qualifiers. grype matches the image product first, then the package as the product.
 trivy checks the package as the product, then walks up the dependency graph to the image —
 and keeps the finding when the walk meets a cycle (rpm Requires: glibc ↔ bash, which most
 rpms in an image sit above), so without the package product trivy dropped nothing on ubi9
-(verified: grype 527 → 525, trivy 534 → 532, the two findings vextriage clears). A
-statement about the image itself has no subcomponent: it covers the whole image.
+(verified: grype 527 → 525, trivy 534 → 532, the two findings vextriage clears). That
+product needs the subcomponent: trivy reads a product without subcomponents as covering
+everything below it in that walk, and `mod_http2` not affected (ubi9/python-312) then
+cleared 27 findings of `httpd` — which mod_http2 requires — that vextriage keeps. A
+statement about the image itself has no subcomponent: it covers the whole image. A
+statement made from a scanner's findings (`scan --scanner … --openvex`) carries the
+scanner's own id as an alias: grype reports Go modules as `GHSA-…` and matches only that
+id (on the OpenShift release image its 19 cleared Go findings were applied only with it).
+`vextriage openvex IMAGE` is the free scan: it holds what Red Hat's data names for the
+image's rpms, purls and paths — a Go module Red Hat never names by purl has no statement
+there, so to clear a scanner's findings use `scan --scanner … --openvex`.
 `not_affected` carries Red Hat's justification only when stated; inferred ones carry an
 `impact_statement`. `--stated-only` keeps Red Hat's own statements only.
 
 ## Calibration (holdout on the whole corpus)
 
 `tools/holdout.py` hides Red Hat's own statement for an (image or rpm, CVE), lets the
-engine infer, and compares with the hidden truth — 1,138,085 cases from all 72,458
+engine infer, and compares with the hidden truth — 1,138,118 cases from all 72,458
 documents (at most 40 per document per kind; 2 minutes). Run of 2026-10-20 (feed of the
 same day). Accuracy counts a hidden `fixed` as affected (an unnamed build may predate
 the fix); *decisive* scores only hidden affected vs. not affected with the component

@@ -12,6 +12,9 @@ scanner's purl with any qualifiers, and a version must be equal. So:
                  to the image through the dependency graph and keeps the finding
                  when the walk meets a cycle (rpm Requires: glibc ↔ bash …), so
                  only a statement naming the package as the product reaches it.
+                 Its only subcomponent is itself: a product without subcomponents
+                 covers everything below it in trivy's walk (mod_http2 not affected
+                 would clear httpd, which mod_http2 requires).
                  grype tries the image first, then the package as the product.
 """
 from __future__ import annotations
@@ -53,12 +56,16 @@ def subcomponents(p: Package) -> list:
     return [{'@id': i} for i in ids]
 
 
-def statement(image: Image, cve: str, p: Package, v) -> dict:
+def statement(image: Image, cve: str, p: Package, v, aliases=()) -> dict:
     prods = products(image)
     subs = subcomponents(p)
     if subs:
-        prods = [dict(pr, subcomponents=subs) for pr in prods] + [{'@id': sc['@id']} for sc in subs]
-    st = {'vulnerability': {'name': cve}, 'products': prods, 'status': v.status}
+        prods = [dict(pr, subcomponents=subs) for pr in prods] + [{'@id': sc['@id'], 'subcomponents': [sc]}
+                                                                   for sc in subs]
+    vuln = {'name': cve}
+    if aliases:                                 # the scanner's own id (grype matches GHSA-… only)
+        vuln['aliases'] = sorted(set(aliases))
+    st = {'vulnerability': vuln, 'products': prods, 'status': v.status}
     who = 'Red Hat' if v.stated else 'Red Hat (inferred)'
     if v.status == 'not_affected':
         if v.justification:
@@ -77,17 +84,17 @@ def statement(image: Image, cve: str, p: Package, v) -> dict:
 
 
 def document(image: Image, rows, stated_only: bool = False, statuses=STATUSES) -> dict:
-    """rows: iterable of (cve, package, verdict). Inferred verdicts are dropped
-    with stated_only."""
-    stmts, seen = [], set()
-    for cve, p, v in rows:
+    """rows: iterable of (cve, package, verdict[, the scanner's id for it]).
+    Inferred verdicts are dropped with stated_only."""
+    picked: dict = {}
+    for cve, p, v, *alias in rows:
         if v.status not in statuses or (stated_only and not v.stated):
             continue
         key = (cve, p.kind, p.name, p.version, v.status)
-        if key in seen:
-            continue
-        seen.add(key)
-        stmts.append(statement(image, cve, p, v))
+        if key not in picked:
+            picked[key] = (cve, p, v, set())
+        picked[key][3].update(a for a in alias if a and a != cve)
+    stmts = [statement(image, cve, p, v, aliases) for cve, p, v, aliases in picked.values()]
     stmts.sort(key=lambda s: (s['vulnerability']['name'], s['status'],
                               s['products'][0].get('subcomponents', [{}])[0].get('@id', '')))
     now = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())

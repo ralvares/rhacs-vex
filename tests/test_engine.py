@@ -356,7 +356,19 @@ def test_openvex_names_the_package_as_a_product_too():
     assert ids == ['pkg:oci/ubi@sha256:' + 'ab' * 32, 'pkg:oci/ubi@sha256:' + 'cd' * 32,
                    'pkg:rpm/redhat/python3-pip-wheel@21.3.1-2.el9_8']
     assert st['products'][0]['subcomponents'] == [{'@id': 'pkg:rpm/redhat/python3-pip-wheel@21.3.1-2.el9_8'}]
-    assert 'subcomponents' not in st['products'][2] and st['justification'] == 'vulnerable_code_not_present'
+    # itself as its only subcomponent: trivy reads a bare product as covering what it depends on
+    assert st['products'][2]['subcomponents'] == [{'@id': 'pkg:rpm/redhat/python3-pip-wheel@21.3.1-2.el9_8'}]
+    assert st['justification'] == 'vulnerable_code_not_present'
     # the image itself: image products only
     whole = openvex.statement(img, CVE, Package('image', 'ubi9/ubi', '9.8-1'), Verdict('not_affected', 'x', True))
     assert [p['@id'] for p in whole['products']] == ids[:2]
+
+
+def test_openvex_carries_the_scanners_id_as_an_alias():
+    # grype reports Go modules as GHSA-…, and its VEX filter matches that id only
+    from vextriage import openvex
+    from vextriage.model import Verdict
+    img = rhel_image(digests=['ab' * 32])
+    v = Verdict('not_affected', 'not listed', False)
+    doc = openvex.document(img, [(CVE, go(), v, 'GHSA-mh2q-q3fh-2475'), (CVE, go(), v, ''), (CVE, go(), v)])
+    assert [s['vulnerability'] for s in doc['statements']] == [{'name': CVE, 'aliases': ['GHSA-mh2q-q3fh-2475']}]

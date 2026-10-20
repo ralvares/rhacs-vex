@@ -130,8 +130,8 @@ def cmd_scan(args) -> int:
         with open(args.csv, 'w', newline='') as fh:
             report.write_csv(recs, fh)
     if args.openvex:
-        doc = openvex.document(image, ((r.finding.cve, r.finding.package, r.verdict) for r in rows),
-                               stated_only=args.stated_only)
+        doc = openvex.document(image, ((r.finding.cve, r.finding.package, r.verdict, r.finding.vuln_id)
+                                       for r in rows), stated_only=args.stated_only)
         with open(args.openvex, 'w') as fh:
             json.dump(doc, fh, indent=1)
     if args.format == 'json':
