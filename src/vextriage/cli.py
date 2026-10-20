@@ -206,7 +206,8 @@ def cmd_doctor(args) -> int:
     vex, idx = _paths(args)
     for tool in ('syft', 'grype', 'trivy'):
         print(f'{tool:8} {shutil.which(tool) or "not installed"}')
-    n = len([f for f in os.listdir(vex) if f.endswith('.json')]) if os.path.isdir(vex) else 0
+    from .sync import files
+    n = len(files(vex)) if os.path.isdir(vex) else 0
     print(f'mirror   {vex}: {n:,} documents')
     if os.path.exists(idx):
         from .index import Index

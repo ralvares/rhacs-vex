@@ -44,6 +44,9 @@ from concurrent.futures import ProcessPoolExecutor
 from urllib.parse import unquote
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+from vextriage.sync import files as mirror_files, load  # noqa: E402
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
 from vextriage.csaf import STATUSES, classify   # noqa: E402
 
 SCHEMA = """
@@ -108,11 +111,10 @@ def image_path(ref: str, purl: str) -> str:
 def read_doc(path: str):
     """(cve, title, severity, products, components, listings) of one document."""
     try:
-        with open(path) as fh:
-            d = json.load(fh)
+        d = load(path)
     except Exception:
         return None
-    cve = os.path.basename(path)[:-5]
+    cve = os.path.basename(path).split('.')[0]
     tree = d.get('product_tree') or {}
     nodes = {}
 
@@ -174,8 +176,7 @@ def read_doc(path: str):
 
 
 def build(vex_dir: str, out: str, workers: int) -> dict:
-    files = sorted(os.path.join(vex_dir, f) for f in os.listdir(vex_dir)
-                   if f.startswith('CVE-') and f.endswith('.json'))
+    files = sorted(mirror_files(vex_dir).values())
     tmp = out + '.tmp'
     if os.path.exists(tmp):
         os.unlink(tmp)

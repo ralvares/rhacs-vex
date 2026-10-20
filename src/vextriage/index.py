@@ -7,7 +7,7 @@
     product(id, pid, name, cpe)     every product node
     meta(key, value)
 
-Built from data/vex/CVE-*.json by `vextriage sync`, re-reading only the
+Built from data/vex/CVE-*.json.gz by `vextriage sync`, re-reading only the
 documents whose file changed.
 """
 from __future__ import annotations
@@ -22,6 +22,7 @@ from functools import lru_cache
 from typing import Iterable, Optional
 
 from . import csaf
+from .sync import files as mirror_files, load
 
 VERSION = '3'
 SCHEMA = """
@@ -48,11 +49,10 @@ def d64(digest_hex: str) -> int:
 
 def _read(path: str):
     """One mirror file → (cve, mtime, blob, names, images, digests), or None."""
-    cve = os.path.basename(path)[:-5].upper()
+    cve = os.path.basename(path).split('.')[0].upper()
     try:
         mtime = os.path.getmtime(path)
-        with open(path, 'rb') as fh:
-            doc = csaf.parse(json.load(fh), cve)
+        doc = csaf.parse(load(path), cve)
     except (OSError, ValueError):
         return None
     names, images, digests = set(), set(), set()
@@ -85,8 +85,7 @@ class Index:
         or when the index format changed); drop documents whose file is gone."""
         if self.meta('version') != VERSION:
             full = True
-        files = {f[:-5].upper(): os.path.join(vex_dir, f) for f in os.listdir(vex_dir)
-                 if f.upper().startswith('CVE-') and f.endswith('.json')}
+        files = mirror_files(vex_dir)
         have = dict(self.db.execute('SELECT cve, mtime FROM doc'))
         if full and have:
             for t in ('name', 'image', 'digest', 'doc', 'product'):

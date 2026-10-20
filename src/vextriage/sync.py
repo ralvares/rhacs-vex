@@ -4,14 +4,18 @@
     changes.csv          → every file with its last change: fetch what is newer
     deletions.csv        → files Red Hat withdrew: remove them
 
-Local files are named CVE-YYYY-NNNN.json and carry Red Hat's change time as
-their mtime, which is how the next sync (and the index) know what changed.
+Local files are named CVE-YYYY-NNNN.json.gz (gzip: the corpus is ~22 GB as
+plain JSON, ~1.2 GB compressed) and carry Red Hat's change time as their
+mtime, which is how the next sync (and the index) know what changed. Plain
+.json files from an older mirror are compressed in place on the next sync.
 """
 from __future__ import annotations
 
 import calendar
 import csv
+import gzip
 import io
+import json
 import os
 import re
 import shutil
@@ -23,6 +27,23 @@ from concurrent.futures import ThreadPoolExecutor
 
 FEED = os.environ.get('VEXTRIAGE_FEED', 'https://security.access.redhat.com/data/csaf/v2/vex')
 _NAME = re.compile(r'(cve-\d{4}-\d+)\.json$', re.I)
+_FILE = re.compile(r'^(CVE-\d{4}-\d+)\.json(\.gz)?$', re.I)
+
+
+def files(vex_dir: str) -> dict:
+    """{CVE: path} of the mirror (.json.gz, or a plain .json not yet compressed)."""
+    out: dict = {}
+    for f in os.listdir(vex_dir):
+        m = _FILE.match(f)
+        if m and (m.group(2) or m.group(1).upper() not in out):
+            out[m.group(1).upper()] = os.path.join(vex_dir, f)
+    return out
+
+
+def load(path: str) -> dict:
+    """One mirror file, parsed."""
+    with (gzip.open(path, 'rb') if path.endswith('.gz') else open(path, 'rb')) as fh:
+        return json.load(fh)
 
 
 def _session():
@@ -55,7 +76,7 @@ def _ts(s: str) -> float:
 
 def _local(vex_dir: str, remote: str) -> str:
     m = _NAME.search(remote)
-    return os.path.join(vex_dir, m.group(1).upper() + '.json') if m else ''
+    return os.path.join(vex_dir, m.group(1).upper() + '.json.gz') if m else ''
 
 
 def _csv(session, name: str) -> list:
@@ -66,12 +87,32 @@ def _csv(session, name: str) -> list:
 
 
 def _write(path: str, data: bytes, mtime: float):
+    """Store a document gzipped, stamped with Red Hat's change time."""
     tmp = path + '.tmp'
     with open(tmp, 'wb') as fh:
-        fh.write(data)
+        fh.write(gzip.compress(data, 6, mtime=0))
     os.replace(tmp, path)
     if mtime:
         os.utime(path, (mtime, mtime))
+    plain = path[:-3] if path.endswith('.gz') else ''
+    if plain and os.path.exists(plain):
+        os.unlink(plain)
+
+
+def _compress_plain(vex_dir: str, workers: int, log) -> int:
+    """An older mirror's plain .json files → .json.gz, keeping their mtime."""
+    plain = [os.path.join(vex_dir, f) for f in os.listdir(vex_dir)
+             if _FILE.match(f) and not f.endswith('.gz')]
+    if not plain:
+        return 0
+    log(f'compressing {len(plain):,} plain .json files …')
+
+    def one(path):
+        with open(path, 'rb') as fh:
+            _write(path + '.gz', fh.read(), os.path.getmtime(path))
+    with ThreadPoolExecutor(workers) as ex:
+        list(ex.map(one, plain))
+    return len(plain)
 
 
 def _unpack_archive(session, vex_dir: str, log) -> float:
@@ -128,7 +169,8 @@ def mirror(vex_dir: str, full: bool = False, workers: int = 8, log=print) -> dic
     """Bring vex_dir up to date with Red Hat's feed."""
     os.makedirs(vex_dir, exist_ok=True)
     session = _session()
-    have = {f for f in os.listdir(vex_dir) if f.endswith('.json')}
+    _compress_plain(vex_dir, workers, log)
+    have = files(vex_dir)
     cut = None
     if full or len(have) < 1000:
         try:
@@ -162,8 +204,8 @@ def mirror(vex_dir: str, full: bool = False, workers: int = 8, log=print) -> dic
     removed = 0
     for remote, *_ in _csv(session, 'deletions.csv'):
         path = _local(vex_dir, remote)
-        if path and os.path.exists(path):
-            os.unlink(path)
-            removed += 1
-    return {'fetched': got, 'removed': removed, 'documents': len([f for f in os.listdir(vex_dir)
-                                                                  if f.endswith('.json')])}
+        for p in (path, path[:-3]) if path else ():
+            if os.path.exists(p):
+                os.unlink(p)
+                removed += 1
+    return {'fetched': got, 'removed': removed, 'documents': len(files(vex_dir))}

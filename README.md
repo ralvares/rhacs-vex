@@ -17,13 +17,14 @@ the ones that are real.
 
 ```bash
 pip install -e .            # Python 3.10+; add .[archive] for the fast first sync
-vextriage sync              # mirror Red Hat CSAF-VEX (~7 GB) and build the index (~320 MB)
+vextriage sync              # mirror Red Hat CSAF-VEX (~1.6 GB gzipped) and build the index (~800 MB)
 vextriage doctor            # which of syft / grype / trivy are installed, data status
 ```
 
-`sync` downloads Red Hat's dated archive once, then only what changed
-(`changes.csv` / `deletions.csv`). Run it daily. Data lives in `./data`
-(`VEXTRIAGE_DATA` to move it).
+`sync` downloads Red Hat's dated archive once (~370 MB, 72,000+ documents; about 7
+minutes), then only what changed (`changes.csv` / `deletions.csv`, seconds). Each document
+is kept gzipped (`data/vex/CVE-….json.gz`): the corpus is ~22 GB as plain JSON. Run it
+daily. Data lives in `./data` (`VEXTRIAGE_DATA` to move it).
 
 ## Use
 
