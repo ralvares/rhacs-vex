@@ -99,8 +99,12 @@ def document(image: Image, rows, stated_only: bool = False, statuses=STATUSES) -
     # over a package still affected (go-toolset: an inferred 'not listed' for the image
     # cleared the golang rpms Red Hat lists affected)
     positive = {cve for cve, p, v, _ in picked.values() if p.kind != 'image' and v.positive}
+    # one purl, two verdicts (stdlib go1.26.7 in a binary Red Hat lists affected, and in
+    # another it does not): a scanner cannot tell the copies apart, so the clear is left out
+    open_ids = {(cve, sc['@id']) for cve, p, v, _ in picked.values() if v.positive for sc in subcomponents(p)}
     stmts = [statement(image, cve, p, v, aliases) for cve, p, v, aliases in picked.values()
-             if not (p.kind == 'image' and not v.positive and (not v.stated or cve in positive))]
+             if not (p.kind == 'image' and not v.positive and (not v.stated or cve in positive))
+             and not (not v.positive and any((cve, sc['@id']) in open_ids for sc in subcomponents(p)))]
     stmts.sort(key=lambda s: (s['vulnerability']['name'], s['status'],
                               s['products'][0].get('subcomponents', [{}])[0].get('@id', '')))
     now = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())

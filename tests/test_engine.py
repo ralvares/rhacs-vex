@@ -387,3 +387,16 @@ def test_openvex_clears_the_whole_image_only_on_red_hats_word():
     assert ids(openvex.document(img, [(CVE, me, inferred), (CVE, golang, affected)])) == [('affected', 1)]
     assert ids(openvex.document(img, [(CVE, me, stated), (CVE, golang, affected)])) == [('affected', 1)]
     assert ids(openvex.document(img, [(CVE, me, stated)])) == [('not_affected', 0)]
+
+
+def test_openvex_leaves_out_a_clear_when_the_same_purl_stays_affected_elsewhere():
+    # web-terminal-tooling: stdlib go1.26.7 in two binaries, one affected (its rpm is listed),
+    # one not listed — grype applied the clear to both
+    from vextriage import openvex
+    from vextriage.model import Verdict
+    img = rhel_image(digests=['ab' * 32])
+    a = Package('go', 'stdlib', 'go1.26.7', purl='pkg:golang/stdlib@1.26.7', locations=('/usr/bin/oc',))
+    b = Package('go', 'stdlib', 'go1.26.7', purl='pkg:golang/stdlib@1.26.7', locations=('/usr/bin/kubectl',))
+    doc = openvex.document(img, [(CVE, a, Verdict('affected', 'via rpm', True)),
+                                 (CVE, b, Verdict('not_affected', 'not listed', False))])
+    assert [s['status'] for s in doc['statements']] == ['affected']

@@ -99,7 +99,10 @@ cleared 27 findings of `httpd` — which mod_http2 requires — that vextriage k
 statement about the image itself has no subcomponent: the scanners apply it to every
 package, so a cleared one is written only when Red Hat stated it and no package of the
 image is still affected for that CVE (an inferred "not listed" for registry.access.redhat.com/
-ubi9/go-toolset cleared ten golang findings Red Hat lists affected). A
+ubi9/go-toolset cleared ten golang findings Red Hat lists affected). One purl with two
+verdicts in one image (stdlib go1.26.7 in a binary whose rpm Red Hat lists affected and in
+one it does not, web-terminal-tooling) keeps only the affected statement: a scanner cannot
+tell the copies apart, and grype applied the clear to both. A
 statement made from a scanner's findings (`scan --scanner … --openvex`) carries the
 scanner's own id as an alias: grype reports Go modules as `GHSA-…` and matches only that
 id (on the OpenShift release image its 19 cleared Go findings were applied only with it).

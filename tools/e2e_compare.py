@@ -2,8 +2,8 @@
 
     python3 tools/e2e_compare.py data/scans/NAME
 
-Keys are (CVE, package name): two versions of one package (go1.26.7 / go1.26.1 stdlib)
-with different verdicts show as a 'clear left' that is the other version.
+Keys are (CVE, package name, version without epoch). A key cleared at one location and
+kept at another (two binaries with the same stdlib) counts as kept: it must survive.
 """
 import json
 import re
@@ -14,6 +14,10 @@ name = d.split('/')[-1]
 CVE = re.compile(r'^CVE-\d{4}-\d+$')
 
 
+def ver(v):
+    return re.sub(r'^\d+:', '', v or '')
+
+
 def grype(f):
     out = set()
     for m in json.load(open(f))['matches']:
@@ -21,12 +25,12 @@ def grype(f):
         if not CVE.match(i):
             rel = [r['id'] for r in m.get('relatedVulnerabilities') or [] if CVE.match(r['id'])]
             i = rel[0] if rel else i
-        out.add((i, m['artifact']['name']))
+        out.add((i, m['artifact']['name'], ver(m['artifact']['version'])))
     return out
 
 
 def trivy(f):
-    return {(v['VulnerabilityID'], v['PkgName']) for r in json.load(open(f)).get('Results') or []
+    return {(v['VulnerabilityID'], v['PkgName'], ver(v['InstalledVersion'])) for r in json.load(open(f)).get('Results') or []
             for v in r.get('Vulnerabilities') or []}
 
 
@@ -34,8 +38,9 @@ for sc, fn, raw, vexes in (('grype', grype, 'grype.raw.json', (('free', 'grype.v
                            ('trivy', trivy, 'trivy.raw.json', (('free', 'trivy.vex.json'), ('scan', 'trivy.vext.json')))):
     before = fn(f'{d}/{raw}')
     rows = json.load(open(f'{d}/{sc}-triage.json'))
-    clear = {(r['cve'], r['package']) for r in rows if r['status'] in ('not_affected', 'fixed')}
-    keep = {(r['cve'], r['package']) for r in rows if r['status'] not in ('not_affected', 'fixed')} - clear
+    keep = {(r['cve'], r['package'], ver(r['version'])) for r in rows if r['status'] not in ('not_affected', 'fixed')}
+    clear = {(r['cve'], r['package'], ver(r['version'])) for r in rows if r['status'] in ('not_affected', 'fixed')} - keep
+    keep &= before
     for mode, vex in vexes:
         after = fn(f'{d}/{vex}')
         removed = before - after
