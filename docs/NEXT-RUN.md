@@ -4,6 +4,29 @@ A prompt for an agent run on a machine with internet, Docker and an OpenShift pu
 secret. Paste everything below the line; replace `PULL_SECRET_FILE` with the path of the
 pull secret file.
 
+**Status (2026-10-21).** Run once, with a temporary pull secret, on the feed of that day
+(72,830 documents). With `scan --scanner … --openvex`, every finding vextriage clears was
+gone under `--vex` and no finding it keeps was, in grype and trivy, on all of:
+
+| image | resolved as | grype findings / cleared | trivy findings / cleared |
+|---|---|---:|---:|
+| ocp-v4.0-art-dev cli (4.22.18, b31735da…) | OpenShift 4.22, RHEL 9.8 | 547 / 27 | 93 / 23 |
+| ocp-v4.0-art-dev cluster-version-operator (4.22.18, e5f227a4…) | OpenShift 4.22 | 487 / 21 | 76 / 18 |
+| ocp-v4.0-art-dev cli (4.20.42, d44d07d3…) | OpenShift 4.20, RHEL 9.6 | 894 / 191 | 130 / 60 |
+| registry.redhat.io/openshift4/ose-cli-rhel9:latest | OpenShift 4.22 | 509 / 27 | 55 / 23 |
+| registry.redhat.io/rhel9/postgresql-16:latest | RHEL 9.8 | 864 / 5 | 873 / 5 |
+| registry.redhat.io/openshift-gitops-1/gitops-rhel8-operator:1.19 | GitOps 1.19, RHEL 8.10 | 409 / 44 | 408 / 43 |
+| registry.redhat.io/web-terminal/web-terminal-tooling-rhel9:1.15 | Web Terminal 1.15 | 1,395 / 197 | 1,125 / 76 |
+
+(the gitops and web-terminal repositories have no `latest` tag.) 140,983 deciding
+statements across these and the public images were found in the raw documents with the
+status their rule claims, 0 mismatches. Found and fixed on the way: one purl with two
+verdicts in an image (web-terminal: stdlib go1.26.7 in two binaries) — grype applied the
+clear to both copies. Still open, as listed in step 4: unowned content (pip in
+ubi9/python-312), rpms decided by another product's statement (gitops: openssl-libs
+affected by CVE-2014-3566 only through JBoss Web Server 1's `openssl.src`), and
+CVE-2026-42507 (the payload images get "not listed"; neither scanner reports it there).
+
 ---
 
 Repository ralvares/rhacs-vex, branch main (work and push on main only; no pull requests).
