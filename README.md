@@ -21,7 +21,7 @@ vextriage sync              # mirror Red Hat CSAF-VEX (~1.6 GB) and build the in
 vextriage doctor            # which of syft / grype / trivy are installed, data status
 ```
 
-`sync` downloads Red Hat's dated archive once (~370 MB, 72,000+ documents; about 10
+`sync` downloads Red Hat's dated archive once (~370 MB, 72,000+ documents; about 15
 minutes with the index), then only what changed (`changes.csv` / `deletions.csv`, seconds).
 Everything lives in two SQLite files under `./data` (`VEXTRIAGE_DATA` to move it):
 `vex.sqlite`, Red Hat's documents as published (gzipped; ~22 GB as plain JSON), and

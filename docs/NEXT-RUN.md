@@ -55,7 +55,7 @@ credentials it did not have. That is your job.
      `$DOCKER_CONFIG/config.json`, which is a pull secret's format. Confirm with
      `oc image info --filter-by-os=linux/amd64 registry.redhat.io/rhel9/postgresql-16:latest`.
 
-2. `vextriage sync` (first run about 10 minutes: a ~370 MB archive, then the index). Run it
+2. `vextriage sync` (first run about 15 minutes: a ~370 MB archive, then the index). Run it
    a second time and confirm it only fetches what changed. Report the document count and
    index size.
 
