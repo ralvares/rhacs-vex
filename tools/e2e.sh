@@ -19,6 +19,10 @@ print(rd[0] if rd else '$ref')")
 echo "$pin" > "$d/ref"
 grype "sbom:$d/sbom.syft.json" -o json -q > "$d/grype.raw.json"
 trivy image -q -f json "$pin" > "$d/trivy.raw.json" 2> "$d/trivy.raw.err"
+# the --vex runs below must see the same vulnerability data as these two: a DB refreshed
+# in between (trivy's is due every 24 h) changes the findings, not the VEX
+export GRYPE_DB_AUTO_UPDATE=false
+SKIP="--skip-db-update --skip-java-db-update"
 vextriage scan --sbom "$d/sbom.syft.json" --json "$d/free.json" > "$d/free.txt" 2>/dev/null
 vextriage scan --sbom "$d/sbom.syft.json" --grype "$d/grype.raw.json" --json "$d/grype-triage.json" \
   --openvex "$d/xg.openvex.json" --all > "$d/grype.txt" 2>/dev/null
@@ -27,6 +31,6 @@ vextriage scan --sbom "$d/sbom.syft.json" --trivy "$d/trivy.raw.json" --json "$d
 vextriage openvex --sbom "$d/sbom.syft.json" -o "$d/x.openvex.json" 2>/dev/null
 grype "sbom:$d/sbom.syft.json" --vex "$d/x.openvex.json" -o json -q > "$d/grype.vex.json"
 grype "sbom:$d/sbom.syft.json" --vex "$d/xg.openvex.json" -o json -q > "$d/grype.vexg.json"
-trivy image -q -f json --vex "$d/x.openvex.json" "$pin" > "$d/trivy.vex.json" 2>/dev/null
-trivy image -q -f json --vex "$d/xt.openvex.json" "$pin" > "$d/trivy.vext.json" 2>/dev/null
+trivy image -q -f json $SKIP --vex "$d/x.openvex.json" "$pin" > "$d/trivy.vex.json" 2>/dev/null
+trivy image -q -f json $SKIP --vex "$d/xt.openvex.json" "$pin" > "$d/trivy.vext.json" 2>/dev/null
 python3 "$here/e2e_compare.py" "$d"
