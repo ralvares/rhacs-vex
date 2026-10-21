@@ -10,7 +10,7 @@ EXPECT = {
  'fixed_ev': {'rpm_stream_fix','rpm_inherited','product_fix','product_past_fix','rpm_newer_version','rpm_past_mainline',
               'rpm_later_stream','rpm_errata','product_errata','image_later_fix','image_older_fix','image_unordered_fix','purl_fix'},
  'kna_ev': {'rpm_binary_clear','rpm_not_affected','rpm_clean_build','rpm_subpackage','product_not_affected','product_context',
-            'image_clear','purl_not_affected','image_older_not_affected','vendor','rhel_code','image_line_clear' ,'image_own_clear'},
+            'image_clear','purl_not_affected','image_older_not_affected','image_newer_not_affected','vendor','rhel_code','image_line_clear' ,'image_own_clear'},
  'open_ev': {'rpm_open','product_open','image_line_open','image_own_open','purl_open','errata_assumed'},
 }
 _cache={}
