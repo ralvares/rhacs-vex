@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
+from functools import lru_cache
 from typing import NamedTuple, Optional
 
 
@@ -85,6 +86,7 @@ class EVR(NamedTuple):
         return f'{e}{self.version}-{self.release}' if self.release else f'{e}{self.version}'
 
 
+@lru_cache(maxsize=1 << 16)                         # pure; the same builds recur in every scan
 def parse_evr(s: str, epoch: Optional[int] = None) -> EVR:
     """'1:3.0.7-27.el9' or '3.0.7-27.el9' (+ an epoch given apart)."""
     s = s.replace('%2B', '+').replace('%2b', '+')
@@ -133,6 +135,7 @@ _EL = re.compile(r'\.el(\d+)(?:_(\d+))?([a-z]*)')
 _HUM = re.compile(r'\.hum\d')
 
 
+@lru_cache(maxsize=1 << 16)
 def dist(release: str) -> Dist:
     """What the dist tag of a release says (an EVR string works too)."""
     rel = release.replace('%2B', '+').replace('%2b', '+').rsplit('-', 1)[-1]

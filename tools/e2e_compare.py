@@ -34,8 +34,8 @@ def trivy(f):
             for v in r.get('Vulnerabilities') or []}
 
 
-for sc, fn, raw, vexes in (('grype', grype, 'grype.raw.json', (('free', 'grype.vex.json'), ('scan', 'grype.vexg.json'))),
-                           ('trivy', trivy, 'trivy.raw.json', (('free', 'trivy.vex.json'), ('scan', 'trivy.vext.json')))):
+for sc, fn, raw, vexes in (('grype', grype, 'grype.raw.json', (('vex', 'grype.vex.json'), ('scanner', 'grype.vexg.json'))),
+                           ('trivy', trivy, 'trivy.raw.json', (('vex', 'trivy.vex.json'), ('scanner', 'trivy.vext.json')))):
     before = fn(f'{d}/{raw}')
     rows = json.load(open(f'{d}/{sc}-triage.json'))
     keep = {(r['cve'], r['package'], ver(r['version'])) for r in rows if r['status'] not in ('not_affected', 'fixed')}
@@ -44,9 +44,9 @@ for sc, fn, raw, vexes in (('grype', grype, 'grype.raw.json', (('free', 'grype.v
     for mode, vex in vexes:
         after = fn(f'{d}/{vex}')
         removed = before - after
-        print(f'{name:12} {sc} {mode:4}-openvex: {len(before):5} -> {len(after):5}; clears {len(clear):4}: '
+        print(f'{name:12} {sc} {mode:7}-openvex: {len(before):5} -> {len(after):5}; clears {len(clear):4}: '
               f'gone {len(clear & removed):4}, left {len(clear & after):4}; kept {len(keep):5}: gone {len(keep & removed)}')
-        if mode == 'scan' and clear & after:
+        if mode == 'scanner' and clear & after:
             print('     clears left:', sorted(clear & after)[:5])
         if keep & removed:
             print('     KEPT BUT GONE (a wrong clear reached the scanner):', sorted(keep & removed)[:5])

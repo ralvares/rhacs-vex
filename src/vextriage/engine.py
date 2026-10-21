@@ -231,7 +231,7 @@ class Engine:
 
     def _image_statements(self, doc: Document) -> list:
         out = []
-        for path in self.scope.paths:
+        for path in sorted(self.scope.paths):          # sorted: the same citation every run
             out += doc.about('image', path)
         return out
 

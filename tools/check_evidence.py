@@ -5,7 +5,9 @@
 A row whose rule says fixed / not affected / open must rest on a statement of that status.
 """
 import json, gzip, sys, collections, os
-VEX=os.environ.get('VEXTRIAGE_VEX', os.path.join('data', 'vex'))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+from vextriage.sync import Mirror  # noqa: E402
+MIRROR = Mirror(os.environ.get('VEXTRIAGE_VEX', os.path.join('data', 'vex.sqlite')))
 EXPECT = {
  'fixed_ev': {'rpm_stream_fix','rpm_inherited','product_fix','product_past_fix','rpm_newer_version','rpm_past_mainline',
               'rpm_later_stream','rpm_errata','product_errata','image_later_fix','image_older_fix','image_unordered_fix','purl_fix'},
@@ -16,9 +18,9 @@ EXPECT = {
 _cache={}
 def raw(cve):
     if cve not in _cache:
-        p=f'{VEX}/{cve}.json.gz'
-        if not os.path.exists(p): _cache[cve]=None; return None
-        d=json.load(gzip.open(p)); m={}
+        d=MIRROR.load(cve)
+        if d is None: _cache[cve]=None; return None
+        m={}
         for v in d['vulnerabilities']:
             for st,ids in (v.get('product_status') or {}).items():
                 for i in ids: m.setdefault(i,set()).add(st)

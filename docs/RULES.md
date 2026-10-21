@@ -106,7 +106,7 @@ tell the copies apart, and grype applied the clear to both. A
 statement made from a scanner's findings (`scan --scanner … --openvex`) carries the
 scanner's own id as an alias: grype reports Go modules as `GHSA-…` and matches only that
 id (on the OpenShift release image its 19 cleared Go findings were applied only with it).
-`vextriage openvex IMAGE` is the free scan: it holds what Red Hat's data names for the
+`vextriage openvex IMAGE` is the scan (Red Hat VEX alone): it holds what Red Hat's data names for the
 image's rpms, purls and paths — a Go module Red Hat never names by purl has no statement
 there, so to clear a scanner's findings use `scan --scanner … --openvex`.
 `not_affected` carries Red Hat's justification only when stated; inferred ones carry an

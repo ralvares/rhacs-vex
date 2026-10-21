@@ -108,7 +108,7 @@ class Image:
 class Finding:
     cve: str
     package: Package
-    scanner: str = ''               # grype | trivy | free (the SBOM against Red Hat VEX)
+    scanner: str = ''               # grype | trivy | vex (the scan: the SBOM against Red Hat VEX alone)
     vuln_id: str = ''               # the scanner's id (GHSA-…, RHSA-…) when not the CVE
     fixed_in: str = ''              # the scanner's fix version
     severity: str = ''              # the scanner's severity

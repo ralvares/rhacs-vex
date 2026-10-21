@@ -1,11 +1,12 @@
 """vextriage — triage grype / trivy / syft findings against Red Hat CSAF-VEX; publish OpenVEX.
 
     vextriage sync                                   mirror Red Hat VEX, build the index
-    vextriage scan IMAGE                             syft → the free scan (no scanner)
+    vextriage scan IMAGE                             syft → Red Hat VEX (no scanner)
     vextriage scan IMAGE --scanner grype|trivy       run the scanner, triage its findings
     vextriage scan --sbom s.json [--grype g.json | --trivy t.json]   from files
     vextriage openvex IMAGE|--sbom s.json -o out.openvex.json        Red Hat's verdicts as OpenVEX
     vextriage explain CVE IMAGE|--sbom s.json        the statements and how they decide
+    vextriage raw CVE                                Red Hat's document as published (from the mirror)
 """
 from __future__ import annotations
 
@@ -23,7 +24,7 @@ DATA = os.environ.get('VEXTRIAGE_DATA', 'data')
 
 
 def _paths(args):
-    vex = args.vex or os.path.join(DATA, 'vex')
+    vex = args.vex or os.path.join(DATA, 'vex.sqlite')
     idx = args.index or os.path.join(DATA, 'vextriage.sqlite')
     return vex, idx
 
@@ -99,13 +100,17 @@ def cmd_sync(args) -> int:
     from .index import Index
     from .sync import mirror
     vex, idx = _paths(args)
+    from .sync import Mirror
+    legacy = os.path.join(os.path.dirname(vex) or '.', 'vex')      # the old directory of files
     if not args.offline:
-        print(json.dumps(mirror(vex, full=args.full)))
-    if not os.path.isdir(vex):
+        print(json.dumps(mirror(vex, full=args.full, legacy_dir=legacy)))
+    elif os.path.isdir(legacy) and not os.path.exists(vex):
+        Mirror(vex).import_dir(legacy)
+    if not os.path.exists(vex):
         return _err(f'no mirror at {vex}')
     os.makedirs(os.path.dirname(idx) or '.', exist_ok=True)
     ix = Index(idx)
-    print(json.dumps(ix.update(vex, full=args.full,
+    print(json.dumps(ix.update(Mirror(vex), full=args.full,
                                progress=lambda d, n: print(f'  indexed {d:,}/{n:,}', file=sys.stderr))))
     return 0
 
@@ -202,12 +207,26 @@ def cmd_explain(args) -> int:
     return 0
 
 
+def cmd_raw(args) -> int:
+    from .sync import Mirror
+    vex, _ = _paths(args)
+    doc = Mirror(vex).load(args.cve) if os.path.exists(vex) else None
+    if doc is None:
+        return _err(f'{args.cve.upper()}: not in the mirror {vex}')
+    try:
+        json.dump(doc, sys.stdout, indent=1)
+        sys.stdout.write('\n')
+    except BrokenPipeError:                         # | head
+        sys.stdout = None
+    return 0
+
+
 def cmd_doctor(args) -> int:
     vex, idx = _paths(args)
     for tool in ('syft', 'grype', 'trivy'):
         print(f'{tool:8} {shutil.which(tool) or "not installed"}')
-    from .sync import files
-    n = len(files(vex)) if os.path.isdir(vex) else 0
+    from .sync import Mirror
+    n = Mirror(vex).count() if os.path.exists(vex) else 0
     print(f'mirror   {vex}: {n:,} documents')
     if os.path.exists(idx):
         from .index import Index
@@ -222,7 +241,7 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog='vextriage', description=__doc__.split('\n')[0],
                                  formatter_class=argparse.RawDescriptionHelpFormatter, epilog=__doc__)
     ap.add_argument('--version', action='version', version=f'vextriage {__version__}')
-    ap.add_argument('--vex', help='mirror directory (default data/vex)')
+    ap.add_argument('--vex', help='mirror of Red Hat VEX (default data/vex.sqlite)')
     ap.add_argument('--index', help='index file (default data/vextriage.sqlite)')
     sub = ap.add_subparsers(dest='cmd')
 
@@ -237,7 +256,7 @@ def main(argv=None) -> int:
         p.add_argument('--stated-only', action='store_true',
                        help='OpenVEX: only what Red Hat stated about this product and package')
 
-    p = sub.add_parser('scan', help='triage an image: the free scan, or grype / trivy findings')
+    p = sub.add_parser('scan', help="triage an image against Red Hat VEX, or grype / trivy findings")
     inputs(p)
     p.add_argument('--scanner', choices=('grype', 'trivy', 'none'), default='none')
     p.add_argument('--grype', help='grype JSON report')
@@ -250,7 +269,7 @@ def main(argv=None) -> int:
     p.add_argument('--fail', action='store_true', help='exit 1 when anything is left to act on')
     p.set_defaults(fn=cmd_scan)
 
-    p = sub.add_parser('openvex', help="Red Hat's verdicts for an image as OpenVEX (the free scan)")
+    p = sub.add_parser('openvex', help="Red Hat's verdicts for an image as OpenVEX (the scan, no scanner)")
     inputs(p)
     p.add_argument('-o', '--output')
     p.set_defaults(fn=cmd_openvex)
@@ -261,6 +280,10 @@ def main(argv=None) -> int:
     p.add_argument('--package', help='only this package')
     p.add_argument('--limit', type=int, default=60)
     p.set_defaults(fn=cmd_explain)
+
+    p = sub.add_parser('raw', help="Red Hat's CSAF-VEX document for a CVE, as published")
+    p.add_argument('cve')
+    p.set_defaults(fn=cmd_raw)
 
     sub.add_parser('doctor', help='tools and data present').set_defaults(fn=cmd_doctor)
     args = ap.parse_args(argv)

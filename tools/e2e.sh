@@ -1,6 +1,6 @@
 #!/bin/bash
 # End to end on one image: syft SBOM, grype + trivy reports, vextriage triage in all three
-# modes, OpenVEX (free scan and per scanner), the scanners re-run with --vex, and the diff.
+# modes, OpenVEX (from the scan, and per scanner), the scanners re-run with --vex, and the diff.
 #
 #   tools/e2e.sh NAME IMAGE-REF [OUTDIR=data/scans]
 #

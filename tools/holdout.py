@@ -44,15 +44,14 @@ import json
 import os
 import random
 import sys
-import zlib
 from collections import Counter, defaultdict
 from functools import cmp_to_key
 from multiprocessing import Pool
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
-from vextriage import csaf  # noqa: E402
 from vextriage.csaf import FIXED, NOT_AFFECTED, OPEN, Document  # noqa: E402
 from vextriage.engine import Engine, Scope, version_relation  # noqa: E402
+from vextriage.index import Index  # noqa: E402
 from vextriage.model import Image, Package  # noqa: E402
 from vextriage.rpm import EVR, evr_cmp  # noqa: E402
 
@@ -363,13 +362,11 @@ CASES = ('rpm', 'foreign', 'image')
 def _init(path, cases=CASES, per_doc=PER_DOC):
     global _IX, CASES, PER_DOC
     CASES, PER_DOC = cases, per_doc
-    import sqlite3
-    _IX = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+    _IX = Index(path, readonly=True)
 
 
 def _work(cve):
-    (blob,) = _IX.execute('SELECT blob FROM doc WHERE cve = ?', (cve,)).fetchone()
-    doc = csaf.decode(json.loads(zlib.decompress(blob)), cve)
+    doc = _IX.doc(cve)
     out = []
     try:
         if 'rpm' in CASES:

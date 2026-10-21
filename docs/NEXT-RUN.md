@@ -33,7 +33,7 @@ Repository ralvares/rhacs-vex, branch main (work and push on main only; no pull 
 It is vextriage 3: it triages grype / trivy / syft findings against Red Hat CSAF-VEX and
 publishes OpenVEX. Read README.md, docs/RULES.md (the engine's rules and the holdout
 calibration) and docs/VEX-MODEL.md (facts about the data) first. Be sceptical: verify every
-claim against Red Hat's raw documents (data/vex/CVE-….json.gz) and say how each result was
+claim against Red Hat's raw documents (`vextriage raw CVE`) and say how each result was
 verified. Never print, copy or commit the pull secret. Do not regenerate or delete vexhub/
 (it is published) — ask first.
 
@@ -55,7 +55,7 @@ credentials it did not have. That is your job.
      `$DOCKER_CONFIG/config.json`, which is a pull secret's format. Confirm with
      `oc image info --filter-by-os=linux/amd64 registry.redhat.io/rhel9/postgresql-16:latest`.
 
-2. `vextriage sync` (first run about 7 minutes: a ~370 MB archive, then the index). Run it
+2. `vextriage sync` (first run about 10 minutes: a ~370 MB archive, then the index). Run it
    a second time and confirm it only fetches what changed. Report the document count and
    index size.
 
@@ -72,8 +72,8 @@ credentials it did not have. That is your job.
    - registry.redhat.io/web-terminal/web-terminal-tooling-rhel9
 
    For each: `tools/e2e.sh NAME IMAGE` (output under data/scans/NAME, ignored by git). It
-   writes the syft SBOM and the grype / trivy reports, triages in all three modes (free scan,
-   grype, trivy), writes OpenVEX twice (`vextriage openvex` = the free scan; `scan --openvex`
+   writes the syft SBOM and the grype / trivy reports, triages in all three modes (the scan,
+   grype, trivy), writes OpenVEX twice (`vextriage openvex` = the scan, Red Hat VEX alone; `scan --openvex`
    = the scanner's own findings), re-runs both scanners with `--vex`, and prints the diff.
    Then `python3 tools/check_evidence.py data/scans/*/free.json data/scans/*/*-triage.json`:
    every deciding statement must exist in the raw document with the status its rule claims.
@@ -92,7 +92,7 @@ credentials it did not have. That is your job.
      image_newer_not_affected, image_newer_version, errata_assumed, not_listed, purl_*,
      product_* (GitOps ships el8 rpms of its own) — open two or three rows with
      `vextriage explain CVE --sbom data/scans/NAME/sbom.syft.json --package PKG` and check
-     them against the raw statements (`zcat data/vex/CVE-….json.gz`).
+     them against the raw statements (`vextriage raw CVE`).
 
 4. Open questions found earlier. Change a rule only on holdout evidence: add the case or
    variant to tools/holdout.py, run it on the whole corpus (~2 minutes), add a test per

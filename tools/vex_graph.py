@@ -21,7 +21,7 @@ with a query instead of a sample:
         category given for it, in document order (JSON)
     document(cve, title, severity, products, components, listings)
 
-    python3 tools/vex_graph.py [--vex data/vex] [--out data/vex-graph.sqlite]
+    python3 tools/vex_graph.py [--vex data/vex.sqlite] [--out data/vex-graph.sqlite]
 
 Example queries (sqlite3 data/vex-graph.sqlite):
     -- purl types per product family
@@ -44,9 +44,7 @@ from concurrent.futures import ProcessPoolExecutor
 from urllib.parse import unquote
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
-from vextriage.sync import files as mirror_files, load  # noqa: E402
-
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+from vextriage.sync import Mirror  # noqa: E402
 from vextriage.csaf import STATUSES, classify   # noqa: E402
 
 SCHEMA = """
@@ -108,13 +106,14 @@ def image_path(ref: str, purl: str) -> str:
     return '/'.join(parts).lower() if len(parts) >= 2 and all(parts) else ''
 
 
-def read_doc(path: str):
-    """(cve, title, severity, products, components, listings) of one document."""
+def read_doc(row):
+    """(cve, mtime, gz) → (cve, title, severity, products, components, listings)."""
+    import gzip
+    cve = row[0]
     try:
-        d = load(path)
+        d = json.loads(gzip.decompress(row[2]))
     except Exception:
         return None
-    cve = os.path.basename(path).split('.')[0]
     tree = d.get('product_tree') or {}
     nodes = {}
 
@@ -175,8 +174,14 @@ def read_doc(path: str):
     return cve, doc.get('title', ''), agg, list(products), list(components), listings
 
 
-def build(vex_dir: str, out: str, workers: int) -> dict:
-    files = sorted(mirror_files(vex_dir).values())
+def _rows(mirror: Mirror):
+    cves = sorted(mirror.stamps())
+    for i in range(0, len(cves), 2000):             # bounded: map queues its whole input
+        yield list(mirror.rows(cves[i:i + 2000]))
+
+
+def build(vex_db: str, out: str, workers: int) -> dict:
+    mirror = Mirror(vex_db)
     tmp = out + '.tmp'
     if os.path.exists(tmp):
         os.unlink(tmp)
@@ -185,7 +190,7 @@ def build(vex_dir: str, out: str, workers: int) -> dict:
     prod_docs, comp_id, comp_docs = {}, {}, {}
     t0, n = time.time(), 0
     with ProcessPoolExecutor(workers) as ex:
-        for res in ex.map(read_doc, files, chunksize=40):
+        for res in (r for batch in _rows(mirror) for r in ex.map(read_doc, batch, chunksize=40)):
             if res is None:
                 continue
             cve, title, agg, products, components, listings = res
@@ -203,7 +208,7 @@ def build(vex_dir: str, out: str, workers: int) -> dict:
                         (cve, title, agg, len(products), len(components), len(listings)))
             n += 1
             if n % 2000 == 0:
-                print(f'  {n:,}/{len(files):,} documents ({time.time() - t0:.0f}s)', flush=True)
+                print(f'  {n:,}/{mirror.count():,} documents ({time.time() - t0:.0f}s)', flush=True)
     prows = []
     for (pid, name, cpe), docs in prod_docs.items():
         p = classify(pid, name, cpe)
@@ -231,7 +236,7 @@ def build(vex_dir: str, out: str, workers: int) -> dict:
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
-    ap.add_argument('--vex', default=os.path.join('data', 'vex'))
+    ap.add_argument('--vex', default=os.path.join('data', 'vex.sqlite'), help='the mirror (vextriage sync)')
     ap.add_argument('--out', default=os.path.join('data', 'vex-graph.sqlite'))
     ap.add_argument('--workers', type=int, default=max(1, (os.cpu_count() or 2) - 1))
     a = ap.parse_args()

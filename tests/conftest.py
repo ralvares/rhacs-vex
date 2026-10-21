@@ -91,14 +91,13 @@ def csaf(cve, statements, title='test'):
 @pytest.fixture
 def index(tmp_path):
     """index(docs) → a real Index built from the given CSAF documents."""
+    from vextriage.sync import Mirror
+
     def build(*docs):
-        vex = tmp_path / 'vex'
-        vex.mkdir(exist_ok=True)
-        for d in docs:
-            cve = d['vulnerabilities'][0]['cve']
-            (vex / f'{cve}.json').write_text(json.dumps(d))
+        mirror = Mirror(str(tmp_path / 'vex.sqlite'))
+        mirror.put((d['vulnerabilities'][0]['cve'], json.dumps(d).encode(), 1700000000.0) for d in docs)
         ix = Index(str(tmp_path / 'index.sqlite'))
-        ix.update(str(vex), workers=1)
+        ix.update(mirror, workers=1)
         return ix
     return build
 

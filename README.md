@@ -17,19 +17,22 @@ the ones that are real.
 
 ```bash
 pip install -e .            # Python 3.10+; add .[archive] for the fast first sync
-vextriage sync              # mirror Red Hat CSAF-VEX (~1.6 GB gzipped) and build the index (~800 MB)
+vextriage sync              # mirror Red Hat CSAF-VEX (~1.6 GB) and build the index (~1.9 GB)
 vextriage doctor            # which of syft / grype / trivy are installed, data status
 ```
 
-`sync` downloads Red Hat's dated archive once (~370 MB, 72,000+ documents; about 7
-minutes), then only what changed (`changes.csv` / `deletions.csv`, seconds). Each document
-is kept gzipped (`data/vex/CVE-….json.gz`): the corpus is ~22 GB as plain JSON. Run it
-daily. Data lives in `./data` (`VEXTRIAGE_DATA` to move it).
+`sync` downloads Red Hat's dated archive once (~370 MB, 72,000+ documents; about 10
+minutes with the index), then only what changed (`changes.csv` / `deletions.csv`, seconds).
+Everything lives in two SQLite files under `./data` (`VEXTRIAGE_DATA` to move it):
+`vex.sqlite`, Red Hat's documents as published (gzipped; ~22 GB as plain JSON), and
+`vextriage.sqlite`, one row per statement, indexed by package, image path and digest — a
+scan reads only the statements about its own packages, in a few queries. A mirror from an
+older vextriage (a `data/vex/` directory of files) is imported on the next sync. Run it daily.
 
 ## Use
 
 ```bash
-# the free scan: syft SBOM against Red Hat VEX, no scanner
+# the scan: the syft SBOM against Red Hat VEX alone, no scanner
 vextriage scan registry.redhat.io/ubi9/ubi:latest
 
 # run a scanner and triage its findings
@@ -51,8 +54,9 @@ trivy image --vex image.openvex.json IMAGE
 vextriage scan IMAGE --scanner grype --openvex grype.openvex.json
 grype IMAGE --vex grype.openvex.json
 
-# why: every statement about one CVE and how it decided
+# why: every statement about one CVE and how it decided; Red Hat's document as published
 vextriage explain CVE-2026-0915 --sbom sbom.syft.json
+vextriage raw CVE-2026-0915
 ```
 
 `scan` options: `--all` (show cleared rows too), `--json/--csv FILE` (every row),
@@ -80,9 +84,9 @@ every rule by hiding Red Hat's own statements and comparing the inference with t
 ```
 src/vextriage/
   csaf.py      CSAF-VEX document → statements; product classification (rhel / ocp / layered)
-  index.py     SQLite index of the mirror        sync.py     Red Hat feed mirror
+  index.py     SQLite index: a row per statement  sync.py     Red Hat feed mirror (SQLite)
   sbom.py      syft JSON → image + packages      scanners.py grype / trivy JSON → findings
-  engine.py    the verdict engine                 triage.py   candidates (free scan), orchestration
+  engine.py    the verdict engine                 triage.py   the scan's candidates, orchestration
   openvex.py   OpenVEX writer                     report.py   table / JSON / CSV
   rpm.py version.py purl.py model.py cli.py
 tests/         one test per rule, on synthetic Red Hat documents (pytest)
